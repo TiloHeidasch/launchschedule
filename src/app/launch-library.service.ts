@@ -11,6 +11,11 @@ export class LaunchLibraryService {
   /*
   * Agencies
   */
+  async getAgencyAmount(search: string) {
+    const url = 'https://launchlibrary.net/1.4/agency?name=' + search + '&limit=1';
+    const data = await this.http.get<any>(url).toPromise();
+    return data.total;
+  }
   async getAllAgencies(search?: string, startDate?: Date, endDate?: Date, padId?: number, locationId?: number, rocketId?: number, agencyId?: number) {
     let url = this.createAgencyUrl(10000, undefined, search, startDate, endDate, padId, locationId, rocketId, agencyId);
     const data = await this.http.get<any>(url).toPromise();
@@ -61,6 +66,11 @@ export class LaunchLibraryService {
   /*
   * Launches
   */
+  async getLaunchAmount(search: string) {
+    const url = 'https://launchlibrary.net/1.4/launch/' + search + '?limit=1';
+    const data = await this.http.get<any>(url).toPromise();
+    return data.total;
+  }
   async getAllLaunches(search?: string, startDate?: Date, endDate?: Date, padId?: number, locationId?: number, rocketId?: number, agencyId?: number) {
     let url = this.createLaunchUrl(10000, undefined, search, startDate, endDate, padId, locationId, rocketId, agencyId);
     const data = await this.http.get<any>(url).toPromise();
@@ -112,6 +122,11 @@ export class LaunchLibraryService {
   /*
   * Missions
   */
+  async getMissionAmount(search: string) {
+    const url = 'https://launchlibrary.net/1.4/mission/' + search + '?limit=1';
+    const data = await this.http.get<any>(url).toPromise();
+    return data.total;
+  }
   async getAllMissions(search?: string, startDate?: Date, endDate?: Date, padId?: number, locationId?: number, rocketId?: number, agencyId?: number) {
     let url = this.createMissionUrl(10000, undefined, search, startDate, endDate, padId, locationId, rocketId, agencyId);
     const data = await this.http.get<any>(url).toPromise();
@@ -171,6 +186,11 @@ export class LaunchLibraryService {
   /*
   * Pads
   */
+  async getPadAmount(search: string) {
+    const url = 'https://launchlibrary.net/1.4/pad/' + search + '?limit=1';
+    const data = await this.http.get<any>(url).toPromise();
+    return data.total;
+  }
   async getAllPads(search?: string, startDate?: Date, endDate?: Date, padId?: number, locationId?: number, rocketId?: number, agencyId?: number) {
     let url = this.createPadUrl(10000, undefined, search, startDate, endDate, padId, locationId, rocketId, agencyId);
     const data = await this.http.get<any>(url).toPromise();
@@ -223,6 +243,11 @@ export class LaunchLibraryService {
   /*
   * Payloads
   */
+  async getPayloadAmount(search: string) {
+    const url = 'https://launchlibrary.net/1.4/payload/' + search + '?limit=1';
+    const data = await this.http.get<any>(url).toPromise();
+    return data.total;
+  }
   async getAllPayloads(search?: string, startDate?: Date, endDate?: Date, padId?: number, locationId?: number, rocketId?: number, agencyId?: number) {
     let url = this.createPayloadUrl(10000, undefined, search, startDate, endDate, padId, locationId, rocketId, agencyId);
     const data = await this.http.get<any>(url).toPromise();
@@ -274,6 +299,11 @@ export class LaunchLibraryService {
   /*
   * Rockets
   */
+  async getRocketAmount(search: string) {
+    const url = 'https://launchlibrary.net/1.4/rocket/' + search + '?limit=1';
+    const data = await this.http.get<any>(url).toPromise();
+    return data.total;
+  }
   async getAllRockets(search?: string, startDate?: Date, endDate?: Date, padId?: number, locationId?: number, rocketId?: number, agencyId?: number) {
     let url = this.createRocketUrl(10000, undefined, search, startDate, endDate, padId, locationId, rocketId, agencyId);
     const data = await this.http.get<any>(url).toPromise();

@@ -1,0 +1,84 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div id="datasets">
+    <ion-card [id]='datasetSelector.id' *ngFor="let datasetSelector of datasetSelectors">
+      <ion-card-header>
+        <ion-card-title>
+          <ion-textarea debounce=500 [value]="datasetSelector.name"
+            (ionChange)="datasetSelectorTitleChange(datasetSelector,$event)" placeholder="Name your Dataset">
+          </ion-textarea>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label>I want</ion-label>
+          <ion-select (ionChange)="datasetSelectorTypeChange(datasetSelector,$event)" placeholder="Type">
+            <ion-select-option value="Launches">Launches</ion-select-option>
+            <ion-select-option value="Agencies">Agencies</ion-select-option>
+            <ion-select-option value="Missions">Missions</ion-select-option>
+            <ion-select-option value="Pads">Pads</ion-select-option>
+            <ion-select-option value="Payloads">Payloads</ion-select-option>
+            <ion-select-option value="Rockets">Rockets</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label>with Name</ion-label>
+          <ion-input debounce=500 (ionChange)="datasetSelectorSearchChange(datasetSelector,$event)">
+          </ion-input>
+        </ion-item>
+        <ion-buttons id="delete-zone" slot="end">
+          <ion-button id="delete-button" color="danger" (click)="deleteDatasetSelector(datasetSelector)">
+            Delete
+            <ion-icon slot="end" name="close"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-card-content>
+      <ion-buttons slot="start">
+        <ion-button color="danger" (click)="deleteDatasetSelector(datasetSelector)">
+          <ion-icon slot="icon-only" name="close"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-card>
+  </div>
+  <div id="charts">
+    <ion-card>
+      <ion-card-header>
+        Bar Chart
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #barCanvas></canvas>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        Doughnut Chart
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #doughnutCanvas></canvas>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- <ion-card>
+    <ion-card-header>
+      Line Chart
+    </ion-card-header>
+    <ion-card-content>
+      <canvas #lineCanvas></canvas>
+    </ion-card-content>
+  </ion-card> -->
+  </div>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="addDatasetSelector()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

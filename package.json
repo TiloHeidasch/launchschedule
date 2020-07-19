@@ -28,10 +28,12 @@
     "@ionic-native/status-bar": "^5.0.0",
     "@ionic/angular": "^5.0.0",
     "@types/leaflet": "^1.5.16",
+    "chart.js": "^2.9.3",
     "cordova-plugin-advanced-http": "^3.0.0",
     "leaflet": "^1.6.0",
     "rxjs": "~6.5.1",
     "tslib": "^1.10.0",
+    "uuidv4": "^6.2.0",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {

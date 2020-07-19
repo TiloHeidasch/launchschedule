@@ -42,6 +42,11 @@ export class AppComponent implements OnInit {
       url: '/rocket',
       icon: 'rocket'
     },
+    {
+      title: 'Statistic',
+      url: '/statistic',
+      icon: 'stats-chart'
+    },
   ];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 
