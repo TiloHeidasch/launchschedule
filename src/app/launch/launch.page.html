@@ -1,0 +1,37 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="launch"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ title }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">{{ title }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container" *ngIf="launch!==undefined">
+    <div id="launch">
+      <launch-detail-card [id]='launch.id'></launch-detail-card>
+    </div>
+    <div id="rocket">
+      <rocket-detail-card [id]='launch.rocket.id'></rocket-detail-card>
+    </div>
+    <div id="mission-list">
+      <mission-detail-card *ngFor="let mission of launch.missions" [id]='mission.id'></mission-detail-card>
+    </div>
+    <div id="pad-list">
+      <pad-detail-card *ngFor="let pad of launch.location.pads" [id]='pad.id'></pad-detail-card>
+    </div>
+    <div id="agency">
+      <agency-detail-card [id]='launch.lsp.id'></agency-detail-card>
+    </div>
+    <div id="video">
+      <launch-video *ngFor="let vidUrl of launch.vidURLs" [src]='vidUrl'></launch-video>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,13 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>Video</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <div *ngIf="id==='0'">
+      <ion-item [href]="src">
+        <ion-label>Link</ion-label>
+      </ion-item>
+    </div>
+    <youtube-player *ngIf="id!=='0'" height="100%" width="100%" [videoId]="id"></youtube-player>
+  </ion-card-content>
+</ion-card>

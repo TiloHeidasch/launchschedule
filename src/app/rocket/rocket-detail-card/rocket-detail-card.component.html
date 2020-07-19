@@ -1,0 +1,17 @@
+<ion-card *ngIf="rocket!==undefined">
+  <ion-card-header>
+    <ion-card-subtitle>{{rocket.family.name}}</ion-card-subtitle>
+    <ion-card-title>{{rocket.name}}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-img tappable (click)="openHighRes()" [src]="imageUrlSmall"></ion-img>
+    <div class="links">
+      <ion-item *ngIf="rocket.wikiURL!==''" [href]="rocket.wikiURL">
+        <ion-label>Wiki</ion-label>
+      </ion-item>
+      <ion-item *ngFor="let infoURL of rocket.infoURLs; let i=index" [href]="infoURL">
+        <ion-label>Info {{i+1}}</ion-label>
+      </ion-item>
+    </div>
+  </ion-card-content>
+</ion-card>

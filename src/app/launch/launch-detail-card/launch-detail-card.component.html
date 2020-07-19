@@ -1,0 +1,14 @@
+<ion-card *ngIf="launch!==undefined">
+  <ion-card-header>
+    <ion-card-subtitle>{{subtitle}}</ion-card-subtitle>
+    <ion-card-title>{{title}}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <countdown [date]='date'></countdown>
+    <div id="links">
+      <ion-item *ngFor="let infoURL of launch.infoURLs; let i=index" [href]="infoURL">
+        <ion-label>Info {{i+1}}</ion-label>
+      </ion-item>
+    </div>
+  </ion-card-content>
+</ion-card>

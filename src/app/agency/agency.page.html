@@ -1,0 +1,31 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="agency"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ title }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">{{ title }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container" *ngIf="agency!==undefined">
+    <div id="agency">
+      <agency-detail-card [id]='agency.id'></agency-detail-card>
+    </div>
+    <!-- <div id="mission-list">
+      <mission-detail-card *ngFor="let mission of agency.missions" [mission]='mission'></mission-detail-card>
+    </div>
+    <div id="location">
+      <location-detail-card [location]='agency.location'></location-detail-card>
+    </div>
+    <div id="agency">
+      <agency-detail-card [agency]='agency.lsp'></agency-detail-card>
+    </div> -->
+  </div>
+</ion-content>

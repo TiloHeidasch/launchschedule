@@ -1,0 +1,22 @@
+<ion-card *ngIf="mission!==undefined">
+  <ion-card-header>
+    <ion-card-subtitle>{{mission.typeName}}</ion-card-subtitle>
+    <ion-card-title>{{mission.name}}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <div id="description">
+      <p>{{mission.description}}</p>
+    </div>
+    <div id="links">
+      <ion-item *ngIf="mission.wikiURL!==''" [href]="mission.wikiURL">
+        <ion-label>Wiki</ion-label>
+      </ion-item>
+      <ion-item *ngFor="let infoURL of mission.infoURLs; let i=index" [href]="infoURL">
+        <ion-label>Info {{i+1}}</ion-label>
+      </ion-item>
+    </div>
+    <div id="payloads">
+      <payload-detail-card *ngFor="let payload of mission.payloads" [id]='payload.id'></payload-detail-card>
+    </div>
+  </ion-card-content>
+</ion-card>

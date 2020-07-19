@@ -1,22 +1,42 @@
 import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, NoPreloading } from '@angular/router';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'folder/Inbox',
+    redirectTo: 'launch',
     pathMatch: 'full'
   },
   {
-    path: 'folder/:id',
-    loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
+    path: 'launch',
+    loadChildren: () => import('./launch/launch.module').then(m => m.LaunchModule)
+  },
+  {
+    path: 'rocket',
+    loadChildren: () => import('./rocket/rocket.module').then(m => m.RocketModule)
+  },
+  {
+    path: 'agency',
+    loadChildren: () => import('./agency/agency.module').then(m => m.AgencyModule)
+  },
+  {
+    path: 'mission',
+    loadChildren: () => import('./mission/mission.module').then(m => m.MissionModule)
+  },
+  {
+    path: 'pad',
+    loadChildren: () => import('./pad/pad.module').then(m => m.PadModule)
+  },
+  {
+    path: 'payload',
+    loadChildren: () => import('./payload/payload.module').then(m => m.PayloadModule)
   }
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes, { preloadingStrategy: NoPreloading })
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
