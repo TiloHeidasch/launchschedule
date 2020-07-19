@@ -19,21 +19,23 @@ export class StatisticPage implements OnInit {
   datasetSelectors: DatasetSelector[] = [];
   datasets: Dataset[] = [];
 
+  private fuse: boolean = false;
+
   constructor(private service: LaunchLibraryService) { this.addDatasetSelector(); }
   ngOnInit() {
     this.initCharts();
   }
   datasetSelectorTitleChange(datasetSelector: DatasetSelector, event) {
-    datasetSelector.name = event.detail.value;
+    datasetSelector.setName(event.detail.value);
     this.datasetSelectorChange();
   }
   datasetSelectorTypeChange(datasetSelector: DatasetSelector, event) {
-    datasetSelector.type = event.detail.value;
+    datasetSelector.setType(event.detail.value);
     this.tryToGenerateDatasetSelectorName(datasetSelector);
     this.datasetSelectorChange();
   }
   datasetSelectorSearchChange(datasetSelector: DatasetSelector, event) {
-    datasetSelector.search = event.detail.value;
+    datasetSelector.setSearch(event.detail.value);
     this.tryToGenerateDatasetSelectorName(datasetSelector);
     this.datasetSelectorChange();
   }
@@ -43,7 +45,7 @@ export class StatisticPage implements OnInit {
     this.datasetSelectorChange();
   }
   async deleteDatasetSelector(datasetSelector: DatasetSelector) {
-    const element = document.getElementById(datasetSelector.id);
+    const element = document.getElementById(datasetSelector.getId());
     for (let index = 0; index < 100; index += 3) {
       element.style.left = index + '%';
       await this.sleep(1);
@@ -102,21 +104,31 @@ export class StatisticPage implements OnInit {
   }
 
   private tryToGenerateDatasetSelectorName(datasetSelector: DatasetSelector) {
-    if (datasetSelector.type !== undefined && datasetSelector.type !== '' && datasetSelector.search !== undefined && datasetSelector.search !== '') {
-      datasetSelector.name = datasetSelector.type + ' with \'' + datasetSelector.search + '\' in Name';
-    } else {
-      datasetSelector.name = '';
+    if (datasetSelector.getName() === '' || datasetSelector.getName().startsWith(' ')) {
+      let name = ' Something';
+      if (datasetSelector.getType() !== undefined && datasetSelector.getType() !== '') {
+        name = ' ' + datasetSelector.getType();
+      }
+      if (datasetSelector.getSearch() !== undefined && datasetSelector.getSearch() !== '') {
+        name += ' named \'' + datasetSelector.getSearch() + '\'';
+      }
+      datasetSelector.setName(name);
     }
   }
-  private async datasetSelectorChange() {
-    this.datasets = [];
-    for (let index = 0; index < this.datasetSelectors.length; index++) {
-      const datasetSelector = this.datasetSelectors[index];
-      const dataset = await this.determineDataSet(datasetSelector)
-      this.datasets.push(dataset);
-
-    }
-    this.updateCharts();
+  private datasetSelectorChange() {
+    const localFuse = this.fuse + '' === 'true';
+    this.fuse = !this.fuse;
+    setTimeout(async () => {
+      this.datasets = [];
+      for (let index = 0; index < this.datasetSelectors.length; index++) {
+        const datasetSelector = this.datasetSelectors[index];
+        const dataset = await this.determineDataSet(datasetSelector)
+        this.datasets.push(dataset);
+      }
+      if (this.fuse !== localFuse) {
+        this.updateCharts();
+      }
+    }, 500);
   }
   private async determineDataSet(datasetSelector): Promise<Dataset> {
     let value = 0;
@@ -173,5 +185,4 @@ export class StatisticPage implements OnInit {
     });
     return colors;
   }
-
 }

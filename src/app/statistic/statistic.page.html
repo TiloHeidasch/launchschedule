@@ -9,10 +9,10 @@
 
 <ion-content>
   <div id="datasets">
-    <ion-card [id]='datasetSelector.id' *ngFor="let datasetSelector of datasetSelectors">
+    <ion-card [id]='datasetSelector.getId()' *ngFor="let datasetSelector of datasetSelectors">
       <ion-card-header>
         <ion-card-title>
-          <ion-textarea debounce=500 [value]="datasetSelector.name"
+          <ion-textarea debounce=500 [value]="datasetSelector.getName()"
             (ionChange)="datasetSelectorTitleChange(datasetSelector,$event)" placeholder="Name your Dataset">
           </ion-textarea>
         </ion-card-title>

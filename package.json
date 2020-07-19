@@ -32,6 +32,7 @@
     "cordova-plugin-advanced-http": "^3.0.0",
     "leaflet": "^1.6.0",
     "rxjs": "~6.5.1",
+    "ts-md5": "^1.2.7",
     "tslib": "^1.10.0",
     "uuidv4": "^6.2.0",
     "zone.js": "~0.10.2"
