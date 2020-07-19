@@ -8,7 +8,7 @@ WORKDIR /home/schedule
 COPY package*.json ./
 RUN npm install
 
-COPY angular.json tsconfig.json ionic.config.json tslint.json ./
+COPY angular.json tsconfig.json tsconfig.app.json ionic.config.json tslint.json ./
 COPY src ./src
 
 RUN npm run ng run app:build && \
