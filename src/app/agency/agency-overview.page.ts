@@ -20,10 +20,13 @@ export class AgencyOverviewPage implements OnInit {
   rocketId: number;
   agencyId: number;
 
+  showFilter: boolean = false;
+
   ngOnInit() {
     this.loadFirst();
   }
   async loadFirst() {
+    this.agencies = [];
     this.agencies = (await this.service.getFirstAgencies(this.search, this.startDate, this.endDate, this.padId, this.locationId, this.rocketId, this.agencyId)).agencies;
   }
 
@@ -37,5 +40,12 @@ export class AgencyOverviewPage implements OnInit {
     if (this.agencies.length === answer.max) {
       event.target.disabled = true;
     }
+  }
+  toggleFilter() {
+    this.showFilter = !this.showFilter
+  }
+  searchChange(event) {
+    this.search = event.detail.value;
+    this.loadFirst();
   }
 }

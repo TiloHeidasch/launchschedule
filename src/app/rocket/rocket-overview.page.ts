@@ -18,10 +18,13 @@ export class RocketOverviewPage implements OnInit {
   rocketId: number;
   agencyId: number;
 
+  showFilter: boolean = false;
+
   ngOnInit() {
     this.loadFirst();
   }
   async loadFirst() {
+    this.rockets = [];
     const answer = await this.service.getFirstRockets(this.search, undefined, undefined, this.padId, this.locationId, this.rocketId, this.agencyId);
     this.rockets = answer.rockets;
   }
@@ -36,5 +39,12 @@ export class RocketOverviewPage implements OnInit {
     if (this.rockets.length === answer.max) {
       event.target.disabled = true;
     }
+  }
+  toggleFilter() {
+    this.showFilter = !this.showFilter
+  }
+  searchChange(event) {
+    this.search = event.detail.value;
+    this.loadFirst();
   }
 }

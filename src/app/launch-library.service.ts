@@ -33,7 +33,7 @@ export class LaunchLibraryService {
     let url = 'https://launchlibrary.net/1.4/agency';
     url += '?limit=' + limit;
     if (search !== undefined && search !== '') {
-      url += ('name=' + search);
+      url += ('&name=' + search);
     }
     if (offset !== undefined) {
       url += ('&offset=' + offset);

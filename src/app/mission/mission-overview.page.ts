@@ -20,10 +20,13 @@ export class MissionOverviewPage implements OnInit {
   rocketId: number;
   missionId: number;
 
+  showFilter: boolean = false;
+
   ngOnInit() {
     this.loadFirst();
   }
   async loadFirst() {
+    this.missions = [];
     this.missions = (await this.service.getFirstMissions(this.search, this.startDate, this.endDate, this.padId, this.locationId, this.rocketId, this.missionId)).missions;
   }
 
@@ -37,5 +40,12 @@ export class MissionOverviewPage implements OnInit {
     if (this.missions.length === answer.max) {
       event.target.disabled = true;
     }
+  }
+  toggleFilter() {
+    this.showFilter = !this.showFilter
+  }
+  searchChange(event) {
+    this.search = event.detail.value;
+    this.loadFirst();
   }
 }

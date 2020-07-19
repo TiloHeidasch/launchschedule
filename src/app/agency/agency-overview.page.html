@@ -4,6 +4,14 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>{{title}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleFilter()">
+        <ion-icon slot="icon-only" name="filter"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar *ngIf="showFilter">
+    <ion-searchbar (ionChange)="searchChange($event)" [value]="search" animated></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 

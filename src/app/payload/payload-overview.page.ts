@@ -20,10 +20,13 @@ export class PayloadOverviewPage implements OnInit {
   rocketId: number;
   payloadId: number;
 
+  showFilter: boolean = false;
+
   ngOnInit() {
     this.loadFirst();
   }
   async loadFirst() {
+    this.payloads = [];
     this.payloads = (await this.service.getFirstPayloads(this.search, this.startDate, this.endDate, this.padId, this.locationId, this.rocketId, this.payloadId)).payloads;
   }
 
@@ -37,5 +40,12 @@ export class PayloadOverviewPage implements OnInit {
     if (this.payloads.length === answer.max) {
       event.target.disabled = true;
     }
+  }
+  toggleFilter() {
+    this.showFilter = !this.showFilter
+  }
+  searchChange(event) {
+    this.search = event.detail.value;
+    this.loadFirst();
   }
 }

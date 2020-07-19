@@ -19,10 +19,13 @@ export class PadOverviewPage implements OnInit {
   locationId: number;
   rocketId: number;
 
+  showFilter: boolean = false;
+
   ngOnInit() {
     this.loadFirst();
   }
   async loadFirst() {
+    this.pads = [];
     this.pads = (await this.service.getFirstPads(this.search, this.startDate, this.endDate, this.padId, this.locationId, this.rocketId, this.padId)).pads;
   }
 
@@ -36,5 +39,12 @@ export class PadOverviewPage implements OnInit {
     if (this.pads.length === answer.max) {
       event.target.disabled = true;
     }
+  }
+  toggleFilter() {
+    this.showFilter = !this.showFilter
+  }
+  searchChange(event) {
+    this.search = event.detail.value;
+    this.loadFirst();
   }
 }
