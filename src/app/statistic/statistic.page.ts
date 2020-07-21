@@ -3,6 +3,7 @@ import { Chart } from "chart.js";
 import { Dataset } from './dataset';
 import { DatasetSelector } from './dataset-selector';
 import { LaunchLibraryService } from '../launch-library.service';
+import { StatisticParamStoreService } from './statistic-param-store.service';
 
 @Component({
   selector: 'app-statistic',
@@ -16,12 +17,17 @@ export class StatisticPage implements OnInit {
   title = 'Statistics';
   private barChart: Chart;
   private doughnutChart: Chart;
-  datasetSelectors: DatasetSelector[] = [];
   datasets: Dataset[] = [];
 
   private fuse: boolean = false;
 
-  constructor(private service: LaunchLibraryService) { this.addDatasetSelector(); }
+  constructor(private service: LaunchLibraryService, private store: StatisticParamStoreService) {
+    if (this.store.datasetSelectors.length === 0) {
+      this.addDatasetSelector();
+    } else {
+      this.datasetSelectorChange();
+    }
+  }
   ngOnInit() {
     this.initCharts();
   }
@@ -41,7 +47,7 @@ export class StatisticPage implements OnInit {
   }
 
   addDatasetSelector() {
-    this.datasetSelectors.push(new DatasetSelector());
+    this.store.datasetSelectors.push(new DatasetSelector());
     this.datasetSelectorChange();
   }
   async deleteDatasetSelector(datasetSelector: DatasetSelector) {
@@ -50,8 +56,8 @@ export class StatisticPage implements OnInit {
       element.style.left = index + '%';
       await this.sleep(1);
     }
-    this.datasetSelectors = this.datasetSelectors.filter(otherDatasetSelector => (otherDatasetSelector !== datasetSelector));
-    if (this.datasetSelectors.length === 0) {
+    this.store.datasetSelectors = this.store.datasetSelectors.filter(otherDatasetSelector => (otherDatasetSelector !== datasetSelector));
+    if (this.store.datasetSelectors.length === 0) {
       this.addDatasetSelector();
     } else {
       this.datasetSelectorChange();
@@ -120,8 +126,8 @@ export class StatisticPage implements OnInit {
     this.fuse = !this.fuse;
     setTimeout(async () => {
       this.datasets = [];
-      for (let index = 0; index < this.datasetSelectors.length; index++) {
-        const datasetSelector = this.datasetSelectors[index];
+      for (let index = 0; index < this.store.datasetSelectors.length; index++) {
+        const datasetSelector = this.store.datasetSelectors[index];
         const dataset = await this.determineDataSet(datasetSelector)
         this.datasets.push(dataset);
       }

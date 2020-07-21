@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LaunchLibraryService } from '../launch-library.service';
+import { AgencyParamStoreService } from './agency-param-store.service';
 
 
 @Component({
@@ -11,27 +12,18 @@ import { LaunchLibraryService } from '../launch-library.service';
 export class AgencyOverviewPage implements OnInit {
   title = 'Agencies';
   agencies: any[] = [];
-  constructor(private activatedRoute: ActivatedRoute, private service: LaunchLibraryService) { }
-  search: string;
-  startDate: Date;
-  endDate: Date;
-  padId: number;
-  locationId: number;
-  rocketId: number;
-  agencyId: number;
-
-  showFilter: boolean = false;
+  constructor(private activatedRoute: ActivatedRoute, private service: LaunchLibraryService, private store: AgencyParamStoreService) { }
 
   ngOnInit() {
     this.loadFirst();
   }
   async loadFirst() {
     this.agencies = [];
-    this.agencies = (await this.service.getFirstAgencies(this.search, this.startDate, this.endDate, this.padId, this.locationId, this.rocketId, this.agencyId)).agencies;
+    this.agencies = (await this.service.getFirstAgencies(this.store.search, this.store.startDate, this.store.endDate, this.store.padId, this.store.locationId, this.store.rocketId, this.store.agencyId)).agencies;
   }
 
   async loadMore(event) {
-    const answer = await this.service.getNextAgencies(this.agencies.length, this.search, this.startDate, this.endDate, this.padId, this.locationId, this.rocketId, this.agencyId);
+    const answer = await this.service.getNextAgencies(this.agencies.length, this.store.search, this.store.startDate, this.store.endDate, this.store.padId, this.store.locationId, this.store.rocketId, this.store.agencyId);
     this.agencies.push(...answer.agencies);
     event.target.complete();
 
@@ -42,10 +34,10 @@ export class AgencyOverviewPage implements OnInit {
     }
   }
   toggleFilter() {
-    this.showFilter = !this.showFilter
+    this.store.showFilter = !this.store.showFilter
   }
   searchChange(event) {
-    this.search = event.detail.value;
+    this.store.search = event.detail.value;
     this.loadFirst();
   }
 }

@@ -10,8 +10,8 @@
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
-  <ion-toolbar *ngIf="showFilter">
-    <ion-searchbar (ionChange)="searchChange($event)" [value]="search" animated></ion-searchbar>
+  <ion-toolbar *ngIf="store.showFilter">
+    <ion-searchbar (ionChange)="searchChange($event)" [value]="store.search" animated></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 

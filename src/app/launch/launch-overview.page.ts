@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LaunchLibraryService } from '../launch-library.service';
+import { LaunchParamStoreService } from './launch-param-store.service';
 
 
 @Component({
@@ -11,30 +12,27 @@ import { LaunchLibraryService } from '../launch-library.service';
 export class LaunchOverviewPage implements OnInit {
   title = 'Launches';
   launches: any[] = [];
-  constructor(private activatedRoute: ActivatedRoute, private service: LaunchLibraryService) {
-    this.setStartToToday();
-    this.setEndToInf();
+  constructor(private activatedRoute: ActivatedRoute, private service: LaunchLibraryService, private store: LaunchParamStoreService) {
+    if (store.startDate === undefined) {
+      this.setStartToToday();
+    }
+    if (store.endDate === undefined) {
+      this.setEndToInf();
+    }
   }
-  search: string;
-  startDate: Date;
-  endDate: Date;
-  padId: number;
-  locationId: number;
-  rocketId: number;
-  agencyId: number;
-
-  showFilter: boolean = false;
 
   ngOnInit() {
     this.loadFirst();
+    console.log({ store: this.store });
+
   }
   async loadFirst() {
     this.launches = [];
-    this.launches = (await this.service.getFirstLaunches(this.search, this.startDate, this.endDate, this.padId, this.locationId, this.rocketId, this.agencyId)).launches;
+    this.launches = (await this.service.getFirstLaunches(this.store.search, this.store.startDate, this.store.endDate, this.store.padId, this.store.locationId, this.store.rocketId, this.store.agencyId)).launches;
   }
 
   async loadMore(event) {
-    const answer = await this.service.getNextLaunches(this.launches.length, this.search, this.startDate, this.endDate, this.padId, this.locationId, this.rocketId, this.agencyId);
+    const answer = await this.service.getNextLaunches(this.launches.length, this.store.search, this.store.startDate, this.store.endDate, this.store.padId, this.store.locationId, this.store.rocketId, this.store.agencyId);
     this.launches.push(...answer.launches);
     event.target.complete();
 
@@ -45,18 +43,18 @@ export class LaunchOverviewPage implements OnInit {
     }
   }
   toggleFilter() {
-    this.showFilter = !this.showFilter
+    this.store.showFilter = !this.store.showFilter
   }
   searchChange(event) {
-    this.search = event.detail.value;
+    this.store.search = event.detail.value;
     this.loadFirst();
   }
   startChange(event) {
-    this.startDate = new Date(event.detail.value);
+    this.store.startDate = new Date(event.detail.value);
     this.loadFirst();
   }
   startClear() {
-    this.startDate = new Date('1950-01-01');
+    this.store.startDate = new Date('1950-01-01');
     this.loadFirst();
   }
   startToday() {
@@ -64,7 +62,7 @@ export class LaunchOverviewPage implements OnInit {
     this.loadFirst();
   }
   endChange(event) {
-    this.endDate = new Date(event.detail.value);
+    this.store.endDate = new Date(event.detail.value);
     this.loadFirst();
   }
   endClear() {
@@ -72,13 +70,13 @@ export class LaunchOverviewPage implements OnInit {
     this.loadFirst();
   }
   endToday() {
-    this.endDate = new Date(new Date().toISOString().split('T')[0]);
+    this.store.endDate = new Date(new Date().toISOString().split('T')[0]);
     this.loadFirst();
   }
   private setStartToToday() {
-    this.startDate = new Date(new Date().toISOString().split('T')[0]);
+    this.store.startDate = new Date(new Date().toISOString().split('T')[0]);
   }
   private setEndToInf() {
-    this.endDate = new Date('2050-12-31');
+    this.store.endDate = new Date('2050-12-31');
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LaunchLibraryService } from '../launch-library.service';
+import { PadParamStoreService } from './pad-param-store.service';
 
 
 @Component({
@@ -11,26 +12,18 @@ import { LaunchLibraryService } from '../launch-library.service';
 export class PadOverviewPage implements OnInit {
   title = 'Pads';
   pads: any[] = [];
-  constructor(private activatedRoute: ActivatedRoute, private service: LaunchLibraryService) { }
-  search: string;
-  startDate: Date;
-  endDate: Date;
-  padId: number;
-  locationId: number;
-  rocketId: number;
-
-  showFilter: boolean = false;
+  constructor(private activatedRoute: ActivatedRoute, private service: LaunchLibraryService, private store: PadParamStoreService) { }
 
   ngOnInit() {
     this.loadFirst();
   }
   async loadFirst() {
     this.pads = [];
-    this.pads = (await this.service.getFirstPads(this.search, this.startDate, this.endDate, this.padId, this.locationId, this.rocketId, this.padId)).pads;
+    this.pads = (await this.service.getFirstPads(this.store.search, this.store.startDate, this.store.endDate, this.store.padId, this.store.locationId, this.store.rocketId, this.store.padId)).pads;
   }
 
   async loadMore(event) {
-    const answer = await this.service.getNextPads(this.pads.length, this.search, this.startDate, this.endDate, this.padId, this.locationId, this.rocketId, this.padId);
+    const answer = await this.service.getNextPads(this.pads.length, this.store.search, this.store.startDate, this.store.endDate, this.store.padId, this.store.locationId, this.store.rocketId, this.store.padId);
     this.pads.push(...answer.pads);
     event.target.complete();
 
@@ -41,10 +34,10 @@ export class PadOverviewPage implements OnInit {
     }
   }
   toggleFilter() {
-    this.showFilter = !this.showFilter
+    this.store.showFilter = !this.store.showFilter
   }
   searchChange(event) {
-    this.search = event.detail.value;
+    this.store.search = event.detail.value;
     this.loadFirst();
   }
 }

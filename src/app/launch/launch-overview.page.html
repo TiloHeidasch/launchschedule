@@ -10,14 +10,15 @@
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
-  <ion-toolbar *ngIf="showFilter">
-    <ion-searchbar (ionChange)="searchChange($event)" [value]="search" animated></ion-searchbar>
+  <ion-toolbar *ngIf="store.showFilter">
+    <ion-searchbar (ionChange)="searchChange($event)" [value]="store.search" animated></ion-searchbar>
   </ion-toolbar>
-  <ion-toolbar *ngIf="showFilter">
+  <ion-toolbar *ngIf="store.showFilter">
     <ion-item>
       <ion-label>From</ion-label>
       <ion-datetime (ionChange)="startChange($event)" displayFormat="DD.MM.YYYY" min="1950-01-01"
-        [max]="endDate.toISOString()" [value]="startDate.toISOString()" placeholder="Start Date"></ion-datetime>
+        [max]="store.endDate.toISOString()" [value]="store.startDate.toISOString()" placeholder="Start Date">
+      </ion-datetime>
       <ion-buttons>
         <ion-button (click)="startToday()">
           <ion-icon slot="icon-only" name="today"></ion-icon>
@@ -29,8 +30,8 @@
     </ion-item>
     <ion-item>
       <ion-label>To</ion-label>
-      <ion-datetime (ionChange)="endChange($event)" displayFormat="DD.MM.YYYY" [min]="startDate.toISOString()"
-        max="2050-12-31" [value]="endDate.toISOString()" placeholder="End Date"></ion-datetime>
+      <ion-datetime (ionChange)="endChange($event)" displayFormat="DD.MM.YYYY" [min]="store.startDate.toISOString()"
+        max="2050-12-31" [value]="store.endDate.toISOString()" placeholder="End Date"></ion-datetime>
       <ion-buttons>
         <ion-button (click)="endToday()">
           <ion-icon slot="icon-only" name="today"></ion-icon>
