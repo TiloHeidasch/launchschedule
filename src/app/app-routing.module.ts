@@ -33,13 +33,17 @@ const routes: Routes = [
   },
   {
     path: 'statistic',
-    loadChildren: () => import('./statistic/statistic.module').then( m => m.StatisticPageModule)
-  }
+    loadChildren: () => import('./statistic/statistic.module').then(m => m.StatisticPageModule)
+  },
+  {
+    path: '**',
+    redirectTo: 'launch',
+  },
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: NoPreloading })
+    RouterModule.forRoot(routes, { useHash: true, preloadingStrategy: NoPreloading })
   ],
   exports: [RouterModule]
 })
