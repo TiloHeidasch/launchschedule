@@ -12,6 +12,7 @@ export class LaunchParamStoreService {
   rocketId: number;
   agencyId: number;
   showFilter: boolean = false;
+  launches: any[] = [];
 
   constructor() { }
 }

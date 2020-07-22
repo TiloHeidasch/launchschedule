@@ -24,7 +24,7 @@
 
   <div id="container">
     <ion-list>
-      <div *ngFor="let payload of payloads">
+      <div *ngFor="let payload of store.payloads">
         <payload-list-entry [payload]='payload'></payload-list-entry>
       </div>
     </ion-list>

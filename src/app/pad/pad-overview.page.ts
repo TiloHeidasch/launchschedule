@@ -11,25 +11,26 @@ import { PadParamStoreService } from './pad-param-store.service';
 })
 export class PadOverviewPage implements OnInit {
   title = 'Pads';
-  pads: any[] = [];
   constructor(private activatedRoute: ActivatedRoute, private service: LaunchLibraryService, public store: PadParamStoreService) { }
 
   ngOnInit() {
-    this.loadFirst();
+    if (this.store.pads.length === 0) {
+      this.loadFirst();
+    }
   }
   async loadFirst() {
-    this.pads = [];
-    this.pads = (await this.service.getFirstPads(this.store.search, this.store.startDate, this.store.endDate, this.store.padId, this.store.locationId, this.store.rocketId, this.store.padId)).pads;
+    this.store.pads = [];
+    this.store.pads = (await this.service.getFirstPads(this.store.search, this.store.startDate, this.store.endDate, this.store.padId, this.store.locationId, this.store.rocketId, this.store.padId)).pads;
   }
 
   async loadMore(event) {
-    const answer = await this.service.getNextPads(this.pads.length, this.store.search, this.store.startDate, this.store.endDate, this.store.padId, this.store.locationId, this.store.rocketId, this.store.padId);
-    this.pads.push(...answer.pads);
+    const answer = await this.service.getNextPads(this.store.pads.length, this.store.search, this.store.startDate, this.store.endDate, this.store.padId, this.store.locationId, this.store.rocketId, this.store.padId);
+    this.store.pads.push(...answer.pads);
     event.target.complete();
 
     // App logic to determine if all data is loaded
     // and disable the infinite scroll
-    if (this.pads.length === answer.max) {
+    if (this.store.pads.length === answer.max) {
       event.target.disabled = true;
     }
   }

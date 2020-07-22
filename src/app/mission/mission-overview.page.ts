@@ -11,25 +11,26 @@ import { MissionParamStoreService } from './mission-param-store.service';
 })
 export class MissionOverviewPage implements OnInit {
   title = 'Missions';
-  missions: any[] = [];
   constructor(private activatedRoute: ActivatedRoute, private service: LaunchLibraryService, public store: MissionParamStoreService) { }
 
   ngOnInit() {
-    this.loadFirst();
+    if (this.store.missions.length === 0) {
+      this.loadFirst();
+    }
   }
   async loadFirst() {
-    this.missions = [];
-    this.missions = (await this.service.getFirstMissions(this.store.search, this.store.startDate, this.store.endDate, this.store.padId, this.store.locationId, this.store.rocketId, this.store.missionId)).missions;
+    this.store.missions = [];
+    this.store.missions = (await this.service.getFirstMissions(this.store.search, this.store.startDate, this.store.endDate, this.store.padId, this.store.locationId, this.store.rocketId, this.store.missionId)).missions;
   }
 
   async loadMore(event) {
-    const answer = await this.service.getNextMissions(this.missions.length, this.store.search, this.store.startDate, this.store.endDate, this.store.padId, this.store.locationId, this.store.rocketId, this.store.missionId);
-    this.missions.push(...answer.missions);
+    const answer = await this.service.getNextMissions(this.store.missions.length, this.store.search, this.store.startDate, this.store.endDate, this.store.padId, this.store.locationId, this.store.rocketId, this.store.missionId);
+    this.store.missions.push(...answer.missions);
     event.target.complete();
 
     // App logic to determine if all data is loaded
     // and disable the infinite scroll
-    if (this.missions.length === answer.max) {
+    if (this.store.missions.length === answer.max) {
       event.target.disabled = true;
     }
   }

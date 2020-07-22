@@ -11,25 +11,26 @@ import { PayloadParamStoreService } from './payload-param-store.service';
 })
 export class PayloadOverviewPage implements OnInit {
   title = 'Payloads';
-  payloads: any[] = [];
   constructor(private activatedRoute: ActivatedRoute, private service: LaunchLibraryService, public store: PayloadParamStoreService) { }
 
   ngOnInit() {
-    this.loadFirst();
+    if (this.store.payloads.length === 0) {
+      this.loadFirst();
+    }
   }
   async loadFirst() {
-    this.payloads = [];
-    this.payloads = (await this.service.getFirstPayloads(this.store.search, this.store.startDate, this.store.endDate, this.store.padId, this.store.locationId, this.store.rocketId, this.store.payloadId)).payloads;
+    this.store.payloads = [];
+    this.store.payloads = (await this.service.getFirstPayloads(this.store.search, this.store.startDate, this.store.endDate, this.store.padId, this.store.locationId, this.store.rocketId, this.store.payloadId)).payloads;
   }
 
   async loadMore(event) {
-    const answer = await this.service.getNextPayloads(this.payloads.length, this.store.search, this.store.startDate, this.store.endDate, this.store.padId, this.store.locationId, this.store.rocketId, this.store.payloadId);
-    this.payloads.push(...answer.payloads);
+    const answer = await this.service.getNextPayloads(this.store.payloads.length, this.store.search, this.store.startDate, this.store.endDate, this.store.padId, this.store.locationId, this.store.rocketId, this.store.payloadId);
+    this.store.payloads.push(...answer.payloads);
     event.target.complete();
 
     // App logic to determine if all data is loaded
     // and disable the infinite scroll
-    if (this.payloads.length === answer.max) {
+    if (this.store.payloads.length === answer.max) {
       event.target.disabled = true;
     }
   }

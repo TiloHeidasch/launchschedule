@@ -53,7 +53,7 @@
 
   <div id="container">
     <ion-list>
-      <div *ngFor="let launch of launches">
+      <div *ngFor="let launch of store.launches">
         <launch-list-entry [launch]='launch'></launch-list-entry>
       </div>
     </ion-list>

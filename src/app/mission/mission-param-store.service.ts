@@ -13,6 +13,7 @@ export class MissionParamStoreService {
   missionId: number;
 
   showFilter: boolean = false;
+  missions: any[] = [];
 
   constructor() { }
 }

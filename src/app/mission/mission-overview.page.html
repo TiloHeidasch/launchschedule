@@ -24,7 +24,7 @@
 
   <div id="container">
     <ion-list>
-      <div *ngFor="let mission of missions">
+      <div *ngFor="let mission of store.missions">
         <mission-list-entry [mission]='mission'></mission-list-entry>
       </div>
     </ion-list>

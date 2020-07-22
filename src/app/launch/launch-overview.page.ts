@@ -11,7 +11,6 @@ import { LaunchParamStoreService } from './launch-param-store.service';
 })
 export class LaunchOverviewPage implements OnInit {
   title = 'Launches';
-  launches: any[] = [];
   constructor(private activatedRoute: ActivatedRoute, private service: LaunchLibraryService, public store: LaunchParamStoreService) {
     if (store.startDate === undefined) {
       this.setStartToToday();
@@ -22,23 +21,24 @@ export class LaunchOverviewPage implements OnInit {
   }
 
   ngOnInit() {
-    this.loadFirst();
-    console.log({ store: this.store });
-
+    if (this.store.launches.length === 0) {
+      this.loadFirst();
+    }
   }
+
   async loadFirst() {
-    this.launches = [];
-    this.launches = (await this.service.getFirstLaunches(this.store.search, this.store.startDate, this.store.endDate, this.store.padId, this.store.locationId, this.store.rocketId, this.store.agencyId)).launches;
+    this.store.launches = [];
+    this.store.launches = (await this.service.getFirstLaunches(this.store.search, this.store.startDate, this.store.endDate, this.store.padId, this.store.locationId, this.store.rocketId, this.store.agencyId)).launches;
   }
 
   async loadMore(event) {
-    const answer = await this.service.getNextLaunches(this.launches.length, this.store.search, this.store.startDate, this.store.endDate, this.store.padId, this.store.locationId, this.store.rocketId, this.store.agencyId);
-    this.launches.push(...answer.launches);
+    const answer = await this.service.getNextLaunches(this.store.launches.length, this.store.search, this.store.startDate, this.store.endDate, this.store.padId, this.store.locationId, this.store.rocketId, this.store.agencyId);
+    this.store.launches.push(...answer.launches);
     event.target.complete();
 
     // App logic to determine if all data is loaded
     // and disable the infinite scroll
-    if (this.launches.length === answer.max) {
+    if (this.store.launches.length === answer.max) {
       event.target.disabled = true;
     }
   }

@@ -12,6 +12,7 @@ export class PadParamStoreService {
   rocketId: number;
 
   showFilter: boolean = false;
+  pads: any[] = [];
 
   constructor() { }
 }

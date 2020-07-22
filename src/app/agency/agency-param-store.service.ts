@@ -12,5 +12,6 @@ export class AgencyParamStoreService {
   rocketId: number;
   agencyId: number;
   showFilter: boolean = false;
+  agencies: any[] = [];
   constructor() { }
 }

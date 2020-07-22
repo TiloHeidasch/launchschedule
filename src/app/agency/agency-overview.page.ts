@@ -11,25 +11,26 @@ import { AgencyParamStoreService } from './agency-param-store.service';
 })
 export class AgencyOverviewPage implements OnInit {
   title = 'Agencies';
-  agencies: any[] = [];
   constructor(private activatedRoute: ActivatedRoute, private service: LaunchLibraryService, public store: AgencyParamStoreService) { }
 
   ngOnInit() {
-    this.loadFirst();
+    if (this.store.agencies.length === 0) {
+      this.loadFirst();
+    }
   }
   async loadFirst() {
-    this.agencies = [];
-    this.agencies = (await this.service.getFirstAgencies(this.store.search, this.store.startDate, this.store.endDate, this.store.padId, this.store.locationId, this.store.rocketId, this.store.agencyId)).agencies;
+    this.store.agencies = [];
+    this.store.agencies = (await this.service.getFirstAgencies(this.store.search, this.store.startDate, this.store.endDate, this.store.padId, this.store.locationId, this.store.rocketId, this.store.agencyId)).agencies;
   }
 
   async loadMore(event) {
-    const answer = await this.service.getNextAgencies(this.agencies.length, this.store.search, this.store.startDate, this.store.endDate, this.store.padId, this.store.locationId, this.store.rocketId, this.store.agencyId);
-    this.agencies.push(...answer.agencies);
+    const answer = await this.service.getNextAgencies(this.store.agencies.length, this.store.search, this.store.startDate, this.store.endDate, this.store.padId, this.store.locationId, this.store.rocketId, this.store.agencyId);
+    this.store.agencies.push(...answer.agencies);
     event.target.complete();
 
     // App logic to determine if all data is loaded
     // and disable the infinite scroll
-    if (this.agencies.length === answer.max) {
+    if (this.store.agencies.length === answer.max) {
       event.target.disabled = true;
     }
   }

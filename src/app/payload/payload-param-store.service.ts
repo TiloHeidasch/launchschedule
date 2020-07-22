@@ -13,6 +13,7 @@ export class PayloadParamStoreService {
   payloadId: number;
 
   showFilter: boolean = false;
+  payloads: any[] = [];
 
   constructor() { }
 }
