@@ -12,7 +12,7 @@ import { PadParamStoreService } from './pad-param-store.service';
 export class PadOverviewPage implements OnInit {
   title = 'Pads';
   pads: any[] = [];
-  constructor(private activatedRoute: ActivatedRoute, private service: LaunchLibraryService, private store: PadParamStoreService) { }
+  constructor(private activatedRoute: ActivatedRoute, private service: LaunchLibraryService, public store: PadParamStoreService) { }
 
   ngOnInit() {
     this.loadFirst();

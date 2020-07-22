@@ -12,7 +12,7 @@ import { LaunchParamStoreService } from './launch-param-store.service';
 export class LaunchOverviewPage implements OnInit {
   title = 'Launches';
   launches: any[] = [];
-  constructor(private activatedRoute: ActivatedRoute, private service: LaunchLibraryService, private store: LaunchParamStoreService) {
+  constructor(private activatedRoute: ActivatedRoute, private service: LaunchLibraryService, public store: LaunchParamStoreService) {
     if (store.startDate === undefined) {
       this.setStartToToday();
     }

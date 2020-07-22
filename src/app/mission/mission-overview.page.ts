@@ -12,7 +12,7 @@ import { MissionParamStoreService } from './mission-param-store.service';
 export class MissionOverviewPage implements OnInit {
   title = 'Missions';
   missions: any[] = [];
-  constructor(private activatedRoute: ActivatedRoute, private service: LaunchLibraryService, private store: MissionParamStoreService) { }
+  constructor(private activatedRoute: ActivatedRoute, private service: LaunchLibraryService, public store: MissionParamStoreService) { }
 
   ngOnInit() {
     this.loadFirst();

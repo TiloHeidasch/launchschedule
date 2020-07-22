@@ -21,7 +21,7 @@ export class StatisticPage implements OnInit {
 
   private fuse: boolean = false;
 
-  constructor(private service: LaunchLibraryService, private store: StatisticParamStoreService) {
+  constructor(private service: LaunchLibraryService, public store: StatisticParamStoreService) {
     if (this.store.datasetSelectors.length === 0) {
       this.addDatasetSelector();
     } else {

@@ -12,7 +12,7 @@ import { RocketParamStoreService } from './rocket-param-store.service';
 export class RocketOverviewPage implements OnInit {
   title = 'Rockets';
   rockets: any[] = [];
-  constructor(private activatedRoute: ActivatedRoute, private service: LaunchLibraryService, private store: RocketParamStoreService) { }
+  constructor(private activatedRoute: ActivatedRoute, private service: LaunchLibraryService, public store: RocketParamStoreService) { }
 
   ngOnInit() {
     this.loadFirst();

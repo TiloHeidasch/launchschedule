@@ -12,7 +12,7 @@ import { AgencyParamStoreService } from './agency-param-store.service';
 export class AgencyOverviewPage implements OnInit {
   title = 'Agencies';
   agencies: any[] = [];
-  constructor(private activatedRoute: ActivatedRoute, private service: LaunchLibraryService, private store: AgencyParamStoreService) { }
+  constructor(private activatedRoute: ActivatedRoute, private service: LaunchLibraryService, public store: AgencyParamStoreService) { }
 
   ngOnInit() {
     this.loadFirst();

@@ -12,7 +12,7 @@ import { PayloadParamStoreService } from './payload-param-store.service';
 export class PayloadOverviewPage implements OnInit {
   title = 'Payloads';
   payloads: any[] = [];
-  constructor(private activatedRoute: ActivatedRoute, private service: LaunchLibraryService, private store: PayloadParamStoreService) { }
+  constructor(private activatedRoute: ActivatedRoute, private service: LaunchLibraryService, public store: PayloadParamStoreService) { }
 
   ngOnInit() {
     this.loadFirst();
