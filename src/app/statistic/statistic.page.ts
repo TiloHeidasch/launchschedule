@@ -19,8 +19,6 @@ export class StatisticPage implements OnInit {
   private doughnutChart: Chart;
   datasets: Dataset[] = [];
 
-  private fuse: boolean = false;
-
   constructor(private service: LaunchLibraryService, public store: StatisticParamStoreService) {
     if (this.store.datasetSelectors.length === 0) {
       this.addDatasetSelector();
@@ -102,20 +100,14 @@ export class StatisticPage implements OnInit {
     this.barChart.update();
     this.doughnutChart.update();
   }
-  private datasetSelectorChange() {
-    const localFuse = this.fuse + '' === 'true';
-    this.fuse = !this.fuse;
-    setTimeout(async () => {
-      this.datasets = [];
-      for (let index = 0; index < this.store.datasetSelectors.length; index++) {
-        const datasetSelector = this.store.datasetSelectors[index];
-        const dataset = await this.determineDataSet(datasetSelector)
-        this.datasets.push(dataset);
-      }
-      if (this.fuse !== localFuse) {
-        this.updateCharts();
-      }
-    }, 500);
+  private async datasetSelectorChange() {
+    this.datasets = [];
+    for (let index = 0; index < this.store.datasetSelectors.length; index++) {
+      const datasetSelector = this.store.datasetSelectors[index];
+      const dataset = await this.determineDataSet(datasetSelector)
+      this.datasets.push(dataset);
+    }
+    this.updateCharts();
   }
   private async determineDataSet(datasetSelector): Promise<Dataset> {
     let value = 0;
