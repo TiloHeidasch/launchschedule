@@ -31,18 +31,12 @@ export class StatisticPage implements OnInit {
   ngOnInit() {
     this.initCharts();
   }
-  datasetSelectorTitleChange(datasetSelector: DatasetSelector, event) {
-    datasetSelector.setName(event.detail.value);
-    this.datasetSelectorChange();
-  }
   datasetSelectorTypeChange(datasetSelector: DatasetSelector, event) {
     datasetSelector.setType(event.detail.value);
-    this.tryToGenerateDatasetSelectorName(datasetSelector);
     this.datasetSelectorChange();
   }
   datasetSelectorSearchChange(datasetSelector: DatasetSelector, event) {
     datasetSelector.setSearch(event.detail.value);
-    this.tryToGenerateDatasetSelectorName(datasetSelector);
     this.datasetSelectorChange();
   }
 
@@ -107,19 +101,6 @@ export class StatisticPage implements OnInit {
     this.doughnutChart.data = data;
     this.barChart.update();
     this.doughnutChart.update();
-  }
-
-  private tryToGenerateDatasetSelectorName(datasetSelector: DatasetSelector) {
-    if (datasetSelector.getName() === '' || datasetSelector.getName().startsWith(' ')) {
-      let name = ' Something';
-      if (datasetSelector.getType() !== undefined && datasetSelector.getType() !== '') {
-        name = ' ' + datasetSelector.getType();
-      }
-      if (datasetSelector.getSearch() !== undefined && datasetSelector.getSearch() !== '') {
-        name += ' named \'' + datasetSelector.getSearch() + '\'';
-      }
-      datasetSelector.setName(name);
-    }
   }
   private datasetSelectorChange() {
     const localFuse = this.fuse + '' === 'true';

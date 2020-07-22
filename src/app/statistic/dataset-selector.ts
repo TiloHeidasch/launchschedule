@@ -11,7 +11,7 @@ export class DatasetSelector {
 
     constructor() {
         this.id = uuid();
-        this.name = ' Something';
+        this.name = 'Something';
         this.type = '';
         this.search = '';
         this.generateColor();
@@ -20,15 +20,23 @@ export class DatasetSelector {
     getId() {
         return this.id;
     }
-    setName(name) {
+
+    private generateDatasetSelectorName() {
+        let name = 'Something';
+        if (this.getType() !== undefined && this.getType() !== '') {
+            name = this.getType();
+        }
+        if (this.getSearch() !== undefined && this.getSearch() !== '') {
+            name += ' named \'' + this.getSearch() + '\'';
+        }
         this.name = name;
-        this.generateColor();
     }
     getName() {
         return this.name;
     }
     setType(type) {
         this.type = type;
+        this.generateDatasetSelectorName();
         this.generateColor();
     }
     getType() {
@@ -36,6 +44,7 @@ export class DatasetSelector {
     }
     setSearch(search) {
         this.search = search;
+        this.generateDatasetSelectorName();
         this.generateColor();
     }
     getSearch() {
@@ -49,19 +58,5 @@ export class DatasetSelector {
         md5.appendStr(this.name === undefined ? '' : this.name).appendStr(this.type === undefined ? '' : this.type).appendStr(this.search === undefined ? '' : this.search);
         console.log(md5.end());
         this.color = '#' + md5.end().toString().toUpperCase().substr(0, 6);
-    }
-    private randColor() {
-        const chars = "ABCDEF0123456789";
-        const size = chars.length;
-        const str = [];
-        let color = '#';
-        for (let j = 0; j < 6; j++) {
-            color += chars[this.randbetween(0, size - 1)];
-        }
-        return color;
-    }
-
-    private randbetween(lower, upper) {
-        return Math.floor(Math.random() * upper) + lower;
     }
 }

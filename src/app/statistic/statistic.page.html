@@ -12,9 +12,7 @@
     <ion-card [id]='datasetSelector.getId()' *ngFor="let datasetSelector of store.datasetSelectors">
       <ion-card-header>
         <ion-card-title>
-          <ion-textarea debounce=500 [value]="datasetSelector.getName()"
-            (ionChange)="datasetSelectorTitleChange(datasetSelector,$event)" placeholder="Name your Dataset">
-          </ion-textarea>
+          {{datasetSelector.getName()}}
         </ion-card-title>
       </ion-card-header>
       <ion-card-content>
