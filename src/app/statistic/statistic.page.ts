@@ -2,8 +2,11 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Chart } from "chart.js";
 import { Dataset } from './dataset';
 import { DatasetSelector } from './dataset-selector';
+import { DatasetSelectorType } from "./dataset-selector-type";
 import { LaunchLibraryService } from '../launch-library.service';
 import { StatisticParamStoreService } from './statistic-param-store.service';
+import { TypeFilterItemType } from './type-filter-item-type';
+import { TypeFilterItem } from './type-filter-item';
 
 @Component({
   selector: 'app-statistic',
@@ -18,6 +21,7 @@ export class StatisticPage implements OnInit {
   private barChart: Chart;
   private doughnutChart: Chart;
   datasets: Dataset[] = [];
+  public DatasetSelectorType = DatasetSelectorType;
 
   constructor(private service: LaunchLibraryService, public store: StatisticParamStoreService) {
     if (this.store.datasetSelectors.length === 0) {
@@ -37,9 +41,45 @@ export class StatisticPage implements OnInit {
     datasetSelector.setSearch(event.detail.value);
     this.datasetSelectorChange();
   }
+  datasetSelectorfilterItemChange(datasetSelector: DatasetSelector, filterItem: TypeFilterItem, event) {
+    const value = event.detail.value;
+    switch (filterItem.type) {
+      case TypeFilterItemType.Rocket:
+        if (value === 'none') {
+          datasetSelector.setRocket(undefined);
+        } else {
+          datasetSelector.setRocket(event.detail.value);
+        }
+        break;
+      case TypeFilterItemType.Agency:
+        if (value === 'none') {
+          datasetSelector.setAgency(undefined);
+        } else {
+          datasetSelector.setAgency(event.detail.value);
+        }
+        break;
+      case TypeFilterItemType.Pad:
+        if (value === 'none') {
+          datasetSelector.setPad(undefined);
+        } else {
+          datasetSelector.setPad(event.detail.value);
+        }
+        break;
+      case TypeFilterItemType.Location:
+        if (value === 'none') {
+          datasetSelector.setLocation(undefined);
+        } else {
+          datasetSelector.setLocation(event.detail.value);
+        }
+        break;
+      default:
+        break;
+    }
+    this.datasetSelectorChange();
+  }
 
   addDatasetSelector() {
-    this.store.datasetSelectors.push(new DatasetSelector());
+    this.store.datasetSelectors.push(new DatasetSelector(this.service, this.store));
     this.datasetSelectorChange();
   }
   async deleteDatasetSelector(datasetSelector: DatasetSelector) {
@@ -109,32 +149,34 @@ export class StatisticPage implements OnInit {
     }
     this.updateCharts();
   }
-  private async determineDataSet(datasetSelector): Promise<Dataset> {
+  private async determineDataSet(datasetSelector: DatasetSelector): Promise<Dataset> {
     let value = 0;
-    switch (datasetSelector.type) {
-      case "Agencies":
-        value = await this.service.getAgencyAmount(datasetSelector.search === undefined ? '' : datasetSelector.search);
-        break;
-      case "Launches":
-        value = await this.service.getLaunchAmount(datasetSelector.search === undefined ? '' : datasetSelector.search);
-        break;
-      case "Missions":
-        value = await this.service.getMissionAmount(datasetSelector.search === undefined ? '' : datasetSelector.search);
-        break;
-      case "Pads":
-        value = await this.service.getPadAmount(datasetSelector.search === undefined ? '' : datasetSelector.search);
-        break;
-      case "Payloads":
-        value = await this.service.getPayloadAmount(datasetSelector.search === undefined ? '' : datasetSelector.search);
-        break;
-      case "Rockets":
-        value = await this.service.getRocketAmount(datasetSelector.search === undefined ? '' : datasetSelector.search);
-        break;
+    try {
+      switch (datasetSelector.getType()) {
+        case "Agencies":
+          value = await this.service.getAgencyAmount(datasetSelector.getSearch() === undefined ? '' : datasetSelector.getSearch());
+          break;
+        case "Launches":
+          value = await this.service.getLaunchAmount(datasetSelector.getSearch() === undefined ? '' : datasetSelector.getSearch(), datasetSelector.getRocketId(), datasetSelector.getAgencyId(), datasetSelector.getPadId(), datasetSelector.getLocationId());
+          break;
+        case "Missions":
+          value = await this.service.getMissionAmount(datasetSelector.getSearch() === undefined ? '' : datasetSelector.getSearch());
+          break;
+        case "Pads":
+          value = await this.service.getPadAmount(datasetSelector.getSearch() === undefined ? '' : datasetSelector.getSearch());
+          break;
+        case "Payloads":
+          value = await this.service.getPayloadAmount(datasetSelector.getSearch() === undefined ? '' : datasetSelector.getSearch());
+          break;
+        case "Rockets":
+          value = await this.service.getRocketAmount(datasetSelector.getSearch() === undefined ? '' : datasetSelector.getSearch());
+          break;
 
-      default:
-        break;
-    }
-    return new Dataset(datasetSelector.name, value, datasetSelector.color);
+        default:
+          break;
+      }
+    } catch (error) { }
+    return new Dataset(datasetSelector.getName(), value, datasetSelector.getColor());
   }
   private getLabels(datasets: Dataset[]): string[] {
     const labels = [];

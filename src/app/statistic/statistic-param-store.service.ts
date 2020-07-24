@@ -6,5 +6,9 @@ import { DatasetSelector } from './dataset-selector';
 })
 export class StatisticParamStoreService {
   datasetSelectors: DatasetSelector[] = [];
+  allRockets = [];
+  allAgencies = [];
+  allPads = [];
+  allLocations = [];
   constructor() { }
 }

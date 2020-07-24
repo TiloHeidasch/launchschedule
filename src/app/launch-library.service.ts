@@ -12,7 +12,7 @@ export class LaunchLibraryService {
   * Agencies
   */
   async getAgencyAmount(search: string) {
-    const url = 'https://launchlibrary.net/1.4/agency?name=' + search + '&limit=1';
+    const url = 'https://launchlibrary.net/1.4.1/agency?name=' + search + '&limit=1';
     const data = await this.http.get<any>(url).toPromise();
     return data.total;
   }
@@ -22,7 +22,7 @@ export class LaunchLibraryService {
     return data.agencies;
   }
   async getAgencyById(id: number) {
-    const url = 'https://launchlibrary.net/1.4/agency/' + id;
+    const url = 'https://launchlibrary.net/1.4.1/agency/' + id;
     const data = await this.http.get<any>(url).toPromise();
     return data.agencies[0];
   }
@@ -35,7 +35,7 @@ export class LaunchLibraryService {
     return { agencies: data.agencies, max: data.total };
   }
   private createAgencyUrl(limit: number, offset?: number, search?: string, startDate?: Date, endDate?: Date, padId?: number, locationId?: number, rocketId?: number, agencyId?: number): string {
-    let url = 'https://launchlibrary.net/1.4/agency';
+    let url = 'https://launchlibrary.net/1.4.1/agency';
     url += '?limit=' + limit;
     if (search !== undefined && search !== '') {
       url += ('&name=' + search);
@@ -66,8 +66,20 @@ export class LaunchLibraryService {
   /*
   * Launches
   */
-  async getLaunchAmount(search: string) {
-    const url = 'https://launchlibrary.net/1.4/launch/' + search + '?limit=1';
+  async getLaunchAmount(search: string, rocketId: number, agencyId: number, padId: number, locationId: number) {
+    let url = 'https://launchlibrary.net/1.4.1/launch/' + search + '?limit=1';
+    if (rocketId !== undefined) {
+      url += '&rocketid=' + rocketId;
+    }
+    if (agencyId !== undefined) {
+      url += '&lsp=' + agencyId;
+    }
+    if (padId !== undefined) {
+      url += '&locationid=' + padId;
+    }
+    if (locationId !== undefined) {
+      url += '&padLocation=' + locationId;
+    }
     const data = await this.http.get<any>(url).toPromise();
     return data.total;
   }
@@ -77,7 +89,7 @@ export class LaunchLibraryService {
     return data.launches;
   }
   async getLaunchById(id: number) {
-    const url = 'https://launchlibrary.net/1.4/launch/' + id;
+    const url = 'https://launchlibrary.net/1.4.1/launch/' + id;
     const data = await this.http.get<any>(url).toPromise();
     return data.launches[0];
   }
@@ -90,7 +102,7 @@ export class LaunchLibraryService {
     return { launches: data.launches, max: data.total };
   }
   private createLaunchUrl(limit: number, offset?: number, search?: string, startDate?: Date, endDate?: Date, padId?: number, locationId?: number, rocketId?: number, agencyId?: number): string {
-    let url = 'https://launchlibrary.net/1.4/launch/';
+    let url = 'https://launchlibrary.net/1.4.1/launch/';
     if (search !== undefined && search !== '') {
       url += search;
     }
@@ -120,10 +132,19 @@ export class LaunchLibraryService {
   }
 
   /*
+  * Location
+ */
+
+  async getAllLocations() {
+    let url = 'https://launchlibrary.net/1.4.1/location?limit=10000'
+    const data = await this.http.get<any>(url).toPromise();
+    return data.locations;
+  }
+  /*
   * Missions
   */
   async getMissionAmount(search: string) {
-    const url = 'https://launchlibrary.net/1.4/mission/' + search + '?limit=1';
+    const url = 'https://launchlibrary.net/1.4.1/mission/' + search + '?limit=1';
     const data = await this.http.get<any>(url).toPromise();
     return data.total;
   }
@@ -133,7 +154,7 @@ export class LaunchLibraryService {
     return data.missions;
   }
   async getMissionById(id: number) {
-    const url = 'https://launchlibrary.net/1.4/mission/' + id;
+    const url = 'https://launchlibrary.net/1.4.1/mission/' + id;
     const data = await this.http.get<any>(url).toPromise();
     return data.missions[0];
   }
@@ -146,7 +167,7 @@ export class LaunchLibraryService {
     return { missions: data.missions, max: data.total };
   }
   private createMissionUrl(limit: number, offset?: number, search?: string, startDate?: Date, endDate?: Date, padId?: number, locationId?: number, rocketId?: number, agencyId?: number): string {
-    let url = 'https://launchlibrary.net/1.4/mission/';
+    let url = 'https://launchlibrary.net/1.4.1/mission/';
     if (search !== undefined && search !== '') {
       url += search;
     }
@@ -178,7 +199,7 @@ export class LaunchLibraryService {
   * Missiontype
   */
   async getMissionTypeById(id: number) {
-    const url = 'https://launchlibrary.net/1.4/missiontype/' + id;
+    const url = 'https://launchlibrary.net/1.4.1/missiontype/' + id;
     const data = await this.http.get<any>(url).toPromise();
     return data.types[0];
   }
@@ -187,7 +208,7 @@ export class LaunchLibraryService {
   * Pads
   */
   async getPadAmount(search: string) {
-    const url = 'https://launchlibrary.net/1.4/pad/' + search + '?limit=1';
+    const url = 'https://launchlibrary.net/1.4.1/pad/' + search + '?limit=1';
     const data = await this.http.get<any>(url).toPromise();
     return data.total;
   }
@@ -197,7 +218,7 @@ export class LaunchLibraryService {
     return data.pads;
   }
   async getPadById(id: number) {
-    const url = 'https://launchlibrary.net/1.4/pad/' + id;
+    const url = 'https://launchlibrary.net/1.4.1/pad/' + id;
     const data = await this.http.get<any>(url).toPromise();
     return data.pads[0];
   }
@@ -210,7 +231,7 @@ export class LaunchLibraryService {
     return { pads: data.pads, max: data.total };
   }
   private createPadUrl(limit: number, offset?: number, search?: string, startDate?: Date, endDate?: Date, padId?: number, locationId?: number, rocketId?: number, agencyId?: number): string {
-    let url = 'https://launchlibrary.net/1.4/pad/';
+    let url = 'https://launchlibrary.net/1.4.1/pad/';
     if (search !== undefined && search !== '') {
       url += search;
     }
@@ -244,7 +265,7 @@ export class LaunchLibraryService {
   * Payloads
   */
   async getPayloadAmount(search: string) {
-    const url = 'https://launchlibrary.net/1.4/payload/' + search + '?limit=1';
+    const url = 'https://launchlibrary.net/1.4.1/payload/' + search + '?limit=1';
     const data = await this.http.get<any>(url).toPromise();
     return data.total;
   }
@@ -254,7 +275,7 @@ export class LaunchLibraryService {
     return data.payloads;
   }
   async getPayloadById(id: number) {
-    const url = 'https://launchlibrary.net/1.4/payload/' + id;
+    const url = 'https://launchlibrary.net/1.4.1/payload/' + id;
     const data = await this.http.get<any>(url).toPromise();
     return data.payloads[0];
   }
@@ -267,7 +288,7 @@ export class LaunchLibraryService {
     return { payloads: data.payloads, max: data.total };
   }
   private createPayloadUrl(limit: number, offset?: number, search?: string, startDate?: Date, endDate?: Date, padId?: number, locationId?: number, rocketId?: number, agencyId?: number): string {
-    let url = 'https://launchlibrary.net/1.4/payload/';
+    let url = 'https://launchlibrary.net/1.4.1/payload/';
     if (search !== undefined && search !== '') {
       url += search;
     }
@@ -300,7 +321,7 @@ export class LaunchLibraryService {
   * Rockets
   */
   async getRocketAmount(search: string) {
-    const url = 'https://launchlibrary.net/1.4/rocket/' + search + '?limit=1';
+    const url = 'https://launchlibrary.net/1.4.1/rocket/' + search + '?limit=1';
     const data = await this.http.get<any>(url).toPromise();
     return data.total;
   }
@@ -310,7 +331,7 @@ export class LaunchLibraryService {
     return data.rockets;
   }
   async getRocketById(id: number) {
-    const url = 'https://launchlibrary.net/1.4/rocket/' + id;
+    const url = 'https://launchlibrary.net/1.4.1/rocket/' + id;
     const data = await this.http.get<any>(url).toPromise();
     return data.rockets[0];
   }
@@ -324,7 +345,7 @@ export class LaunchLibraryService {
   }
   private createRocketUrl(limit: number, offset?: number, search?: string, startDate?: Date, endDate?: Date, padId?: number, locationId?: number, rocketId?: number, agencyId?: number): string {
 
-    let url = 'https://launchlibrary.net/1.4/rocket/';
+    let url = 'https://launchlibrary.net/1.4.1/rocket/';
     if (search !== undefined && search !== '') {
       url += search;
     }
