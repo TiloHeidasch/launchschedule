@@ -11,7 +11,7 @@ RUN npm install
 COPY angular.json tsconfig.json tsconfig.app.json ionic.config.json tslint.json ./
 COPY src ./src
 
-RUN npm run ng build && \
+RUN npm run ng build --prod && \
     npm prune --production
 
 # --------------------------

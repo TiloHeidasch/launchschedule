@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { StatisticPageRoutingModule } from './statistic-routing.module';
 
 import { StatisticPage } from './statistic.page';
+import { AnimationModule } from '../animation/animation.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    StatisticPageRoutingModule
+    StatisticPageRoutingModule,
+    AnimationModule
   ],
   declarations: [StatisticPage]
 })
-export class StatisticPageModule {}
+export class StatisticPageModule { }

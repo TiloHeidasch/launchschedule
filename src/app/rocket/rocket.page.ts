@@ -8,7 +8,7 @@ import { LaunchLibraryService } from '../launch-library.service';
   styleUrls: ['./rocket.page.scss'],
 })
 export class RocketPage implements OnInit {
-  public id: number;
+  public id: string;
   rocket;
   title: string;
 
@@ -16,7 +16,7 @@ export class RocketPage implements OnInit {
   constructor(private activatedRoute: ActivatedRoute, private service: LaunchLibraryService) { }
 
   async ngOnInit() {
-    this.id = +this.activatedRoute.snapshot.paramMap.get('id');
+    this.id = this.activatedRoute.snapshot.paramMap.get('id');
     this.rocket = await this.service.getRocketById(this.id);
     this.title = this.rocket.name;
   }

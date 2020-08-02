@@ -23,19 +23,24 @@ export class AppComponent implements OnInit {
       icon: 'school'
     },
     {
-      title: 'Mission',
-      url: '/mission',
-      icon: 'newspaper'
+      title: 'Astronaut',
+      url: '/astronaut',
+      icon: 'people'
+    },
+    {
+      title: 'Event',
+      url: '/event',
+      icon: 'alert-circle'
+    },
+    {
+      title: 'Facility',
+      url: '/location',
+      icon: 'business'
     },
     {
       title: 'Pad',
       url: '/pad',
       icon: 'locate'
-    },
-    {
-      title: 'Payload',
-      url: '/payload',
-      icon: 'planet'
     },
     {
       title: 'Rocket',
@@ -46,6 +51,16 @@ export class AppComponent implements OnInit {
       title: 'Statistic',
       url: '/statistic',
       icon: 'stats-chart'
+    },
+    {
+      title: 'Spacecraft',
+      url: '/spacecraft',
+      icon: 'planet'
+    },
+    {
+      title: 'Spacestation',
+      url: '/spacestation',
+      icon: 'earth'
     },
   ];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];

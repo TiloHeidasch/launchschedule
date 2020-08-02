@@ -7,13 +7,15 @@ import { LaunchLibraryService } from 'src/app/launch-library.service';
   styleUrls: ['./agency-detail-card.component.scss'],
 })
 export class AgencyDetailCardComponent implements OnInit {
-  @Input('id') id;
-  agency;
+  @Input('agency') agency = undefined;
+  @Input('id') id?;
 
   constructor(private service: LaunchLibraryService) { }
 
   async ngOnInit() {
-    this.agency = await this.service.getAgencyById(this.id);
+    if (this.agency === undefined) {
+      this.agency = await this.service.getAgencyById(this.id);
+    }
   }
 
 }

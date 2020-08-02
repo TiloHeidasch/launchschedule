@@ -1,12 +1,20 @@
-<ion-card routerDirection="launch" [routerLink]="[launch.id]">
+<ion-card routerDirection="forward" [routerLink]="['/launch/'+launch.id]" slideIn>
+  <div id="image">
+    <div class="image-wrapper">
+      <ion-img id="background" [src]="launch.image"></ion-img>
+    </div>
+    <div class="image-wrapper">
+      <ion-img id="foreground" [src]="launch.image"></ion-img>
+    </div>
+  </div>
   <ion-card-header>
     <ion-card-subtitle>{{subtitle}}</ion-card-subtitle>
     <ion-card-title>{{title}}</ion-card-title>
   </ion-card-header>
   <ion-card-content>
     <div id="content">
-      <div id="image"><img [src]='imageUrl'></div>
-      <countdown [date]='date'></countdown>
+      <launch-status [status]="launch.status"></launch-status>
+      <countdown [date]="date"></countdown>
     </div>
   </ion-card-content>
 </ion-card>

@@ -16,22 +16,22 @@
 
   <div id="container" *ngIf="launch!==undefined">
     <div id="launch">
-      <launch-detail-card [id]='launch.id'></launch-detail-card>
+      <launch-detail-card [launch]='launch'></launch-detail-card>
     </div>
     <div id="rocket">
-      <rocket-detail-card [id]='launch.rocket.id'></rocket-detail-card>
+      <rocket-detail-card [rocket]='launch.rocket'></rocket-detail-card>
     </div>
-    <div id="mission-list">
-      <mission-detail-card *ngFor="let mission of launch.missions" [id]='mission.id'></mission-detail-card>
+    <div id="mission">
+      <mission-detail-card [mission]='launch.mission'></mission-detail-card>
     </div>
-    <div id="pad-list">
-      <pad-detail-card *ngFor="let pad of launch.location.pads" [id]='pad.id'></pad-detail-card>
+    <div id="pad">
+      <pad-detail-card [pad]='launch.pad'></pad-detail-card>
     </div>
     <div id="agency">
-      <agency-detail-card [id]='launch.lsp.id'></agency-detail-card>
+      <agency-detail-card [agency]='launch.launch_service_provider'></agency-detail-card>
     </div>
     <div id="video">
-      <launch-video *ngFor="let vidUrl of launch.vidURLs" [src]='vidUrl'></launch-video>
+      <launch-video *ngFor="let video of launch.vidURLs" [video]='video'></launch-video>
     </div>
   </div>
 </ion-content>

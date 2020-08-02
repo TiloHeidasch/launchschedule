@@ -12,10 +12,6 @@ const routes: Routes = [
   {
     path: ':id',
     component: RocketPage
-  },
-  {
-    path: 'big-image-modal',
-    loadChildren: () => import('./rocket-detail-card/big-image-modal/big-image-modal.module').then(m => m.BigImageModalModule)
   }
 ];
 

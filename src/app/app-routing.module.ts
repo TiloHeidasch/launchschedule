@@ -20,20 +20,32 @@ const routes: Routes = [
     loadChildren: () => import('./agency/agency.module').then(m => m.AgencyModule)
   },
   {
-    path: 'mission',
-    loadChildren: () => import('./mission/mission.module').then(m => m.MissionModule)
-  },
-  {
     path: 'pad',
     loadChildren: () => import('./pad/pad.module').then(m => m.PadModule)
   },
   {
-    path: 'payload',
-    loadChildren: () => import('./payload/payload.module').then(m => m.PayloadModule)
-  },
-  {
     path: 'statistic',
     loadChildren: () => import('./statistic/statistic.module').then(m => m.StatisticPageModule)
+  },
+  {
+    path: 'location',
+    loadChildren: () => import('./location/location.module').then(m => m.LocationModule)
+  },
+  {
+    path: 'astronaut',
+    loadChildren: () => import('./astronaut/astronaut.module').then(m => m.AstronautModule)
+  },
+  {
+    path: 'spacecraft',
+    loadChildren: () => import('./spacecraft/spacecraft.module').then(m => m.SpacecraftModule)
+  },
+  {
+    path: 'spacestation',
+    loadChildren: () => import('./spacestation/spacestation.module').then(m => m.SpacestationModule)
+  },
+  {
+    path: 'event',
+    loadChildren: () => import('./event/event.module').then(m => m.EventModule)
   },
   {
     path: '**',

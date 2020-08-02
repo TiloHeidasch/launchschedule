@@ -1,18 +1,19 @@
 <ion-card *ngIf="pad!==undefined">
   <ion-card-header>
-    <ion-card-subtitle>{{subtitle}}</ion-card-subtitle>
-    <ion-card-title>{{title}}</ion-card-title>
+    <ion-card-subtitle>{{pad.location.name}}</ion-card-subtitle>
+    <ion-card-title>{{pad.name}}</ion-card-title>
   </ion-card-header>
   <ion-card-content>
     <div class="map">
       <map [lat]="pad.latitude" [lng]="pad.longitude"></map>
     </div>
+    <p>Total Launches: {{pad.total_launch_count}}</p>
     <div class="links">
-      <ion-item *ngIf='pad.wikiURL!==""' [href]="pad.wikiURL">
+      <ion-item *ngIf="pad.wiki_url!==''" [href]="pad.wiki_url">
         <ion-label>Wiki</ion-label>
       </ion-item>
-      <ion-item *ngFor="let infoURL of pad.infoURLs; let i=index" [href]="infoURL">
-        <ion-label>Info {{i+1}}</ion-label>
+      <ion-item *ngIf="pad.info_url!==''" [href]="pad.info_url">
+        <ion-label>Info</ion-label>
       </ion-item>
     </div>
   </ion-card-content>

@@ -20,12 +20,12 @@ export class RocketOverviewPage implements OnInit {
   }
   async loadFirst() {
     this.store.rockets = [];
-    const answer = await this.service.getFirstRockets(this.store.search, undefined, undefined, this.store.padId, this.store.locationId, this.store.rocketId, this.store.agencyId);
+    const answer = await this.service.getFirstRockets(this.store.search, this.store.active, this.store.reusable);
     this.store.rockets = answer.rockets;
   }
 
   async loadMore(event) {
-    const answer = await this.service.getNextRockets(this.store.rockets.length, this.store.search, undefined, undefined, this.store.padId, this.store.locationId, this.store.rocketId, this.store.agencyId);
+    const answer = await this.service.getNextRockets(this.store.rockets.length, this.store.search, this.store.active, this.store.reusable);
     this.store.rockets.push(...answer.rockets);
     event.target.complete();
 

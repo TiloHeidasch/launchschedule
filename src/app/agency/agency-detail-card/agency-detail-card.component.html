@@ -1,16 +1,33 @@
-<ion-card *ngIf="agency!==undefined">
+<ion-card *ngIf="agency!==undefined" slideIn>
+  <div id="image">
+    <div class="image-wrapper">
+      <ion-img id="background" [src]="agency.image_url"></ion-img>
+    </div>
+    <div class="image-wrapper">
+      <ion-img id="foreground" [src]="agency.image_url"></ion-img>
+    </div>
+  </div>
   <ion-card-header>
     <ion-card-subtitle>{{agency.abbrev}}</ion-card-subtitle>
     <ion-card-title>{{agency.name}}</ion-card-title>
   </ion-card-header>
   <ion-card-content>
-    <div class="links">
-      <ion-item *ngIf="agency.wikiURL!==''" [href]="agency.wikiURL">
-        <ion-label>Wiki</ion-label>
-      </ion-item>
-      <ion-item *ngFor="let infoURL of agency.infoURLs; let i=index" [href]="infoURL">
-        <ion-label>Info {{i+1}}</ion-label>
-      </ion-item>
+    <div id="content">
+      <div id="logos">
+        <ion-img [src]="agency.logo_url"></ion-img>
+        <ion-img [src]="agency.nation_url"></ion-img>
+      </div>
+      <p>{{agency.description}}</p>
+      <p>Successful Launches: {{agency.successful_launches}}/{{agency.total_launch_count}}</p>
+      <div class="links">
+        <ion-item *ngIf="agency.wiki_url!==''" [href]="agency.wiki_url">
+          <ion-label>Wiki</ion-label>
+        </ion-item>
+        <ion-item [href]="agency.info_url">
+          <ion-label>Info</ion-label>
+        </ion-item>
+      </div>
     </div>
+
   </ion-card-content>
 </ion-card>

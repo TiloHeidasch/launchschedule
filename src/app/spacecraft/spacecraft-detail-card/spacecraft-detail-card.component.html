@@ -1,0 +1,17 @@
+<ion-card *ngIf="spacecraft!==undefined">
+  <div id="image">
+    <div class="image-wrapper">
+      <ion-img id="background" [src]="spacecraft.image_url"></ion-img>
+    </div>
+    <div class="image-wrapper">
+      <ion-img id="foreground" [src]="spacecraft.image_url"></ion-img>
+    </div>
+  </div>
+  <ion-card-header>
+    <ion-card-subtitle>{{spacecraft.agency.abbrev}}</ion-card-subtitle>
+    <ion-card-title>{{spacecraft.name}}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <p>Total Launches: {{spacecraft.total_launch_count}}</p>
+  </ion-card-content>
+</ion-card>

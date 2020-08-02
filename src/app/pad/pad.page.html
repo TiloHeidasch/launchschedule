@@ -16,7 +16,7 @@
 
   <div id="container" *ngIf="pad!==undefined">
     <div id="pad">
-      <pad-detail-card [id]='pad.id'></pad-detail-card>
+      <pad-detail-card [pad]='pad'></pad-detail-card>
     </div>
     <!-- <div id="mission-list">
       <mission-detail-card *ngFor="let mission of pad.missions" [mission]='mission'></mission-detail-card>

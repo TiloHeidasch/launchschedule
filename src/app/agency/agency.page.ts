@@ -8,7 +8,7 @@ import { LaunchLibraryService } from '../launch-library.service';
   styleUrls: ['./agency.page.scss'],
 })
 export class AgencyPage implements OnInit {
-  public id: number;
+  public id: string;
   agency;
   title: string;
 
@@ -16,7 +16,7 @@ export class AgencyPage implements OnInit {
   constructor(private activatedRoute: ActivatedRoute, private service: LaunchLibraryService) { }
 
   async ngOnInit() {
-    this.id = +this.activatedRoute.snapshot.paramMap.get('id');
+    this.id = this.activatedRoute.snapshot.paramMap.get('id');
     this.agency = await this.service.getAgencyById(this.id);
     this.title = this.agency.name;
   }

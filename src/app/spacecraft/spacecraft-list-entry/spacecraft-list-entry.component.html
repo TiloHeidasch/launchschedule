@@ -1,0 +1,18 @@
+<ion-card routerDirection="forward" [routerLink]="['/spacecraft/'+spacecraft.id]" slideIn>
+  <div id="image">
+    <div class="image-wrapper">
+      <ion-img id="background" [src]="spacecraft.image_url"></ion-img>
+    </div>
+    <div class="image-wrapper">
+      <ion-img id="foreground" [src]="spacecraft.image_url"></ion-img>
+    </div>
+  </div>
+  <ion-card-header>
+    <ion-card-subtitle>{{subtitle}}</ion-card-subtitle>
+    <ion-card-title>{{title}}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <div id="content">
+    </div>
+  </ion-card-content>
+</ion-card>

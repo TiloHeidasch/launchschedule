@@ -1,0 +1,31 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="spacestation"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ title }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">{{ title }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container" *ngIf="spacestation!==undefined">
+    <div id="spacestation">
+      <spacestation-detail-card [spacestation]='spacestation'></spacestation-detail-card>
+    </div>
+    <!-- <div id="mission-list">
+      <mission-detail-card *ngFor="let mission of spacestation.missions" [mission]='mission'></mission-detail-card>
+    </div>
+    <div id="spacestation">
+      <spacestation-detail-card [spacestation]='spacestation.spacestation'></spacestation-detail-card>
+    </div>
+    <div id="spacestation">
+      <spacestation-detail-card [spacestation]='spacestation.lsp'></spacestation-detail-card>
+    </div> -->
+  </div>
+</ion-content>

@@ -10,16 +10,19 @@ import { PadPage } from './pad.page';
 import { PadOverviewPage } from './pad-overview.page';
 import { PadListEntryComponent } from './pad-list-entry/pad-list-entry.component';
 import { PadDetailCardComponent } from './pad-detail-card/pad-detail-card.component';
-import { MapComponent } from './map/map.component';
+import { AnimationModule } from '../animation/animation.module';
+import { MapModule } from '../map/map.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PadRoutingModule
+    PadRoutingModule,
+    AnimationModule,
+    MapModule
   ],
-  declarations: [PadPage, PadOverviewPage, PadListEntryComponent, PadDetailCardComponent, MapComponent],
+  declarations: [PadPage, PadOverviewPage, PadListEntryComponent, PadDetailCardComponent],
   exports: [PadDetailCardComponent]
 })
 export class PadModule { }

@@ -16,7 +16,7 @@
 @import "~@ionic/angular/css/normalize.css";
 @import "~@ionic/angular/css/structure.css";
 @import "~@ionic/angular/css/typography.css";
-@import '~@ionic/angular/css/display.css';
+@import "~@ionic/angular/css/display.css";
 
 /* Optional CSS utils that can be commented out */
 @import "~@ionic/angular/css/padding.css";
@@ -30,4 +30,12 @@
     src: url("~/assets/fonts/minisystem.ttf") format("truetype");
     font-weight: 400;
     font-style: normal;
+}
+ion-card {
+    transition: 0.2s;
+}
+
+.exit-enter-styles {
+    opacity: 0;
+    transform: translateX(50%);
 }

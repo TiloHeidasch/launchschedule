@@ -1,0 +1,59 @@
+<div *ngIf="status!==undefined">
+  <div [ngSwitch]="status.id">
+    <!-- 1 - Active - green -->
+    <!-- 2 - Retired - purple -->
+    <!-- 3 - In Training - blue -->
+    <!-- 4 - Lost in Flight - red -->
+    <!-- 5 - Lost in Training - red -->
+    <!-- 6 - Died while in active service - red -->
+    <!-- 7 - Dismissed - purple -->
+    <!-- 8 - Resigned during training - purple -->
+    <!-- 9 - Deceased - red -->
+    <div *ngSwitchCase="1">
+      <ion-chip color="success">
+        <ion-label color="success">{{status.name}}</ion-label>
+      </ion-chip>
+    </div>
+    <div *ngSwitchCase="2">
+      <ion-chip color="tertiary">
+        <ion-label color="tertiary">{{status.name}}</ion-label>
+      </ion-chip>
+    </div>
+    <div *ngSwitchCase="3">
+      <ion-chip color="primary">
+        <ion-label color="primary">{{status.name}}</ion-label>
+      </ion-chip>
+    </div>
+    <div *ngSwitchCase="4">
+      <ion-chip color="danger">
+        <ion-label color="danger">{{status.name}}</ion-label>
+      </ion-chip>
+    </div>
+    <div *ngSwitchCase="5">
+      <ion-chip color="danger">
+        <ion-label color="danger">{{status.name}}</ion-label>
+      </ion-chip>
+    </div>
+    <div *ngSwitchCase="6">
+      <ion-chip color="danger">
+        <ion-label color="danger">{{status.name}}</ion-label>
+      </ion-chip>
+    </div>
+    <div *ngSwitchCase="7">
+      <ion-chip color="tertiary">
+        <ion-label color="tertiary">{{status.name}}</ion-label>
+      </ion-chip>
+    </div>
+    <div *ngSwitchCase="8">
+      <ion-chip color="tertiary">
+        <ion-label color="tertiary">{{status.name}}</ion-label>
+      </ion-chip>
+    </div>
+    <div *ngSwitchCase="11">
+      <ion-chip color="danger">
+        <ion-label color="danger">{{status.name}}</ion-label>
+      </ion-chip>
+    </div>
+    <div *ngSwitchDefault></div>
+  </div>
+</div>

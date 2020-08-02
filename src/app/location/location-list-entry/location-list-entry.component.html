@@ -1,0 +1,17 @@
+<ion-card routerDirection="forward" [routerLink]="['/location/'+location.id]" slideIn>
+  <div id="image">
+    <div class="image-wrapper">
+      <ion-img id="background" [src]="location.map_image"></ion-img>
+    </div>
+    <div class="image-wrapper">
+      <ion-img id="foreground" [src]="location.map_image"></ion-img>
+    </div>
+  </div>
+  <ion-card-header>
+    <ion-card-subtitle>{{subtitle}}</ion-card-subtitle>
+    <ion-card-title>{{title}}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <div id="content"></div>
+  </ion-card-content>
+</ion-card>

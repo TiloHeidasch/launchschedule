@@ -8,7 +8,7 @@ import { LaunchLibraryService } from '../launch-library.service';
   styleUrls: ['./pad.page.scss'],
 })
 export class PadPage implements OnInit {
-  public id: number;
+  public id: string;
   pad;
   title: string;
 
@@ -16,7 +16,7 @@ export class PadPage implements OnInit {
   constructor(private activatedRoute: ActivatedRoute, private service: LaunchLibraryService) { }
 
   async ngOnInit() {
-    this.id = +this.activatedRoute.snapshot.paramMap.get('id');
+    this.id = this.activatedRoute.snapshot.paramMap.get('id');
     this.pad = await this.service.getPadById(this.id);
     this.title = this.pad.name;
   }

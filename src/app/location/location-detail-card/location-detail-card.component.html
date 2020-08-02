@@ -1,0 +1,9 @@
+<ion-card *ngIf="location!==undefined">
+  <ion-card-header>
+    <ion-card-subtitle>{{location.country_code}}</ion-card-subtitle>
+    <ion-card-title>{{location.name}}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <p>Total Launches: {{location.total_launch_count}}</p>
+  </ion-card-content>
+</ion-card>

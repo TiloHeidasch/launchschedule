@@ -7,8 +7,7 @@ import { LaunchLibraryService } from 'src/app/launch-library.service';
   styleUrls: ['./launch-detail-card.component.scss'],
 })
 export class LaunchDetailCardComponent implements OnInit {
-  @Input('id') id;
-  launch;
+  @Input('launch') launch;
   title;
   subtitle;
   date;
@@ -16,8 +15,6 @@ export class LaunchDetailCardComponent implements OnInit {
   constructor(private service: LaunchLibraryService) { }
 
   async ngOnInit() {
-    this.launch = await this.service.getLaunchById(this.id);
-
     this.date = new Date(this.launch.net);
     this.title = this.launch.name.split('|')[1].trim();
     this.subtitle = this.launch.name.split('|')[0].trim();

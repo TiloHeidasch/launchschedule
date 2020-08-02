@@ -7,19 +7,12 @@ import { LaunchLibraryService } from 'src/app/launch-library.service';
   styleUrls: ['./pad-detail-card.component.scss'],
 })
 export class PadDetailCardComponent implements OnInit {
-  @Input('id') id;
-  pad;
-  title;
-  subtitle;
+  @Input('pad') pad;
 
   constructor(private service: LaunchLibraryService) {
   }
 
   async ngOnInit() {
-    this.pad = await this.service.getPadById(this.id);
-    this.title = this.pad.name.split(',')[0].trim();
-    this.subtitle = this.pad.name.split(',')[1] + this.pad.name.split(',')[2];
-
   }
 
 }

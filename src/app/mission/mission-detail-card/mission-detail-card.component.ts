@@ -7,13 +7,11 @@ import { LaunchLibraryService } from 'src/app/launch-library.service';
   styleUrls: ['./mission-detail-card.component.scss'],
 })
 export class MissionDetailCardComponent implements OnInit {
-  @Input('id') id;
-  mission;
+  @Input('mission') mission;
 
   constructor(private service: LaunchLibraryService) { }
 
   async ngOnInit() {
-    this.mission = await this.service.getMissionById(this.id);
   }
 
 }

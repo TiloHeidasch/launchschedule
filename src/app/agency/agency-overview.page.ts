@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LaunchLibraryService } from '../launch-library.service';
 import { AgencyParamStoreService } from './agency-param-store.service';
+import { CountryCode } from './country-codes';
 
 
 @Component({
@@ -11,8 +12,8 @@ import { AgencyParamStoreService } from './agency-param-store.service';
 })
 export class AgencyOverviewPage implements OnInit {
   title = 'Agencies';
+  CountryCode = CountryCode;
   constructor(private activatedRoute: ActivatedRoute, private service: LaunchLibraryService, public store: AgencyParamStoreService) { }
-
   ngOnInit() {
     if (this.store.agencies.length === 0) {
       this.loadFirst();
@@ -20,11 +21,11 @@ export class AgencyOverviewPage implements OnInit {
   }
   async loadFirst() {
     this.store.agencies = [];
-    this.store.agencies = (await this.service.getFirstAgencies(this.store.search, this.store.startDate, this.store.endDate, this.store.padId, this.store.locationId, this.store.rocketId, this.store.agencyId)).agencies;
+    this.store.agencies = (await this.service.getFirstAgencies(this.store.search, this.store.featured, this.store.type, this.store.countryCode)).agencies;
   }
 
   async loadMore(event) {
-    const answer = await this.service.getNextAgencies(this.store.agencies.length, this.store.search, this.store.startDate, this.store.endDate, this.store.padId, this.store.locationId, this.store.rocketId, this.store.agencyId);
+    const answer = await this.service.getNextAgencies(this.store.agencies.length, this.store.search, this.store.featured, this.store.type, this.store.countryCode);
     this.store.agencies.push(...answer.agencies);
     event.target.complete();
 

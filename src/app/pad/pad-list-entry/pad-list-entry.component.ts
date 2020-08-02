@@ -14,7 +14,7 @@ export class PadListEntryComponent implements OnInit {
 
   ngOnInit() {
     this.title = this.pad.name;
-    this.subtitle = this.pad.abbrev;
+    this.subtitle = this.pad.location.name;
   }
 
 }

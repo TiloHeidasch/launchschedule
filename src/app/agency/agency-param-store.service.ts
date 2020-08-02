@@ -5,12 +5,9 @@ import { Injectable } from '@angular/core';
 })
 export class AgencyParamStoreService {
   search: string;
-  startDate: Date;
-  endDate: Date;
-  padId: number;
-  locationId: number;
-  rocketId: number;
-  agencyId: number;
+  featured: boolean = true;
+  type: string = '';
+  countryCode: string = '';
   showFilter: boolean = false;
   agencies: any[] = [];
   constructor() { }

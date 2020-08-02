@@ -16,12 +16,16 @@
 
   <div id="container" *ngIf="agency!==undefined">
     <div id="agency">
-      <agency-detail-card [id]='agency.id'></agency-detail-card>
+      <agency-detail-card [agency]='agency'></agency-detail-card>
     </div>
-    <!-- <div id="mission-list">
-      <mission-detail-card *ngFor="let mission of agency.missions" [mission]='mission'></mission-detail-card>
+    <div id="rocket-list">
+      <rocket-list-entry *ngFor="let rocket of agency.launcher_list" [rocket]='rocket'></rocket-list-entry>
     </div>
-    <div id="location">
+    <div id="spacecraft-list">
+      <spacecraft-list-entry *ngFor="let spacecraft of agency.spacecraft_list" [spacecraft]='spacecraft'>
+      </spacecraft-list-entry>
+    </div>
+    <!-- <div id="location">
       <location-detail-card [location]='agency.location'></location-detail-card>
     </div>
     <div id="agency">

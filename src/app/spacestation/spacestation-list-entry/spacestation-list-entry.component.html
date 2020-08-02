@@ -1,0 +1,20 @@
+<ion-card routerDirection="forward" [routerLink]="['/spacestation/'+spacestation.id]" slideIn>
+  <div id="image">
+    <div class="image-wrapper">
+      <ion-img id="background" [src]="spacestation.image_url"></ion-img>
+    </div>
+    <div class="image-wrapper">
+      <ion-img id="foreground" [src]="spacestation.image_url"></ion-img>
+    </div>
+  </div>
+  <ion-card-header>
+    <ion-card-subtitle>{{subtitle}}</ion-card-subtitle>
+    <ion-card-title>{{title}}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <div id="content">
+      <p id="founded">*{{spacestation.founded}}</p>
+      <p id="deorbited" *ngIf="spacestation.deorbited!==null">†{{spacestation.deorbited}}</p>
+    </div>
+  </ion-card-content>
+</ion-card>

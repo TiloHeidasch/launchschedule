@@ -1,0 +1,9 @@
+<ion-card *ngIf="spacestation!==undefined">
+  <ion-card-header>
+    <ion-card-subtitle>{{spacestation.country_code}}</ion-card-subtitle>
+    <ion-card-title>{{spacestation.name}}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <p>Total Launches: {{spacestation.total_launch_count}}</p>
+  </ion-card-content>
+</ion-card>

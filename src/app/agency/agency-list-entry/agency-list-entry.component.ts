@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { LaunchLibraryService } from 'src/app/launch-library.service';
 
 
 @Component({
@@ -7,12 +8,16 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./agency-list-entry.component.scss'],
 })
 export class AgencyListEntryComponent implements OnInit {
-  @Input('agency') agency;
+  @Input('agency') agency?;
+  @Input('id') id?;
   title: string;
   subtitle: string;
-  constructor() { }
+  constructor(private service: LaunchLibraryService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    if (this.agency === undefined) {
+      this.agency = await this.service.getAgencyById(this.id);
+    }
     this.title = this.agency.name;
     this.subtitle = this.agency.abbrev;
   }

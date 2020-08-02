@@ -5,10 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class RocketParamStoreService {
   search: string;
-  padId: number;
-  locationId: number;
-  rocketId: number;
-  agencyId: number;
+  reusable: boolean = false;
+  active: boolean = true;
 
   showFilter: boolean = false;
   rockets: any[] = [];

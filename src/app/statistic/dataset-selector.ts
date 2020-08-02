@@ -145,9 +145,6 @@ export class DatasetSelector {
             case DatasetSelectorType.Launches:
                 this.generateLaunchTypeFilterItems();
                 break;
-            case DatasetSelectorType.Missions:
-                //this.generateMissionTypeFilterItems();
-                break;
             case DatasetSelectorType.Pads:
                 //this.generatePadTypeFilterItems();
                 break;

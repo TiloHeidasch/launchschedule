@@ -159,9 +159,6 @@ export class StatisticPage implements OnInit {
         case "Launches":
           value = await this.service.getLaunchAmount(datasetSelector.getSearch() === undefined ? '' : datasetSelector.getSearch(), datasetSelector.getRocketId(), datasetSelector.getAgencyId(), datasetSelector.getPadId(), datasetSelector.getLocationId());
           break;
-        case "Missions":
-          value = await this.service.getMissionAmount(datasetSelector.getSearch() === undefined ? '' : datasetSelector.getSearch());
-          break;
         case "Pads":
           value = await this.service.getPadAmount(datasetSelector.getSearch() === undefined ? '' : datasetSelector.getSearch());
           break;

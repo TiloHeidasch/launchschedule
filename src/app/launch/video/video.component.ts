@@ -6,13 +6,13 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./video.component.scss'],
 })
 export class VideoComponent implements OnInit {
-  @Input('src') src: string;
+  @Input('video') video;
   id = '0';
   constructor() { }
 
   ngOnInit() {
-    if (this.src.search('youtube') !== -1) {
-      this.id = this.src.replace('https://www.youtube.com/watch?v=', '');
+    if (this.video.url.search('youtube') !== -1) {
+      this.id = this.video.url.replace('https://www.youtube.com/watch?v=', '');
 
       const tag = document.createElement('script');
 

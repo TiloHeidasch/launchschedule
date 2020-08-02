@@ -1,0 +1,53 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{title}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleFilter()">
+        <ion-icon slot="icon-only" name="filter"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar *ngIf="store.showFilter">
+    <ion-searchbar (ionChange)="searchChange($event)" [value]="store.search" animated></ion-searchbar>
+  </ion-toolbar>
+  <ion-toolbar *ngIf="store.showFilter">
+    <ion-item>
+      <ion-label>Status</ion-label>
+      <ion-select [(ngModel)]="store.status" (ionChange)="loadFirst()" placeholder="Status" interface="action-sheet">
+        <ion-select-option value="">None</ion-select-option>
+        <ion-select-option value="1">Active</ion-select-option>
+        <ion-select-option value="2">Retired</ion-select-option>
+        <ion-select-option value="3">In Training</ion-select-option>
+        <ion-select-option value="4">Lost in Flight</ion-select-option>
+        <ion-select-option value="5">Lost in Training</ion-select-option>
+        <ion-select-option value="6">Died while in active service</ion-select-option>
+        <ion-select-option value="7">Dismissed</ion-select-option>
+        <ion-select-option value="8">Resigned during training</ion-select-option>
+        <ion-select-option value="9">Deceased</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">{{title}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <ion-list>
+      <div *ngFor="let spacestation of store.spacestations">
+        <spacestation-list-entry [spacestation]='spacestation'></spacestation-list-entry>
+      </div>
+    </ion-list>
+    <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+      <ion-infinite-scroll-content loadingSpinner="circular" loadingText="Loading more spacestations...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </div>
+</ion-content>
