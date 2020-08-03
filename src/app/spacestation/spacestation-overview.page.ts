@@ -28,11 +28,11 @@ export class SpacestationOverviewPage implements OnInit, ViewDidEnter {
   }
   async loadFirst() {
     this.store.spacestations = [];
-    this.store.spacestations = (await this.service.getFirstSpacestations(this.store.search, this.store.status)).spacestations;
+    this.store.spacestations = (await this.service.getFirstSpacestations(this.store.search, this.store.status, this.store.orbit, this.store.type)).spacestations;
   }
 
   async loadMore(event) {
-    const answer = await this.service.getNextSpacestations(this.store.spacestations.length, this.store.search, this.store.status);
+    const answer = await this.service.getNextSpacestations(this.store.spacestations.length, this.store.search, this.store.status, this.store.orbit, this.store.type);
     this.store.spacestations.push(...answer.spacestations);
     event.target.complete();
 

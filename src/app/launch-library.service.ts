@@ -625,8 +625,8 @@ export class LaunchLibraryService {
     console.log({ call: this.calls, url, data });
     return data.count;
   }
-  async getAllSpacestations(search?: string, status?: number) {
-    let url = this.createSpacestationUrl(10000, undefined, search, status);
+  async getAllSpacestations(search?: string, status?: number, orbit?: number, type?: number) {
+    let url = this.createSpacestationUrl(10000, undefined, search, status, orbit, type);
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
     console.log({ call: this.calls, url, data });
@@ -644,17 +644,17 @@ export class LaunchLibraryService {
     this.spacestationsById.push({ id, object: data });
     return data;
   }
-  async getFirstSpacestations(search?: string, status?: number) {
-    return this.getNextSpacestations(0, search, status);
+  async getFirstSpacestations(search?: string, status?: number, orbit?: number, type?: number) {
+    return this.getNextSpacestations(0, search, status, orbit, type);
   }
-  async getNextSpacestations(offset: number, search?: string, status?: number) {
-    let url = this.createSpacestationUrl(10, offset, search, status);
+  async getNextSpacestations(offset: number, search?: string, status?: number, orbit?: number, type?: number) {
+    let url = this.createSpacestationUrl(10, offset, search, status, orbit, type);
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
     console.log({ call: this.calls, url, data });
     return { spacestations: data.results, max: data.count };
   }
-  private createSpacestationUrl(limit: number, offset?: number, search?: string, status?: number): string {
+  private createSpacestationUrl(limit: number, offset?: number, search?: string, status?: number, orbit?: number, type?: number): string {
     let url = this.baseUrl + '/2.0.0/spacestation/';
     url += '?limit=' + limit;
     if (search !== undefined && search !== '') {
@@ -662,6 +662,12 @@ export class LaunchLibraryService {
     }
     if (status !== undefined && status !== 0) {
       url += ('&status=' + status);
+    }
+    if (orbit !== undefined) {
+      url += ('&orbit=' + orbit);
+    }
+    if (type !== undefined && type !== 0) {
+      url += ('&type=' + type);
     }
     if (offset !== undefined) {
       url += ('&offset=' + offset);

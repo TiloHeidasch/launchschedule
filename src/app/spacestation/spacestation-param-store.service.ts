@@ -6,6 +6,8 @@ import { Injectable } from '@angular/core';
 export class SpacestationParamStoreService {
   search: string;
   status: number;
+  orbit: number;
+  type: number;
 
   showFilter: boolean = false;
   spacestations: any[] = [];
