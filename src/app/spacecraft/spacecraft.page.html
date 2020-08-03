@@ -18,14 +18,11 @@
     <div id="spacecraft">
       <spacecraft-detail-card [spacecraft]='spacecraft'></spacecraft-detail-card>
     </div>
-    <!-- <div id="mission-list">
-      <mission-detail-card *ngFor="let mission of spacecraft.missions" [mission]='mission'></mission-detail-card>
+    <div id="agency">
+      <ion-item>
+        Agency
+      </ion-item>
+      <agency-list-entry [agency]='spacecraft.agency'></agency-list-entry>
     </div>
-    <div id="spacecraft">
-      <spacecraft-detail-card [spacecraft]='spacecraft.spacecraft'></spacecraft-detail-card>
-    </div>
-    <div id="spacecraft">
-      <spacecraft-detail-card [spacecraft]='spacecraft.lsp'></spacecraft-detail-card>
-    </div> -->
   </div>
 </ion-content>
