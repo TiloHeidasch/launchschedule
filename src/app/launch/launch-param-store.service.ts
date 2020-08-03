@@ -13,6 +13,7 @@ export class LaunchParamStoreService {
   agencyId: number;
   showFilter: boolean = false;
   launches: any[] = [];
+  scrollY: number = 0;
 
   constructor() { }
 }

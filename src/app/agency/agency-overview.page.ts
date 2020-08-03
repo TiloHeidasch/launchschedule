@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LaunchLibraryService } from '../launch-library.service';
 import { AgencyParamStoreService } from './agency-param-store.service';
 import { CountryCode } from './country-codes';
+import { ViewDidEnter, IonContent } from '@ionic/angular';
 
 
 @Component({
@@ -10,14 +11,21 @@ import { CountryCode } from './country-codes';
   templateUrl: './agency-overview.page.html',
   styleUrls: ['./agency-overview.page.scss'],
 })
-export class AgencyOverviewPage implements OnInit {
+export class AgencyOverviewPage implements OnInit, ViewDidEnter {
   title = 'Agencies';
+  @ViewChild("agencyOverviewContent") content: IonContent;
   CountryCode = CountryCode;
   constructor(private activatedRoute: ActivatedRoute, private service: LaunchLibraryService, public store: AgencyParamStoreService) { }
   ngOnInit() {
     if (this.store.agencies.length === 0) {
       this.loadFirst();
     }
+  }
+  ionViewDidEnter() {
+    this.content.scrollToPoint(0, this.store.scrollY, 250);
+  }
+  logScrolling(event) {
+    this.store.scrollY = event.detail.currentY;
   }
   async loadFirst() {
     this.store.agencies = [];

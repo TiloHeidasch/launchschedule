@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LaunchLibraryService } from '../launch-library.service';
 import { PadParamStoreService } from './pad-param-store.service';
+import { IonContent, ViewDidEnter } from '@ionic/angular';
 
 
 @Component({
@@ -9,14 +10,21 @@ import { PadParamStoreService } from './pad-param-store.service';
   templateUrl: './pad-overview.page.html',
   styleUrls: ['./pad-overview.page.scss'],
 })
-export class PadOverviewPage implements OnInit {
+export class PadOverviewPage implements OnInit, ViewDidEnter {
   title = 'Pads';
+  @ViewChild("padOverviewContent") content: IonContent;
   constructor(private activatedRoute: ActivatedRoute, private service: LaunchLibraryService, public store: PadParamStoreService) { }
 
   ngOnInit() {
     if (this.store.pads.length === 0) {
       this.loadFirst();
     }
+  }
+  ionViewDidEnter() {
+    this.content.scrollToPoint(0, this.store.scrollY, 250);
+  }
+  logScrolling(event) {
+    this.store.scrollY = event.detail.currentY;
   }
   async loadFirst() {
     this.store.pads = [];

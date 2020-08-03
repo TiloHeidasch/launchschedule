@@ -10,5 +10,6 @@ export class AgencyParamStoreService {
   countryCode: string = '';
   showFilter: boolean = false;
   agencies: any[] = [];
+  scrollY: number = 0;
   constructor() { }
 }

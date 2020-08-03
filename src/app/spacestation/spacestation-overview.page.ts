@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LaunchLibraryService } from '../launch-library.service';
 import { SpacestationParamStoreService } from './spacestation-param-store.service';
+import { IonContent, ViewDidEnter } from '@ionic/angular';
 
 
 @Component({
@@ -9,14 +10,21 @@ import { SpacestationParamStoreService } from './spacestation-param-store.servic
   templateUrl: './spacestation-overview.page.html',
   styleUrls: ['./spacestation-overview.page.scss'],
 })
-export class SpacestationOverviewPage implements OnInit {
+export class SpacestationOverviewPage implements OnInit, ViewDidEnter {
   title = 'Spacestations';
+  @ViewChild("spacestationOverviewContent") content: IonContent;
   constructor(private activatedRoute: ActivatedRoute, private service: LaunchLibraryService, public store: SpacestationParamStoreService) { }
 
   ngOnInit() {
     if (this.store.spacestations.length === 0) {
       this.loadFirst();
     }
+  }
+  ionViewDidEnter() {
+    this.content.scrollToPoint(0, this.store.scrollY, 250);
+  }
+  logScrolling(event) {
+    this.store.scrollY = event.detail.currentY;
   }
   async loadFirst() {
     this.store.spacestations = [];

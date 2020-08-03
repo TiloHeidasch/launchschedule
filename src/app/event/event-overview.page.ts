@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LaunchLibraryService } from '../launch-library.service';
 import { EventParamStoreService } from './event-param-store.service';
+import { IonContent, ViewDidEnter } from '@ionic/angular';
 
 
 @Component({
@@ -9,14 +10,22 @@ import { EventParamStoreService } from './event-param-store.service';
   templateUrl: './event-overview.page.html',
   styleUrls: ['./event-overview.page.scss'],
 })
-export class EventOverviewPage implements OnInit {
+export class EventOverviewPage implements OnInit, ViewDidEnter {
   title = 'Events';
+  @ViewChild("eventOverviewContent") content: IonContent;
+
   constructor(private activatedRoute: ActivatedRoute, private service: LaunchLibraryService, public store: EventParamStoreService) { }
 
   ngOnInit() {
     if (this.store.events.length === 0) {
       this.loadFirst();
     }
+  }
+  ionViewDidEnter() {
+    this.content.scrollToPoint(0, this.store.scrollY, 250);
+  }
+  logScrolling(event) {
+    this.store.scrollY = event.detail.currentY;
   }
   async loadFirst() {
     this.store.events = [];

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LaunchLibraryService } from '../launch-library.service';
 import { RocketParamStoreService } from './rocket-param-store.service';
+import { IonContent, ViewDidEnter } from '@ionic/angular';
 
 
 @Component({
@@ -9,14 +10,21 @@ import { RocketParamStoreService } from './rocket-param-store.service';
   templateUrl: './rocket-overview.page.html',
   styleUrls: ['./rocket-overview.page.scss'],
 })
-export class RocketOverviewPage implements OnInit {
+export class RocketOverviewPage implements OnInit, ViewDidEnter {
   title = 'Rockets';
+  @ViewChild("rocketOverviewContent") content: IonContent;
   constructor(private activatedRoute: ActivatedRoute, private service: LaunchLibraryService, public store: RocketParamStoreService) { }
 
   ngOnInit() {
     if (this.store.rockets.length === 0) {
       this.loadFirst();
     }
+  }
+  ionViewDidEnter() {
+    this.content.scrollToPoint(0, this.store.scrollY, 250);
+  }
+  logScrolling(event) {
+    this.store.scrollY = event.detail.currentY;
   }
   async loadFirst() {
     this.store.rockets = [];

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LaunchLibraryService } from '../launch-library.service';
 import { AstronautParamStoreService } from './astronaut-param-store.service';
+import { IonContent, ViewDidEnter } from '@ionic/angular';
 
 
 @Component({
@@ -9,14 +10,21 @@ import { AstronautParamStoreService } from './astronaut-param-store.service';
   templateUrl: './astronaut-overview.page.html',
   styleUrls: ['./astronaut-overview.page.scss'],
 })
-export class AstronautOverviewPage implements OnInit {
+export class AstronautOverviewPage implements OnInit, ViewDidEnter {
   title = 'Astronauts';
+  @ViewChild("astronautOverviewContent") content: IonContent;
   constructor(private activatedRoute: ActivatedRoute, private service: LaunchLibraryService, public store: AstronautParamStoreService) { }
 
   ngOnInit() {
     if (this.store.astronauts.length === 0) {
       this.loadFirst();
     }
+  }
+  ionViewDidEnter() {
+    this.content.scrollToPoint(0, this.store.scrollY, 250);
+  }
+  logScrolling(event) {
+    this.store.scrollY = event.detail.currentY;
   }
   async loadFirst() {
     this.store.astronauts = [];

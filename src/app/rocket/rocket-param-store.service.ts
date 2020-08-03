@@ -10,6 +10,7 @@ export class RocketParamStoreService {
 
   showFilter: boolean = false;
   rockets: any[] = [];
+  scrollY: number = 0;
 
   constructor() { }
 }

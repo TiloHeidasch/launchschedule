@@ -13,6 +13,7 @@ export class PadParamStoreService {
 
   showFilter: boolean = false;
   pads: any[] = [];
+  scrollY: number = 0;
 
   constructor() { }
 }

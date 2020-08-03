@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LaunchLibraryService } from '../launch-library.service';
 import { LaunchParamStoreService } from './launch-param-store.service';
+import { IonContent, ViewDidEnter } from '@ionic/angular';
 
 
 @Component({
@@ -9,8 +10,9 @@ import { LaunchParamStoreService } from './launch-param-store.service';
   templateUrl: './launch-overview.page.html',
   styleUrls: ['./launch-overview.page.scss'],
 })
-export class LaunchOverviewPage implements OnInit {
+export class LaunchOverviewPage implements OnInit, ViewDidEnter {
   title = 'Launches';
+  @ViewChild("launchOverviewContent") content: IonContent;
   constructor(private activatedRoute: ActivatedRoute, private service: LaunchLibraryService, public store: LaunchParamStoreService) {
     if (store.startDate === undefined) {
       this.setStartToToday();
@@ -24,6 +26,12 @@ export class LaunchOverviewPage implements OnInit {
     if (this.store.launches.length === 0) {
       this.loadFirst();
     }
+  }
+  ionViewDidEnter() {
+    this.content.scrollToPoint(0, this.store.scrollY, 250);
+  }
+  logScrolling(event) {
+    this.store.scrollY = event.detail.currentY;
   }
 
   async loadFirst() {

@@ -9,6 +9,7 @@ export class EventParamStoreService {
 
   showFilter: boolean = false;
   events: any[] = [];
+  scrollY: number = 0;
 
   constructor() { }
 }

@@ -12,6 +12,7 @@ export class LocationParamStoreService {
 
   showFilter: boolean = false;
   locations: any[] = [];
+  scrollY: number = 0;
 
   constructor() { }
 }

@@ -9,6 +9,7 @@ export class SpacecraftParamStoreService {
 
   showFilter: boolean = false;
   spacecrafts: any[] = [];
+  scrollY: number = 0;
 
   constructor() { }
 }

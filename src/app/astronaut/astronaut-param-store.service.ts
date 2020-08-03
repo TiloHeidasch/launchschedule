@@ -9,6 +9,7 @@ export class AstronautParamStoreService {
 
   showFilter: boolean = false;
   astronauts: any[] = [];
+  scrollY: number = 0;
 
   constructor() { }
 }
