@@ -148,8 +148,6 @@ export class DatasetSelector {
             case DatasetSelectorType.Pads:
                 //this.generatePadTypeFilterItems();
                 break;
-            case DatasetSelectorType.Payloads:
-                //this.generatePayloadTypeFilterItems();
                 break;
             case DatasetSelectorType.Rockets:
                 //this.generateRocketTypeFilterItems();
