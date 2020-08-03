@@ -23,10 +23,10 @@ const routes: Routes = [
     path: 'pad',
     loadChildren: () => import('./pad/pad.module').then(m => m.PadModule)
   },
-  {
-    path: 'statistic',
-    loadChildren: () => import('./statistic/statistic.module').then(m => m.StatisticPageModule)
-  },
+  // {
+  //   path: 'statistic',
+  //   loadChildren: () => import('./statistic/statistic.module').then(m => m.StatisticPageModule)
+  // },
   {
     path: 'location',
     loadChildren: () => import('./location/location.module').then(m => m.LocationModule)

@@ -47,11 +47,11 @@ export class AppComponent implements OnInit {
       url: '/rocket',
       icon: 'rocket'
     },
-    {
-      title: 'Statistic',
-      url: '/statistic',
-      icon: 'stats-chart'
-    },
+    // {
+    //   title: 'Statistic',
+    //   url: '/statistic',
+    //   icon: 'stats-chart'
+    // },
     {
       title: 'Spacecraft',
       url: '/spacecraft',
