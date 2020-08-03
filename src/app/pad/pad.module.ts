@@ -23,6 +23,6 @@ import { MapModule } from '../map/map.module';
     MapModule
   ],
   declarations: [PadPage, PadOverviewPage, PadListEntryComponent, PadDetailCardComponent],
-  exports: [PadDetailCardComponent]
+  exports: [PadListEntryComponent]
 })
 export class PadModule { }

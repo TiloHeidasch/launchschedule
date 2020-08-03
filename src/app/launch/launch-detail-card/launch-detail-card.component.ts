@@ -11,6 +11,7 @@ export class LaunchDetailCardComponent implements OnInit {
   title;
   subtitle;
   date;
+  imageUrl;
 
   constructor(private service: LaunchLibraryService) { }
 
@@ -18,7 +19,11 @@ export class LaunchDetailCardComponent implements OnInit {
     this.date = new Date(this.launch.net);
     this.title = this.launch.name.split('|')[1].trim();
     this.subtitle = this.launch.name.split('|')[0].trim();
-
+    if (this.launch.infographic) {
+      this.imageUrl = this.launch.infographic;
+    } else {
+      this.imageUrl = this.launch.image;
+    }
   }
 
 }

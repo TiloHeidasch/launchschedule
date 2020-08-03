@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { MissionDetailCardComponent } from './mission-detail-card.component';
+import { MissionListEntryComponent } from './mission-list-entry.component';
 
-describe('MissionDetailCardComponent', () => {
-  let component: MissionDetailCardComponent;
-  let fixture: ComponentFixture<MissionDetailCardComponent>;
+describe('MissionListEntryComponent', () => {
+  let component: MissionListEntryComponent;
+  let fixture: ComponentFixture<MissionListEntryComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MissionDetailCardComponent ],
+      declarations: [MissionListEntryComponent],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(MissionDetailCardComponent);
+    fixture = TestBed.createComponent(MissionListEntryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

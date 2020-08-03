@@ -19,16 +19,16 @@
       <launch-detail-card [launch]='launch'></launch-detail-card>
     </div>
     <div id="rocket">
-      <rocket-detail-card [rocket]='launch.rocket'></rocket-detail-card>
+      <rocket-list-entry [rocket]='launch.rocket.configuration'></rocket-list-entry>
     </div>
-    <div id="mission">
-      <mission-detail-card [mission]='launch.mission'></mission-detail-card>
+    <div id="mission" *ngIf="launch.mission">
+      <mission-list-entry [mission]='launch.mission'></mission-list-entry>
     </div>
     <div id="pad">
-      <pad-detail-card [pad]='launch.pad'></pad-detail-card>
+      <pad-list-entry [pad]='launch.pad'></pad-list-entry>
     </div>
     <div id="agency">
-      <agency-detail-card [agency]='launch.launch_service_provider'></agency-detail-card>
+      <agency-list-entry [agency]='launch.launch_service_provider'></agency-list-entry>
     </div>
     <div id="video">
       <launch-video *ngFor="let video of launch.vidURLs" [video]='video'></launch-video>

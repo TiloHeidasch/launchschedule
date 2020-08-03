@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
+import { MissionListEntryComponent } from './mission-list-entry/mission-list-entry.component';
 
-import { MissionDetailCardComponent } from './mission-detail-card/mission-detail-card.component';
 
 @NgModule({
   imports: [
@@ -12,7 +12,7 @@ import { MissionDetailCardComponent } from './mission-detail-card/mission-detail
     FormsModule,
     IonicModule,
   ],
-  declarations: [MissionDetailCardComponent],
-  exports: [MissionDetailCardComponent]
+  declarations: [MissionListEntryComponent],
+  exports: [MissionListEntryComponent]
 })
 export class MissionModule { }
