@@ -13,6 +13,16 @@
   <ion-toolbar *ngIf="store.showFilter">
     <ion-searchbar (ionChange)="searchChange($event)" [value]="store.search" animated></ion-searchbar>
   </ion-toolbar>
+  <ion-toolbar *ngIf="store.showFilter">
+    <ion-item>
+      <ion-label>Country</ion-label>
+      <ion-select [(ngModel)]="store.countryCode" (ionChange)="loadFirst()" placeholder="Type" interface="action-sheet">
+        <ion-select-option value="">None</ion-select-option>
+        <ion-select-option *ngFor="let countryCode of CountryCode | keyvalue" [value]="countryCode.key">
+          {{countryCode.value}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content #locationOverviewContent [scrollEvents]="true" (ionScroll)="logScrolling($event)" [fullscreen]="true">

@@ -5,10 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class LocationParamStoreService {
   search: string;
-  startDate: Date;
-  endDate: Date;
-  locationId: number;
-  rocketId: number;
+  countryCode: string = '';
 
   showFilter: boolean = false;
   locations: any[] = [];

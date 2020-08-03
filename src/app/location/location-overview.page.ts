@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { LaunchLibraryService } from '../launch-library.service';
 import { LocationParamStoreService } from './location-param-store.service';
 import { IonContent, ViewDidEnter } from '@ionic/angular';
+import { CountryCode } from '../types/country-codes';
 
 
 @Component({
@@ -13,6 +14,7 @@ import { IonContent, ViewDidEnter } from '@ionic/angular';
 export class LocationOverviewPage implements OnInit, ViewDidEnter {
   title = 'Facilities';
   @ViewChild("locationOverviewContent") content: IonContent;
+  CountryCode = CountryCode;
   constructor(private activatedRoute: ActivatedRoute, private service: LaunchLibraryService, public store: LocationParamStoreService) { }
 
   ngOnInit() {
@@ -28,11 +30,11 @@ export class LocationOverviewPage implements OnInit, ViewDidEnter {
   }
   async loadFirst() {
     this.store.locations = [];
-    this.store.locations = (await this.service.getFirstLocations(this.store.search, this.store.startDate, this.store.endDate, this.store.locationId, this.store.locationId, this.store.rocketId, this.store.locationId)).locations;
+    this.store.locations = (await this.service.getFirstLocations(this.store.search, this.store.countryCode)).locations;
   }
 
   async loadMore(event) {
-    const answer = await this.service.getNextLocations(this.store.locations.length, this.store.search, this.store.startDate, this.store.endDate, this.store.locationId, this.store.locationId, this.store.rocketId, this.store.locationId);
+    const answer = await this.service.getNextLocations(this.store.locations.length, this.store.search, this.store.countryCode);
     this.store.locations.push(...answer.locations);
     event.target.complete();
 

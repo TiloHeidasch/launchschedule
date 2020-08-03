@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LaunchLibraryService } from '../launch-library.service';
 import { AgencyParamStoreService } from './agency-param-store.service';
-import { CountryCode } from './country-codes';
+import { CountryCode } from '../types/country-codes';
 import { ViewDidEnter, IonContent } from '@ionic/angular';
 
 

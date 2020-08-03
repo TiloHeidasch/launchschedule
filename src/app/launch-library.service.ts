@@ -299,8 +299,8 @@ export class LaunchLibraryService {
     console.log({ call: this.calls, url, data });
     return data.count;
   }
-  async getAllLocations(search?: string, startDate?: Date, endDate?: Date, padId?: number, locationId?: number, rocketId?: number, agencyId?: number) {
-    let url = this.createLocationUrl(10000, undefined, search, startDate, endDate, padId, locationId, rocketId, agencyId);
+  async getAllLocations(search?: string, countryCode?: string) {
+    let url = this.createLocationUrl(10000, undefined, search, countryCode);
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
     console.log({ call: this.calls, url, data });
@@ -318,39 +318,24 @@ export class LaunchLibraryService {
     this.locationsById.push({ id, object: data });
     return data;
   }
-  async getFirstLocations(search?: string, startDate?: Date, endDate?: Date, padId?: number, locationId?: number, rocketId?: number, agencyId?: number) {
-    return this.getNextLocations(0, search, startDate, endDate);
+  async getFirstLocations(search?: string, countryCode?: string) {
+    return this.getNextLocations(0, search, countryCode);
   }
-  async getNextLocations(offset: number, search?: string, startDate?: Date, endDate?: Date, padId?: number, locationId?: number, rocketId?: number, agencyId?: number) {
-    let url = this.createLocationUrl(10, offset, search, startDate, endDate, padId, locationId, rocketId, agencyId);
+  async getNextLocations(offset: number, search?: string, countryCode?: string) {
+    let url = this.createLocationUrl(10, offset, search, countryCode);
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
     console.log({ call: this.calls, url, data });
     return { locations: data.results, max: data.count };
   }
-  private createLocationUrl(limit: number, offset?: number, search?: string, startDate?: Date, endDate?: Date, padId?: number, locationId?: number, rocketId?: number, agencyId?: number): string {
+  private createLocationUrl(limit: number, offset?: number, search?: string, countryCode?: string): string {
     let url = this.baseUrl + '/2.0.0/location/';
     url += '?limit=' + limit;
     if (search !== undefined && search !== '') {
       url += ('&search=' + search);
     }
-    if (startDate !== undefined) {
-      url += ('&net__gte=' + this.dateToString(startDate));
-    }
-    if (endDate !== undefined) {
-      url += ('&net__lte=' + this.dateToString(endDate));
-    }
-    if (padId !== undefined && padId !== 0) {
-      url += ('&padid=' + padId);
-    }
-    if (locationId !== undefined && locationId !== 0) {
-      url += ('&locationid=' + locationId);
-    }
-    if (rocketId !== undefined && rocketId !== 0) {
-      url += ('&rocketid=' + rocketId);
-    }
-    if (agencyId !== undefined && agencyId !== 0) {
-      url += ('&lsp=' + agencyId);
+    if (countryCode !== undefined && countryCode !== '') {
+      url += ('&country_code=' + countryCode);
     }
     if (offset !== undefined) {
       url += ('&offset=' + offset);
