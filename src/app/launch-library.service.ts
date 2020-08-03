@@ -568,8 +568,8 @@ export class LaunchLibraryService {
     console.log({ call: this.calls, url, data });
     return data.count;
   }
-  async getAllSpacecrafts(search?: string, status?: number) {
-    let url = this.createSpacecraftUrl(10000, undefined, search, status);
+  async getAllSpacecrafts(search?: string, inUse?: boolean, humanRated?: boolean) {
+    let url = this.createSpacecraftUrl(10000, undefined, search, inUse, humanRated);
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
     console.log({ call: this.calls, url, data });
@@ -587,24 +587,27 @@ export class LaunchLibraryService {
     this.spacecraftsById.push({ id, object: data });
     return data;
   }
-  async getFirstSpacecrafts(search?: string, status?: number) {
-    return this.getNextSpacecrafts(0, search, status);
+  async getFirstSpacecrafts(search?: string, inUse?: boolean, humanRated?: boolean) {
+    return this.getNextSpacecrafts(0, search, inUse, humanRated);
   }
-  async getNextSpacecrafts(offset: number, search?: string, status?: number) {
-    let url = this.createSpacecraftUrl(10, offset, search, status);
+  async getNextSpacecrafts(offset: number, search?: string, inUse?: boolean, humanRated?: boolean) {
+    let url = this.createSpacecraftUrl(10, offset, search, inUse, humanRated);
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
     console.log({ call: this.calls, url, data });
     return { spacecrafts: data.results, max: data.count };
   }
-  private createSpacecraftUrl(limit: number, offset?: number, search?: string, status?: number): string {
+  private createSpacecraftUrl(limit: number, offset?: number, search?: string, inUse?: boolean, humanRated?: boolean): string {
     let url = this.baseUrl + '/2.0.0/config/spacecraft/';
     url += '?limit=' + limit;
     if (search !== undefined && search !== '') {
       url += ('&search=' + search);
     }
-    if (status !== undefined && status !== 0) {
-      url += ('&status=' + status);
+    if (inUse) {
+      url += '&in_use=true';
+    }
+    if (humanRated) {
+      url += '&human_rated=true';
     }
     if (offset !== undefined) {
       url += ('&offset=' + offset);

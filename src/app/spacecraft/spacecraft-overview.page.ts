@@ -28,11 +28,11 @@ export class SpacecraftOverviewPage implements OnInit, ViewDidEnter {
   }
   async loadFirst() {
     this.store.spacecrafts = [];
-    this.store.spacecrafts = (await this.service.getFirstSpacecrafts(this.store.search, this.store.status)).spacecrafts;
+    this.store.spacecrafts = (await this.service.getFirstSpacecrafts(this.store.search, this.store.inUse, this.store.humanRated)).spacecrafts;
   }
 
   async loadMore(event) {
-    const answer = await this.service.getNextSpacecrafts(this.store.spacecrafts.length, this.store.search, this.store.status);
+    const answer = await this.service.getNextSpacecrafts(this.store.spacecrafts.length, this.store.search, this.store.inUse, this.store.humanRated);
     this.store.spacecrafts.push(...answer.spacecrafts);
     event.target.complete();
 

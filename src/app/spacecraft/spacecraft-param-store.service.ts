@@ -5,7 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class SpacecraftParamStoreService {
   search: string;
-  status: number;
+  inUse: boolean = true;
+  humanRated: boolean = true;
 
   showFilter: boolean = false;
   spacecrafts: any[] = [];

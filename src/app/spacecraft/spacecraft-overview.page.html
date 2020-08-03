@@ -15,19 +15,14 @@
   </ion-toolbar>
   <ion-toolbar *ngIf="store.showFilter">
     <ion-item>
-      <ion-label>Status</ion-label>
-      <ion-select [(ngModel)]="store.status" (ionChange)="loadFirst()" placeholder="Status" interface="action-sheet">
-        <ion-select-option value="">None</ion-select-option>
-        <ion-select-option value="1">Active</ion-select-option>
-        <ion-select-option value="2">Retired</ion-select-option>
-        <ion-select-option value="3">In Training</ion-select-option>
-        <ion-select-option value="4">Lost in Flight</ion-select-option>
-        <ion-select-option value="5">Lost in Training</ion-select-option>
-        <ion-select-option value="6">Died while in active service</ion-select-option>
-        <ion-select-option value="7">Dismissed</ion-select-option>
-        <ion-select-option value="8">Resigned during training</ion-select-option>
-        <ion-select-option value="9">Deceased</ion-select-option>
-      </ion-select>
+      <ion-label>In Use</ion-label>
+      <ion-toggle (ionChange)="loadFirst()" [(ngModel)]="store.inUse"></ion-toggle>
+    </ion-item>
+  </ion-toolbar>
+  <ion-toolbar *ngIf="store.showFilter">
+    <ion-item>
+      <ion-label>Human Rated</ion-label>
+      <ion-toggle (ionChange)="loadFirst()" [(ngModel)]="store.humanRated"></ion-toggle>
     </ion-item>
   </ion-toolbar>
 </ion-header>
