@@ -367,8 +367,8 @@ export class LaunchLibraryService {
     console.log({ call: this.calls, url, data });
     return data.count;
   }
-  async getAllPads(search?: string, startDate?: Date, endDate?: Date, padId?: number, locationId?: number, rocketId?: number, agencyId?: number) {
-    let url = this.createPadUrl(10000, undefined, search, startDate, endDate, padId, locationId, rocketId, agencyId);
+  async getAllPads(search?: string) {
+    let url = this.createPadUrl(10000, undefined, search);
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
     console.log({ call: this.calls, url, data });
@@ -386,39 +386,21 @@ export class LaunchLibraryService {
     this.padsById.push({ id, object: data });
     return data;
   }
-  async getFirstPads(search?: string, startDate?: Date, endDate?: Date, padId?: number, locationId?: number, rocketId?: number, agencyId?: number) {
-    return this.getNextPads(0, search, startDate, endDate);
+  async getFirstPads(search?: string) {
+    return this.getNextPads(0, search);
   }
-  async getNextPads(offset: number, search?: string, startDate?: Date, endDate?: Date, padId?: number, locationId?: number, rocketId?: number, agencyId?: number) {
-    let url = this.createPadUrl(10, offset, search, startDate, endDate, padId, locationId, rocketId, agencyId);
+  async getNextPads(offset: number, search?: string) {
+    let url = this.createPadUrl(10, offset, search);
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
     console.log({ call: this.calls, url, data });
     return { pads: data.results, max: data.count };
   }
-  private createPadUrl(limit: number, offset?: number, search?: string, startDate?: Date, endDate?: Date, padId?: number, locationId?: number, rocketId?: number, agencyId?: number): string {
+  private createPadUrl(limit: number, offset?: number, search?: string): string {
     let url = this.baseUrl + '/2.0.0/pad/';
     url += '?limit=' + limit;
     if (search !== undefined && search !== '') {
       url += ('&search=' + search);
-    }
-    if (startDate !== undefined) {
-      url += ('&net__gte=' + this.dateToString(startDate));
-    }
-    if (endDate !== undefined) {
-      url += ('&net__lte=' + this.dateToString(endDate));
-    }
-    if (padId !== undefined && padId !== 0) {
-      url += ('&padid=' + padId);
-    }
-    if (locationId !== undefined && locationId !== 0) {
-      url += ('&locationid=' + locationId);
-    }
-    if (rocketId !== undefined && rocketId !== 0) {
-      url += ('&rocketid=' + rocketId);
-    }
-    if (agencyId !== undefined && agencyId !== 0) {
-      url += ('&lsp=' + agencyId);
     }
     if (offset !== undefined) {
       url += ('&offset=' + offset);

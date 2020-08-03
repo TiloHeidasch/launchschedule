@@ -28,11 +28,11 @@ export class PadOverviewPage implements OnInit, ViewDidEnter {
   }
   async loadFirst() {
     this.store.pads = [];
-    this.store.pads = (await this.service.getFirstPads(this.store.search, this.store.startDate, this.store.endDate, this.store.padId, this.store.locationId, this.store.rocketId, this.store.padId)).pads;
+    this.store.pads = (await this.service.getFirstPads(this.store.search)).pads;
   }
 
   async loadMore(event) {
-    const answer = await this.service.getNextPads(this.store.pads.length, this.store.search, this.store.startDate, this.store.endDate, this.store.padId, this.store.locationId, this.store.rocketId, this.store.padId);
+    const answer = await this.service.getNextPads(this.store.pads.length, this.store.search);
     this.store.pads.push(...answer.pads);
     event.target.complete();
 
