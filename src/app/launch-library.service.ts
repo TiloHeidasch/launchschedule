@@ -144,8 +144,8 @@ export class LaunchLibraryService {
     console.log({ call: this.calls, url, data });
     return data.count;
   }
-  async getAllEvents(search?: string, status?: number, upcomingPreviousAll?: UpcomingPreviousAll) {
-    let url = this.createEventUrl(10000, undefined, search, status, upcomingPreviousAll);
+  async getAllEvents(search?: string, type?: number, upcomingPreviousAll?: UpcomingPreviousAll) {
+    let url = this.createEventUrl(10000, undefined, search, type, upcomingPreviousAll);
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
     console.log({ call: this.calls, url, data });
@@ -163,17 +163,17 @@ export class LaunchLibraryService {
     this.eventsById.push({ id, object: data });
     return data;
   }
-  async getFirstEvents(search?: string, status?: number, upcomingPreviousAll?: UpcomingPreviousAll) {
-    return this.getNextEvents(0, search, status, upcomingPreviousAll);
+  async getFirstEvents(search?: string, type?: number, upcomingPreviousAll?: UpcomingPreviousAll) {
+    return this.getNextEvents(0, search, type, upcomingPreviousAll);
   }
-  async getNextEvents(offset: number, search?: string, status?: number, upcomingPreviousAll?: UpcomingPreviousAll) {
-    let url = this.createEventUrl(10, offset, search, status, upcomingPreviousAll);
+  async getNextEvents(offset: number, search?: string, type?: number, upcomingPreviousAll?: UpcomingPreviousAll) {
+    let url = this.createEventUrl(10, offset, search, type, upcomingPreviousAll);
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
     console.log({ call: this.calls, url, data });
     return { events: data.results, max: data.count };
   }
-  private createEventUrl(limit: number, offset?: number, search?: string, status?: number, upcomingPreviousAll?: UpcomingPreviousAll): string {
+  private createEventUrl(limit: number, offset?: number, search?: string, type?: number, upcomingPreviousAll?: UpcomingPreviousAll): string {
     let url = this.baseUrl + '/2.0.0/event/';
     switch (upcomingPreviousAll) {
       case UpcomingPreviousAll.PREVIOUS:
@@ -189,8 +189,8 @@ export class LaunchLibraryService {
     if (search !== undefined && search !== '') {
       url += ('&search=' + search);
     }
-    if (status !== undefined && status !== 0) {
-      url += ('&status=' + status);
+    if (type !== undefined && type !== 0) {
+      url += ('&type=' + type);
     }
     if (offset !== undefined) {
       url += ('&offset=' + offset);

@@ -6,7 +6,7 @@ import { UpcomingPreviousAll } from '../types/upcoming-previous-all';
 })
 export class EventParamStoreService {
   search: string;
-  status: number;
+  type: number;
 
   showFilter: boolean = false;
   events: any[] = [];

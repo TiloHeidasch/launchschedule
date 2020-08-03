@@ -29,11 +29,11 @@ export class EventOverviewPage implements OnInit, ViewDidEnter {
   }
   async loadFirst() {
     this.store.events = [];
-    this.store.events = (await this.service.getFirstEvents(this.store.search, this.store.status, this.store.upcomingPreviousAll)).events;
+    this.store.events = (await this.service.getFirstEvents(this.store.search, this.store.type, this.store.upcomingPreviousAll)).events;
   }
 
   async loadMore(event) {
-    const answer = await this.service.getNextEvents(this.store.events.length, this.store.search, this.store.status, this.store.upcomingPreviousAll);
+    const answer = await this.service.getNextEvents(this.store.events.length, this.store.search, this.store.type, this.store.upcomingPreviousAll);
     this.store.events.push(...answer.events);
     event.target.complete();
 

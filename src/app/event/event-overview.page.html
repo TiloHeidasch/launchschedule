@@ -31,8 +31,8 @@
   </ion-toolbar>
   <ion-toolbar *ngIf="store.showFilter">
     <ion-item>
-      <ion-label>Status</ion-label>
-      <ion-select [(ngModel)]="store.status" (ionChange)="loadFirst()" placeholder="Status" interface="action-sheet">
+      <ion-label>Type</ion-label>
+      <ion-select [(ngModel)]="store.type" (ionChange)="loadFirst()" placeholder="Type" interface="action-sheet">
         <ion-select-option value="">None</ion-select-option>
         <ion-select-option value="1">Unknown</ion-select-option>
         <ion-select-option value="2">Docking</ion-select-option>
