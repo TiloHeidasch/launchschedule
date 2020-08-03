@@ -4,6 +4,7 @@ import { EventListEntryComponent } from './event-list-entry.component';
 import { EventRoutingModule } from '../event-routing.module';
 import { CountdownModule } from 'src/app/countdown/countdown.module';
 import { AnimationModule } from 'src/app/animation/animation.module';
+import { IonicModule } from '@ionic/angular';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { AnimationModule } from 'src/app/animation/animation.module';
         EventRoutingModule,
         CommonModule,
         AnimationModule,
-        CountdownModule
+        CountdownModule,
+        IonicModule
     ],
     exports: [EventListEntryComponent],
 })

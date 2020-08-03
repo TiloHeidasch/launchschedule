@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SpacecraftListEntryComponent } from './spacecraft-list-entry.component';
 import { SpacecraftRoutingModule } from '../spacecraft-routing.module';
 import { AnimationModule } from 'src/app/animation/animation.module';
+import { IonicModule } from '@ionic/angular';
 
 
 @NgModule({
@@ -10,7 +11,8 @@ import { AnimationModule } from 'src/app/animation/animation.module';
     imports: [
         SpacecraftRoutingModule,
         AnimationModule,
-        CommonModule
+        CommonModule,
+        IonicModule
     ],
     exports: [SpacecraftListEntryComponent],
 })

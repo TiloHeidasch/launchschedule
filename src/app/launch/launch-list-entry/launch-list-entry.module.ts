@@ -5,6 +5,7 @@ import { LaunchRoutingModule } from '../launch-routing.module';
 import { LaunchStatusModule } from '../launch-status/launch-status.module';
 import { CountdownModule } from 'src/app/countdown/countdown.module';
 import { AnimationModule } from 'src/app/animation/animation.module';
+import { IonicModule } from '@ionic/angular';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { AnimationModule } from 'src/app/animation/animation.module';
         CommonModule,
         AnimationModule,
         LaunchStatusModule,
-        CountdownModule
+        CountdownModule,
+        IonicModule
     ],
     exports: [LaunchListEntryComponent],
 })

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SpacestationListEntryComponent } from './spacestation-list-entry.component';
 import { SpacestationRoutingModule } from '../spacestation-routing.module';
 import { AnimationModule } from 'src/app/animation/animation.module';
+import { IonicModule } from '@ionic/angular';
 
 
 @NgModule({
@@ -10,7 +11,8 @@ import { AnimationModule } from 'src/app/animation/animation.module';
     imports: [
         SpacestationRoutingModule,
         AnimationModule,
-        CommonModule
+        CommonModule,
+        IonicModule
     ],
     exports: [SpacestationListEntryComponent],
 })

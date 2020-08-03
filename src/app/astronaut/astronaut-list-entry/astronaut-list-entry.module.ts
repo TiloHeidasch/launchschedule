@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { AstronautListEntryComponent } from './astronaut-list-entry.component';
 import { AstronautRoutingModule } from '../astronaut-routing.module';
 import { AstronautStatusModule } from '../astronaut-status/astronaut-status.module';
-import { CountdownModule } from 'src/app/countdown/countdown.module';
 import { AnimationModule } from 'src/app/animation/animation.module';
+import { IonicModule } from '@ionic/angular';
 
 
 @NgModule({
@@ -13,7 +13,8 @@ import { AnimationModule } from 'src/app/animation/animation.module';
         AstronautRoutingModule,
         CommonModule,
         AnimationModule,
-        AstronautStatusModule
+        AstronautStatusModule,
+        IonicModule
     ],
     exports: [AstronautListEntryComponent],
 })

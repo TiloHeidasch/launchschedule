@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { PadListEntryComponent } from './pad-list-entry.component';
 import { PadRoutingModule } from '../pad-routing.module';
 import { AnimationModule } from 'src/app/animation/animation.module';
+import { IonicModule } from '@ionic/angular';
 
 
 @NgModule({
@@ -10,7 +11,8 @@ import { AnimationModule } from 'src/app/animation/animation.module';
     imports: [
         PadRoutingModule,
         AnimationModule,
-        CommonModule
+        CommonModule,
+        IonicModule
     ],
     exports: [PadListEntryComponent],
 })

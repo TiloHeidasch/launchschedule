@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { LocationListEntryComponent } from './location-list-entry.component';
 import { LocationRoutingModule } from '../location-routing.module';
 import { AnimationModule } from 'src/app/animation/animation.module';
+import { IonicModule } from '@ionic/angular';
 
 
 @NgModule({
@@ -10,7 +11,8 @@ import { AnimationModule } from 'src/app/animation/animation.module';
     imports: [
         LocationRoutingModule,
         AnimationModule,
-        CommonModule
+        CommonModule,
+        IonicModule
     ],
     exports: [LocationListEntryComponent],
 })
