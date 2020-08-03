@@ -8,10 +8,10 @@ import { EventRoutingModule } from './event-routing.module';
 
 import { EventPage } from './event.page';
 import { EventOverviewPage } from './event-overview.page';
-import { EventListEntryComponent } from './event-list-entry/event-list-entry.component';
 import { EventDetailCardComponent } from './event-detail-card/event-detail-card.component';
 import { AnimationModule } from '../animation/animation.module';
 import { CountdownModule } from '../countdown/countdown.module';
+import { EventListEntryModule } from './event-list-entry/event-list-entry.module';
 
 @NgModule({
   imports: [
@@ -20,9 +20,10 @@ import { CountdownModule } from '../countdown/countdown.module';
     IonicModule,
     EventRoutingModule,
     AnimationModule,
-    CountdownModule
+    CountdownModule,
+    EventListEntryModule
   ],
-  declarations: [EventPage, EventOverviewPage, EventListEntryComponent, EventDetailCardComponent],
-  exports: [EventDetailCardComponent]
+  declarations: [EventPage, EventOverviewPage, EventDetailCardComponent],
+  exports: []
 })
 export class EventModule { }

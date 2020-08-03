@@ -8,9 +8,10 @@ import { SpacecraftRoutingModule } from './spacecraft-routing.module';
 
 import { SpacecraftPage } from './spacecraft.page';
 import { SpacecraftOverviewPage } from './spacecraft-overview.page';
-import { SpacecraftListEntryComponent } from './spacecraft-list-entry/spacecraft-list-entry.component';
 import { SpacecraftDetailCardComponent } from './spacecraft-detail-card/spacecraft-detail-card.component';
 import { AnimationModule } from '../animation/animation.module';
+import { AgencyListEntryModule } from '../agency/agency-list-entry/agency-list-entry.module';
+import { SpacecraftListEntryModule } from './spacecraft-list-entry/spacecraft-list-entry.module';
 
 @NgModule({
   imports: [
@@ -18,9 +19,11 @@ import { AnimationModule } from '../animation/animation.module';
     FormsModule,
     IonicModule,
     SpacecraftRoutingModule,
-    AnimationModule
+    AnimationModule,
+    AgencyListEntryModule,
+    SpacecraftListEntryModule
   ],
-  declarations: [SpacecraftPage, SpacecraftOverviewPage, SpacecraftListEntryComponent, SpacecraftDetailCardComponent],
-  exports: [SpacecraftDetailCardComponent, SpacecraftListEntryComponent]
+  declarations: [SpacecraftPage, SpacecraftOverviewPage, SpacecraftDetailCardComponent],
+  exports: []
 })
 export class SpacecraftModule { }

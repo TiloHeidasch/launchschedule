@@ -6,11 +6,11 @@ import { IonicModule } from '@ionic/angular';
 import { RocketRoutingModule } from './rocket-routing.module';
 
 import { RocketPage } from './rocket.page';
-import { RocketListEntryComponent } from './rocket-list-entry/rocket-list-entry.component';
 import { RocketDetailCardComponent } from './rocket-detail-card/rocket-detail-card.component';
 import { CommonModule } from '@angular/common';
 import { RocketOverviewPage } from './rocket-overview.page';
 import { AnimationModule } from '../animation/animation.module';
+import { RocketListEntryModule } from './rocket-list-entry/rocket-list-entry.module';
 
 @NgModule({
   imports: [
@@ -18,9 +18,10 @@ import { AnimationModule } from '../animation/animation.module';
     FormsModule,
     IonicModule,
     RocketRoutingModule,
-    AnimationModule
+    AnimationModule,
+    RocketListEntryModule
   ],
-  declarations: [RocketOverviewPage, RocketPage, RocketListEntryComponent, RocketDetailCardComponent],
-  exports: [RocketDetailCardComponent, RocketListEntryComponent],
+  declarations: [RocketOverviewPage, RocketPage, RocketDetailCardComponent],
+  exports: [],
 })
 export class RocketModule { }

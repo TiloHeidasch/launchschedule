@@ -8,9 +8,9 @@ import { SpacestationRoutingModule } from './spacestation-routing.module';
 
 import { SpacestationPage } from './spacestation.page';
 import { SpacestationOverviewPage } from './spacestation-overview.page';
-import { SpacestationListEntryComponent } from './spacestation-list-entry/spacestation-list-entry.component';
 import { SpacestationDetailCardComponent } from './spacestation-detail-card/spacestation-detail-card.component';
 import { AnimationModule } from '../animation/animation.module';
+import { SpacestationListEntryModule } from './spacestation-list-entry/spacestation-list-entry.module';
 
 @NgModule({
   imports: [
@@ -18,9 +18,10 @@ import { AnimationModule } from '../animation/animation.module';
     FormsModule,
     IonicModule,
     SpacestationRoutingModule,
-    AnimationModule
+    AnimationModule,
+    SpacestationListEntryModule
   ],
-  declarations: [SpacestationPage, SpacestationOverviewPage, SpacestationListEntryComponent, SpacestationDetailCardComponent],
-  exports: [SpacestationDetailCardComponent]
+  declarations: [SpacestationPage, SpacestationOverviewPage, SpacestationDetailCardComponent],
+  exports: []
 })
 export class SpacestationModule { }

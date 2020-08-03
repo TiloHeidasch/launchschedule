@@ -8,10 +8,10 @@ import { PadRoutingModule } from './pad-routing.module';
 
 import { PadPage } from './pad.page';
 import { PadOverviewPage } from './pad-overview.page';
-import { PadListEntryComponent } from './pad-list-entry/pad-list-entry.component';
 import { PadDetailCardComponent } from './pad-detail-card/pad-detail-card.component';
 import { AnimationModule } from '../animation/animation.module';
 import { MapModule } from '../map/map.module';
+import { PadListEntryModule } from './pad-list-entry/pad-list-entry.module';
 
 @NgModule({
   imports: [
@@ -20,9 +20,10 @@ import { MapModule } from '../map/map.module';
     IonicModule,
     PadRoutingModule,
     AnimationModule,
-    MapModule
+    MapModule,
+    PadListEntryModule
   ],
-  declarations: [PadPage, PadOverviewPage, PadListEntryComponent, PadDetailCardComponent],
-  exports: [PadListEntryComponent]
+  declarations: [PadPage, PadOverviewPage, PadDetailCardComponent],
+  exports: []
 })
 export class PadModule { }
