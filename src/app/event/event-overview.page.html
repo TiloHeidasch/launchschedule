@@ -34,15 +34,23 @@
       <ion-label>Status</ion-label>
       <ion-select [(ngModel)]="store.status" (ionChange)="loadFirst()" placeholder="Status" interface="action-sheet">
         <ion-select-option value="">None</ion-select-option>
-        <ion-select-option value="1">Active</ion-select-option>
-        <ion-select-option value="2">Retired</ion-select-option>
-        <ion-select-option value="3">In Training</ion-select-option>
-        <ion-select-option value="4">Lost in Flight</ion-select-option>
-        <ion-select-option value="5">Lost in Training</ion-select-option>
-        <ion-select-option value="6">Died while in active service</ion-select-option>
-        <ion-select-option value="7">Dismissed</ion-select-option>
-        <ion-select-option value="8">Resigned during training</ion-select-option>
-        <ion-select-option value="9">Deceased</ion-select-option>
+        <ion-select-option value="1">Unknown</ion-select-option>
+        <ion-select-option value="2">Docking</ion-select-option>
+        <ion-select-option value="3">EVA</ion-select-option>
+        <ion-select-option value="4">Berthing</ion-select-option>
+        <ion-select-option value="5">Static Fire</ion-select-option>
+        <ion-select-option value="6">Spacecraft Event</ion-select-option>
+        <ion-select-option value="7">Moon Landing</ion-select-option>
+        <ion-select-option value="10">Abort Test</ion-select-option>
+        <ion-select-option value="8">Undocking</ion-select-option>
+        <ion-select-option value="11">Celestial Event</ion-select-option>
+        <ion-select-option value="14">Test Flight</ion-select-option>
+        <ion-select-option value="9">Landing</ion-select-option>
+        <ion-select-option value="20">Press Event</ion-select-option>
+        <ion-select-option value="12">Hatch Opening</ion-select-option>
+        <ion-select-option value="13">Release</ion-select-option>
+        <ion-select-option value="15">Change of Command</ion-select-option>
+        <ion-select-option value="16">Orbital Insertion</ion-select-option>
       </ion-select>
     </ion-item>
   </ion-toolbar>
