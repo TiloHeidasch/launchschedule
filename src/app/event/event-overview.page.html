@@ -14,6 +14,22 @@
     <ion-searchbar (ionChange)="searchChange($event)" [value]="store.search" animated></ion-searchbar>
   </ion-toolbar>
   <ion-toolbar *ngIf="store.showFilter">
+    <ion-segment (ionChange)="loadFirst()" [(ngModel)]="store.upcomingPreviousAll">
+      <ion-segment-button value="Previous">
+        <ion-icon name="return-up-back"></ion-icon>
+        <ion-label>Previous</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="All">
+        <ion-icon name="repeat"></ion-icon>
+        <ion-label>All</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="Upcoming">
+        <ion-icon name="return-down-forward"></ion-icon>
+        <ion-label>Upcoming</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+  <ion-toolbar *ngIf="store.showFilter">
     <ion-item>
       <ion-label>Status</ion-label>
       <ion-select [(ngModel)]="store.status" (ionChange)="loadFirst()" placeholder="Status" interface="action-sheet">

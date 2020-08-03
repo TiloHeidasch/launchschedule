@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../environments/environment';
+import { UpcomingPreviousAll } from './types/upcoming-previous-all';
 
 @Injectable({
   providedIn: 'root'
@@ -143,8 +144,8 @@ export class LaunchLibraryService {
     console.log({ call: this.calls, url, data });
     return data.count;
   }
-  async getAllEvents(search?: string, status?: number) {
-    let url = this.createEventUrl(10000, undefined, search, status);
+  async getAllEvents(search?: string, status?: number, upcomingPreviousAll?: UpcomingPreviousAll) {
+    let url = this.createEventUrl(10000, undefined, search, status, upcomingPreviousAll);
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
     console.log({ call: this.calls, url, data });
@@ -155,25 +156,35 @@ export class LaunchLibraryService {
     if (object !== undefined) {
       return object;
     }
-    const url = this.baseUrl + '/2.0.0/event/upcoming/' + id;
+    const url = this.baseUrl + '/2.0.0/event/' + id;
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
     console.log({ call: this.calls, url, data });
     this.eventsById.push({ id, object: data });
     return data;
   }
-  async getFirstEvents(search?: string, status?: number) {
-    return this.getNextEvents(0, search, status);
+  async getFirstEvents(search?: string, status?: number, upcomingPreviousAll?: UpcomingPreviousAll) {
+    return this.getNextEvents(0, search, status, upcomingPreviousAll);
   }
-  async getNextEvents(offset: number, search?: string, status?: number) {
-    let url = this.createEventUrl(10, offset, search, status);
+  async getNextEvents(offset: number, search?: string, status?: number, upcomingPreviousAll?: UpcomingPreviousAll) {
+    let url = this.createEventUrl(10, offset, search, status, upcomingPreviousAll);
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
     console.log({ call: this.calls, url, data });
     return { events: data.results, max: data.count };
   }
-  private createEventUrl(limit: number, offset?: number, search?: string, status?: number): string {
-    let url = this.baseUrl + '/2.0.0/event/upcoming/';
+  private createEventUrl(limit: number, offset?: number, search?: string, status?: number, upcomingPreviousAll?: UpcomingPreviousAll): string {
+    let url = this.baseUrl + '/2.0.0/event/';
+    switch (upcomingPreviousAll) {
+      case UpcomingPreviousAll.PREVIOUS:
+        url += 'previous/';
+        break;
+      case UpcomingPreviousAll.UPCOMING:
+        url += 'upcoming/';
+        break;
+      default:
+        break;
+    }
     url += '?limit=' + limit;
     if (search !== undefined && search !== '') {
       url += ('&search=' + search);
@@ -209,8 +220,8 @@ export class LaunchLibraryService {
     console.log({ call: this.calls, url, data });
     return data.count;
   }
-  async getAllLaunches(search?: string, startDate?: Date, endDate?: Date, padId?: number, locationId?: number, rocketId?: number, agencyId?: number) {
-    let url = this.createLaunchUrl(10000, undefined, search, startDate, endDate, padId, locationId, rocketId, agencyId);
+  async getAllLaunches(search?: string, startDate?: Date, endDate?: Date, padId?: number, locationId?: number, rocketId?: number, agencyId?: number, upcomingPreviousAll?: UpcomingPreviousAll) {
+    let url = this.createLaunchUrl(10000, undefined, search, startDate, endDate, padId, locationId, rocketId, agencyId, upcomingPreviousAll);
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
     console.log({ call: this.calls, url, data });
@@ -228,26 +239,36 @@ export class LaunchLibraryService {
     this.launchesById.push({ id, object: data });
     return data;
   }
-  async getFirstLaunches(search?: string, startDate?: Date, endDate?: Date, padId?: number, locationId?: number, rocketId?: number, agencyId?: number) {
-    return this.getNextLaunches(0, search, startDate, endDate);
+  async getFirstLaunches(search?: string, startDate?: Date, endDate?: Date, padId?: number, locationId?: number, rocketId?: number, agencyId?: number, upcomingPreviousAll?: UpcomingPreviousAll) {
+    return this.getNextLaunches(0, search, startDate, endDate, padId, locationId, rocketId, agencyId, upcomingPreviousAll);
   }
-  async getNextLaunches(offset: number, search?: string, startDate?: Date, endDate?: Date, padId?: number, locationId?: number, rocketId?: number, agencyId?: number) {
-    let url = this.createLaunchUrl(10, offset, search, startDate, endDate, padId, locationId, rocketId, agencyId);
+  async getNextLaunches(offset: number, search?: string, startDate?: Date, endDate?: Date, padId?: number, locationId?: number, rocketId?: number, agencyId?: number, upcomingPreviousAll?: UpcomingPreviousAll) {
+    let url = this.createLaunchUrl(10, offset, search, startDate, endDate, padId, locationId, rocketId, agencyId, upcomingPreviousAll);
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
     console.log({ call: this.calls, url, data });
     return { launches: data.results, max: data.count };
   }
-  private createLaunchUrl(limit: number, offset?: number, search?: string, startDate?: Date, endDate?: Date, padId?: number, locationId?: number, rocketId?: number, agencyId?: number): string {
+  private createLaunchUrl(limit: number, offset?: number, search?: string, startDate?: Date, endDate?: Date, padId?: number, locationId?: number, rocketId?: number, agencyId?: number, upcomingPreviousAll?: UpcomingPreviousAll): string {
     let url = this.baseUrl + '/2.0.0/launch/';
+    switch (upcomingPreviousAll) {
+      case UpcomingPreviousAll.PREVIOUS:
+        url += 'previous/';
+        break;
+      case UpcomingPreviousAll.UPCOMING:
+        url += 'upcoming/';
+        break;
+      default:
+        break;
+    }
     url += '?limit=' + limit;
     if (search !== undefined && search !== '') {
       url += ('&search=' + search);
     }
-    if (startDate !== undefined) {
+    if (startDate !== undefined && (upcomingPreviousAll === undefined || upcomingPreviousAll === UpcomingPreviousAll.ALL)) {
       url += ('&net__gte=' + this.dateToString(startDate));
     }
-    if (endDate !== undefined) {
+    if (endDate !== undefined && (upcomingPreviousAll === undefined || upcomingPreviousAll === UpcomingPreviousAll.ALL)) {
       url += ('&net__lte=' + this.dateToString(endDate));
     }
     if (padId !== undefined && padId !== 0) {

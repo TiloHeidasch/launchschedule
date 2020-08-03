@@ -36,11 +36,11 @@ export class LaunchOverviewPage implements OnInit, ViewDidEnter {
 
   async loadFirst() {
     this.store.launches = [];
-    this.store.launches = (await this.service.getFirstLaunches(this.store.search, this.store.startDate, this.store.endDate, this.store.padId, this.store.locationId, this.store.rocketId, this.store.agencyId)).launches;
+    this.store.launches = (await this.service.getFirstLaunches(this.store.search, this.store.startDate, this.store.endDate, this.store.padId, this.store.locationId, this.store.rocketId, this.store.agencyId, this.store.upcomingPreviousAll)).launches;
   }
 
   async loadMore(event) {
-    const answer = await this.service.getNextLaunches(this.store.launches.length, this.store.search, this.store.startDate, this.store.endDate, this.store.padId, this.store.locationId, this.store.rocketId, this.store.agencyId);
+    const answer = await this.service.getNextLaunches(this.store.launches.length, this.store.search, this.store.startDate, this.store.endDate, this.store.padId, this.store.locationId, this.store.rocketId, this.store.agencyId, this.store.upcomingPreviousAll);
     this.store.launches.push(...answer.launches);
     event.target.complete();
 

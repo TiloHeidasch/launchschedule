@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { UpcomingPreviousAll } from '../types/upcoming-previous-all';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class LaunchParamStoreService {
   showFilter: boolean = false;
   launches: any[] = [];
   scrollY: number = 0;
+  upcomingPreviousAll: UpcomingPreviousAll = UpcomingPreviousAll.UPCOMING;
 
   constructor() { }
 }
