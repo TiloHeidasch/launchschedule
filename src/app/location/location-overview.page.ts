@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LaunchLibraryService } from '../launch-library.service';
 import { LocationParamStoreService } from './location-param-store.service';
-import { IonContent, ViewDidEnter } from '@ionic/angular';
+import { IonContent, ViewDidEnter, IonInfiniteScroll } from '@ionic/angular';
 import { CountryCode } from '../types/country-codes';
 
 
@@ -14,6 +14,7 @@ import { CountryCode } from '../types/country-codes';
 export class LocationOverviewPage implements OnInit, ViewDidEnter {
   title = 'Facilities';
   @ViewChild("locationOverviewContent") content: IonContent;
+  @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   CountryCode = CountryCode;
   constructor(private activatedRoute: ActivatedRoute, private service: LaunchLibraryService, public store: LocationParamStoreService) { }
 
@@ -29,6 +30,11 @@ export class LocationOverviewPage implements OnInit, ViewDidEnter {
     this.store.scrollY = event.detail.currentY;
   }
   async loadFirst() {
+    try {
+      this.infiniteScroll.disabled = false;
+    } catch (error) {
+
+    }
     this.store.locations = [];
     this.store.locations = (await this.service.getFirstLocations(this.store.search, this.store.countryCode)).locations;
   }

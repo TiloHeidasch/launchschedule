@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LaunchLibraryService } from '../launch-library.service';
 import { LaunchParamStoreService } from './launch-param-store.service';
-import { IonContent, ViewDidEnter } from '@ionic/angular';
+import { IonContent, ViewDidEnter, IonInfiniteScroll } from '@ionic/angular';
 
 
 @Component({
@@ -13,6 +13,7 @@ import { IonContent, ViewDidEnter } from '@ionic/angular';
 export class LaunchOverviewPage implements OnInit, ViewDidEnter {
   title = 'Launches';
   @ViewChild("launchOverviewContent") content: IonContent;
+  @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   constructor(private activatedRoute: ActivatedRoute, private service: LaunchLibraryService, public store: LaunchParamStoreService) {
     if (store.startDate === undefined) {
       this.setStartToToday();
@@ -35,6 +36,11 @@ export class LaunchOverviewPage implements OnInit, ViewDidEnter {
   }
 
   async loadFirst() {
+    try {
+      this.infiniteScroll.disabled = false;
+    } catch (error) {
+
+    }
     this.store.launches = [];
     this.store.launches = (await this.service.getFirstLaunches(this.store.search, this.store.startDate, this.store.endDate, this.store.padId, this.store.locationId, this.store.rocketId, this.store.agencyId, this.store.upcomingPreviousAll)).launches;
   }

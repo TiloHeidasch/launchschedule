@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LaunchLibraryService } from '../launch-library.service';
 import { EventParamStoreService } from './event-param-store.service';
-import { IonContent, ViewDidEnter } from '@ionic/angular';
+import { IonContent, ViewDidEnter, IonInfiniteScroll } from '@ionic/angular';
 
 
 @Component({
@@ -13,6 +13,7 @@ import { IonContent, ViewDidEnter } from '@ionic/angular';
 export class EventOverviewPage implements OnInit, ViewDidEnter {
   title = 'Events';
   @ViewChild("eventOverviewContent") content: IonContent;
+  @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
   constructor(private activatedRoute: ActivatedRoute, private service: LaunchLibraryService, public store: EventParamStoreService) { }
 
@@ -28,6 +29,11 @@ export class EventOverviewPage implements OnInit, ViewDidEnter {
     this.store.scrollY = event.detail.currentY;
   }
   async loadFirst() {
+    try {
+      this.infiniteScroll.disabled = false;
+    } catch (error) {
+
+    }
     this.store.events = [];
     this.store.events = (await this.service.getFirstEvents(this.store.search, this.store.type, this.store.upcomingPreviousAll)).events;
   }
