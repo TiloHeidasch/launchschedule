@@ -18,19 +18,54 @@
     <div id="launch">
       <launch-detail-card [launch]='launch'></launch-detail-card>
     </div>
+    <div id="crew" *ngIf="launch.rocket.spacecraft_stage && launch.rocket.spacecraft_stage.launch_crew">
+      <div class="crew-member" *ngFor="let member of launch.rocket.spacecraft_stage.launch_crew">
+        <ion-item>
+          <ion-label>
+            {{member.role}}
+          </ion-label>
+        </ion-item>
+        <astronaut-list-entry [id]="member.astronaut.id"></astronaut-list-entry>
+      </div>
+    </div>
     <div id="rocket">
+      <ion-item>
+        <ion-label>
+          Rocket
+        </ion-label>
+      </ion-item>
       <rocket-list-entry [rocket]='launch.rocket.configuration'></rocket-list-entry>
     </div>
     <div id="mission" *ngIf="launch.mission">
+      <ion-item>
+        <ion-label>
+          Mission
+        </ion-label>
+      </ion-item>
       <mission-list-entry [mission]='launch.mission'></mission-list-entry>
     </div>
     <div id="pad">
+      <ion-item>
+        <ion-label>
+          Pad
+        </ion-label>
+      </ion-item>
       <pad-list-entry [pad]='launch.pad'></pad-list-entry>
     </div>
     <div id="agency">
+      <ion-item>
+        <ion-label>
+          Agency
+        </ion-label>
+      </ion-item>
       <agency-list-entry [agency]='launch.launch_service_provider'></agency-list-entry>
     </div>
-    <div id="video">
+    <div id="video" *ngIf="launch.vidURLs && launch.vidURLs.length>0">
+      <ion-item>
+        <ion-label>
+          Videos
+        </ion-label>
+      </ion-item>
       <launch-video *ngFor="let video of launch.vidURLs" [video]='video'></launch-video>
     </div>
   </div>

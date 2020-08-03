@@ -16,9 +16,19 @@
       <launch-status [status]="launch.status"></launch-status>
       <countdown [date]='date'></countdown>
       <div id="links">
-        <ion-item *ngFor="let infoURL of launch.infoURLs; let i=index" [href]="infoURL">
-          <ion-label>Info {{i+1}}</ion-label>
+        <ion-item *ngFor="let infoURLObject of launch.infoURLs; let i=index" [href]="infoURLObject.url">
+          <ion-label>More Info</ion-label>
         </ion-item>
+      </div>
+      <div id="social">
+        <ion-chip *ngIf="launch.hashtag" (click)="navigate('https://twitter.com/hashtag/',launch.hashtag)">
+          <ion-icon name="logo-twitter" color="dark"></ion-icon>
+          <ion-label>{{launch.hashtag}}</ion-label>
+        </ion-chip>
+        <ion-chip *ngIf="launch.hashtag" (click)="navigate('https://www.instagram.com/explore/tags/',launch.hashtag)">
+          <ion-icon name="logo-instagram" color="dark"></ion-icon>
+          <ion-label>{{launch.hashtag}}</ion-label>
+        </ion-chip>
       </div>
     </div>
   </ion-card-content>

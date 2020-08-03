@@ -19,6 +19,7 @@ import { AgencyListEntryModule } from '../agency/agency-list-entry/agency-list-e
 import { MissionListModule } from '../mission/mission-list-entry/mission-list-entry.module';
 import { PadListEntryModule } from '../pad/pad-list-entry/pad-list-entry.module';
 import { RocketListEntryModule } from '../rocket/rocket-list-entry/rocket-list-entry.module';
+import { AstronautListEntryModule } from '../astronaut/astronaut-list-entry/astronaut-list-entry.module';
 
 @NgModule({
   imports: [
@@ -34,7 +35,8 @@ import { RocketListEntryModule } from '../rocket/rocket-list-entry/rocket-list-e
     LaunchListEntryModule,
     LaunchStatusModule,
     AgencyListEntryModule,
-    RocketListEntryModule
+    RocketListEntryModule,
+    AstronautListEntryModule
   ],
   declarations: [LaunchPage, LaunchOverviewPage, LaunchDetailCardComponent, VideoComponent],
   exports: [LaunchDetailCardComponent],

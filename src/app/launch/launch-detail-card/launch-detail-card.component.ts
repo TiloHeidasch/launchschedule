@@ -25,5 +25,7 @@ export class LaunchDetailCardComponent implements OnInit {
       this.imageUrl = this.launch.image;
     }
   }
-
+  navigate(baseUrl: string, hashtag: string) {
+    window.location.href = baseUrl + hashtag.replace('#', '');
+  }
 }

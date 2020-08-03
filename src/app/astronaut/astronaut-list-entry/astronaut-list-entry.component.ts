@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { LaunchLibraryService } from 'src/app/launch-library.service';
 
 
 @Component({
@@ -7,12 +8,16 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./astronaut-list-entry.component.scss'],
 })
 export class AstronautListEntryComponent implements OnInit {
-  @Input('astronaut') astronaut;
+  @Input('astronaut') astronaut?;
+  @Input('id') id?;
   title: string;
   subtitle: string;
-  constructor() { }
+  constructor(private service: LaunchLibraryService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    if (this.astronaut === undefined) {
+      this.astronaut = await this.service.getAstronautById(this.id);
+    }
     this.title = this.astronaut.name;
     this.subtitle = this.astronaut.nationality;
   }

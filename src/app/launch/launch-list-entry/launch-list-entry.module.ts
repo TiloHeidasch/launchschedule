@@ -4,6 +4,7 @@ import { LaunchListEntryComponent } from './launch-list-entry.component';
 import { LaunchRoutingModule } from '../launch-routing.module';
 import { LaunchStatusModule } from '../launch-status/launch-status.module';
 import { CountdownModule } from 'src/app/countdown/countdown.module';
+import { AnimationModule } from 'src/app/animation/animation.module';
 
 
 @NgModule({
@@ -11,6 +12,7 @@ import { CountdownModule } from 'src/app/countdown/countdown.module';
     imports: [
         LaunchRoutingModule,
         CommonModule,
+        AnimationModule,
         LaunchStatusModule,
         CountdownModule
     ],
