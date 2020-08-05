@@ -1,10 +1,10 @@
 <ion-card *ngIf="launch!==undefined" slideIn>
   <div id="image">
     <div class="image-wrapper">
-      <ion-img id="background" [src]="imageUrl"></ion-img>
+      <ion-img id="background" [src]="imageUrl?imageUrl:'assets/placeholder_1920.png'"></ion-img>
     </div>
     <div class="image-wrapper">
-      <ion-img id="foreground" [src]="imageUrl"></ion-img>
+      <ion-img id="foreground" [src]="imageUrl?imageUrl:'assets/placeholder_1920.png'"></ion-img>
     </div>
   </div>
   <ion-card-header>

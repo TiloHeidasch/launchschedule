@@ -1,10 +1,10 @@
 <ion-card *ngIf="agency!==undefined" routerDirection="forward" [routerLink]="['/agency/'+agency.id]" slideIn>
   <div id="image">
     <div class="image-wrapper">
-      <ion-img id="background" [src]="agency.image_url"></ion-img>
+      <ion-img id="background" [src]="agency.image_url?agency.image_url:'assets/placeholder_1920.png'"></ion-img>
     </div>
     <div class="image-wrapper">
-      <ion-img id="foreground" [src]="agency.image_url"></ion-img>
+      <ion-img id="foreground" [src]="agency.image_url?agency.image_url:'assets/placeholder_1920.png'"></ion-img>
     </div>
   </div>
   <ion-card-header>
@@ -13,8 +13,8 @@
   </ion-card-header>
   <ion-card-content>
     <div id="content">
-      <ion-img [src]="agency.logo_url"></ion-img>
-      <ion-img [src]="agency.nation_url"></ion-img>
+      <ion-img [src]="agency.logo_url?agency.logo_url:'assets/placeholder_1920.png'"></ion-img>
+      <ion-img [src]="agency.nation_url?agency.nation_url:'assets/placeholder_1920.png'"></ion-img>
     </div>
   </ion-card-content>
 </ion-card>

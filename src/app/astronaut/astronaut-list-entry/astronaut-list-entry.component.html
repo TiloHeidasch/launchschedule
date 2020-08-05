@@ -1,10 +1,14 @@
 <ion-card *ngIf="astronaut" routerDirection="forward" [routerLink]="['/astronaut/'+astronaut.id]" slideIn>
   <div id="image">
     <div class="image-wrapper">
-      <ion-img id="background" [src]="astronaut.profile_image_thumbnail"></ion-img>
+      <ion-img id="background"
+        [src]="astronaut.profile_image_thumbnail?astronaut.profile_image_thumbnail:'assets/placeholder_1920.png'">
+      </ion-img>
     </div>
     <div class="image-wrapper">
-      <ion-img id="foreground" [src]="astronaut.profile_image_thumbnail"></ion-img>
+      <ion-img id="foreground"
+        [src]="astronaut.profile_image_thumbnail?astronaut.profile_image_thumbnail:'assets/placeholder_1920.png'">
+      </ion-img>
     </div>
   </div>
   <ion-card-header>

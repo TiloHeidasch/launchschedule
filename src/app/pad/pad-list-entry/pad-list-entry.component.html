@@ -1,10 +1,10 @@
 <ion-card routerDirection="forward" [routerLink]="['/pad/'+pad.id]" slideIn>
   <div id="image">
     <div class="image-wrapper">
-      <ion-img id="background" [src]="pad.map_image"></ion-img>
+      <ion-img id="background" [src]="pad.map_image?pad.map_image:'assets/placeholder_1920.png'"></ion-img>
     </div>
     <div class="image-wrapper">
-      <ion-img id="foreground" [src]="pad.map_image"></ion-img>
+      <ion-img id="foreground" [src]="pad.map_image?pad.map_image:'assets/placeholder_1920.png'"></ion-img>
     </div>
   </div>
   <ion-card-header>
