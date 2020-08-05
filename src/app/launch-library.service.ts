@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { UpcomingPreviousAll } from './types/upcoming-previous-all';
+import { Active } from './types/active';
+import { Reusable } from './types/reusable';
 
 @Injectable({
   providedIn: 'root'
@@ -403,7 +405,7 @@ export class LaunchLibraryService {
     console.log({ call: this.calls, url, data });
     return data.count;
   }
-  async getAllRockets(search?: string, active?: boolean, reusable?: boolean) {
+  async getAllRockets(search?: string, active?: Active, reusable?: Reusable) {
     let url = this.createRocketUrl(10000, undefined, search, active, reusable);
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
@@ -422,31 +424,33 @@ export class LaunchLibraryService {
     this.rocketsById.push({ id, object: data });
     return data;
   }
-  async getFirstRockets(search?: string, active?: boolean, reusable?: boolean) {
+  async getFirstRockets(search?: string, active?: Active, reusable?: Reusable) {
     return this.getNextRockets(0, search, active, reusable);
   }
-  async getNextRockets(offset: number, search?: string, active?: boolean, reusable?: boolean) {
+  async getNextRockets(offset: number, search?: string, active?: Active, reusable?: Reusable) {
     const url = this.createRocketUrl(10, offset, search, active, reusable);
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
     console.log({ call: this.calls, url, data });
     return { rockets: data.results, max: data.count };
   }
-  private createRocketUrl(limit: number, offset?: number, search?: string, active?: boolean, reusable?: boolean): string {
+  private createRocketUrl(limit: number, offset?: number, search?: string, active?: Active, reusable?: Reusable): string {
 
     let url = this.baseUrl + '/2.0.0/config/launcher/';
     url += '?limit=' + limit;
     if (search !== undefined && search !== '') {
       url += ('&search=' + search);
     }
-    if (active) {
-      url += ('&active=' + active);
-    } else {
+    if (active === Active.ACTIVE) {
+      url += '&active=true';
+    }
+    if (active === Active.DECOMISSIONED) {
       url += '&active=false';
     }
-    if (reusable) {
-      url += ('&reusable=' + reusable);
-    } else {
+    if (reusable === Reusable.REUSABLE) {
+      url += '&reusable=true';
+    }
+    if (reusable === Reusable.EXPENDABLE) {
       url += '&reusable=false';
     }
 
