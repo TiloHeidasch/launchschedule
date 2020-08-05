@@ -18,14 +18,30 @@
     <div id="spacestation">
       <spacestation-detail-card [spacestation]='spacestation'></spacestation-detail-card>
     </div>
-    <!-- <div id="mission-list">
-      <mission-detail-card *ngFor="let mission of spacestation.missions" [mission]='mission'></mission-detail-card>
+    <div id="expeditions" *ngIf="spacestation.active_expeditions">
+      <div *ngFor="let expedition of spacestation.active_expeditions">
+        <ion-item>
+          <ion-label>
+            {{expedition.name}} Crew
+          </ion-label>
+        </ion-item>
+        <div class="crew-member" *ngFor="let member of expedition.crew">
+          <ion-item>
+            <ion-label>
+              {{member.role}}
+            </ion-label>
+          </ion-item>
+          <astronaut-list-entry [id]="member.astronaut.id"></astronaut-list-entry>
+        </div>
+      </div>
     </div>
-    <div id="spacestation">
-      <spacestation-detail-card [spacestation]='spacestation.spacestation'></spacestation-detail-card>
+    <div id="owners">
+      <ion-item>
+        Owners
+      </ion-item>
+      <agency-list-entry *ngFor="let agency of spacestation.owners" [id]='agency.id'>
+      </agency-list-entry>
     </div>
-    <div id="spacestation">
-      <spacestation-detail-card [spacestation]='spacestation.lsp'></spacestation-detail-card>
-    </div> -->
+
   </div>
 </ion-content>

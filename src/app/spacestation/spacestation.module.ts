@@ -11,6 +11,8 @@ import { SpacestationOverviewPage } from './spacestation-overview.page';
 import { SpacestationDetailCardComponent } from './spacestation-detail-card/spacestation-detail-card.component';
 import { AnimationModule } from '../animation/animation.module';
 import { SpacestationListEntryModule } from './spacestation-list-entry/spacestation-list-entry.module';
+import { AgencyListEntryModule } from '../agency/agency-list-entry/agency-list-entry.module';
+import { AstronautListEntryModule } from '../astronaut/astronaut-list-entry/astronaut-list-entry.module';
 
 @NgModule({
   imports: [
@@ -19,7 +21,9 @@ import { SpacestationListEntryModule } from './spacestation-list-entry/spacestat
     IonicModule,
     SpacestationRoutingModule,
     AnimationModule,
-    SpacestationListEntryModule
+    SpacestationListEntryModule,
+    AgencyListEntryModule,
+    AstronautListEntryModule
   ],
   declarations: [SpacestationPage, SpacestationOverviewPage, SpacestationDetailCardComponent],
   exports: []
