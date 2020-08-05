@@ -36,11 +36,12 @@
       </ion-item>
       <div id="docking_port" *ngFor="let dockingLocation of spacestation.docking_location">
         <span>{{dockingLocation.name}}:</span>
-        <ion-chip id="unoccupied" *ngIf="!dockingLocation.docked">
+        <ion-chip (click)="presentUnoccupiedToast(dockingLocation)" id="unoccupied" *ngIf="!dockingLocation.docked">
           <ion-icon name="radio-button-off" color="danger"></ion-icon>
           <ion-label>unoccupied</ion-label>
         </ion-chip>
-        <ion-chip id="vehicle" *ngIf="dockingLocation.docked">
+        <ion-chip (click)="presentDockingLocationActionSheet(dockingLocation)" id="vehicle"
+          *ngIf="dockingLocation.docked">
           <ion-icon name="radio-button-on" color="success"></ion-icon>
           <ion-label>{{dockingLocation.docked.flight_vehicle.spacecraft.spacecraft_config.name}}</ion-label>
         </ion-chip>
