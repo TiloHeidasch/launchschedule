@@ -16,7 +16,13 @@
 
   <div id="container" *ngIf="rocket!==undefined">
     <div id="rocket">
-      <rocket-detail-card [id]='rocket.id'></rocket-detail-card>
+      <rocket-detail-card [rocket]='rocket'></rocket-detail-card>
+    </div>
+    <div id="manufacturer">
+      <ion-item>
+        Manufacturer
+      </ion-item>
+      <agency-list-entry [agency]='rocket.manufacturer'></agency-list-entry>
     </div>
   </div>
 </ion-content>

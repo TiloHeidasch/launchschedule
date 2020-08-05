@@ -12,15 +12,48 @@
     <ion-card-title>{{rocket.name}}</ion-card-title>
   </ion-card-header>
   <ion-card-content>
-    <div id="content">
-      <div class="links">
-        <ion-item *ngIf="rocket.wikiURL!==''" [href]="rocket.wikiURL">
-          <ion-label>Wiki</ion-label>
-        </ion-item>
-        <ion-item *ngFor="let infoURL of rocket.infoURLs; let i=index" [href]="infoURL">
-          <ion-label>Info {{i+1}}</ion-label>
-        </ion-item>
-      </div>
+    <div id="details">
+      <ion-item>
+        <ion-label>
+          Description
+        </ion-label>
+      </ion-item>
+      <p>{{rocket.description}}</p>
+    </div>
+    <div id="specifications">
+      <ion-item>
+        <ion-label>
+          Specifications
+        </ion-label>
+      </ion-item>
+      <ion-chip id="diameter" *ngIf="rocket.diameter">
+        <ion-icon name="code-working" color="dark"></ion-icon>
+        <ion-label>{{rocket.diameter}}m</ion-label>
+      </ion-chip>
+      <ion-chip id="length" *ngIf="rocket.length">
+        <ion-icon name="arrow-up" color="dark"></ion-icon>
+        <ion-label>{{rocket.length}}m</ion-label>
+      </ion-chip>
+      <ion-chip id="launch_mass" *ngIf="rocket.launch_mass">
+        <ion-icon name="barbell" color="dark"></ion-icon>
+        <ion-label>{{rocket.launch_mass}}t</ion-label>
+      </ion-chip>
+      <ion-chip id="leo_capacity" *ngIf="rocket.leo_capacity">
+        <ion-icon name="earth" color="dark"></ion-icon>
+        <ion-label>{{rocket.leo_capacity}}kg</ion-label>
+      </ion-chip>
+      <ion-chip id="gto_capacity" *ngIf="rocket.gto_capacity">
+        <ion-icon name="planet" color="dark"></ion-icon>
+        <ion-label>{{rocket.gto_capacity}}kg</ion-label>
+      </ion-chip>
+      <ion-chip id="to_thrust" *ngIf="rocket.to_thrust">
+        <ion-icon name="pulse" color="dark"></ion-icon>
+        <ion-label>{{rocket.to_thrust}}kN</ion-label>
+      </ion-chip>
+      <ion-chip id="maiden_flight" *ngIf="rocket.maiden_flight">
+        <ion-icon name="rocket" color="dark"></ion-icon>
+        <ion-label>{{rocket.maiden_flight}}</ion-label>
+      </ion-chip>
     </div>
   </ion-card-content>
 </ion-card>

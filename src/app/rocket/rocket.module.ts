@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 import { RocketOverviewPage } from './rocket-overview.page';
 import { AnimationModule } from '../animation/animation.module';
 import { RocketListEntryModule } from './rocket-list-entry/rocket-list-entry.module';
+import { AgencyListEntryModule } from '../agency/agency-list-entry/agency-list-entry.module';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { RocketListEntryModule } from './rocket-list-entry/rocket-list-entry.mod
     IonicModule,
     RocketRoutingModule,
     AnimationModule,
-    RocketListEntryModule
+    RocketListEntryModule,
+    AgencyListEntryModule
   ],
   declarations: [RocketOverviewPage, RocketPage, RocketDetailCardComponent],
   exports: [],
