@@ -1,13 +1,13 @@
 <ion-card slideIn>
   <ion-card-header>
     <ion-card-subtitle>Video</ion-card-subtitle>
-    <ion-card-title>{{video.title}}</ion-card-title>
+    <ion-card-title>{{title}}</ion-card-title>
   </ion-card-header>
   <ion-card-content>
-    <p>{{video.description}}</p>
+    <p>{{description}}</p>
     <youtube-player *ngIf="id!=='0'" height="100%" width="100%" [videoId]="id"></youtube-player>
     <div *ngIf="id==='0'">
-      <ion-item [href]="video.url">
+      <ion-item [href]="url">
         <ion-label>Link</ion-label>
       </ion-item>
     </div>

@@ -8,11 +8,13 @@ import { LaunchLibraryService } from 'src/app/launch-library.service';
 })
 export class EventDetailCardComponent implements OnInit {
   @Input('event') event;
+  date: Date;
 
   constructor(private service: LaunchLibraryService) {
   }
 
   async ngOnInit() {
+    this.date = new Date(this.event.date);
   }
 
 }

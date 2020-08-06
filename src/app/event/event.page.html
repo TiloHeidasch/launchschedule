@@ -18,14 +18,29 @@
     <div id="event">
       <event-detail-card [event]='event'></event-detail-card>
     </div>
-    <!-- <div id="mission-list">
-      <mission-detail-card *ngFor="let mission of event.missions" [mission]='mission'></mission-detail-card>
+    <div id="launches" *ngIf="event.launches.length>0">
+      <ion-item>
+        <ion-label>
+          Launches
+        </ion-label>
+      </ion-item>
+      <launch-list-entry *ngFor="let launch of event.launches" [launch]="launch"></launch-list-entry>
     </div>
-    <div id="event">
-      <event-detail-card [event]='event.event'></event-detail-card>
+    <div id="spacestations" *ngIf="event.expeditions.length>0 && event.expeditions[0].spacestation">
+      <ion-item>
+        <ion-label>
+          Spacestation
+        </ion-label>
+      </ion-item>
+      <spacestation-list-entry [id]="event.expeditions[0].spacestation.id"></spacestation-list-entry>
     </div>
-    <div id="event">
-      <event-detail-card [event]='event.lsp'></event-detail-card>
-    </div> -->
+    <div id="video" *ngIf="event.video_url">
+      <ion-item>
+        <ion-label>
+          Video
+        </ion-label>
+      </ion-item>
+      <youtube-video [url]='event.video_url'></youtube-video>
+    </div>
   </div>
 </ion-content>

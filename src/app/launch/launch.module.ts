@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { YouTubePlayerModule } from "@angular/youtube-player";
 
 import { IonicModule } from '@ionic/angular';
 
@@ -10,7 +9,6 @@ import { LaunchRoutingModule } from './launch-routing.module';
 import { LaunchPage } from './launch.page';
 import { LaunchOverviewPage } from './launch-overview.page';
 import { LaunchDetailCardComponent } from './launch-detail-card/launch-detail-card.component';
-import { VideoComponent } from './video/video.component';
 import { AnimationModule } from '../animation/animation.module';
 import { CountdownModule } from '../countdown/countdown.module';
 import { LaunchListEntryModule } from './launch-list-entry/launch-list-entry.module';
@@ -20,6 +18,7 @@ import { MissionListModule } from '../mission/mission-list-entry/mission-list-en
 import { PadListEntryModule } from '../pad/pad-list-entry/pad-list-entry.module';
 import { RocketListEntryModule } from '../rocket/rocket-list-entry/rocket-list-entry.module';
 import { AstronautListEntryModule } from '../astronaut/astronaut-list-entry/astronaut-list-entry.module';
+import { VideoModule } from '../video/video.module';
 
 @NgModule({
   imports: [
@@ -29,16 +28,16 @@ import { AstronautListEntryModule } from '../astronaut/astronaut-list-entry/astr
     LaunchRoutingModule,
     MissionListModule,
     PadListEntryModule,
-    YouTubePlayerModule,
     AnimationModule,
     CountdownModule,
     LaunchListEntryModule,
     LaunchStatusModule,
     AgencyListEntryModule,
     RocketListEntryModule,
-    AstronautListEntryModule
+    AstronautListEntryModule,
+    VideoModule
   ],
-  declarations: [LaunchPage, LaunchOverviewPage, LaunchDetailCardComponent, VideoComponent],
+  declarations: [LaunchPage, LaunchOverviewPage, LaunchDetailCardComponent],
   exports: [LaunchDetailCardComponent],
 })
 export class LaunchModule { }

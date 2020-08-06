@@ -1,10 +1,37 @@
 <ion-card *ngIf="event!==undefined">
+  <div id="image">
+    <div class="image-wrapper">
+      <ion-img id="background" [src]="event.feature_image?event.feature_image:'assets/placeholder_1920.png'">
+      </ion-img>
+    </div>
+    <div class="image-wrapper">
+      <ion-img id="foreground" [src]="event.feature_image?event.feature_image:'assets/placeholder_1920.png'">
+      </ion-img>
+    </div>
+  </div>
   <ion-card-header>
-    <ion-card-subtitle>{{event.country_code}}</ion-card-subtitle>
+    <ion-card-subtitle>{{event.type.name}}</ion-card-subtitle>
     <ion-card-title>{{event.name}}</ion-card-title>
   </ion-card-header>
   <ion-card-content>
-    <p>Total Launches: {{event.total_launch_count}}</p>
+    <div id="countdown-container">
+      <countdown [date]="date"></countdown>
+    </div>
+    <div id="description">
+      <ion-item>
+        <ion-label>
+          Description
+        </ion-label>
+      </ion-item>
+      <p>{{event.description}}</p>
+    </div>
+    <div id="location">
+      <ion-item>
+        <ion-label>
+          Location
+        </ion-label>
+      </ion-item>
+      <p>{{event.location}}</p>
+    </div>
   </ion-card-content>
 </ion-card>
-TODO

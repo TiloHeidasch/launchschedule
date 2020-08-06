@@ -12,6 +12,10 @@ import { EventDetailCardComponent } from './event-detail-card/event-detail-card.
 import { AnimationModule } from '../animation/animation.module';
 import { CountdownModule } from '../countdown/countdown.module';
 import { EventListEntryModule } from './event-list-entry/event-list-entry.module';
+import { VideoModule } from '../video/video.module';
+import { LaunchListEntryModule } from '../launch/launch-list-entry/launch-list-entry.module';
+import { AstronautListEntryModule } from '../astronaut/astronaut-list-entry/astronaut-list-entry.module';
+import { SpacestationListEntryModule } from '../spacestation/spacestation-list-entry/spacestation-list-entry.module';
 
 @NgModule({
   imports: [
@@ -21,7 +25,11 @@ import { EventListEntryModule } from './event-list-entry/event-list-entry.module
     EventRoutingModule,
     AnimationModule,
     CountdownModule,
-    EventListEntryModule
+    EventListEntryModule,
+    VideoModule,
+    LaunchListEntryModule,
+    AstronautListEntryModule,
+    SpacestationListEntryModule
   ],
   declarations: [EventPage, EventOverviewPage, EventDetailCardComponent],
   exports: []
