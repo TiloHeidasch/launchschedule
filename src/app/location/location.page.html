@@ -18,14 +18,12 @@
     <div id="location">
       <location-detail-card [location]='location'></location-detail-card>
     </div>
-    <!-- <div id="mission-list">
-      <mission-detail-card *ngFor="let mission of location.missions" [mission]='mission'></mission-detail-card>
+
+    <div id="pads">
+      <ion-item>
+        Pads
+      </ion-item>
+      <pad-list-entry *ngFor="let pad of location.pads" [id]='pad.id'></pad-list-entry>
     </div>
-    <div id="location">
-      <location-detail-card [location]='location.location'></location-detail-card>
-    </div>
-    <div id="location">
-      <location-detail-card [location]='location.lsp'></location-detail-card>
-    </div> -->
   </div>
 </ion-content>

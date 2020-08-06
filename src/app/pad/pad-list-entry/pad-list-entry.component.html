@@ -1,4 +1,4 @@
-<ion-card routerDirection="forward" [routerLink]="['/pad/'+pad.id]" slideIn>
+<ion-card *ngIf="pad" routerDirection="forward" [routerLink]="['/pad/'+pad.id]" slideIn>
   <div id="image">
     <div class="image-wrapper">
       <ion-img id="background" [src]="pad.map_image?pad.map_image:'assets/placeholder_1920.png'"></ion-img>

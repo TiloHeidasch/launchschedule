@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { LaunchLibraryService } from 'src/app/launch-library.service';
 
 
 @Component({
@@ -7,12 +8,16 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./pad-list-entry.component.scss'],
 })
 export class PadListEntryComponent implements OnInit {
-  @Input('pad') pad;
+  @Input('pad') pad?;
+  @Input('id') id?;
   title: string;
   subtitle: string;
-  constructor() { }
+  constructor(private service: LaunchLibraryService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    if (!this.pad) {
+      this.pad = await this.service.getPadById(this.id);
+    }
     this.title = this.pad.name;
     this.subtitle = this.pad.location.name;
   }

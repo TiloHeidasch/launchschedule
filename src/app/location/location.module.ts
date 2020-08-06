@@ -8,6 +8,7 @@ import { LocationOverviewPage } from './location-overview.page';
 import { LocationDetailCardComponent } from './location-detail-card/location-detail-card.component';
 import { AnimationModule } from '../animation/animation.module';
 import { LocationListEntryModule } from './location-list-entry/location-list-entry.module';
+import { PadListEntryModule } from '../pad/pad-list-entry/pad-list-entry.module';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { LocationListEntryModule } from './location-list-entry/location-list-ent
     IonicModule,
     LocationRoutingModule,
     AnimationModule,
-    LocationListEntryModule
+    LocationListEntryModule,
+    PadListEntryModule
   ],
   declarations: [LocationPage, LocationOverviewPage, LocationDetailCardComponent],
   exports: []
