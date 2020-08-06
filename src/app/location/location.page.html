@@ -23,7 +23,7 @@
       <ion-item>
         Pads
       </ion-item>
-      <pad-list-entry *ngFor="let pad of location.pads" [id]='pad.id'></pad-list-entry>
+      <pad-list-entry *ngFor="let pad of location.pads" [pad]='pad' [locationName]="location.name"></pad-list-entry>
     </div>
   </div>
 </ion-content>

@@ -10,6 +10,7 @@ import { LaunchLibraryService } from 'src/app/launch-library.service';
 export class PadListEntryComponent implements OnInit {
   @Input('pad') pad?;
   @Input('id') id?;
+  @Input('locationName') locationName?;
   title: string;
   subtitle: string;
   constructor(private service: LaunchLibraryService) { }
@@ -18,8 +19,11 @@ export class PadListEntryComponent implements OnInit {
     if (!this.pad) {
       this.pad = await this.service.getPadById(this.id);
     }
+    if (!this.locationName) {
+      this.locationName = this.pad.location.name
+    }
     this.title = this.pad.name;
-    this.subtitle = this.pad.location.name;
+    this.subtitle = this.locationName;
   }
 
 }
