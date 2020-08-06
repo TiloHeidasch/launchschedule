@@ -4,6 +4,7 @@ import { environment } from '../environments/environment';
 import { UpcomingPreviousAll } from './types/upcoming-previous-all';
 import { Active } from './types/active';
 import { Reusable } from './types/reusable';
+import { HumanRated } from './types/human-rated';
 
 @Injectable({
   providedIn: 'root'
@@ -470,7 +471,7 @@ export class LaunchLibraryService {
     console.log({ call: this.calls, url, data });
     return data.count;
   }
-  async getAllSpacecrafts(search?: string, inUse?: boolean, humanRated?: boolean) {
+  async getAllSpacecrafts(search?: string, inUse?: Active, humanRated?: HumanRated) {
     let url = this.createSpacecraftUrl(10000, undefined, search, inUse, humanRated);
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
@@ -489,27 +490,33 @@ export class LaunchLibraryService {
     this.spacecraftsById.push({ id, object: data });
     return data;
   }
-  async getFirstSpacecrafts(search?: string, inUse?: boolean, humanRated?: boolean) {
+  async getFirstSpacecrafts(search?: string, inUse?: Active, humanRated?: HumanRated) {
     return this.getNextSpacecrafts(0, search, inUse, humanRated);
   }
-  async getNextSpacecrafts(offset: number, search?: string, inUse?: boolean, humanRated?: boolean) {
+  async getNextSpacecrafts(offset: number, search?: string, inUse?: Active, humanRated?: HumanRated) {
     let url = this.createSpacecraftUrl(10, offset, search, inUse, humanRated);
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
     console.log({ call: this.calls, url, data });
     return { spacecrafts: data.results, max: data.count };
   }
-  private createSpacecraftUrl(limit: number, offset?: number, search?: string, inUse?: boolean, humanRated?: boolean): string {
+  private createSpacecraftUrl(limit: number, offset?: number, search?: string, inUse?: Active, humanRated?: HumanRated): string {
     let url = this.baseUrl + '/2.0.0/config/spacecraft/';
     url += '?limit=' + limit;
     if (search !== undefined && search !== '') {
       url += ('&search=' + search);
     }
-    if (inUse) {
+    if (inUse === Active.ACTIVE) {
       url += '&in_use=true';
     }
-    if (humanRated) {
+    if (inUse === Active.DECOMISSIONED) {
+      url += '&in_use=false';
+    }
+    if (humanRated === HumanRated.HUMAN) {
       url += '&human_rated=true';
+    }
+    if (humanRated === HumanRated.CARGO) {
+      url += '&human_rated=false';
     }
     if (offset !== undefined) {
       url += ('&offset=' + offset);

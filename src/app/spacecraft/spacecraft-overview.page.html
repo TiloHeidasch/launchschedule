@@ -14,16 +14,36 @@
     <ion-searchbar (ionChange)="searchChange($event)" [value]="store.search" animated></ion-searchbar>
   </ion-toolbar>
   <ion-toolbar *ngIf="store.showFilter">
-    <ion-item>
-      <ion-label>In Use</ion-label>
-      <ion-toggle (ionChange)="loadFirst()" [(ngModel)]="store.inUse"></ion-toggle>
-    </ion-item>
+    <ion-segment (ionChange)="loadFirst()" [(ngModel)]="store.humanRated">
+      <ion-segment-button value="Cargo">
+        <ion-icon name="trash"></ion-icon>
+        <ion-label>Cargo</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="All">
+        <ion-icon name="repeat"></ion-icon>
+        <ion-label>All</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="Human rated">
+        <ion-icon name="infinite"></ion-icon>
+        <ion-label>Human rated</ion-label>
+      </ion-segment-button>
+    </ion-segment>
   </ion-toolbar>
   <ion-toolbar *ngIf="store.showFilter">
-    <ion-item>
-      <ion-label>Human Rated</ion-label>
-      <ion-toggle (ionChange)="loadFirst()" [(ngModel)]="store.humanRated"></ion-toggle>
-    </ion-item>
+    <ion-segment (ionChange)="loadFirst()" [(ngModel)]="store.inUse">
+      <ion-segment-button value="Decomissioned">
+        <ion-icon name="cloud-offline"></ion-icon>
+        <ion-label>Decomissioned</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="All">
+        <ion-icon name="repeat"></ion-icon>
+        <ion-label>All</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="Active">
+        <ion-icon name="cloud-done"></ion-icon>
+        <ion-label>Active</ion-label>
+      </ion-segment-button>
+    </ion-segment>
   </ion-toolbar>
 </ion-header>
 
