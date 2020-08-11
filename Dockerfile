@@ -20,3 +20,4 @@ RUN npm run ng run app:build:production && \
 FROM nginx
 
 COPY --from=0 /home/schedule/www /usr/share/nginx/html
+
