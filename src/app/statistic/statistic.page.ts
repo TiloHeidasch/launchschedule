@@ -120,7 +120,6 @@ export class StatisticPage implements OnInit {
       data: {
       }
     });
-
   }
   private updateCharts() {
     const data = {
