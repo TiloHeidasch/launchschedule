@@ -103,7 +103,7 @@
                 <p-multiSelect [filter]="false" [(ngModel)]="selectedRockets"
                   *ngSwitchCase="'rocket__configuration__full_name'" [options]="rockets" defaultLabel="All Rockets"
                   (onChange)="tt.filter($event.value, col.field, 'in')" appendTo="body"></p-multiSelect>
-                <p-multiSelect [filter]="false" [(ngModel)]="selectedRockets"
+                <p-multiSelect [filter]="false" [(ngModel)]="selectedRocketFamilies"
                   *ngSwitchCase="'rocket__configuration__family'" [options]="rocketFamilies"
                   defaultLabel="All Rocket Families" (onChange)="tt.filter($event.value, col.field, 'in')"
                   appendTo="body">
