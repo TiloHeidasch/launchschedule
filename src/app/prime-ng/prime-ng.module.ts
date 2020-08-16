@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
 // import { BlockUIModule } from "primeng/blockui";
 // import { BreadcrumbModule } from "primeng/breadcrumb";
 // import { ButtonModule } from "primeng/button";
-// import { CalendarModule } from "primeng/calendar";
+import { CalendarModule } from "primeng/calendar";
 // import { CaptchaModule } from "primeng/captcha";
 // import { CardModule } from "primeng/card";
 // import { CarouselModule } from "primeng/carousel";
@@ -90,7 +90,7 @@ import { TableModule } from "primeng/table";
     // BlockUIModule,
     // BreadcrumbModule,
     // ButtonModule,
-    // CalendarModule,
+    CalendarModule,
     // CaptchaModule,
     // CardModule,
     // CarouselModule,
@@ -169,7 +169,7 @@ import { TableModule } from "primeng/table";
     // BlockUIModule,
     // BreadcrumbModule,
     // ButtonModule,
-    // CalendarModule,
+    CalendarModule,
     // CaptchaModule,
     // CardModule,
     // CarouselModule,

@@ -517,4 +517,22 @@ export class StatisticPage implements OnInit {
       }
     };
   }
+  onDateSelect(value, filter) {
+    this.table.filter(this.formatDate(value), 'net', filter);
+  }
+
+  formatDate(date) {
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+
+    if (month < 10) {
+      month = '0' + month;
+    }
+
+    if (day < 10) {
+      day = '0' + day;
+    }
+
+    return date.getFullYear() + '-' + month + '-' + day;
+  }
 }
