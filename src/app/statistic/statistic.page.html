@@ -100,10 +100,18 @@
               <th *ngFor="let col of columns" [ngSwitch]="col.field">
                 <input *ngSwitchCase="'name'" pInputText type="text"
                   (input)="tt.filter($event.target.value, col.field, 'contains')" style="width:150px">
+                <p-calendar *ngSwitchCase="'net'" (onSelect)="onDateSelect($event,'gte')"
+                  (onClearClick)="tt.filter('', 'net', 'gte')" [showButtonBar]="true" styleClass="p-column-filter"
+                  placeholder="From" [readonlyInput]="true" dateFormat="yy-mm-dd" appendTo="body">
+                </p-calendar>
+                <p-calendar *ngSwitchCase="'net'" (onSelect)="onDateSelect($event,'lte')"
+                  (onClearClick)="tt.filter('', 'net', 'lte')" [showButtonBar]="true" styleClass="p-column-filter"
+                  placeholder="To" [readonlyInput]="true" dateFormat="yy-mm-dd" appendTo="body">
+                </p-calendar>
                 <p-multiSelect [filter]="false" [(ngModel)]="selectedRockets"
                   *ngSwitchCase="'rocket__configuration__full_name'" [options]="rockets" defaultLabel="All Rockets"
                   (onChange)="tt.filter($event.value, col.field, 'in')" appendTo="body"></p-multiSelect>
-                <p-multiSelect [filter]="false" [(ngModel)]="selectedRockets"
+                <p-multiSelect [filter]="false" [(ngModel)]="selectedRocketFamilies"
                   *ngSwitchCase="'rocket__configuration__family'" [options]="rocketFamilies"
                   defaultLabel="All Rocket Families" (onChange)="tt.filter($event.value, col.field, 'in')"
                   appendTo="body">

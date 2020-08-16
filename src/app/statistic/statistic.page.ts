@@ -18,8 +18,9 @@ export class StatisticPage implements OnInit {
   dataRaw;
   dataFiltered;
   rockets: SelectItem[] = [];
-  rocketFamilies: SelectItem[] = [];
   selectedRockets: SelectItem[] = [];
+  rocketFamilies: SelectItem[] = [];
+  selectedRocketFamilies: SelectItem[] = [];
   agencies: SelectItem[] = [];
   selectedAgencies: SelectItem[] = [];
   agencyTypes: SelectItem[] = [];
@@ -202,19 +203,55 @@ export class StatisticPage implements OnInit {
     for (let index = 0; index < dates.length - 1; index++) {
       const date = dates[index];
       const nextDate = dates[index + 1];
-      labels.push(date.toDateString().substring(4) + ' - ' + nextDate.toDateString().substring(4));
+      labels.push(this.createDateLabel(date, nextDate, dates[0], dates[dates.length - 1], dates.length));
     }
     const labelsWithDatasets: { labels, datasets } = { labels, datasets };
     return labelsWithDatasets;
   }
-
+  createDateLabel(date: Date, nextDate: Date, firstDate: Date, lastDate: Date, amountDates: number) {
+    //check if years is enough
+    const isYearsEnough = lastDate.getFullYear() - firstDate.getFullYear() > amountDates;
+    if (isYearsEnough) {
+      //year is enough
+      return this.getYearString(date) + '-' + this.getYearString(nextDate);
+    } else {
+      // year is not enough (it is less than 10 years)
+      // check if months are enough
+      const monthDiff = this.monthDiff(firstDate, lastDate);
+      console.log(monthDiff);
+      const isMonthsEnough = monthDiff > amountDates;
+      if (isMonthsEnough) {
+        //months is enough
+        return this.getMonthString(date) + '-' + this.getMonthString(nextDate);
+      } else {
+        //months is not enough
+        return this.getDayString(date) + '-' + this.getDayString(nextDate);
+      }
+    }
+  }
+  getYearString(date: Date) {
+    return date.getFullYear().toString().substring(2);
+  }
+  getMonthString(date: Date) {
+    return date.getMonth() + 1 + '/' + this.getYearString(date);
+  }
+  getDayString(date: Date) {
+    return date.getDate() + '/' + this.getMonthString(date);
+  }
+  monthDiff(d1, d2) {
+    let months;
+    months = (d2.getFullYear() - d1.getFullYear()) * 12;
+    months -= d1.getMonth();
+    months += d2.getMonth();
+    return months <= 0 ? 0 : months;
+  }
   getDates(): Date[] {
     const data: any[] = this.dataFiltered;
     const dates = this.dataFiltered.map(data => { return new Date(data.net).valueOf() });
     const minDate = Math.min(...dates);
     const maxDate = Math.max(...dates);
     const diffDate = maxDate - minDate;
-    const chunkAmount = 15;
+    const chunkAmount = 10;
     const chunkSize = diffDate / chunkAmount;
     const chunks = [];
     chunks.push(minDate);
@@ -283,7 +320,7 @@ export class StatisticPage implements OnInit {
       for (let index = 0; index < dates.length - 1; index++) {
         const date = dates[index];
         const nextDate = dates[index + 1];
-        const count = dataForXAxisValue.filter(launch => (new Date(launch.net) > date && new Date(launch.net) < nextDate)).length;
+        const count = dataForXAxisValue.filter(launch => (new Date(launch.net) >= date && new Date(launch.net) <= nextDate)).length;
         if (cumulative) {
           cumulativeCount += count;
           dataSet.data.push(cumulativeCount);
@@ -479,5 +516,23 @@ export class StatisticPage implements OnInit {
         },
       }
     };
+  }
+  onDateSelect(value, filter) {
+    this.table.filter(this.formatDate(value), 'net', filter);
+  }
+
+  formatDate(date) {
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+
+    if (month < 10) {
+      month = '0' + month;
+    }
+
+    if (day < 10) {
+      day = '0' + day;
+    }
+
+    return date.getFullYear() + '-' + month + '-' + day;
   }
 }
