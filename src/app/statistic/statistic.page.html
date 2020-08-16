@@ -112,7 +112,7 @@
                   *ngSwitchCase="'launch_service_provider__name'" [options]="agencies" defaultLabel="All Agencies"
                   (onChange)="tt.filter($event.value, col.field, 'in')" appendTo="body">
                 </p-multiSelect>
-                <p-multiSelect [filter]="false" [(ngModel)]="selectedAgencytypes"
+                <p-multiSelect [filter]="false" [(ngModel)]="selectedAgencyTypes"
                   *ngSwitchCase="'launch_service_provider__type'" [options]="agencyTypes" defaultLabel="All Types"
                   (onChange)="tt.filter($event.value, col.field, 'in')" appendTo="body">
                 </p-multiSelect>
