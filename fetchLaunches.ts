@@ -55,4 +55,4 @@ function prepareData() {
 var path = 'launch';
 var fileName = 'launches';
 
-requestUrlAndPersistToFile('https://lldev.thespacedevs.com/2.0.0/' + path + '/?format=json&limit=100', fileName);
+requestUrlAndPersistToFile('https://ll.thespacedevs.com/2.0.0/' + path + '/?format=json&limit=100', fileName);
