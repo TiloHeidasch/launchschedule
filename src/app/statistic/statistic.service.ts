@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import SampleJson from '../data/launches.json';
+import Launches from '../data/launches.json';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +8,7 @@ export class StatisticService {
   constructor() { }
 
   getLaunches() {
-    return SampleJson;
+    return Launches;
   }
 
 
