@@ -99,7 +99,7 @@
             <tr>
               <th *ngFor="let col of columns" [ngSwitch]="col.field">
                 <input *ngSwitchCase="'name'" pInputText type="text"
-                  (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)" style="width:150px">
+                  (input)="tt.filter($event.target.value, col.field, 'contains')" style="width:150px">
                 <p-multiSelect [filter]="false" [(ngModel)]="selectedRockets"
                   *ngSwitchCase="'rocket__configuration__full_name'" [options]="rockets" defaultLabel="All Rockets"
                   (onChange)="tt.filter($event.value, col.field, 'in')" appendTo="body"></p-multiSelect>
