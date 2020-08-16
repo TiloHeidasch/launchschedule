@@ -6,85 +6,168 @@
     <ion-title>{{title}}</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
-  <div id="datasets">
-    <ion-card [id]='datasetSelector.getId()' *ngFor="let datasetSelector of store.datasetSelectors">
+  <div id="wizard">
+    <ion-card id="step_1">
       <ion-card-header>
-        <ion-card-title>
-          {{datasetSelector.getName()}}
-        </ion-card-title>
+        <ion-card-subtitle *ngIf="step===1">Step 1</ion-card-subtitle>
+        <ion-card-title>What</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <ion-item>
-          <ion-label>I want</ion-label>
-          <ion-select (ionChange)="datasetSelectorTypeChange(datasetSelector,$event)" placeholder="Type"
-            interface="action-sheet">
-            <ion-select-option [value]="undefined">None</ion-select-option>
-            <ion-select-option *ngFor="let datasetSelectorType of DatasetSelectorType | keyvalue"
-              [value]="datasetSelectorType.key">
-              {{datasetSelectorType.value}}</ion-select-option>
-          </ion-select>
-        </ion-item>
-        <ion-item>
-          <ion-label>with Name</ion-label>
-          <ion-input debounce=500 (ionChange)="datasetSelectorSearchChange(datasetSelector,$event)">
-          </ion-input>
-        </ion-item>
-        <ion-item *ngFor="let filterItem of datasetSelector.typeFilterItems">
-          <ion-label>with {{filterItem.type}} </ion-label>
-          <ion-select (ionChange)="datasetSelectorfilterItemChange(datasetSelector,filterItem,$event)" value="none"
-            interface="action-sheet">
-            <ion-select-option value="none">None</ion-select-option>
-            <ion-select-option *ngFor="let option of filterItem.options" [value]="option">{{option.name}}
-            </ion-select-option>
-          </ion-select>
-        </ion-item>
-        <ion-buttons id="delete-zone" slot="end">
-          <ion-button id="delete-button" color="danger" (click)="deleteDatasetSelector(datasetSelector)">
-            Delete
-            <ion-icon slot="end" name="close"></ion-icon>
+        <div class="buttons">
+          <svg *ngIf="step>1" class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+            <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+            <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" /></svg>
+          <ion-button *ngIf="step===1" (click)="whatComplete()" [disabled]="what===undefined" expand="block">
+            Done
           </ion-button>
-        </ion-buttons>
+          <ion-button *ngIf="step>1" (click)="whatOpen()" expand="block">
+            Redo
+          </ion-button>
+        </div>
+        <ion-radio-group *ngIf="step===1" [(ngModel)]="what">
+          <ion-item>
+            <ion-label>Launches</ion-label>
+            <ion-radio slot="start" value="Launches"></ion-radio>
+          </ion-item>
+          <ion-item disabled="true">
+            <ion-label>Agencies - Soon™</ion-label>
+            <ion-radio slot="start" value="Agencies"></ion-radio>
+          </ion-item>
+          <ion-item disabled="true">
+            <ion-label>Astronauts - Soon™</ion-label>
+            <ion-radio slot="start" value="Astronauts"></ion-radio>
+          </ion-item>
+          <ion-item disabled="true">
+            <ion-label>Events - Soon™</ion-label>
+            <ion-radio slot="start" value="Events"></ion-radio>
+          </ion-item>
+          <ion-item disabled="true">
+            <ion-label>Facilities - Soon™</ion-label>
+            <ion-radio slot="start" value="Facilities"></ion-radio>
+          </ion-item>
+          <ion-item disabled="true">
+            <ion-label>Pad - Soon™</ion-label>
+            <ion-radio slot="start" value="Pad"></ion-radio>
+          </ion-item>
+          <ion-item disabled="true">
+            <ion-label>Rocket - Soon™</ion-label>
+            <ion-radio slot="start" value="Rocket"></ion-radio>
+          </ion-item>
+          <ion-item disabled="true">
+            <ion-label>Spacecraft - Soon™</ion-label>
+            <ion-radio slot="start" value="Spacecraft"></ion-radio>
+          </ion-item>
+          <ion-item disabled="true">
+            <ion-label>Spacestation - Soon™</ion-label>
+            <ion-radio slot="start" value="Spacestation"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
       </ion-card-content>
-      <ion-buttons slot="start">
-        <ion-button color="danger" (click)="deleteDatasetSelector(datasetSelector)">
-          <ion-icon slot="icon-only" name="close"></ion-icon>
-        </ion-button>
-      </ion-buttons>
     </ion-card>
-  </div>
-  <div id="charts">
-    <ion-card>
+    <ion-card *ngIf="step>1" id="step_2">
       <ion-card-header>
-        Bar Chart
+        <ion-card-subtitle *ngIf="step===2">Step 2</ion-card-subtitle>
+        <ion-card-title>Filter</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <canvas #barCanvas></canvas>
+        <div class="buttons">
+          <svg *ngIf="step>2" class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+            <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+            <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" /></svg>
+          <ion-button *ngIf="step===2" (click)="filterComplete()" expand="block">
+            Done
+          </ion-button>
+          <ion-button *ngIf="step>2" (click)="filterOpen()" expand="block">
+            Redo
+          </ion-button>
+        </div>
+        <p-table *ngIf="step===2&&what==='Launches'" #tt [columns]="cols" [value]="dataRaw" [scrollable]="true"
+          [style]="{width:'100%'}" [paginator]="true" [rows]="7">
+          <ng-template pTemplate="colgroup" let-columns>
+            <colgroup>
+              <col *ngFor="let col of columns" style="width:150px">
+            </colgroup>
+          </ng-template>
+          <ng-template pTemplate="header" let-columns>
+            <tr>
+              <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                {{col.header}}
+                <p-sortIcon [field]="col.field"></p-sortIcon>
+              </th>
+            </tr>
+            <tr>
+              <th *ngFor="let col of columns" [ngSwitch]="col.field">
+                <input *ngSwitchCase="'name'" pInputText type="text"
+                  (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)" style="width:150px">
+                <p-multiSelect [filter]="false" [(ngModel)]="selectedRockets"
+                  *ngSwitchCase="'rocket__configuration__full_name'" [options]="rockets" defaultLabel="All Rockets"
+                  (onChange)="tt.filter($event.value, col.field, 'in')" appendTo="body"></p-multiSelect>
+                <p-multiSelect [filter]="false" [(ngModel)]="selectedRockets"
+                  *ngSwitchCase="'rocket__configuration__family'" [options]="rocketFamilies"
+                  defaultLabel="All Rocket Families" (onChange)="tt.filter($event.value, col.field, 'in')"
+                  appendTo="body">
+                </p-multiSelect>
+                <p-multiSelect [filter]="false" [(ngModel)]="selectedAgencies"
+                  *ngSwitchCase="'launch_service_provider__name'" [options]="agencies" defaultLabel="All Agencies"
+                  (onChange)="tt.filter($event.value, col.field, 'in')" appendTo="body">
+                </p-multiSelect>
+                <p-multiSelect [filter]="false" [(ngModel)]="selectedAgencytypes"
+                  *ngSwitchCase="'launch_service_provider__type'" [options]="agencyTypes" defaultLabel="All Types"
+                  (onChange)="tt.filter($event.value, col.field, 'in')" appendTo="body">
+                </p-multiSelect>
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-launch let-columns="columns">
+            <tr>
+              <td *ngFor="let col of columns">
+                {{launch[col.field]}}
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
       </ion-card-content>
     </ion-card>
-
-    <ion-card>
+    <ion-card *ngIf="step>2" id="step_3">
       <ion-card-header>
-        Doughnut Chart
+        <ion-card-subtitle *ngIf="step===3">Step 3</ion-card-subtitle>
+        <ion-card-title>Grouping</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <canvas #doughnutCanvas></canvas>
+        <div class="buttons">
+          <svg *ngIf="step>3" class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+            <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+            <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" /></svg>
+          <ion-button *ngIf="step===3" [disabled]="xAxis===undefined" (click)="axisComplete()" expand="block">
+            Done
+          </ion-button>
+          <ion-button *ngIf="step>3" (click)="axisOpen()" expand="block">
+            Redo
+          </ion-button>
+        </div>
+        <ion-item *ngIf="step===3">
+          <ion-label>Grouping</ion-label>
+          <ion-select [(ngModel)]="xAxis" interface="action-sheet">
+            <ion-select-option value="rocket">Rocket</ion-select-option>
+            <ion-select-option value="rocketFamily">Rocket Family</ion-select-option>
+            <ion-select-option value="agency">Agency</ion-select-option>
+            <ion-select-option value="agencyType">Agency Type</ion-select-option>
+          </ion-select>
+        </ion-item>
       </ion-card-content>
     </ion-card>
-
-    <!-- <ion-card>
-    <ion-card-header>
-      Line Chart
-    </ion-card-header>
-    <ion-card-content>
-      <canvas #lineCanvas></canvas>
-    </ion-card-content>
-  </ion-card> -->
+    <ion-card *ngIf="step===4" id="step_4">
+      <ion-card-header>
+        <ion-card-subtitle>Result</ion-card-subtitle>
+        <ion-card-title>Diagrams</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p-chart type="line" [data]="lineChartData"></p-chart>
+        <p-chart type="bar" [data]="barChartData"></p-chart>
+        <p-chart type="polarArea" [data]="polarChartData"></p-chart>
+        <p-chart type="doughnut" [data]="doughnutChartData"></p-chart>
+      </ion-card-content>
+    </ion-card>
   </div>
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="addDatasetSelector()">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
 </ion-content>

@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { StatisticPageRoutingModule } from './statistic-routing.module';
 
 import { StatisticPage } from './statistic.page';
-import { AnimationModule } from '../animation/animation.module';
+import { PrimeNGModule } from '../prime-ng/prime-ng.module';
 
 @NgModule({
   imports: [
@@ -15,7 +15,7 @@ import { AnimationModule } from '../animation/animation.module';
     FormsModule,
     IonicModule,
     StatisticPageRoutingModule,
-    AnimationModule
+    PrimeNGModule,
   ],
   declarations: [StatisticPage]
 })

@@ -25,7 +25,7 @@ const routes: Routes = [
   },
   {
     path: 'statistic',
-    loadChildren: () => import('./statistic2/statistic2.module').then(m => m.Statistic2PageModule)
+    loadChildren: () => import('./statistic/statistic.module').then(m => m.StatisticPageModule)
   },
   {
     path: 'location',
@@ -49,7 +49,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'statistic',
+    redirectTo: 'launch',
   },
 ];
 

@@ -7,7 +7,7 @@ import SampleJson from '../data/launches.json';
 export class StatisticService {
   constructor() { }
 
-  async getLaunches() {
+  getLaunches() {
     return SampleJson;
   }
 

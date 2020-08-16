@@ -1,12 +1,9 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { StatisticService } from './statistic.service';
+import { SelectItem } from 'primeng/api';
+import { Md5 } from 'ts-md5/dist/md5';
+import { Table } from 'primeng/table';
 import { Chart } from "chart.js";
-import { Dataset } from './dataset';
-import { DatasetSelector } from './dataset-selector';
-import { DatasetSelectorType } from "./dataset-selector-type";
-import { LaunchLibraryService } from '../launch-library.service';
-import { StatisticParamStoreService } from './statistic-param-store.service';
-import { TypeFilterItemType } from './type-filter-item-type';
-import { TypeFilterItem } from './type-filter-item';
 
 @Component({
   selector: 'app-statistic',
@@ -14,189 +11,473 @@ import { TypeFilterItem } from './type-filter-item';
   styleUrls: ['./statistic.page.scss'],
 })
 export class StatisticPage implements OnInit {
-  @ViewChild("barCanvas", { read: ElementRef, static: true }) barCanvas: ElementRef;
-  @ViewChild("doughnutCanvas", { read: ElementRef, static: true }) doughnutCanvas: ElementRef;
-
   title = 'Statistics';
-  private barChart: Chart;
-  private doughnutChart: Chart;
-  datasets: Dataset[] = [];
-  public DatasetSelectorType = DatasetSelectorType;
-
-  constructor(private service: LaunchLibraryService, public store: StatisticParamStoreService) {
-    if (this.store.datasetSelectors.length === 0) {
-      this.addDatasetSelector();
-    } else {
-      this.datasetSelectorChange();
-    }
+  step = 1;
+  xAxis;
+  what = 'Launches';
+  dataRaw;
+  dataFiltered;
+  rockets: SelectItem[] = [];
+  rocketFamilies: SelectItem[] = [];
+  selectedRockets: SelectItem[] = [];
+  agencies: SelectItem[] = [];
+  selectedAgencies: SelectItem[] = [];
+  agencyTypes: SelectItem[] = [];
+  selectedAgencyTypes: SelectItem[] = [];
+  lineChartData;
+  polarChartData;
+  doughnutChartData;
+  barChartData;
+  @ViewChild('tt') table: Table;
+  cols: { field: string, header: string }[] = [];
+  constructor(private service: StatisticService) {
+    Chart.defaults.global.legend.display = false;
   }
-  ngOnInit() {
+
+  async ngOnInit() {
+  }
+
+  async whatComplete() {
+    this.step = 2;
+    this.setupTable();
+  }
+  whatOpen() {
+    this.step = 1;
+  }
+  filterComplete() {
+    this.step = 3;
+    this.dataFiltered = this.applyFilter();
+  }
+  filterOpen() {
+    this.step = 2;
+  }
+  axisComplete() {
+    this.step = 4;
     this.initCharts();
   }
-  datasetSelectorTypeChange(datasetSelector: DatasetSelector, event) {
-    datasetSelector.setType(event.detail.value);
-    this.datasetSelectorChange();
+  axisOpen() {
+    this.step = 3;
   }
-  datasetSelectorSearchChange(datasetSelector: DatasetSelector, event) {
-    datasetSelector.setSearch(event.detail.value);
-    this.datasetSelectorChange();
-  }
-  datasetSelectorfilterItemChange(datasetSelector: DatasetSelector, filterItem: TypeFilterItem, event) {
-    const value = event.detail.value;
-    switch (filterItem.type) {
-      case TypeFilterItemType.Rocket:
-        if (value === 'none') {
-          datasetSelector.setRocket(undefined);
-        } else {
-          datasetSelector.setRocket(event.detail.value);
-        }
-        break;
-      case TypeFilterItemType.Agency:
-        if (value === 'none') {
-          datasetSelector.setAgency(undefined);
-        } else {
-          datasetSelector.setAgency(event.detail.value);
-        }
-        break;
-      case TypeFilterItemType.Pad:
-        if (value === 'none') {
-          datasetSelector.setPad(undefined);
-        } else {
-          datasetSelector.setPad(event.detail.value);
-        }
-        break;
-      case TypeFilterItemType.Location:
-        if (value === 'none') {
-          datasetSelector.setLocation(undefined);
-        } else {
-          datasetSelector.setLocation(event.detail.value);
-        }
-        break;
+  private setupTable() {
+    switch (this.what) {
+      case 'Launches':
+        return this.setupLaunchesTable();
+      case 'Agencies':
+        return this.setupAgenciesTable();
+      case 'Astronauts':
+        return this.setupAstronautsTable();
+      case 'Events':
+        return this.setupEventsTable();
+      case 'Facilities':
+        return this.setupFacilitiesTable();
+      case 'Pad':
+        return this.setupPadTable();
+      case 'Rocket':
+        return this.setupRocketTable();
+      case 'Spacecraft':
+        return this.setupSpacecraftTable();
+      case 'Spacestation':
+        return this.setupSpacestationTable();
       default:
         break;
     }
-    this.datasetSelectorChange();
+  }
+  private applyFilter() {
+    return this.table.filteredValue ? this.table.filteredValue : this.table.value;
+  }
+  private applyLaunchesFilter() {
+    let localData: any[] = [];
+
+    if (this.selectedRockets.length > 0) {
+      this.selectedRockets.forEach(selected => {
+        localData.push(...this.dataRaw.filter(datapoint => (datapoint.rocket__configuration__full_name === selected)));
+      });
+    }
+    if (this.selectedAgencies.length > 0) {
+      this.selectedAgencies.forEach(selected => {
+        localData.push(...this.dataRaw.filter(datapoint => (datapoint.launch_service_provider__name === selected)));
+      });
+    }
+    if (this.selectedAgencyTypes.length > 0) {
+      this.selectedAgencyTypes.forEach(selected => {
+        localData.push(...this.dataRaw.filter(datapoint => (datapoint.launch_service_provider__type === selected)));
+      });
+    }
+    return localData;
   }
 
-  addDatasetSelector() {
-    this.store.datasetSelectors.push(new DatasetSelector(this.service, this.store));
-    this.datasetSelectorChange();
+  private applyAgenciesFilter() { }
+  private applyAstronautsFilter() { }
+  private applyEventsFilter() { }
+  private applyFacilitiesFilter() { }
+  private applyPadFilter() { }
+  private applyRocketFilter() { }
+  private applySpacecraftFilter() { }
+  private applySpacestationFilter() { }
+
+  private async setupLaunchesTable() {
+    this.cols = [
+      { field: 'name', header: 'Name' },
+      { field: 'net', header: 'Date' },
+      { field: 'rocket__configuration__full_name', header: 'Rocket' },
+      { field: 'rocket__configuration__family', header: 'Rocket Family' },
+      { field: 'launch_service_provider__name', header: 'Agency' },
+      { field: 'launch_service_provider__type', header: 'Agencytype' },
+    ]
+    this.dataRaw = this.service.getLaunches();
+    this.rockets = this.dataRaw
+      .map(launch => {
+        return launch.rocket__configuration__full_name;
+      })
+      .filter((value, index, self) => self.indexOf(value) === index)
+      .sort((x1, x2) => (x1 < x2 ? -1 : 1))
+      .map(rocket => {
+        return { label: rocket, value: rocket, }
+      });
+    this.rocketFamilies = this.dataRaw
+      .map(launch => {
+        return launch.rocket__configuration__family;
+      })
+      .filter((value, index, self) => self.indexOf(value) === index)
+      .sort((x1, x2) => (x1 < x2 ? -1 : 1))
+      .map(rocketFamily => {
+        return { label: rocketFamily, value: rocketFamily, }
+      });
+    this.agencies = this.dataRaw
+      .map(launch => {
+        return launch.launch_service_provider__name;
+      })
+      .filter((value, index, self) => self.indexOf(value) === index)
+      .sort((x1, x2) => (x1 < x2 ? -1 : 1))
+      .map(agency => {
+        return { label: agency, value: agency, }
+      });
+    this.agencyTypes = this.dataRaw
+      .map(launch => {
+        return launch.launch_service_provider__type;
+      })
+      .filter((value, index, self) => self.indexOf(value) === index)
+      .sort((x1, x2) => (x1 < x2 ? -1 : 1))
+      .map(agencyType => {
+        return { label: agencyType, value: agencyType, }
+      });
   }
-  async deleteDatasetSelector(datasetSelector: DatasetSelector) {
-    const element = document.getElementById(datasetSelector.getId());
-    for (let index = 0; index < 100; index += 3) {
-      element.style.left = index + '%';
-      await this.sleep(1);
+  private setupAgenciesTable() { }
+  private setupAstronautsTable() { }
+  private setupEventsTable() { }
+  private setupFacilitiesTable() { }
+  private setupPadTable() { }
+  private setupRocketTable() { }
+  private setupSpacecraftTable() { }
+  private setupSpacestationTable() { }
+  private getLabels() {
+    switch (this.what) {
+      case 'Launches':
+        return this.getLaunchesLabels();
+      case 'Agencies':
+        return this.getAgenciesLabels();
+      case 'Astronauts':
+        return this.getAstronautsLabels();
+      case 'Events':
+        return this.getEventsLabels();
+      case 'Facilities':
+        return this.getFacilitiesLabels();
+      case 'Pad':
+        return this.getPadLabels();
+      case 'Rocket':
+        return this.getRocketLabels();
+      case 'Spacecraft':
+        return this.getSpacecraftLabels();
+      case 'Spacestation':
+        return this.getSpacestationLabels();
+      default:
+        break;
     }
-    this.store.datasetSelectors = this.store.datasetSelectors.filter(otherDatasetSelector => (otherDatasetSelector !== datasetSelector));
-    if (this.store.datasetSelectors.length === 0) {
-      this.addDatasetSelector();
-    } else {
-      this.datasetSelectorChange();
+  }
+
+  getLabelsWithDatasets(cumulative: boolean, fill: boolean): { labels, datasets } {
+    const dates: Date[] = this.getDates();
+    const datasets = this.getDatasetsForXAxisForDates(dates, cumulative, fill);
+    const labels = [];
+    for (let index = 0; index < dates.length - 1; index++) {
+      const date = dates[index];
+      const nextDate = dates[index + 1];
+      labels.push(date.toDateString().substring(4) + ' - ' + nextDate.toDateString().substring(4));
     }
+    const labelsWithDatasets: { labels, datasets } = { labels, datasets };
+    return labelsWithDatasets;
   }
-  sleep(milliseconds) {
-    return new Promise(resolve => setTimeout(resolve, milliseconds));
-  }
-  private initCharts() {
-    this.barChart = new Chart(this.barCanvas.nativeElement, {
-      type: "bar",
-      data: {
-      },
-      options: {
-        scales: {
-          yAxes: [
-            {
-              ticks: {
-                beginAtZero: true
-              }
-            }
-          ]
-        }
-      }
-    });
-    this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
-      type: "doughnut",
-      data: {
-      }
-    });
-  }
-  private updateCharts() {
-    const data = {
-      labels: this.getLabels(this.datasets),
-      datasets: [
-        {
-          data: this.getValues(this.datasets),
-          backgroundColor: this.getColorsLight(this.datasets),
-          borderColor: this.getColors(this.datasets),
-          hoverBackgroundColor: this.getColors(this.datasets),
-          borderWidth: 1
-        }
-      ]
-    };
-    this.barChart.data = data;
-    this.doughnutChart.data = data;
-    this.barChart.update();
-    this.doughnutChart.update();
-  }
-  private async datasetSelectorChange() {
-    this.datasets = [];
-    for (let index = 0; index < this.store.datasetSelectors.length; index++) {
-      const datasetSelector = this.store.datasetSelectors[index];
-      const dataset = await this.determineDataSet(datasetSelector)
-      this.datasets.push(dataset);
+
+  getDates(): Date[] {
+    const data: any[] = this.dataFiltered;
+    const dates = this.dataFiltered.map(data => { return new Date(data.net).valueOf() });
+    const minDate = Math.min(...dates);
+    const maxDate = Math.max(...dates);
+    const diffDate = maxDate - minDate;
+    const chunkAmount = 15;
+    const chunkSize = diffDate / chunkAmount;
+    const chunks = [];
+    chunks.push(minDate);
+    for (let index = 0; index < chunkAmount; index++) {
+      chunks.push(chunks[index] + chunkSize);
     }
-    this.updateCharts();
+    const dateLabels = chunks.map(chunk => { return new Date(chunk) });
+    return dateLabels;
   }
-  private async determineDataSet(datasetSelector: DatasetSelector): Promise<Dataset> {
-    let value = 0;
-    try {
-      switch (datasetSelector.getType()) {
-        case "Agencies":
-          value = await this.service.getAgencyAmount(datasetSelector.getSearch() === undefined ? '' : datasetSelector.getSearch());
+  getDatasetsForXAxisForDates(dates: Date[], cumulative: boolean, fill: boolean) {
+    let xAxisValues;
+    switch (this.xAxis) {
+      case 'rocket':
+        xAxisValues = this.dataFiltered.map(launch => { return launch.rocket__configuration__full_name })
+          .filter((value, index, self) => self.indexOf(value) === index)
+          .sort((x1, x2) => (x1 < x2 ? -1 : 1));
+        break;
+      case 'rocketFamily':
+        xAxisValues = this.dataFiltered.map(launch => { return launch.rocket__configuration__family })
+          .filter((value, index, self) => self.indexOf(value) === index)
+          .sort((x1, x2) => (x1 < x2 ? -1 : 1));
+        break;
+      case 'agency':
+        xAxisValues = this.dataFiltered.map(launch => { return launch.launch_service_provider__name })
+          .filter((value, index, self) => self.indexOf(value) === index)
+          .sort((x1, x2) => (x1 < x2 ? -1 : 1));
+        break;
+      case 'agencyType':
+        xAxisValues = this.dataFiltered.map(launch => { return launch.launch_service_provider__type })
+          .filter((value, index, self) => self.indexOf(value) === index)
+          .sort((x1, x2) => (x1 < x2 ? -1 : 1));
+        break;
+
+      default:
+        break;
+    }
+    const datasetsArray = [];
+    for (let index = 0; index < xAxisValues.length; index++) {
+      const xAxisValue = xAxisValues[index];
+      const color = this.getColor(xAxisValue);
+      let dataForXAxisValue;
+      switch (this.xAxis) {
+        case 'rocket':
+          dataForXAxisValue = this.dataFiltered.filter(launch => (launch.rocket__configuration__full_name === xAxisValue));
           break;
-        case "Launches":
-          value = await this.service.getLaunchAmount(datasetSelector.getSearch() === undefined ? '' : datasetSelector.getSearch(), datasetSelector.getRocketId(), datasetSelector.getAgencyId(), datasetSelector.getPadId(), datasetSelector.getLocationId());
+        case 'rocketFamily':
+          dataForXAxisValue = this.dataFiltered.filter(launch => (launch.rocket__configuration__family === xAxisValue));
           break;
-        case "Pads":
-          value = await this.service.getPadAmount(datasetSelector.getSearch() === undefined ? '' : datasetSelector.getSearch());
+        case 'agency':
+          dataForXAxisValue = this.dataFiltered.filter(launch => (launch.launch_service_provider__name === xAxisValue));
           break;
-        case "Rockets":
-          value = await this.service.getRocketAmount(datasetSelector.getSearch() === undefined ? '' : datasetSelector.getSearch());
+        case 'agencyType':
+          dataForXAxisValue = this.dataFiltered.filter(launch => (launch.launch_service_provider__type === xAxisValue));
           break;
 
         default:
           break;
       }
-    } catch (error) { }
-    return new Dataset(datasetSelector.getName(), value, datasetSelector.getColor());
+      let dataSet;
+      if (fill) {
+        dataSet = { label: xAxisValue, data: [], borderColor: color, backgroundColor: color };
+      } else {
+        dataSet = { label: xAxisValue, data: [], fill: false, borderColor: color };
+      }
+      let cumulativeCount = 0;
+      for (let index = 0; index < dates.length - 1; index++) {
+        const date = dates[index];
+        const nextDate = dates[index + 1];
+        const count = dataForXAxisValue.filter(launch => (new Date(launch.net) > date && new Date(launch.net) < nextDate)).length;
+        if (cumulative) {
+          cumulativeCount += count;
+          dataSet.data.push(cumulativeCount);
+        } else {
+          dataSet.data.push(count);
+        }
+      }
+      datasetsArray.push(dataSet);
+    }
+    return datasetsArray;
   }
-  private getLabels(datasets: Dataset[]): string[] {
-    const labels = [];
-    datasets.forEach(dataset => {
-      labels.push(dataset.name);
+  private getLaunchesLabels() {
+    switch (this.xAxis) {
+      case 'rocket':
+        return this.dataFiltered
+          .map(launch => {
+            return launch.rocket__configuration__full_name;
+          })
+          .filter((value, index, self) => self.indexOf(value) === index)
+          .sort((x1, x2) => (x1 < x2 ? -1 : 1));
+      case 'rocketFamily':
+        return this.dataFiltered
+          .map(launch => {
+            return launch.rocket__configuration__family;
+          })
+          .filter((value, index, self) => self.indexOf(value) === index)
+          .sort((x1, x2) => (x1 < x2 ? -1 : 1));
+      case 'agency':
+        return this.dataFiltered
+          .map(launch => {
+            return launch.launch_service_provider__name;
+          })
+          .filter((value, index, self) => self.indexOf(value) === index)
+          .sort((x1, x2) => (x1 < x2 ? -1 : 1));
+      case 'agencyType':
+        return this.dataFiltered
+          .map(launch => {
+            return launch.launch_service_provider__type;
+          })
+          .filter((value, index, self) => self.indexOf(value) === index)
+          .sort((x1, x2) => (x1 < x2 ? -1 : 1));
+      default:
+        break;
+    }
+  }
+
+  private getAgenciesLabels() { }
+  private getAstronautsLabels() { }
+  private getEventsLabels() { }
+  private getFacilitiesLabels() { }
+  private getPadLabels() { }
+  private getRocketLabels() { }
+  private getSpacecraftLabels() { }
+  private getSpacestationLabels() { }
+  private getDataForLabels(labels) {
+    switch (this.what) {
+      case 'Launches':
+        return this.getLaunchesDataForLabels(labels);
+      case 'Agencies':
+        return this.getAgenciesDataForLabels(labels);
+      case 'Astronauts':
+        return this.getAstronautsDataForLabels(labels);
+      case 'Events':
+        return this.getEventsDataForLabels(labels);
+      case 'Facilities':
+        return this.getFacilitiesDataForLabels(labels);
+      case 'Pad':
+        return this.getPadDataForLabels(labels);
+      case 'Rocket':
+        return this.getRocketDataForLabels(labels);
+      case 'Spacecraft':
+        return this.getSpacecraftDataForLabels(labels);
+      case 'Spacestation':
+        return this.getSpacestationDataForLabels(labels);
+      default:
+        break;
+    }
+  }
+  private getLaunchesDataForLabels(labels) {
+    const localData = [];
+    labels.forEach(label => {
+      switch (this.xAxis) {
+        case 'rocket':
+          localData.push(
+            this.dataFiltered.filter(datapoint => (datapoint.rocket__configuration__full_name === label)).length
+          );
+          break;
+        case 'rocketFamily':
+          localData.push(
+            this.dataFiltered.filter(datapoint => (datapoint.rocket__configuration__family === label)).length
+          );
+          break;
+        case 'agency':
+          localData.push(
+            this.dataFiltered.filter(datapoint => (datapoint.launch_service_provider__name === label)).length
+          );
+          break;
+        case 'agencyType':
+          localData.push(
+            this.dataFiltered.filter(datapoint => (datapoint.launch_service_provider__type === label)).length
+          );
+          break;
+        default:
+          break;
+      }
     });
-    return labels;
+    return localData;
   }
-  private getValues(datasets: Dataset[]): number[] {
-    const values = [];
-    datasets.forEach(dataset => {
-      values.push(dataset.value);
-    });
-    return values;
-  }
-  private getColors(datasets: Dataset[]): string[] {
-    const colors: string[] = [];
-    datasets.forEach(dataset => {
-      colors.push(dataset.color);
+  private getAgenciesDataForLabels(labels) { }
+  private getAstronautsDataForLabels(labels) { }
+  private getEventsDataForLabels(labels) { }
+  private getFacilitiesDataForLabels(labels) { }
+  private getPadDataForLabels(labels) { }
+  private getRocketDataForLabels(labels) { }
+  private getSpacecraftDataForLabels(labels) { }
+  private getSpacestationDataForLabels(labels) { }
+  private getColors(labels) {
+    const colors = [];
+    labels.forEach(label => {
+      colors.push(this.getColor(label));
     });
     return colors;
   }
-  private getColorsLight(datasets: Dataset[]): string[] {
-    const colors: string[] = [];
-    datasets.forEach(dataset => {
-      colors.push(dataset.colorLight);
-    });
-    return colors;
+  private getColor(label) {
+    const md5 = new Md5();
+    md5.appendStr(label ? label : '');
+    return '#' + md5.end().toString().toUpperCase().substr(0, 6);
+  }
+  private initCharts() {
+    this.initLineChart();
+    this.initPolarChart();
+    this.initDoughnutChart();
+    this.initBarChart();
+  }
+  private initLineChart() {
+    const labelsWithDatasets: { labels, datasets } = this.getLabelsWithDatasets(true, false);
+    this.lineChartData = {
+      labels: labelsWithDatasets.labels,
+      datasets: labelsWithDatasets.datasets,
+      options: {
+        legend: {
+          position: 'right'
+        },
+      }
+    };
+  }
+  private initPolarChart() {
+    const labels = this.getLabels();
+    const data = this.getDataForLabels(labels);
+    const backgroundColor = this.getColors(labels);
+    this.polarChartData = {
+      labels,
+      datasets: [
+        {
+          data,
+          backgroundColor,
+          hoverBackgroundColor: backgroundColor,
+        }],
+      options: {
+        legend: {
+          position: 'right'
+        },
+      }
+    };
+  }
+  private initDoughnutChart() {
+    const labels = this.getLabels();
+    const data = this.getDataForLabels(labels);
+    const backgroundColor = this.getColors(labels);
+    this.doughnutChartData = {
+      labels,
+      datasets: [
+        {
+          data,
+          backgroundColor,
+          hoverBackgroundColor: backgroundColor,
+        }],
+      options: {
+        legend: {
+          position: 'right'
+        },
+      }
+    };
+  }
+  private initBarChart() {
+    const labelsWithDatasets: { labels, datasets } = this.getLabelsWithDatasets(false, true);
+    this.barChartData = {
+      labels: labelsWithDatasets.labels,
+      datasets: labelsWithDatasets.datasets,
+      options: {
+        legend: {
+          position: 'right'
+        },
+      }
+    };
   }
 }
