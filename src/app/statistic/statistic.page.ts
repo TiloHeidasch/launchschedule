@@ -18,8 +18,9 @@ export class StatisticPage implements OnInit {
   dataRaw;
   dataFiltered;
   rockets: SelectItem[] = [];
-  rocketFamilies: SelectItem[] = [];
   selectedRockets: SelectItem[] = [];
+  rocketFamilies: SelectItem[] = [];
+  selectedRocketFamilies: SelectItem[] = [];
   agencies: SelectItem[] = [];
   selectedAgencies: SelectItem[] = [];
   agencyTypes: SelectItem[] = [];
