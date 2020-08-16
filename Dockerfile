@@ -9,6 +9,8 @@ COPY package*.json ./
 RUN npm install
 
 COPY angular.json tsconfig.json tsconfig.app.json ionic.config.json tslint.json ./
+
+RUN node fetchLaunches.ts
 COPY src ./src
 
 RUN npm run ng run app:build:production && \
