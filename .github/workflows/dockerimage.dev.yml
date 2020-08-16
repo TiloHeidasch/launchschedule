@@ -2,9 +2,10 @@ name: Docker Build and Push Dev
 
 on:
   push:
-    branches: ['!master']
+    branches: [dev]
   pull_request:
-    branches: ['!master']
+    branches: [dev]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -12,6 +13,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: dev
       - uses: docker/build-push-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
