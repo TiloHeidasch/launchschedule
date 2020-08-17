@@ -547,4 +547,133 @@ export class StatisticPage implements OnInit {
 
     return date.getFullYear() + '-' + month + '-' + day;
   }
+  shuffle() {
+    this.whatOpen();
+    setTimeout(() => {
+      this.shuffleWhat();
+    }, 100);
+  }
+  private shuffleWhat() {
+    //only launches therefor just skip this step
+    this.whatComplete();
+    this.shuffleFilter();
+  }
+  private shuffleFilter() {
+    this.nameSearch = undefined;
+    this.toFilter = undefined;
+    this.fromFilter = undefined;
+    this.selectedRockets = [];
+    this.selectedRocketFamilies = [];
+    this.selectedAgencies = [];
+    this.selectedAgencyTypes = [];
+    switch (this.randbetween(0, 0)) {
+      case 0:
+        //name
+        this.shuffleNameFilter();
+        break;
+      case 1:
+        //net from
+        this.shuffleFromFilter();
+        break;
+      case 2:
+        //net to
+        this.shuffleToFilter();
+        break;
+      case 3:
+        //rocket
+        this.shuffleRocketFilter();
+        break;
+      case 4:
+        //rocketFamily
+        this.shuffleRocketFamilyFilter();
+        break;
+      case 5:
+        //Agency
+        this.shuffleAgencyFilter();
+        break;
+      case 6:
+        //AgencyType
+        this.shuffleAgencyTypeFilter();
+        break;
+      default:
+        break;
+    }
+    setTimeout(() => {
+      this.applyPreviousFilters();
+      setTimeout(() => {
+        if (this.table.filteredValue.length < this.dataRaw.length / 100) {
+          this.shuffleFilter();
+        } else {
+          this.filterComplete();
+          this.shuffleAxis();
+        }
+      }, 300);
+    }, 100);
+  }
+  private shuffleNameFilter() {
+    const words: string[] = this.getAllPossibleWords();
+    const aWord = words[this.randbetween(0, words.length - 1)];
+    this.nameSearch = aWord;
+  }
+  private getAllPossibleWords() {
+    const names: string[] = this.dataRaw.map(launch => { return launch.name });
+    const words: string[] = [];
+    names.forEach(name => {
+      const wordsInName = name
+        .replace('/', ' ')
+        .replace('-', ' ')
+        .replace('\\', ' ')
+        .replace('+', ' ')
+        .replace('(', ' ')
+        .replace(')', ' ')
+        .split(' ');
+      wordsInName.forEach(wordInName => {
+        if (wordInName.length > 2) {
+          words.push(wordInName);
+        }
+      });
+    });
+    return words;
+  }
+  private shuffleFromFilter() {
+
+  }
+  private shuffleToFilter() {
+
+  }
+  private shuffleRocketFilter() {
+
+  }
+  private shuffleRocketFamilyFilter() {
+
+  }
+  private shuffleAgencyFilter() {
+
+  }
+  private shuffleAgencyTypeFilter() {
+
+  }
+  private shuffleAxis() {
+    switch (this.randbetween(0, 4)) {
+      case 0:
+        this.xAxis = 'Rocket';
+        break;
+      case 1:
+        this.xAxis = 'RocketFamily';
+        break;
+      case 2:
+        this.xAxis = 'Agency';
+        break;
+      case 3:
+        this.xAxis = 'AgencyType';
+        break;
+
+      default:
+        break;
+    }
+    this.axisComplete();
+  }
+  private randbetween(min, max) {
+    return Math.floor(Math.random() * max) + min;
+  }
 }
