@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { StatisticService } from './statistic.service';
 import { SelectItem } from 'primeng/api';
 import { Md5 } from 'ts-md5/dist/md5';
