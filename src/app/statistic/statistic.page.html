@@ -100,13 +100,13 @@
             </tr>
             <tr>
               <th *ngFor="let col of columns" [ngSwitch]="col.field">
-                <input *ngSwitchCase="'name'" pInputText type="text"
+                <input *ngSwitchCase="'name'" pInputText type="text" [(ngModel)]="nameSearch"
                   (input)="tt.filter($event.target.value, col.field, 'contains')" style="width:150px">
-                <p-calendar *ngSwitchCase="'net'" (onSelect)="onDateSelect($event,'gte')"
+                <p-calendar *ngSwitchCase="'net'" (onSelect)="onDateSelect($event,'gte')" [(ngModel)]="fromFilter"
                   (onClearClick)="tt.filter('', 'net', 'gte')" [showButtonBar]="true" styleClass="p-column-filter"
                   placeholder="From" [readonlyInput]="true" dateFormat="yy-mm-dd" appendTo="body">
                 </p-calendar>
-                <p-calendar *ngSwitchCase="'net'" (onSelect)="onDateSelect($event,'lte')"
+                <p-calendar *ngSwitchCase="'net'" (onSelect)="onDateSelect($event,'lte')" [(ngModel)]="toFilter"
                   (onClearClick)="tt.filter('', 'net', 'lte')" [showButtonBar]="true" styleClass="p-column-filter"
                   placeholder="To" [readonlyInput]="true" dateFormat="yy-mm-dd" appendTo="body">
                 </p-calendar>

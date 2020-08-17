@@ -17,6 +17,9 @@ export class StatisticPage implements OnInit {
   what = 'Launches';
   dataRaw;
   dataFiltered;
+  nameSearch;
+  fromFilter;
+  toFilter;
   rockets: SelectItem[] = [];
   selectedRockets: SelectItem[] = [];
   rocketFamilies: SelectItem[] = [];
@@ -51,6 +54,19 @@ export class StatisticPage implements OnInit {
   }
   filterOpen() {
     this.step = 2;
+    setTimeout(() => {
+      this.applyPreviousFilters();
+    }, 10);
+  }
+  private applyPreviousFilters() {
+    switch (this.what) {
+      case 'Launches':
+        this.applyLaunchesFilter();
+        break;
+
+      default:
+        break;
+    }
   }
   axisComplete() {
     this.step = 4;
@@ -82,29 +98,25 @@ export class StatisticPage implements OnInit {
       default:
         break;
     }
+    setTimeout(() => {
+      this.applyPreviousFilters();
+    }, 10);
   }
   private applyFilter() {
     return this.table.filteredValue ? this.table.filteredValue : this.table.value;
   }
   private applyLaunchesFilter() {
-    let localData: any[] = [];
-
-    if (this.selectedRockets.length > 0) {
-      this.selectedRockets.forEach(selected => {
-        localData.push(...this.dataRaw.filter(datapoint => (datapoint.rocket__configuration__full_name === selected)));
-      });
+    this.table.filter(this.nameSearch, 'name', 'contains');
+    if (this.fromFilter) {
+      this.onDateSelect(this.fromFilter, 'gte');
     }
-    if (this.selectedAgencies.length > 0) {
-      this.selectedAgencies.forEach(selected => {
-        localData.push(...this.dataRaw.filter(datapoint => (datapoint.launch_service_provider__name === selected)));
-      });
+    if (this.toFilter) {
+      this.onDateSelect(this.toFilter, 'gte');
     }
-    if (this.selectedAgencyTypes.length > 0) {
-      this.selectedAgencyTypes.forEach(selected => {
-        localData.push(...this.dataRaw.filter(datapoint => (datapoint.launch_service_provider__type === selected)));
-      });
-    }
-    return localData;
+    this.table.filter(this.selectedRockets, 'rocket__configuration__full_name', 'in')
+    this.table.filter(this.selectedRocketFamilies, 'rocket__configuration__family', 'in')
+    this.table.filter(this.selectedAgencies, 'launch_service_provider__name', 'in')
+    this.table.filter(this.selectedAgencyTypes, 'launch_service_provider__type', 'in')
   }
 
   private applyAgenciesFilter() { }
