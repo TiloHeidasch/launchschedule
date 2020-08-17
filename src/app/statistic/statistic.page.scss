@@ -5,6 +5,10 @@
 .buttons {
     display: flex;
     justify-content: flex-end;
+    align-items: center;
+    ion-label {
+        margin-right: auto;
+    }
 }
 .checkmark__circle {
     stroke-dasharray: 166;

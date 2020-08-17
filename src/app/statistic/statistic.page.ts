@@ -264,22 +264,22 @@ export class StatisticPage implements OnInit {
   getDatasetsForXAxisForDates(dates: Date[], cumulative: boolean, fill: boolean) {
     let xAxisValues;
     switch (this.xAxis) {
-      case 'rocket':
+      case 'Rocket':
         xAxisValues = this.dataFiltered.map(launch => { return launch.rocket__configuration__full_name })
           .filter((value, index, self) => self.indexOf(value) === index)
           .sort((x1, x2) => (x1 < x2 ? -1 : 1));
         break;
-      case 'rocketFamily':
+      case 'RocketFamily':
         xAxisValues = this.dataFiltered.map(launch => { return launch.rocket__configuration__family })
           .filter((value, index, self) => self.indexOf(value) === index)
           .sort((x1, x2) => (x1 < x2 ? -1 : 1));
         break;
-      case 'agency':
+      case 'Agency':
         xAxisValues = this.dataFiltered.map(launch => { return launch.launch_service_provider__name })
           .filter((value, index, self) => self.indexOf(value) === index)
           .sort((x1, x2) => (x1 < x2 ? -1 : 1));
         break;
-      case 'agencyType':
+      case 'AgencyType':
         xAxisValues = this.dataFiltered.map(launch => { return launch.launch_service_provider__type })
           .filter((value, index, self) => self.indexOf(value) === index)
           .sort((x1, x2) => (x1 < x2 ? -1 : 1));
@@ -294,16 +294,16 @@ export class StatisticPage implements OnInit {
       const color = this.getColor(xAxisValue);
       let dataForXAxisValue;
       switch (this.xAxis) {
-        case 'rocket':
+        case 'Rocket':
           dataForXAxisValue = this.dataFiltered.filter(launch => (launch.rocket__configuration__full_name === xAxisValue));
           break;
-        case 'rocketFamily':
+        case 'RocketFamily':
           dataForXAxisValue = this.dataFiltered.filter(launch => (launch.rocket__configuration__family === xAxisValue));
           break;
-        case 'agency':
+        case 'Agency':
           dataForXAxisValue = this.dataFiltered.filter(launch => (launch.launch_service_provider__name === xAxisValue));
           break;
-        case 'agencyType':
+        case 'AgencyType':
           dataForXAxisValue = this.dataFiltered.filter(launch => (launch.launch_service_provider__type === xAxisValue));
           break;
 
@@ -334,28 +334,28 @@ export class StatisticPage implements OnInit {
   }
   private getLaunchesLabels() {
     switch (this.xAxis) {
-      case 'rocket':
+      case 'Rocket':
         return this.dataFiltered
           .map(launch => {
             return launch.rocket__configuration__full_name;
           })
           .filter((value, index, self) => self.indexOf(value) === index)
           .sort((x1, x2) => (x1 < x2 ? -1 : 1));
-      case 'rocketFamily':
+      case 'RocketFamily':
         return this.dataFiltered
           .map(launch => {
             return launch.rocket__configuration__family;
           })
           .filter((value, index, self) => self.indexOf(value) === index)
           .sort((x1, x2) => (x1 < x2 ? -1 : 1));
-      case 'agency':
+      case 'Agency':
         return this.dataFiltered
           .map(launch => {
             return launch.launch_service_provider__name;
           })
           .filter((value, index, self) => self.indexOf(value) === index)
           .sort((x1, x2) => (x1 < x2 ? -1 : 1));
-      case 'agencyType':
+      case 'AgencyType':
         return this.dataFiltered
           .map(launch => {
             return launch.launch_service_provider__type;
@@ -403,22 +403,22 @@ export class StatisticPage implements OnInit {
     const localData = [];
     labels.forEach(label => {
       switch (this.xAxis) {
-        case 'rocket':
+        case 'Rocket':
           localData.push(
             this.dataFiltered.filter(datapoint => (datapoint.rocket__configuration__full_name === label)).length
           );
           break;
-        case 'rocketFamily':
+        case 'RocketFamily':
           localData.push(
             this.dataFiltered.filter(datapoint => (datapoint.rocket__configuration__family === label)).length
           );
           break;
-        case 'agency':
+        case 'Agency':
           localData.push(
             this.dataFiltered.filter(datapoint => (datapoint.launch_service_provider__name === label)).length
           );
           break;
-        case 'agencyType':
+        case 'AgencyType':
           localData.push(
             this.dataFiltered.filter(datapoint => (datapoint.launch_service_provider__type === label)).length
           );

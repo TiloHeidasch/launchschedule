@@ -21,6 +21,7 @@
           <ion-button *ngIf="step===1" (click)="whatComplete()" [disabled]="what===undefined" expand="block">
             Done
           </ion-button>
+          <ion-label *ngIf="step>1">{{what}}</ion-label>
           <ion-button *ngIf="step>1" (click)="whatOpen()" expand="block">
             Redo
           </ion-button>
@@ -78,6 +79,7 @@
           <ion-button *ngIf="step===2" (click)="filterComplete()" expand="block">
             Done
           </ion-button>
+          <ion-label *ngIf="step>2">{{dataFiltered.length}} Records</ion-label>
           <ion-button *ngIf="step>2" (click)="filterOpen()" expand="block">
             Redo
           </ion-button>
@@ -150,6 +152,7 @@
           <ion-button *ngIf="step===3" [disabled]="xAxis===undefined" (click)="axisComplete()" expand="block">
             Done
           </ion-button>
+          <ion-label *ngIf="step>3">{{xAxis}}</ion-label>
           <ion-button *ngIf="step>3" (click)="axisOpen()" expand="block">
             Redo
           </ion-button>
@@ -157,19 +160,19 @@
         <ion-radio-group *ngIf="step===3" [(ngModel)]="xAxis">
           <ion-item>
             <ion-label>Rocket</ion-label>
-            <ion-radio slot="start" value="rocket"></ion-radio>
+            <ion-radio slot="start" value="Rocket"></ion-radio>
           </ion-item>
           <ion-item>
             <ion-label>Rocket Family</ion-label>
-            <ion-radio slot="start" value="rocketFamily"></ion-radio>
+            <ion-radio slot="start" value="RocketFamily"></ion-radio>
           </ion-item>
           <ion-item>
             <ion-label>Agency</ion-label>
-            <ion-radio slot="start" value="agency"></ion-radio>
+            <ion-radio slot="start" value="Agency"></ion-radio>
           </ion-item>
           <ion-item>
             <ion-label>Agency Type</ion-label>
-            <ion-radio slot="start" value="agencyType"></ion-radio>
+            <ion-radio slot="start" value="AgencyType"></ion-radio>
           </ion-item>
         </ion-radio-group>
       </ion-card-content>
