@@ -154,15 +154,24 @@
             Redo
           </ion-button>
         </div>
-        <ion-item *ngIf="step===3">
-          <ion-label>Grouping</ion-label>
-          <ion-select [(ngModel)]="xAxis" interface="action-sheet">
-            <ion-select-option value="rocket">Rocket</ion-select-option>
-            <ion-select-option value="rocketFamily">Rocket Family</ion-select-option>
-            <ion-select-option value="agency">Agency</ion-select-option>
-            <ion-select-option value="agencyType">Agency Type</ion-select-option>
-          </ion-select>
-        </ion-item>
+        <ion-radio-group *ngIf="step===3" [(ngModel)]="xAxis">
+          <ion-item>
+            <ion-label>Rocket</ion-label>
+            <ion-radio slot="start" value="rocket"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Rocket Family</ion-label>
+            <ion-radio slot="start" value="rocketFamily"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Agency</ion-label>
+            <ion-radio slot="start" value="agency"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Agency Type</ion-label>
+            <ion-radio slot="start" value="agencyType"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
       </ion-card-content>
     </ion-card>
     <ion-card *ngIf="step===4" id="step_4">
