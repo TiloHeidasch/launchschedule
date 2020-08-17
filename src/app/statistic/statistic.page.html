@@ -189,10 +189,8 @@
         <ion-card-title>Diagrams</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <p-chart type="line" [data]="lineChartData"></p-chart>
-        <p-chart type="bar" [data]="barChartData"></p-chart>
-        <p-chart type="polarArea" [data]="polarChartData"></p-chart>
-        <p-chart type="doughnut" [data]="doughnutChartData"></p-chart>
+        <charts [lineChartData]="lineChartData" [barChartData]="barChartData" [polarChartData]="polarChartData"
+          [doughnutChartData]="doughnutChartData"></charts>
       </ion-card-content>
     </ion-card>
   </div>

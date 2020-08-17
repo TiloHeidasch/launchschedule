@@ -8,6 +8,7 @@ import { StatisticPageRoutingModule } from './statistic-routing.module';
 
 import { StatisticPage } from './statistic.page';
 import { PrimeNGModule } from '../prime-ng/prime-ng.module';
+import { ChartsComponent } from './charts/charts.component';
 
 @NgModule({
   imports: [
@@ -17,6 +18,6 @@ import { PrimeNGModule } from '../prime-ng/prime-ng.module';
     StatisticPageRoutingModule,
     PrimeNGModule,
   ],
-  declarations: [StatisticPage]
+  declarations: [StatisticPage, ChartsComponent]
 })
 export class StatisticPageModule { }

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { StatisticService } from './statistic.service';
 import { SelectItem } from 'primeng/api';
 import { Md5 } from 'ts-md5/dist/md5';
@@ -566,38 +566,7 @@ export class StatisticPage implements OnInit {
     this.selectedRocketFamilies = [];
     this.selectedAgencies = [];
     this.selectedAgencyTypes = [];
-    switch (this.randbetween(0, 0)) {
-      case 0:
-        //name
-        this.shuffleNameFilter();
-        break;
-      case 1:
-        //net from
-        this.shuffleFromFilter();
-        break;
-      case 2:
-        //net to
-        this.shuffleToFilter();
-        break;
-      case 3:
-        //rocket
-        this.shuffleRocketFilter();
-        break;
-      case 4:
-        //rocketFamily
-        this.shuffleRocketFamilyFilter();
-        break;
-      case 5:
-        //Agency
-        this.shuffleAgencyFilter();
-        break;
-      case 6:
-        //AgencyType
-        this.shuffleAgencyTypeFilter();
-        break;
-      default:
-        break;
-    }
+    this.shuffleNameFilter();
     setTimeout(() => {
       this.applyPreviousFilters();
       setTimeout(() => {
@@ -635,24 +604,7 @@ export class StatisticPage implements OnInit {
     });
     return words;
   }
-  private shuffleFromFilter() {
 
-  }
-  private shuffleToFilter() {
-
-  }
-  private shuffleRocketFilter() {
-
-  }
-  private shuffleRocketFamilyFilter() {
-
-  }
-  private shuffleAgencyFilter() {
-
-  }
-  private shuffleAgencyTypeFilter() {
-
-  }
   private shuffleAxis() {
     switch (this.randbetween(0, 4)) {
       case 0:
