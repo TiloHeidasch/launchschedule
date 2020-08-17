@@ -4,6 +4,11 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>{{title}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="shuffle()">
+        <ion-icon slot="icon-only" name="shuffle"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-content>
@@ -21,6 +26,7 @@
           <ion-button *ngIf="step===1" (click)="whatComplete()" [disabled]="what===undefined" expand="block">
             Done
           </ion-button>
+          <ion-label *ngIf="step>1">{{what}}</ion-label>
           <ion-button *ngIf="step>1" (click)="whatOpen()" expand="block">
             Redo
           </ion-button>
@@ -78,6 +84,8 @@
           <ion-button *ngIf="step===2" (click)="filterComplete()" expand="block">
             Done
           </ion-button>
+          <ion-label *ngIf="step>2&&!nameSearch">{{dataFiltered.length}} Records</ion-label>
+          <ion-label *ngIf="step>2&&nameSearch">{{nameSearch}}</ion-label>
           <ion-button *ngIf="step>2" (click)="filterOpen()" expand="block">
             Redo
           </ion-button>
@@ -98,13 +106,13 @@
             </tr>
             <tr>
               <th *ngFor="let col of columns" [ngSwitch]="col.field">
-                <input *ngSwitchCase="'name'" pInputText type="text"
+                <input *ngSwitchCase="'name'" pInputText type="text" [(ngModel)]="nameSearch"
                   (input)="tt.filter($event.target.value, col.field, 'contains')" style="width:150px">
-                <p-calendar *ngSwitchCase="'net'" (onSelect)="onDateSelect($event,'gte')"
+                <p-calendar *ngSwitchCase="'net'" (onSelect)="onDateSelect($event,'gte')" [(ngModel)]="fromFilter"
                   (onClearClick)="tt.filter('', 'net', 'gte')" [showButtonBar]="true" styleClass="p-column-filter"
                   placeholder="From" [readonlyInput]="true" dateFormat="yy-mm-dd" appendTo="body">
                 </p-calendar>
-                <p-calendar *ngSwitchCase="'net'" (onSelect)="onDateSelect($event,'lte')"
+                <p-calendar *ngSwitchCase="'net'" (onSelect)="onDateSelect($event,'lte')" [(ngModel)]="toFilter"
                   (onClearClick)="tt.filter('', 'net', 'lte')" [showButtonBar]="true" styleClass="p-column-filter"
                   placeholder="To" [readonlyInput]="true" dateFormat="yy-mm-dd" appendTo="body">
                 </p-calendar>
@@ -150,19 +158,29 @@
           <ion-button *ngIf="step===3" [disabled]="xAxis===undefined" (click)="axisComplete()" expand="block">
             Done
           </ion-button>
+          <ion-label *ngIf="step>3">{{xAxis}}</ion-label>
           <ion-button *ngIf="step>3" (click)="axisOpen()" expand="block">
             Redo
           </ion-button>
         </div>
-        <ion-item *ngIf="step===3">
-          <ion-label>Grouping</ion-label>
-          <ion-select [(ngModel)]="xAxis" interface="action-sheet">
-            <ion-select-option value="rocket">Rocket</ion-select-option>
-            <ion-select-option value="rocketFamily">Rocket Family</ion-select-option>
-            <ion-select-option value="agency">Agency</ion-select-option>
-            <ion-select-option value="agencyType">Agency Type</ion-select-option>
-          </ion-select>
-        </ion-item>
+        <ion-radio-group *ngIf="step===3" [(ngModel)]="xAxis">
+          <ion-item>
+            <ion-label>Rocket</ion-label>
+            <ion-radio slot="start" value="Rocket"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Rocket Family</ion-label>
+            <ion-radio slot="start" value="RocketFamily"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Agency</ion-label>
+            <ion-radio slot="start" value="Agency"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Agency Type</ion-label>
+            <ion-radio slot="start" value="AgencyType"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
       </ion-card-content>
     </ion-card>
     <ion-card *ngIf="step===4" id="step_4">
