@@ -17,6 +17,7 @@ export class StatisticPage implements OnInit {
   what = 'Launches';
   dataRaw;
   dataFiltered;
+  globalSearch;
   nameSearch;
   fromFilter;
   toFilter;
@@ -106,6 +107,7 @@ export class StatisticPage implements OnInit {
     return this.table.filteredValue ? this.table.filteredValue : this.table.value;
   }
   private applyLaunchesFilter() {
+    this.table.filterGlobal(this.globalSearch, 'contains');
     this.table.filter(this.nameSearch, 'name', 'contains');
     if (this.fromFilter) {
       this.onDateSelect(this.fromFilter, 'gte');

@@ -97,6 +97,11 @@
               <col *ngFor="let col of columns" style="width:150px">
             </colgroup>
           </ng-template>
+          <ng-template pTemplate="caption">
+            <i class="pi pi-search" style="margin:4px 4px 0 0"></i>
+            <input [(ngModel)]="globalSearch" type="text" pInputText size="50" placeholder="Global Filter"
+              (input)="tt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+          </ng-template>
           <ng-template pTemplate="header" let-columns>
             <tr>
               <th *ngFor="let col of columns" [pSortableColumn]="col.field">
