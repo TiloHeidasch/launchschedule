@@ -612,15 +612,16 @@ export class StatisticPage implements OnInit {
     });
     return words.filter((value, index, self) => self.indexOf(value) === index);;
   }
-  private removeNonText(string) {
-    return string.replaceAll('/', ' ')
-      .replaceAll('-', ' ')
-      .replaceAll('\\', ' ')
-      .replaceAll('+', ' ')
-      .replaceAll(')', ' ')
-      .replaceAll('(', ' ')
-      .replaceAll(',', ' ')
-      .replaceAll('|', ' ');
+  private removeNonText(string: string): string {
+    while (string.includes('/')) { string = string.replace('/', ' ') }
+    while (string.includes('-')) { string = string.replace('-', ' ') }
+    while (string.includes('\\')) { string = string.replace('\\', ' ') }
+    while (string.includes('+')) { string = string.replace('+', ' ') }
+    while (string.includes('(')) { string = string.replace('(', ' ') }
+    while (string.includes(')')) { string = string.replace(')', ' ') }
+    while (string.includes(',')) { string = string.replace(',', ' ') }
+    while (string.includes('|')) { string = string.replace('|', ' ') }
+    return string;
   }
   private shuffleAxis() {
     switch (this.randbetween(0, 4)) {
