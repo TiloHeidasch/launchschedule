@@ -572,7 +572,7 @@ export class StatisticPage implements OnInit {
     setTimeout(() => {
       this.applyPreviousFilters();
       setTimeout(() => {
-        if (this.table.filteredValue.length < this.dataRaw.length / 100) {
+        if (this.table.filteredValue.length < this.dataRaw.length / 500) {
           this.shuffleFilter(words);
         } else {
           this.filterComplete();
@@ -619,6 +619,7 @@ export class StatisticPage implements OnInit {
       .replaceAll('+', ' ')
       .replaceAll(')', ' ')
       .replaceAll('(', ' ')
+      .replaceAll(',', ' ')
       .replaceAll('|', ' ');
   }
   private shuffleAxis() {
