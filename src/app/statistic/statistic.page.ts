@@ -80,22 +80,6 @@ export class StatisticPage implements OnInit {
     switch (this.what) {
       case 'Launches':
         return this.setupLaunchesTable();
-      case 'Agencies':
-        return this.setupAgenciesTable();
-      case 'Astronauts':
-        return this.setupAstronautsTable();
-      case 'Events':
-        return this.setupEventsTable();
-      case 'Facilities':
-        return this.setupFacilitiesTable();
-      case 'Pad':
-        return this.setupPadTable();
-      case 'Rocket':
-        return this.setupRocketTable();
-      case 'Spacecraft':
-        return this.setupSpacecraftTable();
-      case 'Spacestation':
-        return this.setupSpacestationTable();
       default:
         break;
     }
@@ -120,15 +104,6 @@ export class StatisticPage implements OnInit {
     this.table.filter(this.selectedAgencies, 'launch_service_provider__name', 'in')
     this.table.filter(this.selectedAgencyTypes, 'launch_service_provider__type', 'in')
   }
-
-  private applyAgenciesFilter() { }
-  private applyAstronautsFilter() { }
-  private applyEventsFilter() { }
-  private applyFacilitiesFilter() { }
-  private applyPadFilter() { }
-  private applyRocketFilter() { }
-  private applySpacecraftFilter() { }
-  private applySpacestationFilter() { }
 
   private async setupLaunchesTable() {
     this.cols = [
@@ -177,34 +152,10 @@ export class StatisticPage implements OnInit {
         return { label: agencyType, value: agencyType, }
       });
   }
-  private setupAgenciesTable() { }
-  private setupAstronautsTable() { }
-  private setupEventsTable() { }
-  private setupFacilitiesTable() { }
-  private setupPadTable() { }
-  private setupRocketTable() { }
-  private setupSpacecraftTable() { }
-  private setupSpacestationTable() { }
   private getLabels() {
     switch (this.what) {
       case 'Launches':
         return this.getLaunchesLabels();
-      case 'Agencies':
-        return this.getAgenciesLabels();
-      case 'Astronauts':
-        return this.getAstronautsLabels();
-      case 'Events':
-        return this.getEventsLabels();
-      case 'Facilities':
-        return this.getFacilitiesLabels();
-      case 'Pad':
-        return this.getPadLabels();
-      case 'Rocket':
-        return this.getRocketLabels();
-      case 'Spacecraft':
-        return this.getSpacecraftLabels();
-      case 'Spacestation':
-        return this.getSpacestationLabels();
       default:
         break;
     }
@@ -380,34 +331,10 @@ export class StatisticPage implements OnInit {
     }
   }
 
-  private getAgenciesLabels() { }
-  private getAstronautsLabels() { }
-  private getEventsLabels() { }
-  private getFacilitiesLabels() { }
-  private getPadLabels() { }
-  private getRocketLabels() { }
-  private getSpacecraftLabels() { }
-  private getSpacestationLabels() { }
   private getDataForLabels(labels) {
     switch (this.what) {
       case 'Launches':
         return this.getLaunchesDataForLabels(labels);
-      case 'Agencies':
-        return this.getAgenciesDataForLabels(labels);
-      case 'Astronauts':
-        return this.getAstronautsDataForLabels(labels);
-      case 'Events':
-        return this.getEventsDataForLabels(labels);
-      case 'Facilities':
-        return this.getFacilitiesDataForLabels(labels);
-      case 'Pad':
-        return this.getPadDataForLabels(labels);
-      case 'Rocket':
-        return this.getRocketDataForLabels(labels);
-      case 'Spacecraft':
-        return this.getSpacecraftDataForLabels(labels);
-      case 'Spacestation':
-        return this.getSpacestationDataForLabels(labels);
       default:
         break;
     }
@@ -442,14 +369,6 @@ export class StatisticPage implements OnInit {
     });
     return localData;
   }
-  private getAgenciesDataForLabels(labels) { }
-  private getAstronautsDataForLabels(labels) { }
-  private getEventsDataForLabels(labels) { }
-  private getFacilitiesDataForLabels(labels) { }
-  private getPadDataForLabels(labels) { }
-  private getRocketDataForLabels(labels) { }
-  private getSpacecraftDataForLabels(labels) { }
-  private getSpacestationDataForLabels(labels) { }
   private getColors(labels) {
     const colors = [];
     labels.forEach(label => {
