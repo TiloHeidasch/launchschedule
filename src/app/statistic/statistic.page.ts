@@ -232,7 +232,6 @@ export class StatisticPage implements OnInit {
       // year is not enough (it is less than 10 years)
       // check if months are enough
       const monthDiff = this.monthDiff(firstDate, lastDate);
-      console.log(monthDiff);
       const isMonthsEnough = monthDiff > amountDates;
       if (isMonthsEnough) {
         //months is enough
@@ -599,8 +598,6 @@ export class StatisticPage implements OnInit {
       ]
     }));
     names = names.filter((value, index, self) => self.indexOf(value) === index);
-    console.log(names);
-
     const words: string[] = [];
     names.forEach(name => {
       const wordsInName = name.split(' ');
