@@ -17,6 +17,7 @@ export class StatisticPage implements OnInit {
   what = 'Launches';
   dataRaw;
   dataFiltered;
+  globalSearch;
   nameSearch;
   fromFilter;
   toFilter;
@@ -106,6 +107,7 @@ export class StatisticPage implements OnInit {
     return this.table.filteredValue ? this.table.filteredValue : this.table.value;
   }
   private applyLaunchesFilter() {
+    this.table.filterGlobal(this.globalSearch, 'contains');
     this.table.filter(this.nameSearch, 'name', 'contains');
     if (this.fromFilter) {
       this.onDateSelect(this.fromFilter, 'gte');
@@ -558,7 +560,7 @@ export class StatisticPage implements OnInit {
     this.whatComplete();
     this.shuffleFilter();
   }
-  private shuffleFilter() {
+  private shuffleFilter(words?) {
     this.nameSearch = undefined;
     this.toFilter = undefined;
     this.fromFilter = undefined;
@@ -566,12 +568,12 @@ export class StatisticPage implements OnInit {
     this.selectedRocketFamilies = [];
     this.selectedAgencies = [];
     this.selectedAgencyTypes = [];
-    this.shuffleNameFilter();
+    words = this.shuffleNameFilter(words);
     setTimeout(() => {
       this.applyPreviousFilters();
       setTimeout(() => {
-        if (this.table.filteredValue.length < this.dataRaw.length / 100) {
-          this.shuffleFilter();
+        if (this.table.filteredValue.length < this.dataRaw.length / 500) {
+          this.shuffleFilter(words);
         } else {
           this.filterComplete();
           this.shuffleAxis();
@@ -579,32 +581,47 @@ export class StatisticPage implements OnInit {
       }, 300);
     }, 100);
   }
-  private shuffleNameFilter() {
-    const words: string[] = this.getAllPossibleWords();
-    const aWord = words[this.randbetween(0, words.length - 1)];
-    this.nameSearch = aWord;
+  private shuffleNameFilter(words?) {
+    const wordsLocal: string[] = words ? words : this.getAllPossibleWords();
+    const aWord = wordsLocal[this.randbetween(0, wordsLocal.length - 1)];
+    this.globalSearch = aWord;
+    return wordsLocal;
   }
   private getAllPossibleWords() {
-    const names: string[] = this.dataRaw.map(launch => { return launch.name });
+    let names = [];
+    names = names.concat(...this.dataRaw.map(launch => {
+      return [
+        this.removeNonText(launch.name),
+        this.removeNonText(launch.rocket__configuration__full_name),
+        this.removeNonText(launch.rocket__configuration__family),
+        this.removeNonText(launch.launch_service_provider__name),
+        this.removeNonText(launch.launch_service_provider__type),
+      ]
+    }));
+    names = names.filter((value, index, self) => self.indexOf(value) === index);
+    console.log(names);
+
     const words: string[] = [];
     names.forEach(name => {
-      const wordsInName = name
-        .replace('/', ' ')
-        .replace('-', ' ')
-        .replace('\\', ' ')
-        .replace('+', ' ')
-        .replace('(', ' ')
-        .replace(')', ' ')
-        .split(' ');
+      const wordsInName = name.split(' ');
       wordsInName.forEach(wordInName => {
         if (wordInName.length > 2) {
           words.push(wordInName);
         }
       });
     });
-    return words;
+    return words.filter((value, index, self) => self.indexOf(value) === index);;
   }
-
+  private removeNonText(string) {
+    return string.replaceAll('/', ' ')
+      .replaceAll('-', ' ')
+      .replaceAll('\\', ' ')
+      .replaceAll('+', ' ')
+      .replaceAll(')', ' ')
+      .replaceAll('(', ' ')
+      .replaceAll(',', ' ')
+      .replaceAll('|', ' ');
+  }
   private shuffleAxis() {
     switch (this.randbetween(0, 4)) {
       case 0:

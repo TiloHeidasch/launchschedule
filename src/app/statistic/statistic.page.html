@@ -84,8 +84,8 @@
           <ion-button *ngIf="step===2" (click)="filterComplete()" expand="block">
             Done
           </ion-button>
-          <ion-label *ngIf="step>2&&!nameSearch">{{dataFiltered.length}} Records</ion-label>
-          <ion-label *ngIf="step>2&&nameSearch">{{nameSearch}}</ion-label>
+          <ion-label *ngIf="step>2&&!globalSearch">{{dataFiltered.length}} Records</ion-label>
+          <ion-label *ngIf="step>2&&globalSearch">{{globalSearch}}</ion-label>
           <ion-button *ngIf="step>2" (click)="filterOpen()" expand="block">
             Redo
           </ion-button>
@@ -96,6 +96,11 @@
             <colgroup>
               <col *ngFor="let col of columns" style="width:150px">
             </colgroup>
+          </ng-template>
+          <ng-template pTemplate="caption">
+            <i class="pi pi-search" style="margin:4px 4px 0 0"></i>
+            <input [(ngModel)]="globalSearch" type="text" pInputText size="50" placeholder="Global Filter"
+              (input)="tt.filterGlobal($event.target.value, 'contains')" style="width:auto">
           </ng-template>
           <ng-template pTemplate="header" let-columns>
             <tr>
