@@ -24,6 +24,8 @@ jobs:
           java-version: 1.8
       - name: NPM Install
         run: npm install
+      - name: Fetch Data
+        run: node fetchLaunches.ts
       - name: Build with Ionic
         run: ionic build --prod
       - name: Capacitor Copy
