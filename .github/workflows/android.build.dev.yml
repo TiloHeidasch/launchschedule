@@ -35,7 +35,7 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x ./android/gradlew
       - name: Build with Gradle
-        run: cd android && ./gradlew buildDebug
+        run: cd android && ./gradlew build
       - name: LS
         run: ls -R
       - name: Upload a Build Artifact
