@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: LS
+        run: ls -R
       - name: Setup Node
         uses: actions/setup-node@v1.4.3
       - name: Setup Angular
@@ -33,7 +35,7 @@ jobs:
       - name: LS
         run: ls -R
       - name: Build with Gradle
-        run: ./gradlew buildDebug
+        run: ./android/gradlew buildDebug
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v2.1.4
         with:
