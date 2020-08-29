@@ -28,6 +28,8 @@ jobs:
         run: node fetchLaunches.ts
       - name: Build with Ionic
         run: ionic build --prod
+      - name: Capacitor Update
+        run: npx cap update android
       - name: Capacitor Copy
         run: npx cap copy
       - name: Make gradlew executable
