@@ -31,7 +31,7 @@ jobs:
       - name: Capacitor Copy
         run: npx cap copy
       - name: Make gradlew executable
-        run: chmod +x ./gradlew
+        run: chmod +x ./android/gradlew
       - name: Build with Gradle
         run: ./android/gradlew buildDebug´
       - name: LS
