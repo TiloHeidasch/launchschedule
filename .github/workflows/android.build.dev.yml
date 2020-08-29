@@ -30,8 +30,10 @@ jobs:
         run: ionic build --prod
       - name: Capacitor Copy
         run: npx cap copy
+      - name: LS
+        run: ls -R
       - name: Build with Gradle
-        run: ./android/gradlew build
+        run: ./gradlew buildDebug
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v2.1.4
         with:
