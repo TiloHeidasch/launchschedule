@@ -48,3 +48,13 @@ jobs:
         with:
           name: app-unsigned
           path: /android/app/build/outputs/apk/release/app-release-unsigned.apk
+      - name: Sign Apk
+        uses: r0adkll/sign-android-release@v1
+        with:
+          releaseDirectory: android/app/build/outputs/apk/release
+          signingKeyBase64: ${{ secrets.ANDROID_SIGNING_KEY }}
+          alias: ${{ secrets.ANDROID_KEY_ALIAS }}
+          keyStorePassword: ${{ secrets.ANDROID_KEY_STORE_PASSWORD }}
+          keyPassword: ${{ secrets.ANDROID_KEY_PASSWORD }}
+      - name: LS
+        run: ls -R
