@@ -38,8 +38,13 @@ jobs:
         run: cd android && ./gradlew build
       - name: LS
         run: ls -R
-      - name: Upload a Build Artifact
+      - name: Upload Debug Apk
         uses: actions/upload-artifact@v2.1.4
         with:
           name: app-debug
           path: android/app/build/outputs/apk/debug/app-debug.apk
+      - name: Upload Release Unsigned Apk
+        uses: actions/upload-artifact@v2.1.4
+        with:
+          name: app-unsigned
+          path: /android/app/build/outputs/apk/release/app-release-unsigned.apk
