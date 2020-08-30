@@ -35,22 +35,9 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x ./android/gradlew
       - name: Build with Gradle
-        run: cd android && ./gradlew build
-      - name: Sign Apk
-        uses: r0adkll/sign-android-release@v1
-        with:
-          releaseDirectory: android/app/build/outputs/apk/release
-          signingKeyBase64: ${{ secrets.ANDROID_SIGNING_KEY }}
-          alias: ${{ secrets.ANDROID_KEY_ALIAS }}
-          keyStorePassword: ${{ secrets.ANDROID_KEY_STORE_PASSWORD }}
-          keyPassword: ${{ secrets.ANDROID_KEY_PASSWORD }}
-      - name: Upload Release Apk
+        run: cd android && ./gradlew bundleRelease
+      - name: Upload Release Bundle
         uses: actions/upload-artifact@v2.1.4
         with:
-          name: app-signed
-          path: android/app/build/outputs/apk/release/app-release-unsigned-signed.apk
-      - name: Upload Unsigned Release Apk
-        uses: actions/upload-artifact@v2.1.4
-        with:
-          name: app-unsigned
-          path: android/app/build/outputs/apk/release/app-release-unsigned.apk
+          name: app-bundle
+          path: android/app/build/outputs/bundle/release/app-release.aab
