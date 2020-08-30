@@ -44,10 +44,13 @@ jobs:
           alias: ${{ secrets.ANDROID_KEY_ALIAS }}
           keyStorePassword: ${{ secrets.ANDROID_KEY_STORE_PASSWORD }}
           keyPassword: ${{ secrets.ANDROID_KEY_PASSWORD }}
-      - name: LS
-        run: ls -R
       - name: Upload Release Apk
         uses: actions/upload-artifact@v2.1.4
         with:
           name: app-signed
           path: android/app/build/outputs/apk/release/app-release-unsigned-signed.apk
+      - name: Upload Unsigned Release Apk
+        uses: actions/upload-artifact@v2.1.4
+        with:
+          name: app-unsigned
+          path: android/app/build/outputs/apk/release/app-release-unsigned.apk
