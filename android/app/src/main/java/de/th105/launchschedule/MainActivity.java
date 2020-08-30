@@ -1,4 +1,4 @@
-package io.ionic.starter;
+package de.th105.launchschedule;
 
 import android.os.Bundle;
 

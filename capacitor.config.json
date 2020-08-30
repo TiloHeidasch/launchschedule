@@ -1,6 +1,6 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "schedule",
+  "appId": "de.th105.launchschedule",
+  "appName": "Launch Schedule",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",
