@@ -36,18 +36,6 @@ jobs:
         run: chmod +x ./android/gradlew
       - name: Build with Gradle
         run: cd android && ./gradlew build
-      - name: LS
-        run: ls -R
-      - name: Upload Debug Apk
-        uses: actions/upload-artifact@v2.1.4
-        with:
-          name: app-debug
-          path: android/app/build/outputs/apk/debug/app-debug.apk
-      - name: Upload Release Unsigned Apk
-        uses: actions/upload-artifact@v2.1.4
-        with:
-          name: app-unsigned
-          path: /android/app/build/outputs/apk/release/app-release-unsigned.apk
       - name: Sign Apk
         uses: r0adkll/sign-android-release@v1
         with:
@@ -56,6 +44,8 @@ jobs:
           alias: ${{ secrets.ANDROID_KEY_ALIAS }}
           keyStorePassword: ${{ secrets.ANDROID_KEY_STORE_PASSWORD }}
           keyPassword: ${{ secrets.ANDROID_KEY_PASSWORD }}
+      - name: LS
+        run: ls -R
       - name: Upload Release Apk
         uses: actions/upload-artifact@v2.1.4
         with:
