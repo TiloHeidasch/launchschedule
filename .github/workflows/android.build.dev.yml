@@ -49,8 +49,10 @@ jobs:
           alias: ${{ secrets.ANDROID_KEY_ALIAS }}
           keyStorePassword: ${{ secrets.ANDROID_KEY_STORE_PASSWORD }}
           keyPassword: ${{ secrets.ANDROID_KEY_PASSWORD }}
+      - name: LS
+        run: ls -R
       - name: Upload Signed Release Bundle
         uses: actions/upload-artifact@v2.1.4
         with:
-          name: app-bundle-signed
-          path: android/app/build/outputs/bundle/release/app-release-signed.aab
+          name: build
+          path: android/app/build
