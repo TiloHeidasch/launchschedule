@@ -32,6 +32,8 @@ jobs:
         run: npx cap update android
       - name: Capacitor Copy
         run: npx cap copy
+      - name: Build Number
+        run: echo $GITHUB_RUN_ID
       - name: Build with Gradle
         run: cd android && ./gradlew bundleRelease
       - name: Sign Bundle
