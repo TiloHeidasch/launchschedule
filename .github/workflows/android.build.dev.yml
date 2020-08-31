@@ -54,5 +54,5 @@ jobs:
       - name: Upload Signed Release Bundle
         uses: actions/upload-artifact@v2.1.4
         with:
-          name: build
-          path: android/app/build
+          name: outputs
+          path: android/app/build/outputs
