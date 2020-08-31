@@ -36,11 +36,6 @@ jobs:
         run: chmod +x ./android/gradlew
       - name: Build with Gradle
         run: cd android && ./gradlew bundleRelease
-      - name: Upload Unsigned Release Bundle
-        uses: actions/upload-artifact@v2.1.4
-        with:
-          name: app-bundle-unsigned
-          path: android/app/build/outputs/bundle/release/app-release.aab
       - name: Sign Bundle
         uses: r0adkll/sign-android-release@v1
         with:
@@ -49,10 +44,8 @@ jobs:
           alias: ${{ secrets.ANDROID_KEY_ALIAS }}
           keyStorePassword: ${{ secrets.ANDROID_KEY_STORE_PASSWORD }}
           keyPassword: ${{ secrets.ANDROID_KEY_PASSWORD }}
-      - name: LS
-        run: ls -R
-      - name: Upload Signed Release Bundle
+      - name: Safe Signed Release Bundle Artifact
         uses: actions/upload-artifact@v2.1.4
         with:
-          name: outputs
-          path: android/app/build/outputs
+          name: app-bundle-signed
+          path: android/app/build/outputs/bundle/release/app-release.aab
