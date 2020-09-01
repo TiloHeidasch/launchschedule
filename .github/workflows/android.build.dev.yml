@@ -64,6 +64,8 @@ jobs:
     needs: web
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
       - name: Setup JDK 1.8
         uses: actions/setup-java@v1
         with:
