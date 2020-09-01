@@ -123,3 +123,16 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: theidasch/schedule
           tags: dev
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v1.4.3
+      - name: Setup Angular
+        run: npm install -g @angular/cli
+      - name: Run Lint
+        run: ng lint
