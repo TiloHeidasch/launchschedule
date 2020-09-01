@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
 
 // import { AccordionModule } from "primeng/accordion";
 // import { SharedModule } from "primeng/api";
@@ -78,7 +78,6 @@ import { TableModule } from "primeng/table";
 // import { TreeTableModule } from "primeng/treetable";
 // import { TriStateCheckboxModule } from "primeng/tristatecheckbox";
 // import { VirtualScrollerModule } from "primeng/virtualscroller";
-
 
 @NgModule({
   declarations: [],
@@ -240,6 +239,6 @@ import { TableModule } from "primeng/table";
     // TreeTableModule,
     // TriStateCheckboxModule,
     // VirtualScrollerModule,
-  ]
+  ],
 })
-export class PrimeNGModule { }
+export class PrimeNGModule {}

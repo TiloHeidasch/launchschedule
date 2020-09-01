@@ -1,20 +1,23 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { LaunchLibraryService } from '../launch-library.service';
-import { AstronautParamStoreService } from './astronaut-param-store.service';
-import { IonContent, ViewDidEnter, IonInfiniteScroll } from '@ionic/angular';
-
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { LaunchLibraryService } from "../launch-library.service";
+import { AstronautParamStoreService } from "./astronaut-param-store.service";
+import { IonContent, ViewDidEnter, IonInfiniteScroll } from "@ionic/angular";
 
 @Component({
-  selector: 'app-astronaut-overview',
-  templateUrl: './astronaut-overview.page.html',
-  styleUrls: ['./astronaut-overview.page.scss'],
+  selector: "app-astronaut-overview",
+  templateUrl: "./astronaut-overview.page.html",
+  styleUrls: ["./astronaut-overview.page.scss"],
 })
 export class AstronautOverviewPage implements OnInit, ViewDidEnter {
-  title = 'Astronauts';
+  title = "Astronauts";
   @ViewChild("astronautOverviewContent") content: IonContent;
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
-  constructor(private activatedRoute: ActivatedRoute, private service: LaunchLibraryService, public store: AstronautParamStoreService) { }
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private service: LaunchLibraryService,
+    public store: AstronautParamStoreService
+  ) {}
 
   ngOnInit() {
     if (this.store.astronauts.length === 0) {
@@ -30,15 +33,20 @@ export class AstronautOverviewPage implements OnInit, ViewDidEnter {
   async loadFirst() {
     try {
       this.infiniteScroll.disabled = false;
-    } catch (error) {
-
-    }
+    } catch (error) {}
     this.store.astronauts = [];
-    this.store.astronauts = (await this.service.getFirstAstronauts(this.store.search, this.store.status)).astronauts;
+    this.store.astronauts = (await this.service.getFirstAstronauts(
+      this.store.search,
+      this.store.status
+    )).astronauts;
   }
 
   async loadMore(event) {
-    const answer = await this.service.getNextAstronauts(this.store.astronauts.length, this.store.search, this.store.status);
+    const answer = await this.service.getNextAstronauts(
+      this.store.astronauts.length,
+      this.store.search,
+      this.store.status
+    );
     this.store.astronauts.push(...answer.astronauts);
     event.target.complete();
 
@@ -49,7 +57,7 @@ export class AstronautOverviewPage implements OnInit, ViewDidEnter {
     }
   }
   toggleFilter() {
-    this.store.showFilter = !this.store.showFilter
+    this.store.showFilter = !this.store.showFilter;
   }
   searchChange(event) {
     this.store.search = event.detail.value;

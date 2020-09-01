@@ -1,12 +1,17 @@
-<ion-card slideIn>
+<ion-card appSlideIn>
   <ion-card-header>
     <ion-card-subtitle>Video</ion-card-subtitle>
-    <ion-card-title>{{title}}</ion-card-title>
+    <ion-card-title>{{ title }}</ion-card-title>
   </ion-card-header>
   <ion-card-content>
-    <p>{{description}}</p>
-    <youtube-player *ngIf="id!=='0'" height="100%" width="100%" [videoId]="id"></youtube-player>
-    <div *ngIf="id==='0'">
+    <p>{{ description }}</p>
+    <youtube-player
+      *ngIf="id !== '0'"
+      height="100%"
+      width="100%"
+      [videoId]="id"
+    ></youtube-player>
+    <div *ngIf="id === '0'">
       <ion-item [href]="url">
         <ion-label>Link</ion-label>
       </ion-item>

@@ -11,12 +11,21 @@
     </ion-buttons>
   </ion-toolbar>
   <ion-toolbar *ngIf="store.showFilter">
-    <ion-searchbar (ionChange)="searchChange($event)" [value]="store.search" animated></ion-searchbar>
+    <ion-searchbar
+      (ionChange)="searchChange($event)"
+      [value]="store.search"
+      animated
+    ></ion-searchbar>
   </ion-toolbar>
   <ion-toolbar *ngIf="store.showFilter">
     <ion-item>
       <ion-label>Status</ion-label>
-      <ion-select [(ngModel)]="store.status" (ionChange)="loadFirst()" placeholder="Status" interface="action-sheet">
+      <ion-select
+        [(ngModel)]="store.status"
+        (ionChange)="loadFirst()"
+        placeholder="Status"
+        interface="action-sheet"
+      >
         <ion-select-option value="">None</ion-select-option>
         <ion-select-option value="1">Active</ion-select-option>
         <ion-select-option value="2">De-Orbited</ion-select-option>
@@ -27,13 +36,22 @@
   <ion-toolbar *ngIf="store.showFilter">
     <ion-item>
       <ion-label>Orbit</ion-label>
-      <ion-select [(ngModel)]="store.orbit" (ionChange)="loadFirst()" placeholder="Orbit" interface="action-sheet">
+      <ion-select
+        [(ngModel)]="store.orbit"
+        (ionChange)="loadFirst()"
+        placeholder="Orbit"
+        interface="action-sheet"
+      >
         <ion-select-option value="">None</ion-select-option>
         <ion-select-option value="0">Elliptical Orbit</ion-select-option>
         <ion-select-option value="1">Geostationary Orbit</ion-select-option>
-        <ion-select-option value="2">Geostationary Transfer Orbit</ion-select-option>
+        <ion-select-option value="2"
+          >Geostationary Transfer Orbit</ion-select-option
+        >
         <ion-select-option value="3">Geosynchronous Orbit</ion-select-option>
-        <ion-select-option value="4">Geosynchronous Transfer Orbit</ion-select-option>
+        <ion-select-option value="4"
+          >Geosynchronous Transfer Orbit</ion-select-option
+        >
         <ion-select-option value="5">Heliocentric L1</ion-select-option>
         <ion-select-option value="6">Heliocentric N/A</ion-select-option>
         <ion-select-option value="7">High Earth Orbit</ion-select-option>
@@ -43,18 +61,27 @@
         <ion-select-option value="11">Lunar Orbit</ion-select-option>
         <ion-select-option value="12">Medium Earth Orbit</ion-select-option>
         <ion-select-option value="13">Polar Orbit</ion-select-option>
-        <ion-select-option value="14">Solar Escape Trajectory</ion-select-option>
+        <ion-select-option value="14"
+          >Solar Escape Trajectory</ion-select-option
+        >
         <ion-select-option value="15">Sub-Orbital</ion-select-option>
         <ion-select-option value="16">Sun-Earth L2</ion-select-option>
         <ion-select-option value="17">Sun-Synchronous Orbit</ion-select-option>
-        <ion-select-option value="18">Supersynchronous Transfer Orbi</ion-select-option>
+        <ion-select-option value="18"
+          >Supersynchronous Transfer Orbi</ion-select-option
+        >
       </ion-select>
     </ion-item>
   </ion-toolbar>
   <ion-toolbar *ngIf="store.showFilter">
     <ion-item>
       <ion-label>Type</ion-label>
-      <ion-select [(ngModel)]="store.type" (ionChange)="loadFirst()" placeholder="Type" interface="action-sheet">
+      <ion-select
+        [(ngModel)]="store.type"
+        (ionChange)="loadFirst()"
+        placeholder="Type"
+        interface="action-sheet"
+      >
         <ion-select-option value="">None</ion-select-option>
         <ion-select-option value="1">Unknown</ion-select-option>
         <ion-select-option value="2">Government</ion-select-option>
@@ -64,7 +91,12 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content #spacestationOverviewContent [scrollEvents]="true" (ionScroll)="logScrolling($event)" [fullscreen]="true">
+<ion-content
+  #spacestationOverviewContent
+  [scrollEvents]="true"
+  (ionScroll)="logScrolling($event)"
+  [fullscreen]="true"
+>
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">{{title}}</ion-title>
@@ -74,11 +106,16 @@
   <div id="container">
     <ion-list>
       <div *ngFor="let spacestation of store.spacestations">
-        <spacestation-list-entry [spacestation]='spacestation'></spacestation-list-entry>
+        <app-spacestation-list-entry
+          [spacestation]="spacestation"
+        ></app-spacestation-list-entry>
       </div>
     </ion-list>
     <ion-infinite-scroll (ionInfinite)="loadMore($event)">
-      <ion-infinite-scroll-content loadingSpinner="circular" loadingText="Loading more spacestations...">
+      <ion-infinite-scroll-content
+        loadingSpinner="circular"
+        loadingText="Loading more spacestations..."
+      >
       </ion-infinite-scroll-content>
     </ion-infinite-scroll>
   </div>

@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { UpcomingPreviousAll } from '../types/upcoming-previous-all';
+import { Injectable } from "@angular/core";
+import { UpcomingPreviousAll } from "../types/upcoming-previous-all";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class LaunchParamStoreService {
   search: string;
@@ -12,10 +12,10 @@ export class LaunchParamStoreService {
   locationId: number;
   rocketId: number;
   agencyId: number;
-  showFilter: boolean = false;
+  showFilter = false;
   launches: any[] = [];
-  scrollY: number = 0;
+  scrollY = 0;
   upcomingPreviousAll: UpcomingPreviousAll = UpcomingPreviousAll.UPCOMING;
 
-  constructor() { }
+  constructor() {}
 }

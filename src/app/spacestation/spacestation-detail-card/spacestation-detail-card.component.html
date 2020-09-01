@@ -1,17 +1,31 @@
-<ion-card *ngIf="spacestation!==undefined">
+<ion-card *ngIf="spacestation !== undefined">
   <div id="image">
     <div class="image-wrapper">
-      <ion-img id="background" [src]="spacestation.image_url?spacestation.image_url:'assets/placeholder_1920.png'">
+      <ion-img
+        id="background"
+        [src]="
+          spacestation.image_url
+            ? spacestation.image_url
+            : 'assets/placeholder_1920.png'
+        "
+      >
       </ion-img>
     </div>
     <div class="image-wrapper">
-      <ion-img id="foreground" [src]="spacestation.image_url?spacestation.image_url:'assets/placeholder_1920.png'">
+      <ion-img
+        id="foreground"
+        [src]="
+          spacestation.image_url
+            ? spacestation.image_url
+            : 'assets/placeholder_1920.png'
+        "
+      >
       </ion-img>
     </div>
   </div>
   <ion-card-header>
-    <ion-card-subtitle>{{spacestation.type.name}}</ion-card-subtitle>
-    <ion-card-title>{{spacestation.name}}</ion-card-title>
+    <ion-card-subtitle>{{ spacestation.type.name }}</ion-card-subtitle>
+    <ion-card-title>{{ spacestation.name }}</ion-card-title>
   </ion-card-header>
   <ion-card-content>
     <div id="description">
@@ -20,7 +34,7 @@
           Description
         </ion-label>
       </ion-item>
-      <p>{{spacestation.description}}</p>
+      <p>{{ spacestation.description }}</p>
     </div>
     <div id="orbit">
       <ion-item>
@@ -28,24 +42,37 @@
           Orbit
         </ion-label>
       </ion-item>
-      <p>{{spacestation.orbit}}</p>
+      <p>{{ spacestation.orbit }}</p>
     </div>
-    <div id="docking_location" *ngIf="spacestation.docking_location.length>0">
+    <div id="docking_location" *ngIf="spacestation.docking_location.length > 0">
       <ion-item>
         <ion-label>
           Docking Ports
         </ion-label>
       </ion-item>
-      <div id="docking_port" *ngFor="let dockingLocation of spacestation.docking_location">
-        <span>{{dockingLocation.name}}:</span>
-        <ion-chip (click)="presentUnoccupiedToast(dockingLocation)" id="unoccupied" *ngIf="!dockingLocation.docked">
+      <div
+        id="docking_port"
+        *ngFor="let dockingLocation of spacestation.docking_location"
+      >
+        <span>{{ dockingLocation.name }}:</span>
+        <ion-chip
+          (click)="presentUnoccupiedToast(dockingLocation)"
+          id="unoccupied"
+          *ngIf="!dockingLocation.docked"
+        >
           <ion-icon name="radio-button-off" color="danger"></ion-icon>
           <ion-label>unoccupied</ion-label>
         </ion-chip>
-        <ion-chip (click)="presentDockingLocationActionSheet(dockingLocation)" id="vehicle"
-          *ngIf="dockingLocation.docked">
+        <ion-chip
+          (click)="presentDockingLocationActionSheet(dockingLocation)"
+          id="vehicle"
+          *ngIf="dockingLocation.docked"
+        >
           <ion-icon name="radio-button-on" color="success"></ion-icon>
-          <ion-label>{{dockingLocation.docked.flight_vehicle.spacecraft.spacecraft_config.name}}</ion-label>
+          <ion-label>{{
+            dockingLocation.docked.flight_vehicle.spacecraft.spacecraft_config
+              .name
+          }}</ion-label>
         </ion-chip>
       </div>
     </div>
@@ -57,43 +84,43 @@
       </ion-item>
       <ion-chip id="onboard_crew" *ngIf="spacestation.onboard_crew">
         <ion-icon name="body" color="dark"></ion-icon>
-        <ion-label>{{spacestation.onboard_crew}}</ion-label>
+        <ion-label>{{ spacestation.onboard_crew }}</ion-label>
       </ion-chip>
       <ion-chip id="volume" *ngIf="spacestation.volume">
         <ion-icon name="cube" color="dark"></ion-icon>
-        <ion-label>{{spacestation.volume}}m³</ion-label>
+        <ion-label>{{ spacestation.volume }}m³</ion-label>
       </ion-chip>
       <ion-chip id="width" *ngIf="spacestation.width">
         <ion-icon name="code-working" color="dark"></ion-icon>
-        <ion-label>{{spacestation.width}}m</ion-label>
+        <ion-label>{{ spacestation.width }}m</ion-label>
       </ion-chip>
       <ion-chip id="height" *ngIf="spacestation.height">
         <ion-icon name="arrow-up" color="dark"></ion-icon>
-        <ion-label>{{spacestation.height}}m</ion-label>
+        <ion-label>{{ spacestation.height }}m</ion-label>
       </ion-chip>
       <ion-chip id="mass" *ngIf="spacestation.mass">
         <ion-icon name="barbell" color="dark"></ion-icon>
-        <ion-label>{{spacestation.mass}}t</ion-label>
+        <ion-label>{{ spacestation.mass }}t</ion-label>
       </ion-chip>
-      <ion-chip id="in_use" *ngIf="spacestation.status.id===1">
+      <ion-chip id="in_use" *ngIf="spacestation.status.id === 1">
         <ion-icon name="checkmark-circle" color="success"></ion-icon>
-        <ion-label>{{spacestation.status.name}}</ion-label>
+        <ion-label>{{ spacestation.status.name }}</ion-label>
       </ion-chip>
-      <ion-chip id="deorbited" *ngIf="spacestation.status.id===2">
+      <ion-chip id="deorbited" *ngIf="spacestation.status.id === 2">
         <ion-icon name="caret-down-circle" color="danger"></ion-icon>
-        <ion-label>{{spacestation.status.name}}</ion-label>
+        <ion-label>{{ spacestation.status.name }}</ion-label>
       </ion-chip>
-      <ion-chip id="abandoned" *ngIf="spacestation.status.id===3">
+      <ion-chip id="abandoned" *ngIf="spacestation.status.id === 3">
         <ion-icon name="close-circle" color="warning"></ion-icon>
-        <ion-label>{{spacestation.status.name}}</ion-label>
+        <ion-label>{{ spacestation.status.name }}</ion-label>
       </ion-chip>
       <ion-chip id="founded" *ngIf="spacestation.founded">
         <ion-icon name="cloud-upload" color="dark"></ion-icon>
-        <ion-label>{{spacestation.founded}}</ion-label>
+        <ion-label>{{ spacestation.founded }}</ion-label>
       </ion-chip>
       <ion-chip id="deorbited" *ngIf="spacestation.deorbited">
         <ion-icon name="cloud-download" color="dark"></ion-icon>
-        <ion-label>{{spacestation.deorbited}}</ion-label>
+        <ion-label>{{ spacestation.deorbited }}</ion-label>
       </ion-chip>
     </div>
   </ion-card-content>

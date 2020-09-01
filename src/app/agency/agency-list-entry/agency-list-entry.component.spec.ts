@@ -1,16 +1,16 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { IonicModule } from "@ionic/angular";
 
-import { AgencyListEntryComponent } from './agency-list-entry.component';
+import { AgencyListEntryComponent } from "./agency-list-entry.component";
 
-describe('AgencyListEntryComponent', () => {
+describe("AgencyListEntryComponent", () => {
   let component: AgencyListEntryComponent;
   let fixture: ComponentFixture<AgencyListEntryComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AgencyListEntryComponent ],
-      imports: [IonicModule.forRoot()]
+      declarations: [AgencyListEntryComponent],
+      imports: [IonicModule.forRoot()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AgencyListEntryComponent);
@@ -18,7 +18,7 @@ describe('AgencyListEntryComponent', () => {
     fixture.detectChanges();
   }));
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

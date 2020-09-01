@@ -1,20 +1,23 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { LaunchLibraryService } from '../launch-library.service';
-import { RocketParamStoreService } from './rocket-param-store.service';
-import { IonContent, ViewDidEnter, IonInfiniteScroll } from '@ionic/angular';
-
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { LaunchLibraryService } from "../launch-library.service";
+import { RocketParamStoreService } from "./rocket-param-store.service";
+import { IonContent, ViewDidEnter, IonInfiniteScroll } from "@ionic/angular";
 
 @Component({
-  selector: 'app-rocket-overview',
-  templateUrl: './rocket-overview.page.html',
-  styleUrls: ['./rocket-overview.page.scss'],
+  selector: "app-rocket-overview",
+  templateUrl: "./rocket-overview.page.html",
+  styleUrls: ["./rocket-overview.page.scss"],
 })
 export class RocketOverviewPage implements OnInit, ViewDidEnter {
-  title = 'Rockets';
+  title = "Rockets";
   @ViewChild("rocketOverviewContent") content: IonContent;
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
-  constructor(private activatedRoute: ActivatedRoute, private service: LaunchLibraryService, public store: RocketParamStoreService) { }
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private service: LaunchLibraryService,
+    public store: RocketParamStoreService
+  ) {}
 
   ngOnInit() {
     if (this.store.rockets.length === 0) {
@@ -30,16 +33,23 @@ export class RocketOverviewPage implements OnInit, ViewDidEnter {
   async loadFirst() {
     try {
       this.infiniteScroll.disabled = false;
-    } catch (error) {
-
-    }
+    } catch (error) {}
     this.store.rockets = [];
-    const answer = await this.service.getFirstRockets(this.store.search, this.store.active, this.store.reusable);
+    const answer = await this.service.getFirstRockets(
+      this.store.search,
+      this.store.active,
+      this.store.reusable
+    );
     this.store.rockets = answer.rockets;
   }
 
   async loadMore(event) {
-    const answer = await this.service.getNextRockets(this.store.rockets.length, this.store.search, this.store.active, this.store.reusable);
+    const answer = await this.service.getNextRockets(
+      this.store.rockets.length,
+      this.store.search,
+      this.store.active,
+      this.store.reusable
+    );
     this.store.rockets.push(...answer.rockets);
     event.target.complete();
 
@@ -50,7 +60,7 @@ export class RocketOverviewPage implements OnInit, ViewDidEnter {
     }
   }
   toggleFilter() {
-    this.store.showFilter = !this.store.showFilter
+    this.store.showFilter = !this.store.showFilter;
   }
   searchChange(event) {
     this.store.search = event.detail.value;

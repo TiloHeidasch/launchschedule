@@ -1,8 +1,8 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed } from "@angular/core/testing";
 
-import { AgencyParamStoreService } from './agency-param-store.service';
+import { AgencyParamStoreService } from "./agency-param-store.service";
 
-describe('AgencyParamStoreService', () => {
+describe("AgencyParamStoreService", () => {
   let service: AgencyParamStoreService;
 
   beforeEach(() => {
@@ -10,7 +10,7 @@ describe('AgencyParamStoreService', () => {
     service = TestBed.inject(AgencyParamStoreService);
   });
 
-  it('should be created', () => {
+  it("should be created", () => {
     expect(service).toBeTruthy();
   });
 });

@@ -1,14 +1,14 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { FormsModule } from "@angular/forms";
 
-import { IonicModule } from '@ionic/angular';
+import { IonicModule } from "@ionic/angular";
 
-import { StatisticPageRoutingModule } from './statistic-routing.module';
+import { StatisticPageRoutingModule } from "./statistic-routing.module";
 
-import { StatisticPage } from './statistic.page';
-import { PrimeNGModule } from '../prime-ng/prime-ng.module';
-import { ChartsComponent } from './charts/charts.component';
+import { StatisticPage } from "./statistic.page";
+import { PrimeNGModule } from "../prime-ng/prime-ng.module";
+import { ChartsComponent } from "./charts/charts.component";
 
 @NgModule({
   imports: [
@@ -18,6 +18,6 @@ import { ChartsComponent } from './charts/charts.component';
     StatisticPageRoutingModule,
     PrimeNGModule,
   ],
-  declarations: [StatisticPage, ChartsComponent]
+  declarations: [StatisticPage, ChartsComponent],
 })
-export class StatisticPageModule { }
+export class StatisticPageModule {}

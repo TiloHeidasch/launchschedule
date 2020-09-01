@@ -1,20 +1,22 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { LaunchLibraryService } from '../launch-library.service';
-import { SpacestationParamStoreService } from './spacestation-param-store.service';
-import { IonContent, ViewDidEnter, IonInfiniteScroll } from '@ionic/angular';
-
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { LaunchLibraryService } from "../launch-library.service";
+import { SpacestationParamStoreService } from "./spacestation-param-store.service";
+import { IonContent, ViewDidEnter, IonInfiniteScroll } from "@ionic/angular";
 
 @Component({
-  selector: 'app-spacestation-overview',
-  templateUrl: './spacestation-overview.page.html',
-  styleUrls: ['./spacestation-overview.page.scss'],
+  selector: "app-spacestation-overview",
+  templateUrl: "./spacestation-overview.page.html",
+  styleUrls: ["./spacestation-overview.page.scss"],
 })
 export class SpacestationOverviewPage implements OnInit, ViewDidEnter {
-  title = 'Spacestations';
+  title = "Spacestations";
   @ViewChild("spacestationOverviewContent") content: IonContent;
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
-  constructor(private activatedRoute: ActivatedRoute, private service: LaunchLibraryService, public store: SpacestationParamStoreService) { }
+  constructor(
+    private service: LaunchLibraryService,
+    public store: SpacestationParamStoreService
+  ) {}
 
   ngOnInit() {
     if (this.store.spacestations.length === 0) {
@@ -30,15 +32,24 @@ export class SpacestationOverviewPage implements OnInit, ViewDidEnter {
   async loadFirst() {
     try {
       this.infiniteScroll.disabled = false;
-    } catch (error) {
-
-    }
+    } catch (error) {}
     this.store.spacestations = [];
-    this.store.spacestations = (await this.service.getFirstSpacestations(this.store.search, this.store.status, this.store.orbit, this.store.type)).spacestations;
+    this.store.spacestations = (await this.service.getFirstSpacestations(
+      this.store.search,
+      this.store.status,
+      this.store.orbit,
+      this.store.type
+    )).spacestations;
   }
 
   async loadMore(event) {
-    const answer = await this.service.getNextSpacestations(this.store.spacestations.length, this.store.search, this.store.status, this.store.orbit, this.store.type);
+    const answer = await this.service.getNextSpacestations(
+      this.store.spacestations.length,
+      this.store.search,
+      this.store.status,
+      this.store.orbit,
+      this.store.type
+    );
     this.store.spacestations.push(...answer.spacestations);
     event.target.complete();
 
@@ -49,7 +60,7 @@ export class SpacestationOverviewPage implements OnInit, ViewDidEnter {
     }
   }
   toggleFilter() {
-    this.store.showFilter = !this.store.showFilter
+    this.store.showFilter = !this.store.showFilter;
   }
   searchChange(event) {
     this.store.search = event.detail.value;

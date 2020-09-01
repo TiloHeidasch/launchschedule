@@ -1,15 +1,15 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class AgencyParamStoreService {
   search: string;
-  featured: boolean = true;
-  type: string = '';
-  countryCode: string = '';
-  showFilter: boolean = false;
+  featured = true;
+  type = "";
+  countryCode = "";
+  showFilter = false;
   agencies: any[] = [];
-  scrollY: number = 0;
-  constructor() { }
+  scrollY = 0;
+  constructor() {}
 }

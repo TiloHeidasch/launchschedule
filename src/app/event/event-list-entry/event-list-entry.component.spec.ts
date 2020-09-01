@@ -1,16 +1,16 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { IonicModule } from "@ionic/angular";
 
-import { EventListEntryComponent } from './event-list-entry.component';
+import { EventListEntryComponent } from "./event-list-entry.component";
 
-describe('EventListEntryComponent', () => {
+describe("EventListEntryComponent", () => {
   let component: EventListEntryComponent;
   let fixture: ComponentFixture<EventListEntryComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [EventListEntryComponent],
-      imports: [IonicModule.forRoot()]
+      imports: [IonicModule.forRoot()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(EventListEntryComponent);
@@ -18,7 +18,7 @@ describe('EventListEntryComponent', () => {
     fixture.detectChanges();
   }));
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

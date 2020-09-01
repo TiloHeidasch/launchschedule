@@ -1,70 +1,70 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
-import { Platform } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { ActivatedRoute } from '@angular/router';
+import { Platform } from "@ionic/angular";
+import { SplashScreen } from "@ionic-native/splash-screen/ngx";
+import { StatusBar } from "@ionic-native/status-bar/ngx";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: 'app.component.html',
-  styleUrls: ['app.component.scss']
+  selector: "app-root",
+  templateUrl: "app.component.html",
+  styleUrls: ["app.component.scss"],
 })
 export class AppComponent implements OnInit {
   public selectedIndex = 1;
   public appPages = [
     {
-      title: 'Launch',
-      url: '/launch',
-      icon: 'rocket'
+      title: "Launch",
+      url: "/launch",
+      icon: "rocket",
     },
     {
-      title: 'Agency',
-      url: '/agency',
-      icon: 'school'
+      title: "Agency",
+      url: "/agency",
+      icon: "school",
     },
     {
-      title: 'Astronaut',
-      url: '/astronaut',
-      icon: 'people'
+      title: "Astronaut",
+      url: "/astronaut",
+      icon: "people",
     },
     {
-      title: 'Event',
-      url: '/event',
-      icon: 'alert-circle'
+      title: "Event",
+      url: "/event",
+      icon: "alert-circle",
     },
     {
-      title: 'Facility',
-      url: '/location',
-      icon: 'business'
+      title: "Facility",
+      url: "/location",
+      icon: "business",
     },
     {
-      title: 'Pad',
-      url: '/pad',
-      icon: 'locate'
+      title: "Pad",
+      url: "/pad",
+      icon: "locate",
     },
     {
-      title: 'Rocket',
-      url: '/rocket',
-      icon: 'rocket'
+      title: "Rocket",
+      url: "/rocket",
+      icon: "rocket",
     },
     {
-      title: 'Statistic',
-      url: '/statistic',
-      icon: 'stats-chart'
+      title: "Statistic",
+      url: "/statistic",
+      icon: "stats-chart",
     },
     {
-      title: 'Spacecraft',
-      url: '/spacecraft',
-      icon: 'planet'
+      title: "Spacecraft",
+      url: "/spacecraft",
+      icon: "planet",
     },
     {
-      title: 'Spacestation',
-      url: '/spacestation',
-      icon: 'earth'
+      title: "Spacestation",
+      url: "/spacestation",
+      icon: "earth",
     },
   ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
+  public labels = ["Family", "Friends", "Notes", "Work", "Travel", "Reminders"];
 
   constructor(
     private platform: Platform,
@@ -82,9 +82,11 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    const path = window.location.hash.split('/')[1];
+    const path = window.location.hash.split("/")[1];
     if (path !== undefined) {
-      this.selectedIndex = this.appPages.findIndex(page => page.url.toLowerCase() === '/' + path.toLowerCase());
+      this.selectedIndex = this.appPages.findIndex(
+        (page) => page.url.toLowerCase() === "/" + path.toLowerCase()
+      );
     }
   }
 }

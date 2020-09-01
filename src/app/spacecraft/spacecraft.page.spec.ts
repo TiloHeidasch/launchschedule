@@ -1,16 +1,16 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { IonicModule } from "@ionic/angular";
 
-import { SpacecraftPage } from './spacecraft.page';
+import { SpacecraftPage } from "./spacecraft.page";
 
-describe('SpacecraftPage', () => {
+describe("SpacecraftPage", () => {
   let component: SpacecraftPage;
   let fixture: ComponentFixture<SpacecraftPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [SpacecraftPage],
-      imports: [IonicModule.forRoot()]
+      imports: [IonicModule.forRoot()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(SpacecraftPage);
@@ -18,7 +18,7 @@ describe('SpacecraftPage', () => {
     fixture.detectChanges();
   }));
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

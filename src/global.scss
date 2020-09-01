@@ -26,35 +26,35 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 @font-face {
-    font-family: "DotMatrix";
-    src: url("~/assets/fonts/minisystem.ttf") format("truetype");
-    font-weight: 400;
-    font-style: normal;
+  font-family: "DotMatrix";
+  src: url("~/assets/fonts/minisystem.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
 }
 ion-card {
-    transition: 0.2s;
+  transition: 0.2s;
 }
 
 .exit-enter-styles {
-    opacity: 0;
-    transform: translateX(50%);
+  opacity: 0;
+  transform: translateX(50%);
 }
 .legend {
-    overflow: auto;
-    white-space: nowrap;
-    display: grid;
-    grid-template-columns: auto auto auto;
-    padding-bottom: 1rem;
-    margin-bottom: 1rem;
-    .list-entry {
-        display: inline-flex;
-        align-items: center;
-        margin-right: 1rem;
-        .chart-color {
-            width: 1rem;
-            height: 1rem;
-            border-radius: 0.5rem;
-            margin-right: 0.5rem;
-        }
+  overflow: auto;
+  white-space: nowrap;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  .list-entry {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 1rem;
+    .chart-color {
+      width: 1rem;
+      height: 1rem;
+      border-radius: 0.5rem;
+      margin-right: 0.5rem;
     }
+  }
 }

@@ -11,18 +11,30 @@
     </ion-buttons>
   </ion-toolbar>
   <ion-toolbar *ngIf="store.showFilter">
-    <ion-searchbar (ionChange)="searchChange($event)" [value]="store.search" animated></ion-searchbar>
+    <ion-searchbar
+      (ionChange)="searchChange($event)"
+      [value]="store.search"
+      animated
+    ></ion-searchbar>
   </ion-toolbar>
   <ion-toolbar *ngIf="store.showFilter">
     <ion-item>
       <ion-label>Only featured</ion-label>
-      <ion-toggle (ionChange)="loadFirst()" [(ngModel)]="store.featured"></ion-toggle>
+      <ion-toggle
+        (ionChange)="loadFirst()"
+        [(ngModel)]="store.featured"
+      ></ion-toggle>
     </ion-item>
   </ion-toolbar>
   <ion-toolbar *ngIf="store.showFilter">
     <ion-item>
       <ion-label>Type</ion-label>
-      <ion-select [(ngModel)]="store.type" (ionChange)="loadFirst()" placeholder="Type" interface="action-sheet">
+      <ion-select
+        [(ngModel)]="store.type"
+        (ionChange)="loadFirst()"
+        placeholder="Type"
+        interface="action-sheet"
+      >
         <ion-select-option value="">None</ion-select-option>
         <ion-select-option value="1">Government</ion-select-option>
         <ion-select-option value="2">Multinational</ion-select-option>
@@ -36,20 +48,30 @@
   <ion-toolbar *ngIf="store.showFilter">
     <ion-item>
       <ion-label>Country</ion-label>
-      <ion-select [(ngModel)]="store.countryCode" (ionChange)="loadFirst()" placeholder="Type" interface="action-sheet">
+      <ion-select
+        [(ngModel)]="store.countryCode"
+        (ionChange)="loadFirst()"
+        placeholder="Type"
+        interface="action-sheet"
+      >
         <ion-select-option value="">None</ion-select-option>
-        <ion-select-option *ngFor="let countryCode of CountryCode | keyvalue" [value]="countryCode.key">
-          {{countryCode.value}}</ion-select-option>
+        <ion-select-option
+          *ngFor="let countryCode of CountryCode | keyvalue"
+          [value]="countryCode.key"
+        >
+          {{countryCode.value}}</ion-select-option
+        >
       </ion-select>
     </ion-item>
   </ion-toolbar>
 </ion-header>
 
-
-
-
-
-<ion-content #agencyOverviewContent [scrollEvents]="true" (ionScroll)="logScrolling($event)" [fullscreen]="true">
+<ion-content
+  #agencyOverviewContent
+  [scrollEvents]="true"
+  (ionScroll)="logScrolling($event)"
+  [fullscreen]="true"
+>
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">{{title}}</ion-title>
@@ -59,11 +81,14 @@
   <div id="container">
     <ion-list>
       <div *ngFor="let agency of store.agencies">
-        <agency-list-entry [agency]='agency'></agency-list-entry>
+        <app-agency-list-entry [agency]="agency"></app-agency-list-entry>
       </div>
     </ion-list>
     <ion-infinite-scroll (ionInfinite)="loadMore($event)">
-      <ion-infinite-scroll-content loadingSpinner="circular" loadingText="Loading more agencies...">
+      <ion-infinite-scroll-content
+        loadingSpinner="circular"
+        loadingText="Loading more agencies..."
+      >
       </ion-infinite-scroll-content>
     </ion-infinite-scroll>
   </div>

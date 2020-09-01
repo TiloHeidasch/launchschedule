@@ -1,17 +1,31 @@
-<ion-card *ngIf="location!==undefined">
+<ion-card *ngIf="location !== undefined">
   <div id="image">
     <div class="image-wrapper">
-      <ion-img id="background" [src]="location.map_image?location.map_image:'assets/placeholder_1920.png'">
+      <ion-img
+        id="background"
+        [src]="
+          location.map_image
+            ? location.map_image
+            : 'assets/placeholder_1920.png'
+        "
+      >
       </ion-img>
     </div>
     <div class="image-wrapper">
-      <ion-img id="foreground" [src]="location.map_image?location.map_image:'assets/placeholder_1920.png'">
+      <ion-img
+        id="foreground"
+        [src]="
+          location.map_image
+            ? location.map_image
+            : 'assets/placeholder_1920.png'
+        "
+      >
       </ion-img>
     </div>
   </div>
   <ion-card-header>
-    <ion-card-subtitle>{{location.country_code}}</ion-card-subtitle>
-    <ion-card-title>{{location.name}}</ion-card-title>
+    <ion-card-subtitle>{{ location.country_code }}</ion-card-subtitle>
+    <ion-card-title>{{ location.name }}</ion-card-title>
   </ion-card-header>
   <ion-card-content>
     <div id="specifications">
@@ -22,11 +36,11 @@
       </ion-item>
       <ion-chip id="total_launch_count">
         <ion-icon name="trending-up" color="dark"></ion-icon>
-        <ion-label>{{location.total_launch_count}}</ion-label>
+        <ion-label>{{ location.total_launch_count }}</ion-label>
       </ion-chip>
       <ion-chip id="total_landing_count">
         <ion-icon name="trending-down" color="dark"></ion-icon>
-        <ion-label>{{location.total_landing_count}}</ion-label>
+        <ion-label>{{ location.total_landing_count }}</ion-label>
       </ion-chip>
     </div>
   </ion-card-content>

@@ -1,22 +1,21 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input } from "@angular/core";
 
 @Component({
-  selector: 'launch-list-entry',
-  templateUrl: './launch-list-entry.component.html',
-  styleUrls: ['./launch-list-entry.component.scss'],
+  selector: "app-launch-list-entry",
+  templateUrl: "./launch-list-entry.component.html",
+  styleUrls: ["./launch-list-entry.component.scss"],
 })
 export class LaunchListEntryComponent implements OnInit {
-  @Input('launch') launch;
+  @Input() launch;
   title: string;
   subtitle: string;
   date: Date;
   imageUrl: string;
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
-    this.title = this.launch.name.split('|')[1].trim();
-    this.subtitle = this.launch.name.split('|')[0].trim();
+    this.title = this.launch.name.split("|")[1].trim();
+    this.subtitle = this.launch.name.split("|")[0].trim();
     this.date = new Date(this.launch.net);
   }
-
 }

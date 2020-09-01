@@ -16,16 +16,24 @@
 
   <div id="container" *ngIf="launch!==undefined">
     <div id="launch">
-      <launch-detail-card [launch]='launch'></launch-detail-card>
+      <app-launch-detail-card [launch]="launch"></app-launch-detail-card>
     </div>
-    <div id="crew" *ngIf="launch.rocket.spacecraft_stage && launch.rocket.spacecraft_stage.launch_crew">
-      <div class="crew-member" *ngFor="let member of launch.rocket.spacecraft_stage.launch_crew">
+    <div
+      id="crew"
+      *ngIf="launch.rocket.spacecraft_stage && launch.rocket.spacecraft_stage.launch_crew"
+    >
+      <div
+        class="crew-member"
+        *ngFor="let member of launch.rocket.spacecraft_stage.launch_crew"
+      >
         <ion-item>
           <ion-label>
             {{member.role}}
           </ion-label>
         </ion-item>
-        <astronaut-list-entry [id]="member.astronaut.id"></astronaut-list-entry>
+        <app-astronaut-list-entry
+          [id]="member.astronaut.id"
+        ></app-astronaut-list-entry>
       </div>
     </div>
     <div id="rocket">
@@ -34,7 +42,9 @@
           Rocket
         </ion-label>
       </ion-item>
-      <rocket-list-entry [rocket]='launch.rocket.configuration'></rocket-list-entry>
+      <app-rocket-list-entry
+        [rocket]="launch.rocket.configuration"
+      ></app-rocket-list-entry>
     </div>
     <div id="mission" *ngIf="launch.mission">
       <ion-item>
@@ -42,7 +52,9 @@
           Mission
         </ion-label>
       </ion-item>
-      <mission-list-entry [mission]='launch.mission'></mission-list-entry>
+      <app-mission-list-entry
+        [mission]="launch.mission"
+      ></app-mission-list-entry>
     </div>
     <div id="pad">
       <ion-item>
@@ -50,7 +62,7 @@
           Pad
         </ion-label>
       </ion-item>
-      <pad-list-entry [pad]='launch.pad'></pad-list-entry>
+      <app-pad-list-entry [pad]="launch.pad"></app-pad-list-entry>
     </div>
     <div id="agency">
       <ion-item>
@@ -58,7 +70,9 @@
           Agency
         </ion-label>
       </ion-item>
-      <agency-list-entry [agency]='launch.launch_service_provider'></agency-list-entry>
+      <app-agency-list-entry
+        [agency]="launch.launch_service_provider"
+      ></app-agency-list-entry>
     </div>
     <div id="video" *ngIf="launch.vidURLs && launch.vidURLs.length>0">
       <ion-item>
@@ -66,7 +80,10 @@
           Videos
         </ion-label>
       </ion-item>
-      <youtube-video *ngFor="let video of launch.vidURLs" [launchVideo]='video'></youtube-video>
+      <app-youtube-video
+        *ngFor="let video of launch.vidURLs"
+        [launchVideo]="video"
+      ></app-youtube-video>
     </div>
   </div>
 </ion-content>

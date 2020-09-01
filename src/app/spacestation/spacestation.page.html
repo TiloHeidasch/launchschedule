@@ -16,7 +16,9 @@
 
   <div id="container" *ngIf="spacestation!==undefined">
     <div id="spacestation">
-      <spacestation-detail-card [spacestation]='spacestation'></spacestation-detail-card>
+      <app-spacestation-detail-card
+        [spacestation]="spacestation"
+      ></app-spacestation-detail-card>
     </div>
     <div id="expeditions" *ngIf="spacestation.active_expeditions">
       <div *ngFor="let expedition of spacestation.active_expeditions">
@@ -31,7 +33,9 @@
               {{member.role}}
             </ion-label>
           </ion-item>
-          <astronaut-list-entry [id]="member.astronaut.id"></astronaut-list-entry>
+          <app-astronaut-list-entry
+            [id]="member.astronaut.id"
+          ></app-astronaut-list-entry>
         </div>
       </div>
     </div>
@@ -39,9 +43,11 @@
       <ion-item>
         Owners
       </ion-item>
-      <agency-list-entry *ngFor="let agency of spacestation.owners" [id]='agency.id'>
-      </agency-list-entry>
+      <app-agency-list-entry
+        *ngFor="let agency of spacestation.owners"
+        [id]="agency.id"
+      >
+      </app-agency-list-entry>
     </div>
-
   </div>
 </ion-content>

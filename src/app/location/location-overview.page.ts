@@ -1,22 +1,25 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { LaunchLibraryService } from '../launch-library.service';
-import { LocationParamStoreService } from './location-param-store.service';
-import { IonContent, ViewDidEnter, IonInfiniteScroll } from '@ionic/angular';
-import { CountryCode } from '../types/country-codes';
-
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { LaunchLibraryService } from "../launch-library.service";
+import { LocationParamStoreService } from "./location-param-store.service";
+import { IonContent, ViewDidEnter, IonInfiniteScroll } from "@ionic/angular";
+import { CountryCode } from "../types/country-codes";
 
 @Component({
-  selector: 'app-location-overview',
-  templateUrl: './location-overview.page.html',
-  styleUrls: ['./location-overview.page.scss'],
+  selector: "app-location-overview",
+  templateUrl: "./location-overview.page.html",
+  styleUrls: ["./location-overview.page.scss"],
 })
 export class LocationOverviewPage implements OnInit, ViewDidEnter {
-  title = 'Facilities';
+  title = "Facilities";
   @ViewChild("locationOverviewContent") content: IonContent;
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   CountryCode = CountryCode;
-  constructor(private activatedRoute: ActivatedRoute, private service: LaunchLibraryService, public store: LocationParamStoreService) { }
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private service: LaunchLibraryService,
+    public store: LocationParamStoreService
+  ) {}
 
   ngOnInit() {
     if (this.store.locations.length === 0) {
@@ -32,15 +35,20 @@ export class LocationOverviewPage implements OnInit, ViewDidEnter {
   async loadFirst() {
     try {
       this.infiniteScroll.disabled = false;
-    } catch (error) {
-
-    }
+    } catch (error) {}
     this.store.locations = [];
-    this.store.locations = (await this.service.getFirstLocations(this.store.search, this.store.countryCode)).locations;
+    this.store.locations = (await this.service.getFirstLocations(
+      this.store.search,
+      this.store.countryCode
+    )).locations;
   }
 
   async loadMore(event) {
-    const answer = await this.service.getNextLocations(this.store.locations.length, this.store.search, this.store.countryCode);
+    const answer = await this.service.getNextLocations(
+      this.store.locations.length,
+      this.store.search,
+      this.store.countryCode
+    );
     this.store.locations.push(...answer.locations);
     event.target.complete();
 
@@ -51,7 +59,7 @@ export class LocationOverviewPage implements OnInit, ViewDidEnter {
     }
   }
   toggleFilter() {
-    this.store.showFilter = !this.store.showFilter
+    this.store.showFilter = !this.store.showFilter;
   }
   searchChange(event) {
     this.store.search = event.detail.value;

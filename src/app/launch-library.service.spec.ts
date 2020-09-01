@@ -1,8 +1,8 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed } from "@angular/core/testing";
 
-import { LaunchLibraryService } from './launch-library.service';
+import { LaunchLibraryService } from "./launch-library.service";
 
-describe('LaunchLibraryService', () => {
+describe("LaunchLibraryService", () => {
   let service: LaunchLibraryService;
 
   beforeEach(() => {
@@ -10,7 +10,7 @@ describe('LaunchLibraryService', () => {
     service = TestBed.inject(LaunchLibraryService);
   });
 
-  it('should be created', () => {
+  it("should be created", () => {
     expect(service).toBeTruthy();
   });
 });

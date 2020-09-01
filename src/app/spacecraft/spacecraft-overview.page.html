@@ -11,7 +11,11 @@
     </ion-buttons>
   </ion-toolbar>
   <ion-toolbar *ngIf="store.showFilter">
-    <ion-searchbar (ionChange)="searchChange($event)" [value]="store.search" animated></ion-searchbar>
+    <ion-searchbar
+      (ionChange)="searchChange($event)"
+      [value]="store.search"
+      animated
+    ></ion-searchbar>
   </ion-toolbar>
   <ion-toolbar *ngIf="store.showFilter">
     <ion-segment (ionChange)="loadFirst()" [(ngModel)]="store.humanRated">
@@ -47,7 +51,12 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content #spacecraftOverviewContent [scrollEvents]="true" (ionScroll)="logScrolling($event)" [fullscreen]="true">
+<ion-content
+  #spacecraftOverviewContent
+  [scrollEvents]="true"
+  (ionScroll)="logScrolling($event)"
+  [fullscreen]="true"
+>
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">{{title}}</ion-title>
@@ -57,11 +66,16 @@
   <div id="container">
     <ion-list>
       <div *ngFor="let spacecraft of store.spacecrafts">
-        <spacecraft-list-entry [spacecraft]='spacecraft'></spacecraft-list-entry>
+        <app-spacecraft-list-entry
+          [spacecraft]="spacecraft"
+        ></app-spacecraft-list-entry>
       </div>
     </ion-list>
     <ion-infinite-scroll (ionInfinite)="loadMore($event)">
-      <ion-infinite-scroll-content loadingSpinner="circular" loadingText="Loading more spacecrafts...">
+      <ion-infinite-scroll-content
+        loadingSpinner="circular"
+        loadingText="Loading more spacecrafts..."
+      >
       </ion-infinite-scroll-content>
     </ion-infinite-scroll>
   </div>

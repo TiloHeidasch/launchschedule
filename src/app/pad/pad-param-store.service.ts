@@ -1,14 +1,14 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class PadParamStoreService {
   search: string;
 
-  showFilter: boolean = false;
+  showFilter = false;
   pads: any[] = [];
-  scrollY: number = 0;
+  scrollY = 0;
 
-  constructor() { }
+  constructor() {}
 }

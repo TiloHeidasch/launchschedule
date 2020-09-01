@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  launchLibrary: 'https://lldev.thespacedevs.com'
+  launchLibrary: "https://lldev.thespacedevs.com",
 };
 
 /*

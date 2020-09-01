@@ -1,16 +1,16 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { IonicModule } from "@ionic/angular";
 
-import { AstronautDetailCardComponent } from './astronaut-detail-card.component';
+import { AstronautDetailCardComponent } from "./astronaut-detail-card.component";
 
-describe('AstronautDetailCardComponent', () => {
+describe("AstronautDetailCardComponent", () => {
   let component: AstronautDetailCardComponent;
   let fixture: ComponentFixture<AstronautDetailCardComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [AstronautDetailCardComponent],
-      imports: [IonicModule.forRoot()]
+      imports: [IonicModule.forRoot()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AstronautDetailCardComponent);
@@ -18,7 +18,7 @@ describe('AstronautDetailCardComponent', () => {
     fixture.detectChanges();
   }));
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

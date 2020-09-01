@@ -16,20 +16,26 @@
 
   <div id="container" *ngIf="agency!==undefined">
     <div id="agency">
-      <agency-detail-card [agency]='agency'></agency-detail-card>
+      <app-agency-detail-card [agency]="agency"></app-agency-detail-card>
     </div>
     <div id="rocket-list">
-      <rocket-list-entry *ngFor="let rocket of agency.launcher_list" [rocket]='rocket'></rocket-list-entry>
+      <app-rocket-list-entry
+        *ngFor="let rocket of agency.launcher_list"
+        [rocket]="rocket"
+      ></app-rocket-list-entry>
     </div>
     <div id="spacecraft-list">
-      <spacecraft-list-entry *ngFor="let spacecraft of agency.spacecraft_list" [spacecraft]='spacecraft'>
-      </spacecraft-list-entry>
+      <app-spacecraft-list-entry
+        *ngFor="let spacecraft of agency.spacecraft_list"
+        [spacecraft]="spacecraft"
+      >
+      </app-spacecraft-list-entry>
     </div>
     <!-- <div id="location">
-      <location-detail-card [location]='agency.location'></location-detail-card>
+      <app-location-detail-card [location]='agency.location'></app-location-detail-card>
     </div>
     <div id="agency">
-      <agency-detail-card [agency]='agency.lsp'></agency-detail-card>
+      <app-agency-detail-card [agency]='agency.lsp'></app-agency-detail-card>
     </div> -->
   </div>
 </ion-content>

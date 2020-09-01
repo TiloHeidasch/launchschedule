@@ -1,33 +1,50 @@
-<ion-card *ngIf="launch!==undefined" slideIn>
+<ion-card *ngIf="launch !== undefined" appSlideIn>
   <div id="image">
     <div class="image-wrapper">
-      <ion-img id="background" [src]="imageUrl?imageUrl:'assets/placeholder_1920.png'"></ion-img>
+      <ion-img
+        id="background"
+        [src]="imageUrl ? imageUrl : 'assets/placeholder_1920.png'"
+      ></ion-img>
     </div>
     <div class="image-wrapper">
-      <ion-img id="foreground" [src]="imageUrl?imageUrl:'assets/placeholder_1920.png'"></ion-img>
+      <ion-img
+        id="foreground"
+        [src]="imageUrl ? imageUrl : 'assets/placeholder_1920.png'"
+      ></ion-img>
     </div>
   </div>
   <ion-card-header>
-    <ion-card-subtitle>{{subtitle}}</ion-card-subtitle>
-    <ion-card-title>{{title}}</ion-card-title>
+    <ion-card-subtitle>{{ subtitle }}</ion-card-subtitle>
+    <ion-card-title>{{ title }}</ion-card-title>
   </ion-card-header>
   <ion-card-content>
     <div id="content">
-      <launch-status [status]="launch.status"></launch-status>
-      <countdown [date]='date'></countdown>
+      <app-launch-status [status]="launch.status"></app-launch-status>
+      <app-countdown [date]="date"></app-countdown>
       <div id="links">
-        <ion-item *ngFor="let infoURLObject of launch.infoURLs; let i=index" [href]="infoURLObject.url">
+        <ion-item
+          *ngFor="let infoURLObject of launch.infoURLs; let i = index"
+          [href]="infoURLObject.url"
+        >
           <ion-label>More Info</ion-label>
         </ion-item>
       </div>
       <div id="social">
-        <ion-chip *ngIf="launch.hashtag" (click)="navigate('https://twitter.com/hashtag/',launch.hashtag)">
+        <ion-chip
+          *ngIf="launch.hashtag"
+          (click)="navigate('https://twitter.com/hashtag/', launch.hashtag)"
+        >
           <ion-icon name="logo-twitter" color="dark"></ion-icon>
-          <ion-label>{{launch.hashtag}}</ion-label>
+          <ion-label>{{ launch.hashtag }}</ion-label>
         </ion-chip>
-        <ion-chip *ngIf="launch.hashtag" (click)="navigate('https://www.instagram.com/explore/tags/',launch.hashtag)">
+        <ion-chip
+          *ngIf="launch.hashtag"
+          (click)="
+            navigate('https://www.instagram.com/explore/tags/', launch.hashtag)
+          "
+        >
           <ion-icon name="logo-instagram" color="dark"></ion-icon>
-          <ion-label>{{launch.hashtag}}</ion-label>
+          <ion-label>{{ launch.hashtag }}</ion-label>
         </ion-chip>
       </div>
     </div>

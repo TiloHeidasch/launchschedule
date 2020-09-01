@@ -16,7 +16,7 @@
 
   <div id="container" *ngIf="event!==undefined">
     <div id="event">
-      <event-detail-card [event]='event'></event-detail-card>
+      <app-event-detail-card [event]="event"></app-event-detail-card>
     </div>
     <div id="launches" *ngIf="event.launches.length>0">
       <ion-item>
@@ -24,15 +24,23 @@
           Launches
         </ion-label>
       </ion-item>
-      <launch-list-entry *ngFor="let launch of event.launches" [launch]="launch"></launch-list-entry>
+      <app-launch-list-entry
+        *ngFor="let launch of event.launches"
+        [launch]="launch"
+      ></app-launch-list-entry>
     </div>
-    <div id="spacestations" *ngIf="event.expeditions.length>0 && event.expeditions[0].spacestation">
+    <div
+      id="spacestations"
+      *ngIf="event.expeditions.length>0 && event.expeditions[0].spacestation"
+    >
       <ion-item>
         <ion-label>
           Spacestation
         </ion-label>
       </ion-item>
-      <spacestation-list-entry [id]="event.expeditions[0].spacestation.id"></spacestation-list-entry>
+      <app-spacestation-list-entry
+        [id]="event.expeditions[0].spacestation.id"
+      ></app-spacestation-list-entry>
     </div>
     <div id="video" *ngIf="event.video_url">
       <ion-item>
@@ -40,7 +48,7 @@
           Video
         </ion-label>
       </ion-item>
-      <youtube-video [url]='event.video_url'></youtube-video>
+      <app-youtube-video [url]="event.video_url"></app-youtube-video>
     </div>
   </div>
 </ion-content>

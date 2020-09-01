@@ -1,8 +1,8 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed } from "@angular/core/testing";
 
-import { LocationParamStoreService } from './location-param-store.service';
+import { LocationParamStoreService } from "./location-param-store.service";
 
-describe('LocationParamStoreService', () => {
+describe("LocationParamStoreService", () => {
   let service: LocationParamStoreService;
 
   beforeEach(() => {
@@ -10,7 +10,7 @@ describe('LocationParamStoreService', () => {
     service = TestBed.inject(LocationParamStoreService);
   });
 
-  it('should be created', () => {
+  it("should be created", () => {
     expect(service).toBeTruthy();
   });
 });
