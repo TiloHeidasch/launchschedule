@@ -6,7 +6,7 @@ android {
         applicationId "de.th105.launchschedule"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode System.getenv("GITHUB_RUN_ID") as Integer ?: 1
+        versionCode System.getenv("GITHUB_RUN_NUMBER") as Integer ?: 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
