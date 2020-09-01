@@ -134,5 +134,9 @@ jobs:
         uses: actions/setup-node@v1.4.3
       - name: Setup Angular
         run: npm install -g @angular/cli
+      - name: Setup Ionic
+        run: npm install -g @ionic/cli
+      - name: NPM Install
+        run: npm install
       - name: Run Lint
         run: ng lint
