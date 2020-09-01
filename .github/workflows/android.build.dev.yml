@@ -74,7 +74,7 @@ jobs:
           name: android
           path: android/
       - name: Build with Gradle
-        run: cd android && ./gradlew bundleRelease
+        run: cd android && chmod +x gradlew && ./gradlew bundleRelease
       - name: Safe Unsigned Release Bundle Artifact
         uses: actions/upload-artifact@v2.1.4
         with:
