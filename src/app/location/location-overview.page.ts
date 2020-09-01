@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
 import { LaunchLibraryService } from "../launch-library.service";
 import { LocationParamStoreService } from "./location-param-store.service";
 import { IonContent, ViewDidEnter, IonInfiniteScroll } from "@ionic/angular";
@@ -16,7 +15,6 @@ export class LocationOverviewPage implements OnInit, ViewDidEnter {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   CountryCode = CountryCode;
   constructor(
-    private activatedRoute: ActivatedRoute,
     private service: LaunchLibraryService,
     public store: LocationParamStoreService
   ) {}

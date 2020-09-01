@@ -2,6 +2,8 @@ import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 import { IonicModule } from "@ionic/angular";
 
 import { ChartsComponent } from "./charts.component";
+import { RouterTestingModule } from "@angular/router/testing";
+import { HttpClientTestingModule } from "@angular/common/http/testing";
 
 describe("ChartsComponent", () => {
   let component: ChartsComponent;
@@ -10,7 +12,11 @@ describe("ChartsComponent", () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ChartsComponent],
-      imports: [IonicModule.forRoot()],
+      imports: [
+        IonicModule.forRoot(),
+        RouterTestingModule,
+        HttpClientTestingModule,
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ChartsComponent);

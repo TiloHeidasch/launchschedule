@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
 import { LaunchLibraryService } from "../launch-library.service";
 import { LaunchParamStoreService } from "./launch-param-store.service";
 import { IonContent, ViewDidEnter, IonInfiniteScroll } from "@ionic/angular";
@@ -14,7 +13,6 @@ export class LaunchOverviewPage implements OnInit, ViewDidEnter {
   @ViewChild("launchOverviewContent") content: IonContent;
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   constructor(
-    private activatedRoute: ActivatedRoute,
     private service: LaunchLibraryService,
     public store: LaunchParamStoreService
   ) {

@@ -51,9 +51,17 @@ describe("AppComponent", () => {
     await fixture.detectChanges();
     const app = fixture.nativeElement;
     const menuItems = app.querySelectorAll("ion-label");
-    expect(menuItems.length).toEqual(12);
-    expect(menuItems[0].textContent).toContain("Inbox");
-    expect(menuItems[1].textContent).toContain("Outbox");
+    expect(menuItems.length).toEqual(10);
+    expect(menuItems[0].textContent).toContain("Launch");
+    expect(menuItems[1].textContent).toContain("Agency");
+    expect(menuItems[2].textContent).toContain("Astronaut");
+    expect(menuItems[3].textContent).toContain("Event");
+    expect(menuItems[4].textContent).toContain("Facility");
+    expect(menuItems[5].textContent).toContain("Pad");
+    expect(menuItems[6].textContent).toContain("Rocket");
+    expect(menuItems[7].textContent).toContain("Statistic");
+    expect(menuItems[8].textContent).toContain("Spacecraft");
+    expect(menuItems[9].textContent).toContain("Spacestation");
   });
 
   it("should have urls", async () => {
@@ -61,12 +69,34 @@ describe("AppComponent", () => {
     await fixture.detectChanges();
     const app = fixture.nativeElement;
     const menuItems = app.querySelectorAll("ion-item");
-    expect(menuItems.length).toEqual(12);
+    expect(menuItems.length).toEqual(10);
     expect(menuItems[0].getAttribute("ng-reflect-router-link")).toEqual(
-      "/folder/Inbox"
+      "/launch"
     );
     expect(menuItems[1].getAttribute("ng-reflect-router-link")).toEqual(
-      "/folder/Outbox"
+      "/agency"
+    );
+    expect(menuItems[2].getAttribute("ng-reflect-router-link")).toEqual(
+      "/astronaut"
+    );
+    expect(menuItems[3].getAttribute("ng-reflect-router-link")).toEqual(
+      "/event"
+    );
+    expect(menuItems[4].getAttribute("ng-reflect-router-link")).toEqual(
+      "/location"
+    );
+    expect(menuItems[5].getAttribute("ng-reflect-router-link")).toEqual("/pad");
+    expect(menuItems[6].getAttribute("ng-reflect-router-link")).toEqual(
+      "/rocket"
+    );
+    expect(menuItems[7].getAttribute("ng-reflect-router-link")).toEqual(
+      "/statistic"
+    );
+    expect(menuItems[8].getAttribute("ng-reflect-router-link")).toEqual(
+      "/spacecraft"
+    );
+    expect(menuItems[9].getAttribute("ng-reflect-router-link")).toEqual(
+      "/spacestation"
     );
   });
 });
