@@ -1,18 +1,17 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { LaunchLibraryService } from 'src/app/launch-library.service';
-
+import { Component, OnInit, Input } from "@angular/core";
+import { LaunchLibraryService } from "src/app/launch-library.service";
 
 @Component({
-  selector: 'astronaut-list-entry',
-  templateUrl: './astronaut-list-entry.component.html',
-  styleUrls: ['./astronaut-list-entry.component.scss'],
+  selector: "app-astronaut-list-entry",
+  templateUrl: "./astronaut-list-entry.component.html",
+  styleUrls: ["./astronaut-list-entry.component.scss"],
 })
 export class AstronautListEntryComponent implements OnInit {
-  @Input('astronaut') astronaut?;
-  @Input('id') id?;
+  @Input() astronaut?;
+  @Input() id?;
   title: string;
   subtitle: string;
-  constructor(private service: LaunchLibraryService) { }
+  constructor(private service: LaunchLibraryService) {}
 
   async ngOnInit() {
     if (this.astronaut === undefined) {
@@ -21,5 +20,4 @@ export class AstronautListEntryComponent implements OnInit {
     this.title = this.astronaut.name;
     this.subtitle = this.astronaut.nationality;
   }
-
 }

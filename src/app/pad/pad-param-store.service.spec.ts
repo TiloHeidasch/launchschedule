@@ -1,8 +1,8 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed } from "@angular/core/testing";
 
-import { PadParamStoreService } from './pad-param-store.service';
+import { PadParamStoreService } from "./pad-param-store.service";
 
-describe('PadParamStoreService', () => {
+describe("PadParamStoreService", () => {
   let service: PadParamStoreService;
 
   beforeEach(() => {
@@ -10,7 +10,7 @@ describe('PadParamStoreService', () => {
     service = TestBed.inject(PadParamStoreService);
   });
 
-  it('should be created', () => {
+  it("should be created", () => {
     expect(service).toBeTruthy();
   });
 });

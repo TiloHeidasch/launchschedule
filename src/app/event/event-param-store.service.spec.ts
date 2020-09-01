@@ -1,8 +1,8 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed } from "@angular/core/testing";
 
-import { EventParamStoreService } from './event-param-store.service';
+import { EventParamStoreService } from "./event-param-store.service";
 
-describe('EventParamStoreService', () => {
+describe("EventParamStoreService", () => {
   let service: EventParamStoreService;
 
   beforeEach(() => {
@@ -10,7 +10,7 @@ describe('EventParamStoreService', () => {
     service = TestBed.inject(EventParamStoreService);
   });
 
-  it('should be created', () => {
+  it("should be created", () => {
     expect(service).toBeTruthy();
   });
 });

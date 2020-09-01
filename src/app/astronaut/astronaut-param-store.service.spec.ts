@@ -1,8 +1,8 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed } from "@angular/core/testing";
 
-import { AstronautParamStoreService } from './astronaut-param-store.service';
+import { AstronautParamStoreService } from "./astronaut-param-store.service";
 
-describe('AstronautParamStoreService', () => {
+describe("AstronautParamStoreService", () => {
   let service: AstronautParamStoreService;
 
   beforeEach(() => {
@@ -10,7 +10,7 @@ describe('AstronautParamStoreService', () => {
     service = TestBed.inject(AstronautParamStoreService);
   });
 
-  it('should be created', () => {
+  it("should be created", () => {
     expect(service).toBeTruthy();
   });
 });

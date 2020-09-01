@@ -11,11 +11,20 @@
     </ion-buttons>
   </ion-toolbar>
   <ion-toolbar *ngIf="store.showFilter">
-    <ion-searchbar (ionChange)="searchChange($event)" [value]="store.search" animated></ion-searchbar>
+    <ion-searchbar
+      (ionChange)="searchChange($event)"
+      [value]="store.search"
+      animated
+    ></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
-<ion-content #padOverviewContent [scrollEvents]="true" (ionScroll)="logScrolling($event)" [fullscreen]="true">
+<ion-content
+  #padOverviewContent
+  [scrollEvents]="true"
+  (ionScroll)="logScrolling($event)"
+  [fullscreen]="true"
+>
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">{{title}}</ion-title>
@@ -25,11 +34,14 @@
   <div id="container">
     <ion-list>
       <div *ngFor="let pad of store.pads">
-        <pad-list-entry [pad]='pad'></pad-list-entry>
+        <app-pad-list-entry [pad]="pad"></app-pad-list-entry>
       </div>
     </ion-list>
     <ion-infinite-scroll (ionInfinite)="loadMore($event)">
-      <ion-infinite-scroll-content loadingSpinner="circular" loadingText="Loading more pads...">
+      <ion-infinite-scroll-content
+        loadingSpinner="circular"
+        loadingText="Loading more pads..."
+      >
       </ion-infinite-scroll-content>
     </ion-infinite-scroll>
   </div>

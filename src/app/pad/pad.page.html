@@ -16,16 +16,7 @@
 
   <div id="container" *ngIf="pad!==undefined">
     <div id="pad">
-      <pad-detail-card [pad]='pad'></pad-detail-card>
+      <app-pad-detail-card [pad]="pad"></app-pad-detail-card>
     </div>
-    <!-- <div id="mission-list">
-      <mission-detail-card *ngFor="let mission of pad.missions" [mission]='mission'></mission-detail-card>
-    </div>
-    <div id="location">
-      <location-detail-card [location]='pad.location'></location-detail-card>
-    </div>
-    <div id="pad">
-      <pad-detail-card [pad]='pad.lsp'></pad-detail-card>
-    </div> -->
   </div>
 </ion-content>

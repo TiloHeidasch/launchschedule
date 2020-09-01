@@ -20,10 +20,31 @@
       </ion-card-header>
       <ion-card-content>
         <div class="buttons">
-          <svg *ngIf="step>1" class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-            <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
-            <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" /></svg>
-          <ion-button *ngIf="step===1" (click)="whatComplete()" [disabled]="what===undefined" expand="block">
+          <svg
+            *ngIf="step>1"
+            class="checkmark"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 52 52"
+          >
+            <circle
+              class="checkmark__circle"
+              cx="26"
+              cy="26"
+              r="25"
+              fill="none"
+            />
+            <path
+              class="checkmark__check"
+              fill="none"
+              d="M14.1 27.2l7.1 7.2 16.7-16.8"
+            />
+          </svg>
+          <ion-button
+            *ngIf="step===1"
+            (click)="whatComplete()"
+            [disabled]="what===undefined"
+            expand="block"
+          >
             Done
           </ion-button>
           <ion-label *ngIf="step>1">{{what}}</ion-label>
@@ -78,29 +99,66 @@
       </ion-card-header>
       <ion-card-content>
         <div class="buttons">
-          <svg *ngIf="step>2" class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-            <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
-            <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" /></svg>
-          <ion-button *ngIf="step===2" (click)="filterComplete()" expand="block">
+          <svg
+            *ngIf="step>2"
+            class="checkmark"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 52 52"
+          >
+            <circle
+              class="checkmark__circle"
+              cx="26"
+              cy="26"
+              r="25"
+              fill="none"
+            />
+            <path
+              class="checkmark__check"
+              fill="none"
+              d="M14.1 27.2l7.1 7.2 16.7-16.8"
+            />
+          </svg>
+          <ion-button
+            *ngIf="step===2"
+            (click)="filterComplete()"
+            expand="block"
+          >
             Done
           </ion-button>
-          <ion-label *ngIf="step>2&&!globalSearch">{{dataFiltered.length}} Records</ion-label>
+          <ion-label *ngIf="step>2&&!globalSearch"
+            >{{dataFiltered.length}} Records</ion-label
+          >
           <ion-label *ngIf="step>2&&globalSearch">{{globalSearch}}</ion-label>
           <ion-button *ngIf="step>2" (click)="filterOpen()" expand="block">
             Redo
           </ion-button>
         </div>
-        <p-table *ngIf="step===2&&what==='Launches'" #tt [columns]="cols" [value]="dataRaw" [scrollable]="true"
-          [style]="{width:'100%'}" [paginator]="true" [rows]="7">
+        <p-table
+          *ngIf="step===2&&what==='Launches'"
+          #tt
+          [columns]="cols"
+          [value]="dataRaw"
+          [scrollable]="true"
+          [style]="{width:'100%'}"
+          [paginator]="true"
+          [rows]="7"
+        >
           <ng-template pTemplate="colgroup" let-columns>
             <colgroup>
-              <col *ngFor="let col of columns" style="width:150px">
+              <col *ngFor="let col of columns" style="width:150px" />
             </colgroup>
           </ng-template>
           <ng-template pTemplate="caption">
             <i class="pi pi-search" style="margin:4px 4px 0 0"></i>
-            <input [(ngModel)]="globalSearch" type="text" pInputText size="50" placeholder="Global Filter"
-              (input)="tt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+            <input
+              [(ngModel)]="globalSearch"
+              type="text"
+              pInputText
+              size="50"
+              placeholder="Global Filter"
+              (input)="tt.filterGlobal($event.target.value, 'contains')"
+              style="width:auto"
+            />
           </ng-template>
           <ng-template pTemplate="header" let-columns>
             <tr>
@@ -111,31 +169,78 @@
             </tr>
             <tr>
               <th *ngFor="let col of columns" [ngSwitch]="col.field">
-                <input *ngSwitchCase="'name'" pInputText type="text" [(ngModel)]="nameSearch"
-                  (input)="tt.filter($event.target.value, col.field, 'contains')" style="width:150px">
-                <p-calendar *ngSwitchCase="'net'" (onSelect)="onDateSelect($event,'gte')" [(ngModel)]="fromFilter"
-                  (onClearClick)="tt.filter('', 'net', 'gte')" [showButtonBar]="true" styleClass="p-column-filter"
-                  placeholder="From" [readonlyInput]="true" dateFormat="yy-mm-dd" appendTo="body">
+                <input
+                  *ngSwitchCase="'name'"
+                  pInputText
+                  type="text"
+                  [(ngModel)]="nameSearch"
+                  (input)="tt.filter($event.target.value, col.field, 'contains')"
+                  style="width:150px"
+                />
+                <p-calendar
+                  *ngSwitchCase="'net'"
+                  (onSelect)="onDateSelect($event,'gte')"
+                  [(ngModel)]="fromFilter"
+                  (onClearClick)="tt.filter('', 'net', 'gte')"
+                  [showButtonBar]="true"
+                  styleClass="p-column-filter"
+                  placeholder="From"
+                  [readonlyInput]="true"
+                  dateFormat="yy-mm-dd"
+                  appendTo="body"
+                >
                 </p-calendar>
-                <p-calendar *ngSwitchCase="'net'" (onSelect)="onDateSelect($event,'lte')" [(ngModel)]="toFilter"
-                  (onClearClick)="tt.filter('', 'net', 'lte')" [showButtonBar]="true" styleClass="p-column-filter"
-                  placeholder="To" [readonlyInput]="true" dateFormat="yy-mm-dd" appendTo="body">
+                <p-calendar
+                  *ngSwitchCase="'net'"
+                  (onSelect)="onDateSelect($event,'lte')"
+                  [(ngModel)]="toFilter"
+                  (onClearClick)="tt.filter('', 'net', 'lte')"
+                  [showButtonBar]="true"
+                  styleClass="p-column-filter"
+                  placeholder="To"
+                  [readonlyInput]="true"
+                  dateFormat="yy-mm-dd"
+                  appendTo="body"
+                >
                 </p-calendar>
-                <p-multiSelect [filter]="false" [(ngModel)]="selectedRockets"
-                  *ngSwitchCase="'rocket__configuration__full_name'" [options]="rockets" defaultLabel="All Rockets"
-                  (onChange)="tt.filter($event.value, col.field, 'in')" appendTo="body"></p-multiSelect>
-                <p-multiSelect [filter]="false" [(ngModel)]="selectedRocketFamilies"
-                  *ngSwitchCase="'rocket__configuration__family'" [options]="rocketFamilies"
-                  defaultLabel="All Rocket Families" (onChange)="tt.filter($event.value, col.field, 'in')"
-                  appendTo="body">
+                <p-multiSelect
+                  [filter]="false"
+                  [(ngModel)]="selectedRockets"
+                  *ngSwitchCase="'rocket__configuration__full_name'"
+                  [options]="rockets"
+                  defaultLabel="All Rockets"
+                  (onChange)="tt.filter($event.value, col.field, 'in')"
+                  appendTo="body"
+                ></p-multiSelect>
+                <p-multiSelect
+                  [filter]="false"
+                  [(ngModel)]="selectedRocketFamilies"
+                  *ngSwitchCase="'rocket__configuration__family'"
+                  [options]="rocketFamilies"
+                  defaultLabel="All Rocket Families"
+                  (onChange)="tt.filter($event.value, col.field, 'in')"
+                  appendTo="body"
+                >
                 </p-multiSelect>
-                <p-multiSelect [filter]="false" [(ngModel)]="selectedAgencies"
-                  *ngSwitchCase="'launch_service_provider__name'" [options]="agencies" defaultLabel="All Agencies"
-                  (onChange)="tt.filter($event.value, col.field, 'in')" appendTo="body">
+                <p-multiSelect
+                  [filter]="false"
+                  [(ngModel)]="selectedAgencies"
+                  *ngSwitchCase="'launch_service_provider__name'"
+                  [options]="agencies"
+                  defaultLabel="All Agencies"
+                  (onChange)="tt.filter($event.value, col.field, 'in')"
+                  appendTo="body"
+                >
                 </p-multiSelect>
-                <p-multiSelect [filter]="false" [(ngModel)]="selectedAgencyTypes"
-                  *ngSwitchCase="'launch_service_provider__type'" [options]="agencyTypes" defaultLabel="All Types"
-                  (onChange)="tt.filter($event.value, col.field, 'in')" appendTo="body">
+                <p-multiSelect
+                  [filter]="false"
+                  [(ngModel)]="selectedAgencyTypes"
+                  *ngSwitchCase="'launch_service_provider__type'"
+                  [options]="agencyTypes"
+                  defaultLabel="All Types"
+                  (onChange)="tt.filter($event.value, col.field, 'in')"
+                  appendTo="body"
+                >
                 </p-multiSelect>
               </th>
             </tr>
@@ -157,10 +262,31 @@
       </ion-card-header>
       <ion-card-content>
         <div class="buttons">
-          <svg *ngIf="step>3" class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-            <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
-            <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" /></svg>
-          <ion-button *ngIf="step===3" [disabled]="xAxis===undefined" (click)="axisComplete()" expand="block">
+          <svg
+            *ngIf="step>3"
+            class="checkmark"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 52 52"
+          >
+            <circle
+              class="checkmark__circle"
+              cx="26"
+              cy="26"
+              r="25"
+              fill="none"
+            />
+            <path
+              class="checkmark__check"
+              fill="none"
+              d="M14.1 27.2l7.1 7.2 16.7-16.8"
+            />
+          </svg>
+          <ion-button
+            *ngIf="step===3"
+            [disabled]="xAxis===undefined"
+            (click)="axisComplete()"
+            expand="block"
+          >
             Done
           </ion-button>
           <ion-label *ngIf="step>3">{{xAxis}}</ion-label>
@@ -194,8 +320,12 @@
         <ion-card-title>Diagrams</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <charts [lineChartData]="lineChartData" [barChartData]="barChartData" [polarChartData]="polarChartData"
-          [doughnutChartData]="doughnutChartData"></charts>
+        <app-charts
+          [lineChartData]="lineChartData"
+          [barChartData]="barChartData"
+          [polarChartData]="polarChartData"
+          [doughnutChartData]="doughnutChartData"
+        ></app-charts>
       </ion-card-content>
     </ion-card>
   </div>

@@ -1,18 +1,18 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { FormsModule } from "@angular/forms";
 
-import { IonicModule } from '@ionic/angular';
+import { IonicModule } from "@ionic/angular";
 
-import { SpacestationRoutingModule } from './spacestation-routing.module';
+import { SpacestationRoutingModule } from "./spacestation-routing.module";
 
-import { SpacestationPage } from './spacestation.page';
-import { SpacestationOverviewPage } from './spacestation-overview.page';
-import { SpacestationDetailCardComponent } from './spacestation-detail-card/spacestation-detail-card.component';
-import { AnimationModule } from '../animation/animation.module';
-import { SpacestationListEntryModule } from './spacestation-list-entry/spacestation-list-entry.module';
-import { AgencyListEntryModule } from '../agency/agency-list-entry/agency-list-entry.module';
-import { AstronautListEntryModule } from '../astronaut/astronaut-list-entry/astronaut-list-entry.module';
+import { SpacestationPage } from "./spacestation.page";
+import { SpacestationOverviewPage } from "./spacestation-overview.page";
+import { SpacestationDetailCardComponent } from "./spacestation-detail-card/spacestation-detail-card.component";
+import { AnimationModule } from "../animation/animation.module";
+import { SpacestationListEntryModule } from "./spacestation-list-entry/spacestation-list-entry.module";
+import { AgencyListEntryModule } from "../agency/agency-list-entry/agency-list-entry.module";
+import { AstronautListEntryModule } from "../astronaut/astronaut-list-entry/astronaut-list-entry.module";
 
 @NgModule({
   imports: [
@@ -23,9 +23,13 @@ import { AstronautListEntryModule } from '../astronaut/astronaut-list-entry/astr
     AnimationModule,
     SpacestationListEntryModule,
     AgencyListEntryModule,
-    AstronautListEntryModule
+    AstronautListEntryModule,
   ],
-  declarations: [SpacestationPage, SpacestationOverviewPage, SpacestationDetailCardComponent],
-  exports: []
+  declarations: [
+    SpacestationPage,
+    SpacestationOverviewPage,
+    SpacestationDetailCardComponent,
+  ],
+  exports: [],
 })
-export class SpacestationModule { }
+export class SpacestationModule {}

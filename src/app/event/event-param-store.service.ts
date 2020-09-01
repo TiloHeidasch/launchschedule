@@ -1,17 +1,17 @@
-import { Injectable } from '@angular/core';
-import { UpcomingPreviousAll } from '../types/upcoming-previous-all';
+import { Injectable } from "@angular/core";
+import { UpcomingPreviousAll } from "../types/upcoming-previous-all";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class EventParamStoreService {
   search: string;
   type: number;
 
-  showFilter: boolean = false;
+  showFilter = false;
   events: any[] = [];
-  scrollY: number = 0;
+  scrollY = 0;
   upcomingPreviousAll: UpcomingPreviousAll = UpcomingPreviousAll.UPCOMING;
 
-  constructor() { }
+  constructor() {}
 }

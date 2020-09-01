@@ -1,8 +1,8 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed } from "@angular/core/testing";
 
-import { RocketParamStoreService } from './rocket-param-store.service';
+import { RocketParamStoreService } from "./rocket-param-store.service";
 
-describe('RocketParamStoreService', () => {
+describe("RocketParamStoreService", () => {
   let service: RocketParamStoreService;
 
   beforeEach(() => {
@@ -10,7 +10,7 @@ describe('RocketParamStoreService', () => {
     service = TestBed.inject(RocketParamStoreService);
   });
 
-  it('should be created', () => {
+  it("should be created", () => {
     expect(service).toBeTruthy();
   });
 });

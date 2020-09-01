@@ -1,19 +1,25 @@
 <ion-card *ngIf="pad">
   <div id="image">
     <div class="image-wrapper">
-      <ion-img id="background" [src]="pad.map_image?pad.map_image:'assets/placeholder_1920.png'"></ion-img>
+      <ion-img
+        id="background"
+        [src]="pad.map_image ? pad.map_image : 'assets/placeholder_1920.png'"
+      ></ion-img>
     </div>
     <div class="image-wrapper">
-      <ion-img id="foreground" [src]="pad.map_image?pad.map_image:'assets/placeholder_1920.png'"></ion-img>
+      <ion-img
+        id="foreground"
+        [src]="pad.map_image ? pad.map_image : 'assets/placeholder_1920.png'"
+      ></ion-img>
     </div>
   </div>
   <ion-card-header>
-    <ion-card-subtitle>{{pad.location.name}}</ion-card-subtitle>
-    <ion-card-title>{{pad.name}}</ion-card-title>
+    <ion-card-subtitle>{{ pad.location.name }}</ion-card-subtitle>
+    <ion-card-title>{{ pad.name }}</ion-card-title>
   </ion-card-header>
   <ion-card-content>
     <div class="map">
-      <map [lat]="pad.latitude" [lng]="pad.longitude"></map>
+      <app-map [lat]="pad.latitude" [lng]="pad.longitude"></app-map>
     </div>
     <div id="specifications">
       <ion-item>
@@ -23,11 +29,11 @@
       </ion-item>
       <ion-chip id="total_launch_count">
         <ion-icon name="trending-up" color="dark"></ion-icon>
-        <ion-label>{{pad.total_launch_count}}</ion-label>
+        <ion-label>{{ pad.total_launch_count }}</ion-label>
       </ion-chip>
     </div>
     <div class="links">
-      <ion-item *ngIf="pad.wiki_url!==''" [href]="pad.wiki_url">
+      <ion-item *ngIf="pad.wiki_url !== ''" [href]="pad.wiki_url">
         <ion-label>Wiki</ion-label>
       </ion-item>
     </div>

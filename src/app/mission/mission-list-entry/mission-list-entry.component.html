@@ -1,11 +1,11 @@
-<ion-card *ngIf="mission!==undefined" slideIn>
+<ion-card *ngIf="mission !== undefined" appSlideIn>
   <ion-card-header>
-    <ion-card-subtitle>{{mission.type}}</ion-card-subtitle>
-    <ion-card-title>{{mission.name}}</ion-card-title>
+    <ion-card-subtitle>{{ mission.type }}</ion-card-subtitle>
+    <ion-card-title>{{ mission.name }}</ion-card-title>
   </ion-card-header>
   <ion-card-content>
     <div id="description">
-      <p>{{mission.description}}</p>
+      <p>{{ mission.description }}</p>
     </div>
   </ion-card-content>
 </ion-card>

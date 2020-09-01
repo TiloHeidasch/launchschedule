@@ -1,19 +1,37 @@
-<ion-card routerDirection="forward" [routerLink]="['/event/'+event.id]" slideIn>
+<ion-card
+  routerDirection="forward"
+  [routerLink]="['/event/' + event.id]"
+  appSlideIn
+>
   <div id="image">
     <div class="image-wrapper">
-      <ion-img id="background" [src]="event.feature_image?event.feature_image:'assets/placeholder_1920.png'"></ion-img>
+      <ion-img
+        id="background"
+        [src]="
+          event.feature_image
+            ? event.feature_image
+            : 'assets/placeholder_1920.png'
+        "
+      ></ion-img>
     </div>
     <div class="image-wrapper">
-      <ion-img id="foreground" [src]="event.feature_image?event.feature_image:'assets/placeholder_1920.png'"></ion-img>
+      <ion-img
+        id="foreground"
+        [src]="
+          event.feature_image
+            ? event.feature_image
+            : 'assets/placeholder_1920.png'
+        "
+      ></ion-img>
     </div>
   </div>
   <ion-card-header>
-    <ion-card-subtitle>{{subtitle}}</ion-card-subtitle>
-    <ion-card-title>{{title}}</ion-card-title>
+    <ion-card-subtitle>{{ subtitle }}</ion-card-subtitle>
+    <ion-card-title>{{ title }}</ion-card-title>
   </ion-card-header>
   <ion-card-content>
     <div id="content">
-      <countdown [date]="date"></countdown>
+      <app-countdown [date]="date"></app-countdown>
     </div>
   </ion-card-content>
 </ion-card>

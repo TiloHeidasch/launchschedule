@@ -1,5 +1,5 @@
 export enum Reusable {
-    REUSABLE = 'Reusable',
-    ALL = 'All',
-    EXPENDABLE = 'Expendable',
+  REUSABLE = "Reusable",
+  ALL = "All",
+  EXPENDABLE = "Expendable",
 }

@@ -1,14 +1,10 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MapComponent } from './map.component';
-
-
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { MapComponent } from "./map.component";
 
 @NgModule({
   declarations: [MapComponent],
-  imports: [
-    CommonModule
-  ],
+  imports: [CommonModule],
   exports: [MapComponent],
 })
-export class MapModule { }
+export class MapModule {}

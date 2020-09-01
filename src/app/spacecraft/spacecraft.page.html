@@ -16,13 +16,17 @@
 
   <div id="container" *ngIf="spacecraft!==undefined">
     <div id="spacecraft">
-      <spacecraft-detail-card [spacecraft]='spacecraft'></spacecraft-detail-card>
+      <app-spacecraft-detail-card
+        [spacecraft]="spacecraft"
+      ></app-spacecraft-detail-card>
     </div>
     <div id="agency">
       <ion-item>
         Agency
       </ion-item>
-      <agency-list-entry [agency]='spacecraft.agency'></agency-list-entry>
+      <app-agency-list-entry
+        [agency]="spacecraft.agency"
+      ></app-agency-list-entry>
     </div>
   </div>
 </ion-content>

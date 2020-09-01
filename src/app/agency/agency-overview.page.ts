@@ -1,22 +1,25 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { LaunchLibraryService } from '../launch-library.service';
-import { AgencyParamStoreService } from './agency-param-store.service';
-import { CountryCode } from '../types/country-codes';
-import { IonContent, ViewDidEnter, IonInfiniteScroll } from '@ionic/angular';
-
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { LaunchLibraryService } from "../launch-library.service";
+import { AgencyParamStoreService } from "./agency-param-store.service";
+import { CountryCode } from "../types/country-codes";
+import { IonContent, ViewDidEnter, IonInfiniteScroll } from "@ionic/angular";
 
 @Component({
-  selector: 'app-agency-overview',
-  templateUrl: './agency-overview.page.html',
-  styleUrls: ['./agency-overview.page.scss'],
+  selector: "app-agency-overview",
+  templateUrl: "./agency-overview.page.html",
+  styleUrls: ["./agency-overview.page.scss"],
 })
 export class AgencyOverviewPage implements OnInit, ViewDidEnter {
-  title = 'Agencies';
+  title = "Agencies";
   @ViewChild("agencyOverviewContent") content: IonContent;
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   CountryCode = CountryCode;
-  constructor(private activatedRoute: ActivatedRoute, private service: LaunchLibraryService, public store: AgencyParamStoreService) { }
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private service: LaunchLibraryService,
+    public store: AgencyParamStoreService
+  ) {}
   ngOnInit() {
     if (this.store.agencies.length === 0) {
       this.loadFirst();
@@ -31,15 +34,24 @@ export class AgencyOverviewPage implements OnInit, ViewDidEnter {
   async loadFirst() {
     try {
       this.infiniteScroll.disabled = false;
-    } catch (error) {
-
-    }
+    } catch (error) {}
     this.store.agencies = [];
-    this.store.agencies = (await this.service.getFirstAgencies(this.store.search, this.store.featured, this.store.type, this.store.countryCode)).agencies;
+    this.store.agencies = (await this.service.getFirstAgencies(
+      this.store.search,
+      this.store.featured,
+      this.store.type,
+      this.store.countryCode
+    )).agencies;
   }
 
   async loadMore(event) {
-    const answer = await this.service.getNextAgencies(this.store.agencies.length, this.store.search, this.store.featured, this.store.type, this.store.countryCode);
+    const answer = await this.service.getNextAgencies(
+      this.store.agencies.length,
+      this.store.search,
+      this.store.featured,
+      this.store.type,
+      this.store.countryCode
+    );
     this.store.agencies.push(...answer.agencies);
     event.target.complete();
 
@@ -50,7 +62,7 @@ export class AgencyOverviewPage implements OnInit, ViewDidEnter {
     }
   }
   toggleFilter() {
-    this.store.showFilter = !this.store.showFilter
+    this.store.showFilter = !this.store.showFilter;
   }
   searchChange(event) {
     this.store.search = event.detail.value;

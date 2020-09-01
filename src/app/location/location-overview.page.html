@@ -11,21 +11,39 @@
     </ion-buttons>
   </ion-toolbar>
   <ion-toolbar *ngIf="store.showFilter">
-    <ion-searchbar (ionChange)="searchChange($event)" [value]="store.search" animated></ion-searchbar>
+    <ion-searchbar
+      (ionChange)="searchChange($event)"
+      [value]="store.search"
+      animated
+    ></ion-searchbar>
   </ion-toolbar>
   <ion-toolbar *ngIf="store.showFilter">
     <ion-item>
       <ion-label>Country</ion-label>
-      <ion-select [(ngModel)]="store.countryCode" (ionChange)="loadFirst()" placeholder="Type" interface="action-sheet">
+      <ion-select
+        [(ngModel)]="store.countryCode"
+        (ionChange)="loadFirst()"
+        placeholder="Type"
+        interface="action-sheet"
+      >
         <ion-select-option value="">None</ion-select-option>
-        <ion-select-option *ngFor="let countryCode of CountryCode | keyvalue" [value]="countryCode.key">
-          {{countryCode.value}}</ion-select-option>
+        <ion-select-option
+          *ngFor="let countryCode of CountryCode | keyvalue"
+          [value]="countryCode.key"
+        >
+          {{countryCode.value}}</ion-select-option
+        >
       </ion-select>
     </ion-item>
   </ion-toolbar>
 </ion-header>
 
-<ion-content #locationOverviewContent [scrollEvents]="true" (ionScroll)="logScrolling($event)" [fullscreen]="true">
+<ion-content
+  #locationOverviewContent
+  [scrollEvents]="true"
+  (ionScroll)="logScrolling($event)"
+  [fullscreen]="true"
+>
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">{{title}}</ion-title>
@@ -35,11 +53,16 @@
   <div id="container">
     <ion-list>
       <div *ngFor="let location of store.locations">
-        <location-list-entry [location]='location'></location-list-entry>
+        <app-location-list-entry
+          [location]="location"
+        ></app-location-list-entry>
       </div>
     </ion-list>
     <ion-infinite-scroll (ionInfinite)="loadMore($event)">
-      <ion-infinite-scroll-content loadingSpinner="circular" loadingText="Loading more locations...">
+      <ion-infinite-scroll-content
+        loadingSpinner="circular"
+        loadingText="Loading more locations..."
+      >
       </ion-infinite-scroll-content>
     </ion-infinite-scroll>
   </div>

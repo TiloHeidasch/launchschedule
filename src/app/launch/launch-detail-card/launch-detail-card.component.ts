@@ -1,24 +1,24 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { LaunchLibraryService } from 'src/app/launch-library.service';
+import { Component, OnInit, Input } from "@angular/core";
+import { LaunchLibraryService } from "src/app/launch-library.service";
 
 @Component({
-  selector: 'launch-detail-card',
-  templateUrl: './launch-detail-card.component.html',
-  styleUrls: ['./launch-detail-card.component.scss'],
+  selector: "app-launch-detail-card",
+  templateUrl: "./launch-detail-card.component.html",
+  styleUrls: ["./launch-detail-card.component.scss"],
 })
 export class LaunchDetailCardComponent implements OnInit {
-  @Input('launch') launch;
+  @Input() launch;
   title;
   subtitle;
   date;
   imageUrl;
 
-  constructor(private service: LaunchLibraryService) { }
+  constructor(private service: LaunchLibraryService) {}
 
   async ngOnInit() {
     this.date = new Date(this.launch.net);
-    this.title = this.launch.name.split('|')[1].trim();
-    this.subtitle = this.launch.name.split('|')[0].trim();
+    this.title = this.launch.name.split("|")[1].trim();
+    this.subtitle = this.launch.name.split("|")[0].trim();
     if (this.launch.infographic) {
       this.imageUrl = this.launch.infographic;
     } else {
@@ -26,6 +26,6 @@ export class LaunchDetailCardComponent implements OnInit {
     }
   }
   navigate(baseUrl: string, hashtag: string) {
-    window.location.href = baseUrl + hashtag.replace('#', '');
+    window.location.href = baseUrl + hashtag.replace("#", "");
   }
 }

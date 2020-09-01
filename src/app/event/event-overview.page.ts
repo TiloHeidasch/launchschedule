@@ -1,21 +1,24 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { LaunchLibraryService } from '../launch-library.service';
-import { EventParamStoreService } from './event-param-store.service';
-import { IonContent, ViewDidEnter, IonInfiniteScroll } from '@ionic/angular';
-
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { LaunchLibraryService } from "../launch-library.service";
+import { EventParamStoreService } from "./event-param-store.service";
+import { IonContent, ViewDidEnter, IonInfiniteScroll } from "@ionic/angular";
 
 @Component({
-  selector: 'app-event-overview',
-  templateUrl: './event-overview.page.html',
-  styleUrls: ['./event-overview.page.scss'],
+  selector: "app-event-overview",
+  templateUrl: "./event-overview.page.html",
+  styleUrls: ["./event-overview.page.scss"],
 })
 export class EventOverviewPage implements OnInit, ViewDidEnter {
-  title = 'Events';
+  title = "Events";
   @ViewChild("eventOverviewContent") content: IonContent;
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
-  constructor(private activatedRoute: ActivatedRoute, private service: LaunchLibraryService, public store: EventParamStoreService) { }
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private service: LaunchLibraryService,
+    public store: EventParamStoreService
+  ) {}
 
   ngOnInit() {
     if (this.store.events.length === 0) {
@@ -31,15 +34,22 @@ export class EventOverviewPage implements OnInit, ViewDidEnter {
   async loadFirst() {
     try {
       this.infiniteScroll.disabled = false;
-    } catch (error) {
-
-    }
+    } catch (error) {}
     this.store.events = [];
-    this.store.events = (await this.service.getFirstEvents(this.store.search, this.store.type, this.store.upcomingPreviousAll)).events;
+    this.store.events = (await this.service.getFirstEvents(
+      this.store.search,
+      this.store.type,
+      this.store.upcomingPreviousAll
+    )).events;
   }
 
   async loadMore(event) {
-    const answer = await this.service.getNextEvents(this.store.events.length, this.store.search, this.store.type, this.store.upcomingPreviousAll);
+    const answer = await this.service.getNextEvents(
+      this.store.events.length,
+      this.store.search,
+      this.store.type,
+      this.store.upcomingPreviousAll
+    );
     this.store.events.push(...answer.events);
     event.target.complete();
 
@@ -50,7 +60,7 @@ export class EventOverviewPage implements OnInit, ViewDidEnter {
     }
   }
   toggleFilter() {
-    this.store.showFilter = !this.store.showFilter
+    this.store.showFilter = !this.store.showFilter;
   }
   searchChange(event) {
     this.store.search = event.detail.value;

@@ -1,20 +1,23 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { LaunchLibraryService } from '../launch-library.service';
-import { SpacecraftParamStoreService } from './spacecraft-param-store.service';
-import { IonContent, ViewDidEnter, IonInfiniteScroll } from '@ionic/angular';
-
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { LaunchLibraryService } from "../launch-library.service";
+import { SpacecraftParamStoreService } from "./spacecraft-param-store.service";
+import { IonContent, ViewDidEnter, IonInfiniteScroll } from "@ionic/angular";
 
 @Component({
-  selector: 'app-spacecraft-overview',
-  templateUrl: './spacecraft-overview.page.html',
-  styleUrls: ['./spacecraft-overview.page.scss'],
+  selector: "app-spacecraft-overview",
+  templateUrl: "./spacecraft-overview.page.html",
+  styleUrls: ["./spacecraft-overview.page.scss"],
 })
 export class SpacecraftOverviewPage implements OnInit, ViewDidEnter {
-  title = 'Spacecrafts';
+  title = "Spacecrafts";
   @ViewChild("spacecraftOverviewContent") content: IonContent;
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
-  constructor(private activatedRoute: ActivatedRoute, private service: LaunchLibraryService, public store: SpacecraftParamStoreService) { }
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private service: LaunchLibraryService,
+    public store: SpacecraftParamStoreService
+  ) {}
 
   ngOnInit() {
     if (this.store.spacecrafts.length === 0) {
@@ -30,15 +33,22 @@ export class SpacecraftOverviewPage implements OnInit, ViewDidEnter {
   async loadFirst() {
     try {
       this.infiniteScroll.disabled = false;
-    } catch (error) {
-
-    }
+    } catch (error) {}
     this.store.spacecrafts = [];
-    this.store.spacecrafts = (await this.service.getFirstSpacecrafts(this.store.search, this.store.inUse, this.store.humanRated)).spacecrafts;
+    this.store.spacecrafts = (await this.service.getFirstSpacecrafts(
+      this.store.search,
+      this.store.inUse,
+      this.store.humanRated
+    )).spacecrafts;
   }
 
   async loadMore(event) {
-    const answer = await this.service.getNextSpacecrafts(this.store.spacecrafts.length, this.store.search, this.store.inUse, this.store.humanRated);
+    const answer = await this.service.getNextSpacecrafts(
+      this.store.spacecrafts.length,
+      this.store.search,
+      this.store.inUse,
+      this.store.humanRated
+    );
     this.store.spacecrafts.push(...answer.spacecrafts);
     event.target.complete();
 
@@ -49,7 +59,7 @@ export class SpacecraftOverviewPage implements OnInit, ViewDidEnter {
     }
   }
   toggleFilter() {
-    this.store.showFilter = !this.store.showFilter
+    this.store.showFilter = !this.store.showFilter;
   }
   searchChange(event) {
     this.store.search = event.detail.value;

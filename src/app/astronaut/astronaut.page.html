@@ -16,13 +16,18 @@
 
   <div id="container" *ngIf="astronaut!==undefined">
     <div id="astronaut">
-      <astronaut-detail-card [astronaut]='astronaut'></astronaut-detail-card>
+      <app-astronaut-detail-card
+        [astronaut]="astronaut"
+      ></app-astronaut-detail-card>
     </div>
     <div id="agency">
-      <agency-list-entry [id]='astronaut.agency.id'></agency-list-entry>
+      <app-agency-list-entry [id]="astronaut.agency.id"></app-agency-list-entry>
     </div>
     <div id="launch-list">
-      <launch-list-entry *ngFor="let launch of astronaut.flights" [launch]='launch'></launch-list-entry>
+      <app-launch-list-entry
+        *ngFor="let launch of astronaut.flights"
+        [launch]="launch"
+      ></app-launch-list-entry>
     </div>
     <!-- <div id="astronaut">
       <astronaut-detail-card [astronaut]='astronaut.lsp'></astronaut-detail-card>

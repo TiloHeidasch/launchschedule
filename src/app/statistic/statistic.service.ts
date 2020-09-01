@@ -1,15 +1,13 @@
-import { Injectable } from '@angular/core';
-import Launches from '../data/launches.json';
+import { Injectable } from "@angular/core";
+import Launches from "../data/launches.json";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class StatisticService {
-  constructor() { }
+  constructor() {}
 
   getLaunches() {
     return Launches;
   }
-
-
 }

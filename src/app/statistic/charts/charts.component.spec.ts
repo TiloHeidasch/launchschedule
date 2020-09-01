@@ -1,16 +1,16 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { IonicModule } from "@ionic/angular";
 
-import { ChartsComponent } from './charts.component';
+import { ChartsComponent } from "./charts.component";
 
-describe('ChartsComponent', () => {
+describe("ChartsComponent", () => {
   let component: ChartsComponent;
   let fixture: ComponentFixture<ChartsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ChartsComponent ],
-      imports: [IonicModule.forRoot()]
+      declarations: [ChartsComponent],
+      imports: [IonicModule.forRoot()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ChartsComponent);
@@ -18,7 +18,7 @@ describe('ChartsComponent', () => {
     fixture.detectChanges();
   }));
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

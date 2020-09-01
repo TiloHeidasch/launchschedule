@@ -1,5 +1,5 @@
 export enum UpcomingPreviousAll {
-    PREVIOUS = 'Previous',
-    ALL = 'All',
-    UPCOMING = 'Upcoming',
+  PREVIOUS = "Previous",
+  ALL = "All",
+  UPCOMING = "Upcoming",
 }

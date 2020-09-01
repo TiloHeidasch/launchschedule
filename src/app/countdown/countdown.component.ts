@@ -1,12 +1,12 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input } from "@angular/core";
 
 @Component({
-  selector: 'countdown',
-  templateUrl: './countdown.component.html',
-  styleUrls: ['./countdown.component.scss']
+  selector: "app-countdown",
+  templateUrl: "./countdown.component.html",
+  styleUrls: ["./countdown.component.scss"],
 })
 export class CountdownComponent implements OnInit {
-  @Input('date') date: Date;
+  @Input() date: Date;
   prefix: string;
   hours: number;
   hours1: string;
@@ -21,13 +21,15 @@ export class CountdownComponent implements OnInit {
   unit2: string;
   unit3: string;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
     if (this.calculateHours(this.getDiff(this.date)) > 99) {
       this.setTimer();
     } else {
-      const task = setInterval(() => { this.setTimer() }, 100);
+      const task = setInterval(() => {
+        this.setTimer();
+      }, 100);
     }
   }
   private getDiff(date: Date): number {
@@ -42,21 +44,30 @@ export class CountdownComponent implements OnInit {
     const diff = this.getDiff(this.date);
     const hours = this.calculateHours(diff);
     if (hours > 99) {
-      this.prefix = '*'
+      this.prefix = "*";
       this.hours = this.date.getDate();
       this.minutes = this.date.getMonth() + 1;
-      this.seconds = +this.date.getFullYear().toString().substr(2, 2);
-      this.unit1 = 'DAY';
-      this.unit2 = 'MONTH';
-      this.unit3 = 'YEAR';
+      this.seconds = +this.date
+        .getFullYear()
+        .toString()
+        .substr(2, 2);
+      this.unit1 = "DAY";
+      this.unit2 = "MONTH";
+      this.unit3 = "YEAR";
     } else {
-      if (diff > 0) { this.prefix = '+' } else { this.prefix = '-' };
+      if (diff > 0) {
+        this.prefix = "+";
+      } else {
+        this.prefix = "-";
+      }
       this.hours = hours;
-      this.minutes = Math.abs(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)));
+      this.minutes = Math.abs(
+        Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
+      );
       this.seconds = Math.abs(Math.floor((diff % (1000 * 60)) / 1000) + 1);
-      this.unit1 = 'HOUR';
-      this.unit2 = 'MINUTE';
-      this.unit3 = 'SECOND';
+      this.unit1 = "HOUR";
+      this.unit2 = "MINUTE";
+      this.unit3 = "SECOND";
     }
     this.setupDigits();
   }
@@ -70,7 +81,7 @@ export class CountdownComponent implements OnInit {
       this.hours1 = this.hours.toString().charAt(0);
       this.hours2 = this.hours.toString().charAt(1);
     } else {
-      this.hours1 = '0';
+      this.hours1 = "0";
       this.hours2 = this.hours.toString().charAt(0);
     }
   }
@@ -79,7 +90,7 @@ export class CountdownComponent implements OnInit {
       this.minutes1 = this.minutes.toString().charAt(0);
       this.minutes2 = this.minutes.toString().charAt(1);
     } else {
-      this.minutes1 = '0';
+      this.minutes1 = "0";
       this.minutes2 = this.minutes.toString().charAt(0);
     }
   }
@@ -88,10 +99,8 @@ export class CountdownComponent implements OnInit {
       this.seconds1 = this.seconds.toString().charAt(0);
       this.seconds2 = this.seconds.toString().charAt(1);
     } else {
-
-      this.seconds1 = '0';
+      this.seconds1 = "0";
       this.seconds2 = this.seconds.toString().charAt(0);
     }
   }
-
 }

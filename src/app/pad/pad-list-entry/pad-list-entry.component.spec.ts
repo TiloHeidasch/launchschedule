@@ -1,16 +1,16 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { IonicModule } from "@ionic/angular";
 
-import { PadListEntryComponent } from './pad-list-entry.component';
+import { PadListEntryComponent } from "./pad-list-entry.component";
 
-describe('PadListEntryComponent', () => {
+describe("PadListEntryComponent", () => {
   let component: PadListEntryComponent;
   let fixture: ComponentFixture<PadListEntryComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PadListEntryComponent ],
-      imports: [IonicModule.forRoot()]
+      declarations: [PadListEntryComponent],
+      imports: [IonicModule.forRoot()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(PadListEntryComponent);
@@ -18,7 +18,7 @@ describe('PadListEntryComponent', () => {
     fixture.detectChanges();
   }));
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

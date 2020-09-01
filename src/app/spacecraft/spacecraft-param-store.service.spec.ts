@@ -1,8 +1,8 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed } from "@angular/core/testing";
 
-import { SpacecraftParamStoreService } from './spacecraft-param-store.service';
+import { SpacecraftParamStoreService } from "./spacecraft-param-store.service";
 
-describe('SpacecraftParamStoreService', () => {
+describe("SpacecraftParamStoreService", () => {
   let service: SpacecraftParamStoreService;
 
   beforeEach(() => {
@@ -10,7 +10,7 @@ describe('SpacecraftParamStoreService', () => {
     service = TestBed.inject(SpacecraftParamStoreService);
   });
 
-  it('should be created', () => {
+  it("should be created", () => {
     expect(service).toBeTruthy();
   });
 });

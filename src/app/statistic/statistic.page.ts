@@ -1,20 +1,26 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { StatisticService } from './statistic.service';
-import { SelectItem } from 'primeng/api';
-import { Md5 } from 'ts-md5/dist/md5';
-import { Table } from 'primeng/table';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ElementRef,
+  AfterViewInit,
+} from "@angular/core";
+import { StatisticService } from "./statistic.service";
+import { SelectItem } from "primeng/api";
+import { Md5 } from "ts-md5/dist/md5";
+import { Table } from "primeng/table";
 import { Chart } from "chart.js";
 
 @Component({
-  selector: 'app-statistic',
-  templateUrl: './statistic.page.html',
-  styleUrls: ['./statistic.page.scss'],
+  selector: "app-statistic",
+  templateUrl: "./statistic.page.html",
+  styleUrls: ["./statistic.page.scss"],
 })
 export class StatisticPage implements OnInit {
-  title = 'Statistics';
+  title = "Statistics";
   step = 1;
   xAxis;
-  what = 'Launches';
+  what = "Launches";
   dataRaw;
   dataFiltered;
   globalSearch;
@@ -33,14 +39,13 @@ export class StatisticPage implements OnInit {
   polarChartData;
   doughnutChartData;
   barChartData;
-  @ViewChild('tt') table: Table;
-  cols: { field: string, header: string }[] = [];
+  @ViewChild("tt") table: Table;
+  cols: { field: string; header: string }[] = [];
   constructor(private service: StatisticService) {
     Chart.defaults.global.legend.display = false;
   }
 
-  async ngOnInit() {
-  }
+  async ngOnInit() {}
 
   async whatComplete() {
     this.step = 2;
@@ -61,7 +66,7 @@ export class StatisticPage implements OnInit {
   }
   private applyPreviousFilters() {
     switch (this.what) {
-      case 'Launches':
+      case "Launches":
         this.applyLaunchesFilter();
         break;
 
@@ -78,7 +83,7 @@ export class StatisticPage implements OnInit {
   }
   private setupTable() {
     switch (this.what) {
-      case 'Launches':
+      case "Launches":
         return this.setupLaunchesTable();
       default:
         break;
@@ -88,119 +93,158 @@ export class StatisticPage implements OnInit {
     }, 10);
   }
   private applyFilter() {
-    return this.table.filteredValue ? this.table.filteredValue : this.table.value;
+    return this.table.filteredValue
+      ? this.table.filteredValue
+      : this.table.value;
   }
   private applyLaunchesFilter() {
-    this.table.filterGlobal(this.globalSearch, 'contains');
-    this.table.filter(this.nameSearch, 'name', 'contains');
+    this.table.filterGlobal(this.globalSearch, "contains");
+    this.table.filter(this.nameSearch, "name", "contains");
     if (this.fromFilter) {
-      this.onDateSelect(this.fromFilter, 'gte');
+      this.onDateSelect(this.fromFilter, "gte");
     }
     if (this.toFilter) {
-      this.onDateSelect(this.toFilter, 'gte');
+      this.onDateSelect(this.toFilter, "gte");
     }
-    this.table.filter(this.selectedRockets, 'rocket__configuration__full_name', 'in')
-    this.table.filter(this.selectedRocketFamilies, 'rocket__configuration__family', 'in')
-    this.table.filter(this.selectedAgencies, 'launch_service_provider__name', 'in')
-    this.table.filter(this.selectedAgencyTypes, 'launch_service_provider__type', 'in')
+    this.table.filter(
+      this.selectedRockets,
+      "rocket__configuration__full_name",
+      "in"
+    );
+    this.table.filter(
+      this.selectedRocketFamilies,
+      "rocket__configuration__family",
+      "in"
+    );
+    this.table.filter(
+      this.selectedAgencies,
+      "launch_service_provider__name",
+      "in"
+    );
+    this.table.filter(
+      this.selectedAgencyTypes,
+      "launch_service_provider__type",
+      "in"
+    );
   }
 
   private async setupLaunchesTable() {
     this.cols = [
-      { field: 'name', header: 'Name' },
-      { field: 'net', header: 'Date' },
-      { field: 'rocket__configuration__full_name', header: 'Rocket' },
-      { field: 'rocket__configuration__family', header: 'Rocket Family' },
-      { field: 'launch_service_provider__name', header: 'Agency' },
-      { field: 'launch_service_provider__type', header: 'Agencytype' },
-    ]
+      { field: "name", header: "Name" },
+      { field: "net", header: "Date" },
+      { field: "rocket__configuration__full_name", header: "Rocket" },
+      { field: "rocket__configuration__family", header: "Rocket Family" },
+      { field: "launch_service_provider__name", header: "Agency" },
+      { field: "launch_service_provider__type", header: "Agencytype" },
+    ];
     this.dataRaw = this.service.getLaunches();
     this.rockets = this.dataRaw
-      .map(launch => {
+      .map((launch) => {
         return launch.rocket__configuration__full_name;
       })
       .filter((value, index, self) => self.indexOf(value) === index)
       .sort((x1, x2) => (x1 < x2 ? -1 : 1))
-      .map(rocket => {
-        return { label: rocket, value: rocket, }
+      .map((rocket) => {
+        return { label: rocket, value: rocket };
       });
     this.rocketFamilies = this.dataRaw
-      .map(launch => {
+      .map((launch) => {
         return launch.rocket__configuration__family;
       })
       .filter((value, index, self) => self.indexOf(value) === index)
       .sort((x1, x2) => (x1 < x2 ? -1 : 1))
-      .map(rocketFamily => {
-        return { label: rocketFamily, value: rocketFamily, }
+      .map((rocketFamily) => {
+        return { label: rocketFamily, value: rocketFamily };
       });
     this.agencies = this.dataRaw
-      .map(launch => {
+      .map((launch) => {
         return launch.launch_service_provider__name;
       })
       .filter((value, index, self) => self.indexOf(value) === index)
       .sort((x1, x2) => (x1 < x2 ? -1 : 1))
-      .map(agency => {
-        return { label: agency, value: agency, }
+      .map((agency) => {
+        return { label: agency, value: agency };
       });
     this.agencyTypes = this.dataRaw
-      .map(launch => {
+      .map((launch) => {
         return launch.launch_service_provider__type;
       })
       .filter((value, index, self) => self.indexOf(value) === index)
       .sort((x1, x2) => (x1 < x2 ? -1 : 1))
-      .map(agencyType => {
-        return { label: agencyType, value: agencyType, }
+      .map((agencyType) => {
+        return { label: agencyType, value: agencyType };
       });
   }
   private getLabels() {
     switch (this.what) {
-      case 'Launches':
+      case "Launches":
         return this.getLaunchesLabels();
       default:
         break;
     }
   }
 
-  getLabelsWithDatasets(cumulative: boolean, fill: boolean): { labels, datasets } {
+  getLabelsWithDatasets(
+    cumulative: boolean,
+    fill: boolean
+  ): { labels; datasets } {
     const dates: Date[] = this.getDates();
     const datasets = this.getDatasetsForXAxisForDates(dates, cumulative, fill);
     const labels = [];
     for (let index = 0; index < dates.length - 1; index++) {
       const date = dates[index];
       const nextDate = dates[index + 1];
-      labels.push(this.createDateLabel(date, nextDate, dates[0], dates[dates.length - 1], dates.length));
+      labels.push(
+        this.createDateLabel(
+          date,
+          nextDate,
+          dates[0],
+          dates[dates.length - 1],
+          dates.length
+        )
+      );
     }
-    const labelsWithDatasets: { labels, datasets } = { labels, datasets };
+    const labelsWithDatasets: { labels; datasets } = { labels, datasets };
     return labelsWithDatasets;
   }
-  createDateLabel(date: Date, nextDate: Date, firstDate: Date, lastDate: Date, amountDates: number) {
-    //check if years is enough
-    const isYearsEnough = lastDate.getFullYear() - firstDate.getFullYear() > amountDates;
+  createDateLabel(
+    date: Date,
+    nextDate: Date,
+    firstDate: Date,
+    lastDate: Date,
+    amountDates: number
+  ) {
+    // check if years is enough
+    const isYearsEnough =
+      lastDate.getFullYear() - firstDate.getFullYear() > amountDates;
     if (isYearsEnough) {
-      //year is enough
-      return this.getYearString(date) + '-' + this.getYearString(nextDate);
+      // year is enough
+      return this.getYearString(date) + "-" + this.getYearString(nextDate);
     } else {
       // year is not enough (it is less than 10 years)
       // check if months are enough
       const monthDiff = this.monthDiff(firstDate, lastDate);
       const isMonthsEnough = monthDiff > amountDates;
       if (isMonthsEnough) {
-        //months is enough
-        return this.getMonthString(date) + '-' + this.getMonthString(nextDate);
+        // months is enough
+        return this.getMonthString(date) + "-" + this.getMonthString(nextDate);
       } else {
-        //months is not enough
-        return this.getDayString(date) + '-' + this.getDayString(nextDate);
+        // months is not enough
+        return this.getDayString(date) + "-" + this.getDayString(nextDate);
       }
     }
   }
   getYearString(date: Date) {
-    return date.getFullYear().toString().substring(2);
+    return date
+      .getFullYear()
+      .toString()
+      .substring(2);
   }
   getMonthString(date: Date) {
-    return date.getMonth() + 1 + '/' + this.getYearString(date);
+    return date.getMonth() + 1 + "/" + this.getYearString(date);
   }
   getDayString(date: Date) {
-    return date.getDate() + '/' + this.getMonthString(date);
+    return date.getDate() + "/" + this.getMonthString(date);
   }
   monthDiff(d1, d2) {
     let months;
@@ -210,8 +254,7 @@ export class StatisticPage implements OnInit {
     return months <= 0 ? 0 : months;
   }
   getDates(): Date[] {
-    const data: any[] = this.dataFiltered;
-    const dates = this.dataFiltered.map(data => { return new Date(data.net).valueOf() });
+    const dates = this.dataFiltered.map((data) => new Date(data.net).valueOf());
     const minDate = Math.min(...dates);
     const maxDate = Math.max(...dates);
     const diffDate = maxDate - minDate;
@@ -222,29 +265,37 @@ export class StatisticPage implements OnInit {
     for (let index = 0; index < chunkAmount; index++) {
       chunks.push(chunks[index] + chunkSize);
     }
-    const dateLabels = chunks.map(chunk => { return new Date(chunk) });
+    const dateLabels = chunks.map((chunk) => new Date(chunk));
     return dateLabels;
   }
-  getDatasetsForXAxisForDates(dates: Date[], cumulative: boolean, fill: boolean) {
+  getDatasetsForXAxisForDates(
+    dates: Date[],
+    cumulative: boolean,
+    fill: boolean
+  ) {
     let xAxisValues;
     switch (this.xAxis) {
-      case 'Rocket':
-        xAxisValues = this.dataFiltered.map(launch => { return launch.rocket__configuration__full_name })
+      case "Rocket":
+        xAxisValues = this.dataFiltered
+          .map((launch) => launch.rocket__configuration__full_name)
           .filter((value, index, self) => self.indexOf(value) === index)
           .sort((x1, x2) => (x1 < x2 ? -1 : 1));
         break;
-      case 'RocketFamily':
-        xAxisValues = this.dataFiltered.map(launch => { return launch.rocket__configuration__family })
+      case "RocketFamily":
+        xAxisValues = this.dataFiltered
+          .map((launch) => launch.rocket__configuration__family)
           .filter((value, index, self) => self.indexOf(value) === index)
           .sort((x1, x2) => (x1 < x2 ? -1 : 1));
         break;
-      case 'Agency':
-        xAxisValues = this.dataFiltered.map(launch => { return launch.launch_service_provider__name })
+      case "Agency":
+        xAxisValues = this.dataFiltered
+          .map((launch) => launch.launch_service_provider__name)
           .filter((value, index, self) => self.indexOf(value) === index)
           .sort((x1, x2) => (x1 < x2 ? -1 : 1));
         break;
-      case 'AgencyType':
-        xAxisValues = this.dataFiltered.map(launch => { return launch.launch_service_provider__type })
+      case "AgencyType":
+        xAxisValues = this.dataFiltered
+          .map((launch) => launch.launch_service_provider__type)
           .filter((value, index, self) => self.indexOf(value) === index)
           .sort((x1, x2) => (x1 < x2 ? -1 : 1));
         break;
@@ -253,22 +304,29 @@ export class StatisticPage implements OnInit {
         break;
     }
     const datasetsArray = [];
-    for (let index = 0; index < xAxisValues.length; index++) {
-      const xAxisValue = xAxisValues[index];
+    xAxisValues.forEach((xAxisValue) => {
       const color = this.getColor(xAxisValue);
       let dataForXAxisValue;
       switch (this.xAxis) {
-        case 'Rocket':
-          dataForXAxisValue = this.dataFiltered.filter(launch => (launch.rocket__configuration__full_name === xAxisValue));
+        case "Rocket":
+          dataForXAxisValue = this.dataFiltered.filter(
+            (launch) => launch.rocket__configuration__full_name === xAxisValue
+          );
           break;
-        case 'RocketFamily':
-          dataForXAxisValue = this.dataFiltered.filter(launch => (launch.rocket__configuration__family === xAxisValue));
+        case "RocketFamily":
+          dataForXAxisValue = this.dataFiltered.filter(
+            (launch) => launch.rocket__configuration__family === xAxisValue
+          );
           break;
-        case 'Agency':
-          dataForXAxisValue = this.dataFiltered.filter(launch => (launch.launch_service_provider__name === xAxisValue));
+        case "Agency":
+          dataForXAxisValue = this.dataFiltered.filter(
+            (launch) => launch.launch_service_provider__name === xAxisValue
+          );
           break;
-        case 'AgencyType':
-          dataForXAxisValue = this.dataFiltered.filter(launch => (launch.launch_service_provider__type === xAxisValue));
+        case "AgencyType":
+          dataForXAxisValue = this.dataFiltered.filter(
+            (launch) => launch.launch_service_provider__type === xAxisValue
+          );
           break;
 
         default:
@@ -276,15 +334,28 @@ export class StatisticPage implements OnInit {
       }
       let dataSet;
       if (fill) {
-        dataSet = { label: xAxisValue, data: [], borderColor: color, backgroundColor: color };
+        dataSet = {
+          label: xAxisValue,
+          data: [],
+          borderColor: color,
+          backgroundColor: color,
+        };
       } else {
-        dataSet = { label: xAxisValue, data: [], fill: false, borderColor: color };
+        dataSet = {
+          label: xAxisValue,
+          data: [],
+          fill: false,
+          borderColor: color,
+        };
       }
       let cumulativeCount = 0;
       for (let index = 0; index < dates.length - 1; index++) {
         const date = dates[index];
         const nextDate = dates[index + 1];
-        const count = dataForXAxisValue.filter(launch => (new Date(launch.net) >= date && new Date(launch.net) <= nextDate)).length;
+        const count = dataForXAxisValue.filter(
+          (launch) =>
+            new Date(launch.net) >= date && new Date(launch.net) <= nextDate
+        ).length;
         if (cumulative) {
           cumulativeCount += count;
           dataSet.data.push(cumulativeCount);
@@ -293,35 +364,35 @@ export class StatisticPage implements OnInit {
         }
       }
       datasetsArray.push(dataSet);
-    }
+    });
     return datasetsArray;
   }
   private getLaunchesLabels() {
     switch (this.xAxis) {
-      case 'Rocket':
+      case "Rocket":
         return this.dataFiltered
-          .map(launch => {
+          .map((launch) => {
             return launch.rocket__configuration__full_name;
           })
           .filter((value, index, self) => self.indexOf(value) === index)
           .sort((x1, x2) => (x1 < x2 ? -1 : 1));
-      case 'RocketFamily':
+      case "RocketFamily":
         return this.dataFiltered
-          .map(launch => {
+          .map((launch) => {
             return launch.rocket__configuration__family;
           })
           .filter((value, index, self) => self.indexOf(value) === index)
           .sort((x1, x2) => (x1 < x2 ? -1 : 1));
-      case 'Agency':
+      case "Agency":
         return this.dataFiltered
-          .map(launch => {
+          .map((launch) => {
             return launch.launch_service_provider__name;
           })
           .filter((value, index, self) => self.indexOf(value) === index)
           .sort((x1, x2) => (x1 < x2 ? -1 : 1));
-      case 'AgencyType':
+      case "AgencyType":
         return this.dataFiltered
-          .map(launch => {
+          .map((launch) => {
             return launch.launch_service_provider__type;
           })
           .filter((value, index, self) => self.indexOf(value) === index)
@@ -333,7 +404,7 @@ export class StatisticPage implements OnInit {
 
   private getDataForLabels(labels) {
     switch (this.what) {
-      case 'Launches':
+      case "Launches":
         return this.getLaunchesDataForLabels(labels);
       default:
         break;
@@ -341,26 +412,35 @@ export class StatisticPage implements OnInit {
   }
   private getLaunchesDataForLabels(labels) {
     const localData = [];
-    labels.forEach(label => {
+    labels.forEach((label) => {
       switch (this.xAxis) {
-        case 'Rocket':
+        case "Rocket":
           localData.push(
-            this.dataFiltered.filter(datapoint => (datapoint.rocket__configuration__full_name === label)).length
+            this.dataFiltered.filter(
+              (datapoint) =>
+                datapoint.rocket__configuration__full_name === label
+            ).length
           );
           break;
-        case 'RocketFamily':
+        case "RocketFamily":
           localData.push(
-            this.dataFiltered.filter(datapoint => (datapoint.rocket__configuration__family === label)).length
+            this.dataFiltered.filter(
+              (datapoint) => datapoint.rocket__configuration__family === label
+            ).length
           );
           break;
-        case 'Agency':
+        case "Agency":
           localData.push(
-            this.dataFiltered.filter(datapoint => (datapoint.launch_service_provider__name === label)).length
+            this.dataFiltered.filter(
+              (datapoint) => datapoint.launch_service_provider__name === label
+            ).length
           );
           break;
-        case 'AgencyType':
+        case "AgencyType":
           localData.push(
-            this.dataFiltered.filter(datapoint => (datapoint.launch_service_provider__type === label)).length
+            this.dataFiltered.filter(
+              (datapoint) => datapoint.launch_service_provider__type === label
+            ).length
           );
           break;
         default:
@@ -371,15 +451,22 @@ export class StatisticPage implements OnInit {
   }
   private getColors(labels) {
     const colors = [];
-    labels.forEach(label => {
+    labels.forEach((label) => {
       colors.push(this.getColor(label));
     });
     return colors;
   }
   private getColor(label) {
     const md5 = new Md5();
-    md5.appendStr(label ? label : '');
-    return '#' + md5.end().toString().toUpperCase().substr(0, 6);
+    md5.appendStr(label ? label : "");
+    return (
+      "#" +
+      md5
+        .end()
+        .toString()
+        .toUpperCase()
+        .substr(0, 6)
+    );
   }
   private initCharts() {
     this.initLineChart();
@@ -388,15 +475,18 @@ export class StatisticPage implements OnInit {
     this.initBarChart();
   }
   private initLineChart() {
-    const labelsWithDatasets: { labels, datasets } = this.getLabelsWithDatasets(true, false);
+    const labelsWithDatasets: { labels; datasets } = this.getLabelsWithDatasets(
+      true,
+      false
+    );
     this.lineChartData = {
       labels: labelsWithDatasets.labels,
       datasets: labelsWithDatasets.datasets,
       options: {
         legend: {
-          position: 'right'
+          position: "right",
         },
-      }
+      },
     };
   }
   private initPolarChart() {
@@ -410,12 +500,13 @@ export class StatisticPage implements OnInit {
           data,
           backgroundColor,
           hoverBackgroundColor: backgroundColor,
-        }],
+        },
+      ],
       options: {
         legend: {
-          position: 'right'
+          position: "right",
         },
-      }
+      },
     };
   }
   private initDoughnutChart() {
@@ -429,28 +520,32 @@ export class StatisticPage implements OnInit {
           data,
           backgroundColor,
           hoverBackgroundColor: backgroundColor,
-        }],
+        },
+      ],
       options: {
         legend: {
-          position: 'right'
+          position: "right",
         },
-      }
+      },
     };
   }
   private initBarChart() {
-    const labelsWithDatasets: { labels, datasets } = this.getLabelsWithDatasets(false, true);
+    const labelsWithDatasets: { labels; datasets } = this.getLabelsWithDatasets(
+      false,
+      true
+    );
     this.barChartData = {
       labels: labelsWithDatasets.labels,
       datasets: labelsWithDatasets.datasets,
       options: {
         legend: {
-          position: 'right'
+          position: "right",
         },
-      }
+      },
     };
   }
   onDateSelect(value, filter) {
-    this.table.filter(this.formatDate(value), 'net', filter);
+    this.table.filter(this.formatDate(value), "net", filter);
   }
 
   formatDate(date) {
@@ -458,14 +553,14 @@ export class StatisticPage implements OnInit {
     let day = date.getDate();
 
     if (month < 10) {
-      month = '0' + month;
+      month = "0" + month;
     }
 
     if (day < 10) {
-      day = '0' + day;
+      day = "0" + day;
     }
 
-    return date.getFullYear() + '-' + month + '-' + day;
+    return date.getFullYear() + "-" + month + "-" + day;
   }
   shuffle() {
     this.whatOpen();
@@ -474,7 +569,7 @@ export class StatisticPage implements OnInit {
     }, 100);
   }
   private shuffleWhat() {
-    //only launches therefor just skip this step
+    // only launches therefor just skip this step
     this.whatComplete();
     this.shuffleFilter();
   }
@@ -507,51 +602,69 @@ export class StatisticPage implements OnInit {
   }
   private getAllPossibleWords() {
     let names = [];
-    names = names.concat(...this.dataRaw.map(launch => {
-      return [
-        this.removeNonText(launch.name),
-        this.removeNonText(launch.rocket__configuration__full_name),
-        this.removeNonText(launch.rocket__configuration__family),
-        this.removeNonText(launch.launch_service_provider__name),
-        this.removeNonText(launch.launch_service_provider__type),
-      ]
-    }));
+    names = names.concat(
+      ...this.dataRaw.map((launch) => {
+        return [
+          this.removeNonText(launch.name),
+          this.removeNonText(launch.rocket__configuration__full_name),
+          this.removeNonText(launch.rocket__configuration__family),
+          this.removeNonText(launch.launch_service_provider__name),
+          this.removeNonText(launch.launch_service_provider__type),
+        ];
+      })
+    );
     names = names.filter((value, index, self) => self.indexOf(value) === index);
     const words: string[] = [];
-    names.forEach(name => {
-      const wordsInName = name.split(' ');
-      wordsInName.forEach(wordInName => {
+    names.forEach((name) => {
+      const wordsInName = name.split(" ");
+      wordsInName.forEach((wordInName) => {
         if (wordInName.length > 2) {
           words.push(wordInName);
         }
       });
     });
-    return words.filter((value, index, self) => self.indexOf(value) === index);;
+    return words.filter((value, index, self) => self.indexOf(value) === index);
   }
-  private removeNonText(string: string): string {
-    while (string.includes('/')) { string = string.replace('/', ' ') }
-    while (string.includes('-')) { string = string.replace('-', ' ') }
-    while (string.includes('\\')) { string = string.replace('\\', ' ') }
-    while (string.includes('+')) { string = string.replace('+', ' ') }
-    while (string.includes('(')) { string = string.replace('(', ' ') }
-    while (string.includes(')')) { string = string.replace(')', ' ') }
-    while (string.includes(',')) { string = string.replace(',', ' ') }
-    while (string.includes('|')) { string = string.replace('|', ' ') }
-    return string;
+  private removeNonText(str: string): string {
+    while (str.includes("/")) {
+      str = str.replace("/", " ");
+    }
+    while (str.includes("-")) {
+      str = str.replace("-", " ");
+    }
+    while (str.includes("\\")) {
+      str = str.replace("\\", " ");
+    }
+    while (str.includes("+")) {
+      str = str.replace("+", " ");
+    }
+    while (str.includes("(")) {
+      str = str.replace("(", " ");
+    }
+    while (str.includes(")")) {
+      str = str.replace(")", " ");
+    }
+    while (str.includes(",")) {
+      str = str.replace(",", " ");
+    }
+    while (str.includes("|")) {
+      str = str.replace("|", " ");
+    }
+    return str;
   }
   private shuffleAxis() {
     switch (this.randbetween(0, 4)) {
       case 0:
-        this.xAxis = 'Rocket';
+        this.xAxis = "Rocket";
         break;
       case 1:
-        this.xAxis = 'RocketFamily';
+        this.xAxis = "RocketFamily";
         break;
       case 2:
-        this.xAxis = 'Agency';
+        this.xAxis = "Agency";
         break;
       case 3:
-        this.xAxis = 'AgencyType';
+        this.xAxis = "AgencyType";
         break;
 
       default:

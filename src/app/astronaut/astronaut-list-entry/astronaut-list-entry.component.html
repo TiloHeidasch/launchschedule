@@ -1,25 +1,44 @@
-<ion-card *ngIf="astronaut" routerDirection="forward" [routerLink]="['/astronaut/'+astronaut.id]" slideIn>
+<ion-card
+  *ngIf="astronaut"
+  routerDirection="forward"
+  [routerLink]="['/astronaut/' + astronaut.id]"
+  appSlideIn
+>
   <div id="image">
     <div class="image-wrapper">
-      <ion-img id="background"
-        [src]="astronaut.profile_image_thumbnail?astronaut.profile_image_thumbnail:'assets/placeholder_1920.png'">
+      <ion-img
+        id="background"
+        [src]="
+          astronaut.profile_image_thumbnail
+            ? astronaut.profile_image_thumbnail
+            : 'assets/placeholder_1920.png'
+        "
+      >
       </ion-img>
     </div>
     <div class="image-wrapper">
-      <ion-img id="foreground"
-        [src]="astronaut.profile_image_thumbnail?astronaut.profile_image_thumbnail:'assets/placeholder_1920.png'">
+      <ion-img
+        id="foreground"
+        [src]="
+          astronaut.profile_image_thumbnail
+            ? astronaut.profile_image_thumbnail
+            : 'assets/placeholder_1920.png'
+        "
+      >
       </ion-img>
     </div>
   </div>
   <ion-card-header>
-    <ion-card-subtitle>{{subtitle}}</ion-card-subtitle>
-    <ion-card-title>{{title}}</ion-card-title>
+    <ion-card-subtitle>{{ subtitle }}</ion-card-subtitle>
+    <ion-card-title>{{ title }}</ion-card-title>
   </ion-card-header>
   <ion-card-content>
-    <astronaut-status [status]="astronaut.status"></astronaut-status>
+    <app-astronaut-status [status]="astronaut.status"></app-astronaut-status>
     <div id="content">
-      <p id="born">*{{astronaut.date_of_birth}}</p>
-      <p id="died" *ngIf="astronaut.date_of_death!==null">†{{astronaut.date_of_death}}</p>
+      <p id="born">*{{ astronaut.date_of_birth }}</p>
+      <p id="died" *ngIf="astronaut.date_of_death !== null">
+        †{{ astronaut.date_of_death }}
+      </p>
     </div>
   </ion-card-content>
 </ion-card>

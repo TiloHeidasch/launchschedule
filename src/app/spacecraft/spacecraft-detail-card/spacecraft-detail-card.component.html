@@ -1,17 +1,31 @@
-<ion-card *ngIf="spacecraft!==undefined">
+<ion-card *ngIf="spacecraft !== undefined">
   <div id="image">
     <div class="image-wrapper">
-      <ion-img id="background" [src]="spacecraft.image_url?spacecraft.image_url:'assets/placeholder_1920.png'">
+      <ion-img
+        id="background"
+        [src]="
+          spacecraft.image_url
+            ? spacecraft.image_url
+            : 'assets/placeholder_1920.png'
+        "
+      >
       </ion-img>
     </div>
     <div class="image-wrapper">
-      <ion-img id="foreground" [src]="spacecraft.image_url?spacecraft.image_url:'assets/placeholder_1920.png'">
+      <ion-img
+        id="foreground"
+        [src]="
+          spacecraft.image_url
+            ? spacecraft.image_url
+            : 'assets/placeholder_1920.png'
+        "
+      >
       </ion-img>
     </div>
   </div>
   <ion-card-header>
-    <ion-card-subtitle>{{spacecraft.agency.abbrev}}</ion-card-subtitle>
-    <ion-card-title>{{spacecraft.name}}</ion-card-title>
+    <ion-card-subtitle>{{ spacecraft.agency.abbrev }}</ion-card-subtitle>
+    <ion-card-title>{{ spacecraft.name }}</ion-card-title>
   </ion-card-header>
   <ion-card-content>
     <div id="capability">
@@ -20,7 +34,7 @@
           Capability
         </ion-label>
       </ion-item>
-      <p>{{spacecraft.capability}}</p>
+      <p>{{ spacecraft.capability }}</p>
     </div>
     <div id="details">
       <ion-item>
@@ -28,7 +42,7 @@
           Details
         </ion-label>
       </ion-item>
-      <p>{{spacecraft.details}}</p>
+      <p>{{ spacecraft.details }}</p>
     </div>
     <div id="history">
       <ion-item>
@@ -36,7 +50,7 @@
           History
         </ion-label>
       </ion-item>
-      <p>{{spacecraft.history}}</p>
+      <p>{{ spacecraft.history }}</p>
     </div>
     <div id="flight_life">
       <ion-item>
@@ -44,7 +58,7 @@
           Flight Life
         </ion-label>
       </ion-item>
-      <p>{{spacecraft.flight_life}}</p>
+      <p>{{ spacecraft.flight_life }}</p>
     </div>
     <div id="specifications">
       <ion-item>
@@ -54,23 +68,23 @@
       </ion-item>
       <ion-chip id="crew_capacity" *ngIf="spacecraft.crew_capacity">
         <ion-icon name="body" color="dark"></ion-icon>
-        <ion-label>{{spacecraft.crew_capacity}}</ion-label>
+        <ion-label>{{ spacecraft.crew_capacity }}</ion-label>
       </ion-chip>
       <ion-chip id="diameter" *ngIf="spacecraft.diameter">
         <ion-icon name="code-working" color="dark"></ion-icon>
-        <ion-label>{{spacecraft.diameter}}m</ion-label>
+        <ion-label>{{ spacecraft.diameter }}m</ion-label>
       </ion-chip>
       <ion-chip id="height" *ngIf="spacecraft.height">
         <ion-icon name="arrow-up" color="dark"></ion-icon>
-        <ion-label>{{spacecraft.height}}m</ion-label>
+        <ion-label>{{ spacecraft.height }}m</ion-label>
       </ion-chip>
       <ion-chip id="payload_capacity" *ngIf="spacecraft.payload_capacity">
         <ion-icon name="barbell" color="dark"></ion-icon>
-        <ion-label>{{spacecraft.payload_capacity}}kg</ion-label>
+        <ion-label>{{ spacecraft.payload_capacity }}kg</ion-label>
       </ion-chip>
       <ion-chip id="maiden_flight" *ngIf="spacecraft.maiden_flight">
         <ion-icon name="rocket" color="dark"></ion-icon>
-        <ion-label>{{spacecraft.maiden_flight}}</ion-label>
+        <ion-label>{{ spacecraft.maiden_flight }}</ion-label>
       </ion-chip>
       <ion-chip id="in_use" *ngIf="spacecraft.in_use">
         <ion-icon name="checkmark-circle" color="success"></ion-icon>
