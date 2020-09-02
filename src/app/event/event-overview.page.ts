@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
 import { LaunchLibraryService } from "../launch-library.service";
 import { EventParamStoreService } from "./event-param-store.service";
 import { IonContent, ViewDidEnter, IonInfiniteScroll } from "@ionic/angular";
@@ -15,7 +14,6 @@ export class EventOverviewPage implements OnInit, ViewDidEnter {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
   constructor(
-    private activatedRoute: ActivatedRoute,
     private service: LaunchLibraryService,
     public store: EventParamStoreService
   ) {}

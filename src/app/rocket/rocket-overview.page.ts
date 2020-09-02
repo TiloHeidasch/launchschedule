@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
 import { LaunchLibraryService } from "../launch-library.service";
 import { RocketParamStoreService } from "./rocket-param-store.service";
 import { IonContent, ViewDidEnter, IonInfiniteScroll } from "@ionic/angular";
@@ -14,7 +13,6 @@ export class RocketOverviewPage implements OnInit, ViewDidEnter {
   @ViewChild("rocketOverviewContent") content: IonContent;
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   constructor(
-    private activatedRoute: ActivatedRoute,
     private service: LaunchLibraryService,
     public store: RocketParamStoreService
   ) {}

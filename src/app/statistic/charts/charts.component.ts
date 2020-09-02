@@ -22,27 +22,29 @@ export class ChartsComponent implements OnInit, AfterViewInit {
   @ViewChild("legend") legend: ElementRef;
   constructor() {}
   ngAfterViewInit() {
-    let chartHtml: string = this.chart.generateLegend().replace(/\d*-/, "");
-    while (
-      chartHtml.includes("<ul") ||
-      chartHtml.includes("</ul") ||
-      chartHtml.includes("<li") ||
-      chartHtml.includes("</li") ||
-      chartHtml.includes("<span") ||
-      chartHtml.includes("</span")
-    ) {
-      chartHtml = chartHtml
-        .replace("<ul", "<div")
-        .replace("<li", "<div class='list-entry'")
-        .replace("<span", "<div class='chart-color'")
-        .replace("</ul", "</div")
-        .replace("</li", "</div")
-        .replace("</span", "</div");
-    }
+    try {
+      let chartHtml: string = this.chart.generateLegend().replace(/\d*-/, "");
+      while (
+        chartHtml.includes("<ul") ||
+        chartHtml.includes("</ul") ||
+        chartHtml.includes("<li") ||
+        chartHtml.includes("</li") ||
+        chartHtml.includes("<span") ||
+        chartHtml.includes("</span")
+      ) {
+        chartHtml = chartHtml
+          .replace("<ul", "<div")
+          .replace("<li", "<div class='list-entry'")
+          .replace("<span", "<div class='chart-color'")
+          .replace("</ul", "</div")
+          .replace("</li", "</div")
+          .replace("</span", "</div");
+      }
 
-    console.log(chartHtml);
+      console.log(chartHtml);
 
-    this.legend.nativeElement.innerHTML = chartHtml;
+      this.legend.nativeElement.innerHTML = chartHtml;
+    } catch (error) {}
   }
 
   ngOnInit() {}

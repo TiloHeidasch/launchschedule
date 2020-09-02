@@ -15,6 +15,7 @@ describe("CountdownComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CountdownComponent);
     component = fixture.componentInstance;
+    component.date = new Date();
     fixture.detectChanges();
   });
 

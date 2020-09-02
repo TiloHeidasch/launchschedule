@@ -2,6 +2,8 @@ import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 import { IonicModule } from "@ionic/angular";
 
 import { EventPage } from "./event.page";
+import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { RouterTestingModule } from "@angular/router/testing";
 
 describe("EventPage", () => {
   let component: EventPage;
@@ -10,7 +12,11 @@ describe("EventPage", () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [EventPage],
-      imports: [IonicModule.forRoot()],
+      imports: [
+        IonicModule.forRoot(),
+        RouterTestingModule,
+        HttpClientTestingModule,
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(EventPage);

@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
 import { LaunchLibraryService } from "../launch-library.service";
 import { AgencyParamStoreService } from "./agency-param-store.service";
 import { CountryCode } from "../types/country-codes";
@@ -16,7 +15,6 @@ export class AgencyOverviewPage implements OnInit, ViewDidEnter {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   CountryCode = CountryCode;
   constructor(
-    private activatedRoute: ActivatedRoute,
     private service: LaunchLibraryService,
     public store: AgencyParamStoreService
   ) {}
