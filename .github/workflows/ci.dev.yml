@@ -156,4 +156,4 @@ jobs:
       - name: NPM Install
         run: npm install
       - name: Run Test
-        run: ng test
+        run: npm run test
