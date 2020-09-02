@@ -48,7 +48,7 @@ describe("EventDetailCardComponent", () => {
           url: "https://ll.thespacedevs.com/2.0.0/program/15/",
           name: "Artemis",
           description:
-            'The Artemis program is a US government-funded crewed spaceflight program that has the goal of landing "the first woman and the next man" on the Moon, specifically at the lunar south pole region by 2024.',
+            "The Artemis program is a US government-funded crewed spaceflight program that has the goal of landing 'the first woman and the next man' on the Moon, specifically at the lunar south pole region by 2024.",
           agencies: [
             {
               id: 44,
