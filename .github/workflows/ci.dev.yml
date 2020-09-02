@@ -35,12 +35,6 @@ jobs:
         run: npm install -g @angular/cli
       - name: Setup Ionic
         run: npm install -g @ionic/cli
-      - name: Setup Totemize
-        run: npm install -g totemize
-      - name: Create Release Name Variable using Totemize
-        run: RELEASE_NAME=`totemize`
-      - name: Test Release Name
-        run: echo $RELEASE_NAME
       - name: NPM Install
         run: npm install
       - name: Download Launches
