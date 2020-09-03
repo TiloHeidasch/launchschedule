@@ -88,23 +88,23 @@ jobs:
         with:
           name: app-bundle-signed
           path: ./app-release.aab
-  # release:
-  #   name: Upload to Google Play
-  #   runs-on: ubuntu-latest
-  #   needs: sign
-  #   steps:
-  #     - name: Download Signed Release Bundle Artifact
-  #       uses: actions/download-artifact@v2.0.5
-  #       with:
-  #         name: app-bundle-signed
-  #         path: ./
-  #     - name: Upload to Google Play
-  #       uses: r0adkll/upload-google-play@v1.0.4
-  #       with:
-  #         serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON }}
-  #         packageName: de.th105.launchschedule
-  #         releaseFile: ./app-release.aab
-  #         track: beta
+  release:
+    name: Upload to Google Play
+    runs-on: ubuntu-latest
+    needs: sign
+    steps:
+      - name: Download Signed Release Bundle Artifact
+        uses: actions/download-artifact@v2.0.5
+        with:
+          name: app-bundle-signed
+          path: ./
+      - name: Upload to Google Play
+        uses: r0adkll/upload-google-play@v1.0.4
+        with:
+          serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON }}
+          packageName: de.th105.launchschedule
+          releaseFile: ./app-release.aab
+          track: Beta
   docker:
     name: Build and Push docker
     runs-on: ubuntu-latest
