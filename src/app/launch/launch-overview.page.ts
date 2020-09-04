@@ -36,7 +36,7 @@ export class LaunchOverviewPage implements OnInit, ViewDidEnter {
     this.store.scrollY = event.detail.currentY;
   }
 
-  async loadFirst() {
+  async loadFirst(refreshEvent?) {
     try {
       this.infiniteScroll.disabled = false;
     } catch (error) {}
@@ -51,6 +51,9 @@ export class LaunchOverviewPage implements OnInit, ViewDidEnter {
       this.store.agencyId,
       this.store.upcomingPreviousAll
     )).launches;
+    if (refreshEvent) {
+      refreshEvent.target.complete();
+    }
   }
 
   async loadMore(event) {

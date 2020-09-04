@@ -28,7 +28,7 @@ export class SpacecraftOverviewPage implements OnInit, ViewDidEnter {
   logScrolling(event) {
     this.store.scrollY = event.detail.currentY;
   }
-  async loadFirst() {
+  async loadFirst(refreshEvent?) {
     try {
       this.infiniteScroll.disabled = false;
     } catch (error) {}
@@ -38,6 +38,9 @@ export class SpacecraftOverviewPage implements OnInit, ViewDidEnter {
       this.store.inUse,
       this.store.humanRated
     )).spacecrafts;
+    if (refreshEvent) {
+      refreshEvent.target.complete();
+    }
   }
 
   async loadMore(event) {

@@ -29,7 +29,7 @@ export class AgencyOverviewPage implements OnInit, ViewDidEnter {
   logScrolling(event) {
     this.store.scrollY = event.detail.currentY;
   }
-  async loadFirst() {
+  async loadFirst(refreshEvent?) {
     try {
       this.infiniteScroll.disabled = false;
     } catch (error) {}
@@ -40,6 +40,9 @@ export class AgencyOverviewPage implements OnInit, ViewDidEnter {
       this.store.type,
       this.store.countryCode
     )).agencies;
+    if (refreshEvent) {
+      refreshEvent.target.complete();
+    }
   }
 
   async loadMore(event) {
