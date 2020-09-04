@@ -10,7 +10,8 @@
     "test": "ng test --watch=false --browsers=ChromeHeadlessCustom",
     "test:watch": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "resources": "cordova-res android && node resources.js"
   },
   "private": true,
   "dependencies": {
@@ -57,6 +58,7 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",
     "codelyzer": "^5.1.2",
+    "cordova-res": "^0.15.1",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~5.0.0",

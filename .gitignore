@@ -33,3 +33,4 @@ npm-debug.log*
 /src/app/data/*
 /.gradle
 /android/.idea
+/resources/android
