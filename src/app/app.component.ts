@@ -10,7 +10,7 @@ import { StatusBar } from "@ionic-native/status-bar/ngx";
   styleUrls: ["app.component.scss"],
 })
 export class AppComponent implements OnInit {
-  public selectedIndex = 1;
+  public selectedIndex = 0;
   public appPages = [
     {
       title: "Launch",
