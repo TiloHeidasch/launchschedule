@@ -27,6 +27,67 @@
         </ion-list>
       </ion-content>
     </ion-menu>
-    <ion-router-outlet id="main-content"></ion-router-outlet>
+    <ion-router-outlet id="main-content">
+      <p-toast styleClass="my-toast">
+        <ng-template let-message pTemplate="message">
+          <div class="toast">
+            <div class="toast-head"></div>
+            <div class="toast-body">
+              <div class="toast-text">
+                <div class="toast-heading">
+                  <h4>{{ message.summary }}</h4>
+                </div>
+                <div class="toast-content">
+                  <p>{{ message.detail }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="toast-foot">
+              <ion-button
+                *ngIf="message.data.type === 'launch'"
+                expand="full"
+                class="toast-jump"
+                (click)="jumpToLaunch(message.data.id)"
+                >Jump to Launch</ion-button
+              >
+              <ion-button
+                *ngIf="message.data.type === 'event'"
+                expand="full"
+                class="toast-jump"
+                (click)="jumpToEvent(message.data.id)"
+                >Jump to Event</ion-button
+              >
+            </div>
+          </div>
+          <!-- <div class="p-flex p-flex-column" style="flex: 1">
+            <div class="p-text-center">
+              <i class="pi pi-exclamation-triangle" style="font-size: 3rem"></i>
+              <h4>{{ message.summary }}</h4>
+              <p>{{ message.detail }}</p>
+            </div>
+            <div class="p-grid p-fluid">
+              <div class="p-col-6">
+                <button
+                  type="button"
+                  pButton
+                  (click)="onConfirm()"
+                  label="Yes"
+                  class="p-button-success"
+                ></button>
+              </div>
+              <div class="p-col-6">
+                <button
+                  type="button"
+                  pButton
+                  (click)="onReject()"
+                  label="No"
+                  class="p-button-secondary"
+                ></button>
+              </div>
+            </div>
+          </div> -->
+        </ng-template>
+      </p-toast>
+    </ion-router-outlet>
   </ion-split-pane>
 </ion-app>

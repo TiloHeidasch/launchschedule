@@ -103,3 +103,19 @@ ion-note {
 ion-item.selected {
   --color: var(--ion-color-primary);
 }
+
+.toast {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.toast-body {
+  display: flex;
+}
+.toast-icon {
+  display: flex;
+  align-items: center;
+  img {
+    height: 4rem;
+  }
+}
