@@ -18,7 +18,7 @@ jobs:
       - name: Update Tag
         uses: richardsimko/update-tag@v1.0.3
         with:
-          tag_name: "$RELEASE_NAME"
+          tag_name: ${{ env.RELEASE_NAME }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   fetch:
@@ -42,7 +42,7 @@ jobs:
     needs: [fetch, baptize]
     steps:
       - name: Test Release Name
-        run: echo $RELEASE_NAME
+        run: echo ${{ env.RELEASE_NAME }}
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup Node
