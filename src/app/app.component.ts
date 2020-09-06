@@ -22,7 +22,7 @@ const { PushNotifications } = Plugins;
   providers: [MessageService],
 })
 export class AppComponent implements OnInit {
-  versionCode = environment.versionCode;
+  versionCode = environment.versionCode + 1000;
   versionName = environment.versionName;
   track = environment.track;
   public selectedIndex = 0;
