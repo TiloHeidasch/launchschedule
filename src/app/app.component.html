@@ -4,23 +4,10 @@
       <ion-content>
         <ion-img src="assets/icon/logo_left_text_right.png"></ion-img>
         <ion-list id="menu-list">
-          <ion-menu-toggle
-            auto-hide="false"
-            *ngFor="let p of appPages; let i = index"
-          >
-            <ion-item
-              (click)="selectedIndex = i"
-              routerDirection="root"
-              [routerLink]="[p.url]"
-              lines="none"
-              detail="false"
-              [class.selected]="selectedIndex === i"
-            >
-              <ion-icon
-                slot="start"
-                [ios]="p.icon + '-outline'"
-                [md]="p.icon + '-sharp'"
-              ></ion-icon>
+          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
+            <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" lines="none"
+              detail="false" [class.selected]="selectedIndex === i">
+              <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
               <ion-label>{{ p.title }}</ion-label>
             </ion-item>
           </ion-menu-toggle>
@@ -43,49 +30,12 @@
               </div>
             </div>
             <div class="toast-foot">
-              <ion-button
-                *ngIf="message.data.type === 'launch'"
-                expand="full"
-                class="toast-jump"
-                (click)="jumpToLaunch(message.data.id)"
-                >Jump to Launch</ion-button
-              >
-              <ion-button
-                *ngIf="message.data.type === 'event'"
-                expand="full"
-                class="toast-jump"
-                (click)="jumpToEvent(message.data.id)"
-                >Jump to Event</ion-button
-              >
+              <ion-button *ngIf="message.data.type === 'launch'" expand="full" class="toast-jump"
+                (click)="jumpToLaunch(message.data.id)">Jump to Launch</ion-button>
+              <ion-button *ngIf="message.data.type === 'event'" expand="full" class="toast-jump"
+                (click)="jumpToEvent(message.data.id)">Jump to Event</ion-button>
             </div>
           </div>
-          <!-- <div class="p-flex p-flex-column" style="flex: 1">
-            <div class="p-text-center">
-              <i class="pi pi-exclamation-triangle" style="font-size: 3rem"></i>
-              <h4>{{ message.summary }}</h4>
-              <p>{{ message.detail }}</p>
-            </div>
-            <div class="p-grid p-fluid">
-              <div class="p-col-6">
-                <button
-                  type="button"
-                  pButton
-                  (click)="onConfirm()"
-                  label="Yes"
-                  class="p-button-success"
-                ></button>
-              </div>
-              <div class="p-col-6">
-                <button
-                  type="button"
-                  pButton
-                  (click)="onReject()"
-                  label="No"
-                  class="p-button-secondary"
-                ></button>
-              </div>
-            </div>
-          </div> -->
         </ng-template>
       </p-toast>
     </ion-router-outlet>
