@@ -14,7 +14,7 @@ jobs:
       - name: Setup Totemize
         run: npm install -g totemize
       - name: Create Release Name Variable using Totemize
-        run: echo "::set-env name=RELEASE_NAME::`totemize`"
+        run: echo "::set-env name=RELEASE_NAME::`totemize -s '-'`"
       - name: Update Tag
         uses: richardsimko/update-tag@v1.0.3
         with:
