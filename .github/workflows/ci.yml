@@ -84,7 +84,7 @@ jobs:
       - name: Set Release Track Variable
         run: echo "::set-env name=RELEASE_TRACK::`cat ./track`"
       - name: Setup Environment File
-        run: sed -i 's/};/versionCode:"${{ GITHUB_RUN_NUMBER }}",\n versionName:"${{ env.RELEASE_NAME }}",\n track:"${{ env.RELEASE_TRACK }}"\n};/g' src/environments/environment.prod.ts
+        run: sed -i 's/};/versionCode:"$GITHUB_RUN_NUMBER",\n versionName:"${{ env.RELEASE_NAME }}",\n track:"${{ env.RELEASE_TRACK }}"\n};/g' src/environments/environment.prod.ts
       - name: Check Environment File
         run: cat src/environments/environment.prod.ts
       - name: Download Launches
