@@ -5,6 +5,20 @@ on:
   workflow_dispatch:
 
 jobs:
+  baptize:
+    name: Determine Release Name
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Node
+        uses: actions/setup-node@v1.4.3
+      - name: Setup Totemize
+        run: npm install -g totemize
+      - name: Create Release Name Variable using Totemize
+        run: ::set-env name=RELEASE_NAME::`totemize`
+      - name: Update Tag
+        uses: richardsimko/update-tag@v1.0.3
+        with:
+          tag_name: $RELEASE_NAME
   fetch:
     name: Fetch Data
     runs-on: ubuntu-latest
@@ -23,8 +37,10 @@ jobs:
   build:
     name: Build Web & Android
     runs-on: ubuntu-latest
-    needs: fetch
+    needs: [fetch, baptize]
     steps:
+      - name: Test Release Name
+        run: echo $RELEASE_NAME
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup Node
