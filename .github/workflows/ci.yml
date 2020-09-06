@@ -18,7 +18,7 @@ jobs:
       - name: Update Tag
         uses: richardsimko/update-tag@v1.0.3
         with:
-          tag_name: $RELEASE_NAME
+          tag_name: "$RELEASE_NAME"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   fetch:
