@@ -11,6 +11,7 @@ import {
 } from "@capacitor/core";
 import { Router } from "@angular/router";
 import { MessageService } from "primeng/api";
+import { environment } from "../environments/environment";
 
 const { PushNotifications } = Plugins;
 
@@ -21,6 +22,9 @@ const { PushNotifications } = Plugins;
   providers: [MessageService],
 })
 export class AppComponent implements OnInit {
+  versionCode = environment.versionCode;
+  versionName = environment.versionName;
+  track = environment.track;
   public selectedIndex = 0;
   public appPages = [
     {

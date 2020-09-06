@@ -5,6 +5,9 @@
 export const environment = {
   production: false,
   launchLibrary: "https://lldev.thespacedevs.com",
+  versionCode: 1,
+  versionName: "000000",
+  track: "dev"
 };
 
 /*
