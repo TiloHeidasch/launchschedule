@@ -15,12 +15,6 @@ jobs:
         run: npm install -g totemize
       - name: Create Release Name Variable using Totemize
         run: echo "::set-env name=RELEASE_NAME::`totemize -s '-'`"
-      - name: Update Tag
-        uses: richardsimko/update-tag@v1.0.3
-        with:
-          tag_name: ${{ env.RELEASE_NAME }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create Version File
         run: echo "${{ env.RELEASE_NAME }}" > version
       - name: Safe Version File Artifact
@@ -256,3 +250,41 @@ jobs:
           path: src/app/data/
       - name: Run Test
         run: npm run test
+  tagDev:
+    name: Tag this run
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/dev'
+    needs: [dockerDev, releaseDev]
+    steps:
+      - name: Download Version
+        uses: actions/download-artifact@v2.0.5
+        with:
+          name: version
+          path: ./
+      - name: Set Release Name Variable
+        run: echo "::set-env name=RELEASE_NAME::`cat ./version`"
+      - name: Update Tag
+        uses: richardsimko/update-tag@v1.0.3
+        with:
+          tag_name: ${{ env.RELEASE_NAME }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  tagProd:
+    name: Tag this run
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/dev'
+    needs: [dockerProd, releaseProd]
+    steps:
+      - name: Download Version
+        uses: actions/download-artifact@v2.0.5
+        with:
+          name: version
+          path: ./
+      - name: Set Release Name Variable
+        run: echo "::set-env name=RELEASE_NAME::`cat ./version`"
+      - name: Update Tag
+        uses: richardsimko/update-tag@v1.0.3
+        with:
+          tag_name: ${{ env.RELEASE_NAME }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
