@@ -35,9 +35,11 @@ jobs:
       - name: Write Track to File
         run: echo "development" > track
       - name: Check if master
-        run: test github.ref == 'refs/heads/master' && echo "Prod" > track
+        if: ${{github.ref == 'refs/heads/master'}}
+        run: echo "Prod" > track
       - name: Check if dev
-        run: test github.ref == 'refs/heads/dev' && echo "Beta" > track
+        if: ${{github.ref == 'refs/heads/dev'}}
+        run: echo "Beta" > track
       - name: Safe Track File Artifact
         uses: actions/upload-artifact@v2.1.4
         with:
