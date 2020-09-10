@@ -8,10 +8,12 @@ import {
   Plugins,
   PushNotification,
   PushNotificationActionPerformed,
+  PushNotificationToken,
 } from "@capacitor/core";
 import { Router } from "@angular/router";
 import { MessageService } from "primeng/api";
 import { environment } from "../environments/environment";
+import { LaunchscheduleNotificationService } from "./launchschedule-notification.service";
 
 const { PushNotifications } = Plugins;
 
@@ -85,7 +87,8 @@ export class AppComponent implements OnInit {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private router: Router,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private launchscheduleNotificationService: LaunchscheduleNotificationService
   ) {
     this.initializeApp();
   }
@@ -119,7 +122,14 @@ export class AppComponent implements OnInit {
         // Show some error
       }
     });
-
+    // On success, we should be able to receive notifications
+    PushNotifications.addListener(
+      "registration",
+      (token: PushNotificationToken) => {
+        this.launchscheduleNotificationService.token = token.value;
+        this.launchscheduleNotificationService.prepare();
+      }
+    );
     // Show us the notification payload if the app is open on our device
     PushNotifications.addListener(
       "pushNotificationReceived",

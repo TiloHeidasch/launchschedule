@@ -23,6 +23,10 @@
   </ion-card-header>
   <ion-card-content>
     <div id="content">
+      <app-notification-icon
+        type="launch"
+        [id]="launch.id"
+      ></app-notification-icon>
       <app-launch-status [status]="launch.status"></app-launch-status>
       <app-countdown [date]="date"></app-countdown>
     </div>

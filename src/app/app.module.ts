@@ -12,6 +12,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { LaunchLibraryService } from "./launch-library.service";
 import { PrimeNGModule } from "./prime-ng/prime-ng.module";
+import { LaunchscheduleNotificationService } from "./launchschedule-notification.service";
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,6 +30,7 @@ import { PrimeNGModule } from "./prime-ng/prime-ng.module";
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     LaunchLibraryService,
+    LaunchscheduleNotificationService,
   ],
   bootstrap: [AppComponent],
 })

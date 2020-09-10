@@ -19,6 +19,7 @@ import { PadListEntryModule } from "../pad/pad-list-entry/pad-list-entry.module"
 import { RocketListEntryModule } from "../rocket/rocket-list-entry/rocket-list-entry.module";
 import { AstronautListEntryModule } from "../astronaut/astronaut-list-entry/astronaut-list-entry.module";
 import { VideoModule } from "../video/video.module";
+import { NotificationModule } from "../notification/notification.module";
 
 @NgModule({
   imports: [
@@ -36,6 +37,7 @@ import { VideoModule } from "../video/video.module";
     RocketListEntryModule,
     AstronautListEntryModule,
     VideoModule,
+    NotificationModule,
   ],
   declarations: [LaunchPage, LaunchOverviewPage, LaunchDetailCardComponent],
   exports: [LaunchDetailCardComponent],

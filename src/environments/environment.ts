@@ -5,9 +5,10 @@
 export const environment = {
   production: false,
   launchLibrary: "https://lldev.thespacedevs.com",
+  tokenUrl: "https://launchschedule-notifications.th105.de",
   versionCode: 1,
   versionName: "000000",
-  track: "dev"
+  track: "dev",
 };
 
 /*

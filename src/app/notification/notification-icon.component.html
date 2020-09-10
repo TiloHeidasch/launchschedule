@@ -1,0 +1,20 @@
+<div id="notification" (click)="toggle()">
+  <div *ngIf="notify">
+    <ion-icon
+      id="active"
+      size="large"
+      slot="start"
+      name="notifications-outline"
+    ></ion-icon>
+  </div>
+  <div *ngIf="!notify">
+    <ion-icon
+      size="large"
+      slot="start"
+      name="notifications-off-outline"
+    ></ion-icon>
+  </div>
+  <div id="amount">
+    {{ amount }}
+  </div>
+</div>
