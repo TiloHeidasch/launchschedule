@@ -31,10 +31,9 @@ export class LaunchscheduleNotificationService {
     }
   }
   async removeInterest(interest) {
-    await this.http.delete(
-      environment.tokenUrl + "/interest/" + interest + "/" + this.token
-    );
-    alert("removed");
+    const url =
+      environment.tokenUrl + "/interest/" + interest + "/" + this.token;
+    await this.http.delete<any>(url).toPromise();
     this.prepare();
   }
   async getAllInterestAmounts() {
