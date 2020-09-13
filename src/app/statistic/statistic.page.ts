@@ -211,18 +211,36 @@ export class StatisticPage implements OnInit {
     const dates: Date[] = this.getDates();
     const datasets = this.getDatasetsForXAxisForDates(dates, cumulative, fill);
     const labels = [];
-    for (let index = 0; index < dates.length - 1; index++) {
-      const date = dates[index];
-      const nextDate = dates[index + 1];
-      labels.push(
-        this.createDateLabel(
-          date,
-          nextDate,
-          dates[0],
-          dates[dates.length - 1],
-          dates.length
-        )
-      );
+    if (cumulative) {
+      for (let index = 0; index < dates.length; index++) {
+        const date = dates[index];
+        const nextDate = undefined;
+        labels.push(
+          this.createDateLabel(
+            date,
+            nextDate,
+            dates[0],
+            dates[dates.length - 1],
+            dates.length,
+            cumulative
+          )
+        );
+      }
+    } else {
+      for (let index = 0; index < dates.length - 1; index++) {
+        const date = dates[index];
+        const nextDate = dates[index + 1];
+        labels.push(
+          this.createDateLabel(
+            date,
+            nextDate,
+            dates[0],
+            dates[dates.length - 1],
+            dates.length,
+            cumulative
+          )
+        );
+      }
     }
     const labelsWithDatasets: { labels; datasets } = { labels, datasets };
     return labelsWithDatasets;
@@ -232,13 +250,17 @@ export class StatisticPage implements OnInit {
     nextDate: Date,
     firstDate: Date,
     lastDate: Date,
-    amountDates: number
+    amountDates: number,
+    cumulative: boolean
   ) {
     // check if years is enough
     const isYearsEnough =
       lastDate.getFullYear() - firstDate.getFullYear() > amountDates;
     if (isYearsEnough) {
       // year is enough
+      if (cumulative) {
+        return this.getYearString(date);
+      }
       return this.getYearString(date) + "-" + this.getYearString(nextDate);
     } else {
       // year is not enough (it is less than 10 years)
@@ -247,9 +269,15 @@ export class StatisticPage implements OnInit {
       const isMonthsEnough = monthDiff > amountDates;
       if (isMonthsEnough) {
         // months is enough
+        if (cumulative) {
+          return this.getMonthString(date);
+        }
         return this.getMonthString(date) + "-" + this.getMonthString(nextDate);
       } else {
         // months is not enough
+        if (cumulative) {
+          return this.getDayString(date);
+        }
         return this.getDayString(date) + "-" + this.getDayString(nextDate);
       }
     }
@@ -278,8 +306,9 @@ export class StatisticPage implements OnInit {
     const chunkAmount = 10;
     const chunkSize = diffDate / chunkAmount;
     const chunks = [];
+    chunks.push(minDate - chunkSize);
     chunks.push(minDate);
-    for (let index = 0; index < chunkAmount; index++) {
+    for (let index = 1; index <= chunkAmount; index++) {
       chunks.push(chunks[index] + chunkSize);
     }
     const dateLabels = chunks.map((chunk) => new Date(chunk));
@@ -381,18 +410,22 @@ export class StatisticPage implements OnInit {
           borderColor: color,
         };
       }
-      let cumulativeCount = 0;
-      for (let index = 0; index < dates.length - 1; index++) {
-        const date = dates[index];
-        const nextDate = dates[index + 1];
-        const count = dataForXAxisValue.filter(
-          (launch) =>
-            new Date(launch.net) >= date && new Date(launch.net) <= nextDate
-        ).length;
-        if (cumulative) {
-          cumulativeCount += count;
-          dataSet.data.push(cumulativeCount);
-        } else {
+      if (cumulative) {
+        for (let index = 0; index < dates.length; index++) {
+          const date = dates[index];
+          const count = dataForXAxisValue.filter(
+            (launch) => new Date(launch.net) <= date
+          ).length;
+          dataSet.data.push(count);
+        }
+      } else {
+        for (let index = 0; index < dates.length - 1; index++) {
+          const date = dates[index];
+          const nextDate = dates[index + 1];
+          const count = dataForXAxisValue.filter(
+            (launch) =>
+              new Date(launch.net) >= date && new Date(launch.net) <= nextDate
+          ).length;
           dataSet.data.push(count);
         }
       }
