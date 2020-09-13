@@ -16,10 +16,10 @@ export class LaunchscheduleNotificationService {
   }
   private async updateSubscribers() {
     this.subscribers.forEach((subscriber) => {
-      this.updateSubsriber(subscriber);
+      this.updateSubscriber(subscriber);
     });
   }
-  private async updateSubsriber(subscriber: LaunchscheduleNotificationUpdate) {
+  private async updateSubscriber(subscriber: LaunchscheduleNotificationUpdate) {
     subscriber.onUpdate();
   }
   setToken(token) {
