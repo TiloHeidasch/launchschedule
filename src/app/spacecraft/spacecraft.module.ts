@@ -12,6 +12,7 @@ import { SpacecraftDetailCardComponent } from "./spacecraft-detail-card/spacecra
 import { AnimationModule } from "../animation/animation.module";
 import { AgencyListEntryModule } from "../agency/agency-list-entry/agency-list-entry.module";
 import { SpacecraftListEntryModule } from "./spacecraft-list-entry/spacecraft-list-entry.module";
+import { NotificationModule } from "../notification/notification.module";
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { SpacecraftListEntryModule } from "./spacecraft-list-entry/spacecraft-li
     AnimationModule,
     AgencyListEntryModule,
     SpacecraftListEntryModule,
+    NotificationModule,
   ],
   declarations: [
     SpacecraftPage,

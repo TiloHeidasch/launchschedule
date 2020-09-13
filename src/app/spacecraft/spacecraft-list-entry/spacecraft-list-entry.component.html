@@ -32,6 +32,10 @@
     <ion-card-title>{{ title }}</ion-card-title>
   </ion-card-header>
   <ion-card-content>
+    <app-notification-icon
+      type="spacecraft"
+      [id]="spacecraft.id"
+    ></app-notification-icon>
     <div id="content"></div>
   </ion-card-content>
 </ion-card>

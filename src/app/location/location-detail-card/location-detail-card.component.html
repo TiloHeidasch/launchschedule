@@ -28,11 +28,13 @@
     <ion-card-title>{{ location.name }}</ion-card-title>
   </ion-card-header>
   <ion-card-content>
+    <app-notification-icon
+      type="location"
+      [id]="location.id"
+    ></app-notification-icon>
     <div id="specifications">
       <ion-item>
-        <ion-label>
-          Specifications
-        </ion-label>
+        <ion-label> Specifications </ion-label>
       </ion-item>
       <ion-chip id="total_launch_count">
         <ion-icon name="trending-up" color="dark"></ion-icon>

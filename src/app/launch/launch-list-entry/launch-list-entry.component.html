@@ -26,6 +26,12 @@
       <app-notification-icon
         type="launch"
         [id]="launch.id"
+        [relatedTypeIds]="[
+          { type: 'agency', id: launch.launch_service_provider.id },
+          { type: 'location', id: launch.pad.location.id },
+          { type: 'pad', id: launch.pad.id },
+          { type: 'rocket', id: launch.rocket.configuration.id }
+        ]"
       ></app-notification-icon>
       <app-launch-status [status]="launch.status"></app-launch-status>
       <app-countdown [date]="date"></app-countdown>

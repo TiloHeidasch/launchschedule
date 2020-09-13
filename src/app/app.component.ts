@@ -126,7 +126,7 @@ export class AppComponent implements OnInit {
     PushNotifications.addListener(
       "registration",
       (token: PushNotificationToken) => {
-        this.launchscheduleNotificationService.token = token.value;
+        this.launchscheduleNotificationService.setToken(token.value);
         this.launchscheduleNotificationService.prepare();
       }
     );

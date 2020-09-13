@@ -28,43 +28,37 @@
     <ion-card-title>{{ spacecraft.name }}</ion-card-title>
   </ion-card-header>
   <ion-card-content>
+    <app-notification-icon
+      type="spacecraft"
+      [id]="spacecraft.id"
+    ></app-notification-icon>
     <div id="capability">
       <ion-item>
-        <ion-label>
-          Capability
-        </ion-label>
+        <ion-label> Capability </ion-label>
       </ion-item>
       <p>{{ spacecraft.capability }}</p>
     </div>
     <div id="details">
       <ion-item>
-        <ion-label>
-          Details
-        </ion-label>
+        <ion-label> Details </ion-label>
       </ion-item>
       <p>{{ spacecraft.details }}</p>
     </div>
     <div id="history">
       <ion-item>
-        <ion-label>
-          History
-        </ion-label>
+        <ion-label> History </ion-label>
       </ion-item>
       <p>{{ spacecraft.history }}</p>
     </div>
     <div id="flight_life">
       <ion-item>
-        <ion-label>
-          Flight Life
-        </ion-label>
+        <ion-label> Flight Life </ion-label>
       </ion-item>
       <p>{{ spacecraft.flight_life }}</p>
     </div>
     <div id="specifications">
       <ion-item>
-        <ion-label>
-          Specifications
-        </ion-label>
+        <ion-label> Specifications </ion-label>
       </ion-item>
       <ion-chip id="crew_capacity" *ngIf="spacecraft.crew_capacity">
         <ion-icon name="body" color="dark"></ion-icon>

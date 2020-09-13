@@ -18,14 +18,13 @@
     <ion-card-title>{{ pad.name }}</ion-card-title>
   </ion-card-header>
   <ion-card-content>
+    <app-notification-icon type="pad" [id]="pad.id"></app-notification-icon>
     <div class="map">
       <app-map [lat]="pad.latitude" [lng]="pad.longitude"></app-map>
     </div>
     <div id="specifications">
       <ion-item>
-        <ion-label>
-          Specifications
-        </ion-label>
+        <ion-label> Specifications </ion-label>
       </ion-item>
       <ion-chip id="total_launch_count">
         <ion-icon name="trending-up" color="dark"></ion-icon>

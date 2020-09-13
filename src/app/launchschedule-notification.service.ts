@@ -6,17 +6,33 @@ import { environment } from "src/environments/environment";
   providedIn: "root",
 })
 export class LaunchscheduleNotificationService {
-  token;
-  interests: { interest }[] = [];
-  interestAmounts: { interest; amount }[] = [];
+  private token;
+  private interests: { interest }[] = [];
+  private interestAmounts: { interest; amount }[] = [];
+  subscribers: LaunchscheduleNotificationUpdate[] = [];
   constructor(private http: HttpClient) {}
-  prepare() {
+  subscribeForUpdates(subscriber: LaunchscheduleNotificationUpdate) {
+    this.subscribers.push(subscriber);
+  }
+  private async updateSubscribers() {
+    this.subscribers.forEach((subscriber) => {
+      this.updateSubsriber(subscriber);
+    });
+  }
+  private async updateSubsriber(subscriber: LaunchscheduleNotificationUpdate) {
+    subscriber.onUpdate();
+  }
+  setToken(token) {
+    this.token = token;
+  }
+  async prepare() {
     try {
-      this.getAllInterestAmounts();
+      await this.getAllInterestAmounts();
     } catch (error) {}
     try {
-      this.getAllInterests();
+      await this.getAllInterests();
     } catch (error) {}
+    this.updateSubscribers();
   }
   async markInterest(interest) {
     if (!this.interests.find((otherInterest) => otherInterest === interest)) {
@@ -52,10 +68,9 @@ export class LaunchscheduleNotificationService {
       : 0;
   }
   isInterested(interest): boolean {
-    return (
-      this.interests.find((otherInterest) => otherInterest === interest) !==
-      undefined
-    );
+    return this.interests.find((otherInterest) => otherInterest === interest)
+      ? true
+      : false;
   }
   private async getAllInterests() {
     this.interests = await this.http
@@ -63,4 +78,7 @@ export class LaunchscheduleNotificationService {
       .toPromise();
     console.log({ interests: this.interests });
   }
+}
+export interface LaunchscheduleNotificationUpdate {
+  onUpdate();
 }

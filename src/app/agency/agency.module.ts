@@ -13,6 +13,7 @@ import { AnimationModule } from "../animation/animation.module";
 import { AgencyListEntryModule } from "./agency-list-entry/agency-list-entry.module";
 import { RocketListEntryModule } from "../rocket/rocket-list-entry/rocket-list-entry.module";
 import { SpacecraftListEntryModule } from "../spacecraft/spacecraft-list-entry/spacecraft-list-entry.module";
+import { NotificationModule } from "../notification/notification.module";
 
 @NgModule({
   imports: [
@@ -24,6 +25,7 @@ import { SpacecraftListEntryModule } from "../spacecraft/spacecraft-list-entry/s
     AgencyListEntryModule,
     RocketListEntryModule,
     SpacecraftListEntryModule,
+    NotificationModule,
   ],
   declarations: [AgencyPage, AgencyOverviewPage, AgencyDetailCardComponent],
   exports: [],

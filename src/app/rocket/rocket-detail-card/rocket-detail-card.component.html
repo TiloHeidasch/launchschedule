@@ -22,19 +22,19 @@
     <ion-card-title>{{ rocket.name }}</ion-card-title>
   </ion-card-header>
   <ion-card-content>
+    <app-notification-icon
+      type="rocket"
+      [id]="rocket.id"
+    ></app-notification-icon>
     <div id="details">
       <ion-item>
-        <ion-label>
-          Description
-        </ion-label>
+        <ion-label> Description </ion-label>
       </ion-item>
       <p>{{ rocket.description }}</p>
     </div>
     <div id="specifications">
       <ion-item>
-        <ion-label>
-          Specifications
-        </ion-label>
+        <ion-label> Specifications </ion-label>
       </ion-item>
       <ion-chip id="diameter" *ngIf="rocket.diameter">
         <ion-icon name="code-working" color="dark"></ion-icon>

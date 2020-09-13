@@ -1,4 +1,4 @@
-#active {
+.active {
   color: darkgoldenrod;
 }
 #notification {
@@ -16,4 +16,9 @@
 }
 #notification-toggle ion-icon {
   font-size: 1.25rem;
+}
+#related {
+  position: absolute;
+  left: 1.75rem;
+  top: 0rem;
 }

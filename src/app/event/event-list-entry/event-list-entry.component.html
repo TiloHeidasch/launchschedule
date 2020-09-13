@@ -30,11 +30,17 @@
     <ion-card-title>{{ title }}</ion-card-title>
   </ion-card-header>
   <ion-card-content>
+    <app-notification-icon
+      type="event"
+      [id]="event.id"
+      [relatedTypeIds]="[
+        {
+          type: 'spacestation',
+          id: event.spacestations[0] ? event.spacestations[0].id : ''
+        }
+      ]"
+    ></app-notification-icon>
     <div id="content">
-      <app-notification-icon
-        type="event"
-        [id]="event.id"
-      ></app-notification-icon>
       <app-countdown [date]="date"></app-countdown>
     </div>
   </ion-card-content>

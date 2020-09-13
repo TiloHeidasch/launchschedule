@@ -1,18 +1,51 @@
 <div id="notification" (click)="toggle()">
   <div *ngIf="notify">
     <ion-icon
-      id="active"
+      class="active"
       size="large"
       slot="start"
-      name="notifications-outline"
+      name="notifications"
     ></ion-icon>
   </div>
   <div *ngIf="!notify">
-    <ion-icon
-      size="large"
-      slot="start"
-      name="notifications-off-outline"
-    ></ion-icon>
+    <div *ngIf="notifyRelated !== ''">
+      <ion-icon
+        class="active"
+        size="large"
+        slot="start"
+        name="notifications-outline"
+      ></ion-icon>
+      <div id="related" [ngSwitch]="notifyRelated">
+        <div *ngSwitchCase="'agency'">
+          <ion-icon class="active" slot="start" name="school"></ion-icon>
+        </div>
+        <div *ngSwitchCase="'astronaut'">
+          <ion-icon class="active" slot="start" name="people"></ion-icon>
+        </div>
+        <div *ngSwitchCase="'location'">
+          <ion-icon class="active" slot="start" name="business"></ion-icon>
+        </div>
+        <div *ngSwitchCase="'pad'">
+          <ion-icon class="active" slot="start" name="locate"></ion-icon>
+        </div>
+        <div *ngSwitchCase="'rocket'">
+          <ion-icon class="active" slot="start" name="rocket"></ion-icon>
+        </div>
+        <div *ngSwitchCase="'spacecraft'">
+          <ion-icon class="active" slot="start" name="planet"></ion-icon>
+        </div>
+        <div *ngSwitchCase="'spacestation'">
+          <ion-icon class="active" slot="start" name="earth"></ion-icon>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="notifyRelated === ''">
+      <ion-icon
+        size="large"
+        slot="start"
+        name="notifications-off-outline"
+      ></ion-icon>
+    </div>
   </div>
   <div id="amount">
     {{ amount }}

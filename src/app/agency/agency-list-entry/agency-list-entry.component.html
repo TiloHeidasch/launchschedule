@@ -27,6 +27,10 @@
     <ion-card-title>{{ title }}</ion-card-title>
   </ion-card-header>
   <ion-card-content>
+    <app-notification-icon
+      type="agency"
+      [id]="agency.id"
+    ></app-notification-icon>
     <div id="content">
       <ion-img
         [src]="

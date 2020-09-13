@@ -9,6 +9,7 @@ import { LocationDetailCardComponent } from "./location-detail-card/location-det
 import { AnimationModule } from "../animation/animation.module";
 import { LocationListEntryModule } from "./location-list-entry/location-list-entry.module";
 import { PadListEntryModule } from "../pad/pad-list-entry/pad-list-entry.module";
+import { NotificationModule } from "../notification/notification.module";
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { PadListEntryModule } from "../pad/pad-list-entry/pad-list-entry.module"
     AnimationModule,
     LocationListEntryModule,
     PadListEntryModule,
+    NotificationModule,
   ],
   declarations: [
     LocationPage,
