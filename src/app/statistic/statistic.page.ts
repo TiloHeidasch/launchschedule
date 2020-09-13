@@ -212,20 +212,18 @@ export class StatisticPage implements OnInit {
     const datasets = this.getDatasetsForXAxisForDates(dates, cumulative, fill);
     const labels = [];
     if (cumulative) {
-      for (let index = 0; index < dates.length; index++) {
-        const date = dates[index];
-        const nextDate = undefined;
+      dates.forEach((date) => {
         labels.push(
           this.createDateLabel(
             date,
-            nextDate,
+            undefined,
             dates[0],
             dates[dates.length - 1],
             dates.length,
             cumulative
           )
         );
-      }
+      });
     } else {
       for (let index = 0; index < dates.length - 1; index++) {
         const date = dates[index];
@@ -411,13 +409,12 @@ export class StatisticPage implements OnInit {
         };
       }
       if (cumulative) {
-        for (let index = 0; index < dates.length; index++) {
-          const date = dates[index];
+        dates.forEach((date) => {
           const count = dataForXAxisValue.filter(
             (launch) => new Date(launch.net) <= date
           ).length;
           dataSet.data.push(count);
-        }
+        });
       } else {
         for (let index = 0; index < dates.length - 1; index++) {
           const date = dates[index];
