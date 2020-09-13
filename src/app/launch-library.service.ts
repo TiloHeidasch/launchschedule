@@ -153,7 +153,7 @@ export class LaunchLibraryService {
     return this.getNextAstronauts(0, search, status);
   }
   async getNextAstronauts(offset: number, search?: string, status?: number) {
-    const url = this.createAstronautUrl(10, offset, search, status);
+    const url = this.createAstronautUrl(20, offset, search, status);
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
     console.log({ call: this.calls, url, data });
