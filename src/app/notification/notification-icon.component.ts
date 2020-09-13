@@ -34,6 +34,11 @@ export class NotificationIconComponent
     this.amount = this.notificationService.getAmountForInterest(
       this.type + "" + this.id
     );
+    this.relatedTypeIds.forEach((relatedTypeId) => {
+      this.amount += this.notificationService.getAmountForInterest(
+        relatedTypeId.type + "" + relatedTypeId.id
+      );
+    });
     if (!this.notify) {
       this.relatedTypeIds.forEach((relatedTypeId) => {
         if (
