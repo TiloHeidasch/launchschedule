@@ -31,6 +31,10 @@
   </ion-card-header>
   <ion-card-content>
     <div id="content">
+      <app-notification-icon
+        type="event"
+        [id]="event.id"
+      ></app-notification-icon>
       <app-countdown [date]="date"></app-countdown>
     </div>
   </ion-card-content>

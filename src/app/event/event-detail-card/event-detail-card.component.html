@@ -28,22 +28,19 @@
     <ion-card-title>{{ event.name }}</ion-card-title>
   </ion-card-header>
   <ion-card-content>
+    <app-notification-icon type="event" [id]="event.id"></app-notification-icon>
     <div id="countdown-container">
       <app-countdown [date]="date"></app-countdown>
     </div>
     <div id="description">
       <ion-item>
-        <ion-label>
-          Description
-        </ion-label>
+        <ion-label> Description </ion-label>
       </ion-item>
       <p>{{ event.description }}</p>
     </div>
     <div id="location">
       <ion-item>
-        <ion-label>
-          Location
-        </ion-label>
+        <ion-label> Location </ion-label>
       </ion-item>
       <p>{{ event.location }}</p>
     </div>
