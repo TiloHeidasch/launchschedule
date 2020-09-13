@@ -710,7 +710,7 @@ export class StatisticPage implements OnInit {
         this.xAxis = "AgencyType";
         break;
       case 4:
-        this.xAxis = "Spaceccraft";
+        this.xAxis = "Spacecraft";
         break;
 
       default:
