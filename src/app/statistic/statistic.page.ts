@@ -35,6 +35,8 @@ export class StatisticPage implements OnInit {
   selectedAgencies: SelectItem[] = [];
   agencyTypes: SelectItem[] = [];
   selectedAgencyTypes: SelectItem[] = [];
+  spacecrafts: SelectItem[] = [];
+  selectedSpacecrafts: SelectItem[] = [];
   lineChartData;
   polarChartData;
   doughnutChartData;
@@ -126,6 +128,11 @@ export class StatisticPage implements OnInit {
       "launch_service_provider__type",
       "in"
     );
+    this.table.filter(
+      this.selectedSpacecrafts,
+      "rocket__spacecraft_stage__spacecraft__spacecraft_config__name",
+      "in"
+    );
   }
 
   private async setupLaunchesTable() {
@@ -136,6 +143,10 @@ export class StatisticPage implements OnInit {
       { field: "rocket__configuration__family", header: "Rocket Family" },
       { field: "launch_service_provider__name", header: "Agency" },
       { field: "launch_service_provider__type", header: "Agencytype" },
+      {
+        field: "rocket__spacecraft_stage__spacecraft__spacecraft_config__name",
+        header: "Spacecraft",
+      },
     ];
     this.dataRaw = this.service.getLaunches();
     this.rockets = this.dataRaw
@@ -173,6 +184,15 @@ export class StatisticPage implements OnInit {
       .sort((x1, x2) => (x1 < x2 ? -1 : 1))
       .map((agencyType) => {
         return { label: agencyType, value: agencyType };
+      });
+    this.spacecrafts = this.dataRaw
+      .map((launch) => {
+        return launch.rocket__spacecraft_stage__spacecraft__spacecraft_config__name;
+      })
+      .filter((value, index, self) => self.indexOf(value) === index)
+      .sort((x1, x2) => (x1 < x2 ? -1 : 1))
+      .map((spacecraft) => {
+        return { label: spacecraft, value: spacecraft };
       });
   }
   private getLabels() {
@@ -235,10 +255,7 @@ export class StatisticPage implements OnInit {
     }
   }
   getYearString(date: Date) {
-    return date
-      .getFullYear()
-      .toString()
-      .substring(2);
+    return date.getFullYear().toString().substring(2);
   }
   getMonthString(date: Date) {
     return date.getMonth() + 1 + "/" + this.getYearString(date);
@@ -299,6 +316,15 @@ export class StatisticPage implements OnInit {
           .filter((value, index, self) => self.indexOf(value) === index)
           .sort((x1, x2) => (x1 < x2 ? -1 : 1));
         break;
+      case "Spacecraft":
+        xAxisValues = this.dataFiltered
+          .map(
+            (launch) =>
+              launch.rocket__spacecraft_stage__spacecraft__spacecraft_config__name
+          )
+          .filter((value, index, self) => self.indexOf(value) === index)
+          .sort((x1, x2) => (x1 < x2 ? -1 : 1));
+        break;
 
       default:
         break;
@@ -326,6 +352,13 @@ export class StatisticPage implements OnInit {
         case "AgencyType":
           dataForXAxisValue = this.dataFiltered.filter(
             (launch) => launch.launch_service_provider__type === xAxisValue
+          );
+          break;
+        case "Spacecraft":
+          dataForXAxisValue = this.dataFiltered.filter(
+            (launch) =>
+              launch.rocket__spacecraft_stage__spacecraft__spacecraft_config__name ===
+              xAxisValue
           );
           break;
 
@@ -397,6 +430,13 @@ export class StatisticPage implements OnInit {
           })
           .filter((value, index, self) => self.indexOf(value) === index)
           .sort((x1, x2) => (x1 < x2 ? -1 : 1));
+      case "Spacecraft":
+        return this.dataFiltered
+          .map((launch) => {
+            return launch.rocket__spacecraft_stage__spacecraft__spacecraft_config__name;
+          })
+          .filter((value, index, self) => self.indexOf(value) === index)
+          .sort((x1, x2) => (x1 < x2 ? -1 : 1));
       default:
         break;
     }
@@ -443,6 +483,15 @@ export class StatisticPage implements OnInit {
             ).length
           );
           break;
+        case "Spacecraft":
+          localData.push(
+            this.dataFiltered.filter(
+              (datapoint) =>
+                datapoint.rocket__spacecraft_stage__spacecraft__spacecraft_config__name ===
+                label
+            ).length
+          );
+          break;
         default:
           break;
       }
@@ -459,14 +508,7 @@ export class StatisticPage implements OnInit {
   private getColor(label) {
     const md5 = new Md5();
     md5.appendStr(label ? label : "");
-    return (
-      "#" +
-      md5
-        .end()
-        .toString()
-        .toUpperCase()
-        .substr(0, 6)
-    );
+    return "#" + md5.end().toString().toUpperCase().substr(0, 6);
   }
   private initCharts() {
     this.initLineChart();
@@ -581,6 +623,7 @@ export class StatisticPage implements OnInit {
     this.selectedRocketFamilies = [];
     this.selectedAgencies = [];
     this.selectedAgencyTypes = [];
+    this.selectedSpacecrafts = [];
     words = this.shuffleNameFilter(words);
     setTimeout(() => {
       this.applyPreviousFilters();
@@ -653,7 +696,7 @@ export class StatisticPage implements OnInit {
     return str;
   }
   private shuffleAxis() {
-    switch (this.randbetween(0, 4)) {
+    switch (this.randbetween(0, 5)) {
       case 0:
         this.xAxis = "Rocket";
         break;
@@ -665,6 +708,9 @@ export class StatisticPage implements OnInit {
         break;
       case 3:
         this.xAxis = "AgencyType";
+        break;
+      case 4:
+        this.xAxis = "Spaceccraft";
         break;
 
       default:

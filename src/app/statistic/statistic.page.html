@@ -145,11 +145,11 @@
         >
           <ng-template pTemplate="colgroup" let-columns>
             <colgroup>
-              <col *ngFor="let col of columns" style="width:150px" />
+              <col *ngFor="let col of columns" style="width: 150px" />
             </colgroup>
           </ng-template>
           <ng-template pTemplate="caption">
-            <i class="pi pi-search" style="margin:4px 4px 0 0"></i>
+            <i class="pi pi-search" style="margin: 4px 4px 0 0"></i>
             <input
               [(ngModel)]="globalSearch"
               type="text"
@@ -157,7 +157,7 @@
               size="50"
               placeholder="Global Filter"
               (input)="tt.filterGlobal($event.target.value, 'contains')"
-              style="width:auto"
+              style="width: auto"
             />
           </ng-template>
           <ng-template pTemplate="header" let-columns>
@@ -175,7 +175,7 @@
                   type="text"
                   [(ngModel)]="nameSearch"
                   (input)="tt.filter($event.target.value, col.field, 'contains')"
-                  style="width:150px"
+                  style="width: 150px"
                 />
                 <p-calendar
                   *ngSwitchCase="'net'"
@@ -242,14 +242,22 @@
                   appendTo="body"
                 >
                 </p-multiSelect>
+                <p-multiSelect
+                  [filter]="false"
+                  [(ngModel)]="selectedSpacecrafts"
+                  *ngSwitchCase="'rocket__spacecraft_stage__spacecraft__spacecraft_config__name'"
+                  [options]="spacecrafts"
+                  defaultLabel="All Spacecrafts"
+                  (onChange)="tt.filter($event.value, col.field, 'in')"
+                  appendTo="body"
+                >
+                </p-multiSelect>
               </th>
             </tr>
           </ng-template>
           <ng-template pTemplate="body" let-launch let-columns="columns">
             <tr>
-              <td *ngFor="let col of columns">
-                {{launch[col.field]}}
-              </td>
+              <td *ngFor="let col of columns">{{launch[col.field]}}</td>
             </tr>
           </ng-template>
         </p-table>
@@ -310,6 +318,10 @@
           <ion-item>
             <ion-label>Agency Type</ion-label>
             <ion-radio slot="start" value="AgencyType"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Spacecraft</ion-label>
+            <ion-radio slot="start" value="Spacecraft"></ion-radio>
           </ion-item>
         </ion-radio-group>
       </ion-card-content>

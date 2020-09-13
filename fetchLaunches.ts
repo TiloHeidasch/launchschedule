@@ -67,6 +67,13 @@ function prepareData() {
         launch.rocket && launch.rocket.configuration
           ? launch.rocket.configuration.family
           : "",
+      rocket__spacecraft_stage__spacecraft__spacecraft_config__name:
+        launch.rocket &&
+        launch.rocket.spacecraft_stage &&
+        launch.rocket.spacecraft_stage.spacecraft &&
+        launch.rocket.spacecraft_stage.spacecraft.spacecraft_config
+          ? launch.rocket.spacecraft_stage.spacecraft.spacecraft_config.name
+          : "",
     };
   });
 }
@@ -75,6 +82,8 @@ var dir = "src/app/data/";
 var fileName = "launches";
 
 requestUrlAndPersistToFile(
-  "https://ll.thespacedevs.com/2.0.0/" + path + "/?format=json&limit=100",
+  "https://ll.thespacedevs.com/2.0.0/" +
+    path +
+    "/?format=json&limit=100&mode=detailed",
   fileName
 );
