@@ -1,3 +1,4 @@
+<app-notification-icon type="rocket" [id]="rocket.id"></app-notification-icon>
 <ion-card *ngIf="rocket !== undefined" appSlideIn>
   <div id="image">
     <div class="image-wrapper">
@@ -22,10 +23,6 @@
     <ion-card-title>{{ rocket.name }}</ion-card-title>
   </ion-card-header>
   <ion-card-content>
-    <app-notification-icon
-      type="rocket"
-      [id]="rocket.id"
-    ></app-notification-icon>
     <div id="details">
       <ion-item>
         <ion-label> Description </ion-label>

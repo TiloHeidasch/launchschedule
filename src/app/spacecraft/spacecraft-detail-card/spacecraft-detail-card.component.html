@@ -1,3 +1,7 @@
+<app-notification-icon
+  type="spacecraft"
+  [id]="spacecraft.id"
+></app-notification-icon>
 <ion-card *ngIf="spacecraft !== undefined">
   <div id="image">
     <div class="image-wrapper">
@@ -28,10 +32,6 @@
     <ion-card-title>{{ spacecraft.name }}</ion-card-title>
   </ion-card-header>
   <ion-card-content>
-    <app-notification-icon
-      type="spacecraft"
-      [id]="spacecraft.id"
-    ></app-notification-icon>
     <div id="capability">
       <ion-item>
         <ion-label> Capability </ion-label>

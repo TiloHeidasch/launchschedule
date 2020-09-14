@@ -1,3 +1,4 @@
+<app-notification-icon type="rocket" [id]="rocket.id"></app-notification-icon>
 <ion-card
   routerDirection="forward"
   [routerLink]="['/rocket/' + rocket.id]"
@@ -26,10 +27,6 @@
     <ion-card-title>{{ title }}</ion-card-title>
   </ion-card-header>
   <ion-card-content>
-    <app-notification-icon
-      type="rocket"
-      [id]="rocket.id"
-    ></app-notification-icon>
     <div id="content"></div>
   </ion-card-content>
 </ion-card>

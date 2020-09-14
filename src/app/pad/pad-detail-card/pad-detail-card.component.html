@@ -1,3 +1,4 @@
+<app-notification-icon type="pad" [id]="pad.id"></app-notification-icon>
 <ion-card *ngIf="pad">
   <div id="image">
     <div class="image-wrapper">
@@ -18,7 +19,6 @@
     <ion-card-title>{{ pad.name }}</ion-card-title>
   </ion-card-header>
   <ion-card-content>
-    <app-notification-icon type="pad" [id]="pad.id"></app-notification-icon>
     <div class="map">
       <app-map [lat]="pad.latitude" [lng]="pad.longitude"></app-map>
     </div>

@@ -1,3 +1,4 @@
+<app-notification-icon type="pad" [id]="pad.id"></app-notification-icon>
 <ion-card
   *ngIf="pad"
   routerDirection="forward"
@@ -23,7 +24,6 @@
     <ion-card-title>{{ title }}</ion-card-title>
   </ion-card-header>
   <ion-card-content>
-    <app-notification-icon type="pad" [id]="pad.id"></app-notification-icon>
     <div id="content"></div>
   </ion-card-content>
 </ion-card>

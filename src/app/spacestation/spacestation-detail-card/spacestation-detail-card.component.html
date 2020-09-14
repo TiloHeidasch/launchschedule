@@ -1,3 +1,7 @@
+<app-notification-icon
+  type="spacestation"
+  [id]="spacestation.id"
+></app-notification-icon>
 <ion-card *ngIf="spacestation !== undefined">
   <div id="image">
     <div class="image-wrapper">
@@ -28,10 +32,6 @@
     <ion-card-title>{{ spacestation.name }}</ion-card-title>
   </ion-card-header>
   <ion-card-content>
-    <app-notification-icon
-      type="spacestation"
-      [id]="spacestation.id"
-    ></app-notification-icon>
     <div id="description">
       <ion-item>
         <ion-label> Description </ion-label>

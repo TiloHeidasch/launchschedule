@@ -62,3 +62,9 @@ ion-card {
 .my-toast {
   max-width: calc(100% - 40px);
 }
+app-notification-icon {
+  position: absolute;
+  z-index: 1;
+  right: 1rem;
+  margin-top: 0.5rem;
+}
