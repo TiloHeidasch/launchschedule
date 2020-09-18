@@ -5,6 +5,7 @@ import { SplashScreen } from "@ionic-native/splash-screen/ngx";
 import { StatusBar } from "@ionic-native/status-bar/ngx";
 
 import {
+  Capacitor,
   Plugins,
   PushNotification,
   PushNotificationActionPerformed,
@@ -107,7 +108,9 @@ export class AppComponent implements OnInit {
         (page) => page.url.toLowerCase() === "/" + path.toLowerCase()
       );
     }
-    this.initNotifications();
+    if (Capacitor.isPluginAvailable("PushNotifications")) {
+      this.initNotifications();
+    }
   }
 
   initNotifications() {
