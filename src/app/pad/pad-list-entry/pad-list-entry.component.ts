@@ -1,10 +1,16 @@
-import { Component, OnInit, Input } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  Input,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { LaunchLibraryService } from "src/app/launch-library.service";
 
 @Component({
   selector: "app-pad-list-entry",
   templateUrl: "./pad-list-entry.component.html",
   styleUrls: ["./pad-list-entry.component.scss"],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PadListEntryComponent implements OnInit {
   @Input() pad?;

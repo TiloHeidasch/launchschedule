@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, ChangeDetectorRef } from "@angular/core";
 import {
   LaunchscheduleNotificationService,
   LaunchscheduleNotificationUpdate,
@@ -17,7 +17,10 @@ export class NotificationIconComponent
   notify = false;
   notifyRelated = "";
   amount = 0;
-  constructor(private notificationService: LaunchscheduleNotificationService) {
+  constructor(
+    private notificationService: LaunchscheduleNotificationService,
+    private cdr: ChangeDetectorRef
+  ) {
     notificationService.subscribeForUpdates(this);
   }
   onUpdate() {
@@ -52,6 +55,7 @@ export class NotificationIconComponent
         }
       });
     }
+    this.cdr.markForCheck();
   }
   toggle() {
     if (this.notify) {

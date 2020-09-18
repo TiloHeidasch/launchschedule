@@ -15,7 +15,7 @@ export class LaunchscheduleNotificationService {
     this.subscribers.push(subscriber);
   }
   private async updateSubscribers() {
-    this.subscribers.forEach((subscriber) => {
+    this.subscribers.map((subscriber) => {
       this.updateSubscriber(subscriber);
     });
   }

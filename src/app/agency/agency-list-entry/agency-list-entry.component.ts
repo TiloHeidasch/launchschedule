@@ -1,10 +1,16 @@
-import { Component, OnInit, Input } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  Input,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { LaunchLibraryService } from "src/app/launch-library.service";
 
 @Component({
   selector: "app-agency-list-entry",
   templateUrl: "./agency-list-entry.component.html",
   styleUrls: ["./agency-list-entry.component.scss"],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AgencyListEntryComponent implements OnInit {
   @Input() agency?;
