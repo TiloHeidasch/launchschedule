@@ -31,22 +31,23 @@ export class NotificationIconComponent
     this.init();
   }
   async init() {
-    this.notify = this.notificationService.isInterested(
-      this.type + "" + this.id
-    );
+    this.notify = this.notificationService.isInterested(this.type, this.id);
     this.amount = this.notificationService.getAmountForInterest(
-      this.type + "" + this.id
+      this.type,
+      this.id
     );
     this.relatedTypeIds.forEach((relatedTypeId) => {
       this.amount += this.notificationService.getAmountForInterest(
-        relatedTypeId.type + "" + relatedTypeId.id
+        relatedTypeId.type,
+        relatedTypeId.id
       );
     });
     if (!this.notify) {
       this.relatedTypeIds.forEach((relatedTypeId) => {
         if (
           this.notificationService.isInterested(
-            relatedTypeId.type + "" + relatedTypeId.id
+            relatedTypeId.type,
+            relatedTypeId.id
           )
         ) {
           if (this.notifyRelated === "") {
@@ -59,9 +60,9 @@ export class NotificationIconComponent
   }
   toggle() {
     if (this.notify) {
-      this.notificationService.removeInterest(this.type + "" + this.id);
+      this.notificationService.removeInterest(this.type, this.id);
     } else {
-      this.notificationService.markInterest(this.type + "" + this.id);
+      this.notificationService.markInterest(this.type, this.id);
     }
     this.notify = !this.notify;
   }
