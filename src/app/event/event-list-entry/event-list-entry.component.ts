@@ -1,9 +1,15 @@
-import { Component, OnInit, Input } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  Input,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 
 @Component({
   selector: "app-event-list-entry",
   templateUrl: "./event-list-entry.component.html",
   styleUrls: ["./event-list-entry.component.scss"],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventListEntryComponent implements OnInit {
   @Input() event;

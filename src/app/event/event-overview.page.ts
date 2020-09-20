@@ -29,7 +29,7 @@ export class EventOverviewPage implements OnInit, ViewDidEnter {
   logScrolling(event) {
     this.store.scrollY = event.detail.currentY;
   }
-  async loadFirst() {
+  async loadFirst(refreshEvent?) {
     try {
       this.infiniteScroll.disabled = false;
     } catch (error) {}
@@ -39,6 +39,9 @@ export class EventOverviewPage implements OnInit, ViewDidEnter {
       this.store.type,
       this.store.upcomingPreviousAll
     )).events;
+    if (refreshEvent) {
+      refreshEvent.target.complete();
+    }
   }
 
   async loadMore(event) {

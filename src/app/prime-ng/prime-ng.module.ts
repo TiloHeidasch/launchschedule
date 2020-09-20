@@ -70,7 +70,7 @@ import { TableModule } from "primeng/table";
 // import { TabViewModule } from "primeng/tabview";
 // import { TerminalModule } from "primeng/terminal";
 // import { TieredMenuModule } from "primeng/tieredmenu";
-// import { ToastModule } from "primeng/toast";
+import { ToastModule } from "primeng/toast";
 // import { ToggleButtonModule } from "primeng/togglebutton";
 // import { ToolbarModule } from "primeng/toolbar";
 // import { TooltipModule } from "primeng/tooltip";
@@ -152,7 +152,7 @@ import { TableModule } from "primeng/table";
     // TabViewModule,
     // TerminalModule,
     // TieredMenuModule,
-    // ToastModule,
+    ToastModule,
     // ToggleButtonModule,
     // ToolbarModule,
     // TooltipModule,
@@ -231,7 +231,7 @@ import { TableModule } from "primeng/table";
     // TabViewModule,
     // TerminalModule,
     // TieredMenuModule,
-    // ToastModule,
+    ToastModule,
     // ToggleButtonModule,
     // ToolbarModule,
     // TooltipModule,

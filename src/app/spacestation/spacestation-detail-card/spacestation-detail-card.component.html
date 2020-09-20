@@ -1,3 +1,7 @@
+<app-notification-icon
+  type="spacestation"
+  [id]="spacestation.id"
+></app-notification-icon>
 <ion-card *ngIf="spacestation !== undefined">
   <div id="image">
     <div class="image-wrapper">
@@ -30,25 +34,19 @@
   <ion-card-content>
     <div id="description">
       <ion-item>
-        <ion-label>
-          Description
-        </ion-label>
+        <ion-label> Description </ion-label>
       </ion-item>
       <p>{{ spacestation.description }}</p>
     </div>
     <div id="orbit">
       <ion-item>
-        <ion-label>
-          Orbit
-        </ion-label>
+        <ion-label> Orbit </ion-label>
       </ion-item>
       <p>{{ spacestation.orbit }}</p>
     </div>
     <div id="docking_location" *ngIf="spacestation.docking_location.length > 0">
       <ion-item>
-        <ion-label>
-          Docking Ports
-        </ion-label>
+        <ion-label> Docking Ports </ion-label>
       </ion-item>
       <div
         id="docking_port"
@@ -78,9 +76,7 @@
     </div>
     <div id="specifications">
       <ion-item>
-        <ion-label>
-          Specifications
-        </ion-label>
+        <ion-label> Specifications </ion-label>
       </ion-item>
       <ion-chip id="onboard_crew" *ngIf="spacestation.onboard_crew">
         <ion-icon name="body" color="dark"></ion-icon>

@@ -1,9 +1,15 @@
-import { Component, OnInit, Input } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  Input,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 
 @Component({
   selector: "app-launch-list-entry",
   templateUrl: "./launch-list-entry.component.html",
   styleUrls: ["./launch-list-entry.component.scss"],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LaunchListEntryComponent implements OnInit {
   @Input() launch;

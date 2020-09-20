@@ -25,8 +25,45 @@
             </ion-item>
           </ion-menu-toggle>
         </ion-list>
+        <div class="version">
+          v{{ versionCode }};{{ versionName }};{{ track }}
+        </div>
       </ion-content>
     </ion-menu>
-    <ion-router-outlet id="main-content"></ion-router-outlet>
+    <ion-router-outlet id="main-content">
+      <p-toast styleClass="my-toast">
+        <ng-template let-message pTemplate="message">
+          <div class="toast">
+            <div class="toast-head"></div>
+            <div class="toast-body">
+              <div class="toast-text">
+                <div class="toast-heading">
+                  <h4>{{ message.summary }}</h4>
+                </div>
+                <div class="toast-content">
+                  <p>{{ message.detail }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="toast-foot" *ngIf="message.data">
+              <ion-button
+                *ngIf="message.data.type === 'launch'"
+                expand="full"
+                class="toast-jump"
+                (click)="jumpToLaunch(message.data.id)"
+                >Jump to Launch</ion-button
+              >
+              <ion-button
+                *ngIf="message.data.type === 'event'"
+                expand="full"
+                class="toast-jump"
+                (click)="jumpToEvent(message.data.id)"
+                >Jump to Event</ion-button
+              >
+            </div>
+          </div>
+        </ng-template>
+      </p-toast>
+    </ion-router-outlet>
   </ion-split-pane>
 </ion-app>

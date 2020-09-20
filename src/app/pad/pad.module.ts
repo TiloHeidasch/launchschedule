@@ -12,6 +12,7 @@ import { PadDetailCardComponent } from "./pad-detail-card/pad-detail-card.compon
 import { AnimationModule } from "../animation/animation.module";
 import { MapModule } from "../map/map.module";
 import { PadListEntryModule } from "./pad-list-entry/pad-list-entry.module";
+import { NotificationModule } from "../notification/notification.module";
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { PadListEntryModule } from "./pad-list-entry/pad-list-entry.module";
     AnimationModule,
     MapModule,
     PadListEntryModule,
+    NotificationModule,
   ],
   declarations: [PadPage, PadOverviewPage, PadDetailCardComponent],
   exports: [],

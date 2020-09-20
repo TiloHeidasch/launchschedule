@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, ChangeDetectorRef } from "@angular/core";
 
 @Component({
   selector: "app-countdown",
@@ -21,7 +21,7 @@ export class CountdownComponent implements OnInit {
   unit2: string;
   unit3: string;
 
-  constructor() {}
+  constructor(private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
     if (this.calculateHours(this.getDiff(this.date)) > 99) {
@@ -29,12 +29,12 @@ export class CountdownComponent implements OnInit {
     } else {
       const task = setInterval(() => {
         this.setTimer();
-      }, 100);
+      }, 500);
     }
   }
   private getDiff(date: Date): number {
     const now = new Date();
-    return now.valueOf() - this.date.valueOf();
+    return this.date.valueOf() - now.valueOf();
   }
   private calculateHours(diff: number) {
     return Math.abs(Math.floor(diff / (1000 * 60 * 60)));
@@ -47,15 +47,12 @@ export class CountdownComponent implements OnInit {
       this.prefix = "*";
       this.hours = this.date.getDate();
       this.minutes = this.date.getMonth() + 1;
-      this.seconds = +this.date
-        .getFullYear()
-        .toString()
-        .substr(2, 2);
+      this.seconds = +this.date.getFullYear().toString().substr(2, 2);
       this.unit1 = "DAY";
       this.unit2 = "MONTH";
       this.unit3 = "YEAR";
     } else {
-      if (diff > 0) {
+      if (diff < 0) {
         this.prefix = "+";
       } else {
         this.prefix = "-";
@@ -75,6 +72,7 @@ export class CountdownComponent implements OnInit {
     this.setupHourDigits();
     this.setupMinuteDigits();
     this.setupSecondDigits();
+    this.cdr.markForCheck();
   }
   setupHourDigits() {
     if (this.hours > 9) {

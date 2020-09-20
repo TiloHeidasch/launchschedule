@@ -10,7 +10,9 @@
     "test": "ng test --watch=false --browsers=ChromeHeadlessCustom",
     "test:watch": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "resources": "cordova-res android && node resources.js",
+    "android": "ionic build && npx cap copy"
   },
   "private": true,
   "dependencies": {
@@ -52,11 +54,12 @@
     "@angular/compiler-cli": "~10.0.9",
     "@angular/language-service": "~10.0.9",
     "@capacitor/cli": "2.2.1",
-    "@ionic/angular-toolkit": "^2.1.1",
+    "@ionic/angular-toolkit": "^2.3.3",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",
     "codelyzer": "^5.1.2",
+    "cordova-res": "^0.15.1",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~5.0.0",

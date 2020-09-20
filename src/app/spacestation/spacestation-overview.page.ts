@@ -28,7 +28,7 @@ export class SpacestationOverviewPage implements OnInit, ViewDidEnter {
   logScrolling(event) {
     this.store.scrollY = event.detail.currentY;
   }
-  async loadFirst() {
+  async loadFirst(refreshEvent?) {
     try {
       this.infiniteScroll.disabled = false;
     } catch (error) {}
@@ -39,6 +39,9 @@ export class SpacestationOverviewPage implements OnInit, ViewDidEnter {
       this.store.orbit,
       this.store.type
     )).spacestations;
+    if (refreshEvent) {
+      refreshEvent.target.complete();
+    }
   }
 
   async loadMore(event) {

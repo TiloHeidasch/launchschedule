@@ -1,3 +1,13 @@
+<app-notification-icon
+  type="event"
+  [id]="event.id"
+  [relatedTypeIds]="[
+    {
+      type: 'spacestation',
+      id: event.spacestations[0] ? event.spacestations[0].id : ''
+    }
+  ]"
+></app-notification-icon>
 <ion-card
   routerDirection="forward"
   [routerLink]="['/event/' + event.id]"

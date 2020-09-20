@@ -4,13 +4,31 @@ import { Platform } from "@ionic/angular";
 import { SplashScreen } from "@ionic-native/splash-screen/ngx";
 import { StatusBar } from "@ionic-native/status-bar/ngx";
 
+import {
+  Capacitor,
+  Plugins,
+  PushNotification,
+  PushNotificationActionPerformed,
+  PushNotificationToken,
+} from "@capacitor/core";
+import { Router } from "@angular/router";
+import { MessageService } from "primeng/api";
+import { environment } from "../environments/environment";
+import { LaunchscheduleNotificationService } from "./launchschedule-notification.service";
+
+const { PushNotifications } = Plugins;
+
 @Component({
   selector: "app-root",
   templateUrl: "app.component.html",
   styleUrls: ["app.component.scss"],
+  providers: [MessageService],
 })
 export class AppComponent implements OnInit {
-  public selectedIndex = 1;
+  versionCode = environment.versionCode + 1000;
+  versionName = environment.versionName;
+  track = environment.track;
+  public selectedIndex = 0;
   public appPages = [
     {
       title: "Launch",
@@ -68,7 +86,10 @@ export class AppComponent implements OnInit {
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private router: Router,
+    private messageService: MessageService,
+    private launchscheduleNotificationService: LaunchscheduleNotificationService
   ) {
     this.initializeApp();
   }
@@ -87,5 +108,68 @@ export class AppComponent implements OnInit {
         (page) => page.url.toLowerCase() === "/" + path.toLowerCase()
       );
     }
+    if (Capacitor.isPluginAvailable("PushNotifications")) {
+      this.initNotifications();
+    } else {
+      this.launchscheduleNotificationService.prepare();
+    }
+  }
+
+  initNotifications() {
+    // Request permission to use push notifications
+    // iOS will prompt user and return if they granted permission or not
+    // Android will just grant without prompting
+    PushNotifications.requestPermission().then((result) => {
+      if (result.granted) {
+        // Register with Apple / Google to receive push via APNS/FCM
+        PushNotifications.register();
+      } else {
+        // Show some error
+      }
+    });
+    // On success, we should be able to receive notifications
+    PushNotifications.addListener(
+      "registration",
+      (token: PushNotificationToken) => {
+        this.launchscheduleNotificationService.setToken(token.value);
+        this.launchscheduleNotificationService.prepare();
+      }
+    );
+    // Show us the notification payload if the app is open on our device
+    PushNotifications.addListener(
+      "pushNotificationReceived",
+      (notification: PushNotification) => {
+        this.messageService.add({
+          severity: "info",
+          summary: notification.title,
+          detail: notification.body,
+          sticky: true,
+          data: notification.data,
+        });
+      }
+    );
+
+    // Method called when tapping on a notification
+    PushNotifications.addListener(
+      "pushNotificationActionPerformed",
+      (notification: PushNotificationActionPerformed) => {
+        switch (notification.notification.data.type) {
+          case "launch":
+            this.jumpToLaunch(notification.notification.data.id);
+            break;
+          case "event":
+            this.jumpToEvent(notification.notification.data.id);
+            break;
+          default:
+            break;
+        }
+      }
+    );
+  }
+  jumpToLaunch(id) {
+    this.router.navigateByUrl("/launch/" + id);
+  }
+  jumpToEvent(id) {
+    this.router.navigateByUrl("/event/" + id);
   }
 }

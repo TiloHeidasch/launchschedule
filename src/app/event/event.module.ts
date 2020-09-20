@@ -16,6 +16,7 @@ import { VideoModule } from "../video/video.module";
 import { LaunchListEntryModule } from "../launch/launch-list-entry/launch-list-entry.module";
 import { AstronautListEntryModule } from "../astronaut/astronaut-list-entry/astronaut-list-entry.module";
 import { SpacestationListEntryModule } from "../spacestation/spacestation-list-entry/spacestation-list-entry.module";
+import { NotificationModule } from "../notification/notification.module";
 
 @NgModule({
   imports: [
@@ -30,6 +31,7 @@ import { SpacestationListEntryModule } from "../spacestation/spacestation-list-e
     LaunchListEntryModule,
     AstronautListEntryModule,
     SpacestationListEntryModule,
+    NotificationModule,
   ],
   declarations: [EventPage, EventOverviewPage, EventDetailCardComponent],
   exports: [],

@@ -1,10 +1,16 @@
-import { Component, OnInit, Input } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  Input,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { LaunchLibraryService } from "src/app/launch-library.service";
 
 @Component({
   selector: "app-astronaut-list-entry",
   templateUrl: "./astronaut-list-entry.component.html",
   styleUrls: ["./astronaut-list-entry.component.scss"],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AstronautListEntryComponent implements OnInit {
   @Input() astronaut?;

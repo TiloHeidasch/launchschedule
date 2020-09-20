@@ -13,6 +13,7 @@ import { AnimationModule } from "../animation/animation.module";
 import { SpacestationListEntryModule } from "./spacestation-list-entry/spacestation-list-entry.module";
 import { AgencyListEntryModule } from "../agency/agency-list-entry/agency-list-entry.module";
 import { AstronautListEntryModule } from "../astronaut/astronaut-list-entry/astronaut-list-entry.module";
+import { NotificationModule } from "../notification/notification.module";
 
 @NgModule({
   imports: [
@@ -24,6 +25,7 @@ import { AstronautListEntryModule } from "../astronaut/astronaut-list-entry/astr
     SpacestationListEntryModule,
     AgencyListEntryModule,
     AstronautListEntryModule,
+    NotificationModule,
   ],
   declarations: [
     SpacestationPage,

@@ -30,7 +30,7 @@ export class LocationOverviewPage implements OnInit, ViewDidEnter {
   logScrolling(event) {
     this.store.scrollY = event.detail.currentY;
   }
-  async loadFirst() {
+  async loadFirst(refreshEvent?) {
     try {
       this.infiniteScroll.disabled = false;
     } catch (error) {}
@@ -39,6 +39,9 @@ export class LocationOverviewPage implements OnInit, ViewDidEnter {
       this.store.search,
       this.store.countryCode
     )).locations;
+    if (refreshEvent) {
+      refreshEvent.target.complete();
+    }
   }
 
   async loadMore(event) {

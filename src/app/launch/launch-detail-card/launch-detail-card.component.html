@@ -1,3 +1,25 @@
+<app-notification-icon
+  type="launch"
+  [id]="launch.id"
+  [relatedTypeIds]="[
+    {
+      type: 'agency',
+      id: launch.launch_service_provider ? launch.launch_service_provider.id : 0
+    },
+    {
+      type: 'location',
+      id: launch.pad && launch.pad.location ? launch.pad.location.id : 0
+    },
+    { type: 'pad', id: launch.pad ? launch.pad.id : 0 },
+    {
+      type: 'rocket',
+      id:
+        launch.rocket && launch.rocket.configuration
+          ? launch.rocket.configuration.id
+          : 0
+    }
+  ]"
+></app-notification-icon>
 <ion-card *ngIf="launch !== undefined" appSlideIn>
   <div id="image">
     <div class="image-wrapper">

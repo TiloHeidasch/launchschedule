@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "622290582176",
+    "firebase_url": "https://launchschedule-messaging.firebaseio.com",
+    "project_id": "launchschedule-messaging",
+    "storage_bucket": "launchschedule-messaging.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:622290582176:android:0a48f7038fd77166ed67c5",
+        "android_client_info": {
+          "package_name": "de.th105.launchschedule"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "622290582176-ameu1ep630772t60sag5th782hp1lag1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCk6oNcXsoVKut7W9rdF6JoC2Byey4ohzU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "622290582176-ameu1ep630772t60sag5th782hp1lag1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

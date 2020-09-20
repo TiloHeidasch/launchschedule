@@ -57,6 +57,9 @@
   (ionScroll)="logScrolling($event)"
   [fullscreen]="true"
 >
+  <ion-refresher slot="fixed" (ionRefresh)="loadFirst($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">{{title}}</ion-title>
@@ -72,7 +75,7 @@
     <ion-infinite-scroll (ionInfinite)="loadMore($event)">
       <ion-infinite-scroll-content
         loadingSpinner="circular"
-        loadingText="Loading more launches..."
+        loadingText="Loading more rockets..."
       >
       </ion-infinite-scroll-content>
     </ion-infinite-scroll>

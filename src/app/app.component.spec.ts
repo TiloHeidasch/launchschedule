@@ -7,6 +7,7 @@ import { StatusBar } from "@ionic-native/status-bar/ngx";
 import { RouterTestingModule } from "@angular/router/testing";
 
 import { AppComponent } from "./app.component";
+import { HttpClientTestingModule } from "@angular/common/http/testing";
 
 describe("AppComponent", () => {
   let statusBarSpy;
@@ -28,7 +29,7 @@ describe("AppComponent", () => {
         { provide: SplashScreen, useValue: splashScreenSpy },
         { provide: Platform, useValue: platformSpy },
       ],
-      imports: [RouterTestingModule.withRoutes([])],
+      imports: [RouterTestingModule.withRoutes([]), HttpClientTestingModule],
     }).compileComponents();
   }));
 

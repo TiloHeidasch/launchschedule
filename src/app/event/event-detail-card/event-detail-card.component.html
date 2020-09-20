@@ -1,3 +1,13 @@
+<app-notification-icon
+  type="event"
+  [id]="event.id"
+  [relatedTypeIds]="[
+    {
+      type: 'spacestation',
+      id: event.spacestations[0] ? event.spacestations[0].id : ''
+    }
+  ]"
+></app-notification-icon>
 <ion-card *ngIf="event !== undefined">
   <div id="image">
     <div class="image-wrapper">
@@ -33,17 +43,13 @@
     </div>
     <div id="description">
       <ion-item>
-        <ion-label>
-          Description
-        </ion-label>
+        <ion-label> Description </ion-label>
       </ion-item>
       <p>{{ event.description }}</p>
     </div>
     <div id="location">
       <ion-item>
-        <ion-label>
-          Location
-        </ion-label>
+        <ion-label> Location </ion-label>
       </ion-item>
       <p>{{ event.location }}</p>
     </div>
