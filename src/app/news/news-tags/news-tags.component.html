@@ -1,0 +1,5 @@
+<div *ngIf="tags.length > 0">
+  <ion-chip *ngFor="let tag of tags; let i = index">
+    <ion-label>{{ tag }}</ion-label>
+  </ion-chip>
+</div>
