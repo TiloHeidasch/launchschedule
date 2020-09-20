@@ -13,6 +13,10 @@ const routes: Routes = [
       import("./launch/launch.module").then((m) => m.LaunchModule),
   },
   {
+    path: "news",
+    loadChildren: () => import("./news/news.module").then((m) => m.NewsModule),
+  },
+  {
     path: "rocket",
     loadChildren: () =>
       import("./rocket/rocket.module").then((m) => m.RocketModule),

@@ -56,6 +56,11 @@ export class AppComponent implements OnInit {
       icon: "business",
     },
     {
+      title: "News",
+      url: "/news",
+      icon: "newspaper",
+    },
+    {
       title: "Pad",
       url: "/pad",
       icon: "locate",
