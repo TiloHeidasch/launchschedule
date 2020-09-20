@@ -34,7 +34,7 @@ export class CountdownComponent implements OnInit {
   }
   private getDiff(date: Date): number {
     const now = new Date();
-    return now.valueOf() - this.date.valueOf();
+    return this.date.valueOf() - now.valueOf();
   }
   private calculateHours(diff: number) {
     return Math.abs(Math.floor(diff / (1000 * 60 * 60)));
@@ -52,7 +52,7 @@ export class CountdownComponent implements OnInit {
       this.unit2 = "MONTH";
       this.unit3 = "YEAR";
     } else {
-      if (diff > 0) {
+      if (diff < 0) {
         this.prefix = "+";
       } else {
         this.prefix = "-";
