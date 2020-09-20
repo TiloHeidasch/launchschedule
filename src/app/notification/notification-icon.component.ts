@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, ChangeDetectorRef } from "@angular/core";
+import { MessageService } from "primeng/api";
 import {
   LaunchscheduleNotificationService,
   LaunchscheduleNotificationUpdate,
@@ -19,7 +20,8 @@ export class NotificationIconComponent
   amount = 0;
   constructor(
     private notificationService: LaunchscheduleNotificationService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private messageService: MessageService
   ) {
     notificationService.subscribeForUpdates(this);
   }
@@ -58,12 +60,26 @@ export class NotificationIconComponent
     }
     this.cdr.markForCheck();
   }
-  toggle() {
+  async toggle() {
+    let success = false;
     if (this.notify) {
-      this.notificationService.removeInterest(this.type, this.id);
+      success = await this.notificationService.removeInterest(
+        this.type,
+        this.id
+      );
     } else {
-      this.notificationService.markInterest(this.type, this.id);
+      success = await this.notificationService.markInterest(this.type, this.id);
     }
-    this.notify = !this.notify;
+    if (success) {
+      this.notify = !this.notify;
+    } else {
+      this.messageService.add({
+        severity: "error",
+        summary: "Notfications in Web Browser",
+        detail:
+          "Notifications do not work with a Web Browser! Consider downloading the app from Google Play Store to enable Notifications.",
+        sticky: false,
+      });
+    }
   }
 }

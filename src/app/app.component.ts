@@ -110,6 +110,8 @@ export class AppComponent implements OnInit {
     }
     if (Capacitor.isPluginAvailable("PushNotifications")) {
       this.initNotifications();
+    } else {
+      this.launchscheduleNotificationService.prepare();
     }
   }
 

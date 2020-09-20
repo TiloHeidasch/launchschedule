@@ -34,7 +34,10 @@ export class LaunchscheduleNotificationService {
     } catch (error) {}
     this.updateSubscribers();
   }
-  async markInterest(type, id) {
+  async markInterest(type, id): Promise<boolean> {
+    if (!this.token) {
+      return false;
+    }
     if (
       !this.interests.find(
         (otherInterest) =>
@@ -56,8 +59,12 @@ export class LaunchscheduleNotificationService {
       this.interests.push({ id, type });
       this.prepare();
     }
+    return true;
   }
-  async removeInterest(type, id) {
+  async removeInterest(type, id): Promise<boolean> {
+    if (!this.token) {
+      return false;
+    }
     const url =
       environment.notificationUrl +
       "?type=" +
@@ -68,6 +75,7 @@ export class LaunchscheduleNotificationService {
       this.token;
     await this.http.delete(url).toPromise();
     this.prepare();
+    return true;
   }
   async getAllInterestAmounts() {
     this.interestAmounts = await this.http

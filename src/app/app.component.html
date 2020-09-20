@@ -4,15 +4,30 @@
       <ion-content>
         <ion-img src="assets/icon/logo_left_text_right.png"></ion-img>
         <ion-list id="menu-list">
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-            <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" lines="none"
-              detail="false" [class.selected]="selectedIndex === i">
-              <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
+          <ion-menu-toggle
+            auto-hide="false"
+            *ngFor="let p of appPages; let i = index"
+          >
+            <ion-item
+              (click)="selectedIndex = i"
+              routerDirection="root"
+              [routerLink]="[p.url]"
+              lines="none"
+              detail="false"
+              [class.selected]="selectedIndex === i"
+            >
+              <ion-icon
+                slot="start"
+                [ios]="p.icon + '-outline'"
+                [md]="p.icon + '-sharp'"
+              ></ion-icon>
               <ion-label>{{ p.title }}</ion-label>
             </ion-item>
           </ion-menu-toggle>
         </ion-list>
-        <div class="version">v{{versionCode}};{{versionName}};{{track}}</div>
+        <div class="version">
+          v{{ versionCode }};{{ versionName }};{{ track }}
+        </div>
       </ion-content>
     </ion-menu>
     <ion-router-outlet id="main-content">
@@ -30,11 +45,21 @@
                 </div>
               </div>
             </div>
-            <div class="toast-foot">
-              <ion-button *ngIf="message.data.type === 'launch'" expand="full" class="toast-jump"
-                (click)="jumpToLaunch(message.data.id)">Jump to Launch</ion-button>
-              <ion-button *ngIf="message.data.type === 'event'" expand="full" class="toast-jump"
-                (click)="jumpToEvent(message.data.id)">Jump to Event</ion-button>
+            <div class="toast-foot" *ngIf="message.data">
+              <ion-button
+                *ngIf="message.data.type === 'launch'"
+                expand="full"
+                class="toast-jump"
+                (click)="jumpToLaunch(message.data.id)"
+                >Jump to Launch</ion-button
+              >
+              <ion-button
+                *ngIf="message.data.type === 'event'"
+                expand="full"
+                class="toast-jump"
+                (click)="jumpToEvent(message.data.id)"
+                >Jump to Event</ion-button
+              >
             </div>
           </div>
         </ng-template>
