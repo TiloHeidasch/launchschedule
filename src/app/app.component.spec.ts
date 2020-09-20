@@ -52,17 +52,20 @@ describe("AppComponent", () => {
     await fixture.detectChanges();
     const app = fixture.nativeElement;
     const menuItems = app.querySelectorAll("ion-label");
-    expect(menuItems.length).toEqual(10);
-    expect(menuItems[0].textContent).toContain("Launch");
-    expect(menuItems[1].textContent).toContain("Agency");
-    expect(menuItems[2].textContent).toContain("Astronaut");
-    expect(menuItems[3].textContent).toContain("Event");
-    expect(menuItems[4].textContent).toContain("Facility");
-    expect(menuItems[5].textContent).toContain("Pad");
-    expect(menuItems[6].textContent).toContain("Rocket");
-    expect(menuItems[7].textContent).toContain("Statistic");
-    expect(menuItems[8].textContent).toContain("Spacecraft");
-    expect(menuItems[9].textContent).toContain("Spacestation");
+    expect(menuItems.length).toEqual(13);
+    expect(menuItems[0].textContent).toContain("Launches and Events");
+    expect(menuItems[1].textContent).toContain("Launch");
+    expect(menuItems[2].textContent).toContain("Event");
+    expect(menuItems[3].textContent).toContain("Cool Stuff");
+    expect(menuItems[4].textContent).toContain("Statistic");
+    expect(menuItems[5].textContent).toContain("Master Data");
+    expect(menuItems[6].textContent).toContain("Agency");
+    expect(menuItems[7].textContent).toContain("Astronaut");
+    expect(menuItems[8].textContent).toContain("Facility");
+    expect(menuItems[9].textContent).toContain("Pad");
+    expect(menuItems[10].textContent).toContain("Rocket");
+    expect(menuItems[11].textContent).toContain("Spacecraft");
+    expect(menuItems[12].textContent).toContain("Spacestation");
   });
 
   it("should have urls", async () => {
@@ -70,33 +73,33 @@ describe("AppComponent", () => {
     await fixture.detectChanges();
     const app = fixture.nativeElement;
     const menuItems = app.querySelectorAll("ion-item");
-    expect(menuItems.length).toEqual(10);
-    expect(menuItems[0].getAttribute("ng-reflect-router-link")).toEqual(
+    expect(menuItems.length).toEqual(13);
+    expect(menuItems[1].getAttribute("ng-reflect-router-link")).toEqual(
       "/launch"
     );
-    expect(menuItems[1].getAttribute("ng-reflect-router-link")).toEqual(
-      "/agency"
-    );
     expect(menuItems[2].getAttribute("ng-reflect-router-link")).toEqual(
-      "/astronaut"
-    );
-    expect(menuItems[3].getAttribute("ng-reflect-router-link")).toEqual(
       "/event"
     );
     expect(menuItems[4].getAttribute("ng-reflect-router-link")).toEqual(
-      "/location"
+      "/statistics"
     );
-    expect(menuItems[5].getAttribute("ng-reflect-router-link")).toEqual("/pad");
     expect(menuItems[6].getAttribute("ng-reflect-router-link")).toEqual(
-      "/rocket"
+      "/agency"
     );
     expect(menuItems[7].getAttribute("ng-reflect-router-link")).toEqual(
-      "/statistic"
+      "/astronaut"
     );
     expect(menuItems[8].getAttribute("ng-reflect-router-link")).toEqual(
+      "/location"
+    );
+    expect(menuItems[9].getAttribute("ng-reflect-router-link")).toEqual("/pad");
+    expect(menuItems[10].getAttribute("ng-reflect-router-link")).toEqual(
+      "/rocket"
+    );
+    expect(menuItems[11].getAttribute("ng-reflect-router-link")).toEqual(
       "/spacecraft"
     );
-    expect(menuItems[9].getAttribute("ng-reflect-router-link")).toEqual(
+    expect(menuItems[12].getAttribute("ng-reflect-router-link")).toEqual(
       "/spacestation"
     );
   });
