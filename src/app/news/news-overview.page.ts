@@ -76,11 +76,11 @@ export class NewsOverviewPage implements OnInit, ViewDidEnter {
     }
   }
   mergeNewsItems(articles, blogs) {
-    const newsItems = [];
-    const blogNewsItems = this.mapToNewsEntry(blogs, "blog");
-    const articleNewsItems = this.mapToNewsEntry(articles, "article");
+    let newsItems = [];
+    const blogNewsItems = this.mapToNewsEntry(blogs, "Blog");
+    const articleNewsItems = this.mapToNewsEntry(articles, "Article");
     newsItems.push(...blogNewsItems, ...articleNewsItems);
-    newsItems.sort(
+    newsItems = newsItems.sort(
       (newsItem1, newsItem2) =>
         newsItem2.date_published - newsItem1.date_published
     );

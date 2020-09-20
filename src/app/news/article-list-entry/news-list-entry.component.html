@@ -5,6 +5,15 @@
   appSlideIn
 >
   <div id="image">
+    <div
+      class="news-label"
+      [ngClass]="{
+        blog: newsItem.type === 'Blog',
+        article: newsItem.type === 'Article'
+      }"
+    >
+      {{ newsItem.type }}
+    </div>
     <div class="image-wrapper">
       <ion-img
         id="background"
