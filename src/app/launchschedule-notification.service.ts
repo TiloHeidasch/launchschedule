@@ -78,6 +78,7 @@ export class LaunchscheduleNotificationService {
     console.log({ interestAmounts: this.interestAmounts });
   }
   getAmountForInterest(type, id) {
+    id = id + "";
     return this.interestAmounts.find(
       (interestAmount) =>
         interestAmount.interest.type === type &&
@@ -91,6 +92,7 @@ export class LaunchscheduleNotificationService {
       : 0;
   }
   isInterested(type, id): boolean {
+    id = id + "";
     return this.interests.find(
       (otherInterest) => otherInterest.type === type && otherInterest.id === id
     )
