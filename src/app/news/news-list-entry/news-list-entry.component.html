@@ -40,6 +40,8 @@
     <ion-card-title>{{ title }}</ion-card-title>
   </ion-card-header>
   <ion-card-content>
-    <div id="content"></div>
+    <div id="content">
+      <app-news-tags [tags]="newsItem.tags"></app-news-tags>
+    </div>
   </ion-card-content>
 </ion-card>

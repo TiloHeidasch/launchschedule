@@ -94,6 +94,7 @@ export class NewsOverviewPage implements OnInit, ViewDidEnter {
       featured_image: entry.featured_image,
       url: entry.url,
       date_published: entry.date_published,
+      tags: entry.tags,
       type,
     }));
   }
