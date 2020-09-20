@@ -8,7 +8,7 @@ import { NewsRoutingModule } from "./news-routing.module";
 
 import { NewsOverviewPage } from "./news-overview.page";
 import { AnimationModule } from "../animation/animation.module";
-import { NewsListEntryModule } from "./article-list-entry/news-list-entry.module";
+import { NewsListEntryModule } from "./news-list-entry/news-list-entry.module";
 
 @NgModule({
   imports: [
