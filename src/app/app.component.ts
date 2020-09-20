@@ -29,12 +29,26 @@ export class AppComponent implements OnInit {
   versionName = environment.versionName;
   track = environment.track;
   public selectedIndex = 0;
-  public appPages = [
+  public mainPages = [
     {
       title: "Launch",
       url: "/launch",
       icon: "rocket",
     },
+    {
+      title: "Event",
+      url: "/event",
+      icon: "alert-circle",
+    },
+  ];
+  public coolStuffPages = [
+    {
+      title: "Statistic",
+      url: "/statistic",
+      icon: "stats-chart",
+    },
+  ];
+  public masterDataPages = [
     {
       title: "Agency",
       url: "/agency",
@@ -44,11 +58,6 @@ export class AppComponent implements OnInit {
       title: "Astronaut",
       url: "/astronaut",
       icon: "people",
-    },
-    {
-      title: "Event",
-      url: "/event",
-      icon: "alert-circle",
     },
     {
       title: "Facility",
@@ -66,11 +75,6 @@ export class AppComponent implements OnInit {
       icon: "rocket",
     },
     {
-      title: "Statistic",
-      url: "/statistic",
-      icon: "stats-chart",
-    },
-    {
       title: "Spacecraft",
       url: "/spacecraft",
       icon: "planet",
@@ -81,7 +85,11 @@ export class AppComponent implements OnInit {
       icon: "earth",
     },
   ];
-  public labels = ["Family", "Friends", "Notes", "Work", "Travel", "Reminders"];
+  private appPages = [
+    ...this.mainPages,
+    ...this.coolStuffPages,
+    ...this.masterDataPages,
+  ];
 
   constructor(
     private platform: Platform,
