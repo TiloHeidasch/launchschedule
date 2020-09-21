@@ -52,20 +52,17 @@ describe("AppComponent", () => {
     await fixture.detectChanges();
     const app = fixture.nativeElement;
     const menuItems = app.querySelectorAll("ion-label");
-    expect(menuItems.length).toEqual(13);
-    expect(menuItems[0].textContent).toContain("Launches and Events");
-    expect(menuItems[1].textContent).toContain("Launch");
-    expect(menuItems[2].textContent).toContain("Event");
-    expect(menuItems[3].textContent).toContain("Cool Stuff");
-    expect(menuItems[4].textContent).toContain("Statistic");
-    expect(menuItems[5].textContent).toContain("Master Data");
-    expect(menuItems[6].textContent).toContain("Agency");
-    expect(menuItems[7].textContent).toContain("Astronaut");
-    expect(menuItems[8].textContent).toContain("Facility");
-    expect(menuItems[9].textContent).toContain("Pad");
-    expect(menuItems[10].textContent).toContain("Rocket");
-    expect(menuItems[11].textContent).toContain("Spacecraft");
-    expect(menuItems[12].textContent).toContain("Spacestation");
+    expect(menuItems.length).toEqual(10);
+    expect(menuItems[0].textContent).toContain("Launch");
+    expect(menuItems[1].textContent).toContain("Event");
+    expect(menuItems[2].textContent).toContain("Statistic");
+    expect(menuItems[3].textContent).toContain("Agency");
+    expect(menuItems[4].textContent).toContain("Astronaut");
+    expect(menuItems[5].textContent).toContain("Facility");
+    expect(menuItems[6].textContent).toContain("Pad");
+    expect(menuItems[7].textContent).toContain("Rocket");
+    expect(menuItems[8].textContent).toContain("Spacecraft");
+    expect(menuItems[9].textContent).toContain("Spacestation");
   });
 
   it("should have urls", async () => {
