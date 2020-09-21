@@ -81,7 +81,7 @@ describe("AppComponent", () => {
       "/event"
     );
     expect(menuItems[4].getAttribute("ng-reflect-router-link")).toEqual(
-      "/statistics"
+      "/statistic"
     );
     expect(menuItems[6].getAttribute("ng-reflect-router-link")).toEqual(
       "/agency"
