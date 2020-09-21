@@ -4,10 +4,10 @@
       <ion-content>
         <ion-img src="assets/icon/logo_left_text_right.png"></ion-img>
         <ion-list id="menu-list">
-          <ion-item class="menu-divider">Launches and Events</ion-item>
+          <ion-item class="menu-divider">Highlights</ion-item>
           <ion-menu-toggle
             auto-hide="false"
-            *ngFor="let p of mainPages; let i = index"
+            *ngFor="let p of highlightPages; let i = index"
           >
             <ion-item
               (click)="selectedIndex = i"
@@ -25,43 +25,18 @@
               <ion-label>{{ p.title }}</ion-label>
             </ion-item>
           </ion-menu-toggle>
-          <ion-item class="menu-divider">Cool Stuff</ion-item>
+          <ion-item class="menu-divider">Deep Dive</ion-item>
           <ion-menu-toggle
             auto-hide="false"
-            *ngFor="let p of coolStuffPages; let i = index"
+            *ngFor="let p of deepDivePages; let i = index"
           >
             <ion-item
-              (click)="selectedIndex = i + mainPages.length"
+              (click)="selectedIndex = i + highlightPages.length"
               routerDirection="root"
               [routerLink]="[p.url]"
               lines="none"
               detail="false"
-              [class.selected]="selectedIndex === i + mainPages.length"
-            >
-              <ion-icon
-                slot="start"
-                [ios]="p.icon + '-outline'"
-                [md]="p.icon + '-sharp'"
-              ></ion-icon>
-              <ion-label>{{ p.title }}</ion-label>
-            </ion-item>
-          </ion-menu-toggle>
-          <ion-item class="menu-divider">Master Data</ion-item>
-          <ion-menu-toggle
-            auto-hide="false"
-            *ngFor="let p of masterDataPages; let i = index"
-          >
-            <ion-item
-              (click)="
-                selectedIndex = i + mainPages.length + coolStuffPages.length
-              "
-              routerDirection="root"
-              [routerLink]="[p.url]"
-              lines="none"
-              detail="false"
-              [class.selected]="
-                selectedIndex === i + mainPages.length + coolStuffPages.length
-              "
+              [class.selected]="selectedIndex === i + highlightPages.length"
             >
               <ion-icon
                 slot="start"

@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
   versionName = environment.versionName;
   track = environment.track;
   public selectedIndex = 0;
-  public mainPages = [
+  public highlightPages = [
     {
       title: "Launch",
       url: "/launch",
@@ -40,15 +40,13 @@ export class AppComponent implements OnInit {
       url: "/event",
       icon: "alert-circle",
     },
-  ];
-  public coolStuffPages = [
     {
       title: "Statistic",
       url: "/statistic",
       icon: "stats-chart",
     },
   ];
-  public masterDataPages = [
+  public deepDivePages = [
     {
       title: "Agency",
       url: "/agency",
@@ -85,11 +83,7 @@ export class AppComponent implements OnInit {
       icon: "earth",
     },
   ];
-  private appPages = [
-    ...this.mainPages,
-    ...this.coolStuffPages,
-    ...this.masterDataPages,
-  ];
+  private appPages = [...this.highlightPages, ...this.deepDivePages];
 
   constructor(
     private platform: Platform,
