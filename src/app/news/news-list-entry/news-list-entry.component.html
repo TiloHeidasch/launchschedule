@@ -8,11 +8,11 @@
     <div
       class="news-label"
       [ngClass]="{
-        blog: newsItem.type === 'Blog',
-        article: newsItem.type === 'Article'
+        blog: type === 'Blog',
+        article: type === 'Article'
       }"
     >
-      {{ newsItem.type }}
+      {{ type }}
     </div>
     <div class="image-wrapper">
       <ion-img
