@@ -37,7 +37,7 @@ export class CountdownComponent implements OnInit {
     return this.date.valueOf() - now.valueOf();
   }
   private calculateHours(diff: number) {
-    return Math.abs(Math.floor(diff / (1000 * 60 * 60)));
+    return Math.abs(Math.floor(diff / (1000 * 60 * 60))) - (diff < 0 ? 1 : 0);
   }
 
   setTimer() {
@@ -47,7 +47,10 @@ export class CountdownComponent implements OnInit {
       this.prefix = "*";
       this.hours = this.date.getDate();
       this.minutes = this.date.getMonth() + 1;
-      this.seconds = +this.date.getFullYear().toString().substr(2, 2);
+      this.seconds = +this.date
+        .getFullYear()
+        .toString()
+        .substr(2, 2);
       this.unit1 = "DAY";
       this.unit2 = "MONTH";
       this.unit3 = "YEAR";

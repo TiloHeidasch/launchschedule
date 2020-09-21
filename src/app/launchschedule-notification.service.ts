@@ -69,9 +69,9 @@ export class LaunchscheduleNotificationService {
       environment.notificationUrl +
       "?type=" +
       type +
-      "&id" +
+      "&id=" +
       id +
-      "&token" +
+      "&token=" +
       this.token;
     await this.http.delete(url).toPromise();
     this.prepare();
@@ -108,11 +108,9 @@ export class LaunchscheduleNotificationService {
       : false;
   }
   private async getAllInterests() {
-    this.interests = (
-      await this.http
-        .get<any[]>(environment.notificationUrl + "?token=" + this.token)
-        .toPromise()
-    ).map((notification) => ({
+    this.interests = (await this.http
+      .get<any[]>(environment.notificationUrl + "?token=" + this.token)
+      .toPromise()).map((notification) => ({
       id: notification.interest.id,
       type: notification.interest.type,
     }));
