@@ -7,6 +7,31 @@ const routes: Routes = [
   {
     path: "",
     component: NewsOverviewPage,
+    children: [
+      {
+        path: "article",
+        children: [
+          {
+            path: "",
+            loadChildren: "./article/article.module#ArticlePageModule",
+          },
+        ],
+      },
+      {
+        path: "blog",
+        children: [
+          {
+            path: "",
+            loadChildren: "./blog/blog.module#BlogPageModule",
+          },
+        ],
+      },
+      {
+        path: "",
+        redirectTo: "/news/article",
+        pathMatch: "full",
+      },
+    ],
   },
 ];
 

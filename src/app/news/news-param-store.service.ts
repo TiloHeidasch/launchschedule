@@ -6,9 +6,9 @@ import { Injectable } from "@angular/core";
 export class NewsParamStoreService {
   search: string;
   showFilter = false;
-  newsItems: any[] = [];
   blogs: any[] = [];
   articles: any[] = [];
-  scrollY = 0;
+  blogScrollY = 0;
+  articleScrollY = 0;
   constructor() {}
 }

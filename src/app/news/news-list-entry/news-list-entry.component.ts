@@ -14,6 +14,7 @@ import { SnapiService } from "src/app/snapi.service";
 })
 export class NewsListEntryComponent implements OnInit {
   @Input() newsItem;
+  @Input() type;
   title: string;
   subtitle: string;
   constructor(private service: SnapiService) {}

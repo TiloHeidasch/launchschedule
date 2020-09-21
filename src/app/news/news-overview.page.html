@@ -19,33 +19,17 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content
-  #agencyOverviewContent
-  [scrollEvents]="true"
-  (ionScroll)="logScrolling($event)"
-  [fullscreen]="true"
->
-  <ion-refresher slot="fixed" (ionRefresh)="loadFirst($event)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">{{title}}</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <ion-list>
-      <div *ngFor="let newsItem of store.newsItems">
-        <app-news-list-entry [newsItem]="newsItem"></app-news-list-entry>
-      </div>
-    </ion-list>
-    <ion-infinite-scroll (ionInfinite)="loadMore($event)">
-      <ion-infinite-scroll-content
-        loadingSpinner="circular"
-        loadingText="Loading more newsItems..."
-      >
-      </ion-infinite-scroll-content>
-    </ion-infinite-scroll>
-  </div>
+<ion-content>
+  <ion-tabs>
+    <ion-tab-bar slot="bottom,top">
+      <ion-tab-button tab="article">
+        <ion-icon name="flash"></ion-icon>
+        <ion-label>Articles</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="blog">
+        <ion-icon name="apps"></ion-icon>
+        <ion-label>Blogs</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
 </ion-content>
