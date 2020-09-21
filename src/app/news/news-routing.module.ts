@@ -10,21 +10,13 @@ const routes: Routes = [
     children: [
       {
         path: "article",
-        children: [
-          {
-            path: "",
-            loadChildren: "./article/article.module#ArticlePageModule",
-          },
-        ],
+        loadChildren: () =>
+          import("./article/article.module").then((m) => m.ArticlePageModule),
       },
       {
         path: "blog",
-        children: [
-          {
-            path: "",
-            loadChildren: "./blog/blog.module#BlogPageModule",
-          },
-        ],
+        loadChildren: () =>
+          import("./blog/blog.module").then((m) => m.BlogPageModule),
       },
       {
         path: "",
