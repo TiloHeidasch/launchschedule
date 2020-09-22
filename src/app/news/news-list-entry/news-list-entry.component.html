@@ -1,8 +1,8 @@
 <ion-card
   *ngIf="newsItem !== undefined"
   routerDirection="forward"
-  [href]="newsItem.url"
   appSlideIn
+  (click)="click()"
 >
   <div id="image">
     <div
@@ -33,6 +33,9 @@
             : 'assets/placeholder_1920.png'
         "
       ></ion-img>
+    </div>
+    <div *ngIf="clicked" class="image-wrapper clicked">
+      <ion-icon slot="start" name="checkmark-outline"></ion-icon>
     </div>
   </div>
   <ion-card-header>
