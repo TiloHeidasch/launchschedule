@@ -15,6 +15,7 @@ import { Router } from "@angular/router";
 import { MessageService } from "primeng/api";
 import { environment } from "../environments/environment";
 import { LaunchscheduleNotificationService } from "./launchschedule-notification.service";
+import { NewsParamStoreService } from "./news/news-param-store.service";
 
 const { PushNotifications } = Plugins;
 
@@ -94,7 +95,8 @@ export class AppComponent implements OnInit {
     private statusBar: StatusBar,
     private router: Router,
     private messageService: MessageService,
-    private launchscheduleNotificationService: LaunchscheduleNotificationService
+    private launchscheduleNotificationService: LaunchscheduleNotificationService,
+    public newsParamStore: NewsParamStoreService
   ) {
     this.initializeApp();
   }
@@ -118,6 +120,8 @@ export class AppComponent implements OnInit {
     } else {
       this.launchscheduleNotificationService.prepare();
     }
+    this.newsParamStore.getUnreadArticles();
+    this.newsParamStore.getUnreadBlogs();
   }
 
   initNotifications() {
