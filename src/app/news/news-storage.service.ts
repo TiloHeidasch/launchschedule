@@ -15,7 +15,7 @@ export class NewsStorageService {
       clickedNewsItemIds = [];
       await this.storage.setObject(key, clickedNewsItemIds);
     }
-    let clickedNewsItem = clickedNewsItemIds.find(
+    const clickedNewsItem = clickedNewsItemIds.find(
       (clickedNewsItemId) => clickedNewsItemId === newsItem._id
     );
     if (clickedNewsItem) {
@@ -25,12 +25,12 @@ export class NewsStorageService {
     await this.storage.setObject(key, clickedNewsItemIds);
   }
   async isClicked(newsItem): Promise<boolean> {
-    let clickedNewsItemIds: any[] = await this.storage.getObject(key);
+    const clickedNewsItemIds: any[] = await this.storage.getObject(key);
     if (!clickedNewsItemIds) {
       return false;
     }
     const clickedNewsItem = clickedNewsItemIds.find(
-      (clickedNewsItem) => clickedNewsItem === newsItem._id
+      (clickedNewsItemId) => clickedNewsItemId === newsItem._id
     );
     if (clickedNewsItem) {
       return true;
