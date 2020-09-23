@@ -30,12 +30,29 @@ export class AppComponent implements OnInit {
   versionName = environment.versionName;
   track = environment.track;
   public selectedIndex = 0;
-  public appPages = [
+  public highlightPages = [
     {
       title: "Launch",
       url: "/launch",
       icon: "rocket",
     },
+    {
+      title: "Event",
+      url: "/event",
+      icon: "alert-circle",
+    },
+    {
+      title: "Statistic",
+      url: "/statistic",
+      icon: "stats-chart",
+    },
+    {
+      title: "News",
+      url: "/news",
+      icon: "newspaper",
+    },
+  ];
+  public deepDivePages = [
     {
       title: "Agency",
       url: "/agency",
@@ -47,19 +64,9 @@ export class AppComponent implements OnInit {
       icon: "people",
     },
     {
-      title: "Event",
-      url: "/event",
-      icon: "alert-circle",
-    },
-    {
       title: "Facility",
       url: "/location",
       icon: "business",
-    },
-    {
-      title: "News",
-      url: "/news",
-      icon: "newspaper",
     },
     {
       title: "Pad",
@@ -72,11 +79,6 @@ export class AppComponent implements OnInit {
       icon: "rocket",
     },
     {
-      title: "Statistic",
-      url: "/statistic",
-      icon: "stats-chart",
-    },
-    {
       title: "Spacecraft",
       url: "/spacecraft",
       icon: "planet",
@@ -87,7 +89,7 @@ export class AppComponent implements OnInit {
       icon: "earth",
     },
   ];
-  public labels = ["Family", "Friends", "Notes", "Work", "Travel", "Reminders"];
+  private appPages = [...this.highlightPages, ...this.deepDivePages];
 
   constructor(
     private platform: Platform,
