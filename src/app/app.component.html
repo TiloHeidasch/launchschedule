@@ -23,9 +23,16 @@
                 [md]="p.icon + '-sharp'"
               ></ion-icon>
               <ion-label>{{ p.title }}</ion-label>
-              <ion-badge *ngIf="p.title === 'News'" color="danger">{{
-                newsParamStore.unreadBlogs + newsParamStore.unreadArticles
-              }}</ion-badge>
+              <ion-badge
+                *ngIf="
+                  p.title === 'News' &&
+                  newsParamStore.unreadBlogs + newsParamStore.unreadArticles > 0
+                "
+                color="danger"
+                >{{
+                  newsParamStore.unreadBlogs + newsParamStore.unreadArticles
+                }}</ion-badge
+              >
             </ion-item>
           </ion-menu-toggle>
           <ion-item class="menu-divider">Deep Dive</ion-item>
