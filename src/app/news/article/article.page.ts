@@ -1,5 +1,10 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { IonContent, IonInfiniteScroll, ViewDidEnter } from "@ionic/angular";
+import {
+  IonContent,
+  IonInfiniteScroll,
+  ViewDidEnter,
+  ViewDidLeave,
+} from "@ionic/angular";
 import { SnapiService } from "src/app/snapi.service";
 import { NewsParamStoreService } from "../news-param-store.service";
 
@@ -11,7 +16,6 @@ import { NewsParamStoreService } from "../news-param-store.service";
 export class ArticlePage implements OnInit, ViewDidEnter {
   @ViewChild("articleContent") content: IonContent;
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
-
   constructor(
     private service: SnapiService,
     public store: NewsParamStoreService
@@ -38,6 +42,7 @@ export class ArticlePage implements OnInit, ViewDidEnter {
     const answerArticles = await this.service.getFirstArticles(
       this.store.search
     );
+    this.store.readArticles = answerArticles.max;
     const newArticles = answerArticles.newsItems;
     this.store.articles.push(...newArticles);
     if (refreshEvent) {
