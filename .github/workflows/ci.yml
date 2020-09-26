@@ -13,8 +13,12 @@ jobs:
         uses: actions/setup-node@v1.4.3
       - name: Setup Totemize
         run: npm install -g totemize
-      - name: Create Release Name Variable using Totemize
-        run: echo "::set-env name=RELEASE_NAME::`totemize -s '-'`"
+      - name: Create Prod Release Name Variable using Totemize
+        if: ${{github.ref == 'refs/heads/master'}}
+        run: echo "::set-env name=RELEASE_NAME::`totemize -a totemize/Prod/adjectives.json -n totemize/Prod/nouns.json -s '-'`"
+      - name: Create Beta Release Name Variable using Totemize
+        if: ${{github.ref == 'refs/heads/dev'}}
+        run: echo "::set-env name=RELEASE_NAME::`totemize -a totemize/Beta/adjectives.json -n totemize/Beta/nouns.json -s '-'`"
       - name: Create Version File
         run: echo "${{ env.RELEASE_NAME }}" > version
       - name: Safe Version File Artifact
