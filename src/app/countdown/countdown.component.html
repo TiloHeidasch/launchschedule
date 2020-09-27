@@ -1,5 +1,5 @@
 <div id="countdown">
-  <div id="top-line" class="blue"></div>
+  <div id="top-line" [ngClass]="{ active: active, inactive: !active }"></div>
   <div id="number-line">
     <p class="digit spacer">{{ prefix }}</p>
     <div id="hour-pair" class="pair">
@@ -29,7 +29,7 @@
       </div>
     </div>
   </div>
-  <div id="text-line" class="blue">
+  <div id="text-line" [ngClass]="{ active: active, inactive: !active }">
     <p></p>
     <p>{{ unit1 }}</p>
     <p></p>

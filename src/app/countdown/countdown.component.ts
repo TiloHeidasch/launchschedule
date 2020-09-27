@@ -20,16 +20,19 @@ export class CountdownComponent implements OnInit {
   unit1: string;
   unit2: string;
   unit3: string;
+  active: boolean;
 
   constructor(private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
     if (this.calculateHours(this.getDiff(this.date)) > 99) {
       this.setTimer();
+      this.active = false;
     } else {
       const task = setInterval(() => {
         this.setTimer();
       }, 500);
+      this.active = true;
     }
   }
   private getDiff(date: Date): number {
@@ -47,10 +50,7 @@ export class CountdownComponent implements OnInit {
       this.prefix = "*";
       this.hours = this.date.getDate();
       this.minutes = this.date.getMonth() + 1;
-      this.seconds = +this.date
-        .getFullYear()
-        .toString()
-        .substr(2, 2);
+      this.seconds = +this.date.getFullYear().toString().substr(2, 2);
       this.unit1 = "DAY";
       this.unit2 = "MONTH";
       this.unit3 = "YEAR";

@@ -15,6 +15,7 @@ import { Router } from "@angular/router";
 import { MessageService } from "primeng/api";
 import { environment } from "../environments/environment";
 import { LaunchscheduleNotificationService } from "./launchschedule-notification.service";
+import { NewsParamStoreService } from "./news/news-param-store.service";
 
 const { PushNotifications } = Plugins;
 
@@ -29,12 +30,29 @@ export class AppComponent implements OnInit {
   versionName = environment.versionName;
   track = environment.track;
   public selectedIndex = 0;
-  public appPages = [
+  public highlightPages = [
     {
       title: "Launch",
       url: "/launch",
       icon: "rocket",
     },
+    {
+      title: "Event",
+      url: "/event",
+      icon: "alert-circle",
+    },
+    {
+      title: "Statistic",
+      url: "/statistic",
+      icon: "stats-chart",
+    },
+    {
+      title: "News",
+      url: "/news",
+      icon: "newspaper",
+    },
+  ];
+  public deepDivePages = [
     {
       title: "Agency",
       url: "/agency",
@@ -44,11 +62,6 @@ export class AppComponent implements OnInit {
       title: "Astronaut",
       url: "/astronaut",
       icon: "people",
-    },
-    {
-      title: "Event",
-      url: "/event",
-      icon: "alert-circle",
     },
     {
       title: "Facility",
@@ -66,11 +79,6 @@ export class AppComponent implements OnInit {
       icon: "rocket",
     },
     {
-      title: "Statistic",
-      url: "/statistic",
-      icon: "stats-chart",
-    },
-    {
       title: "Spacecraft",
       url: "/spacecraft",
       icon: "planet",
@@ -81,7 +89,7 @@ export class AppComponent implements OnInit {
       icon: "earth",
     },
   ];
-  public labels = ["Family", "Friends", "Notes", "Work", "Travel", "Reminders"];
+  private appPages = [...this.highlightPages, ...this.deepDivePages];
 
   constructor(
     private platform: Platform,
@@ -89,7 +97,8 @@ export class AppComponent implements OnInit {
     private statusBar: StatusBar,
     private router: Router,
     private messageService: MessageService,
-    private launchscheduleNotificationService: LaunchscheduleNotificationService
+    private launchscheduleNotificationService: LaunchscheduleNotificationService,
+    public newsParamStore: NewsParamStoreService
   ) {
     this.initializeApp();
   }
@@ -113,6 +122,8 @@ export class AppComponent implements OnInit {
     } else {
       this.launchscheduleNotificationService.prepare();
     }
+    this.newsParamStore.getUnreadArticles();
+    this.newsParamStore.getUnreadBlogs();
   }
 
   initNotifications() {

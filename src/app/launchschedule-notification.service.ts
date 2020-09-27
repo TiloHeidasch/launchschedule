@@ -83,7 +83,6 @@ export class LaunchscheduleNotificationService {
         environment.notificationUrl + "/amount"
       )
       .toPromise();
-    console.log({ interestAmounts: this.interestAmounts });
   }
   getAmountForInterest(type, id) {
     id = id + "";
@@ -108,13 +107,14 @@ export class LaunchscheduleNotificationService {
       : false;
   }
   private async getAllInterests() {
-    this.interests = (await this.http
-      .get<any[]>(environment.notificationUrl + "?token=" + this.token)
-      .toPromise()).map((notification) => ({
+    this.interests = (
+      await this.http
+        .get<any[]>(environment.notificationUrl + "?token=" + this.token)
+        .toPromise()
+    ).map((notification) => ({
       id: notification.interest.id,
       type: notification.interest.type,
     }));
-    console.log({ interests: this.interests });
   }
 }
 export interface LaunchscheduleNotificationUpdate {

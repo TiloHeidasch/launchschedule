@@ -13,6 +13,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { LaunchLibraryService } from "./launch-library.service";
 import { PrimeNGModule } from "./prime-ng/prime-ng.module";
 import { LaunchscheduleNotificationService } from "./launchschedule-notification.service";
+import { StorageService } from "./storage.service";
+import { BrowserService } from "./browser.service";
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,6 +33,8 @@ import { LaunchscheduleNotificationService } from "./launchschedule-notification
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     LaunchLibraryService,
     LaunchscheduleNotificationService,
+    StorageService,
+    BrowserService,
   ],
   bootstrap: [AppComponent],
 })

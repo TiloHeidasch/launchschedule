@@ -31,7 +31,6 @@ export class LaunchLibraryService {
     const url = this.baseUrl + "/2.0.0/agencies?search=" + search + "&limit=1";
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
-    console.log({ call: this.calls, url, data });
     return data.count;
   }
   async getAllAgencies(
@@ -50,7 +49,6 @@ export class LaunchLibraryService {
     );
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
-    console.log({ call: this.calls, url, data });
     return data.results;
   }
   async getAgencyById(id: string) {
@@ -61,7 +59,6 @@ export class LaunchLibraryService {
     const url = this.baseUrl + "/2.0.0/agencies/" + id + "?mode=detailed";
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
-    console.log({ call: this.calls, url, data });
     this.agenciesById.push({ id, object: data });
     return data;
   }
@@ -90,7 +87,6 @@ export class LaunchLibraryService {
     );
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
-    console.log({ call: this.calls, url, data });
     return { agencies: data.results, max: data.count };
   }
   private createAgencyUrl(
@@ -127,14 +123,12 @@ export class LaunchLibraryService {
     const url = this.baseUrl + "/2.0.0/astronaut/" + search + "?limit=1";
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
-    console.log({ call: this.calls, url, data });
     return data.count;
   }
   async getAllAstronauts(search?: string, status?: number) {
     const url = this.createAstronautUrl(10000, undefined, search, status);
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
-    console.log({ call: this.calls, url, data });
     return data.results;
   }
   async getAstronautById(id: string) {
@@ -145,7 +139,6 @@ export class LaunchLibraryService {
     const url = this.baseUrl + "/2.0.0/astronaut/" + id + "?mode=detailed";
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
-    console.log({ call: this.calls, url, data });
     this.astronautsById.push({ id, object: data });
     return data;
   }
@@ -156,7 +149,6 @@ export class LaunchLibraryService {
     const url = this.createAstronautUrl(20, offset, search, status);
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
-    console.log({ call: this.calls, url, data });
     return { astronauts: data.results, max: data.count };
   }
   private createAstronautUrl(
@@ -186,7 +178,6 @@ export class LaunchLibraryService {
     const url = this.baseUrl + "/2.0.0/event/upcoming/" + search + "?limit=1";
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
-    console.log({ call: this.calls, url, data });
     return data.count;
   }
   async getAllEvents(
@@ -203,7 +194,6 @@ export class LaunchLibraryService {
     );
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
-    console.log({ call: this.calls, url, data });
     return data.results;
   }
   async getEventById(id: string) {
@@ -214,7 +204,6 @@ export class LaunchLibraryService {
     const url = this.baseUrl + "/2.0.0/event/" + id;
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
-    console.log({ call: this.calls, url, data });
     this.eventsById.push({ id, object: data });
     return data;
   }
@@ -240,7 +229,6 @@ export class LaunchLibraryService {
     );
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
-    console.log({ call: this.calls, url, data });
     return { events: data.results, max: data.count };
   }
   private createEventUrl(
@@ -299,7 +287,6 @@ export class LaunchLibraryService {
     }
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
-    console.log({ call: this.calls, url, data });
     return data.count;
   }
   async getAllLaunches(
@@ -326,7 +313,6 @@ export class LaunchLibraryService {
     );
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
-    console.log({ call: this.calls, url, data });
     return data.results;
   }
   async getLaunchById(id: string) {
@@ -337,7 +323,6 @@ export class LaunchLibraryService {
     const url = this.baseUrl + "/2.0.0/launch/" + id;
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
-    console.log({ call: this.calls, url, data });
     this.launchesById.push({ id, object: data });
     return data;
   }
@@ -388,7 +373,6 @@ export class LaunchLibraryService {
     );
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
-    console.log({ call: this.calls, url, data });
     return { launches: data.results, max: data.count };
   }
   private createLaunchUrl(
@@ -457,14 +441,12 @@ export class LaunchLibraryService {
     const url = this.baseUrl + "/2.0.0/location/" + search + "?limit=1";
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
-    console.log({ call: this.calls, url, data });
     return data.count;
   }
   async getAllLocations(search?: string, countryCode?: string) {
     const url = this.createLocationUrl(10000, undefined, search, countryCode);
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
-    console.log({ call: this.calls, url, data });
     return data.results;
   }
   async getLocationById(id: string) {
@@ -475,7 +457,6 @@ export class LaunchLibraryService {
     const url = this.baseUrl + "/2.0.0/location/" + id;
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
-    console.log({ call: this.calls, url, data });
     this.locationsById.push({ id, object: data });
     return data;
   }
@@ -490,7 +471,6 @@ export class LaunchLibraryService {
     const url = this.createLocationUrl(10, offset, search, countryCode);
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
-    console.log({ call: this.calls, url, data });
     return { locations: data.results, max: data.count };
   }
   private createLocationUrl(
@@ -519,14 +499,12 @@ export class LaunchLibraryService {
     const url = this.baseUrl + "/2.0.0/pad/" + search + "?limit=1";
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
-    console.log({ call: this.calls, url, data });
     return data.count;
   }
   async getAllPads(search?: string) {
     const url = this.createPadUrl(10000, undefined, search);
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
-    console.log({ call: this.calls, url, data });
     return data.results;
   }
   async getPadById(id: string) {
@@ -537,7 +515,6 @@ export class LaunchLibraryService {
     const url = this.baseUrl + "/2.0.0/pad/" + id;
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
-    console.log({ call: this.calls, url, data });
     this.padsById.push({ id, object: data });
     return data;
   }
@@ -548,7 +525,6 @@ export class LaunchLibraryService {
     const url = this.createPadUrl(10, offset, search);
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
-    console.log({ call: this.calls, url, data });
     return { pads: data.results, max: data.count };
   }
   private createPadUrl(
@@ -574,7 +550,6 @@ export class LaunchLibraryService {
     const url = this.baseUrl + "/2.0.0/config/launcher/" + search + "?limit=1";
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
-    console.log({ call: this.calls, url, data });
     return data.count;
   }
   async getAllRockets(search?: string, active?: Active, reusable?: Reusable) {
@@ -587,7 +562,6 @@ export class LaunchLibraryService {
     );
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
-    console.log({ call: this.calls, url, data });
     return data.results;
   }
   async getRocketById(id: string) {
@@ -598,7 +572,6 @@ export class LaunchLibraryService {
     const url = this.baseUrl + "/2.0.0/config/launcher/" + id;
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
-    console.log({ call: this.calls, url, data });
     this.rocketsById.push({ id, object: data });
     return data;
   }
@@ -614,7 +587,6 @@ export class LaunchLibraryService {
     const url = this.createRocketUrl(10, offset, search, active, reusable);
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
-    console.log({ call: this.calls, url, data });
     return { rockets: data.results, max: data.count };
   }
   private createRocketUrl(
@@ -656,7 +628,6 @@ export class LaunchLibraryService {
       this.baseUrl + "/2.0.0/config/spacecraft/" + search + "?limit=1";
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
-    console.log({ call: this.calls, url, data });
     return data.count;
   }
   async getAllSpacecrafts(
@@ -673,7 +644,6 @@ export class LaunchLibraryService {
     );
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
-    console.log({ call: this.calls, url, data });
     return data.results;
   }
   async getSpacecraftById(id: string) {
@@ -684,7 +654,6 @@ export class LaunchLibraryService {
     const url = this.baseUrl + "/2.0.0/config/spacecraft/" + id;
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
-    console.log({ call: this.calls, url, data });
     this.spacecraftsById.push({ id, object: data });
     return data;
   }
@@ -704,7 +673,6 @@ export class LaunchLibraryService {
     const url = this.createSpacecraftUrl(10, offset, search, inUse, humanRated);
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
-    console.log({ call: this.calls, url, data });
     return { spacecrafts: data.results, max: data.count };
   }
   private createSpacecraftUrl(
@@ -744,7 +712,6 @@ export class LaunchLibraryService {
     const url = this.baseUrl + "/2.0.0/spacestation/" + search + "?limit=1";
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
-    console.log({ call: this.calls, url, data });
     return data.count;
   }
   async getAllSpacestations(
@@ -763,7 +730,6 @@ export class LaunchLibraryService {
     );
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
-    console.log({ call: this.calls, url, data });
     return data.results;
   }
   async getSpacestationById(id: string) {
@@ -774,7 +740,6 @@ export class LaunchLibraryService {
     const url = this.baseUrl + "/2.0.0/spacestation/" + id;
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
-    console.log({ call: this.calls, url, data });
     this.spacestationsById.push({ id, object: data });
     return data;
   }
@@ -803,7 +768,6 @@ export class LaunchLibraryService {
     );
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
-    console.log({ call: this.calls, url, data });
     return { spacestations: data.results, max: data.count };
   }
   private createSpacestationUrl(

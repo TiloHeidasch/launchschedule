@@ -58,7 +58,7 @@ export class SpacestationDetailCardComponent implements OnInit {
           icon: "close",
           role: "cancel",
           handler: () => {
-            console.log("Cancel clicked");
+            // Cancel clicked
           },
         },
       ],

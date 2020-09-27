@@ -1,0 +1,50 @@
+<ion-card
+  *ngIf="newsItem !== undefined"
+  routerDirection="forward"
+  appSlideIn
+  (click)="click()"
+>
+  <div id="image">
+    <div
+      class="news-label"
+      [ngClass]="{
+        blog: type === 'Blog',
+        article: type === 'Article'
+      }"
+    >
+      {{ type }}
+    </div>
+    <div class="image-wrapper">
+      <ion-img
+        id="background"
+        [src]="
+          newsItem.featured_image
+            ? newsItem.featured_image
+            : 'assets/placeholder_1920.png'
+        "
+      ></ion-img>
+    </div>
+    <div class="image-wrapper">
+      <ion-img
+        id="foreground"
+        [src]="
+          newsItem.featured_image
+            ? newsItem.featured_image
+            : 'assets/placeholder_1920.png'
+        "
+      ></ion-img>
+    </div>
+    <div *ngIf="clicked" class="image-wrapper clicked">
+      <ion-icon slot="start" name="checkmark-outline"></ion-icon>
+    </div>
+  </div>
+  <ion-card-header>
+    <ion-card-subtitle>{{ subtitle }}</ion-card-subtitle>
+    <ion-card-title>{{ title }}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <div id="content">
+      <app-news-tags [tags]="newsItem.tags"></app-news-tags>
+    </div>
+  </ion-card-content>
+</ion-card>
