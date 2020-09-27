@@ -24,12 +24,16 @@
   <div id="image">
     <div class="image-wrapper">
       <ion-img
+        ionImgViewer
         id="background"
         [src]="imageUrl ? imageUrl : 'assets/placeholder_1920.png'"
       ></ion-img>
     </div>
     <div class="image-wrapper">
       <ion-img
+        [title]="title"
+        [text]="subtitle"
+        ionImgViewer
         id="foreground"
         [src]="imageUrl ? imageUrl : 'assets/placeholder_1920.png'"
       ></ion-img>

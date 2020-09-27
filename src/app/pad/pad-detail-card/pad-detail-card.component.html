@@ -9,6 +9,9 @@
     </div>
     <div class="image-wrapper">
       <ion-img
+        [title]="pad.name"
+        [text]="pad.location.name"
+        ionImgViewer
         id="foreground"
         [src]="pad.map_image ? pad.map_image : 'assets/placeholder_1920.png'"
       ></ion-img>

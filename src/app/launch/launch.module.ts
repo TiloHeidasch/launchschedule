@@ -20,6 +20,7 @@ import { RocketListEntryModule } from "../rocket/rocket-list-entry/rocket-list-e
 import { AstronautListEntryModule } from "../astronaut/astronaut-list-entry/astronaut-list-entry.module";
 import { VideoModule } from "../video/video.module";
 import { NotificationModule } from "../notification/notification.module";
+import { NgxIonicImageViewerModule } from "ngx-ionic-image-viewer";
 
 @NgModule({
   imports: [
@@ -38,6 +39,7 @@ import { NotificationModule } from "../notification/notification.module";
     AstronautListEntryModule,
     VideoModule,
     NotificationModule,
+    NgxIonicImageViewerModule,
   ],
   declarations: [LaunchPage, LaunchOverviewPage, LaunchDetailCardComponent],
   exports: [LaunchDetailCardComponent],

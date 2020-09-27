@@ -17,6 +17,9 @@
     </div>
     <div class="image-wrapper">
       <ion-img
+        [title]="spacestation.name"
+        [text]="spacestation.type.name"
+        ionImgViewer
         id="foreground"
         [src]="
           spacestation.image_url

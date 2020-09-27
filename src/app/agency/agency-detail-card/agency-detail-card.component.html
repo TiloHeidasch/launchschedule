@@ -12,6 +12,9 @@
     <div class="image-wrapper">
       <ion-img
         id="foreground"
+        [title]="agency.name"
+        [text]="agency.abbrev"
+        ionImgViewer
         [src]="
           agency.image_url ? agency.image_url : 'assets/placeholder_1920.png'
         "
