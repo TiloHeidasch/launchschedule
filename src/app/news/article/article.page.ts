@@ -28,11 +28,9 @@ export class ArticlePage implements OnInit, ViewDidEnter {
   }
 
   ngOnInit() {
-    console.log("Article entered");
     if (this.store.articles.length === 0) {
       this.loadFirst();
     }
-    console.log(this.store.articles);
   }
   async loadFirst(refreshEvent?) {
     try {

@@ -41,8 +41,6 @@ export class ChartsComponent implements OnInit, AfterViewInit {
           .replace("</span", "</div");
       }
 
-      console.log(chartHtml);
-
       this.legend.nativeElement.innerHTML = chartHtml;
     } catch (error) {}
   }

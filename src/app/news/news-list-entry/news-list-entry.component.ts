@@ -25,8 +25,9 @@ export class NewsListEntryComponent implements OnInit {
   }
   click() {
     this.browser.open(this.newsItem.url);
-    console.log("mark clicked");
     this.storage.markClicked(this.newsItem);
-    this.clicked = true;
+    setTimeout(() => {
+      this.clicked = true;
+    }, 2000);
   }
 }

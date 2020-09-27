@@ -18,7 +18,6 @@ export class SnapiService {
     const url = this.createArticlesUrl(search, page, limit);
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
-    console.log({ call: this.calls, url, data });
     return { newsItems: data.docs, max: data.totalDocs };
   }
   createArticlesUrl(search, page, limit) {
@@ -37,7 +36,6 @@ export class SnapiService {
     const url = this.createBlogsUrl(search, page, limit);
     const data = await this.http.get<any>(url).toPromise();
     this.calls++;
-    console.log({ call: this.calls, url, data });
     return { newsItems: data.docs, max: data.totalDocs };
   }
   createBlogsUrl(search, page, limit) {

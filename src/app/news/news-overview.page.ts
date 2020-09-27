@@ -12,12 +12,10 @@ export class NewsOverviewPage implements OnInit, ViewWillLeave {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   constructor(public store: NewsParamStoreService) {}
   ngOnInit() {
-    console.log("ngOnInit");
     this.store.getUnreadArticles();
     this.store.getUnreadBlogs();
   }
   ionViewWillLeave() {
-    console.log("ionViewWillLeave");
     this.store.persistArticleReadNumbers();
     this.store.persistBlogReadNumbers();
   }
@@ -28,7 +26,6 @@ export class NewsOverviewPage implements OnInit, ViewWillLeave {
     this.store.search = event.detail.value;
   }
   tabChange(event) {
-    console.log(event);
     switch (event.tab) {
       case "article":
         this.store.persistBlogReadNumbers();

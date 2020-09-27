@@ -28,11 +28,9 @@ export class BlogPage implements OnInit, ViewDidEnter {
   }
 
   ngOnInit() {
-    console.log("Blog entered");
     if (this.store.blogs.length === 0) {
       this.loadFirst();
     }
-    console.log(this.store.blogs);
   }
   async loadFirst(refreshEvent?) {
     try {
