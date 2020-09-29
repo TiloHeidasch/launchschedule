@@ -71,9 +71,6 @@ export class StatisticPage implements OnInit {
       case "Launches":
         this.applyLaunchesFilter();
         break;
-
-      default:
-        break;
     }
   }
   axisComplete() {
@@ -87,52 +84,56 @@ export class StatisticPage implements OnInit {
     switch (this.what) {
       case "Launches":
         return this.setupLaunchesTable();
-      default:
-        break;
     }
     setTimeout(() => {
       this.applyPreviousFilters();
     }, 10);
   }
   private applyFilter() {
-    return this.table.filteredValue
-      ? this.table.filteredValue
-      : this.table.value;
+    try {
+      return this.table.filteredValue
+        ? this.table.filteredValue
+        : this.table.value;
+    } catch (error) {
+      return this.dataRaw;
+    }
   }
   private applyLaunchesFilter() {
-    this.table.filterGlobal(this.globalSearch, "contains");
-    this.table.filter(this.nameSearch, "name", "contains");
-    if (this.fromFilter) {
-      this.onDateSelect(this.fromFilter, "gte");
-    }
-    if (this.toFilter) {
-      this.onDateSelect(this.toFilter, "gte");
-    }
-    this.table.filter(
-      this.selectedRockets,
-      "rocket__configuration__full_name",
-      "in"
-    );
-    this.table.filter(
-      this.selectedRocketFamilies,
-      "rocket__configuration__family",
-      "in"
-    );
-    this.table.filter(
-      this.selectedAgencies,
-      "launch_service_provider__name",
-      "in"
-    );
-    this.table.filter(
-      this.selectedAgencyTypes,
-      "launch_service_provider__type",
-      "in"
-    );
-    this.table.filter(
-      this.selectedSpacecrafts,
-      "rocket__spacecraft_stage__spacecraft__spacecraft_config__name",
-      "in"
-    );
+    try {
+      this.table.filterGlobal(this.globalSearch, "contains");
+      this.table.filter(this.nameSearch, "name", "contains");
+      if (this.fromFilter) {
+        this.onDateSelect(this.fromFilter, "gte");
+      }
+      if (this.toFilter) {
+        this.onDateSelect(this.toFilter, "gte");
+      }
+      this.table.filter(
+        this.selectedRockets,
+        "rocket__configuration__full_name",
+        "in"
+      );
+      this.table.filter(
+        this.selectedRocketFamilies,
+        "rocket__configuration__family",
+        "in"
+      );
+      this.table.filter(
+        this.selectedAgencies,
+        "launch_service_provider__name",
+        "in"
+      );
+      this.table.filter(
+        this.selectedAgencyTypes,
+        "launch_service_provider__type",
+        "in"
+      );
+      this.table.filter(
+        this.selectedSpacecrafts,
+        "rocket__spacecraft_stage__spacecraft__spacecraft_config__name",
+        "in"
+      );
+    } catch (error) {}
   }
 
   private async setupLaunchesTable() {
@@ -199,8 +200,6 @@ export class StatisticPage implements OnInit {
     switch (this.what) {
       case "Launches":
         return this.getLaunchesLabels();
-      default:
-        break;
     }
   }
 
@@ -352,9 +351,6 @@ export class StatisticPage implements OnInit {
           .filter((value, index, self) => self.indexOf(value) === index)
           .sort((x1, x2) => (x1 < x2 ? -1 : 1));
         break;
-
-      default:
-        break;
     }
     const datasetsArray = [];
     xAxisValues.forEach((xAxisValue) => {
@@ -387,9 +383,6 @@ export class StatisticPage implements OnInit {
               launch.rocket__spacecraft_stage__spacecraft__spacecraft_config__name ===
               xAxisValue
           );
-          break;
-
-        default:
           break;
       }
       let dataSet;
@@ -467,8 +460,6 @@ export class StatisticPage implements OnInit {
           })
           .filter((value, index, self) => self.indexOf(value) === index)
           .sort((x1, x2) => (x1 < x2 ? -1 : 1));
-      default:
-        break;
     }
   }
 
@@ -476,8 +467,6 @@ export class StatisticPage implements OnInit {
     switch (this.what) {
       case "Launches":
         return this.getLaunchesDataForLabels(labels);
-      default:
-        break;
     }
   }
   private getLaunchesDataForLabels(labels) {
@@ -521,8 +510,6 @@ export class StatisticPage implements OnInit {
                 label
             ).length
           );
-          break;
-        default:
           break;
       }
     });
@@ -741,9 +728,6 @@ export class StatisticPage implements OnInit {
         break;
       case 4:
         this.xAxis = "Spacecraft";
-        break;
-
-      default:
         break;
     }
     this.axisComplete();

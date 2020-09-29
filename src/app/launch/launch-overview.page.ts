@@ -41,16 +41,14 @@ export class LaunchOverviewPage implements OnInit, ViewDidEnter {
       this.infiniteScroll.disabled = false;
     } catch (error) {}
     this.store.launches = [];
-    this.store.launches = (await this.service.getFirstLaunches(
-      this.store.search,
-      this.store.startDate,
-      this.store.endDate,
-      this.store.padId,
-      this.store.locationId,
-      this.store.rocketId,
-      this.store.agencyId,
-      this.store.upcomingPreviousAll
-    )).launches;
+    this.store.launches = (
+      await this.service.getFirstLaunches(
+        this.store.search,
+        this.store.startDate,
+        this.store.endDate,
+        this.store.upcomingPreviousAll
+      )
+    ).launches;
     if (refreshEvent) {
       refreshEvent.target.complete();
     }
@@ -62,10 +60,6 @@ export class LaunchOverviewPage implements OnInit, ViewDidEnter {
       this.store.search,
       this.store.startDate,
       this.store.endDate,
-      this.store.padId,
-      this.store.locationId,
-      this.store.rocketId,
-      this.store.agencyId,
       this.store.upcomingPreviousAll
     );
     this.store.launches.push(...answer.launches);
