@@ -67,12 +67,12 @@ export class LaunchscheduleNotificationService {
     }
     const url =
       environment.notificationUrl +
-      "?type=" +
-      type +
+      "?token=" +
+      this.token +
       "&id=" +
       id +
-      "&token=" +
-      this.token;
+      "&type=" +
+      type;
     await this.http.delete(url).toPromise();
     this.prepare();
     return true;

@@ -13,4 +13,13 @@ describe("AgencyParamStoreService", () => {
   it("should be created", () => {
     expect(service).toBeTruthy();
   });
+  it("Variables should be initialized", () => {
+    expect(service.agencies).toEqual([]);
+    expect(service.featured).toBe(true);
+    expect(service.countryCode).toBe("");
+    expect(service.type).toBe("");
+    expect(service.showFilter).toBe(false);
+    expect(service.scrollY).toBe(0);
+    expect(service.search).toBe(undefined);
+  });
 });
