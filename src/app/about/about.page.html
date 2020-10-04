@@ -1,0 +1,29 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="app">
+        <ion-icon name="person"></ion-icon>
+        <ion-label>App</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="launchlibrary">
+        <ion-icon name="rocket"></ion-icon>
+        <ion-label>LL2</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="news">
+        <ion-icon name="newspaper"></ion-icon>
+        <ion-label>SNAPI</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+</ion-content>
