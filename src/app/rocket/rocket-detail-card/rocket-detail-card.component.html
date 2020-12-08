@@ -11,6 +11,9 @@
     </div>
     <div class="image-wrapper">
       <ion-img
+        [title]="rocket.name"
+        [text]="rocket.family"
+        ionImgViewer
         id="foreground"
         [src]="
           rocket.image_url ? rocket.image_url : 'assets/placeholder_1920.png'

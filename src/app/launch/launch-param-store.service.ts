@@ -8,10 +8,6 @@ export class LaunchParamStoreService {
   search: string;
   startDate: Date;
   endDate: Date;
-  padId: number;
-  locationId: number;
-  rocketId: number;
-  agencyId: number;
   showFilter = false;
   launches: any[] = [];
   scrollY = 0;

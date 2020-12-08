@@ -13,6 +13,9 @@
     </div>
     <div class="image-wrapper">
       <ion-img
+        [title]="astronaut.name"
+        [text]="astronaut.nationality"
+        ionImgViewer
         id="foreground"
         [src]="
           astronaut.profile_image

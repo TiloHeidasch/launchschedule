@@ -17,6 +17,9 @@
     </div>
     <div class="image-wrapper">
       <ion-img
+        [title]="spacecraft.name"
+        [text]="spacecraft.agency.abbrev"
+        ionImgViewer
         id="foreground"
         [src]="
           spacecraft.image_url

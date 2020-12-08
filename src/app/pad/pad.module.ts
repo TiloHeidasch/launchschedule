@@ -13,6 +13,7 @@ import { AnimationModule } from "../animation/animation.module";
 import { MapModule } from "../map/map.module";
 import { PadListEntryModule } from "./pad-list-entry/pad-list-entry.module";
 import { NotificationModule } from "../notification/notification.module";
+import { NgxIonicImageViewerModule } from "ngx-ionic-image-viewer";
 
 @NgModule({
   imports: [
@@ -24,6 +25,7 @@ import { NotificationModule } from "../notification/notification.module";
     MapModule,
     PadListEntryModule,
     NotificationModule,
+    NgxIonicImageViewerModule,
   ],
   declarations: [PadPage, PadOverviewPage, PadDetailCardComponent],
   exports: [],

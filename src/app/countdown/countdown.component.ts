@@ -8,13 +8,13 @@ import { Component, OnInit, Input, ChangeDetectorRef } from "@angular/core";
 export class CountdownComponent implements OnInit {
   @Input() date: Date;
   prefix: string;
-  hours: number;
+  private hours: number;
   hours1: string;
   hours2: string;
-  minutes: number;
+  private minutes: number;
   minutes1: string;
   minutes2: string;
-  seconds: number;
+  private seconds: number;
   seconds1: string;
   seconds2: string;
   unit1: string;
@@ -29,6 +29,7 @@ export class CountdownComponent implements OnInit {
       this.setTimer();
       this.active = false;
     } else {
+      this.setTimer();
       const task = setInterval(() => {
         this.setTimer();
       }, 500);
@@ -40,10 +41,10 @@ export class CountdownComponent implements OnInit {
     return this.date.valueOf() - now.valueOf();
   }
   private calculateHours(diff: number) {
-    return Math.abs(Math.floor(diff / (1000 * 60 * 60))) - (diff < 0 ? 1 : 0);
+    return Math.floor(Math.abs(diff) / (1000 * 60 * 60));
   }
 
-  setTimer() {
+  private setTimer() {
     const diff = this.getDiff(this.date);
     const hours = this.calculateHours(diff);
     if (hours > 99) {
@@ -61,23 +62,23 @@ export class CountdownComponent implements OnInit {
         this.prefix = "-";
       }
       this.hours = hours;
-      this.minutes = Math.abs(
-        Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
+      this.minutes = Math.floor(
+        (Math.abs(diff) % (1000 * 60 * 60)) / (1000 * 60)
       );
-      this.seconds = Math.abs(Math.floor((diff % (1000 * 60)) / 1000) + 1);
+      this.seconds = Math.floor((Math.abs(diff) % (1000 * 60)) / 1000);
       this.unit1 = "HOUR";
       this.unit2 = "MINUTE";
       this.unit3 = "SECOND";
     }
     this.setupDigits();
   }
-  setupDigits() {
+  private setupDigits() {
     this.setupHourDigits();
     this.setupMinuteDigits();
     this.setupSecondDigits();
     this.cdr.markForCheck();
   }
-  setupHourDigits() {
+  private setupHourDigits() {
     if (this.hours > 9) {
       this.hours1 = this.hours.toString().charAt(0);
       this.hours2 = this.hours.toString().charAt(1);
@@ -86,7 +87,7 @@ export class CountdownComponent implements OnInit {
       this.hours2 = this.hours.toString().charAt(0);
     }
   }
-  setupMinuteDigits() {
+  private setupMinuteDigits() {
     if (this.minutes > 9) {
       this.minutes1 = this.minutes.toString().charAt(0);
       this.minutes2 = this.minutes.toString().charAt(1);
@@ -95,7 +96,7 @@ export class CountdownComponent implements OnInit {
       this.minutes2 = this.minutes.toString().charAt(0);
     }
   }
-  setupSecondDigits() {
+  private setupSecondDigits() {
     if (this.seconds > 9) {
       this.seconds1 = this.seconds.toString().charAt(0);
       this.seconds2 = this.seconds.toString().charAt(1);

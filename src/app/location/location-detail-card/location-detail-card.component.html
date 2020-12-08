@@ -17,6 +17,9 @@
     </div>
     <div class="image-wrapper">
       <ion-img
+        [title]="location.name"
+        [text]="location.country_code"
+        ionImgViewer
         id="foreground"
         [src]="
           location.map_image

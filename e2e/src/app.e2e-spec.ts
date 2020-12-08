@@ -1,17 +1,9 @@
-import { AppPage } from "./app.po";
+import { browser, by, element } from "protractor";
 
 describe("new App", () => {
-  let page: AppPage;
-
-  beforeEach(() => {
-    page = new AppPage();
-  });
-  describe("default screen", () => {
-    beforeEach(() => {
-      page.navigateTo("/Inbox");
-    });
-    it("should say Inbox", () => {
-      expect(page.getParagraphText()).toContain("Inbox");
-    });
+  it("should have a title", () => {
+    browser.get("/#/launch");
+    browser.refresh();
+    expect(browser.getTitle()).toEqual("Launchschedule");
   });
 });

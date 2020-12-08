@@ -13,4 +13,7 @@ describe("StatisticService", () => {
   it("should be created", () => {
     expect(service).toBeTruthy();
   });
+  it("should provide more than 1800 launches", () => {
+    expect(service.getLaunches().length).toBeGreaterThan(1800);
+  });
 });

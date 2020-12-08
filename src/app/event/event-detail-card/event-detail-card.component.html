@@ -23,6 +23,9 @@
     </div>
     <div class="image-wrapper">
       <ion-img
+        [title]="event.name"
+        [text]="event.type.name"
+        ionImgViewer
         id="foreground"
         [src]="
           event.feature_image
