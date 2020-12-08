@@ -12,7 +12,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup Node
-        uses: actions/setup-node@v1.4.3
+        uses: actions/setup-node@v2.1.2
       - name: Setup Totemize
         run: npm install -g totemize
       - name: Create Prod Release Name Variable using Totemize
@@ -52,7 +52,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup Node
-        uses: actions/setup-node@v1.4.3
+        uses: actions/setup-node@v2.1.2
       - name: Fetch Launches
         run: node fetchLaunches.ts
       - name: Safe Data Artifact
@@ -68,7 +68,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup Node
-        uses: actions/setup-node@v1.4.3
+        uses: actions/setup-node@v2.1.2
       - name: Setup Angular
         run: npm install -g @angular/cli
       - name: Setup Ionic
@@ -225,7 +225,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup Node
-        uses: actions/setup-node@v1.4.3
+        uses: actions/setup-node@v2.1.2
       - name: Setup Angular
         run: npm install -g @angular/cli
       - name: Setup Ionic
@@ -242,7 +242,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup Node
-        uses: actions/setup-node@v1.4.3
+        uses: actions/setup-node@v2.1.2
       - name: Setup Angular
         run: npm install -g @angular/cli
       - name: Setup Ionic
@@ -264,7 +264,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup Node
-        uses: actions/setup-node@v1.4.3
+        uses: actions/setup-node@v2.1.2
       - name: Setup Angular
         run: npm install -g @angular/cli
       - name: Setup Ionic
