@@ -184,7 +184,7 @@ jobs:
           name: data
           path: src/app/data/
       - name: Build with Ionic
-        run: ionic build --prod
+        run: npm run build:prod
       - name: Capacitor Update
         run: npx cap update android
       - name: Capacitor Copy
