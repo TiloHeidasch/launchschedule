@@ -2,7 +2,7 @@ var https = require("https");
 var fs = require("fs");
 
 var dataAll = [];
-function requestUrlAndPersistToFile(url, filename) {
+function requestUrlAndPersistToFile(url) {
   console.log(process.argv[1] + " requesting " + url);
 
   https
@@ -22,10 +22,10 @@ function requestUrlAndPersistToFile(url, filename) {
           process.argv[1] + " recieved " + recieved.results.length + " records"
         );
         console.log(process.argv[1] + " dataAll.length " + dataAll.length);
-        if (recieved.next) {
-          requestUrlAndPersistToFile(recieved.next, filename);
+        if (recieved.next && recieved.next.search("offset=" + max) == -1) {
+          requestUrlAndPersistToFile(recieved.next);
         } else {
-          persistData(filename);
+          persistData();
         }
       });
     })
@@ -33,18 +33,22 @@ function requestUrlAndPersistToFile(url, filename) {
       console.log("Error: " + err.message);
     });
 }
-function persistData(filename) {
+function persistData() {
   const data = prepareData();
   if (!fs.existsSync(dir)) {
     console.log(process.argv[1] + " creating directory");
     fs.mkdirSync(dir);
   }
   console.log(process.argv[1] + " writing file");
-  fs.writeFile(dir + filename + ".json", JSON.stringify(data), function (err) {
-    if (err) return console.log(err);
-    console.log(process.argv[1] + " wrote file");
-    dataAll = [];
-  });
+  fs.writeFile(
+    dir + fileName + offset + ".json",
+    JSON.stringify(data),
+    function (err) {
+      if (err) return console.log(err);
+      console.log(process.argv[1] + " wrote file");
+      dataAll = [];
+    }
+  );
 }
 
 function prepareData() {
@@ -80,10 +84,13 @@ function prepareData() {
 var path = "launch";
 var dir = "src/app/data/";
 var fileName = "launches";
+var offset = process.argv[2];
+var step = process.argv[3];
+var max = +offset + +step;
 
 requestUrlAndPersistToFile(
-  "https://ll.thespacedevs.com/2.0.0/" +
+  "https://lldev.thespacedevs.com/2.0.0/" +
     path +
-    "/?format=json&limit=100&mode=detailed",
-  fileName
+    "/?format=json&limit=100&mode=detailed&offset=" +
+    offset
 );
