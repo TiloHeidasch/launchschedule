@@ -166,14 +166,14 @@ jobs:
           name: version
           path: ./
       - name: Set Release Name Variable
-        run: echo "::set-env name=RELEASE_NAME::`cat ./version`"
+        run: echo "RELEASE_NAME=`cat ./version`" >> $GITHUB_ENV
       - name: Download Track
         uses: actions/download-artifact@v2.0.5
         with:
           name: track
           path: ./
       - name: Set Release Track Variable
-        run: echo "::set-env name=RELEASE_TRACK::`cat ./track`"
+        run: echo "RELEASE_NAME=`cat ./track`" >> $GITHUB_ENV
       - name: Setup Environment File
         run: sed -i 's/};/versionCode:${{ github.run_number }},\n versionName:"${{ env.RELEASE_NAME }}",\n track:"${{ env.RELEASE_TRACK }}"\n};/g' src/environments/environment.prod.ts
       - name: Check Environment File
@@ -381,7 +381,7 @@ jobs:
           name: version
           path: ./
       - name: Set Release Name Variable
-        run: echo "::set-env name=RELEASE_NAME::`cat ./version`"
+        run: echo "RELEASE_NAME=`cat ./version`" >> $GITHUB_ENV
       - name: Update Tag
         uses: richardsimko/update-tag@v1.0.3
         with:
@@ -400,7 +400,7 @@ jobs:
           name: version
           path: ./
       - name: Set Release Name Variable
-        run: echo "::set-env name=RELEASE_NAME::`cat ./version`"
+        run: echo "RELEASE_NAME=`cat ./version`" >> $GITHUB_ENV
       - name: Update Tag
         uses: richardsimko/update-tag@v1.0.3
         with:
