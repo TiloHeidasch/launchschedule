@@ -21,18 +21,18 @@ jobs:
         if: ${{github.ref == 'refs/heads/master'}}
         run: |
         echo 'JSON_RESPONSE<<EOF' >> version
-        totemize -a totemize/Prod/adjectives.json -n totemize/Prod/nouns.json -s ´-´ >> version
+        totemize -a totemize/Prod/adjectives.json -n totemize/Prod/nouns.json >> version
         echo 'EOF' >> version
       - name: Create Beta Release Name Variable using Totemize
         if: ${{github.ref == 'refs/heads/dev'}}
         run: |
         echo 'JSON_RESPONSE<<EOF' >> version
-        totemize -a totemize/Beta/adjectives.json -n totemize/Beta/nouns.json -s ´-´ >> version
+        totemize -a totemize/Beta/adjectives.json -n totemize/Beta/nouns.json >> version
         echo 'EOF' >> version
       - name: Create Test Release Name Variable using Totemize
         run: |
         echo 'JSON_RESPONSE<<EOF' >> version
-        totemize -a totemize/Beta/adjectives.json -n totemize/Beta/nouns.json -s ´-´ >> version
+        totemize -a totemize/Beta/adjectives.json -n totemize/Beta/nouns.json >> version
         echo 'EOF' >> version
       - name: Safe Version File Artifact
         uses: actions/upload-artifact@v2.1.4
