@@ -15,6 +15,8 @@ jobs:
         uses: actions/setup-node@v2.1.2
       - name: Setup Totemize
         run: npm install --save totemize
+      - name: Write Development to File
+        run: echo "development " > version
       - name: Create Prod Release Name Variable using Totemize
         if: ${{github.ref == 'refs/heads/master'}}
         run: node totemizeProd.ts > version
