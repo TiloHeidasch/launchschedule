@@ -20,7 +20,7 @@ jobs:
       - name: Create Prod Release Name Variable using Totemize
         if: ${{github.ref == 'refs/heads/master'}}
         run: |
-        echo 'RELEASE_NAME<<EOF' >> $GITHUB_ENV
+        echo 'JSON_RESPONSE<<EOF' >> $GITHUB_ENV
         curl https://httpbin.org/json >> $GITHUB_ENV
         echo 'EOF' >> $GITHUB_ENV
       - name: Create Beta Release Name Variable using Totemize
