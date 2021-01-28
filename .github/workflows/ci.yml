@@ -16,26 +16,15 @@ jobs:
       - name: Use local Node
         run: mkdir ~/.npm-global & npm config set prefix '~/.npm-global' & export PATH=~/.npm-global/bin:$PATH & source ~/.profile
       - name: Setup Totemize
-        run: npm install -g totemize
+        run: npm install --save totemize
       - name: Create Prod Release Name Variable using Totemize
         if: ${{github.ref == 'refs/heads/master'}}
-        run: |
-        echo 'JSON_RESPONSE<<EOF' >> $GITHUB_ENV
-        curl https://httpbin.org/json >> $GITHUB_ENV
-        echo 'EOF' >> $GITHUB_ENV
+        run: tr '\n' '' < node totemizeProd.ts > version
       - name: Create Beta Release Name Variable using Totemize
         if: ${{github.ref == 'refs/heads/dev'}}
-        run: |
-        echo 'RELEASE_NAME<<EOF' >> $GITHUB_ENV
-        curl https://httpbin.org/json >> $GITHUB_ENV
-        echo 'EOF' >> $GITHUB_ENV
+        run: tr '\n' '' < node totemizeBeta.ts > version
       - name: Create Test Release Name Variable using Totemize
-        run: |
-        echo 'RELEASE_NAME<<EOF' >> $GITHUB_ENV
-        curl https://httpbin.org/json >> $GITHUB_ENV
-        echo 'EOF' >> $GITHUB_ENV
-      - name: Create Version File
-        run: echo "${{ env.RELEASE_NAME }}" > version
+        run: tr '\n' '' < node totemizeBeta.ts > version
       - name: Safe Version File Artifact
         uses: actions/upload-artifact@v2.1.4
         with:
