@@ -21,18 +21,18 @@ jobs:
         if: ${{github.ref == 'refs/heads/master'}}
         run: |
         echo 'RELEASE_NAME<<EOF' >> $GITHUB_ENV
-        totemize >> $GITHUB_ENV
+        curl https://httpbin.org/json >> $GITHUB_ENV
         echo 'EOF' >> $GITHUB_ENV
       - name: Create Beta Release Name Variable using Totemize
         if: ${{github.ref == 'refs/heads/dev'}}
         run: |
         echo 'RELEASE_NAME<<EOF' >> $GITHUB_ENV
-        totemize >> $GITHUB_ENV
+        curl https://httpbin.org/json >> $GITHUB_ENV
         echo 'EOF' >> $GITHUB_ENV
       - name: Create Test Release Name Variable using Totemize
         run: |
         echo 'RELEASE_NAME<<EOF' >> $GITHUB_ENV
-        totemize >> $GITHUB_ENV
+        curl https://httpbin.org/json >> $GITHUB_ENV
         echo 'EOF' >> $GITHUB_ENV
       - name: Create Version File
         run: echo "${{ env.RELEASE_NAME }}" > version
