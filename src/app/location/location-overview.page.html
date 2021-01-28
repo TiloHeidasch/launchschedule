@@ -3,9 +3,9 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>{{title}}</ion-title>
+    <ion-title id="title">{{title}}</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="toggleFilter()">
+      <ion-button id="filter" (click)="toggleFilter()">
         <ion-icon slot="icon-only" name="filter"></ion-icon>
       </ion-button>
     </ion-buttons>

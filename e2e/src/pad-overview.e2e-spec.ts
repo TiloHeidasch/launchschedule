@@ -1,14 +1,14 @@
 import { browser, by, element } from "protractor";
 
-describe("Event", () => {
+describe("Pad", () => {
   beforeEach(() => {
-    browser.get("/#/event");
+    browser.get("/#/pad");
     browser.refresh();
     browser.sleep(2000);
     browser.ignoreSynchronization = true;
   });
   it("should have a page title", () => {
-    expect(element(by.id("title")).getText()).toBe("Events");
+    expect(element(by.id("title")).getText()).toBe("Pads");
   });
   it("should have a filter button", () => {
     expect(element(by.id("filter"))).toBeDefined();
@@ -19,8 +19,8 @@ describe("Event", () => {
   });
   it("should open Detail Page on click", () => {
     browser.sleep(2000);
-    element(by.tagName("app-event-list-entry")).click();
+    element(by.tagName("app-pad-list-entry")).click();
     browser.sleep(2000);
-    expect(browser.getCurrentUrl()).toContain("/#/event/");
+    expect(browser.getCurrentUrl()).toContain("/#/pad/");
   });
 });
