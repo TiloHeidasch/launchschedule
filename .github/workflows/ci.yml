@@ -17,12 +17,14 @@ jobs:
         run: npm install --save totemize
       - name: Create Prod Release Name Variable using Totemize
         if: ${{github.ref == 'refs/heads/master'}}
-        run: tr '\n' '' < node totemizeProd.ts > version
+        run: node totemizeProd.ts > version
       - name: Create Beta Release Name Variable using Totemize
         if: ${{github.ref == 'refs/heads/dev'}}
-        run: tr '\n' '' < node totemizeBeta.ts > version
+        run: node totemizeBeta.ts > version
       - name: Create Test Release Name Variable using Totemize
-        run: tr '\n' '' < node totemizeBeta.ts > version
+        run: node totemizeBeta.ts > version
+      - name: Clean version File
+        run: tr '\n' '' < version > version
       - name: Safe Version File Artifact
         uses: actions/upload-artifact@v2.1.4
         with:
