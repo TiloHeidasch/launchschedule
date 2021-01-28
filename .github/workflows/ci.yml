@@ -23,6 +23,8 @@ jobs:
       - name: Create Beta Release Name Variable using Totemize
         if: ${{github.ref == 'refs/heads/dev'}}
         run: echo "::set-env name=RELEASE_NAME::`totemize -a totemize/Beta/adjectives.json -n totemize/Beta/nouns.json -s '-'`"
+      - name: Create Test Release Name Variable using Totemize
+        run: echo "::set-env name=RELEASE_NAME::`totemize -a totemize/Beta/adjectives.json -n totemize/Beta/nouns.json -s '-'`"
       - name: Create Version File
         run: echo "${{ env.RELEASE_NAME }}" > version
       - name: Safe Version File Artifact
