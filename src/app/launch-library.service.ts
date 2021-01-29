@@ -554,13 +554,7 @@ export class LaunchLibraryService {
    * Generic
    */
   private dateToString(date: Date) {
-    return (
-      date.getUTCFullYear() +
-      "-" +
-      (date.getUTCMonth() + 1) +
-      "-" +
-      date.getUTCDate()
-    );
+    return date.toISOString();
   }
   private getIdFromCache(
     cache: { id: string; object: any }[],
