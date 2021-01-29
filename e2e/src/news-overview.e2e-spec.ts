@@ -10,7 +10,4 @@ describe("News", () => {
   it("should have a page title", () => {
     expect(element(by.id("title")).getText()).toBe("News");
   });
-  it("should not have a filter button", () => {
-    expect(element(by.id("filter"))).toBeUndefined();
-  });
 });
