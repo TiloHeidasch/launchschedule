@@ -1,17 +1,17 @@
+import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { RouterTestingModule } from "@angular/router/testing";
 import { IonicModule } from "@ionic/angular";
 
-import { RouterTestingModule } from "@angular/router/testing";
-import { HttpClientTestingModule } from "@angular/common/http/testing";
-import { NewsTagsComponent } from "./news-tags.component";
+import { ReportPage } from "./report.page";
 
-describe("NewsTagsComponent", () => {
-  let component: NewsTagsComponent;
-  let fixture: ComponentFixture<NewsTagsComponent>;
+describe("ReportPage", () => {
+  let component: ReportPage;
+  let fixture: ComponentFixture<ReportPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [NewsTagsComponent],
+      declarations: [ReportPage],
       imports: [
         IonicModule.forRoot(),
         RouterTestingModule,
@@ -19,7 +19,7 @@ describe("NewsTagsComponent", () => {
       ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(NewsTagsComponent);
+    fixture = TestBed.createComponent(ReportPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

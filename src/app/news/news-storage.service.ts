@@ -39,16 +39,4 @@ export class NewsStorageService {
     }
     return false;
   }
-  async getBlogReadNumber(): Promise<number> {
-    return +(await this.storage.getItem(keyBlogReadNumber));
-  }
-  async setBlogReadNumber(n: number) {
-    await this.storage.setItem(keyBlogReadNumber, n + "");
-  }
-  async getArticleReadNumber(): Promise<number> {
-    return +(await this.storage.getItem(keyArticleReadNumber));
-  }
-  async setArticleReadNumber(n: number) {
-    await this.storage.setItem(keyArticleReadNumber, n + "");
-  }
 }

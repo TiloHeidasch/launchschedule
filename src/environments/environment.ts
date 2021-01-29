@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   launchLibrary: "https://lldev.thespacedevs.com",
-  snapi: "https://spaceflightnewsapi.net/api/v1/",
+  snapi: "https://test.spaceflightnewsapi.net/api/v2/",
   notificationUrl: "https://launchschedule-notifications.th105.de/notification",
   versionCode: 1,
   versionName: "000000",

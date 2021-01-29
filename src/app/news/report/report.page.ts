@@ -9,26 +9,26 @@ import { SnapiService } from "src/app/snapi.service";
 import { NewsParamStoreService } from "../news-param-store.service";
 
 @Component({
-  selector: "app-blog",
-  templateUrl: "./blog.page.html",
-  styleUrls: ["./blog.page.scss"],
+  selector: "app-report",
+  templateUrl: "./report.page.html",
+  styleUrls: ["./report.page.scss"],
 })
-export class BlogPage implements OnInit, ViewDidEnter {
-  @ViewChild("blogContent") content: IonContent;
+export class ReportPage implements OnInit, ViewDidEnter {
+  @ViewChild("reportContent") content: IonContent;
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   constructor(
     private service: SnapiService,
     public store: NewsParamStoreService
   ) {}
   ionViewDidEnter() {
-    this.content.scrollToPoint(0, this.store.blogScrollY, 250);
+    this.content.scrollToPoint(0, this.store.reportScrollY, 250);
   }
   logScrolling(event) {
-    this.store.blogScrollY = event.detail.currentY;
+    this.store.reportScrollY = event.detail.currentY;
   }
 
   ngOnInit() {
-    if (this.store.blogs.length === 0) {
+    if (this.store.reports.length === 0) {
       this.loadFirst();
     }
   }
@@ -36,21 +36,21 @@ export class BlogPage implements OnInit, ViewDidEnter {
     try {
       this.infiniteScroll.disabled = false;
     } catch (error) {}
-    this.store.blogs = [];
-    const answerBlogs = await this.service.getFirstBlogs();
-    const newBlogs = answerBlogs.newsItems;
-    this.store.blogs.push(...newBlogs);
+    this.store.reports = [];
+    const answerReports = await this.service.getFirstReports();
+    const newReports = answerReports.newsItems;
+    this.store.reports.push(...newReports);
     if (refreshEvent) {
       refreshEvent.target.complete();
     }
   }
 
   async loadMore(event) {
-    const answerBlogs = await this.service.getNextBlogs(
-      this.store.blogs.length
+    const answerReports = await this.service.getNextReports(
+      this.store.reports.length
     );
-    const newBlogs = answerBlogs.newsItems;
-    this.store.blogs.push(...newBlogs);
+    const newReports = answerReports.newsItems;
+    this.store.reports.push(...newReports);
     event.target.complete();
   }
 }

@@ -4,37 +4,23 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title id="title">{{title}}</ion-title>
-    <ion-buttons slot="end">
-      <ion-button id="filter" (click)="toggleFilter()">
-        <ion-icon slot="icon-only" name="filter"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-  <ion-toolbar *ngIf="store.showFilter">
-    <ion-searchbar
-      (ionChange)="searchChange($event)"
-      [value]="store.search"
-      animated
-    ></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-tabs (ionTabsWillChange)="tabChange($event)">
+  <ion-tabs>
     <ion-tab-bar slot="bottom,top">
       <ion-tab-button tab="article">
         <ion-icon name="receipt"></ion-icon>
         <ion-label>Articles</ion-label>
-        <ion-badge *ngIf="store.unreadArticles>0" color="danger"
-          >{{store.unreadArticles}}</ion-badge
-        >
       </ion-tab-button>
       <ion-tab-button tab="blog">
         <ion-icon name="create"></ion-icon>
         <ion-label>Blogs</ion-label>
-        <ion-badge *ngIf="store.unreadBlogs>0" color="danger"
-          >{{store.unreadBlogs}}</ion-badge
-        >
+      </ion-tab-button>
+      <ion-tab-button tab="report">
+        <ion-icon name="clipboard"></ion-icon>
+        <ion-label>Reports</ion-label>
       </ion-tab-button>
     </ion-tab-bar>
   </ion-tabs>
