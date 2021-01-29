@@ -20,7 +20,7 @@ export class LaunchPage implements OnInit {
   async ngOnInit() {
     this.load();
   }
-  private async load(refreshEvent?) {
+  async load(refreshEvent?) {
     this.id = this.activatedRoute.snapshot.paramMap.get("id");
     this.launch = await this.service.getLaunchById(this.id, refreshEvent);
     if (refreshEvent) {
