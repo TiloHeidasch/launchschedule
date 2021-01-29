@@ -26,9 +26,9 @@ export class LaunchLibraryService {
   /*
    * Agencies
    */
-  async getAgencyById(id: string) {
+  async getAgencyById(id: string, bypassCache?: boolean) {
     const object = this.getIdFromCache(this.agenciesById, id);
-    if (object !== undefined) {
+    if (object !== undefined && !bypassCache) {
       return object;
     }
     const url = this.baseUrl + "/2.1.0/agencies/" + id + "?mode=detailed";
@@ -92,9 +92,9 @@ export class LaunchLibraryService {
   /*
    * Astronaut
    */
-  async getAstronautById(id: string) {
+  async getAstronautById(id: string, bypassCache?: boolean) {
     const object = this.getIdFromCache(this.astronautsById, id);
-    if (object !== undefined) {
+    if (object !== undefined && !bypassCache) {
       return object;
     }
     const url = this.baseUrl + "/2.1.0/astronaut/" + id + "?mode=detailed";
@@ -133,9 +133,9 @@ export class LaunchLibraryService {
   /*
    * Event
    */
-  async getEventById(id: string) {
+  async getEventById(id: string, bypassCache?: boolean) {
     const object = this.getIdFromCache(this.eventsById, id);
-    if (object !== undefined) {
+    if (object !== undefined && !bypassCache) {
       return object;
     }
     const url = this.baseUrl + "/2.1.0/event/" + id;
@@ -200,9 +200,9 @@ export class LaunchLibraryService {
   /*
    * Launches
    */
-  async getLaunchById(id: string) {
+  async getLaunchById(id: string, bypassCache?: boolean) {
     const object = this.getIdFromCache(this.launchesById, id);
-    if (object !== undefined) {
+    if (object !== undefined && !bypassCache) {
       return object;
     }
     const url = this.baseUrl + "/2.1.0/launch/" + id;
@@ -288,9 +288,9 @@ export class LaunchLibraryService {
   /*
    * Location
    */
-  async getLocationById(id: string) {
+  async getLocationById(id: string, bypassCache?: boolean) {
     const object = this.getIdFromCache(this.locationsById, id);
-    if (object !== undefined) {
+    if (object !== undefined && !bypassCache) {
       return object;
     }
     const url = this.baseUrl + "/2.1.0/location/" + id;
@@ -332,9 +332,9 @@ export class LaunchLibraryService {
   /*
    * Pads
    */
-  async getPadById(id: string) {
+  async getPadById(id: string, bypassCache?: boolean) {
     const object = this.getIdFromCache(this.padsById, id);
-    if (object !== undefined) {
+    if (object !== undefined && !bypassCache) {
       return object;
     }
     const url = this.baseUrl + "/2.1.0/pad/" + id;
@@ -369,9 +369,9 @@ export class LaunchLibraryService {
   /*
    * Rockets
    */
-  async getRocketById(id: string) {
+  async getRocketById(id: string, bypassCache?: boolean) {
     const object = this.getIdFromCache(this.rocketsById, id);
-    if (object !== undefined) {
+    if (object !== undefined && !bypassCache) {
       return object;
     }
     const url = this.baseUrl + "/2.1.0/config/launcher/" + id;
@@ -426,9 +426,9 @@ export class LaunchLibraryService {
   /*
    * Spacecraft
    */
-  async getSpacecraftById(id: string) {
+  async getSpacecraftById(id: string, bypassCache?: boolean) {
     const object = this.getIdFromCache(this.spacecraftsById, id);
-    if (object !== undefined) {
+    if (object !== undefined && !bypassCache) {
       return object;
     }
     const url = this.baseUrl + "/2.1.0/config/spacecraft/" + id;
@@ -486,9 +486,9 @@ export class LaunchLibraryService {
   /*
    * Spacestation
    */
-  async getSpacestationById(id: string) {
+  async getSpacestationById(id: string, bypassCache?: boolean) {
     const object = this.getIdFromCache(this.spacestationsById, id);
-    if (object !== undefined) {
+    if (object !== undefined && !bypassCache) {
       return object;
     }
     const url = this.baseUrl + "/2.1.0/spacestation/" + id;
