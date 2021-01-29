@@ -40,7 +40,7 @@ export class ArticlePage implements OnInit, ViewDidEnter {
     const answerArticles = await this.service.getFirstArticles(
       this.store.search
     );
-    this.store.readArticles = answerArticles.max;
+    //this.store.readArticles = answerArticles.max;
     const newArticles = answerArticles.newsItems;
     this.store.articles.push(...newArticles);
     if (refreshEvent) {
@@ -56,11 +56,5 @@ export class ArticlePage implements OnInit, ViewDidEnter {
     const newArticles = answerArticles.newsItems;
     this.store.articles.push(...newArticles);
     event.target.complete();
-
-    // App logic to determine if all data is loaded
-    // and disable the infinite scroll
-    if (this.store.articles.length === answerArticles.max) {
-      event.target.disabled = true;
-    }
   }
 }

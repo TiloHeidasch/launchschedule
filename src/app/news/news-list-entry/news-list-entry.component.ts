@@ -12,6 +12,7 @@ export class NewsListEntryComponent implements OnInit {
   @Input() type;
   title: string;
   subtitle: string;
+  content: string;
   clicked = false;
   constructor(
     private browser: BrowserService,
@@ -20,7 +21,8 @@ export class NewsListEntryComponent implements OnInit {
 
   async ngOnInit() {
     this.title = this.newsItem.title;
-    this.subtitle = this.newsItem.news_site_long;
+    this.subtitle = this.newsItem.newsSite;
+    this.content = this.newsItem.summary;
     this.clicked = await this.storage.isClicked(this.newsItem);
   }
   click() {

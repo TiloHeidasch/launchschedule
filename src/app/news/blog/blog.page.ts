@@ -38,7 +38,7 @@ export class BlogPage implements OnInit, ViewDidEnter {
     } catch (error) {}
     this.store.blogs = [];
     const answerBlogs = await this.service.getFirstBlogs(this.store.search);
-    this.store.readBlogs = answerBlogs.max;
+    //this.store.readBlogs = answerBlogs.max;
     const newBlogs = answerBlogs.newsItems;
     this.store.blogs.push(...newBlogs);
     if (refreshEvent) {
@@ -54,10 +54,5 @@ export class BlogPage implements OnInit, ViewDidEnter {
     const newBlogs = answerBlogs.newsItems;
     this.store.blogs.push(...newBlogs);
     event.target.complete();
-    // App logic to determine if all data is loaded
-    // and disable the infinite scroll
-    if (this.store.blogs.length === answerBlogs.max) {
-      event.target.disabled = true;
-    }
   }
 }

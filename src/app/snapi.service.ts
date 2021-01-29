@@ -13,16 +13,17 @@ export class SnapiService {
   }
   async getNextArticles(offset, search?) {
     const limit = 5;
-    const page = offset / limit + 1;
-    const url = this.createArticlesUrl(search, page, limit);
+    const url = this.createArticlesUrl(search, offset, limit);
     const data = await this.http.get<any>(url).toPromise();
-    return { newsItems: data.docs, max: data.totalDocs };
+    return { newsItems: data };
   }
-  createArticlesUrl(search?, page?, limit?) {
-    let url = this.baseUrl + "articles?limit=" + limit + "&page=" + page;
+  createArticlesUrl(search?, start?, limit?) {
+    let url = this.baseUrl + "articles?_limit=" + limit + "&_start=" + start;
     if (search && search !== "") {
       url += "&search=" + search;
     }
+    console.log(url);
+
     return url;
   }
   async getFirstBlogs(search?) {
@@ -30,13 +31,12 @@ export class SnapiService {
   }
   async getNextBlogs(offset, search?) {
     const limit = 5;
-    const page = offset / limit + 1;
-    const url = this.createBlogsUrl(search, page, limit);
+    const url = this.createBlogsUrl(search, offset, limit);
     const data = await this.http.get<any>(url).toPromise();
-    return { newsItems: data.docs, max: data.totalDocs };
+    return { newsItems: data };
   }
-  createBlogsUrl(search?, page?, limit?) {
-    let url = this.baseUrl + "blogs?limit=" + limit + "&page=" + page;
+  createBlogsUrl(search?, start?, limit?) {
+    let url = this.baseUrl + "blogs?_limit=" + limit + "&_start=" + start;
     if (search && search !== "") {
       url += "&search=" + search;
     }

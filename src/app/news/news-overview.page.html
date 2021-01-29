@@ -20,21 +20,15 @@
 </ion-header>
 
 <ion-content>
-  <ion-tabs (ionTabsWillChange)="tabChange($event)">
+  <ion-tabs>
     <ion-tab-bar slot="bottom,top">
       <ion-tab-button tab="article">
         <ion-icon name="receipt"></ion-icon>
         <ion-label>Articles</ion-label>
-        <ion-badge *ngIf="store.unreadArticles>0" color="danger"
-          >{{store.unreadArticles}}</ion-badge
-        >
       </ion-tab-button>
       <ion-tab-button tab="blog">
         <ion-icon name="create"></ion-icon>
         <ion-label>Blogs</ion-label>
-        <ion-badge *ngIf="store.unreadBlogs>0" color="danger"
-          >{{store.unreadBlogs}}</ion-badge
-        >
       </ion-tab-button>
     </ion-tab-bar>
   </ion-tabs>
