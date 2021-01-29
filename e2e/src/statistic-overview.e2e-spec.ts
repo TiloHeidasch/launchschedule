@@ -28,13 +28,4 @@ describe("Statistic", () => {
     browser.sleep(1000);
     expect(element(by.css("p-table"))).toBeDefined();
   });
-  it("should not show table after step 1 is reopened", () => {
-    element(
-      by.css("ion-radio-group>ion-item:nth-of-type(1)>ion-radio")
-    ).click();
-    element(by.id("step_1_complete_button")).click();
-    browser.sleep(1000);
-    element(by.id("step_1_open_button")).click();
-    expect(element(by.css("p-table"))).toBeUndefined();
-  });
 });
