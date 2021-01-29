@@ -6,8 +6,6 @@ import { NewsStorageService } from "./news-storage.service";
   providedIn: "root",
 })
 export class NewsParamStoreService {
-  search: string;
-  showFilter = false;
   blogs: any[] = [];
   articles: any[] = [];
   reports: any[] = [];

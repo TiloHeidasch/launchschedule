@@ -37,7 +37,7 @@ export class BlogPage implements OnInit, ViewDidEnter {
       this.infiniteScroll.disabled = false;
     } catch (error) {}
     this.store.blogs = [];
-    const answerBlogs = await this.service.getFirstBlogs(this.store.search);
+    const answerBlogs = await this.service.getFirstBlogs();
     const newBlogs = answerBlogs.newsItems;
     this.store.blogs.push(...newBlogs);
     if (refreshEvent) {
@@ -47,8 +47,7 @@ export class BlogPage implements OnInit, ViewDidEnter {
 
   async loadMore(event) {
     const answerBlogs = await this.service.getNextBlogs(
-      this.store.blogs.length,
-      this.store.search
+      this.store.blogs.length
     );
     const newBlogs = answerBlogs.newsItems;
     this.store.blogs.push(...newBlogs);

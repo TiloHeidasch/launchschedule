@@ -11,10 +11,4 @@ export class NewsOverviewPage {
   title = "News";
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   constructor(public store: NewsParamStoreService) {}
-  toggleFilter() {
-    this.store.showFilter = !this.store.showFilter;
-  }
-  searchChange(event) {
-    this.store.search = event.detail.value;
-  }
 }

@@ -37,7 +37,7 @@ export class ReportPage implements OnInit, ViewDidEnter {
       this.infiniteScroll.disabled = false;
     } catch (error) {}
     this.store.reports = [];
-    const answerReports = await this.service.getFirstReports(this.store.search);
+    const answerReports = await this.service.getFirstReports();
     const newReports = answerReports.newsItems;
     this.store.reports.push(...newReports);
     if (refreshEvent) {
@@ -47,8 +47,7 @@ export class ReportPage implements OnInit, ViewDidEnter {
 
   async loadMore(event) {
     const answerReports = await this.service.getNextReports(
-      this.store.reports.length,
-      this.store.search
+      this.store.reports.length
     );
     const newReports = answerReports.newsItems;
     this.store.reports.push(...newReports);
