@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { IonicModule } from "@ionic/angular";
 
 import { AstronautDetailCardComponent } from "./astronaut-detail-card.component";
@@ -9,7 +9,7 @@ describe("AstronautDetailCardComponent", () => {
   let component: AstronautDetailCardComponent;
   let fixture: ComponentFixture<AstronautDetailCardComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [AstronautDetailCardComponent],
       imports: [

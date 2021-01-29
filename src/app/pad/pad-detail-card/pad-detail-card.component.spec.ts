@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { IonicModule } from "@ionic/angular";
 
 import { PadDetailCardComponent } from "./pad-detail-card.component";
@@ -9,7 +9,7 @@ describe("PadDetailCardComponent", () => {
   let component: PadDetailCardComponent;
   let fixture: ComponentFixture<PadDetailCardComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [PadDetailCardComponent],
       imports: [
