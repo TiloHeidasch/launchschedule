@@ -7,7 +7,7 @@ import { HttpClientTestingModule } from "@angular/common/http/testing";
 
 const astronaut = {
   id: 276,
-  url: "https://ll.thespacedevs.com/2.0.0/astronaut/276/",
+  url: "https://ll.thespacedevs.com/2.1.0/astronaut/276/",
   name: "Franz Viehböck",
   status: {
     id: 2,
@@ -27,7 +27,7 @@ const astronaut = {
   wiki: "https://en.wikipedia.org/wiki/Franz_Viehb%C3%B6ck",
   agency: {
     id: 8,
-    url: "https://ll.thespacedevs.com/2.0.0/agencies/8/",
+    url: "https://ll.thespacedevs.com/2.1.0/agencies/8/",
     name: "Austrian Space Agency",
     featured: false,
     type: "Government",

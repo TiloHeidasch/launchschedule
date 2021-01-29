@@ -31,7 +31,7 @@ export class LaunchLibraryService {
     if (object !== undefined) {
       return object;
     }
-    const url = this.baseUrl + "/2.0.0/agencies/" + id + "?mode=detailed";
+    const url = this.baseUrl + "/2.1.0/agencies/" + id + "?mode=detailed";
     const data = await this.http.get<any>(url).toPromise();
     this.agenciesById.push({ id, object: data });
     return data;
@@ -70,7 +70,7 @@ export class LaunchLibraryService {
     type?: string,
     countryCode?: string
   ): string {
-    let url = this.baseUrl + "/2.0.0/agencies/?mode=detailed";
+    let url = this.baseUrl + "/2.1.0/agencies/?mode=detailed";
     url += "&limit=" + limit;
     if (search !== undefined && search !== "") {
       url += "&search=" + search;
@@ -97,7 +97,7 @@ export class LaunchLibraryService {
     if (object !== undefined) {
       return object;
     }
-    const url = this.baseUrl + "/2.0.0/astronaut/" + id + "?mode=detailed";
+    const url = this.baseUrl + "/2.1.0/astronaut/" + id + "?mode=detailed";
     const data = await this.http.get<any>(url).toPromise();
     this.astronautsById.push({ id, object: data });
     return data;
@@ -116,7 +116,7 @@ export class LaunchLibraryService {
     search?: string,
     status?: number
   ): string {
-    let url = this.baseUrl + "/2.0.0/astronaut/";
+    let url = this.baseUrl + "/2.1.0/astronaut/";
     url += "?limit=" + limit;
     if (search !== undefined && search !== "") {
       url += "&search=" + search;
@@ -138,7 +138,7 @@ export class LaunchLibraryService {
     if (object !== undefined) {
       return object;
     }
-    const url = this.baseUrl + "/2.0.0/event/" + id;
+    const url = this.baseUrl + "/2.1.0/event/" + id;
     const data = await this.http.get<any>(url).toPromise();
     this.eventsById.push({ id, object: data });
     return data;
@@ -173,7 +173,7 @@ export class LaunchLibraryService {
     type?: number,
     upcomingPreviousAll?: UpcomingPreviousAll
   ): string {
-    let url = this.baseUrl + "/2.0.0/event/";
+    let url = this.baseUrl + "/2.1.0/event/";
     switch (upcomingPreviousAll) {
       case UpcomingPreviousAll.PREVIOUS:
         url += "previous/";
@@ -205,7 +205,7 @@ export class LaunchLibraryService {
     if (object !== undefined) {
       return object;
     }
-    const url = this.baseUrl + "/2.0.0/launch/" + id;
+    const url = this.baseUrl + "/2.1.0/launch/" + id;
     const data = await this.http.get<any>(url).toPromise();
     this.launchesById.push({ id, object: data });
     return data;
@@ -250,7 +250,7 @@ export class LaunchLibraryService {
     endDate?: Date,
     upcomingPreviousAll?: UpcomingPreviousAll
   ): string {
-    let url = this.baseUrl + "/2.0.0/launch/";
+    let url = this.baseUrl + "/2.1.0/launch/";
     switch (upcomingPreviousAll) {
       case UpcomingPreviousAll.PREVIOUS:
         url += "previous/";
@@ -293,7 +293,7 @@ export class LaunchLibraryService {
     if (object !== undefined) {
       return object;
     }
-    const url = this.baseUrl + "/2.0.0/location/" + id;
+    const url = this.baseUrl + "/2.1.0/location/" + id;
     const data = await this.http.get<any>(url).toPromise();
     this.locationsById.push({ id, object: data });
     return data;
@@ -316,7 +316,7 @@ export class LaunchLibraryService {
     search?: string,
     countryCode?: string
   ): string {
-    let url = this.baseUrl + "/2.0.0/location/";
+    let url = this.baseUrl + "/2.1.0/location/";
     url += "?limit=" + limit;
     if (search !== undefined && search !== "") {
       url += "&search=" + search;
@@ -337,7 +337,7 @@ export class LaunchLibraryService {
     if (object !== undefined) {
       return object;
     }
-    const url = this.baseUrl + "/2.0.0/pad/" + id;
+    const url = this.baseUrl + "/2.1.0/pad/" + id;
     const data = await this.http.get<any>(url).toPromise();
     this.padsById.push({ id, object: data });
     return data;
@@ -355,7 +355,7 @@ export class LaunchLibraryService {
     offset?: number,
     search?: string
   ): string {
-    let url = this.baseUrl + "/2.0.0/pad/";
+    let url = this.baseUrl + "/2.1.0/pad/";
     url += "?limit=" + limit;
     if (search !== undefined && search !== "") {
       url += "&search=" + search;
@@ -374,7 +374,7 @@ export class LaunchLibraryService {
     if (object !== undefined) {
       return object;
     }
-    const url = this.baseUrl + "/2.0.0/config/launcher/" + id;
+    const url = this.baseUrl + "/2.1.0/config/launcher/" + id;
     const data = await this.http.get<any>(url).toPromise();
     this.rocketsById.push({ id, object: data });
     return data;
@@ -399,7 +399,7 @@ export class LaunchLibraryService {
     active?: Active,
     reusable?: Reusable
   ): string {
-    let url = this.baseUrl + "/2.0.0/config/launcher/";
+    let url = this.baseUrl + "/2.1.0/config/launcher/";
     url += "?limit=" + limit;
     if (search !== undefined && search !== "") {
       url += "&search=" + search;
@@ -431,7 +431,7 @@ export class LaunchLibraryService {
     if (object !== undefined) {
       return object;
     }
-    const url = this.baseUrl + "/2.0.0/config/spacecraft/" + id;
+    const url = this.baseUrl + "/2.1.0/config/spacecraft/" + id;
     const data = await this.http.get<any>(url).toPromise();
     this.spacecraftsById.push({ id, object: data });
     return data;
@@ -460,7 +460,7 @@ export class LaunchLibraryService {
     inUse?: Active,
     humanRated?: HumanRated
   ): string {
-    let url = this.baseUrl + "/2.0.0/config/spacecraft/";
+    let url = this.baseUrl + "/2.1.0/config/spacecraft/";
     url += "?limit=" + limit;
     if (search !== undefined && search !== "") {
       url += "&search=" + search;
@@ -491,7 +491,7 @@ export class LaunchLibraryService {
     if (object !== undefined) {
       return object;
     }
-    const url = this.baseUrl + "/2.0.0/spacestation/" + id;
+    const url = this.baseUrl + "/2.1.0/spacestation/" + id;
     const data = await this.http.get<any>(url).toPromise();
     this.spacestationsById.push({ id, object: data });
     return data;
@@ -530,7 +530,7 @@ export class LaunchLibraryService {
     orbit?: number,
     type?: number
   ): string {
-    let url = this.baseUrl + "/2.0.0/spacestation/";
+    let url = this.baseUrl + "/2.1.0/spacestation/";
     url += "?limit=" + limit;
     if (search !== undefined && search !== "") {
       url += "&search=" + search;
@@ -554,13 +554,7 @@ export class LaunchLibraryService {
    * Generic
    */
   private dateToString(date: Date) {
-    return (
-      date.getUTCFullYear() +
-      "-" +
-      (date.getUTCMonth() + 1) +
-      "-" +
-      date.getUTCDate()
-    );
+    return date.toISOString();
   }
   private getIdFromCache(
     cache: { id: string; object: any }[],

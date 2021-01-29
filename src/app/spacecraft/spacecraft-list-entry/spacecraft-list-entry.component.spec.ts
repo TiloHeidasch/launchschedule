@@ -23,11 +23,11 @@ describe("SpacecraftListEntryComponent", () => {
     component = fixture.componentInstance;
     component.spacecraft = {
       id: 10,
-      url: "https://ll.thespacedevs.com/2.0.0/config/spacecraft/10/",
+      url: "https://ll.thespacedevs.com/2.1.0/config/spacecraft/10/",
       name: "Apollo Command/Service Module",
       agency: {
         id: 44,
-        url: "https://ll.thespacedevs.com/2.0.0/agencies/44/",
+        url: "https://ll.thespacedevs.com/2.1.0/agencies/44/",
         name: "National Aeronautics and Space Administration",
         featured: true,
         type: "Government",
