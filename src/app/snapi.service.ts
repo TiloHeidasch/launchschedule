@@ -42,4 +42,20 @@ export class SnapiService {
     }
     return url;
   }
+  async getFirstReports(search?) {
+    return await this.getNextReports(0, search);
+  }
+  async getNextReports(offset, search?) {
+    const limit = 5;
+    const url = this.createReportsUrl(search, offset, limit);
+    const data = await this.http.get<any>(url).toPromise();
+    return { newsItems: data };
+  }
+  createReportsUrl(search?, start?, limit?) {
+    let url = this.baseUrl + "reports?_limit=" + limit + "&_start=" + start;
+    if (search && search !== "") {
+      url += "&search=" + search;
+    }
+    return url;
+  }
 }

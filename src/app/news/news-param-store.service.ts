@@ -10,8 +10,10 @@ export class NewsParamStoreService {
   showFilter = false;
   blogs: any[] = [];
   articles: any[] = [];
+  reports: any[] = [];
   blogScrollY = 0;
   articleScrollY = 0;
+  reportScrollY = 0;
   constructor(
     private storage: NewsStorageService,
     private snapi: SnapiService
