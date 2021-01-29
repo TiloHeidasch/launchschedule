@@ -238,7 +238,7 @@ jobs:
           name: app-bundle-signed
           path: ./
       - name: Upload to Google Play
-        uses: r0adkll/upload-google-play@v1.0.4
+        uses: r0adkll/upload-google-play@v1.0.12
         with:
           serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON }}
           packageName: de.th105.launchschedule
@@ -255,7 +255,7 @@ jobs:
           name: app-bundle-signed
           path: ./
       - name: Upload to Google Play
-        uses: r0adkll/upload-google-play@v1.0.4
+        uses: r0adkll/upload-google-play@v1.0.12
         with:
           serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON }}
           packageName: de.th105.launchschedule
