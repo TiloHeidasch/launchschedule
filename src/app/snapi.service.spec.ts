@@ -32,13 +32,6 @@ describe("SnapiService", () => {
       );
       expect(res.request.method).toBe("GET");
     });
-    it("should call getFirstArticles with search", () => {
-      service.getFirstArticles("search");
-      const res = httpTestingController.expectOne(
-        "https://test.spaceflightnewsapi.net/api/v2/articles?_limit=5&_start=0&search=search"
-      );
-      expect(res.request.method).toBe("GET");
-    });
   });
   describe("Blogs", () => {
     it("should call getFirstBlogs", () => {
@@ -48,10 +41,12 @@ describe("SnapiService", () => {
       );
       expect(res.request.method).toBe("GET");
     });
-    it("should call getFirstBlogs with search", () => {
-      service.getFirstBlogs("search");
+  });
+  describe("Reports", () => {
+    it("should call getFirstReports", () => {
+      service.getFirstReports();
       const res = httpTestingController.expectOne(
-        "https://test.spaceflightnewsapi.net/api/v2/blogs?_limit=5&_start=0&search=search"
+        "https://test.spaceflightnewsapi.net/api/v2/reports?_limit=5&_start=0"
       );
       expect(res.request.method).toBe("GET");
     });
