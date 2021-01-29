@@ -255,7 +255,7 @@ describe("LaunchLibraryService", () => {
         UpcomingPreviousAll.ALL
       );
       const res = httpTestingController.expectOne(
-        "https://lldev.thespacedevs.com/2.1.0/launch/?limit=10&search=search&net__gte=2021-1-1&net__lte=2021-1-1&offset=0"
+        "https://lldev.thespacedevs.com/2.1.0/launch/?limit=10&search=search&net__gte=2021-01-01T00:00:00.000Z&net__lte=2021-01-01T00:00:00.000Z&offset=0"
       );
       expect(res.request.method).toBe("GET");
     });
