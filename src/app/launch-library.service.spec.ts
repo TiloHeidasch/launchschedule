@@ -206,28 +206,28 @@ describe("LaunchLibraryService", () => {
     });
 
     it("calls getFirstLaunches with search and startDate", () => {
-      service.getFirstLaunches("search", new Date("2020-01-01"));
+      service.getFirstLaunches("search", new Date("2021-01-01"));
       const res = httpTestingController.expectOne(
-        "https://lldev.thespacedevs.com/2.1.0/launch/?limit=10&search=search&net__gte=2020-1-1&offset=0"
+        "https://lldev.thespacedevs.com/2.1.0/launch/?limit=10&search=search&net__gte=2021-01-01T00:00:00.000Z&offset=0"
       );
       expect(res.request.method).toBe("GET");
     });
     it("calls getFirstLaunches with search and startDate and endDate", () => {
       service.getFirstLaunches(
         "search",
-        new Date("2020-01-01"),
-        new Date("2020-01-01")
+        new Date("2021-01-01"),
+        new Date("2021-01-01")
       );
       const res = httpTestingController.expectOne(
-        "https://lldev.thespacedevs.com/2.1.0/launch/?limit=10&search=search&net__gte=2020-1-1&net__lte=2020-1-1&offset=0"
+        "https://lldev.thespacedevs.com/2.1.0/launch/?limit=10&search=search&net__gte=2021-01-01T00:00:00.000Z&net__lte=2021-01-01T00:00:00.000Z&offset=0"
       );
       expect(res.request.method).toBe("GET");
     });
     it("calls getFirstLaunches with search and startDate and endDate and upcoming", () => {
       service.getFirstLaunches(
         "search",
-        new Date("2020-01-01"),
-        new Date("2020-01-01"),
+        new Date("2021-01-01"),
+        new Date("2021-01-01"),
         UpcomingPreviousAll.UPCOMING
       );
       const res = httpTestingController.expectOne(
@@ -238,8 +238,8 @@ describe("LaunchLibraryService", () => {
     it("calls getFirstLaunches with search and startDate and endDate and previous", () => {
       service.getFirstLaunches(
         "search",
-        new Date("2020-01-01"),
-        new Date("2020-01-01"),
+        new Date("2021-01-01"),
+        new Date("2021-01-01"),
         UpcomingPreviousAll.PREVIOUS
       );
       const res = httpTestingController.expectOne(
@@ -250,12 +250,12 @@ describe("LaunchLibraryService", () => {
     it("calls getFirstLaunches with search and startDate and endDate and all", () => {
       service.getFirstLaunches(
         "search",
-        new Date("2020-01-01"),
-        new Date("2020-01-01"),
+        new Date("2021-01-01"),
+        new Date("2021-01-01"),
         UpcomingPreviousAll.ALL
       );
       const res = httpTestingController.expectOne(
-        "https://lldev.thespacedevs.com/2.1.0/launch/?limit=10&search=search&net__gte=2020-1-1&net__lte=2020-1-1&offset=0"
+        "https://lldev.thespacedevs.com/2.1.0/launch/?limit=10&search=search&net__gte=2021-1-1&net__lte=2021-1-1&offset=0"
       );
       expect(res.request.method).toBe("GET");
     });
