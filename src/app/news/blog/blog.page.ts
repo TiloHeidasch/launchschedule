@@ -38,7 +38,6 @@ export class BlogPage implements OnInit, ViewDidEnter {
     } catch (error) {}
     this.store.blogs = [];
     const answerBlogs = await this.service.getFirstBlogs(this.store.search);
-    //this.store.readBlogs = answerBlogs.max;
     const newBlogs = answerBlogs.newsItems;
     this.store.blogs.push(...newBlogs);
     if (refreshEvent) {

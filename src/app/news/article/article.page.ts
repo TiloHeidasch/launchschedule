@@ -40,7 +40,6 @@ export class ArticlePage implements OnInit, ViewDidEnter {
     const answerArticles = await this.service.getFirstArticles(
       this.store.search
     );
-    //this.store.readArticles = answerArticles.max;
     const newArticles = answerArticles.newsItems;
     this.store.articles.push(...newArticles);
     if (refreshEvent) {
