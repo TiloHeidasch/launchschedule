@@ -8,8 +8,13 @@ exports.config = {
   specs: ["./src/**/*.e2e-spec.ts"],
   capabilities: {
     browserName: "chrome",
+    maxInstances: 3,
+    shardTestFiles: true,
     chromeOptions: {
-      args: ["--headless", "--disable-gpu", "--window-size=800x600"],
+      args: ["--headless", "--disable-gpu"],
+      mobileEmulation: {
+        deviceName: "Pixel 2 XL",
+      },
     },
   },
   directConnect: true,
