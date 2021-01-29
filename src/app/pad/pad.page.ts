@@ -18,8 +18,14 @@ export class PadPage implements OnInit {
   ) {}
 
   async ngOnInit() {
+    this.load();
+  }
+  private async load(refreshEvent?) {
     this.id = this.activatedRoute.snapshot.paramMap.get("id");
-    this.pad = await this.service.getPadById(this.id);
+    this.pad = await this.service.getPadById(this.id, refreshEvent);
+    if (refreshEvent) {
+      refreshEvent.target.complete();
+    }
     this.title = this.pad.name;
   }
 }

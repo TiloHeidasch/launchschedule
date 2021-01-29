@@ -13,6 +13,9 @@
       <ion-title size="large">{{ title }}</ion-title>
     </ion-toolbar>
   </ion-header>
+  <ion-refresher slot="fixed" (ionRefresh)="load($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
 
   <div id="container" *ngIf="spacestation!==undefined">
     <div id="spacestation">
@@ -23,15 +26,11 @@
     <div id="expeditions" *ngIf="spacestation.active_expeditions">
       <div *ngFor="let expedition of spacestation.active_expeditions">
         <ion-item>
-          <ion-label>
-            {{expedition.name}} Crew
-          </ion-label>
+          <ion-label> {{expedition.name}} Crew </ion-label>
         </ion-item>
         <div class="crew-member" *ngFor="let member of expedition.crew">
           <ion-item>
-            <ion-label>
-              {{member.role}}
-            </ion-label>
+            <ion-label> {{member.role}} </ion-label>
           </ion-item>
           <app-astronaut-list-entry
             [id]="member.astronaut.id"
@@ -40,9 +39,7 @@
       </div>
     </div>
     <div id="owners">
-      <ion-item>
-        Owners
-      </ion-item>
+      <ion-item> Owners </ion-item>
       <app-agency-list-entry
         *ngFor="let agency of spacestation.owners"
         [id]="agency.id"

@@ -18,8 +18,17 @@ export class SpacecraftPage implements OnInit {
   ) {}
 
   async ngOnInit() {
+    this.load();
+  }
+  private async load(refreshEvent?) {
     this.id = this.activatedRoute.snapshot.paramMap.get("id");
-    this.spacecraft = await this.service.getSpacecraftById(this.id);
+    this.spacecraft = await this.service.getSpacecraftById(
+      this.id,
+      refreshEvent
+    );
+    if (refreshEvent) {
+      refreshEvent.target.complete();
+    }
     this.title = this.spacecraft.name;
   }
 }

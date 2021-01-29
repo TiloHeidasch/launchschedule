@@ -13,6 +13,9 @@
       <ion-title size="large">{{ title }}</ion-title>
     </ion-toolbar>
   </ion-header>
+  <ion-refresher slot="fixed" (ionRefresh)="load($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
 
   <div id="container" *ngIf="spacecraft!==undefined">
     <div id="spacecraft">
@@ -21,9 +24,7 @@
       ></app-spacecraft-detail-card>
     </div>
     <div id="agency">
-      <ion-item>
-        Agency
-      </ion-item>
+      <ion-item> Agency </ion-item>
       <app-agency-list-entry
         [agency]="spacecraft.agency"
       ></app-agency-list-entry>
