@@ -18,8 +18,14 @@ export class EventPage implements OnInit {
   ) {}
 
   async ngOnInit() {
+    this.load();
+  }
+  async load(refreshEvent?) {
     this.id = this.activatedRoute.snapshot.paramMap.get("id");
-    this.event = await this.service.getEventById(this.id);
+    this.event = await this.service.getEventById(this.id, refreshEvent);
+    if (refreshEvent) {
+      refreshEvent.target.complete();
+    }
     this.title = this.event.name;
   }
 }

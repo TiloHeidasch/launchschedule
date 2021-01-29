@@ -19,6 +19,11 @@ const routes: Routes = [
           import("./blog/blog.module").then((m) => m.BlogPageModule),
       },
       {
+        path: "report",
+        loadChildren: () =>
+          import("./report/report.module").then((m) => m.ReportPageModule),
+      },
+      {
         path: "",
         redirectTo: "/news/article",
         pathMatch: "full",

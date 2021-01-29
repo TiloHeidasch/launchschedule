@@ -122,8 +122,6 @@ export class AppComponent implements OnInit {
     } else {
       this.launchscheduleNotificationService.prepare();
     }
-    this.newsParamStore.getUnreadArticles();
-    this.newsParamStore.getUnreadBlogs();
   }
 
   initNotifications() {

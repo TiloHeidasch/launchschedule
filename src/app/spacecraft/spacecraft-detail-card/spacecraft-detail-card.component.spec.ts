@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { IonicModule } from "@ionic/angular";
 
 import { SpacecraftDetailCardComponent } from "./spacecraft-detail-card.component";
@@ -9,7 +9,7 @@ describe("SpacecraftDetailCardComponent", () => {
   let component: SpacecraftDetailCardComponent;
   let fixture: ComponentFixture<SpacecraftDetailCardComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [SpacecraftDetailCardComponent],
       imports: [
@@ -23,7 +23,7 @@ describe("SpacecraftDetailCardComponent", () => {
     component = fixture.componentInstance;
     component.spacecraft = {
       id: 10,
-      url: "https://ll.thespacedevs.com/2.0.0/config/spacecraft/10/",
+      url: "https://ll.thespacedevs.com/2.1.0/config/spacecraft/10/",
       name: "Apollo Command/Service Module",
       type: {
         id: 1,
@@ -31,7 +31,7 @@ describe("SpacecraftDetailCardComponent", () => {
       },
       agency: {
         id: 44,
-        url: "https://ll.thespacedevs.com/2.0.0/agencies/44/",
+        url: "https://ll.thespacedevs.com/2.1.0/agencies/44/",
         name: "National Aeronautics and Space Administration",
         featured: true,
         type: "Government",

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { IonicModule } from "@ionic/angular";
 
 import { SpacestationListEntryComponent } from "./spacestation-list-entry.component";
@@ -9,7 +9,7 @@ describe("SpacestationListEntryComponent", () => {
   let component: SpacestationListEntryComponent;
   let fixture: ComponentFixture<SpacestationListEntryComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [SpacestationListEntryComponent],
       imports: [
@@ -23,7 +23,7 @@ describe("SpacestationListEntryComponent", () => {
     component = fixture.componentInstance;
     component.spacestation = {
       id: 13,
-      url: "https://ll.thespacedevs.com/2.0.0/spacestation/13/",
+      url: "https://ll.thespacedevs.com/2.1.0/spacestation/13/",
       name: "Salyut 5",
       status: {
         id: 2,
@@ -46,7 +46,7 @@ describe("SpacestationListEntryComponent", () => {
       owners: [
         {
           id: 63,
-          url: "https://ll.thespacedevs.com/2.0.0/agencies/63/",
+          url: "https://ll.thespacedevs.com/2.1.0/agencies/63/",
           name: "Russian Federal Space Agency (ROSCOSMOS)",
           featured: true,
           type: "Government",

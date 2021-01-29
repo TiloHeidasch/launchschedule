@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { IonicModule } from "@ionic/angular";
 
 import { NewsListEntryComponent } from "./news-list-entry.component";
@@ -9,7 +9,7 @@ describe("NewsListEntryComponent", () => {
   let component: NewsListEntryComponent;
   let fixture: ComponentFixture<NewsListEntryComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [NewsListEntryComponent],
       imports: [
@@ -22,22 +22,20 @@ describe("NewsListEntryComponent", () => {
     fixture = TestBed.createComponent(NewsListEntryComponent);
     component = fixture.componentInstance;
     component.newsItem = {
-      date_published: 1597681320,
-      date_added: 1597729609,
-      tags: ["astronomy", "course", "quiz", "2017"],
-      categories: [],
+      id: "6007d5cc858d39001c60635b",
+      title: "SpaceX rolls out Falcon 9 rocket for another Starlink mission",
+      url:
+        "https://spaceflightnow.com/2021/01/18/spacex-rolls-out-falcon-9-rocket-for-another-starlink-mission/",
+      imageUrl:
+        "https://mk0spaceflightnoa02a.kinstacdn.com/wp-content/uploads/2020/01/starlink3_stack.jpg",
+      newsSite: "Spaceflight Now",
+      summary:
+        "SpaceX rolled out a Falcon 9 rocket Sunday night to pad 39A at NASA’s Kennedy Space Center in Florida for liftoff with the next 60 Starlink internet satellites, but officials have pushed back the launch until Wednesday.",
+      publishedAt: "2021-01-18T07:03:39.000Z",
+      updatedAt: "2021-01-20T07:03:40.106Z",
+      featured: false,
       launches: [],
       events: [],
-      _id: "5f3b6b495c993bca0ec35ec1",
-      news_site: "planetarysociety",
-      news_site_long: "Planetary Society",
-      title: "Astronomy Course Quiz 2017",
-      url: "https://www.planetary.org/outreach/astronomy-course-quiz-2017",
-      id: "",
-      featured_image:
-        "https://planetary.s3.amazonaws.com/web/assets/pictures/_1200x630_crop_center-center_82_none/PIA10969.jpg?mtime=1572523068",
-      published_date: "2020-08-17T16:22:00.000Z",
-      imported_date: "2020-08-18T05:46:49.000Z",
     };
     fixture.detectChanges();
   }));

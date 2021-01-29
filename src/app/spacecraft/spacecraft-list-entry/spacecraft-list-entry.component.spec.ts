@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { IonicModule } from "@ionic/angular";
 
 import { SpacecraftListEntryComponent } from "./spacecraft-list-entry.component";
@@ -9,7 +9,7 @@ describe("SpacecraftListEntryComponent", () => {
   let component: SpacecraftListEntryComponent;
   let fixture: ComponentFixture<SpacecraftListEntryComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [SpacecraftListEntryComponent],
       imports: [
@@ -23,11 +23,11 @@ describe("SpacecraftListEntryComponent", () => {
     component = fixture.componentInstance;
     component.spacecraft = {
       id: 10,
-      url: "https://ll.thespacedevs.com/2.0.0/config/spacecraft/10/",
+      url: "https://ll.thespacedevs.com/2.1.0/config/spacecraft/10/",
       name: "Apollo Command/Service Module",
       agency: {
         id: 44,
-        url: "https://ll.thespacedevs.com/2.0.0/agencies/44/",
+        url: "https://ll.thespacedevs.com/2.1.0/agencies/44/",
         name: "National Aeronautics and Space Administration",
         featured: true,
         type: "Government",

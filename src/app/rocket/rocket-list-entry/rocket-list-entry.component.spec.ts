@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { IonicModule } from "@ionic/angular";
 
 import { RocketListEntryComponent } from "./rocket-list-entry.component";
@@ -9,7 +9,7 @@ describe("RocketListEntryComponent", () => {
   let component: RocketListEntryComponent;
   let fixture: ComponentFixture<RocketListEntryComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [RocketListEntryComponent],
       imports: [
@@ -24,11 +24,11 @@ describe("RocketListEntryComponent", () => {
     component.rocket = {
       id: 136,
       launch_library_id: 145,
-      url: "https://ll.thespacedevs.com/2.0.0/config/launcher/136/",
+      url: "https://ll.thespacedevs.com/2.1.0/config/launcher/136/",
       name: "Angara 1.2",
       manufacturer: {
         id: 118,
-        url: "https://ll.thespacedevs.com/2.0.0/agencies/118/",
+        url: "https://ll.thespacedevs.com/2.1.0/agencies/118/",
         name: "International Launch Services",
         featured: false,
         type: "Commercial",

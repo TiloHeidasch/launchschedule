@@ -37,10 +37,7 @@ export class ArticlePage implements OnInit, ViewDidEnter {
       this.infiniteScroll.disabled = false;
     } catch (error) {}
     this.store.articles = [];
-    const answerArticles = await this.service.getFirstArticles(
-      this.store.search
-    );
-    this.store.readArticles = answerArticles.max;
+    const answerArticles = await this.service.getFirstArticles();
     const newArticles = answerArticles.newsItems;
     this.store.articles.push(...newArticles);
     if (refreshEvent) {
@@ -50,17 +47,10 @@ export class ArticlePage implements OnInit, ViewDidEnter {
 
   async loadMore(event) {
     const answerArticles = await this.service.getNextArticles(
-      this.store.articles.length,
-      this.store.search
+      this.store.articles.length
     );
     const newArticles = answerArticles.newsItems;
     this.store.articles.push(...newArticles);
     event.target.complete();
-
-    // App logic to determine if all data is loaded
-    // and disable the infinite scroll
-    if (this.store.articles.length === answerArticles.max) {
-      event.target.disabled = true;
-    }
   }
 }

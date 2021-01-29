@@ -6,40 +6,45 @@ import { environment } from "../environments/environment";
   providedIn: "root",
 })
 export class SnapiService {
-  baseUrl: string = environment.snapi;
+  private baseUrl: string = environment.snapi;
   constructor(private http: HttpClient) {}
-  async getFirstArticles(search?) {
-    return await this.getNextArticles(0, search);
+  async getFirstArticles() {
+    return await this.getNextArticles(0);
   }
-  async getNextArticles(offset, search?) {
+  async getNextArticles(offset) {
     const limit = 5;
-    const page = offset / limit + 1;
-    const url = this.createArticlesUrl(search, page, limit);
+    const url = this.createArticlesUrl(offset, limit);
     const data = await this.http.get<any>(url).toPromise();
-    return { newsItems: data.docs, max: data.totalDocs };
+    return { newsItems: data };
   }
-  createArticlesUrl(search?, page?, limit?) {
-    let url = this.baseUrl + "articles?limit=" + limit + "&page=" + page;
-    if (search && search !== "") {
-      url += "&search=" + search;
-    }
+  createArticlesUrl(start?, limit?) {
+    const url = this.baseUrl + "articles?_limit=" + limit + "&_start=" + start;
     return url;
   }
-  async getFirstBlogs(search?) {
-    return await this.getNextBlogs(0, search);
+  async getFirstBlogs() {
+    return await this.getNextBlogs(0);
   }
-  async getNextBlogs(offset, search?) {
+  async getNextBlogs(offset) {
     const limit = 5;
-    const page = offset / limit + 1;
-    const url = this.createBlogsUrl(search, page, limit);
+    const url = this.createBlogsUrl(offset, limit);
     const data = await this.http.get<any>(url).toPromise();
-    return { newsItems: data.docs, max: data.totalDocs };
+    return { newsItems: data };
   }
-  createBlogsUrl(search?, page?, limit?) {
-    let url = this.baseUrl + "blogs?limit=" + limit + "&page=" + page;
-    if (search && search !== "") {
-      url += "&search=" + search;
-    }
+  createBlogsUrl(start?, limit?) {
+    const url = this.baseUrl + "blogs?_limit=" + limit + "&_start=" + start;
+    return url;
+  }
+  async getFirstReports() {
+    return await this.getNextReports(0);
+  }
+  async getNextReports(offset) {
+    const limit = 5;
+    const url = this.createReportsUrl(offset, limit);
+    const data = await this.http.get<any>(url).toPromise();
+    return { newsItems: data };
+  }
+  createReportsUrl(start?, limit?) {
+    const url = this.baseUrl + "reports?_limit=" + limit + "&_start=" + start;
     return url;
   }
 }

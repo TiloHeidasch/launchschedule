@@ -1,17 +1,17 @@
+import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
+import { RouterTestingModule } from "@angular/router/testing";
 import { IonicModule } from "@ionic/angular";
 
-import { RocketPage } from "./rocket.page";
-import { RouterTestingModule } from "@angular/router/testing";
-import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { ReportPage } from "./report.page";
 
-describe("RocketPage", () => {
-  let component: RocketPage;
-  let fixture: ComponentFixture<RocketPage>;
+describe("ReportPage", () => {
+  let component: ReportPage;
+  let fixture: ComponentFixture<ReportPage>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [RocketPage],
+      declarations: [ReportPage],
       imports: [
         IonicModule.forRoot(),
         RouterTestingModule,
@@ -19,7 +19,7 @@ describe("RocketPage", () => {
       ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(RocketPage);
+    fixture = TestBed.createComponent(ReportPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

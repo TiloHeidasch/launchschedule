@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { IonicModule } from "@ionic/angular";
 
 import { AgencyDetailCardComponent } from "./agency-detail-card.component";
@@ -10,7 +10,7 @@ describe("AgencyDetailCardComponent", () => {
   let component: AgencyDetailCardComponent;
   let fixture: ComponentFixture<AgencyDetailCardComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [AgencyDetailCardComponent],
       imports: [
@@ -24,7 +24,7 @@ describe("AgencyDetailCardComponent", () => {
     component = fixture.componentInstance;
     component.agency = {
       id: 141,
-      url: "https://ll.thespacedevs.com/2.0.0/agencies/141/",
+      url: "https://ll.thespacedevs.com/2.1.0/agencies/141/",
       name: "Blue Origin",
       featured: true,
       type: "Commercial",
