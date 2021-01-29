@@ -18,8 +18,14 @@ export class AstronautPage implements OnInit {
   ) {}
 
   async ngOnInit() {
+    this.load();
+  }
+  async load(refreshEvent?) {
     this.id = this.activatedRoute.snapshot.paramMap.get("id");
-    this.astronaut = await this.service.getAstronautById(this.id);
+    this.astronaut = await this.service.getAstronautById(this.id, refreshEvent);
+    if (refreshEvent) {
+      refreshEvent.target.complete();
+    }
     this.title = this.astronaut.name;
   }
 }
