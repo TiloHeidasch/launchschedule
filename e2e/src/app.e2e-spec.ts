@@ -8,7 +8,7 @@ describe("App", () => {
     browser.ignoreSynchronization = true;
   });
   it("should have a title", () => {
-    expect(browser.getTitle()).toEqual("Launchschedule");
+    expect(browser.getTitle()).toEqual("RCKET");
   });
   describe("Menu", () => {
     beforeEach(() => {
