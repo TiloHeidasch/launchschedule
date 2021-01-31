@@ -6,7 +6,7 @@ const darkKey = "dark";
   providedIn: "root",
 })
 export class PreferenceService {
-  private dark: boolean = false;
+  private dark = false;
   constructor(private storage: StorageService) {
     this.init();
   }
