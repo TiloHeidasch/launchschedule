@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { IonicModule } from "@ionic/angular";
 
 import { NewsListEntryComponent } from "./news-list-entry.component";
@@ -9,7 +9,7 @@ describe("NewsListEntryComponent", () => {
   let component: NewsListEntryComponent;
   let fixture: ComponentFixture<NewsListEntryComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [NewsListEntryComponent],
       imports: [

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { IonicModule } from "@ionic/angular";
 
 import { EventListEntryComponent } from "./event-list-entry.component";
@@ -9,7 +9,7 @@ describe("EventListEntryComponent", () => {
   let component: EventListEntryComponent;
   let fixture: ComponentFixture<EventListEntryComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [EventListEntryComponent],
       imports: [

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { IonicModule } from "@ionic/angular";
 
 import { SpacestationListEntryComponent } from "./spacestation-list-entry.component";
@@ -9,7 +9,7 @@ describe("SpacestationListEntryComponent", () => {
   let component: SpacestationListEntryComponent;
   let fixture: ComponentFixture<SpacestationListEntryComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [SpacestationListEntryComponent],
       imports: [

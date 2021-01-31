@@ -18,8 +18,17 @@ export class SpacestationPage implements OnInit {
   ) {}
 
   async ngOnInit() {
+    this.load();
+  }
+  async load(refreshEvent?) {
     this.id = this.activatedRoute.snapshot.paramMap.get("id");
-    this.spacestation = await this.service.getSpacestationById(this.id);
+    this.spacestation = await this.service.getSpacestationById(
+      this.id,
+      refreshEvent
+    );
+    if (refreshEvent) {
+      refreshEvent.target.complete();
+    }
     this.title = this.spacestation.name;
   }
 }

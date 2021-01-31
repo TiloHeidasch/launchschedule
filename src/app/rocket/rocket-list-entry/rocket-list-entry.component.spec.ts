@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { IonicModule } from "@ionic/angular";
 
 import { RocketListEntryComponent } from "./rocket-list-entry.component";
@@ -9,7 +9,7 @@ describe("RocketListEntryComponent", () => {
   let component: RocketListEntryComponent;
   let fixture: ComponentFixture<RocketListEntryComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [RocketListEntryComponent],
       imports: [
