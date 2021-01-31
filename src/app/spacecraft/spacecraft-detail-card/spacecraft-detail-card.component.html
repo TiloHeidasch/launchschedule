@@ -8,9 +8,7 @@
       <ion-img
         id="background"
         [src]="
-          spacecraft.image_url
-            ? spacecraft.image_url
-            : 'assets/placeholder_1920.png'
+          spacecraft.image_url ? spacecraft.image_url : 'assets/placeholder.png'
         "
       >
       </ion-img>
@@ -22,9 +20,7 @@
         ionImgViewer
         id="foreground"
         [src]="
-          spacecraft.image_url
-            ? spacecraft.image_url
-            : 'assets/placeholder_1920.png'
+          spacecraft.image_url ? spacecraft.image_url : 'assets/placeholder.png'
         "
       >
       </ion-img>
