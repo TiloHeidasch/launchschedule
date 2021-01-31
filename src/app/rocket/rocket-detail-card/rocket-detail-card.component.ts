@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
+import { ToastController } from "@ionic/angular";
 import { LaunchLibraryService } from "src/app/launch-library.service";
 
 @Component({
@@ -9,7 +10,18 @@ import { LaunchLibraryService } from "src/app/launch-library.service";
 export class RocketDetailCardComponent implements OnInit {
   @Input() rocket?;
   @Input() id?;
-  constructor(private service: LaunchLibraryService) {}
+  constructor(
+    private service: LaunchLibraryService,
+    public toastController: ToastController
+  ) {}
+
+  async showSpecification(name, value, unit) {
+    const toast = await this.toastController.create({
+      message: name + ": " + value + " " + unit,
+      duration: 2000,
+    });
+    toast.present();
+  }
 
   async ngOnInit() {
     if (this.rocket === undefined) {

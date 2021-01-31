@@ -15,7 +15,7 @@
     <div class="image-wrapper">
       <ion-img
         id="foreground"
-        [src]="agency.image_url ? agency.image_url : 'assets/placeholder.png'"
+        [src]="agency.logo_url ? agency.logo_url : 'assets/placeholder.png'"
       ></ion-img>
     </div>
   </div>
@@ -24,13 +24,5 @@
     <ion-card-title>{{ title }}</ion-card-title>
   </ion-card-header>
   <ion-card-content>
-    <div id="content">
-      <ion-img
-        [src]="agency.logo_url ? agency.logo_url : 'assets/placeholder.png'"
-      ></ion-img>
-      <ion-img
-        [src]="agency.nation_url ? agency.nation_url : 'assets/placeholder.png'"
-      ></ion-img>
-    </div>
   </ion-card-content>
 </ion-card>
