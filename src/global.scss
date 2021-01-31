@@ -68,3 +68,14 @@ app-notification-icon {
   right: 1rem;
   margin-top: 0.5rem;
 }
+ion-toolbar{
+  ion-title{
+    --color: var(--ion-color-secondary-contrast)
+  }
+  ion-button{
+    --color: var(--ion-color-secondary-contrast) !important
+  }
+  ion-segment-button{
+    --color: var(--ion-color-secondary-contrast) !important
+  }
+ }

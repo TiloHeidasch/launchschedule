@@ -1,5 +1,5 @@
 ion-menu ion-content {
-  --background: linear-gradient( 180deg, var(--ion-color-secondary) 20%,  var(--ion-item-background) 25% ) !important;
+  --background: var(--ion-item-background) !important;
 }
 
 ion-menu.md ion-content {
@@ -7,6 +7,10 @@ ion-menu.md ion-content {
   --padding-end: 8px;
   --padding-top: 20px;
   --padding-bottom: 20px;
+}
+#menu-list{
+  --ion-item-background: transparent;
+
 }
 
 ion-menu.md ion-list {

@@ -1,8 +1,8 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
     <ion-menu contentId="main-content" type="overlay">
+      <ion-img src="assets/icon/logo2.png"></ion-img>
       <ion-content>
-        <ion-img src="assets/icon/logo2.png"></ion-img>
         <ion-list id="menu-list">
           <ion-item class="menu-divider">Highlights</ion-item>
           <ion-menu-toggle
@@ -46,6 +46,18 @@
               <ion-label>{{ p.title }}</ion-label>
             </ion-item>
           </ion-menu-toggle>
+          <ion-item class="menu-divider">Appearance</ion-item>
+          <ion-item lines="none">
+            <ion-icon slot="start" name="contrast"></ion-icon>
+            <ion-label
+              ><div *ngIf="preferences.isDark()">Light Theme</div>
+              <div *ngIf="!preferences.isDark()">Dark Theme</div></ion-label
+            >
+            <ion-toggle
+              (ionChange)="toggleDarkTheme($event)"
+              slot="end"
+            ></ion-toggle>
+          </ion-item>
         </ion-list>
         <div class="version">
           v{{ versionCode }};{{ versionName }};{{ track }}
