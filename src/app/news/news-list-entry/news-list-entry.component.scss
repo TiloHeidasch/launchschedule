@@ -71,7 +71,7 @@ img {
   width: 100%;
   ion-icon {
     font-size: 14rem;
-    color: white;
+    color: var(--ion-color-primary-tint);
   }
 }
 #background {
@@ -93,7 +93,7 @@ img {
   z-index: 1;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-  width: 7rem;
+  width: 8rem;
   color: #000;
 }
 .blog {

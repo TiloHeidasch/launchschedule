@@ -9,7 +9,12 @@ ion-menu.md ion-content {
 }
 #menu-list{
   --ion-item-background: transparent;
-
+ion-item{
+  font-size: 1.1rem;
+  h4{
+    font-size: 1.3rem;
+  }
+}
 }
 
 ion-menu.md ion-note {
