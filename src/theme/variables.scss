@@ -95,6 +95,28 @@
   --ion-color-bad-shade: #ae2323;
   --ion-color-bad-tint: #cc3e3e;
 
+  // News colors
+  --ion-color-article: #7103d1;
+  --ion-color-article-rgb: 113,3,209;
+  --ion-color-article-contrast: #ffffff;
+  --ion-color-article-contrast-rgb: 255,255,255;
+  --ion-color-article-shade: #6303b8;
+  --ion-color-article-tint: #7f1cd6;
+
+  --ion-color-blog: #d10363;
+  --ion-color-blog-rgb: 209,3,99;
+  --ion-color-blog-contrast: #ffffff;
+  --ion-color-blog-contrast-rgb: 255,255,255;
+  --ion-color-blog-shade: #b80357;
+  --ion-color-blog-tint: #d61c73;
+
+  --ion-color-report: #63d103;
+  --ion-color-report-rgb: 99,209,3;
+  --ion-color-report-contrast: #000000;
+  --ion-color-report-contrast-rgb: 0,0,0;
+  --ion-color-report-shade: #57b803;
+  --ion-color-report-tint: #73d61c;
+  
   --ion-toolbar-background: var(--ion-color-secondary);
 
   --ion-tab-bar-background: var(--ion-color-secondary);
@@ -224,4 +246,28 @@ body.dark {
   --ion-color-contrast-rgb: var(--ion-color-bad-contrast-rgb);
   --ion-color-shade: var(--ion-color-bad-shade);
   --ion-color-tint: var(--ion-color-bad-tint);
+}
+.ion-color-article {
+  --ion-color-base: var(--ion-color-article);
+  --ion-color-base-rgb: var(--ion-color-article-rgb);
+  --ion-color-contrast: var(--ion-color-article-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-article-contrast-rgb);
+  --ion-color-shade: var(--ion-color-article-shade);
+  --ion-color-tint: var(--ion-color-article-tint);
+}
+.ion-color-blog {
+  --ion-color-base: var(--ion-color-blog);
+  --ion-color-base-rgb: var(--ion-color-blog-rgb);
+  --ion-color-contrast: var(--ion-color-blog-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-blog-contrast-rgb);
+  --ion-color-shade: var(--ion-color-blog-shade);
+  --ion-color-tint: var(--ion-color-blog-tint);
+}
+.ion-color-report {
+  --ion-color-base: var(--ion-color-report);
+  --ion-color-base-rgb: var(--ion-color-report-rgb);
+  --ion-color-contrast: var(--ion-color-report-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-report-contrast-rgb);
+  --ion-color-shade: var(--ion-color-report-shade);
+  --ion-color-tint: var(--ion-color-report-tint);
 }

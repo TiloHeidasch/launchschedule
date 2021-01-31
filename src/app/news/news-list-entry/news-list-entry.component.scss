@@ -97,14 +97,17 @@ img {
   color: #000;
 }
 .blog {
-  background: #f1c40f;
+  background: var(--ion-color-blog);
+  color: var(--ion-color-blog-contrast);
 }
 .article {
-  background: #16a085;
+  background: var(--ion-color-article);
+  color: var(--ion-color-article-contrast);
 }
 .report {
-  background: #23850b;
+  background: var(--ion-color-report);
+  color: var(--ion-color-report-contrast);
 }
 .clicked {
-  background: #0006;
+  background: rgba(var(--ion-color-secondary-rgb),60%);
 }
