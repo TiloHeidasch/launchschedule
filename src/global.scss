@@ -31,6 +31,30 @@
   font-weight: 400;
   font-style: normal;
 }
+@font-face {
+  font-family: "Changa";
+  src: url("~/assets/fonts/Changa-Light.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Changa";
+  src: url("~/assets/fonts/Changa-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Changa";
+  src: url("~/assets/fonts/Changa-ExtraBold.ttf") format("truetype");
+  font-weight: bolder;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Changa";
+  src: url("~/assets/fonts/Changa-ExtraLight.ttf") format("truetype");
+  font-weight: lighter;
+  font-style: normal;
+}
 ion-card {
   transition: 0.2s;
 }
@@ -70,12 +94,12 @@ app-notification-icon {
 }
 ion-toolbar{
   ion-title{
-    --color: var(--ion-color-secondary-contrast)
+    --color: var(--ion-color-secondary-contrast);
   }
   ion-button{
-    --color: var(--ion-color-secondary-contrast) !important
+    --color: var(--ion-color-secondary-contrast) !important;
   }
   ion-segment-button{
-    --color: var(--ion-color-secondary-contrast) !important
+    --color: var(--ion-color-secondary-contrast) !important;
   }
  }
