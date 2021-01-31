@@ -17,10 +17,4 @@ describe("Agency", () => {
     element(by.id("filter")).click();
     expect(element(by.tagName("ion-searchbar"))).toBeDefined();
   });
-  it("should open Detail Page on click", () => {
-    browser.sleep(2000);
-    element(by.tagName("app-agency-list-entry")).click();
-    browser.sleep(2000);
-    expect(browser.getCurrentUrl()).toContain("/#/agency/");
-  });
 });
