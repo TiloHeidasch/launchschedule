@@ -18,12 +18,12 @@ export class NewsStorageService {
       await this.storage.setObject(keyClicked, clickedNewsItemIds);
     }
     const clickedNewsItem = clickedNewsItemIds.find(
-      (clickedNewsItemId) => clickedNewsItemId === newsItem._id
+      (clickedNewsItemId) => clickedNewsItemId === newsItem.id
     );
     if (clickedNewsItem) {
       return;
     }
-    clickedNewsItemIds.push(newsItem._id);
+    clickedNewsItemIds.push(newsItem.id);
     await this.storage.setObject(keyClicked, clickedNewsItemIds);
   }
   async isClicked(newsItem): Promise<boolean> {
@@ -32,7 +32,7 @@ export class NewsStorageService {
       return false;
     }
     const clickedNewsItem = clickedNewsItemIds.find(
-      (clickedNewsItemId) => clickedNewsItemId === newsItem._id
+      (clickedNewsItemId) => clickedNewsItemId === newsItem.id
     );
     if (clickedNewsItem) {
       return true;
