@@ -4,7 +4,7 @@
       <ion-img src="assets/icon/logo2.png"></ion-img>
       <ion-content>
         <ion-list id="menu-list">
-          <ion-item class="menu-divider">Highlights</ion-item>
+          <ion-item class="menu-divider"><h4>Highlights</h4></ion-item>
           <ion-menu-toggle
             auto-hide="false"
             *ngFor="let p of highlightPages; let i = index"
@@ -25,7 +25,7 @@
               <ion-label>{{ p.title }}</ion-label>
             </ion-item>
           </ion-menu-toggle>
-          <ion-item class="menu-divider">Deep Dive</ion-item>
+          <ion-item class="menu-divider"><h4>Deep Dive</h4></ion-item>
           <ion-menu-toggle
             auto-hide="false"
             *ngFor="let p of deepDivePages; let i = index"
@@ -46,7 +46,7 @@
               <ion-label>{{ p.title }}</ion-label>
             </ion-item>
           </ion-menu-toggle>
-          <ion-item class="menu-divider">Appearance</ion-item>
+          <ion-item class="menu-divider"><h4>Appearance</h4></ion-item>
           <ion-item lines="none">
             <ion-icon slot="start" name="contrast"></ion-icon>
             <ion-label
