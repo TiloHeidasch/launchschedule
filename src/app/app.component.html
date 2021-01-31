@@ -53,10 +53,7 @@
               ><div *ngIf="preferences.isDark()">Light Theme</div>
               <div *ngIf="!preferences.isDark()">Dark Theme</div></ion-label
             >
-            <ion-toggle
-              (ionChange)="toggleDarkTheme($event)"
-              slot="end"
-            ></ion-toggle>
+            <ion-toggle (ionChange)="toggleDarkTheme()" slot="end"></ion-toggle>
           </ion-item>
         </ion-list>
         <div class="version">
