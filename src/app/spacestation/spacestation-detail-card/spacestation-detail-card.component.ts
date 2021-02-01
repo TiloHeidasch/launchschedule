@@ -20,6 +20,13 @@ export class SpacestationDetailCardComponent implements OnInit {
 
   async ngOnInit() {}
 
+  async showSpecification(name, value, unit) {
+    const toast = await this.toastController.create({
+      message: name + ": " + value + " " + unit,
+      duration: 2000,
+    });
+    toast.present();
+  }
   async presentUnoccupiedToast(dockingLocation) {
     const toast = await this.toastController.create({
       message: dockingLocation.name + " is not occupied.",
@@ -30,7 +37,8 @@ export class SpacestationDetailCardComponent implements OnInit {
 
   async presentDockingLocationActionSheet(dockingLocation) {
     const actionSheet = await this.actionSheetController.create({
-      header: "Albums",
+      header: dockingLocation.name +" - "+dockingLocation.docked.flight_vehicle.spacecraft.spacecraft_config
+              .name,
       cssClass: "my-custom-class",
       buttons: [
         {
