@@ -171,7 +171,7 @@ jobs:
           name: track
           path: ./
       - name: Set Release Track Variable
-        run: echo "RELEASE_NAME=`cat ./track`" >> $GITHUB_ENV
+        run: echo "RELEASE_TRACK=`cat ./track`" >> $GITHUB_ENV
       - name: Setup Environment File
         run: sed -i 's/};/versionCode:${{ github.run_number }},\n versionName:"${{ env.RELEASE_NAME }}",\n track:"${{ env.RELEASE_TRACK }}"\n};/g' src/environments/environment.prod.ts
       - name: Check Environment File
