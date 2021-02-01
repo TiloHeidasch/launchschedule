@@ -153,38 +153,18 @@ body{
   --ion-color-step-950: #0d0d0d;
   
   --ion-item-background: var(--ion-color-step-50);
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-  --ion-background-color: #121212;
-  --ion-background-color-rgb: 18,18,18;
+  --ion-color-secondary: #0b173d;
+  --ion-color-secondary-rgb: 11,23,61;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast-rgb: 255,255,255;
+  --ion-color-secondary-shade: #0a1436;
+  --ion-color-secondary-tint: #232e50;
 
-  --ion-text-color: #ffffff;
-  --ion-text-color-rgb: 255,255,255;
+  --ion-toolbar-background: var(--ion-color-secondary);
 
-  --ion-color-step-50: #1e1e1e;
-  --ion-color-step-100: #2a2a2a;
-  --ion-color-step-150: #363636;
-  --ion-color-step-200: #414141;
-  --ion-color-step-250: #4d4d4d;
-  --ion-color-step-300: #595959;
-  --ion-color-step-350: #656565;
-  --ion-color-step-400: #717171;
-  --ion-color-step-450: #7d7d7d;
-  --ion-color-step-500: #898989;
-  --ion-color-step-550: #949494;
-  --ion-color-step-600: #a0a0a0;
-  --ion-color-step-650: #acacac;
-  --ion-color-step-700: #b8b8b8;
-  --ion-color-step-750: #c4c4c4;
-  --ion-color-step-800: #d0d0d0;
-  --ion-color-step-850: #dbdbdb;
-  --ion-color-step-900: #e7e7e7;
-  --ion-color-step-950: #f3f3f3;
-  
-  --ion-item-background: var(--ion-color-step-50);
-  }
+  --ion-tab-bar-background: var(--ion-color-secondary);
+  --ion-tab-bar-color: var(--ion-color-secondary-contrast);
 }
 
 /* Fallback for older browsers or manual mode */
@@ -214,6 +194,18 @@ body.dark {
   --ion-color-step-850: #dbdbdb;
   --ion-color-step-900: #e7e7e7;
   --ion-color-step-950: #f3f3f3;
+
+  --ion-color-secondary: #179fca;
+  --ion-color-secondary-rgb: 23, 159, 202;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast-rgb: 255, 255, 255;
+  --ion-color-secondary-shade: #148cb2;
+  --ion-color-secondary-tint: #2ea9cf;
+
+  --ion-toolbar-background: var(--ion-color-secondary);
+
+  --ion-tab-bar-background: var(--ion-color-secondary);
+  --ion-tab-bar-color: var(--ion-color-secondary-contrast);
 }
 .ion-color-good {
   --ion-color-base: var(--ion-color-good);

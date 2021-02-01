@@ -1,7 +1,7 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
     <ion-menu contentId="main-content" type="overlay">
-      <ion-img src="assets/icon/logo2.png"></ion-img>
+      <ion-img *ngIf="preferences.isDark()" src="assets/icon/logo2dark.png"></ion-img><ion-img *ngIf="!preferences.isDark()" src="assets/icon/logo2.png"></ion-img>
       <ion-content>
         <ion-list id="menu-list">
           <ion-item class="menu-divider"><h4>Highlights</h4></ion-item>
