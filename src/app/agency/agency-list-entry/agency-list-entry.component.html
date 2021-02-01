@@ -9,13 +9,13 @@
     <div class="image-wrapper">
       <ion-img
         id="background"
-        [src]="agency.image_url ? agency.image_url : 'assets/placeholder.png'"
+        [src]="agency.image_url ? agency.image_url : placeholderService.getPlaceholder()"
       ></ion-img>
     </div>
     <div class="image-wrapper">
       <ion-img
         id="foreground"
-        [src]="agency.logo_url ? agency.logo_url : 'assets/placeholder.png'"
+        [src]="agency.logo_url ? agency.logo_url : placeholderService.getPlaceholder()"
       ></ion-img>
     </div>
   </div>

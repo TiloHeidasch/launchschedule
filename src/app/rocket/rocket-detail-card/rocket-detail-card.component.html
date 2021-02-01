@@ -4,7 +4,7 @@
     <div class="image-wrapper">
       <ion-img
         id="background"
-        [src]="rocket.image_url ? rocket.image_url : 'assets/placeholder.png'"
+        [src]="rocket.image_url ? rocket.image_url : placeholderService.getPlaceholder()"
       ></ion-img>
     </div>
     <div class="image-wrapper">
@@ -13,7 +13,7 @@
         [text]="rocket.family"
         ionImgViewer
         id="foreground"
-        [src]="rocket.image_url ? rocket.image_url : 'assets/placeholder.png'"
+        [src]="rocket.image_url ? rocket.image_url : placeholderService.getPlaceholder()"
       ></ion-img>
     </div>
   </div>

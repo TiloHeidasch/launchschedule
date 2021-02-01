@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { LaunchLibraryService } from "src/app/launch-library.service";
+import { PlaceholderService } from "src/app/placeholder.service";
 
 @Component({
   selector: "app-agency-detail-card",
@@ -10,7 +11,10 @@ export class AgencyDetailCardComponent implements OnInit {
   @Input() agency = undefined;
   @Input() id?;
 
-  constructor(private service: LaunchLibraryService) {}
+  constructor(
+    private service: LaunchLibraryService,
+    public placeholderService: PlaceholderService
+  ) {}
 
   async ngOnInit() {
     if (this.agency === undefined) {

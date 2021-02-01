@@ -5,6 +5,7 @@ import {
   ChangeDetectionStrategy,
 } from "@angular/core";
 import { LaunchLibraryService } from "src/app/launch-library.service";
+import { PlaceholderService } from "src/app/placeholder.service";
 
 @Component({
   selector: "app-agency-list-entry",
@@ -17,7 +18,10 @@ export class AgencyListEntryComponent implements OnInit {
   @Input() id?;
   title: string;
   subtitle: string;
-  constructor(private service: LaunchLibraryService) {}
+  constructor(
+    private service: LaunchLibraryService,
+    public placeholderService: PlaceholderService
+  ) {}
 
   async ngOnInit() {
     if (this.agency === undefined) {

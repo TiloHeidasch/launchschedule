@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from "@angular/core";
 import { LaunchLibraryService } from "src/app/launch-library.service";
 import { ActionSheetController, ToastController } from "@ionic/angular";
 import { Router } from "@angular/router";
+import { PlaceholderService } from "src/app/placeholder.service";
 
 @Component({
   selector: "app-spacestation-detail-card",
@@ -15,7 +16,8 @@ export class SpacestationDetailCardComponent implements OnInit {
     private service: LaunchLibraryService,
     public actionSheetController: ActionSheetController,
     public toastController: ToastController,
-    private router: Router
+    private router: Router,
+    public placeholderService: PlaceholderService
   ) {}
 
   async ngOnInit() {}
@@ -37,8 +39,10 @@ export class SpacestationDetailCardComponent implements OnInit {
 
   async presentDockingLocationActionSheet(dockingLocation) {
     const actionSheet = await this.actionSheetController.create({
-      header: dockingLocation.name +" - "+dockingLocation.docked.flight_vehicle.spacecraft.spacecraft_config
-              .name,
+      header:
+        dockingLocation.name +
+        " - " +
+        dockingLocation.docked.flight_vehicle.spacecraft.spacecraft_config.name,
       cssClass: "my-custom-class",
       buttons: [
         {

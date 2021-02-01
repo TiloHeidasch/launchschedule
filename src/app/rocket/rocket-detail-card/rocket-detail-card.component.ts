@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { ToastController } from "@ionic/angular";
 import { LaunchLibraryService } from "src/app/launch-library.service";
+import { PlaceholderService } from "src/app/placeholder.service";
 
 @Component({
   selector: "app-rocket-detail-card",
@@ -12,7 +13,8 @@ export class RocketDetailCardComponent implements OnInit {
   @Input() id?;
   constructor(
     private service: LaunchLibraryService,
-    public toastController: ToastController
+    public toastController: ToastController,
+    public placeholderService: PlaceholderService
   ) {}
 
   async showSpecification(name, value, unit) {

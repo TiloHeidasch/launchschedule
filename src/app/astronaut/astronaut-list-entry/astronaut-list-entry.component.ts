@@ -6,6 +6,7 @@ import {
   ChangeDetectorRef,
 } from "@angular/core";
 import { LaunchLibraryService } from "src/app/launch-library.service";
+import { PlaceholderService } from "src/app/placeholder.service";
 
 @Component({
   selector: "app-astronaut-list-entry",
@@ -20,7 +21,8 @@ export class AstronautListEntryComponent implements OnInit {
   subtitle: string;
   constructor(
     private service: LaunchLibraryService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    public placeholderService: PlaceholderService
   ) {}
 
   async ngOnInit() {

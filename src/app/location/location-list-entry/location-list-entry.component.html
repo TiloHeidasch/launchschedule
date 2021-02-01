@@ -12,7 +12,7 @@
       <ion-img
         id="background"
         [src]="
-          location.map_image ? location.map_image : 'assets/placeholder.png'
+          location.map_image ? location.map_image : placeholderService.getPlaceholder()
         "
       ></ion-img>
     </div>
@@ -20,7 +20,7 @@
       <ion-img
         id="foreground"
         [src]="
-          location.map_image ? location.map_image : 'assets/placeholder.png'
+          location.map_image ? location.map_image : placeholderService.getPlaceholder()
         "
       ></ion-img>
     </div>
