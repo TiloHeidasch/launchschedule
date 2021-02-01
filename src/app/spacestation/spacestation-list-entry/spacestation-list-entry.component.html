@@ -16,7 +16,7 @@
           [src]="
             spacestation.image_url
               ? spacestation.image_url
-              : 'assets/placeholder.png'
+              : placeholderService.getPlaceholder()
           "
         >
         </ion-img>
@@ -27,7 +27,7 @@
           [src]="
             spacestation.image_url
               ? spacestation.image_url
-              : 'assets/placeholder.png'
+              : placeholderService.getPlaceholder()
           "
         >
         </ion-img>

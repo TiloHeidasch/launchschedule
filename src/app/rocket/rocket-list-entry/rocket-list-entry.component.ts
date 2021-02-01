@@ -4,6 +4,7 @@ import {
   Input,
   ChangeDetectionStrategy,
 } from "@angular/core";
+import { PlaceholderService } from "src/app/placeholder.service";
 
 @Component({
   selector: "app-rocket-list-entry",
@@ -17,7 +18,7 @@ export class RocketListEntryComponent implements OnInit {
   subtitle: string;
   imageUrl: string;
 
-  constructor() {}
+  constructor(public placeholderService: PlaceholderService) {}
 
   ngOnInit() {
     this.title = this.rocket.name;

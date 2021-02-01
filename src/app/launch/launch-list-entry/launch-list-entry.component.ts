@@ -4,6 +4,7 @@ import {
   Input,
   ChangeDetectionStrategy,
 } from "@angular/core";
+import { PlaceholderService } from "src/app/placeholder.service";
 
 @Component({
   selector: "app-launch-list-entry",
@@ -17,7 +18,7 @@ export class LaunchListEntryComponent implements OnInit {
   subtitle: string;
   date: Date;
   imageUrl: string;
-  constructor() {}
+  constructor(public placeholderService: PlaceholderService) {}
 
   ngOnInit() {
     this.title = this.launch.name.split("|")[1].trim();

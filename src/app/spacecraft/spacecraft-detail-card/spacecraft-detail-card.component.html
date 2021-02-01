@@ -8,7 +8,7 @@
       <ion-img
         id="background"
         [src]="
-          spacecraft.image_url ? spacecraft.image_url : 'assets/placeholder.png'
+          spacecraft.image_url ? spacecraft.image_url : placeholderService.getPlaceholder()
         "
       >
       </ion-img>
@@ -20,7 +20,7 @@
         ionImgViewer
         id="foreground"
         [src]="
-          spacecraft.image_url ? spacecraft.image_url : 'assets/placeholder.png'
+          spacecraft.image_url ? spacecraft.image_url : placeholderService.getPlaceholder()
         "
       >
       </ion-img>
@@ -59,31 +59,34 @@
       <ion-item>
         <ion-label> Specifications </ion-label>
       </ion-item>
-      <ion-chip id="crew_capacity" *ngIf="spacecraft.crew_capacity">
-        <ion-icon name="body" color="dark"></ion-icon>
+      <ion-chip id="crew_capacity" *ngIf="spacecraft.crew_capacity"
+        (click)="showSpecification('Crew capacity',spacecraft.crew_capacity,'Person(s)')">
+        <ion-icon name="body"></ion-icon>
         <ion-label>{{ spacecraft.crew_capacity }}</ion-label>
       </ion-chip>
-      <ion-chip id="diameter" *ngIf="spacecraft.diameter">
-        <ion-icon name="code-working" color="dark"></ion-icon>
+      <ion-chip id="diameter" *ngIf="spacecraft.diameter" (click)="showSpecification('Diameter',spacecraft.diameter,'Meter')">
+        <ion-icon name="code-working"></ion-icon>
         <ion-label>{{ spacecraft.diameter }}m</ion-label>
       </ion-chip>
-      <ion-chip id="height" *ngIf="spacecraft.height">
-        <ion-icon name="arrow-up" color="dark"></ion-icon>
+      <ion-chip id="height" *ngIf="spacecraft.height" (click)="showSpecification('Height',spacecraft.height,'Meter')">
+        <ion-icon name="arrow-up"></ion-icon>
         <ion-label>{{ spacecraft.height }}m</ion-label>
       </ion-chip>
-      <ion-chip id="payload_capacity" *ngIf="spacecraft.payload_capacity">
-        <ion-icon name="barbell" color="dark"></ion-icon>
+      <ion-chip id="payload_capacity" *ngIf="spacecraft.payload_capacity"
+        (click)="showSpecification('Payload capacity',spacecraft.payload_capacity,'Kilogramm')">
+        <ion-icon name="barbell"></ion-icon>
         <ion-label>{{ spacecraft.payload_capacity }}kg</ion-label>
       </ion-chip>
-      <ion-chip id="maiden_flight" *ngIf="spacecraft.maiden_flight">
-        <ion-icon name="rocket" color="dark"></ion-icon>
+      <ion-chip id="maiden_flight" *ngIf="spacecraft.maiden_flight"
+        (click)="showSpecification('First flight',spacecraft.maiden_flight,'')">
+        <ion-icon name="rocket"></ion-icon>
         <ion-label>{{ spacecraft.maiden_flight }}</ion-label>
       </ion-chip>
-      <ion-chip id="in_use" *ngIf="spacecraft.in_use">
+      <ion-chip id="in_use" *ngIf="spacecraft.in_use" (click)="showSpecification('Spacecraft is','Active','')">
         <ion-icon name="checkmark-circle" color="success"></ion-icon>
         <ion-label>Active</ion-label>
       </ion-chip>
-      <ion-chip id="retired" *ngIf="!spacecraft.in_use">
+      <ion-chip id="retired" *ngIf="!spacecraft.in_use" (click)="showSpecification('Spacecraft is','Not Active','')">
         <ion-icon name="close-circle" color="danger"></ion-icon>
         <ion-label>Not Active</ion-label>
       </ion-chip>

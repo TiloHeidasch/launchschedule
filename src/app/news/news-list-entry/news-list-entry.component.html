@@ -18,13 +18,13 @@
     <div class="image-wrapper">
       <ion-img
         id="background"
-        [src]="newsItem.imageUrl ? newsItem.imageUrl : 'assets/placeholder.png'"
+        [src]="newsItem.imageUrl ? newsItem.imageUrl : placeholderService.getPlaceholder()"
       ></ion-img>
     </div>
     <div class="image-wrapper">
       <ion-img
         id="foreground"
-        [src]="newsItem.imageUrl ? newsItem.imageUrl : 'assets/placeholder.png'"
+        [src]="newsItem.imageUrl ? newsItem.imageUrl : placeholderService.getPlaceholder()"
       ></ion-img>
     </div>
     <div *ngIf="clicked" class="image-wrapper clicked">

@@ -14,7 +14,7 @@
       <ion-img
         id="background"
         [src]="
-          event.feature_image ? event.feature_image : 'assets/placeholder.png'
+          event.feature_image ? event.feature_image : placeholderService.getPlaceholder()
         "
       >
       </ion-img>
@@ -26,7 +26,7 @@
         ionImgViewer
         id="foreground"
         [src]="
-          event.feature_image ? event.feature_image : 'assets/placeholder.png'
+          event.feature_image ? event.feature_image : placeholderService.getPlaceholder()
         "
       >
       </ion-img>
