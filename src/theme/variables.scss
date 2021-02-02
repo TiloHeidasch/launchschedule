@@ -162,6 +162,7 @@ body{
   --ion-color-secondary-tint: #232e50;
 
   --ion-toolbar-background: var(--ion-color-secondary);
+  --toolbar-expanded-color:var(--ion-color-secondary);
 
   --ion-tab-bar-background: var(--ion-color-secondary);
   --ion-tab-bar-color: var(--ion-color-secondary-contrast);
@@ -216,6 +217,7 @@ body.dark {
   --ion-color-secondary-tint: #2ea9cf;
 
   --ion-toolbar-background: var(--ion-color-step-100);
+  --toolbar-expanded-color:var(--ion-text-color);
 
   --ion-tab-bar-background: var(--ion-color-step-100);
   --ion-tab-bar-color: var(--ion-color-secondary-contrast);

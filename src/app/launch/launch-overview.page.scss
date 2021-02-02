@@ -12,3 +12,11 @@ ion-toolbar{
  ion-menu-button {
   color: var(--ion-color-primary);
 }
+ion-header.header-collapse-condense-inactive ion-toolbar {
+  ion-button{
+    --color: var(--toolbar-expanded-color) !important;
+  }
+ }
+.toolbar-title-large.ios ion-title{
+  --color: var(--toolbar-expanded-color) !important;
+}
