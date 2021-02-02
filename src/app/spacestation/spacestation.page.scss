@@ -1,3 +1,14 @@
-ion-menu-button {
+ion-toolbar{
+  ion-title{
+    --color: var(--ion-color-secondary-contrast);
+  }
+  ion-button{
+    --color: var(--ion-color-secondary-contrast) !important;
+  }
+  ion-segment-button{
+    --color: var(--ion-color-secondary-contrast) !important;
+  }
+ }
+ ion-menu-button {
   color: var(--ion-color-primary);
 }
