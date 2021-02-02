@@ -2,6 +2,7 @@ import { browser, by, element } from "protractor";
 
 describe("Spacestation", () => {
   beforeEach(() => {
+    browser.driver.manage().window().maximize();
     browser.get("/#/spacestation");
     browser.refresh();
     browser.sleep(2000);

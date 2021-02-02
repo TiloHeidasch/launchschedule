@@ -76,11 +76,7 @@ app-notification-icon {
 }
 ion-toolbar{
   ion-title{
-    --color: var(--ion-color-secondary-contrast);
     font-size: 1.75rem;
-  }
-  ion-button{
-    --color: var(--ion-color-secondary-contrast) !important;
   }
   ion-segment-button{
     --color: var(--ion-color-secondary-contrast) !important;

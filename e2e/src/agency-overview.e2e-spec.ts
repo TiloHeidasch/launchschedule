@@ -2,6 +2,7 @@ import { browser, by, element } from "protractor";
 
 describe("Agency", () => {
   beforeEach(() => {
+    browser.driver.manage().window().maximize();
     browser.get("/#/agency");
     browser.refresh();
     browser.sleep(2000);
