@@ -165,6 +165,19 @@ body{
 
   --ion-tab-bar-background: var(--ion-color-secondary);
   --ion-tab-bar-color: var(--ion-color-secondary-contrast);
+
+  --news-checkmark-foreground:var(--ion-color-primary-tint);
+  --news-checkmark-background:rgba(var(--ion-color-secondary-rgb),60%);
+
+  --news-article-text:var(--ion-color-article-contrast);
+  --news-article-background:var(--ion-color-article);
+  --news-article-font-weight:normal;
+  --news-blog-text:var(--ion-color-blog-contrast);
+  --news-blog-background:var(--ion-color-blog);
+  --news-report-text:var(--ion-color-report-contrast);
+  --news-report-background:var(--ion-color-report);
+  
+  --ion-menu-item-selected:rgba(var(--ion-color-primary-rgb), 0.14);
 }
 
 /* Fallback for older browsers or manual mode */
@@ -202,10 +215,23 @@ body.dark {
   --ion-color-secondary-shade: #148cb2;
   --ion-color-secondary-tint: #2ea9cf;
 
-  --ion-toolbar-background: var(--ion-color-secondary);
+  --ion-toolbar-background: var(--ion-color-step-100);
 
-  --ion-tab-bar-background: var(--ion-color-secondary);
+  --ion-tab-bar-background: var(--ion-color-step-100);
   --ion-tab-bar-color: var(--ion-color-secondary-contrast);
+
+  --news-checkmark-foreground:var(--ion-color-secondary-tint);
+  --news-checkmark-background:rgba(var(--ion-background-color-rgb),60%);
+  
+  --news-article-text:var(--ion-color-article-tint);
+  --news-article-background:var(--ion-color-step-100);
+  --news-article-font-weight:bold;
+  --news-blog-text:var(--ion-color-blog);
+  --news-blog-background:var(--ion-color-step-100);
+  --news-report-text:var(--ion-color-report);
+  --news-report-background:var(--ion-color-step-100);
+
+  --ion-menu-item-selected:rgba(var(--ion-color-primary-rgb), 0.07);
 }
 .ion-color-good {
   --ion-color-base: var(--ion-color-good);
@@ -238,28 +264,4 @@ body.dark {
   --ion-color-contrast-rgb: var(--ion-color-bad-contrast-rgb);
   --ion-color-shade: var(--ion-color-bad-shade);
   --ion-color-tint: var(--ion-color-bad-tint);
-}
-.ion-color-article {
-  --ion-color-base: var(--ion-color-article);
-  --ion-color-base-rgb: var(--ion-color-article-rgb);
-  --ion-color-contrast: var(--ion-color-article-contrast);
-  --ion-color-contrast-rgb: var(--ion-color-article-contrast-rgb);
-  --ion-color-shade: var(--ion-color-article-shade);
-  --ion-color-tint: var(--ion-color-article-tint);
-}
-.ion-color-blog {
-  --ion-color-base: var(--ion-color-blog);
-  --ion-color-base-rgb: var(--ion-color-blog-rgb);
-  --ion-color-contrast: var(--ion-color-blog-contrast);
-  --ion-color-contrast-rgb: var(--ion-color-blog-contrast-rgb);
-  --ion-color-shade: var(--ion-color-blog-shade);
-  --ion-color-tint: var(--ion-color-blog-tint);
-}
-.ion-color-report {
-  --ion-color-base: var(--ion-color-report);
-  --ion-color-base-rgb: var(--ion-color-report-rgb);
-  --ion-color-contrast: var(--ion-color-report-contrast);
-  --ion-color-contrast-rgb: var(--ion-color-report-contrast-rgb);
-  --ion-color-shade: var(--ion-color-report-shade);
-  --ion-color-tint: var(--ion-color-report-tint);
 }

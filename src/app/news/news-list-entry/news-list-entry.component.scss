@@ -71,7 +71,7 @@ img {
   width: 100%;
   ion-icon {
     font-size: 14rem;
-    color: var(--ion-color-primary-tint);
+    color: var(--news-checkmark-foreground);
   }
 }
 #background {
@@ -97,17 +97,18 @@ img {
   color: #000;
 }
 .blog {
-  background: var(--ion-color-blog);
-  color: var(--ion-color-blog-contrast);
+  background: var(--news-blog-background);
+  color: var(--news-blog-text);
 }
 .article {
-  background: var(--ion-color-article);
-  color: var(--ion-color-article-contrast);
+  background: var(--news-article-background);
+  color: var(--news-article-text);
+    font-weight: var(--news-article-font-weight);
 }
 .report {
-  background: var(--ion-color-report);
-  color: var(--ion-color-report-contrast);
+  background: var(--news-report-background);
+  color: var(--news-report-text);
 }
 .clicked {
-  background: rgba(var(--ion-color-secondary-rgb),60%);
+  background: var(--news-checkmark-background);
 }
