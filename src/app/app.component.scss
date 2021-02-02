@@ -7,14 +7,18 @@ ion-menu.md ion-content {
   --padding-end: 8px;
   --padding-bottom: 20px;
 }
-#menu-list{
+#menu-list {
   --ion-item-background: transparent;
-ion-item{
-  font-size: 1.1rem;
-  h4{
-    font-size: 1.3rem;
+  ion-item {
+    font-size: 1.1rem;
+    h4 {
+      font-size: 1.3rem;
+    }
   }
 }
+
+ion-menu ion-img {
+  background: var(--ion-item-background);
 }
 
 ion-menu.md ion-note {
