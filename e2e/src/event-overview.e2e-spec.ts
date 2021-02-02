@@ -2,6 +2,7 @@ import { browser, by, element } from "protractor";
 
 describe("Event", () => {
   beforeEach(() => {
+    browser.driver.manage().window().maximize();
     browser.get("/#/event");
     browser.refresh();
     browser.sleep(2000);
