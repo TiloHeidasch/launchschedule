@@ -22,7 +22,7 @@ function requestUrlAndPersistToFile(url) {
           process.argv[1] + " recieved " + recieved.results.length + " records"
         );
         console.log(process.argv[1] + " dataAll.length " + dataAll.length);
-        if (recieved.next && recieved.next.search("offset=" + max) == -1) {
+        if (recieved.next && recieved.next.search("offset=" + max) === -1) {
           requestUrlAndPersistToFile(recieved.next);
         } else {
           persistData();
