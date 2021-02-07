@@ -1,11 +1,11 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
 
-import { BlueMarblePage } from './blue-marble.page';
+import { BlueMarblePage } from "./blue-marble.page";
 
 const routes: Routes = [
   {
-    path: '',
+    path: "",
     component: BlueMarblePage
   }
 ];

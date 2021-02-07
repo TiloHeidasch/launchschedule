@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-const archiveUrl: string = "https://epic.gsfc.nasa.gov/archive/natural/";
-const metaDataUrl: string = "https://epic.gsfc.nasa.gov/api/natural";
+const archiveUrl = "https://epic.gsfc.nasa.gov/archive/natural/";
+const metaDataUrl = "https://epic.gsfc.nasa.gov/api/natural";
 
 @Injectable({
   providedIn: "root",

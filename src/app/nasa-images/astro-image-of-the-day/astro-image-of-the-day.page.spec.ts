@@ -1,9 +1,9 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { IonicModule } from "@ionic/angular";
 
-import { AstroImageOfTheDayPage } from './astro-image-of-the-day.page';
+import { AstroImageOfTheDayPage } from "./astro-image-of-the-day.page";
 
-describe('AstroImageOfTheDayPage', () => {
+describe("AstroImageOfTheDayPage", () => {
   let component: AstroImageOfTheDayPage;
   let fixture: ComponentFixture<AstroImageOfTheDayPage>;
 
@@ -18,7 +18,7 @@ describe('AstroImageOfTheDayPage', () => {
     fixture.detectChanges();
   }));
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

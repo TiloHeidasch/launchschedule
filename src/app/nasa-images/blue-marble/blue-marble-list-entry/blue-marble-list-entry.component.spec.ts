@@ -1,9 +1,9 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { IonicModule } from "@ionic/angular";
 
-import { BlueMarbleListEntryComponent } from './blue-marble-list-entry.component';
+import { BlueMarbleListEntryComponent } from "./blue-marble-list-entry.component";
 
-describe('BlueMarbleListEntryComponent', () => {
+describe("BlueMarbleListEntryComponent", () => {
   let component: BlueMarbleListEntryComponent;
   let fixture: ComponentFixture<BlueMarbleListEntryComponent>;
 
@@ -18,7 +18,7 @@ describe('BlueMarbleListEntryComponent', () => {
     fixture.detectChanges();
   }));
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });
