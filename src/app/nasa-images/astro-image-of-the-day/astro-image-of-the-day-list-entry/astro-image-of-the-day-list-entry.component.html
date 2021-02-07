@@ -1,0 +1,41 @@
+<ion-card *ngIf="astroImageOfTheDay" appSlideIn>
+  <div id="image">
+    <div class="image-wrapper">
+      <ion-img
+        id="background"
+        [src]="
+          astroImageOfTheDay.hdurl
+            ? astroImageOfTheDay.hdurl
+            : placeholderService.getPlaceholder()
+        "
+      ></ion-img>
+    </div>
+    <div class="image-wrapper">
+      <ion-img
+        id="foreground"
+        [title]="astroImageOfTheDay.title"
+        [text]="astroImageOfTheDay.copyright"
+        ionImgViewer
+        [src]="
+          astroImageOfTheDay.hdurl
+            ? astroImageOfTheDay.hdurl
+            : placeholderService.getPlaceholder()
+        "
+      ></ion-img>
+    </div>
+  </div>
+  <ion-card-header>
+    <ion-card-subtitle *ngIf="astroImageOfTheDay.copyright"
+      >© {{ astroImageOfTheDay.copyright }}</ion-card-subtitle
+    >
+    <ion-card-subtitle *ngIf="!astroImageOfTheDay.copyright"
+      >© NASA</ion-card-subtitle
+    >
+    <ion-card-title>{{ astroImageOfTheDay.title }}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <div id="content">
+      {{ astroImageOfTheDay.explanation }}
+    </div>
+  </ion-card-content>
+</ion-card>

@@ -52,6 +52,11 @@ export class AppComponent implements OnInit {
       url: "/news",
       icon: "newspaper",
     },
+    {
+      title: "NASA Images",
+      url: "/nasa",
+      icon: "images",
+    },
   ];
   public deepDivePages = [
     {
