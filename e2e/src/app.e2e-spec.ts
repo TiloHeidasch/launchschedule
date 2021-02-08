@@ -24,7 +24,7 @@ describe("App", () => {
     it("should have menu items", () => {
       const menuItems = element.all(by.tagName("ion-menu-toggle"));
       expect(menuItems).toBeDefined();
-      expect(menuItems.count()).toBe(11);
+      expect(menuItems.count()).toBe(12);
     });
     it("should default to Launch", () => {
       expect(browser.getCurrentUrl()).toContain("/#/launch");
@@ -56,51 +56,58 @@ describe("App", () => {
       browser.sleep(2000);
       expect(browser.getCurrentUrl()).toContain("/#/news");
     });
-    it("should navigate to Agency", () => {
+    it("should navigate to NASA Images", () => {
       element(
         by.css("ion-menu-toggle:nth-of-type(5)>ion-item>ion-label")
+      ).click();
+      browser.sleep(2000);
+      expect(browser.getCurrentUrl()).toContain("/#/nasa");
+    });
+    it("should navigate to Agency", () => {
+      element(
+        by.css("ion-menu-toggle:nth-of-type(6)>ion-item>ion-label")
       ).click();
       browser.sleep(2000);
       expect(browser.getCurrentUrl()).toContain("/#/agency");
     });
     it("should navigate to Astronaut", () => {
       element(
-        by.css("ion-menu-toggle:nth-of-type(6)>ion-item>ion-label")
+        by.css("ion-menu-toggle:nth-of-type(7)>ion-item>ion-label")
       ).click();
       browser.sleep(2000);
       expect(browser.getCurrentUrl()).toContain("/#/astronaut");
     });
     it("should navigate to Facility", () => {
       element(
-        by.css("ion-menu-toggle:nth-of-type(7)>ion-item>ion-label")
+        by.css("ion-menu-toggle:nth-of-type(8)>ion-item>ion-label")
       ).click();
       browser.sleep(2000);
       expect(browser.getCurrentUrl()).toContain("/#/location");
     });
     it("should navigate to Pad", () => {
       element(
-        by.css("ion-menu-toggle:nth-of-type(8)>ion-item>ion-label")
+        by.css("ion-menu-toggle:nth-of-type(9)>ion-item>ion-label")
       ).click();
       browser.sleep(2000);
       expect(browser.getCurrentUrl()).toContain("/#/pad");
     });
     it("should navigate to Rocket", () => {
       element(
-        by.css("ion-menu-toggle:nth-of-type(9)>ion-item>ion-label")
+        by.css("ion-menu-toggle:nth-of-type(10)>ion-item>ion-label")
       ).click();
       browser.sleep(2000);
       expect(browser.getCurrentUrl()).toContain("/#/rocket");
     });
     it("should navigate to Spacecraft", () => {
       element(
-        by.css("ion-menu-toggle:nth-of-type(10)>ion-item>ion-label")
+        by.css("ion-menu-toggle:nth-of-type(11)>ion-item>ion-label")
       ).click();
       browser.sleep(2000);
       expect(browser.getCurrentUrl()).toContain("/#/spacecraft");
     });
     it("should navigate to Spacestation", () => {
       element(
-        by.css("ion-menu-toggle:nth-of-type(11)>ion-item>ion-label")
+        by.css("ion-menu-toggle:nth-of-type(12)>ion-item>ion-label")
       ).click();
       browser.sleep(2000);
       expect(browser.getCurrentUrl()).toContain("/#/spacestation");
