@@ -7,6 +7,7 @@ export const environment = {
   launchLibrary: "https://lldev.thespacedevs.com",
   snapi: "https://test.spaceflightnewsapi.net/api/v2/",
   notificationUrl: "https://launchschedule-notifications.th105.de/notification",
+  nasaApiKey: "DEMO_KEY",
   versionCode: 1,
   versionName: "000000",
   track: "dev",
