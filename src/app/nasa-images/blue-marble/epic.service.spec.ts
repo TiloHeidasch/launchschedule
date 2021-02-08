@@ -23,7 +23,7 @@ describe("EpicService", () => {
   it("should be created", () => {
     expect(service).toBeTruthy();
   });
-  
+
   describe("EPIC Blue Marble Photos", () => {
     it("should call for Metadata", () => {
       service.getLatestPictures();
