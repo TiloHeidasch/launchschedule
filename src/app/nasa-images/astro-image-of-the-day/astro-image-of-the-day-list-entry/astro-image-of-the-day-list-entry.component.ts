@@ -10,7 +10,7 @@ import { AstronomyPictureOfTheDay } from "../apod.service";
 export class AstroImageOfTheDayListEntryComponent implements OnInit {
   @Input() astroImageOfTheDay: AstronomyPictureOfTheDay;
 
-  constructor(placeholderService: PlaceholderService) {}
+  constructor(public placeholderService: PlaceholderService) {}
 
   ngOnInit() {}
 }
