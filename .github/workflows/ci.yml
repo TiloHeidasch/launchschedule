@@ -173,10 +173,7 @@ jobs:
       - name: Set Release Track Variable
         run: echo "RELEASE_TRACK=`cat ./track`" >> $GITHUB_ENV
       - name: Setup Environment File
-        run: sed -i 's/};/nasaApiKey:"${{ env.NASA_API_KEY }}",\n versionCode:${{ github.run_number }},\n versionName:"${{ env.RELEASE_NAME }}",\n track:"${{ env.RELEASE_TRACK }}"\n};/g' src/environments/environment.prod.ts
-        shell: bash
-        env:
-          NASA_API_KEY: ${{ secrets.NASA_API_KEY }}
+        run: sed -i 's/};/versionCode:${{ github.run_number }},\n versionName:"${{ env.RELEASE_NAME }}",\n track:"${{ env.RELEASE_TRACK }}"\n};/g' src/environments/environment.prod.ts
       - name: Check Environment File
         run: cat src/environments/environment.prod.ts
       - name: Download Launches
