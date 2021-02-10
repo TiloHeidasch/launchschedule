@@ -1,5 +1,5 @@
 <ion-card *ngIf="astroImageOfTheDay" appSlideIn>
-  <div id="image">
+  <div id="image" *ngIf="astroImageOfTheDay.media_type==='image'">
     <div class="image-wrapper">
       <ion-img
         id="background"
@@ -34,6 +34,7 @@
     <ion-card-title>{{ astroImageOfTheDay.title }}</ion-card-title>
   </ion-card-header>
   <ion-card-content>
+      <youtube-player height="100%" width="100%" [videoId]="id"></youtube-player>
     <div id="content">
       {{ astroImageOfTheDay.explanation }}
     </div>
