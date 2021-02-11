@@ -29,9 +29,10 @@ export class EpicService {
         month +
         "/" +
         day +
-        "/png/" +
+        "/jpg/" +
         metaData.image +
-        ".png";
+        ".jpg";
+      metaData.date = new Date(metaData.date);
       pictures.push({ metaData, pictureUrl });
     });
     return pictures;
@@ -57,7 +58,7 @@ interface MetaData {
   lunar_j2000_position: EpicPosition;
   sun_j2000_position: EpicPosition;
   attitude_quaternions: EpicQuaternions;
-  date: string;
+  date: Date;
   coords: EpicCoords;
 }
 interface EpicCentroidCoordinates {
