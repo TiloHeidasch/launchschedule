@@ -16,10 +16,10 @@
       </ion-img>
     </div>
     <div class="image-wrapper">
-      <ion-img
+      <ion-img-viewer
         [title]="spacestation.name"
         [text]="spacestation.type.name"
-        ionImgViewer
+        [swipeToClose]="false"
         id="foreground"
         [src]="
           spacestation.image_url
@@ -27,7 +27,7 @@
             : placeholderService.getPlaceholder()
         "
       >
-      </ion-img>
+      </ion-img-viewer>
     </div>
   </div>
   <ion-card-header>
