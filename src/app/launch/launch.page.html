@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="launch"></ion-back-button>
+      <ion-back-button color="primary" defaultHref="launch"></ion-back-button>
     </ion-buttons>
     <ion-title>{{ title }}</ion-title>
   </ion-toolbar>
@@ -13,6 +13,9 @@
       <ion-title size="large">{{ title }}</ion-title>
     </ion-toolbar>
   </ion-header>
+  <ion-refresher slot="fixed" (ionRefresh)="load($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
 
   <div id="container" *ngIf="launch!==undefined">
     <div id="launch">
@@ -27,9 +30,7 @@
         *ngFor="let member of launch.rocket.spacecraft_stage.launch_crew"
       >
         <ion-item>
-          <ion-label>
-            {{member.role}}
-          </ion-label>
+          <ion-label> {{member.role}} </ion-label>
         </ion-item>
         <app-astronaut-list-entry
           [id]="member.astronaut.id"
@@ -38,9 +39,7 @@
     </div>
     <div id="rocket">
       <ion-item>
-        <ion-label>
-          Rocket
-        </ion-label>
+        <ion-label> Rocket </ion-label>
       </ion-item>
       <app-rocket-list-entry
         [rocket]="launch.rocket.configuration"
@@ -48,9 +47,7 @@
     </div>
     <div id="mission" *ngIf="launch.mission">
       <ion-item>
-        <ion-label>
-          Mission
-        </ion-label>
+        <ion-label> Mission </ion-label>
       </ion-item>
       <app-mission-list-entry
         [mission]="launch.mission"
@@ -58,17 +55,13 @@
     </div>
     <div id="pad">
       <ion-item>
-        <ion-label>
-          Pad
-        </ion-label>
+        <ion-label> Pad </ion-label>
       </ion-item>
       <app-pad-list-entry [pad]="launch.pad"></app-pad-list-entry>
     </div>
     <div id="agency">
       <ion-item>
-        <ion-label>
-          Agency
-        </ion-label>
+        <ion-label> Agency </ion-label>
       </ion-item>
       <app-agency-list-entry
         [agency]="launch.launch_service_provider"
@@ -76,9 +69,7 @@
     </div>
     <div id="video" *ngIf="launch.vidURLs && launch.vidURLs.length>0">
       <ion-item>
-        <ion-label>
-          Videos
-        </ion-label>
+        <ion-label> Videos </ion-label>
       </ion-item>
       <app-youtube-video
         *ngFor="let video of launch.vidURLs"

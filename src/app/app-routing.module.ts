@@ -68,6 +68,13 @@ const routes: Routes = [
       import("./about/about.module").then((m) => m.AboutPageModule),
   },
   {
+    path: "nasa",
+    loadChildren: () =>
+      import("./nasa-images/nasa-images.module").then(
+        (m) => m.NasaImagesModule
+      ),
+  },
+  {
     path: "**",
     redirectTo: "launch",
   },
@@ -78,6 +85,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes, {
       useHash: true,
       preloadingStrategy: NoPreloading,
+      relativeLinkResolution: "legacy",
     }),
   ],
   exports: [RouterModule],

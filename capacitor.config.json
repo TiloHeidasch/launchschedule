@@ -1,6 +1,6 @@
 {
   "appId": "de.th105.launchschedule",
-  "appName": "Launch Schedule",
+  "appName": "RCKET",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",

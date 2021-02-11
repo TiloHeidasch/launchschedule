@@ -4,6 +4,7 @@ import {
   Input,
   ChangeDetectionStrategy,
 } from "@angular/core";
+import { PlaceholderService } from "src/app/placeholder.service";
 
 @Component({
   selector: "app-event-list-entry",
@@ -16,7 +17,7 @@ export class EventListEntryComponent implements OnInit {
   title: string;
   subtitle: string;
   date: Date;
-  constructor() {}
+  constructor(public placeholderService: PlaceholderService) {}
 
   ngOnInit() {
     this.title = this.event.name;

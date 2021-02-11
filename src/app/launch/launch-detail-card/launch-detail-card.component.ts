@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { LaunchLibraryService } from "src/app/launch-library.service";
+import { PlaceholderService } from "src/app/placeholder.service";
 
 @Component({
   selector: "app-launch-detail-card",
@@ -13,7 +14,10 @@ export class LaunchDetailCardComponent implements OnInit {
   date;
   imageUrl;
 
-  constructor(private service: LaunchLibraryService) {}
+  constructor(
+    private service: LaunchLibraryService,
+    public placeholderService: PlaceholderService
+  ) {}
 
   async ngOnInit() {
     this.date = new Date(this.launch.net);

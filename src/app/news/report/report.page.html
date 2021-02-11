@@ -1,0 +1,27 @@
+<ion-content
+  #reportContent
+  [scrollEvents]="true"
+  (ionScroll)="logScrolling($event)"
+  [fullscreen]="true"
+>
+  <ion-refresher slot="fixed" (ionRefresh)="loadFirst($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div id="container">
+    <ion-list>
+      <div *ngFor="let newsItem of store.reports">
+        <app-news-list-entry
+          [newsItem]="newsItem"
+          type="Report"
+        ></app-news-list-entry>
+      </div>
+    </ion-list>
+    <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="circular"
+        loadingText="Loading more newsItems..."
+      >
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll></div
+></ion-content>

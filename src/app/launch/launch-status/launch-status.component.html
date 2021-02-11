@@ -6,30 +6,31 @@
     <!-- 4 - Fail -- red -->
     <!-- 5 - Hold -- purple -->
     <!-- 6 - In Flight -- blue -->
-    <!-- 7 - Partial Failure -- orange -->
+    <!-- 7 - Partial Failure -- yellow -->
+    <!-- 8 - To be confirmed -- yellow -->
     <div *ngSwitchCase="1">
-      <ion-chip color="success">
-        <ion-label color="success">{{ status.name }}</ion-label>
+      <ion-chip color="good">
+        <ion-label color="good">{{ status.name }}</ion-label>
       </ion-chip>
     </div>
     <div *ngSwitchCase="2">
-      <ion-chip color="tertiary">
-        <ion-label color="tertiary">{{ status.name }}</ion-label>
+      <ion-chip color="unsure">
+        <ion-label color="unsure">{{ status.name }}</ion-label>
       </ion-chip>
     </div>
     <div *ngSwitchCase="3">
-      <ion-chip color="success">
-        <ion-label color="success">{{ status.name }}</ion-label>
+      <ion-chip color="good">
+        <ion-label color="good">{{ status.name }}</ion-label>
       </ion-chip>
     </div>
     <div *ngSwitchCase="4">
-      <ion-chip color="danger">
-        <ion-label color="danger">{{ status.name }}</ion-label>
+      <ion-chip color="bad">
+        <ion-label color="bad">{{ status.name }}</ion-label>
       </ion-chip>
     </div>
     <div *ngSwitchCase="5">
-      <ion-chip color="tertiary">
-        <ion-label color="tertiary">{{ status.name }}</ion-label>
+      <ion-chip color="trouble">
+        <ion-label color="trouble">{{ status.name }}</ion-label>
       </ion-chip>
     </div>
     <div *ngSwitchCase="6">
@@ -38,8 +39,13 @@
       </ion-chip>
     </div>
     <div *ngSwitchCase="7">
-      <ion-chip color="warning">
-        <ion-label color="warning">{{ status.name }}</ion-label>
+      <ion-chip color="trouble">
+        <ion-label color="trouble">{{ status.name }}</ion-label>
+      </ion-chip>
+    </div>
+    <div *ngSwitchCase="8">
+      <ion-chip color="trouble">
+        <ion-label color="trouble">{{ status.name }}</ion-label>
       </ion-chip>
     </div>
     <div *ngSwitchDefault></div>

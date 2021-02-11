@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="event"></ion-back-button>
+      <ion-back-button color="primary" defaultHref="event"></ion-back-button>
     </ion-buttons>
     <ion-title>{{ title }}</ion-title>
   </ion-toolbar>
@@ -13,6 +13,9 @@
       <ion-title size="large">{{ title }}</ion-title>
     </ion-toolbar>
   </ion-header>
+  <ion-refresher slot="fixed" (ionRefresh)="load($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
 
   <div id="container" *ngIf="event!==undefined">
     <div id="event">
@@ -20,9 +23,7 @@
     </div>
     <div id="launches" *ngIf="event.launches.length>0">
       <ion-item>
-        <ion-label>
-          Launches
-        </ion-label>
+        <ion-label> Launches </ion-label>
       </ion-item>
       <app-launch-list-entry
         *ngFor="let launch of event.launches"
@@ -34,9 +35,7 @@
       *ngIf="event.expeditions.length>0 && event.expeditions[0].spacestation"
     >
       <ion-item>
-        <ion-label>
-          Spacestation
-        </ion-label>
+        <ion-label> Spacestation </ion-label>
       </ion-item>
       <app-spacestation-list-entry
         [id]="event.expeditions[0].spacestation.id"
@@ -44,9 +43,7 @@
     </div>
     <div id="video" *ngIf="event.video_url">
       <ion-item>
-        <ion-label>
-          Video
-        </ion-label>
+        <ion-label> Video </ion-label>
       </ion-item>
       <app-youtube-video [url]="event.video_url"></app-youtube-video>
     </div>

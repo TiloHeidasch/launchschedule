@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from "@angular/core";
 import { LaunchLibraryService } from "src/app/launch-library.service";
 import { ActionSheetController, ToastController } from "@ionic/angular";
 import { Router } from "@angular/router";
+import { PlaceholderService } from "src/app/placeholder.service";
 
 @Component({
   selector: "app-spacestation-detail-card",
@@ -15,11 +16,19 @@ export class SpacestationDetailCardComponent implements OnInit {
     private service: LaunchLibraryService,
     public actionSheetController: ActionSheetController,
     public toastController: ToastController,
-    private router: Router
+    private router: Router,
+    public placeholderService: PlaceholderService
   ) {}
 
   async ngOnInit() {}
 
+  async showSpecification(name, value, unit) {
+    const toast = await this.toastController.create({
+      message: name + ": " + value + " " + unit,
+      duration: 2000,
+    });
+    toast.present();
+  }
   async presentUnoccupiedToast(dockingLocation) {
     const toast = await this.toastController.create({
       message: dockingLocation.name + " is not occupied.",
@@ -30,7 +39,10 @@ export class SpacestationDetailCardComponent implements OnInit {
 
   async presentDockingLocationActionSheet(dockingLocation) {
     const actionSheet = await this.actionSheetController.create({
-      header: "Albums",
+      header:
+        dockingLocation.name +
+        " - " +
+        dockingLocation.docked.flight_vehicle.spacecraft.spacecraft_config.name,
       cssClass: "my-custom-class",
       buttons: [
         {

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { IonicModule } from "@ionic/angular";
 
 import { LocationDetailCardComponent } from "./location-detail-card.component";
@@ -9,7 +9,7 @@ describe("LocationDetailCardComponent", () => {
   let component: LocationDetailCardComponent;
   let fixture: ComponentFixture<LocationDetailCardComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [LocationDetailCardComponent],
       imports: [
@@ -23,7 +23,7 @@ describe("LocationDetailCardComponent", () => {
     component = fixture.componentInstance;
     component.location = {
       id: 151,
-      url: "https://ll.thespacedevs.com/2.0.0/location/151/",
+      url: "https://ll.thespacedevs.com/2.1.0/location/151/",
       name: "Broglio Space Center, Kenya",
       country_code: "ITA",
       map_image:

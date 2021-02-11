@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { IonicModule } from "@ionic/angular";
 
 import { LaunchStatusComponent } from "./launch-status.component";
@@ -9,7 +9,7 @@ describe("LaunchStatusComponent", () => {
   let component: LaunchStatusComponent;
   let fixture: ComponentFixture<LaunchStatusComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [LaunchStatusComponent],
       imports: [

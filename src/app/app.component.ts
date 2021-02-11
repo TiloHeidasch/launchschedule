@@ -16,6 +16,7 @@ import { MessageService } from "primeng/api";
 import { environment } from "../environments/environment";
 import { LaunchscheduleNotificationService } from "./launchschedule-notification.service";
 import { NewsParamStoreService } from "./news/news-param-store.service";
+import { PreferenceService } from "./preferences.service";
 
 const { PushNotifications } = Plugins;
 
@@ -50,6 +51,11 @@ export class AppComponent implements OnInit {
       title: "News",
       url: "/news",
       icon: "newspaper",
+    },
+    {
+      title: "NASA Images",
+      url: "/nasa",
+      icon: "images",
     },
   ];
   public deepDivePages = [
@@ -109,7 +115,8 @@ export class AppComponent implements OnInit {
     private router: Router,
     private messageService: MessageService,
     private launchscheduleNotificationService: LaunchscheduleNotificationService,
-    public newsParamStore: NewsParamStoreService
+    public newsParamStore: NewsParamStoreService,
+    public preferences: PreferenceService
   ) {
     this.initializeApp();
   }
@@ -133,8 +140,6 @@ export class AppComponent implements OnInit {
     } else {
       this.launchscheduleNotificationService.prepare();
     }
-    this.newsParamStore.getUnreadArticles();
-    this.newsParamStore.getUnreadBlogs();
   }
 
   initNotifications() {
@@ -193,5 +198,12 @@ export class AppComponent implements OnInit {
   }
   jumpToEvent(id) {
     this.router.navigateByUrl("/event/" + id);
+  }
+  toggleDarkTheme() {
+    this.preferences.setDark(!this.preferences.isDark());
+    this.setTheme();
+  }
+  private setTheme() {
+    document.body.classList.toggle("dark", this.preferences.isDark());
   }
 }

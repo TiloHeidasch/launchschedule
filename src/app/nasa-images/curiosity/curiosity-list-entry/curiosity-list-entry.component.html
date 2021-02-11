@@ -1,0 +1,46 @@
+<div>
+  <ion-card
+    *ngIf="marsPhoto"
+    appSlideIn
+  >
+    <div id="image">
+      <div class="image-wrapper">
+        <ion-img
+          id="background"
+          [src]="
+            marsPhoto.img_src
+              ? marsPhoto.img_src
+              : placeholderService.getPlaceholder()
+          "
+        >
+        </ion-img>
+      </div>
+      <div class="image-wrapper">
+        <ion-img-viewer
+          id="foreground"
+          [title]="title"
+          [text]="text"
+          [swipeToClose]="false"
+          [src]="
+            marsPhoto.img_src
+              ? marsPhoto.img_src
+              : placeholderService.getPlaceholder()
+          "
+        >
+        </ion-img-viewer>
+      </div>
+    </div>
+    <ion-card-header>
+      <ion-card-subtitle>{{ subtitle }}</ion-card-subtitle>
+      <ion-card-title>{{ title }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div id="content">
+        <p id="earth_date">Date: {{ marsPhoto.earth_date }}</p>
+        <p id="sol">
+          Sol: {{ marsPhoto.sol }}
+        </p>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</div>

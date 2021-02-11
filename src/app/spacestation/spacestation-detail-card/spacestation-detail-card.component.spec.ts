@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { IonicModule } from "@ionic/angular";
 
 import { SpacestationDetailCardComponent } from "./spacestation-detail-card.component";
@@ -9,7 +9,7 @@ describe("SpacestationDetailCardComponent", () => {
   let component: SpacestationDetailCardComponent;
   let fixture: ComponentFixture<SpacestationDetailCardComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [SpacestationDetailCardComponent],
       imports: [
@@ -23,7 +23,7 @@ describe("SpacestationDetailCardComponent", () => {
     component = fixture.componentInstance;
     component.spacestation = {
       id: 13,
-      url: "https://ll.thespacedevs.com/2.0.0/spacestation/13/",
+      url: "https://ll.thespacedevs.com/2.1.0/spacestation/13/",
       name: "Salyut 5",
       status: {
         id: 2,
@@ -46,7 +46,7 @@ describe("SpacestationDetailCardComponent", () => {
       owners: [
         {
           id: 63,
-          url: "https://ll.thespacedevs.com/2.0.0/agencies/63/",
+          url: "https://ll.thespacedevs.com/2.1.0/agencies/63/",
           name: "Russian Federal Space Agency (ROSCOSMOS)",
           featured: true,
           type: "Government",

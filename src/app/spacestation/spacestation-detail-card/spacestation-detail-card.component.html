@@ -10,24 +10,24 @@
         [src]="
           spacestation.image_url
             ? spacestation.image_url
-            : 'assets/placeholder_1920.png'
+            : placeholderService.getPlaceholder()
         "
       >
       </ion-img>
     </div>
     <div class="image-wrapper">
-      <ion-img
+      <ion-img-viewer
         [title]="spacestation.name"
         [text]="spacestation.type.name"
-        ionImgViewer
+        [swipeToClose]="false"
         id="foreground"
         [src]="
           spacestation.image_url
             ? spacestation.image_url
-            : 'assets/placeholder_1920.png'
+            : placeholderService.getPlaceholder()
         "
       >
-      </ion-img>
+      </ion-img-viewer>
     </div>
   </div>
   <ion-card-header>
@@ -81,44 +81,50 @@
       <ion-item>
         <ion-label> Specifications </ion-label>
       </ion-item>
-      <ion-chip id="onboard_crew" *ngIf="spacestation.onboard_crew">
-        <ion-icon name="body" color="dark"></ion-icon>
+      <ion-chip id="onboard_crew" *ngIf="spacestation.onboard_crew"
+        (click)="showSpecification('Onboard crew',spacestation.onboard_crew,'Person(s)')">
+        <ion-icon name="body"></ion-icon>
         <ion-label>{{ spacestation.onboard_crew }}</ion-label>
       </ion-chip>
-      <ion-chip id="volume" *ngIf="spacestation.volume">
-        <ion-icon name="cube" color="dark"></ion-icon>
+      <ion-chip id="volume" *ngIf="spacestation.volume"
+        (click)="showSpecification('Pressurized volume',spacestation.volume,'Cubicmeter')">
+        <ion-icon name="cube"></ion-icon>
         <ion-label>{{ spacestation.volume }}m³</ion-label>
       </ion-chip>
-      <ion-chip id="width" *ngIf="spacestation.width">
-        <ion-icon name="code-working" color="dark"></ion-icon>
+      <ion-chip id="width" *ngIf="spacestation.width" (click)="showSpecification('Width',spacestation.width,'Meter')">
+        <ion-icon name="code-working"></ion-icon>
         <ion-label>{{ spacestation.width }}m</ion-label>
       </ion-chip>
-      <ion-chip id="height" *ngIf="spacestation.height">
-        <ion-icon name="arrow-up" color="dark"></ion-icon>
+      <ion-chip id="height" *ngIf="spacestation.height" (click)="showSpecification('Height',spacestation.height,'Meter')">
+        <ion-icon name="arrow-up"></ion-icon>
         <ion-label>{{ spacestation.height }}m</ion-label>
       </ion-chip>
-      <ion-chip id="mass" *ngIf="spacestation.mass">
-        <ion-icon name="barbell" color="dark"></ion-icon>
+      <ion-chip id="mass" *ngIf="spacestation.mass" (click)="showSpecification('Mass',spacestation.mass,'Tons')">
+        <ion-icon name="barbell"></ion-icon>
         <ion-label>{{ spacestation.mass }}t</ion-label>
       </ion-chip>
-      <ion-chip id="in_use" *ngIf="spacestation.status.id === 1">
+      <ion-chip id="in_use" *ngIf="spacestation.status.id === 1"
+        (click)="showSpecification('Spacestation is',spacestation.status.name,'')">
         <ion-icon name="checkmark-circle" color="success"></ion-icon>
         <ion-label>{{ spacestation.status.name }}</ion-label>
       </ion-chip>
-      <ion-chip id="deorbited" *ngIf="spacestation.status.id === 2">
+      <ion-chip id="deorbited" *ngIf="spacestation.status.id === 2"
+        (click)="showSpecification('Spacestation is',spacestation.status.name,'')">
         <ion-icon name="caret-down-circle" color="danger"></ion-icon>
         <ion-label>{{ spacestation.status.name }}</ion-label>
       </ion-chip>
-      <ion-chip id="abandoned" *ngIf="spacestation.status.id === 3">
+      <ion-chip id="abandoned" *ngIf="spacestation.status.id === 3"
+        (click)="showSpecification('Spacestation is',spacestation.status.name,'')">
         <ion-icon name="close-circle" color="warning"></ion-icon>
         <ion-label>{{ spacestation.status.name }}</ion-label>
       </ion-chip>
-      <ion-chip id="founded" *ngIf="spacestation.founded">
-        <ion-icon name="cloud-upload" color="dark"></ion-icon>
+      <ion-chip id="founded" *ngIf="spacestation.founded" (click)="showSpecification('Founded on',spacestation.founded,'')">
+        <ion-icon name="cloud-upload"></ion-icon>
         <ion-label>{{ spacestation.founded }}</ion-label>
       </ion-chip>
-      <ion-chip id="deorbited" *ngIf="spacestation.deorbited">
-        <ion-icon name="cloud-download" color="dark"></ion-icon>
+      <ion-chip id="deorbited" *ngIf="spacestation.deorbited"
+        (click)="showSpecification('Deorbited on',spacestation.deorbited,'')">
+        <ion-icon name="cloud-download"></ion-icon>
         <ion-label>{{ spacestation.deorbited }}</ion-label>
       </ion-chip>
     </div>

@@ -14,26 +14,22 @@
       <ion-img
         id="background"
         [src]="
-          event.feature_image
-            ? event.feature_image
-            : 'assets/placeholder_1920.png'
+          event.feature_image ? event.feature_image : placeholderService.getPlaceholder()
         "
       >
       </ion-img>
     </div>
     <div class="image-wrapper">
-      <ion-img
+      <ion-img-viewer
         [title]="event.name"
         [text]="event.type.name"
-        ionImgViewer
+        [swipeToClose]="false"
         id="foreground"
         [src]="
-          event.feature_image
-            ? event.feature_image
-            : 'assets/placeholder_1920.png'
+          event.feature_image ? event.feature_image : placeholderService.getPlaceholder()
         "
       >
-      </ion-img>
+      </ion-img-viewer>
     </div>
   </div>
   <ion-card-header>

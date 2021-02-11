@@ -1,5 +1,5 @@
 import { HttpClientTestingModule } from "@angular/common/http/testing";
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { RouterTestingModule } from "@angular/router/testing";
 import { IonicModule } from "@ionic/angular";
 import { AstronautOverviewPage } from "./astronaut-overview.page";
@@ -8,7 +8,7 @@ describe("AstronautOverviewPage", () => {
   let component: AstronautOverviewPage;
   let fixture: ComponentFixture<AstronautOverviewPage>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [AstronautOverviewPage],
       imports: [

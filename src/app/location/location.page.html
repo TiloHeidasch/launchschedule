@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="location"></ion-back-button>
+      <ion-back-button color="primary" defaultHref="location"></ion-back-button>
     </ion-buttons>
     <ion-title>{{ title }}</ion-title>
   </ion-toolbar>
@@ -13,6 +13,9 @@
       <ion-title size="large">{{ title }}</ion-title>
     </ion-toolbar>
   </ion-header>
+  <ion-refresher slot="fixed" (ionRefresh)="load($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
 
   <div id="container" *ngIf="location!==undefined">
     <div id="location">
@@ -22,9 +25,7 @@
     </div>
 
     <div id="pads">
-      <ion-item>
-        Pads
-      </ion-item>
+      <ion-item> Pads </ion-item>
       <app-pad-list-entry
         *ngFor="let pad of location.pads"
         [pad]="pad"

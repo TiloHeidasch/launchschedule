@@ -28,34 +28,34 @@ ion-card {
   background: -moz-linear-gradient(
     top,
     rgba(0, 0, 0, 0) 0%,
-    #1e1e1e 100%
+    var(--ion-item-background) 100%
   ); /* FF3.6+ */
   background: -webkit-gradient(
     linear,
     left top,
     left bottom,
-    color-stop(0%, #1e1e1e),
+    color-stop(0%, var(--ion-item-background)),
     color-stop(100%, rgba(0, 0, 0, 0))
   ); /* Chrome,Safari4+ */
   background: -webkit-linear-gradient(
     top,
     rgba(0, 0, 0, 0) 0%,
-    #1e1e1e 100%
+    var(--ion-item-background) 100%
   ); /* Chrome10+,Safari5.1+ */
   background: -o-linear-gradient(
     top,
     rgba(0, 0, 0, 0) 0%,
-    #1e1e1e 100%
+    var(--ion-item-background) 100%
   ); /* Opera 11.10+ */
   background: -ms-linear-gradient(
     top,
     rgba(0, 0, 0, 0) 0%,
-    #1e1e1e 100%
+    var(--ion-item-background) 100%
   ); /* IE10+ */
   background: linear-gradient(
     to bottom,
     rgba(0, 0, 0, 0) 0%,
-    #1e1e1e 100%
+    var(--ion-item-background) 100%
   ); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#002f4b', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
 }
@@ -71,7 +71,7 @@ img {
   width: 100%;
   ion-icon {
     font-size: 14rem;
-    color: white;
+    color: var(--news-checkmark-foreground);
   }
 }
 #background {
@@ -93,15 +93,22 @@ img {
   z-index: 1;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-  width: 7rem;
+  width: 8rem;
   color: #000;
 }
 .blog {
-  background: #f1c40f;
+  background: var(--news-blog-background);
+  color: var(--news-blog-text);
 }
 .article {
-  background: #16a085;
+  background: var(--news-article-background);
+  color: var(--news-article-text);
+    font-weight: var(--news-article-font-weight);
+}
+.report {
+  background: var(--news-report-background);
+  color: var(--news-report-text);
 }
 .clicked {
-  background: #0006;
+  background: var(--news-checkmark-background);
 }

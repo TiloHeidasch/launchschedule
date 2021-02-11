@@ -5,6 +5,7 @@ import {
   ChangeDetectionStrategy,
 } from "@angular/core";
 import { LaunchLibraryService } from "src/app/launch-library.service";
+import { PlaceholderService } from "src/app/placeholder.service";
 
 @Component({
   selector: "app-pad-list-entry",
@@ -18,7 +19,10 @@ export class PadListEntryComponent implements OnInit {
   @Input() locationName?;
   title: string;
   subtitle: string;
-  constructor(private service: LaunchLibraryService) {}
+  constructor(
+    private service: LaunchLibraryService,
+    public placeholderService: PlaceholderService
+  ) {}
 
   async ngOnInit() {
     if (!this.pad) {

@@ -1,11 +1,11 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <ion-menu-button color="primary"></ion-menu-button>
     </ion-buttons>
-    <ion-title>{{title}}</ion-title>
+    <ion-title id="title">{{title}}</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="shuffle()">
+      <ion-button id="randomize" (click)="shuffle()">
         <ion-icon slot="icon-only" name="shuffle"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -44,11 +44,17 @@
             (click)="whatComplete()"
             [disabled]="what===undefined"
             expand="block"
+            id="step_1_complete_button"
           >
             Done
           </ion-button>
           <ion-label *ngIf="step>1">{{what}}</ion-label>
-          <ion-button *ngIf="step>1" (click)="whatOpen()" expand="block">
+          <ion-button
+            *ngIf="step>1"
+            (click)="whatOpen()"
+            expand="block"
+            id="step_1_open_button"
+          >
             Redo
           </ion-button>
         </div>
@@ -122,6 +128,7 @@
             *ngIf="step===2"
             (click)="filterComplete()"
             expand="block"
+            id="step_2_complete_button"
           >
             Done
           </ion-button>
@@ -129,7 +136,12 @@
             >{{dataFiltered.length}} Records</ion-label
           >
           <ion-label *ngIf="step>2&&globalSearch">{{globalSearch}}</ion-label>
-          <ion-button *ngIf="step>2" (click)="filterOpen()" expand="block">
+          <ion-button
+            *ngIf="step>2"
+            (click)="filterOpen()"
+            expand="block"
+            id="step_2_open_button"
+          >
             Redo
           </ion-button>
         </div>
@@ -294,11 +306,17 @@
             [disabled]="xAxis===undefined"
             (click)="axisComplete()"
             expand="block"
+            id="step_3_complete_button"
           >
             Done
           </ion-button>
           <ion-label *ngIf="step>3">{{xAxis}}</ion-label>
-          <ion-button *ngIf="step>3" (click)="axisOpen()" expand="block">
+          <ion-button
+            *ngIf="step>3"
+            (click)="axisOpen()"
+            expand="block"
+            id="step_3_open_button"
+          >
             Redo
           </ion-button>
         </div>

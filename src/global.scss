@@ -31,6 +31,12 @@
   font-weight: 400;
   font-style: normal;
 }
+@font-face {
+  font-family: "Changa";
+  src: url("~/assets/fonts/Changa-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
 ion-card {
   transition: 0.2s;
 }
@@ -67,4 +73,17 @@ app-notification-icon {
   z-index: 1;
   right: 1rem;
   margin-top: 0.5rem;
+}
+ion-toolbar{
+  ion-title{
+    font-size: 1.75rem;
+  }
+  ion-segment-button{
+    --color: var(--ion-color-secondary-contrast) !important;
+  }
+ }
+ion-img-viewer#foreground {
+  img{
+    height: 13rem;
+  }
 }

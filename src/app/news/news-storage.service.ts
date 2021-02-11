@@ -18,12 +18,12 @@ export class NewsStorageService {
       await this.storage.setObject(keyClicked, clickedNewsItemIds);
     }
     const clickedNewsItem = clickedNewsItemIds.find(
-      (clickedNewsItemId) => clickedNewsItemId === newsItem._id
+      (clickedNewsItemId) => clickedNewsItemId === newsItem.id
     );
     if (clickedNewsItem) {
       return;
     }
-    clickedNewsItemIds.push(newsItem._id);
+    clickedNewsItemIds.push(newsItem.id);
     await this.storage.setObject(keyClicked, clickedNewsItemIds);
   }
   async isClicked(newsItem): Promise<boolean> {
@@ -32,23 +32,11 @@ export class NewsStorageService {
       return false;
     }
     const clickedNewsItem = clickedNewsItemIds.find(
-      (clickedNewsItemId) => clickedNewsItemId === newsItem._id
+      (clickedNewsItemId) => clickedNewsItemId === newsItem.id
     );
     if (clickedNewsItem) {
       return true;
     }
     return false;
-  }
-  async getBlogReadNumber(): Promise<number> {
-    return +(await this.storage.getItem(keyBlogReadNumber));
-  }
-  async setBlogReadNumber(n: number) {
-    await this.storage.setItem(keyBlogReadNumber, n + "");
-  }
-  async getArticleReadNumber(): Promise<number> {
-    return +(await this.storage.getItem(keyArticleReadNumber));
-  }
-  async setArticleReadNumber(n: number) {
-    await this.storage.setItem(keyArticleReadNumber, n + "");
   }
 }
