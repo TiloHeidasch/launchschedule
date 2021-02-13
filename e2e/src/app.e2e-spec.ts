@@ -24,7 +24,7 @@ describe("App", () => {
     it("should have menu items", () => {
       const menuItems = element.all(by.tagName("ion-menu-toggle"));
       expect(menuItems).toBeDefined();
-      expect(menuItems.count()).toBe(12);
+      expect(menuItems.count()).toBe(13);
     });
     it("should default to Launch", () => {
       expect(browser.getCurrentUrl()).toContain("/#/launch");

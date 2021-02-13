@@ -95,7 +95,18 @@ export class AppComponent implements OnInit {
       icon: "earth",
     },
   ];
-  private appPages = [...this.highlightPages, ...this.deepDivePages];
+  public bottomPages = [
+    {
+      title: "About",
+      url: "/about",
+      icon: "information-circle",
+    },
+  ];
+  private appPages = [
+    ...this.highlightPages,
+    ...this.deepDivePages,
+    ...this.bottomPages,
+  ];
 
   constructor(
     private platform: Platform,
