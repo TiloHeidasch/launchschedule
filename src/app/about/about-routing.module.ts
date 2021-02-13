@@ -9,25 +9,30 @@ const routes: Routes = [
     component: AboutPage,
     children: [
       {
-        path: "app",
+        path: "rcket",
         loadChildren: () =>
-          import("./app/app.module").then((m) => m.AppPageModule),
+          import("./rcket/rcket.module").then((m) => m.RcketPageModule),
       },
       {
-        path: "launchlibrary",
+        path: "ll2",
         loadChildren: () =>
-          import("./launchlibrary/launchlibrary.module").then(
-            (m) => m.LaunchlibraryPageModule
+          import("./ll2/ll2.module").then(
+            (m) => m.Ll2PageModule
           ),
       },
       {
-        path: "news",
+        path: "snapi",
         loadChildren: () =>
-          import("./news/news.module").then((m) => m.NewsPageModule),
+          import("./snapi/snapi.module").then((m) => m.SnapiPageModule),
+      },
+      {
+        path: "nasa",
+        loadChildren: () =>
+          import("./nasa/nasa.module").then((m) => m.NasaPageModule),
       },
       {
         path: "",
-        redirectTo: "/about/app",
+        redirectTo: "/about/rcket",
         pathMatch: "full",
       },
     ],
