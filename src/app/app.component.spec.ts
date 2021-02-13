@@ -52,7 +52,7 @@ describe("AppComponent", () => {
     await fixture.detectChanges();
     const app = fixture.nativeElement;
     const menuItems = app.querySelectorAll("ion-label");
-    expect(menuItems.length).toEqual(13);
+    expect(menuItems.length).toEqual(14);
     expect(menuItems[0].textContent).toContain("Launch");
     expect(menuItems[1].textContent).toContain("Event");
     expect(menuItems[2].textContent).toContain("Statistic");
@@ -66,6 +66,7 @@ describe("AppComponent", () => {
     expect(menuItems[10].textContent).toContain("Spacecraft");
     expect(menuItems[11].textContent).toContain("Spacestation");
     expect(menuItems[12].textContent).toContain("Dark Theme");
+    expect(menuItems[13].textContent).toContain("About");
   });
 
   it("should have urls", async () => {
@@ -73,7 +74,7 @@ describe("AppComponent", () => {
     await fixture.detectChanges();
     const app = fixture.nativeElement;
     const menuItems = app.querySelectorAll("ion-item");
-    expect(menuItems.length).toEqual(16);
+    expect(menuItems.length).toEqual(17);
     expect(menuItems[1].getAttribute("ng-reflect-router-link")).toEqual(
       "/launch"
     );
@@ -109,6 +110,9 @@ describe("AppComponent", () => {
     );
     expect(menuItems[13].getAttribute("ng-reflect-router-link")).toEqual(
       "/spacestation"
+    );
+    expect(menuItems[16].getAttribute("ng-reflect-router-link")).toEqual(
+      "/about"
     );
   });
 });
