@@ -36,7 +36,7 @@
     "@ionic-native/status-bar": "^5.31.1",
     "@ionic/angular": "^5.5.3",
     "@ionic/core": "^5.5.4",
-    "@types/leaflet": "^1.5.21",
+    "@types/leaflet": "^1.5.23",
     "chart.js": "^2.9.4",
     "codelyzer": "^6.0.1",
     "cordova-plugin-advanced-http": "^3.1.0",
