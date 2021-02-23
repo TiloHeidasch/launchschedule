@@ -1,8 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
-const baseUrl =
-  "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos";
+const baseUrl = "https://api.nasa.gov/mars-photos/api/v1/rovers/";
 const apiKey = environment.nasaApiKey;
 @Injectable({
   providedIn: "root",
@@ -22,6 +21,21 @@ export class MarsPhotosService {
     }
     return [];
   }
+  async getLatestPerseverancePhotos(): Promise<MarsPhoto[]> {
+    const today = new Date();
+    let response = await this.getPerseverancePhoto(this.getYearMonthDay(today));
+    if (response.photos && response.photos.length > 0) {
+      return response.photos;
+    } else if (response.photos && response.photos.length === 0) {
+      const yesterday = new Date();
+      yesterday.setDate(yesterday.getDate() - 1);
+      response = await this.getPerseverancePhoto(
+        this.getYearMonthDay(yesterday)
+      );
+      return response.photos;
+    }
+    return [];
+  }
 
   private getYearMonthDay(date: Date): YearMonthDay {
     const year = date.getFullYear();
@@ -35,6 +49,24 @@ export class MarsPhotosService {
   ): Promise<MarsPhotoResponse> {
     const url =
       baseUrl +
+      "curiosity/photos" +
+      "?earth_date=" +
+      yearMonthDay.year +
+      "-" +
+      yearMonthDay.month +
+      "-" +
+      yearMonthDay.day +
+      "&api_key=" +
+      apiKey;
+    const result = await this.http.get<MarsPhotoResponse>(url).toPromise();
+    return result;
+  }
+  private async getPerseverancePhoto(
+    yearMonthDay: YearMonthDay
+  ): Promise<MarsPhotoResponse> {
+    const url =
+      baseUrl +
+      "perseverance/photos" +
       "?earth_date=" +
       yearMonthDay.year +
       "-" +

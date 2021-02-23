@@ -7,7 +7,7 @@ import { IonicModule } from "@ionic/angular";
 import { CuriosityPageRoutingModule } from "./curiosity-routing.module";
 
 import { CuriosityPage } from "./curiosity.page";
-import { CuriosityListEntryModule } from "./curiosity-list-entry/curiosity-list-entry.module";
+import { RoverListEntryModule } from "../rover-list-entry/rover-list-entry.module";
 
 @NgModule({
   imports: [
@@ -15,7 +15,7 @@ import { CuriosityListEntryModule } from "./curiosity-list-entry/curiosity-list-
     FormsModule,
     IonicModule,
     CuriosityPageRoutingModule,
-    CuriosityListEntryModule,
+    RoverListEntryModule,
   ],
   declarations: [CuriosityPage],
 })

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { IonicModule } from "@ionic/angular";
 
-import { CuriosityListEntryComponent } from "./curiosity-list-entry.component";
+import { RoverListEntryComponent } from "./rover-list-entry.component";
 
-describe("CuriosityListEntryComponent", () => {
-  let component: CuriosityListEntryComponent;
-  let fixture: ComponentFixture<CuriosityListEntryComponent>;
+describe("RoverListEntryComponent", () => {
+  let component: RoverListEntryComponent;
+  let fixture: ComponentFixture<RoverListEntryComponent>;
 
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
-        declarations: [CuriosityListEntryComponent],
+        declarations: [RoverListEntryComponent],
         imports: [IonicModule.forRoot()],
       }).compileComponents();
 
-      fixture = TestBed.createComponent(CuriosityListEntryComponent);
+      fixture = TestBed.createComponent(RoverListEntryComponent);
       component = fixture.componentInstance;
       component.marsPhoto = {
         id: 794222,
@@ -30,7 +30,7 @@ describe("CuriosityListEntryComponent", () => {
         earth_date: "2021-02-06",
         rover: {
           id: 5,
-          name: "Curiosity",
+          name: "Rover",
           landing_date: "2012-08-06",
           launch_date: "2011-11-26",
           status: "active",

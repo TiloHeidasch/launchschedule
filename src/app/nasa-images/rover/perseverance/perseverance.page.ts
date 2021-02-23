@@ -1,12 +1,12 @@
 import { Component, OnInit } from "@angular/core";
-import { MarsPhoto, MarsPhotosService } from "./mars-photos.service";
+import { MarsPhoto, MarsPhotosService } from "../mars-photos.service";
 
 @Component({
-  selector: "app-curiosity",
-  templateUrl: "./curiosity.page.html",
-  styleUrls: ["./curiosity.page.scss"],
+  selector: "app-perseverance",
+  templateUrl: "./perseverance.page.html",
+  styleUrls: ["./perseverance.page.scss"],
 })
-export class CuriosityPage implements OnInit {
+export class PerseverancePage implements OnInit {
   marsPhotos: MarsPhoto[] = [];
   constructor(private service: MarsPhotosService) {}
 
@@ -14,7 +14,7 @@ export class CuriosityPage implements OnInit {
     this.getMarsPhotos();
   }
   async getMarsPhotos(refreshEvent?) {
-    this.marsPhotos = await this.service.getLatestCuriosityPhotos();
+    this.marsPhotos = await this.service.getLatestPerseverancePhotos();
     if (refreshEvent) {
       refreshEvent.target.complete();
     }
