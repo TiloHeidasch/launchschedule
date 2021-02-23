@@ -17,9 +17,9 @@
   </ion-header>
   <div *ngIf="marsPhotos.length>0">
     <div *ngFor="let marsPhoto of marsPhotos">
-      <app-curiosity-list-entry
+      <app-rover-list-entry
         [marsPhoto]="marsPhoto"
-      ></app-curiosity-list-entry>
+      ></app-rover-list-entry>
     </div>
   </div>
 </ion-content>

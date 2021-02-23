@@ -3,11 +3,11 @@ import { PlaceholderService } from "src/app/placeholder.service";
 import { MarsPhoto } from "../mars-photos.service";
 
 @Component({
-  selector: "app-curiosity-list-entry",
-  templateUrl: "./curiosity-list-entry.component.html",
-  styleUrls: ["./curiosity-list-entry.component.scss"],
+  selector: "app-rover-list-entry",
+  templateUrl: "./rover-list-entry.component.html",
+  styleUrls: ["./rover-list-entry.component.scss"],
 })
-export class CuriosityListEntryComponent implements OnInit {
+export class RoverListEntryComponent implements OnInit {
   @Input() marsPhoto: MarsPhoto;
   title: string;
   subtitle: string;

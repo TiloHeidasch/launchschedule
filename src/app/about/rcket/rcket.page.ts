@@ -81,7 +81,6 @@ export class RcketPage implements OnInit {
         "Some contents of this app are taken from other creators under an Open Source License",
         "",
         "Satellite Icon: CC BY - Edward Boatman",
-        "Rover Icon: CC BY - Focus Lab",
         "Font: Public domain, GPL, OFL - Eduardo Tunni",
         "Placeholder: Inspired by - Ryte Magazine",
       ],
@@ -89,11 +88,6 @@ export class RcketPage implements OnInit {
         {
           name: "Satellite by Edward Boatman",
           link: "https://thenounproject.com/term/satellite/408/",
-          isExternal: true,
-        },
-        {
-          name: "Rover by Focus Lab",
-          link: "https://thenounproject.com/term/rover/547826/",
           isExternal: true,
         },
         {

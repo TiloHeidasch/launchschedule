@@ -25,8 +25,15 @@ const routes: Routes = [
       {
         path: "curiosity",
         loadChildren: () =>
-          import("./curiosity/curiosity.module").then(
+          import("./rover/curiosity/curiosity.module").then(
             (m) => m.CuriosityPageModule
+          ),
+      },
+      {
+        path: "perseverance",
+        loadChildren: () =>
+          import("./rover/perseverance/perseverance.module").then(
+            (m) => m.PerseverancePageModule
           ),
       },
       {
@@ -35,11 +42,6 @@ const routes: Routes = [
         pathMatch: "full",
       },
     ],
-  },
-  {
-    path: "curiosity",
-    loadChildren: () =>
-      import("./curiosity/curiosity.module").then((m) => m.CuriosityPageModule),
   },
 ];
 
