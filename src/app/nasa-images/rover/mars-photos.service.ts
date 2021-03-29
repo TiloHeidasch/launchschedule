@@ -15,7 +15,7 @@ export class MarsPhotosService {
     return sols;
   }
   private async getManifest(rover: Rover): Promise<MarsPhotoManifest> {
-    let response = await this.http
+    const response = await this.http
       .get<MarsPhotoManifestResponse>(
         baseUrl + "manifests/" + rover + "?api_key=" + apiKey
       )
@@ -34,9 +34,7 @@ export class MarsPhotosService {
           apiKey
       )
       .toPromise();
-      console.log({rover,sol,response});
-      
-      return response.photos;
+    return response.photos;
   }
 }
 interface MarsPhotoManifestResponse {
