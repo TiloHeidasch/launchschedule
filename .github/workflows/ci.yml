@@ -365,6 +365,7 @@ jobs:
     name: Screenshots Pixel 2 XL
     runs-on: ubuntu-latest
     needs: fetch
+    if: github.ref == 'refs/heads/master'
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -392,6 +393,7 @@ jobs:
     name: Screenshots Nexus 7
     runs-on: ubuntu-latest
     needs: fetch
+    if: github.ref == 'refs/heads/master'
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -419,6 +421,7 @@ jobs:
     name: Screenshots Nexus 10
     runs-on: ubuntu-latest
     needs: fetch
+    if: github.ref == 'refs/heads/master'
     steps:
       - name: Checkout
         uses: actions/checkout@v2
