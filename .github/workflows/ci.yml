@@ -381,7 +381,7 @@ jobs:
         with:
           name: data
           path: src/app/data/
-      - name: Run Test
+      - name: Take Screenshots
         run: npm run screenshots:pixel2xl
       - name: Safe Screenshots
         uses: actions/upload-artifact@v2.1.4
@@ -408,7 +408,7 @@ jobs:
         with:
           name: data
           path: src/app/data/
-      - name: Run Test
+      - name: Take Screenshots
         run: npm run screenshots:nexus7
       - name: Safe Screenshots
         uses: actions/upload-artifact@v2.1.4
@@ -435,7 +435,7 @@ jobs:
         with:
           name: data
           path: src/app/data/
-      - name: Run Test
+      - name: Take Screenshots
         run: npm run screenshots:nexus10
       - name: Safe Screenshots
         uses: actions/upload-artifact@v2.1.4
