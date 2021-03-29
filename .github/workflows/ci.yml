@@ -362,7 +362,7 @@ jobs:
       - name: Run Test
         run: npm run e2e
   pixel2xl:
-    name: Screenshots Pixel2XL
+    name: Screenshots Pixel 2 XL
     runs-on: ubuntu-latest
     needs: fetch
     steps:
