@@ -49,7 +49,7 @@
     "ts-md5": "^1.2.7",
     "tslib": "^2.1.0",
     "uuidv4": "^6.2.6",
-    "zone.js": "~0.10.2"
+    "zone.js": "~0.11.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1102.1",
