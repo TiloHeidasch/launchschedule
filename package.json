@@ -29,7 +29,7 @@
     "@angular/youtube-player": "^11.2.5",
     "@capacitor/android": "^2.4.7",
     "@capacitor/core": "2.4.6",
-    "@capacitor/ios": "^2.4.6",
+    "@capacitor/ios": "^2.4.7",
     "@ionic-native/core": "^5.31.1",
     "@ionic-native/http": "^5.31.1",
     "@ionic-native/splash-screen": "^5.31.1",
