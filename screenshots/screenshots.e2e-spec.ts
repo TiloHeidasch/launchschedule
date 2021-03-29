@@ -2,14 +2,14 @@ import { browser, by, element } from "protractor";
 var fs = require("fs");
 const types = [
   "agency",
-  // "astronaut",
-  // "event",
-  // "agency",
-  // "location",
-  // "pad",
-  // "rocket",
-  // "spacecraft",
-  // "spacestation",
+  "astronaut",
+  "event",
+  "agency",
+  "location",
+  "pad",
+  "rocket",
+  "spacecraft",
+  "spacestation",
 ];
 const newsTypes = ["article", "blog", "report"];
 const nasaImageTypes = ["astro", "marble", "curiosity", "perseverance"];
