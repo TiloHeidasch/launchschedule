@@ -1,5 +1,7 @@
-import { Component, OnInit } from "@angular/core";
-import { MarsPhoto, MarsPhotosService } from "../mars-photos.service";
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { IonContent, IonInfiniteScroll } from "@ionic/angular";
+import { MarsPhoto, MarsPhotosService, Rover } from "../mars-photos.service";
+import { RoverParamStoreService } from "../rover-param-store.service";
 
 @Component({
   selector: "app-curiosity",
@@ -7,16 +9,61 @@ import { MarsPhoto, MarsPhotosService } from "../mars-photos.service";
   styleUrls: ["./curiosity.page.scss"],
 })
 export class CuriosityPage implements OnInit {
+  @ViewChild("curiosityContent") content: IonContent;
+  @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   marsPhotos: MarsPhoto[] = [];
-  constructor(private service: MarsPhotosService) {}
+  private availableSols: number[] = [];
+  constructor(
+    private service: MarsPhotosService,
+    public store: RoverParamStoreService
+  ) {}
 
-  async ngOnInit() {
-    this.getMarsPhotos();
+  ionViewDidEnter() {
+    this.content.scrollToPoint(0, this.store.curiosityScrollY, 250);
   }
-  async getMarsPhotos(refreshEvent?) {
-    this.marsPhotos = await this.service.getLatestCuriosityPhotos();
+  logScrolling(event) {
+    this.store.curiosityScrollY = event.detail.currentY;
+  }
+  async ngOnInit() {
+    this.availableSols = (
+      await this.service.getAvailableSols(Rover.CURIOSITY)
+    ).sort((sol1, sol2) => sol2 - sol1);
+    this.loadFirst();
+  }
+
+  async loadFirst(refreshEvent?) {
+    try {
+      this.infiniteScroll.disabled = false;
+    } catch (error) {}
+    this.store.curiosityImages = [];
+    this.store.curiosityLastRequestedSolIterator = 0;
+    this.store.curiosityImages = await this.service.getPhotosForSol(
+      Rover.CURIOSITY,
+      this.availableSols[this.store.curiosityLastRequestedSolIterator]
+    );
+    this.store.curiosityLastRequestedSolIterator++;
     if (refreshEvent) {
       refreshEvent.target.complete();
+    }
+  }
+
+  async loadMore(event) {
+    this.store.curiosityImages.push(
+      ...(await this.service.getPhotosForSol(
+        Rover.CURIOSITY,
+        this.availableSols[this.store.curiosityLastRequestedSolIterator]
+      ))
+    );
+    this.store.curiosityLastRequestedSolIterator++;
+    event.target.complete();
+
+    // App logic to determine if all data is loaded
+    // and disable the infinite scroll
+    if (
+      this.store.curiosityLastRequestedSolIterator ===
+      this.availableSols.length
+    ) {
+      event.target.disabled = true;
     }
   }
 }

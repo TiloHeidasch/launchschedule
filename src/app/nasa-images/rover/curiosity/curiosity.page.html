@@ -6,8 +6,12 @@
     <ion-title id="title">NASA Images</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content>
-  <ion-refresher slot="fixed" (ionRefresh)="getMarsPhotos($event)">
+<ion-content
+  #curiosityContent
+  [scrollEvents]="true"
+  (ionScroll)="logScrolling($event)"
+  [fullscreen]="true">
+    <ion-refresher slot="fixed" (ionRefresh)="loadFirst($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   <ion-header collapse="condense">
@@ -15,11 +19,20 @@
       <ion-title size="large">NASA Images</ion-title>
     </ion-toolbar>
   </ion-header>
-  <div *ngIf="marsPhotos.length>0">
-    <div *ngFor="let marsPhoto of marsPhotos">
+  <div id="container">
+    <ion-list>
+    <div *ngFor="let marsPhoto of store.curiosityImages">
       <app-rover-list-entry
         [marsPhoto]="marsPhoto"
       ></app-rover-list-entry>
     </div>
-  </div>
+    </ion-list>
+    <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="circular"
+        loadingText="Loading more photos..."
+      >
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll></div
+>
 </ion-content>

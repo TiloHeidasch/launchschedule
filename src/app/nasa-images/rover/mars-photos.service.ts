@@ -1,88 +1,60 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
-const baseUrl = "https://api.nasa.gov/mars-photos/api/v1/rovers/";
+const baseUrl = "https://api.nasa.gov/mars-photos/api/v1/";
 const apiKey = environment.nasaApiKey;
 @Injectable({
   providedIn: "root",
 })
 export class MarsPhotosService {
   constructor(private http: HttpClient) {}
-  async getLatestCuriosityPhotos(): Promise<MarsPhoto[]> {
-    const today = new Date();
-    let response = await this.getCuriosityPhoto(this.getYearMonthDay(today));
-    if (response.photos && response.photos.length > 0) {
-      return response.photos;
-    } else if (response.photos && response.photos.length === 0) {
-      const yesterday = new Date();
-      yesterday.setDate(yesterday.getDate() - 1);
-      response = await this.getCuriosityPhoto(this.getYearMonthDay(yesterday));
-      return response.photos;
-    }
-    return [];
+  async getAvailableSols(rover: Rover): Promise<number[]> {
+    const manifest = await this.getManifest(rover);
+    const sols: number[] = [];
+    sols.push(...manifest.photos.map((photo) => photo.sol));
+    return sols;
   }
-  async getLatestPerseverancePhotos(): Promise<MarsPhoto[]> {
-    const today = new Date();
-    let response = await this.getPerseverancePhoto(this.getYearMonthDay(today));
-    if (response.photos && response.photos.length > 0) {
-      return response.photos;
-    } else if (response.photos && response.photos.length === 0) {
-      const yesterday = new Date();
-      yesterday.setDate(yesterday.getDate() - 1);
-      response = await this.getPerseverancePhoto(
-        this.getYearMonthDay(yesterday)
-      );
-      return response.photos;
-    }
-    return [];
+  private async getManifest(rover: Rover): Promise<MarsPhotoManifest> {
+    const response = await this.http
+      .get<MarsPhotoManifestResponse>(
+        baseUrl + "manifests/" + rover + "?api_key=" + apiKey
+      )
+      .toPromise();
+    return response.photo_manifest;
   }
-
-  private getYearMonthDay(date: Date): YearMonthDay {
-    const year = date.getFullYear();
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
-    return { year, month, day };
-  }
-
-  private async getCuriosityPhoto(
-    yearMonthDay: YearMonthDay
-  ): Promise<MarsPhotoResponse> {
-    const url =
-      baseUrl +
-      "curiosity/photos" +
-      "?earth_date=" +
-      yearMonthDay.year +
-      "-" +
-      yearMonthDay.month +
-      "-" +
-      yearMonthDay.day +
-      "&api_key=" +
-      apiKey;
-    const result = await this.http.get<MarsPhotoResponse>(url).toPromise();
-    return result;
-  }
-  private async getPerseverancePhoto(
-    yearMonthDay: YearMonthDay
-  ): Promise<MarsPhotoResponse> {
-    const url =
-      baseUrl +
-      "perseverance/photos" +
-      "?earth_date=" +
-      yearMonthDay.year +
-      "-" +
-      yearMonthDay.month +
-      "-" +
-      yearMonthDay.day +
-      "&api_key=" +
-      apiKey;
-    const result = await this.http.get<MarsPhotoResponse>(url).toPromise();
-    return result;
+  async getPhotosForSol(rover: Rover, sol: number): Promise<MarsPhoto[]> {
+    const response: MarsPhotoResponse = await this.http
+      .get<MarsPhotoResponse>(
+        baseUrl +
+          "rovers/" +
+          rover +
+          "/photos?sol=" +
+          sol +
+          "&api_key=" +
+          apiKey
+      )
+      .toPromise();
+    return response.photos;
   }
 }
-interface YearMonthDay {
-  year: number;
-  month: number;
-  day: number;
+interface MarsPhotoManifestResponse {
+  photo_manifest: MarsPhotoManifest;
+}
+interface MarsPhotoManifest {
+  name: string;
+  landing_date: string;
+  launch_date: string;
+  status: string;
+  max_sol: number;
+  max_date: string;
+  total_photos: number;
+  photos: MarsPhotoManifestPhoto[];
+}
+interface MarsPhotoManifestPhoto {
+  sol: number;
+  earth_date: string;
+  total_photos: number;
+  cameras: string[];
 }
 interface MarsPhotoResponse {
   photos: MarsPhoto[];
@@ -107,4 +79,8 @@ export interface MarsRover {
   landing_date: string;
   launch_date: string;
   status: string;
+}
+export enum Rover {
+  CURIOSITY = "curiosity",
+  PERSEVERANCE = "perseverance",
 }
