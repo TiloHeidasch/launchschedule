@@ -1,5 +1,5 @@
 import { browser, by, element } from "protractor";
-
+import { clickElement } from "./e2e-helper";
 describe("News", () => {
   beforeEach(() => {
     browser.driver.manage().window().maximize();
