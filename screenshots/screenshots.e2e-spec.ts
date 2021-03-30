@@ -5,6 +5,7 @@ const types = [
   "astronaut",
   "event",
   "agency",
+  "launch",
   "location",
   "pad",
   "rocket",

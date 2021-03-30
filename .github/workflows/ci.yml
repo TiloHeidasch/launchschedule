@@ -385,6 +385,7 @@ jobs:
       - name: Take Screenshots
         run: npm run screenshots:pixel2xl
       - name: Safe Screenshots
+        if: always()
         uses: actions/upload-artifact@v2.1.4
         with:
           name: screenshots_pixel2xl
@@ -413,6 +414,7 @@ jobs:
       - name: Take Screenshots
         run: npm run screenshots:nexus7
       - name: Safe Screenshots
+        if: always()
         uses: actions/upload-artifact@v2.1.4
         with:
           name: screenshots_nexus7
@@ -441,6 +443,7 @@ jobs:
       - name: Take Screenshots
         run: npm run screenshots:nexus10
       - name: Safe Screenshots
+        if: always()
         uses: actions/upload-artifact@v2.1.4
         with:
           name: screenshots_nexus10
