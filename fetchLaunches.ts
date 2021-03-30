@@ -1,7 +1,7 @@
-var https = require("https");
-var fs = require("fs");
+let https = require("https");
+let fs = require("fs");
 
-var dataAll = [];
+let dataAll = [];
 function requestUrlAndPersistToFile(url) {
   console.log(process.argv[1] + " requesting " + url);
 
@@ -43,8 +43,8 @@ function persistData() {
   fs.writeFile(
     dir + fileName + offset + ".json",
     JSON.stringify(data),
-    function (err) {
-      if (err) return console.log(err);
+    function(err) {
+      if (err) { return console.log(err); }
       console.log(process.argv[1] + " wrote file");
       dataAll = [];
     }
@@ -81,12 +81,12 @@ function prepareData() {
     };
   });
 }
-var path = "launch";
-var dir = "src/app/data/";
-var fileName = "launches";
-var offset = process.argv[2];
-var step = process.argv[3];
-var max = +offset + +step;
+let path = "launch";
+let dir = "src/app/data/";
+let fileName = "launches";
+let offset = process.argv[2];
+let step = process.argv[3];
+let max = +offset + +step;
 
 requestUrlAndPersistToFile(
   "https://ll.thespacedevs.com/2.1.0/" +

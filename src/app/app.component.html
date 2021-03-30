@@ -1,10 +1,10 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
     <ion-menu contentId="main-content" type="overlay">
+      <ion-img *ngIf="preferences.isDark()" src="assets/icon/logo2dark.png"></ion-img><ion-img *ngIf="!preferences.isDark()" src="assets/icon/logo2.png"></ion-img>
       <ion-content>
-        <ion-img src="assets/icon/logo_left_text_right.png"></ion-img>
         <ion-list id="menu-list">
-          <ion-item class="menu-divider">Highlights</ion-item>
+          <ion-item class="menu-divider"><h4>Highlights</h4></ion-item>
           <ion-menu-toggle
             auto-hide="false"
             *ngFor="let p of highlightPages; let i = index"
@@ -25,7 +25,7 @@
               <ion-label>{{ p.title }}</ion-label>
             </ion-item>
           </ion-menu-toggle>
-          <ion-item class="menu-divider">Deep Dive</ion-item>
+          <ion-item class="menu-divider"><h4>Deep Dive</h4></ion-item>
           <ion-menu-toggle
             auto-hide="false"
             *ngFor="let p of deepDivePages; let i = index"
@@ -46,10 +46,43 @@
               <ion-label>{{ p.title }}</ion-label>
             </ion-item>
           </ion-menu-toggle>
+          <ion-item class="menu-divider"><h4>Appearance</h4></ion-item>
+          <ion-item lines="none">
+            <ion-icon slot="start" name="contrast"></ion-icon>
+            <ion-label
+              ><div *ngIf="preferences.isDark()">Light Theme</div>
+              <div *ngIf="!preferences.isDark()">Dark Theme</div></ion-label
+            >
+            <ion-toggle (ionChange)="toggleDarkTheme()" slot="end"></ion-toggle>
+          </ion-item>
         </ion-list>
-        <div class="version">
-          v{{ versionCode }};{{ versionName }};{{ track }}
-        </div>
+        <ion-list id="bottom">
+          <ion-menu-toggle
+            auto-hide="false"
+            *ngFor="let p of bottomPages; let i = index"
+          >
+            <ion-item
+              (click)="
+                selectedIndex = i + highlightPages.length + deepDivePages.length
+              "
+              routerDirection="root"
+              [routerLink]="[p.url]"
+              lines="none"
+              detail="false"
+              [class.selected]="
+                selectedIndex ===
+                i + highlightPages.length + deepDivePages.length
+              "
+            >
+              <ion-icon
+                slot="start"
+                [ios]="p.icon + '-outline'"
+                [md]="p.icon + '-sharp'"
+              ></ion-icon>
+              <ion-label>{{ p.title }}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
       </ion-content>
     </ion-menu>
     <ion-router-outlet id="main-content">

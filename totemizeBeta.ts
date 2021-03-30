@@ -1,6 +1,6 @@
-var totemize = require("totemize");
+let totemize = require("totemize");
 
-var custom = totemize({
+let custom = totemize({
   adjectives: [
     "leaved",
     "abundant",

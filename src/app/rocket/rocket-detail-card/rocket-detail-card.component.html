@@ -4,21 +4,17 @@
     <div class="image-wrapper">
       <ion-img
         id="background"
-        [src]="
-          rocket.image_url ? rocket.image_url : 'assets/placeholder_1920.png'
-        "
+        [src]="rocket.image_url ? rocket.image_url : placeholderService.getPlaceholder()"
       ></ion-img>
     </div>
     <div class="image-wrapper">
-      <ion-img
+      <ion-img-viewer
         [title]="rocket.name"
         [text]="rocket.family"
-        ionImgViewer
+        [swipeToClose]="false"
         id="foreground"
-        [src]="
-          rocket.image_url ? rocket.image_url : 'assets/placeholder_1920.png'
-        "
-      ></ion-img>
+        [src]="rocket.image_url ? rocket.image_url : placeholderService.getPlaceholder()"
+      ></ion-img-viewer>
     </div>
   </div>
   <ion-card-header>
@@ -36,31 +32,31 @@
       <ion-item>
         <ion-label> Specifications </ion-label>
       </ion-item>
-      <ion-chip id="diameter" *ngIf="rocket.diameter">
+      <ion-chip id="diameter" *ngIf="rocket.diameter" (click)="showSpecification('Diameter',rocket.diameter,'Meter')">
         <ion-icon name="code-working" color="dark"></ion-icon>
         <ion-label>{{ rocket.diameter }}m</ion-label>
       </ion-chip>
-      <ion-chip id="length" *ngIf="rocket.length">
+      <ion-chip id="length" *ngIf="rocket.length" (click)="showSpecification('Height',rocket.length,'Meter')">
         <ion-icon name="arrow-up" color="dark"></ion-icon>
         <ion-label>{{ rocket.length }}m</ion-label>
       </ion-chip>
-      <ion-chip id="launch_mass" *ngIf="rocket.launch_mass">
+      <ion-chip id="launch_mass" *ngIf="rocket.launch_mass" (click)="showSpecification('Total mass at launch',rocket.launch_mass,'Tons')">
         <ion-icon name="barbell" color="dark"></ion-icon>
         <ion-label>{{ rocket.launch_mass }}t</ion-label>
       </ion-chip>
-      <ion-chip id="leo_capacity" *ngIf="rocket.leo_capacity">
+      <ion-chip id="leo_capacity" *ngIf="rocket.leo_capacity"(click)="showSpecification('Payload capacity to LEO',rocket.leo_capacity,'Kilogramm')">
         <ion-icon name="earth" color="dark"></ion-icon>
         <ion-label>{{ rocket.leo_capacity }}kg</ion-label>
       </ion-chip>
-      <ion-chip id="gto_capacity" *ngIf="rocket.gto_capacity">
+      <ion-chip id="gto_capacity" *ngIf="rocket.gto_capacity"(click)="showSpecification('Payload capacity to GTO',rocket.gto_capacity,'Kilogramm')">
         <ion-icon name="planet" color="dark"></ion-icon>
         <ion-label>{{ rocket.gto_capacity }}kg</ion-label>
       </ion-chip>
-      <ion-chip id="to_thrust" *ngIf="rocket.to_thrust">
+      <ion-chip id="to_thrust" *ngIf="rocket.to_thrust" (click)="showSpecification('Thrust',rocket.to_thrust,'Kilonewton')">
         <ion-icon name="pulse" color="dark"></ion-icon>
         <ion-label>{{ rocket.to_thrust }}kN</ion-label>
       </ion-chip>
-      <ion-chip id="maiden_flight" *ngIf="rocket.maiden_flight">
+      <ion-chip id="maiden_flight" *ngIf="rocket.maiden_flight" (click)="showSpecification('First Flight',rocket.maiden_flight,'')">
         <ion-icon name="rocket" color="dark"></ion-icon>
         <ion-label>{{ rocket.maiden_flight }}</ion-label>
       </ion-chip>

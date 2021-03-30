@@ -4,6 +4,7 @@ import {
   Input,
   ChangeDetectionStrategy,
 } from "@angular/core";
+import { PlaceholderService } from "src/app/placeholder.service";
 
 @Component({
   selector: "app-spacecraft-list-entry",
@@ -15,7 +16,7 @@ export class SpacecraftListEntryComponent implements OnInit {
   @Input() spacecraft;
   title: string;
   subtitle: string;
-  constructor() {}
+  constructor(public placeholderService: PlaceholderService) {}
 
   ngOnInit() {
     this.title = this.spacecraft.name;

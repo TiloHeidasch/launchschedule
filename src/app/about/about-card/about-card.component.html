@@ -1,0 +1,44 @@
+<ion-card appSlideIn>
+  <div id="image">
+    <div class="image-wrapper">
+      <ion-img
+        id="background"
+        [src]="
+          aboutCardDetail.imageSrc
+            ? aboutCardDetail.imageSrc
+            : placeholderService.getPlaceholder()
+        "
+      ></ion-img>
+    </div>
+    <div class="image-wrapper">
+      <ion-img *ngIf="aboutCardDetail.imageSrc"
+        id="foreground"
+        [src]="
+          aboutCardDetail.imageSrc
+            ? aboutCardDetail.imageSrc
+            : placeholderService.getPlaceholder()
+        "
+      ></ion-img>
+      <ion-img-viewer *ngIf="aboutCardDetail.image"
+        id="foreground"
+        [title]="aboutCardDetail.image.title"
+        [text]="aboutCardDetail.image.subtitle"
+            [swipeToClose]="false"
+        [src]="aboutCardDetail.image.imageSrc ? aboutCardDetail.image.imageSrc : placeholderService.getPlaceholder()"
+      ></ion-img-viewer>
+    </div>
+  </div>
+  <ion-card-header>
+    <ion-card-subtitle *ngIf="aboutCardDetail.subtitle">{{ aboutCardDetail.subtitle }}</ion-card-subtitle>
+    <ion-card-title *ngIf="aboutCardDetail.title">{{ aboutCardDetail.title }}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+      <p *ngIf="aboutCardDetail.content">{{aboutCardDetail.content}}</p>
+      <p *ngFor="let contentLine of aboutCardDetail.contentMultiLine">{{contentLine}}</p>
+      <div *ngFor="let link of aboutCardDetail.links">
+      <ion-item  [href]="link.link">
+          <ion-label>{{link.name}}</ion-label>
+      </ion-item>
+      </div>
+  </ion-card-content>
+</ion-card>

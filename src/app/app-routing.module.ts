@@ -63,6 +63,18 @@ const routes: Routes = [
       import("./event/event.module").then((m) => m.EventModule),
   },
   {
+    path: "about",
+    loadChildren: () =>
+      import("./about/about.module").then((m) => m.AboutPageModule),
+  },
+  {
+    path: "nasa",
+    loadChildren: () =>
+      import("./nasa-images/nasa-images.module").then(
+        (m) => m.NasaImagesModule
+      ),
+  },
+  {
     path: "**",
     redirectTo: "launch",
   },

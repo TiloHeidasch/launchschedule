@@ -171,7 +171,7 @@ jobs:
           name: track
           path: ./
       - name: Set Release Track Variable
-        run: echo "RELEASE_NAME=`cat ./track`" >> $GITHUB_ENV
+        run: echo "RELEASE_TRACK=`cat ./track`" >> $GITHUB_ENV
       - name: Setup Environment File
         run: sed -i 's/};/versionCode:${{ github.run_number }},\n versionName:"${{ env.RELEASE_NAME }}",\n track:"${{ env.RELEASE_TRACK }}"\n};/g' src/environments/environment.prod.ts
       - name: Check Environment File
@@ -361,6 +361,90 @@ jobs:
           path: src/app/data/
       - name: Run Test
         run: npm run e2e
+  pixel2xl:
+    name: Screenshots Pixel 2 XL
+    runs-on: ubuntu-latest
+    needs: fetch
+    if: github.ref == 'refs/heads/master'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Setup Angular
+        run: npm install @angular/cli
+      - name: Setup Ionic
+        run: npm install @ionic/cli
+      - name: NPM Install
+        run: npm install
+      - name: Download Launches
+        uses: actions/download-artifact@v2.0.5
+        with:
+          name: data
+          path: src/app/data/
+      - name: Take Screenshots
+        run: npm run screenshots:pixel2xl
+      - name: Safe Screenshots
+        uses: actions/upload-artifact@v2.1.4
+        with:
+          name: screenshots_pixel2xl
+          path: ./screenshots/images
+  nexus7:
+    name: Screenshots Nexus 7
+    runs-on: ubuntu-latest
+    needs: fetch
+    if: github.ref == 'refs/heads/master'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Setup Angular
+        run: npm install @angular/cli
+      - name: Setup Ionic
+        run: npm install @ionic/cli
+      - name: NPM Install
+        run: npm install
+      - name: Download Launches
+        uses: actions/download-artifact@v2.0.5
+        with:
+          name: data
+          path: src/app/data/
+      - name: Take Screenshots
+        run: npm run screenshots:nexus7
+      - name: Safe Screenshots
+        uses: actions/upload-artifact@v2.1.4
+        with:
+          name: screenshots_nexus7
+          path: ./screenshots/images
+  nexus10:
+    name: Screenshots Nexus 10
+    runs-on: ubuntu-latest
+    needs: fetch
+    if: github.ref == 'refs/heads/master'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Setup Angular
+        run: npm install @angular/cli
+      - name: Setup Ionic
+        run: npm install @ionic/cli
+      - name: NPM Install
+        run: npm install
+      - name: Download Launches
+        uses: actions/download-artifact@v2.0.5
+        with:
+          name: data
+          path: src/app/data/
+      - name: Take Screenshots
+        run: npm run screenshots:nexus10
+      - name: Safe Screenshots
+        uses: actions/upload-artifact@v2.1.4
+        with:
+          name: screenshots_nexus10
+          path: ./screenshots/images
   tagDev:
     name: Tag this run
     runs-on: ubuntu-latest

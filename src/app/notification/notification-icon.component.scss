@@ -1,15 +1,17 @@
 .active {
-  color: darkgoldenrod;
+  color: var(--ion-color-primary);
 }
 #notification {
   display: flex;
-  align-items: center;
   background-color: #30303090;
-  padding: 0.5rem;
+  padding-top: 0.5rem;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
   border-radius: 0.5rem;
 }
 #amount {
   font-size: 1rem;
+  color: white;
 }
 #notification-toggle ion-icon {
   font-size: 1.25rem;

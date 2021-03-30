@@ -2,6 +2,7 @@ import { browser, by, element } from "protractor";
 
 describe("Statistic", () => {
   beforeEach(() => {
+    browser.driver.manage().window().maximize();
     browser.get("/#/statistic");
     browser.refresh();
     browser.sleep(2000);

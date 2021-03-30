@@ -1,0 +1,28 @@
+<ion-card *ngIf="epicPicture" appSlideIn>
+  <div id="image">
+    <div class="image-wrapper">
+      <ion-img
+        id="background"
+        [src]="epicPicture.pictureUrl ? epicPicture.pictureUrl : placeholderService.getPlaceholder()"
+      ></ion-img>
+    </div>
+    <div class="image-wrapper">
+      <ion-img-viewer
+        id="foreground"
+        title="Blue Marble"
+        [text]="epicPicture.metaData.caption"
+        [swipeToClose]="false"
+        [src]="epicPicture.pictureUrl ? epicPicture.pictureUrl : placeholderService.getPlaceholder()"
+      ></ion-img-viewer>
+    </div>
+  </div>
+  <ion-card-header>
+    <ion-card-subtitle>EPIC</ion-card-subtitle>
+    <ion-card-title>Blue Marble</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <div id="content">
+      {{epicPicture.metaData.caption}} on {{ epicPicture.metaData.date.toLocaleString() }}
+    </div>
+  </ion-card-content>
+</ion-card>

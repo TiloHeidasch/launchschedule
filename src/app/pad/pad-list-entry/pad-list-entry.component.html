@@ -9,13 +9,13 @@
     <div class="image-wrapper">
       <ion-img
         id="background"
-        [src]="pad.map_image ? pad.map_image : 'assets/placeholder_1920.png'"
+        [src]="pad.map_image ? pad.map_image : placeholderService.getPlaceholder()"
       ></ion-img>
     </div>
     <div class="image-wrapper">
       <ion-img
         id="foreground"
-        [src]="pad.map_image ? pad.map_image : 'assets/placeholder_1920.png'"
+        [src]="pad.map_image ? pad.map_image : placeholderService.getPlaceholder()"
       ></ion-img>
     </div>
   </div>

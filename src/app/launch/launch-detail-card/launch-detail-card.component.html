@@ -24,19 +24,18 @@
   <div id="image">
     <div class="image-wrapper">
       <ion-img
-        ionImgViewer
         id="background"
-        [src]="imageUrl ? imageUrl : 'assets/placeholder_1920.png'"
+        [src]="imageUrl ? imageUrl : placeholderService.getPlaceholder()"
       ></ion-img>
     </div>
     <div class="image-wrapper">
-      <ion-img
+      <ion-img-viewer
         [title]="title"
         [text]="subtitle"
-        ionImgViewer
+        [swipeToClose]="false"
         id="foreground"
-        [src]="imageUrl ? imageUrl : 'assets/placeholder_1920.png'"
-      ></ion-img>
+        [src]="imageUrl ? imageUrl : placeholderService.getPlaceholder()"
+      ></ion-img-viewer>
     </div>
   </div>
   <ion-card-header>

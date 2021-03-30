@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { LaunchLibraryService } from "src/app/launch-library.service";
+import { PlaceholderService } from "src/app/placeholder.service";
 
 @Component({
   selector: "app-location-detail-card",
@@ -9,7 +10,10 @@ import { LaunchLibraryService } from "src/app/launch-library.service";
 export class LocationDetailCardComponent implements OnInit {
   @Input() location;
 
-  constructor(private service: LaunchLibraryService) {}
+  constructor(
+    private service: LaunchLibraryService,
+    public placeholderService: PlaceholderService
+  ) {}
 
   async ngOnInit() {}
 }

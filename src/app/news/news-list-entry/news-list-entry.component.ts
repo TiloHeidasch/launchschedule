@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { BrowserService } from "src/app/browser.service";
+import { PlaceholderService } from "src/app/placeholder.service";
 import { NewsStorageService } from "../news-storage.service";
 
 @Component({
@@ -16,7 +17,8 @@ export class NewsListEntryComponent implements OnInit {
   clicked = false;
   constructor(
     private browser: BrowserService,
-    private storage: NewsStorageService
+    private storage: NewsStorageService,
+    public placeholderService: PlaceholderService
   ) {}
 
   async ngOnInit() {

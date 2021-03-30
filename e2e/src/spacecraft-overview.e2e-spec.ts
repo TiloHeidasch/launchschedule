@@ -2,6 +2,7 @@ import { browser, by, element } from "protractor";
 
 describe("Spacecraft", () => {
   beforeEach(() => {
+    browser.driver.manage().window().maximize();
     browser.get("/#/spacecraft");
     browser.refresh();
     browser.sleep(2000);
@@ -16,11 +17,5 @@ describe("Spacecraft", () => {
   it("should show search when clicking filter", () => {
     element(by.id("filter")).click();
     expect(element(by.tagName("ion-searchbar"))).toBeDefined();
-  });
-  it("should open Detail Page on click", () => {
-    browser.sleep(2000);
-    element(by.tagName("app-spacecraft-list-entry")).click();
-    browser.sleep(2000);
-    expect(browser.getCurrentUrl()).toContain("/#/spacecraft/");
   });
 });

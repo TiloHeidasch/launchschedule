@@ -4,21 +4,17 @@
     <div class="image-wrapper">
       <ion-img
         id="background"
-        [src]="
-          agency.image_url ? agency.image_url : 'assets/placeholder_1920.png'
-        "
+        [src]="agency.image_url ? agency.image_url : placeholderService.getPlaceholder()"
       ></ion-img>
     </div>
     <div class="image-wrapper">
-      <ion-img
+      <ion-img-viewer
         id="foreground"
         [title]="agency.name"
         [text]="agency.abbrev"
-        ionImgViewer
-        [src]="
-          agency.image_url ? agency.image_url : 'assets/placeholder_1920.png'
-        "
-      ></ion-img>
+            [swipeToClose]="false"
+        [src]="agency.image_url ? agency.image_url : placeholderService.getPlaceholder()"
+      ></ion-img-viewer>
     </div>
   </div>
   <ion-card-header>
@@ -29,15 +25,11 @@
     <div id="content">
       <div id="logos">
         <ion-img
-          [src]="
-            agency.logo_url ? agency.logo_url : 'assets/placeholder_1920.png'
-          "
+          [src]="agency.logo_url ? agency.logo_url : placeholderService.getPlaceholder()"
         ></ion-img>
         <ion-img
           [src]="
-            agency.nation_url
-              ? agency.nation_url
-              : 'assets/placeholder_1920.png'
+            agency.nation_url ? agency.nation_url : placeholderService.getPlaceholder()
           "
         ></ion-img>
       </div>
