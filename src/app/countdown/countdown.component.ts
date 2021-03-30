@@ -21,6 +21,7 @@ export class CountdownComponent implements OnInit {
   unit2: string;
   unit3: string;
   active: boolean;
+  interval = 500;
 
   constructor(private cdr: ChangeDetectorRef) {}
 
@@ -32,7 +33,7 @@ export class CountdownComponent implements OnInit {
       this.setTimer();
       const task = setInterval(() => {
         this.setTimer();
-      }, 500);
+      }, this.interval);
       this.active = true;
     }
   }
