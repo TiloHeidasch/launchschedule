@@ -1,4 +1,4 @@
-var scrollIntoView = function (element) {
+let scrollIntoView = function(element) {
   arguments[0].scrollIntoView();
 };
 export function clickElement(browser, element) {
