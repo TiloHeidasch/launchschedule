@@ -246,7 +246,7 @@ jobs:
   releaseDev:
     name: Upload to Google Play Beta
     runs-on: ubuntu-latest
-    needs: [sign, test, e2e]
+    needs: [sign, lint, test, e2e]
     if: github.ref == 'refs/heads/dev'
     steps:
       - name: Download Signed Release Bundle Artifact
@@ -264,7 +264,7 @@ jobs:
   dockerProd:
     name: Build and Push docker latest
     runs-on: ubuntu-latest
-    needs: build
+    needs: [build, lint, test, e2e]
     if: github.ref == 'refs/heads/master'
     steps:
       - name: Checkout
@@ -284,7 +284,7 @@ jobs:
   dockerDev:
     name: Build and Push docker dev
     runs-on: ubuntu-latest
-    needs: build
+    needs: [sign, lint, test, e2e]
     if: github.ref == 'refs/heads/dev'
     steps:
       - name: Checkout
