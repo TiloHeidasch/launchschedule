@@ -1,4 +1,5 @@
 import { browser, by, element } from "protractor";
+import { clickElement } from "./e2e-helper";
 
 describe("Statistic", () => {
   beforeEach(() => {
@@ -15,17 +16,17 @@ describe("Statistic", () => {
     expect(element(by.id("randomize"))).toBeDefined();
   });
   it("should start randomization when clicking random", () => {
-    element(by.id("randomize")).click();
+    clickElement(browser, element(by.id("randomize")));
     browser.sleep(10000);
     expect(
       element(by.css("p-chart:nth-of-type(1)>div:nth-of-type(1)>canvas"))
     ).toBeDefined();
   });
   it("should show table after step 1", () => {
-    element(
+    clickElement(browser, element(
       by.css("ion-radio-group>ion-item:nth-of-type(1)>ion-radio")
-    ).click();
-    element(by.id("step_1_complete_button")).click();
+    ));
+    clickElement(browser, element(by.id("step_1_complete_button")));
     browser.sleep(1000);
     expect(element(by.css("p-table"))).toBeDefined();
   });

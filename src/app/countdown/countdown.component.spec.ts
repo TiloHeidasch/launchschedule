@@ -16,6 +16,7 @@ describe("CountdownComponent", () => {
     fixture = TestBed.createComponent(CountdownComponent);
     component = fixture.componentInstance;
     component.date = new Date();
+    component.interval = 10000;
     fixture.detectChanges();
   });
 
@@ -26,6 +27,7 @@ describe("CountdownComponent", () => {
     const testDate = new Date();
     testDate.setDate(testDate.getDate() + 1);
     component.date = testDate;
+    component.interval = 10000;
     component.ngOnInit();
     expect(component.unit1).toBe("HOUR");
     expect(component.unit2).toBe("MINUTE");
@@ -34,6 +36,7 @@ describe("CountdownComponent", () => {
 
   it("Units for long time setup correctly", () => {
     component.date = new Date("2020-01-01");
+    component.interval = 10000;
     component.ngOnInit();
     expect(component.unit1).toBe("DAY");
     expect(component.unit2).toBe("MONTH");
@@ -43,6 +46,7 @@ describe("CountdownComponent", () => {
     const testDate = new Date();
     testDate.setDate(testDate.getDate() + 1);
     component.date = testDate;
+    component.interval = 10000;
     component.ngOnInit();
     expect(component.prefix).toBe("-");
     expect(component.hours1).toBe("2");
@@ -56,6 +60,7 @@ describe("CountdownComponent", () => {
     const testDate = new Date();
     testDate.setDate(testDate.getDate() - 1);
     component.date = testDate;
+    component.interval = 10000;
     component.ngOnInit();
     expect(component.prefix).toBe("+");
     expect(component.hours1).toBe("2");
@@ -69,6 +74,7 @@ describe("CountdownComponent", () => {
     const testDate = new Date();
     testDate.setHours(testDate.getHours() + 1);
     component.date = testDate;
+    component.interval = 10000;
     component.ngOnInit();
     expect(component.prefix).toBe("-");
     expect(component.hours1).toBe("0");
@@ -82,6 +88,7 @@ describe("CountdownComponent", () => {
     const testDate = new Date();
     testDate.setHours(testDate.getHours() - 1);
     component.date = testDate;
+    component.interval = 10000;
     component.ngOnInit();
     expect(component.prefix).toBe("+");
     expect(component.hours1).toBe("0");
@@ -95,6 +102,7 @@ describe("CountdownComponent", () => {
     const testDate = new Date();
     testDate.setSeconds(testDate.getSeconds() - 1);
     component.date = testDate;
+    component.interval = 10000;
     component.ngOnInit();
     expect(component.prefix).toBe("+");
     expect(component.hours1).toBe("0");
@@ -108,6 +116,7 @@ describe("CountdownComponent", () => {
     const testDate = new Date();
     testDate.setSeconds(testDate.getSeconds() + 1);
     component.date = testDate;
+    component.interval = 10000;
     component.ngOnInit();
     expect(component.prefix).toBe("-");
     expect(component.hours1).toBe("0");
@@ -121,6 +130,7 @@ describe("CountdownComponent", () => {
     const testDate = new Date();
     testDate.setMinutes(testDate.getMinutes() + 1);
     component.date = testDate;
+    component.interval = 10000;
     component.ngOnInit();
     expect(component.prefix).toBe("-");
     expect(component.hours1).toBe("0");
@@ -134,6 +144,7 @@ describe("CountdownComponent", () => {
     const testDate = new Date();
     testDate.setMinutes(testDate.getMinutes() - 1);
     component.date = testDate;
+    component.interval = 10000;
     component.ngOnInit();
     expect(component.prefix).toBe("+");
     expect(component.hours1).toBe("0");
@@ -145,6 +156,7 @@ describe("CountdownComponent", () => {
   });
   it("Digits for long time setup correctly", () => {
     component.date = new Date("2020-01-01");
+    component.interval = 10000;
     component.ngOnInit();
     expect(component.hours1).toBe("0");
     expect(component.hours2).toBe("1");

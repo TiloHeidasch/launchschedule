@@ -1,5 +1,5 @@
 import { browser, by, element } from "protractor";
-
+import { clickElement } from "./e2e-helper";
 describe("Launch", () => {
   beforeEach(() => {
     browser.driver.manage().window().maximize();
@@ -15,7 +15,7 @@ describe("Launch", () => {
     expect(element(by.id("filter"))).toBeDefined();
   });
   it("should show search when clicking filter", () => {
-    element(by.id("filter")).click();
+    clickElement(browser, element(by.id("filter")));
     expect(element(by.tagName("ion-searchbar"))).toBeDefined();
   });
 });

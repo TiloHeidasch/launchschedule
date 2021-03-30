@@ -1,5 +1,5 @@
 import { browser, by, element } from "protractor";
-
+import { clickElement } from "./e2e-helper";
 describe("NASA Images", () => {
   beforeEach(() => {
     browser.driver.manage().window().maximize();
