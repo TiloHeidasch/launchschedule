@@ -486,3 +486,53 @@ jobs:
           tag_name: ${{ env.RELEASE_NAME }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  analyze:
+    name: CodeQL
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [ 'java', 'javascript' ]
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v1
+      with:
+        languages: ${{ matrix.language }}
+    - name: Setup Node
+      uses: actions/setup-node@v2.1.2
+    - name: Setup Angular
+      run: npm install @angular/cli
+    - name: Setup Ionic
+      run: npm install @ionic/cli
+    - name: NPM Install
+      run: npm install
+    - name: Set Release Name Variable
+      run: echo "RELEASE_NAME=CODEQL" >> $GITHUB_ENV
+    - name: Set Release Track Variable
+      run: echo "RELEASE_TRACK=CODEQL" >> $GITHUB_ENV
+    - name: Setup Environment File
+      run: sed -i 's/};/versionCode:${{ github.run_number }},\n versionName:"${{ env.RELEASE_NAME }}",\n track:"${{ env.RELEASE_TRACK }}"\n};/g' src/environments/environment.prod.ts
+    - name: Check Environment File
+      run: cat src/environments/environment.prod.ts
+    - name: Fake Launches
+      run: echo '[]' > src/app/data/launches.json
+    - name: Build with Ionic
+      run: npm run build:prod
+    - name: Capacitor Update
+      if: ${{ matrix.language == 'java' }}
+      run: npx cap update android
+    - name: Capacitor Copy
+      if: ${{ matrix.language == 'java' }}
+      run: npx cap copy
+    - name: Setup JDK 1.8
+      if: ${{ matrix.language == 'java' }}
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+    - name: Build with Gradle
+      if: ${{ matrix.language == 'java' }}
+      run: cd android && chmod +x gradlew && ./gradlew bundleRelease        
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v1
