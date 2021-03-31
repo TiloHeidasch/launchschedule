@@ -517,7 +517,7 @@ jobs:
     - name: Check Environment File
       run: cat src/environments/environment.prod.ts
     - name: Fake Launches
-      run: echo '[]' > src/app/data/launches.json
+      run: mkdir src/app/data && echo '[]' > src/app/data/launches.json
     - name: Build with Ionic
       run: npm run build:prod
     - name: Capacitor Update
