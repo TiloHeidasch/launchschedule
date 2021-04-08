@@ -23,7 +23,7 @@ describe("PadListEntryComponent", () => {
     component = fixture.componentInstance;
     component.pad = {
       id: 97,
-      url: "https://ll.thespacedevs.com/2.1.0/pad/97/",
+      url: "https://ll.thespacedevs.com/2.2.0/pad/97/",
       agency_id: 161,
       name: "Space Launch Complex 26B",
       info_url: null,
@@ -34,7 +34,7 @@ describe("PadListEntryComponent", () => {
       longitude: "-80.5712",
       location: {
         id: 12,
-        url: "https://ll.thespacedevs.com/2.1.0/location/12/",
+        url: "https://ll.thespacedevs.com/2.2.0/location/12/",
         name: "Cape Canaveral, FL, USA",
         country_code: "USA",
         map_image:

@@ -89,7 +89,7 @@ let step = process.argv[3];
 let max = +offset + +step;
 
 requestUrlAndPersistToFile(
-  "https://ll.thespacedevs.com/2.1.0/" +
+  "https://ll.thespacedevs.com/2.2.0/" +
     path +
     "/?format=json&limit=100&mode=detailed&offset=" +
     offset

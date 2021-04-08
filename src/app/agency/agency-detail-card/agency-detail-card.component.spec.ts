@@ -24,7 +24,7 @@ describe("AgencyDetailCardComponent", () => {
     component = fixture.componentInstance;
     component.agency = {
       id: 141,
-      url: "https://ll.thespacedevs.com/2.1.0/agencies/141/",
+      url: "https://ll.thespacedevs.com/2.2.0/agencies/141/",
       name: "Blue Origin",
       featured: true,
       type: "Commercial",
