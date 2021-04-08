@@ -30,7 +30,7 @@
         *ngFor="let member of launch.rocket.spacecraft_stage.launch_crew"
       >
         <ion-item>
-          <ion-label> {{member.role}} </ion-label>
+          <ion-label> {{member.role.role}} </ion-label>
         </ion-item>
         <app-astronaut-list-entry
           [id]="member.astronaut.id"
