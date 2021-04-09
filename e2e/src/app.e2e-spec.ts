@@ -25,7 +25,7 @@ describe("App", () => {
     it("should have menu items", () => {
       const menuItems = element.all(by.tagName("ion-menu-toggle"));
       expect(menuItems).toBeDefined();
-      expect(menuItems.count()).toBe(13);
+      expect(menuItems.count()).toBe(14);
     });
     it("should default to Launch", () => {
       expect(browser.getCurrentUrl()).toContain("/#/launch");
@@ -64,51 +64,58 @@ describe("App", () => {
       browser.sleep(2000);
       expect(browser.getCurrentUrl()).toContain("/#/nasa");
     });
-    it("should navigate to Agency", () => {
+    it("should navigate to Starship Dashboard", () => {
       clickElement(browser, element(
         by.css("ion-menu-toggle:nth-of-type(6)>ion-item>ion-label")
+      ));
+      browser.sleep(2000);
+      expect(browser.getCurrentUrl()).toContain("/#/dashboard/starship");
+    });
+    it("should navigate to Agency", () => {
+      clickElement(browser, element(
+        by.css("ion-menu-toggle:nth-of-type(7)>ion-item>ion-label")
       ));
       browser.sleep(2000);
       expect(browser.getCurrentUrl()).toContain("/#/agency");
     });
     it("should navigate to Astronaut", () => {
       clickElement(browser, element(
-        by.css("ion-menu-toggle:nth-of-type(7)>ion-item>ion-label")
+        by.css("ion-menu-toggle:nth-of-type(8)>ion-item>ion-label")
       ));
       browser.sleep(2000);
       expect(browser.getCurrentUrl()).toContain("/#/astronaut");
     });
     it("should navigate to Facility", () => {
       clickElement(browser, element(
-        by.css("ion-menu-toggle:nth-of-type(8)>ion-item>ion-label")
+        by.css("ion-menu-toggle:nth-of-type(9)>ion-item>ion-label")
       ));
       browser.sleep(2000);
       expect(browser.getCurrentUrl()).toContain("/#/location");
     });
     it("should navigate to Pad", () => {
       clickElement(browser, element(
-        by.css("ion-menu-toggle:nth-of-type(9)>ion-item>ion-label")
+        by.css("ion-menu-toggle:nth-of-type(10)>ion-item>ion-label")
       ));
       browser.sleep(2000);
       expect(browser.getCurrentUrl()).toContain("/#/pad");
     });
     it("should navigate to Rocket", () => {
       clickElement(browser, element(
-        by.css("ion-menu-toggle:nth-of-type(10)>ion-item>ion-label")
+        by.css("ion-menu-toggle:nth-of-type(11)>ion-item>ion-label")
       ));
       browser.sleep(2000);
       expect(browser.getCurrentUrl()).toContain("/#/rocket");
     });
     it("should navigate to Spacecraft", () => {
       clickElement(browser, element(
-        by.css("ion-menu-toggle:nth-of-type(11)>ion-item>ion-label")
+        by.css("ion-menu-toggle:nth-of-type(12)>ion-item>ion-label")
       ));
       browser.sleep(2000);
       expect(browser.getCurrentUrl()).toContain("/#/spacecraft");
     });
     it("should navigate to Spacestation", () => {
       clickElement(browser, element(
-        by.css("ion-menu-toggle:nth-of-type(12)>ion-item>ion-label")
+        by.css("ion-menu-toggle:nth-of-type(13)>ion-item>ion-label")
       ));
       browser.sleep(2000);
       expect(browser.getCurrentUrl()).toContain("/#/spacestation");
