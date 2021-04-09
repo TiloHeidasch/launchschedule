@@ -131,6 +131,14 @@ export class LaunchLibraryService {
     return url;
   }
   /*
+   * Dashboard
+   */
+  async getStarshipDashboard() {
+    const url = this.baseUrl + "/dashboard/starship";
+    const data = await this.http.get<any>(url).toPromise();
+    return data;
+  }
+  /*
    * Event
    */
   async getEventById(id: string, bypassCache?: boolean) {

@@ -8,6 +8,8 @@ export const environment = {
   snapi: "https://test.spaceflightnewsapi.net/api/v2/",
   notificationUrl: "https://launchschedule-notifications.th105.de/notification",
   nasaApiKey: "DEMO_KEY",
+  twitter: "https://publish.twitter.com/oembed",
+  cors: "https://cors.th105.de/",
   versionCode: 1,
   versionName: "000000",
   track: "dev",

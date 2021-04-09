@@ -1,0 +1,14 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-subtitle secondary>{{ toDate(update.created_on).toLocaleString() }}</ion-card-subtitle>
+    <ion-card-title primary>{{ update.comment }}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <div *ngIf="twitterContent" [innerHTML]="twitterContent"></div>
+    <div *ngIf="!twitterContent">
+        <ion-item href="update.info_url">
+            <ion-label>Source: {{update.info_url}}</ion-label>
+        </ion-item>
+    </div>
+  </ion-card-content>
+</ion-card>

@@ -123,6 +123,17 @@ describe("LaunchLibraryService", () => {
       expect(res.request.method).toBe("GET");
     });
   });
+  describe("Dashboard", () => {
+    describe("Starship", () => {
+      it("calls getStarshipDashboard", () => {
+        service.getStarshipDashboard();
+        const res = httpTestingController.expectOne(
+          "https://lldev.thespacedevs.com/2.2.0/dashboard/starship"
+        );
+        expect(res.request.method).toBe("GET");
+      });
+    });
+  });
   describe("Event", () => {
     it("calls getEventById", () => {
       service.getEventById("123");

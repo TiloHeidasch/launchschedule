@@ -1,0 +1,16 @@
+<ion-content
+  #previousContent
+  [scrollEvents]="true"
+  (ionScroll)="logScrolling($event)"
+  [fullscreen]="true"
+>
+  <ion-refresher slot="fixed" (ionRefresh)="store.loadDashboard($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-list>
+    <div *ngFor="let eventLaunch of store.eventLaunchArray">
+      <app-event-list-entry *ngIf="eventLaunch.event" [event]="eventLaunch.event"></app-event-list-entry>
+      <app-launch-list-entry *ngIf="eventLaunch.launch" [launch]="eventLaunch.launch"></app-launch-list-entry>
+    </div>
+  </ion-list>
+</ion-content>
