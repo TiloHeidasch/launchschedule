@@ -57,6 +57,11 @@ export class AppComponent implements OnInit {
       url: "/nasa",
       icon: "images",
     },
+    {
+      title: "SpaceX Starship",
+      url: "/dashboard/starship",
+      icon: "paper-plane",
+    },
   ];
   public deepDivePages = [
     {

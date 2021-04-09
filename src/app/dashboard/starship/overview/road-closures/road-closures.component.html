@@ -1,0 +1,25 @@
+<ion-card>
+  <ion-card-content>
+    <div id="week">
+      <div id="scala">
+        <div *ngFor="let item of ['0:00','3:00','6:00','9:00','12:00','15:00','18:00','21:00']" class="scala-item">{{item}}</div>
+      </div>
+      <div *ngFor="let day of days" class="day">
+        <div class="column">
+          <div *ngFor="let hour of day.hours" class="hour inactive" [ngClass]="{'primary': hour.primary,'secondary': hour.secondary,'inactive': hour.inactive}"></div>
+        </div>
+        <div class="label">
+          {{day.label}}
+        </div>
+      </div>
+    </div>
+    <div id="summary">
+      <div *ngFor="let closure of roadClosures" class="summary-item">
+        <div *ngIf="closure.title==='Primary Date'" class="summary-type primary-text">Primary</div>
+        <div *ngIf="closure.title==='Secondary Date'" class="summary-type secondary-text">Secondary</div>
+        <div class="summary-date">{{toDate(closure.window_start).toLocaleDateString()}}</div>
+        <div class="summary-time">{{toDate(closure.window_start).toLocaleTimeString()}} - {{toDate(closure.window_end).toLocaleTimeString()}}</div>
+      </div>
+    </div>
+  </ion-card-content>
+</ion-card>
