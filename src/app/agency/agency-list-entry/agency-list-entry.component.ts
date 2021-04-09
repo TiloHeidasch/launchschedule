@@ -3,6 +3,7 @@ import {
   OnInit,
   Input,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
 } from "@angular/core";
 import { LaunchLibraryService } from "src/app/launch-library.service";
 import { PlaceholderService } from "src/app/placeholder.service";
@@ -20,12 +21,14 @@ export class AgencyListEntryComponent implements OnInit {
   subtitle: string;
   constructor(
     private service: LaunchLibraryService,
+    private cdr: ChangeDetectorRef,
     public placeholderService: PlaceholderService
   ) {}
 
   async ngOnInit() {
     if (this.agency === undefined) {
       this.agency = await this.service.getAgencyById(this.id);
+      this.cdr.markForCheck();
     }
     this.title = this.agency.name;
     this.subtitle = this.agency.abbrev;

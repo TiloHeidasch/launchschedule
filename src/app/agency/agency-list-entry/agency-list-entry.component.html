@@ -1,4 +1,4 @@
-<app-notification-icon type="agency" [id]="agency.id"></app-notification-icon>
+<app-notification-icon *ngIf="agency!==undefined" type="agency" [id]="agency.id"></app-notification-icon>
 <ion-card
   *ngIf="agency !== undefined"
   routerDirection="forward"
