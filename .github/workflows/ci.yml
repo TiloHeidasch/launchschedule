@@ -269,10 +269,10 @@ jobs:
     if: github.ref == 'refs/heads/master'
     steps:
     - name: Download www
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: www
-          path: www/
+      uses: actions/download-artifact@v2.0.5
+      with:
+        name: www
+        path: www/
     - name: GitHub Push
       uses: ad-m/github-push-action@v0.6.0
       with:
