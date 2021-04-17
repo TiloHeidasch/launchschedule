@@ -273,13 +273,10 @@ jobs:
       with:
         name: www
         path: www/
-    - name: GitHub Push
-      uses: ad-m/github-push-action@v0.6.0
+    - name: GitHub Pages
+      uses: crazy-max/ghaction-github-pages@v2.3.0
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: gh-pages
-        force: true
-        directory: www
+        build_dir: www/
   dockerProd:
     name: Build and Push docker latest
     runs-on: ubuntu-latest
