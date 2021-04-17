@@ -262,6 +262,24 @@ jobs:
           packageName: de.th105.launchschedule
           releaseFile: ./app-release.aab
           track: beta
+  pagesProd:
+    name: Create Github Page
+    runs-on: ubuntu-latest
+    needs: [build, lint, test, e2e]
+    if: github.ref == 'refs/heads/master'
+    steps:
+    - name: Download www
+        uses: actions/download-artifact@v2.0.5
+        with:
+          name: www
+          path: www/
+    - name: GitHub Push
+      uses: ad-m/github-push-action@v0.6.0
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: gh-pages
+        force: true
+        directory: www
   dockerProd:
     name: Build and Push docker latest
     runs-on: ubuntu-latest
