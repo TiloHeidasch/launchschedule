@@ -4,10 +4,12 @@
 
 export const environment = {
   production: false,
-  launchLibrary: "https://lldev.thespacedevs.com/2.2.0",
+  launchLibrary: "https://spacelaunchnow.me/api/ll/2.2.0",
   snapi: "https://test.spaceflightnewsapi.net/api/v2/",
   notificationUrl: "https://launchschedule-notifications.th105.de/notification",
   nasaApiKey: "DEMO_KEY",
+  twitter: "https://publish.twitter.com/oembed",
+  cors: "https://cors.th105.de/",
   versionCode: 1,
   versionName: "000000",
   track: "dev",

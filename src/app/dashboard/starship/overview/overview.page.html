@@ -1,0 +1,35 @@
+<ion-content
+  #overviewContent
+  [scrollEvents]="true"
+  (ionScroll)="logScrolling($event)"
+  [fullscreen]="true"
+>
+  <ion-refresher slot="fixed" (ionRefresh)="store.loadDashboard($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div
+    id="upcoming"
+    class="section"
+    *ngIf="store.dashboard.upcoming.launches.length>0 || store.dashboard.upcoming.events.length>0"
+  >
+  <div class="section-title">Up next</div>
+    <app-event-list-entry
+      *ngIf="nextEvent"
+      [event]="nextEvent"
+    ></app-event-list-entry>
+    <app-launch-list-entry
+      *ngIf="nextLaunch"
+      [launch]="nextLaunch"
+    ></app-launch-list-entry>
+  </div>
+  <div id="updates" class="section">
+    <div class="section-title">Recent Updates</div>
+    <div class="horizontal-scroll-wrapper">
+      <app-starship-update class="horizontal-scroll-item" *ngFor="let update of store.dashboard.updates" [update]="update"></app-starship-update>
+    </div>
+  </div>
+  <div id="closures" class="section">
+    <div class="section-title">Upcoming Road-Closures</div>
+      <app-road-closures [roadClosures]="store.dashboard.road_closures"></app-road-closures>
+  </div>
+</ion-content>

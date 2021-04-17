@@ -1,0 +1,17 @@
+.section-title {
+    text-align: center;
+    font-size: x-large;
+    border-bottom: 1px solid var(--ion-text-color);
+}
+.section {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+.horizontal-scroll-wrapper{
+    display: flex;
+    overflow: auto;
+}
+.horizontal-scroll-item{
+    min-width: 21rem;
+    display: inline-block;
+}
