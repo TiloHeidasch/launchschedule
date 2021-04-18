@@ -35,7 +35,7 @@ describe("screenshots", () => {
         });
         it("detail", () => {
           const item = element(by.tagName("app-" + type + "-list-entry"));
-          scrollIntoView(item);
+          browser.executeScript(scrollIntoView, item);
           browser.sleep(2000);
           item.click();
           browser.sleep(2000);
