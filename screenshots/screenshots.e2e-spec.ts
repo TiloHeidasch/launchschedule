@@ -34,7 +34,10 @@ describe("screenshots", () => {
           screenshot(type + "_overview", isLight);
         });
         it("detail", () => {
-          element(by.css("app-" + type + "-list-entry")).click();
+          const item = element(by.tagName("app-" + type + "-list-entry"));
+          scrollIntoView(item);
+          browser.sleep(2000);
+          item.click();
           browser.sleep(2000);
           screenshot(type + "_detail", isLight);
         });
