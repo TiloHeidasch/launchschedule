@@ -114,6 +114,7 @@ describe("screenshots", () => {
       describe(type, () => {
         beforeEach(() => {
           navigateToType(type);
+          browser.sleep(5000);
         });
         it("overview", () => {
           screenshot(type + "_overview", isLight);
@@ -128,6 +129,7 @@ describe("screenshots", () => {
     describe("statistic", () => {
       beforeEach(() => {
         navigateToType("statistic");
+          browser.sleep(5000);
       });
       it("overview", () => {
         screenshot("statistic_overview", isLight);
@@ -146,6 +148,7 @@ describe("screenshots", () => {
         describe(type, () => {
           beforeEach(() => {
             navigateToType("news/" + type);
+            browser.sleep(5000);
           });
           it("overview", () => {
             screenshot("news_" + type + "_overview", isLight);
