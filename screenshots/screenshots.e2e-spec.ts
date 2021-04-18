@@ -34,6 +34,7 @@ describe("screenshots", () => {
           screenshot(type + "_overview", isLight);
         });
         it("detail", () => {
+          browser.sleep(2000);
           const item = element(by.tagName("app-" + type + "-list-entry"));
           browser.executeScript(scrollIntoView, item);
           browser.sleep(2000);
