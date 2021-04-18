@@ -273,6 +273,8 @@ jobs:
       with:
         name: www
         path: www/
+    - name: Change Basepath
+      run: sed -i 's/<base href="\/"\/>/<base href="\/launchschedule\/"\/>/g' www/index.html
     - name: GitHub Pages
       uses: crazy-max/ghaction-github-pages@v2.3.0
       with:
