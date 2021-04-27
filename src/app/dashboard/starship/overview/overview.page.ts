@@ -34,7 +34,6 @@ export class OverviewPage implements OnInit, ViewDidEnter {
       const event = this.store.dashboard.upcoming.events[0];
       const nextLaunchDate = launch ? new Date(launch.net) : new Date(0);
       const nextEventDate = event ? new Date(event.date) : new Date(0);
-      console.log({ nextEventDate, nextLaunchDate });
       if (nextLaunchDate.getTime() > nextEventDate.getTime()) {
         this.nextLaunch = launch;
         this.nextEvent = undefined;

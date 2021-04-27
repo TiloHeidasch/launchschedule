@@ -25,9 +25,7 @@ export class RoadClosuresComponent implements OnInit {
   }[] = [];
   ngOnInit() {
     this.createEmptyDayStructure();
-    console.log("ngOnInit", this.days);
     this.prepareRoadClosureGraph();
-    console.log("ngOnInit", this.days);
   }
   private prepareRoadClosureGraph() {
     this.days.forEach((day) => {
