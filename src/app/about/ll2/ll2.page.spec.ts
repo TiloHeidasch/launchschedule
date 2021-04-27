@@ -1,5 +1,7 @@
 import { waitForAsync, ComponentFixture, TestBed } from "@angular/core/testing";
+import { FormsModule } from "@angular/forms";
 import { IonicModule } from "@ionic/angular";
+import { AboutCardModule } from "../about-card/about-card.module";
 
 import { Ll2Page } from "./ll2.page";
 
@@ -11,7 +13,7 @@ describe("Ll2Page", () => {
     waitForAsync(() => {
       TestBed.configureTestingModule({
         declarations: [Ll2Page],
-        imports: [IonicModule.forRoot()],
+        imports: [IonicModule.forRoot(), AboutCardModule],
       }).compileComponents();
 
       fixture = TestBed.createComponent(Ll2Page);
