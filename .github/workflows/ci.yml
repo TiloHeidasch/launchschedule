@@ -48,7 +48,7 @@ jobs:
           name: track
           path: ./track
   fetch:
-    name: Merge Data
+    name: Merge Launches Data
     runs-on: ubuntu-latest
     needs: [fetch1, fetch2, fetch3, fetch4]
     steps:
@@ -610,7 +610,7 @@ jobs:
   test:
     name: Tests
     runs-on: ubuntu-latest
-    needs: fetch
+    needs: [fetch,mergeAgencies,mergeAstronauts,mergeLocations,mergePads,mergeRockets,mergeSpacecrafts,mergeSpacestations]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -632,7 +632,7 @@ jobs:
   e2e:
     name: E2E Tests
     runs-on: ubuntu-latest
-    needs: fetch
+    needs: [fetch,mergeAgencies,mergeAstronauts,mergeLocations,mergePads,mergeRockets,mergeSpacecrafts,mergeSpacestations]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -654,7 +654,7 @@ jobs:
   pixel2xl:
     name: Screenshots Pixel 2 XL
     runs-on: ubuntu-latest
-    needs: fetch
+    needs: [fetch,mergeAgencies,mergeAstronauts,mergeLocations,mergePads,mergeRockets,mergeSpacecrafts,mergeSpacestations]
     if: github.ref == 'refs/heads/master'
     steps:
       - name: Checkout
@@ -683,7 +683,7 @@ jobs:
   nexus7:
     name: Screenshots Nexus 7
     runs-on: ubuntu-latest
-    needs: fetch
+    needs: [fetch,mergeAgencies,mergeAstronauts,mergeLocations,mergePads,mergeRockets,mergeSpacecrafts,mergeSpacestations]
     if: github.ref == 'refs/heads/master'
     steps:
       - name: Checkout
@@ -712,7 +712,7 @@ jobs:
   nexus10:
     name: Screenshots Nexus 10
     runs-on: ubuntu-latest
-    needs: fetch
+    needs: [fetch,mergeAgencies,mergeAstronauts,mergeLocations,mergePads,mergeRockets,mergeSpacecrafts,mergeSpacestations]
     if: github.ref == 'refs/heads/master'
     steps:
       - name: Checkout
