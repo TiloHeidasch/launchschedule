@@ -340,7 +340,7 @@ jobs:
         with:
           name: astronauts2
           path: src/app/data/
-  fetchLocation1:
+  fetchLocations1:
     name: Fetch Locations 0-500
     runs-on: ubuntu-latest
     steps:
@@ -355,7 +355,7 @@ jobs:
         with:
           name: locations1
           path: src/app/data/
-  fetchPad1:
+  fetchPads1:
     name: Fetch Pads 0-500
     runs-on: ubuntu-latest
     steps:
@@ -370,7 +370,7 @@ jobs:
         with:
           name: pads1
           path: src/app/data/
-  fetchRocket1:
+  fetchRockets1:
     name: Fetch Rockets 0-500
     runs-on: ubuntu-latest
     steps:
@@ -385,7 +385,7 @@ jobs:
         with:
           name: rockets1
           path: src/app/data/
-  fetchSpacecraft1:
+  fetchSpacecrafts1:
     name: Fetch Spacecrafts 0-500
     runs-on: ubuntu-latest
     steps:
@@ -400,7 +400,7 @@ jobs:
         with:
           name: spacecrafts1
           path: src/app/data/
-  fetchSpacestation1:
+  fetchSpacestations1:
     name: Fetch Spacestations 0-500
     runs-on: ubuntu-latest
     steps:
