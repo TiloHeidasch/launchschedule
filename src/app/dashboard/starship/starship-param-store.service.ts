@@ -18,9 +18,7 @@ export class StarshipParamStoreService {
     if (event) {
       event.target.complete();
     }
-    console.log("loadDashboard", this.dashboard);
     this.combinePrevious();
-    console.log("loadDashboard", this.eventLaunchArray);
   }
   combinePrevious() {
     this.eventLaunchArray = [];

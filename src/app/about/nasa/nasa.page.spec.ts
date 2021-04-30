@@ -1,5 +1,6 @@
 import { waitForAsync, ComponentFixture, TestBed } from "@angular/core/testing";
 import { IonicModule } from "@ionic/angular";
+import { AboutCardModule } from "../about-card/about-card.module";
 
 import { NasaPage } from "./nasa.page";
 
@@ -11,7 +12,7 @@ describe("NasaPage", () => {
     waitForAsync(() => {
       TestBed.configureTestingModule({
         declarations: [NasaPage],
-        imports: [IonicModule.forRoot()],
+        imports: [IonicModule.forRoot(), AboutCardModule],
       }).compileComponents();
 
       fixture = TestBed.createComponent(NasaPage);

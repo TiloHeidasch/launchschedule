@@ -33,7 +33,7 @@
         </ion-item>
         <div class="crew-member" *ngFor="let member of expedition.crew">
           <ion-item>
-            <ion-label> {{member.role}} </ion-label>
+            <ion-label> {{member.role.role}} </ion-label>
           </ion-item>
           <app-astronaut-list-entry
             [id]="member.astronaut.id"
