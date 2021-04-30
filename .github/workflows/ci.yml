@@ -385,7 +385,7 @@ jobs:
         with:
           name: rockets1
           path: src/app/data/
-  fetchRocket1:
+  fetchSpacecraft1:
     name: Fetch Spacecrafts 0-500
     runs-on: ubuntu-latest
     steps:
@@ -399,6 +399,21 @@ jobs:
         uses: actions/upload-artifact@v2.1.4
         with:
           name: spacecrafts1
+          path: src/app/data/
+  fetchSpacestation1:
+    name: Fetch Spacestations 0-500
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Spacestations
+        run: node scripts/masterdata/fetch.ts spacestation spacestations 0 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.1.4
+        with:
+          name: spacestations1
           path: src/app/data/
   build:
     name: Build Web & Android
