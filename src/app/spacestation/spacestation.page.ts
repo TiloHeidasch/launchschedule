@@ -30,5 +30,7 @@ export class SpacestationPage implements OnInit {
       refreshEvent.target.complete();
     }
     this.title = this.spacestation.name;
+    console.log("Spacestation", this.spacestation);
+
   }
 }

@@ -1,5 +1,6 @@
 import { waitForAsync, ComponentFixture, TestBed } from "@angular/core/testing";
 import { IonicModule } from "@ionic/angular";
+import { AboutCardModule } from "../about-card/about-card.module";
 
 import { RcketPage } from "./rcket.page";
 
@@ -11,7 +12,7 @@ describe("RcketPage", () => {
     waitForAsync(() => {
       TestBed.configureTestingModule({
         declarations: [RcketPage],
-        imports: [IonicModule.forRoot()],
+        imports: [IonicModule.forRoot(), AboutCardModule],
       }).compileComponents();
 
       fixture = TestBed.createComponent(RcketPage);

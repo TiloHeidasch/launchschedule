@@ -39,7 +39,6 @@ export class StarshipPage implements OnInit {
     this.queueCurrentVideo();
   }
   videoReady(event) {
-    console.log("videoReady", event);
     this.youtubePlayer = event.target;
     this.queueCurrentVideo();
   }
@@ -50,9 +49,7 @@ export class StarshipPage implements OnInit {
     this.youtubePlayer.cueVideoById(this.videoId);
   }
   videoStateChange(e) {
-    console.log("videoStateChange: ", e);
     if (e.data === 5) {
-      console.log("VIDEO STATE == 5");
       e.target.mute();
       e.target.playVideo();
     }
