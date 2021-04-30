@@ -31,6 +31,6 @@ export class SpacestationPage implements OnInit {
     }
     this.title = this.spacestation.name;
     console.log("Spacestation", this.spacestation);
-    
+
   }
 }
