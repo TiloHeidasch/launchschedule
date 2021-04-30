@@ -253,42 +253,42 @@ jobs:
         with:
           name: rockets
           path: src/app/data/
-  mergeSpacecraft:
-    name: Merge Spacecraft Data
+  mergeSpacecrafts:
+    name: Merge Spacecrafts Data
     runs-on: ubuntu-latest
-    needs: [fetchSpacecraft1]
+    needs: [fetchSpacecrafts1]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
-      - name: Download Spacecraft 0-500
+      - name: Download Spacecrafts 0-500
         uses: actions/download-artifact@v2.0.5
         with:
           name: spacecrafts1
           path: src/app/data/
-      - name: Merge Spacecraft
+      - name: Merge Spacecrafts
         run: node scripts/masterdata/merge.ts spacecrafts 500 500
       - name: Safe Data Artifact
         uses: actions/upload-artifact@v2.1.4
         with:
           name: spacecrafts
           path: src/app/data/
-  mergeSpacestation:
-    name: Merge Spacestation Data
+  mergeSpacestations:
+    name: Merge Spacestations Data
     runs-on: ubuntu-latest
-    needs: [fetchSpacestation1]
+    needs: [fetchSpacestations1]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
-      - name: Download Spacestation 0-500
+      - name: Download Spacestations 0-500
         uses: actions/download-artifact@v2.0.5
         with:
           name: spacestations1
           path: src/app/data/
-      - name: Merge Spacestation
+      - name: Merge Spacestations
         run: node scripts/masterdata/merge.ts spacestations 500 500
       - name: Safe Data Artifact
         uses: actions/upload-artifact@v2.1.4
