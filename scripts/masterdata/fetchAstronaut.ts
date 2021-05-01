@@ -88,7 +88,7 @@ let max = +offset + +step;
 
 console.log({ path, fileName, offset, step, max });
 requestUrlAndPersistToFile(
-  "https://lldev.thespacedevs.com/2.2.0/" +
+  "https://ll.thespacedevs.com/2.2.0/" +
     path +
     "/?format=json&limit=100&mode=detailed&offset=" +
     offset
