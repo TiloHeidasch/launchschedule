@@ -8,6 +8,8 @@ import { RouterTestingModule } from "@angular/router/testing";
 
 import { AppComponent } from "./app.component";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { SwUpdate } from "@angular/service-worker";
+import { SwUpdateServerMock } from "./swUpdate-server.mock.service";
 
 describe("AppComponent", () => {
   let statusBarSpy;
@@ -28,6 +30,7 @@ describe("AppComponent", () => {
         { provide: StatusBar, useValue: statusBarSpy },
         { provide: SplashScreen, useValue: splashScreenSpy },
         { provide: Platform, useValue: platformSpy },
+        { provide: SwUpdate, useClass: SwUpdateServerMock },
       ],
       imports: [RouterTestingModule.withRoutes([]), HttpClientTestingModule],
     }).compileComponents();

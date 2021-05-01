@@ -23,6 +23,8 @@ import { SpacecraftService } from "./masterdata/spacecraft.service";
 import { LocationService } from "./masterdata/location.service";
 import { PadService } from "./masterdata/pad.service";
 import { PreviousLaunchService } from "./masterdata/previous-launches.service";
+import { ServiceWorkerModule } from "@angular/service-worker";
+import { environment } from "../environments/environment";
 
 @NgModule({
   declarations: [AppComponent],
@@ -34,6 +36,12 @@ import { PreviousLaunchService } from "./masterdata/previous-launches.service";
     AppRoutingModule,
     BrowserAnimationsModule,
     PrimeNGModule,
+    ServiceWorkerModule.register("ngsw-worker.js", {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: "registerWhenStable:30000",
+    }),
   ],
   providers: [
     StatusBar,
