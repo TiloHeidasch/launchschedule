@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { LaunchLibraryService } from "../launch-library.service";
 import { SpacestationParamStoreService } from "./spacestation-param-store.service";
 import { IonContent, ViewDidEnter, IonInfiniteScroll } from "@ionic/angular";
+import { SpacestationService } from "../masterdata/spacestation.service";
 
 @Component({
   selector: "app-spacestation-overview",
@@ -13,7 +13,7 @@ export class SpacestationOverviewPage implements OnInit, ViewDidEnter {
   @ViewChild("spacestationOverviewContent") content: IonContent;
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   constructor(
-    private service: LaunchLibraryService,
+    private service: SpacestationService,
     public store: SpacestationParamStoreService
   ) {}
 
@@ -33,12 +33,16 @@ export class SpacestationOverviewPage implements OnInit, ViewDidEnter {
       this.infiniteScroll.disabled = false;
     } catch (error) {}
     this.store.spacestations = [];
-    this.store.spacestations = (await this.service.getFirstSpacestations(
-      this.store.search,
-      this.store.status,
-      this.store.orbit,
-      this.store.type
-    )).spacestations;
+    this.store.spacestations = (
+      
+      await this.service.getFirstSpacestations(
+          this.store.search,
+          this.store.status,
+          this.store.orbit,
+          this.store.type
+        )
+    
+    ).spacestations;
     if (refreshEvent) {
       refreshEvent.target.complete();
     }

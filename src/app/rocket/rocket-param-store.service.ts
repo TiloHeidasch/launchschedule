@@ -7,8 +7,6 @@ import { Active } from "../types/active";
 })
 export class RocketParamStoreService {
   search: string;
-  reusable: Reusable = Reusable.ALL;
-  active: Active = Active.ACTIVE;
 
   showFilter = false;
   rockets: any[] = [];

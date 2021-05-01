@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { LaunchLibraryService } from "../launch-library.service";
+import { LocationService } from "../masterdata/location.service";
 
 @Component({
   selector: "app-location",
@@ -14,7 +14,7 @@ export class LocationPage implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private service: LaunchLibraryService
+    private service: LocationService
   ) {}
 
   async ngOnInit() {
@@ -22,7 +22,7 @@ export class LocationPage implements OnInit {
   }
   async load(refreshEvent?) {
     this.id = this.activatedRoute.snapshot.paramMap.get("id");
-    this.location = await this.service.getLocationById(this.id, refreshEvent);
+    this.location = await this.service.getLocationById(this.id);
     if (refreshEvent) {
       refreshEvent.target.complete();
     }

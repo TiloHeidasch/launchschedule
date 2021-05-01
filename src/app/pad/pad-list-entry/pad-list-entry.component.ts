@@ -4,7 +4,7 @@ import {
   Input,
   ChangeDetectionStrategy,
 } from "@angular/core";
-import { LaunchLibraryService } from "src/app/launch-library.service";
+import { PadService } from "src/app/masterdata/pad.service";
 import { PlaceholderService } from "src/app/placeholder.service";
 
 @Component({
@@ -20,7 +20,7 @@ export class PadListEntryComponent implements OnInit {
   title: string;
   subtitle: string;
   constructor(
-    private service: LaunchLibraryService,
+    private service: PadService,
     public placeholderService: PlaceholderService
   ) {}
 

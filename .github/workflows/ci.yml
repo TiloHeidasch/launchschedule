@@ -256,7 +256,7 @@ jobs:
   mergePreviousLaunches:
     name: Merge Previous Launches Data
     runs-on: ubuntu-latest
-    needs: [fetchPreviousLaunches1]
+    needs: [fetchPreviousLaunches1,fetchPreviousLaunches2,fetchPreviousLaunches3,fetchPreviousLaunches4]
     steps:
       - name: Checkout
         uses: actions/checkout@v2

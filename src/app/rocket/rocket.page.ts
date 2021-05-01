@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { LaunchLibraryService } from "../launch-library.service";
+import { RocketService } from "../masterdata/rocket.service";
 
 @Component({
   selector: "app-rocket",
@@ -14,7 +14,7 @@ export class RocketPage implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private service: LaunchLibraryService
+    private service: RocketService
   ) {}
 
   async ngOnInit() {
@@ -22,7 +22,7 @@ export class RocketPage implements OnInit {
   }
   async load(refreshEvent?) {
     this.id = this.activatedRoute.snapshot.paramMap.get("id");
-    this.rocket = await this.service.getRocketById(this.id, refreshEvent);
+    this.rocket = await this.service.getRocketById(this.id);
     if (refreshEvent) {
       refreshEvent.target.complete();
     }

@@ -4,7 +4,7 @@ import {
   Input,
   ChangeDetectionStrategy,
 } from "@angular/core";
-import { LaunchLibraryService } from "src/app/launch-library.service";
+import { SpacestationService } from "src/app/masterdata/spacestation.service";
 import { PlaceholderService } from "src/app/placeholder.service";
 
 @Component({
@@ -19,7 +19,7 @@ export class SpacestationListEntryComponent implements OnInit {
   title: string;
   subtitle: string;
   constructor(
-    private service: LaunchLibraryService,
+    private service: SpacestationService,
     public placeholderService: PlaceholderService
   ) {}
 

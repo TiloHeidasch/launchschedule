@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { LaunchLibraryService } from "../launch-library.service";
+import { AstronautService } from "../masterdata/astronaut.service";
 
 @Component({
   selector: "app-astronaut",
@@ -14,18 +14,19 @@ export class AstronautPage implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private service: LaunchLibraryService
+    private service: AstronautService
   ) {}
 
-  async ngOnInit() {
+  ngOnInit() {
     this.load();
   }
-  async load(refreshEvent?) {
+  load(refreshEvent?) {
     this.id = this.activatedRoute.snapshot.paramMap.get("id");
-    this.astronaut = await this.service.getAstronautById(this.id, refreshEvent);
+    this.astronaut = this.service.getAstronautById(this.id);
     if (refreshEvent) {
       refreshEvent.target.complete();
     }
     this.title = this.astronaut.name;
+    console.log("AstronautPage",    this.id,    this.astronaut,    this.title);
   }
 }

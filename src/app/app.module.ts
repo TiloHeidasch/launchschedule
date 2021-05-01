@@ -15,6 +15,14 @@ import { PrimeNGModule } from "./prime-ng/prime-ng.module";
 import { LaunchscheduleNotificationService } from "./launchschedule-notification.service";
 import { StorageService } from "./storage.service";
 import { BrowserService } from "./browser.service";
+import { RocketService } from "./masterdata/rocket.service";
+import { AgencyService } from "./masterdata/agency.service";
+import { AstronautService } from "./masterdata/astronaut.service";
+import { SpacestationService } from "./masterdata/spacestation.service";
+import { SpacecraftService } from "./masterdata/spacecraft.service";
+import { LocationService } from "./masterdata/location.service";
+import { PadService } from "./masterdata/pad.service";
+import { PreviousLaunchService } from "./masterdata/previous-launches.service";
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,6 +40,14 @@ import { BrowserService } from "./browser.service";
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     LaunchLibraryService,
+    AgencyService,
+    AstronautService,
+    LocationService,
+    PadService,
+    PreviousLaunchService,
+    RocketService,
+    SpacecraftService,
+    SpacestationService,
     LaunchscheduleNotificationService,
     StorageService,
     BrowserService,

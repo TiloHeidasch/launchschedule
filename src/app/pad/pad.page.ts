@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { LaunchLibraryService } from "../launch-library.service";
+import { PadService } from "../masterdata/pad.service";
 
 @Component({
   selector: "app-pad",
@@ -14,7 +14,7 @@ export class PadPage implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private service: LaunchLibraryService
+    private service: PadService
   ) {}
 
   async ngOnInit() {
@@ -22,7 +22,7 @@ export class PadPage implements OnInit {
   }
   async load(refreshEvent?) {
     this.id = this.activatedRoute.snapshot.paramMap.get("id");
-    this.pad = await this.service.getPadById(this.id, refreshEvent);
+    this.pad = await this.service.getPadById(this.id);
     if (refreshEvent) {
       refreshEvent.target.complete();
     }

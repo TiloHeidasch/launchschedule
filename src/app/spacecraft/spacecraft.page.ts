@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { LaunchLibraryService } from "../launch-library.service";
+import { SpacecraftService } from "../masterdata/spacecraft.service";
 
 @Component({
   selector: "app-spacecraft",
@@ -14,7 +14,7 @@ export class SpacecraftPage implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private service: LaunchLibraryService
+    private service: SpacecraftService
   ) {}
 
   async ngOnInit() {
@@ -23,8 +23,7 @@ export class SpacecraftPage implements OnInit {
   async load(refreshEvent?) {
     this.id = this.activatedRoute.snapshot.paramMap.get("id");
     this.spacecraft = await this.service.getSpacecraftById(
-      this.id,
-      refreshEvent
+      this.id
     );
     if (refreshEvent) {
       refreshEvent.target.complete();

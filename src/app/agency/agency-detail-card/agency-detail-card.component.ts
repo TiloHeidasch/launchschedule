@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { LaunchLibraryService } from "src/app/launch-library.service";
+import { AgencyService } from "src/app/masterdata/agency.service";
 import { PlaceholderService } from "src/app/placeholder.service";
 
 @Component({
@@ -12,7 +12,7 @@ export class AgencyDetailCardComponent implements OnInit {
   @Input() id?;
 
   constructor(
-    private service: LaunchLibraryService,
+    private service: AgencyService,
     public placeholderService: PlaceholderService
   ) {}
 
