@@ -34,14 +34,14 @@ export class SpacestationOverviewPage implements OnInit, ViewDidEnter {
     } catch (error) {}
     this.store.spacestations = [];
     this.store.spacestations = (
-      
+
       await this.service.getFirstSpacestations(
           this.store.search,
           this.store.status,
           this.store.orbit,
           this.store.type
         )
-    
+
     ).spacestations;
     if (refreshEvent) {
       refreshEvent.target.complete();

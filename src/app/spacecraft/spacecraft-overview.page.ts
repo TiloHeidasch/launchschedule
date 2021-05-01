@@ -34,13 +34,13 @@ export class SpacecraftOverviewPage implements OnInit, ViewDidEnter {
     } catch (error) {}
     this.store.spacecrafts = [];
     this.store.spacecrafts = (
-      
+
       await this.service.getFirstSpacecrafts(
           this.store.search,
           this.store.inUse,
           this.store.humanRated
         )
-    
+
     ).spacecrafts;
     if (refreshEvent) {
       refreshEvent.target.complete();

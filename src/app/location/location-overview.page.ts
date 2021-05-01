@@ -36,12 +36,12 @@ export class LocationOverviewPage implements OnInit, ViewDidEnter {
     } catch (error) {}
     this.store.locations = [];
     this.store.locations = (
-      
+
       await this.service.getFirstLocations(
           this.store.search,
           this.store.countryCode
         )
-    
+
     ).locations;
     if (refreshEvent) {
       refreshEvent.target.complete();

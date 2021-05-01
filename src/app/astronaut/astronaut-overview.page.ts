@@ -34,12 +34,12 @@ export class AstronautOverviewPage implements OnInit, ViewDidEnter {
     } catch (error) {}
     this.store.astronauts = [];
     this.store.astronauts = (
-      
+
       await this.service.getFirstAstronauts(
           this.store.search,
           this.store.status
         )
-    
+
     ).astronauts;
     if (refreshEvent) {
       refreshEvent.target.complete();

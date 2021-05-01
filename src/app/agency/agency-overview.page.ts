@@ -35,14 +35,14 @@ export class AgencyOverviewPage implements OnInit, ViewDidEnter {
     } catch (error) {}
     this.store.agencies = [];
     this.store.agencies = (
-      
+
       await this.service.getFirstAgencies(
           this.store.search,
           this.store.featured,
           this.store.type,
           this.store.countryCode
         )
-    
+
     ).agencies;
     if (refreshEvent) {
       refreshEvent.target.complete();

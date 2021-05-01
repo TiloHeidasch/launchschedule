@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { environment } from "../environments/environment";
 import { UpcomingPreviousAll } from "./types/upcoming-previous-all";
 import { PreviousLaunchService } from "./masterdata/previous-launches.service";
+import { PreviousEventService } from "./masterdata/previous-events.service";
 
 @Injectable({
   providedIn: "root",
@@ -13,7 +14,8 @@ export class LaunchLibraryService {
   launchesById: { id: string; object: any }[] = [];
   constructor(
     private http: HttpClient,
-    private previousLaunchesService: PreviousLaunchService
+    private previousLaunchesService: PreviousLaunchService,
+    private previousEventsService: PreviousEventService
   ) {}
 
   /*
@@ -28,6 +30,12 @@ export class LaunchLibraryService {
    * Event
    */
   async getEventById(id: string, bypassCache?: boolean) {
+    const previousEvent = this.previousEventsService.getPreviousEventById(
+      id
+    );
+    if (previousEvent) {
+      return previousEvent;
+    }
     const object = this.getIdFromCache(this.eventsById, id);
     if (object !== undefined && !bypassCache) {
       return object;
@@ -51,7 +59,7 @@ export class LaunchLibraryService {
     upcomingPreviousAll?: UpcomingPreviousAll
   ) {
     const url = this.createEventUrl(
-      10,
+      25,
       offset,
       search,
       type,
@@ -98,18 +106,14 @@ export class LaunchLibraryService {
     const previousLaunch = this.previousLaunchesService.getPreviousLaunchById(
       id
     );
-    console.log("getLaunchById", previousLaunch);
     if (previousLaunch) {
-      console.log("getLaunchById - previous found", id);
       return previousLaunch;
     }
     const object = this.getIdFromCache(this.launchesById, id);
     if (object !== undefined && !bypassCache) {
-      console.log("getLaunchById - cache found", id);
       return object;
     }
     const url = this.baseUrl + "/launch/" + id;
-    console.log("getLaunchById - not found", id);
     const data = await this.http.get<any>(url).toPromise();
     this.launchesById.push({ id, object: data });
     return data;
@@ -136,7 +140,7 @@ export class LaunchLibraryService {
     upcomingPreviousAll?: UpcomingPreviousAll
   ) {
     const url = this.createLaunchUrl(
-      10,
+      25,
       offset,
       search,
       startDate,
