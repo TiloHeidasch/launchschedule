@@ -319,7 +319,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
       - name: Fetch Astronauts
-        run: node scripts/masterdata/fetch.ts astronaut astronauts 0 500
+        run: node scripts/masterdata/fetchAstronaut.ts 0 500
       - name: Safe Data Artifact
         uses: actions/upload-artifact@v2.1.4
         with:
@@ -334,7 +334,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
       - name: Fetch Astronauts
-        run: node scripts/masterdata/fetch.ts astronaut astronauts 500 500
+        run: node scripts/masterdata/fetchAstronaut.ts 500 500
       - name: Safe Data Artifact
         uses: actions/upload-artifact@v2.1.4
         with:
