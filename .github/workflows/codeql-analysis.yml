@@ -44,8 +44,26 @@ jobs:
       run: sed -i 's/};/versionCode:${{ github.run_number }},\n versionName:"${{ env.RELEASE_NAME }}",\n track:"${{ env.RELEASE_TRACK }}"\n};/g' src/environments/environment.prod.ts
     - name: Check Environment File
       run: cat src/environments/environment.prod.ts
+    - name: Fake Agencies
+      run: mkdir src/app/data && echo '[]' > src/app/data/agencies.json
+    - name: Fake Astronauts
+      run: mkdir src/app/data && echo '[]' > src/app/data/astronauts.json
     - name: Fake Launches
       run: mkdir src/app/data && echo '[]' > src/app/data/launches.json
+    - name: Fake Locations
+      run: mkdir src/app/data && echo '[]' > src/app/data/locations.json
+    - name: Fake Pads
+      run: mkdir src/app/data && echo '[]' > src/app/data/pads.json
+    - name: Fake Previous Events
+      run: mkdir src/app/data && echo '[]' > src/app/data/previousevents.json
+    - name: Fake Previous Launches
+      run: mkdir src/app/data && echo '[]' > src/app/data/previouslaunches.json
+    - name: Fake Rockets
+      run: mkdir src/app/data && echo '[]' > src/app/data/rockets.json
+    - name: Fake Spacecrafts
+      run: mkdir src/app/data && echo '[]' > src/app/data/spacecrafts.json
+    - name: Fake Spacestations
+      run: mkdir src/app/data && echo '[]' > src/app/data/spacestations.json
     - name: Build with Ionic
       if: ${{ matrix.language == 'java' }}
       run: npm run build:prod
