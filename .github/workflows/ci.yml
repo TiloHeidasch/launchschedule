@@ -476,55 +476,10 @@ jobs:
         run: sed -i 's/};/versionCode:${{ github.run_number }},\n versionName:"${{ env.RELEASE_NAME }}",\n track:"${{ env.RELEASE_TRACK }}"\n};/g' src/environments/environment.prod.ts
       - name: Check Environment File
         run: cat src/environments/environment.prod.ts
-      - name: Download Launches
+      - name: Download Masterdata
         uses: actions/download-artifact@v2.0.5
         with:
-          name: data
-          path: src/app/data/
-      - name: Download Agencies
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: agencies
-          path: src/app/data/
-      - name: Download Astronauts
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: astronauts
-          path: src/app/data/
-      - name: Download Locations
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: locations
-          path: src/app/data/
-      - name: Download Pads
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: pads
-          path: src/app/data/
-      - name: Download Previous Events
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: previousevents
-          path: src/app/data/
-      - name: Download Previous Launches
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: previouslaunches
-          path: src/app/data/
-      - name: Download Rockets
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: rockets
-          path: src/app/data/
-      - name: Download Spacecrafts
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: spacecrafts
-          path: src/app/data/
-      - name: Download Spacestations
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: spacestations
+          name: masterdata
           path: src/app/data/
       - name: Build with Ionic
         run: npm run build:prod
@@ -699,55 +654,10 @@ jobs:
         run: npm install @ionic/cli
       - name: NPM Install
         run: npm install
-      - name: Download Launches
+      - name: Download Masterdata
         uses: actions/download-artifact@v2.0.5
         with:
-          name: data
-          path: src/app/data/
-      - name: Download Agencies
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: agencies
-          path: src/app/data/
-      - name: Download Astronauts
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: astronauts
-          path: src/app/data/
-      - name: Download Locations
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: locations
-          path: src/app/data/
-      - name: Download Pads
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: pads
-          path: src/app/data/
-      - name: Download Previous Events
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: previousevents
-          path: src/app/data/
-      - name: Download Previous Launches
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: previouslaunches
-          path: src/app/data/
-      - name: Download Rockets
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: rockets
-          path: src/app/data/
-      - name: Download Spacecrafts
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: spacecrafts
-          path: src/app/data/
-      - name: Download Spacestations
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: spacestations
+          name: masterdata
           path: src/app/data/
       - name: Run Test
         run: npm run test
@@ -770,55 +680,10 @@ jobs:
         run: npm install @ionic/cli
       - name: NPM Install
         run: npm install
-      - name: Download Launches
+      - name: Download Masterdata
         uses: actions/download-artifact@v2.0.5
         with:
-          name: data
-          path: src/app/data/
-      - name: Download Agencies
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: agencies
-          path: src/app/data/
-      - name: Download Astronauts
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: astronauts
-          path: src/app/data/
-      - name: Download Locations
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: locations
-          path: src/app/data/
-      - name: Download Pads
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: pads
-          path: src/app/data/
-      - name: Download Previous Events
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: previousevents
-          path: src/app/data/
-      - name: Download Previous Launches
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: previouslaunches
-          path: src/app/data/
-      - name: Download Rockets
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: rockets
-          path: src/app/data/
-      - name: Download Spacecrafts
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: spacecrafts
-          path: src/app/data/
-      - name: Download Spacestations
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: spacestations
+          name: masterdata
           path: src/app/data/
       - name: Run Test
         run: npm run e2e
@@ -842,55 +707,10 @@ jobs:
         run: npm install @ionic/cli
       - name: NPM Install
         run: npm install
-      - name: Download Launches
+      - name: Download Masterdata
         uses: actions/download-artifact@v2.0.5
         with:
-          name: data
-          path: src/app/data/
-      - name: Download Agencies
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: agencies
-          path: src/app/data/
-      - name: Download Astronauts
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: astronauts
-          path: src/app/data/
-      - name: Download Locations
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: locations
-          path: src/app/data/
-      - name: Download Pads
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: pads
-          path: src/app/data/
-      - name: Download Previous Events
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: previousevents
-          path: src/app/data/
-      - name: Download Previous Launches
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: previouslaunches
-          path: src/app/data/
-      - name: Download Rockets
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: rockets
-          path: src/app/data/
-      - name: Download Spacecrafts
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: spacecrafts
-          path: src/app/data/
-      - name: Download Spacestations
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: spacestations
+          name: masterdata
           path: src/app/data/
       - name: Take Screenshots
         run: npm run screenshots:pixel2xl
@@ -920,55 +740,10 @@ jobs:
         run: npm install @ionic/cli
       - name: NPM Install
         run: npm install
-      - name: Download Launches
+      - name: Download Masterdata
         uses: actions/download-artifact@v2.0.5
         with:
-          name: data
-          path: src/app/data/
-      - name: Download Agencies
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: agencies
-          path: src/app/data/
-      - name: Download Astronauts
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: astronauts
-          path: src/app/data/
-      - name: Download Locations
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: locations
-          path: src/app/data/
-      - name: Download Pads
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: pads
-          path: src/app/data/
-      - name: Download Previous Events
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: previousevents
-          path: src/app/data/
-      - name: Download Previous Launches
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: previouslaunches
-          path: src/app/data/
-      - name: Download Rockets
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: rockets
-          path: src/app/data/
-      - name: Download Spacecrafts
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: spacecrafts
-          path: src/app/data/
-      - name: Download Spacestations
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: spacestations
+          name: masterdata
           path: src/app/data/
       - name: Take Screenshots
         run: npm run screenshots:nexus7
@@ -998,55 +773,10 @@ jobs:
         run: npm install @ionic/cli
       - name: NPM Install
         run: npm install
-      - name: Download Launches
+      - name: Download Masterdata
         uses: actions/download-artifact@v2.0.5
         with:
-          name: data
-          path: src/app/data/
-      - name: Download Agencies
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: agencies
-          path: src/app/data/
-      - name: Download Astronauts
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: astronauts
-          path: src/app/data/
-      - name: Download Locations
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: locations
-          path: src/app/data/
-      - name: Download Pads
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: pads
-          path: src/app/data/
-      - name: Download Previous Events
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: previousevents
-          path: src/app/data/
-      - name: Download Previous Launches
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: previouslaunches
-          path: src/app/data/
-      - name: Download Rockets
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: rockets
-          path: src/app/data/
-      - name: Download Spacecrafts
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: spacecrafts
-          path: src/app/data/
-      - name: Download Spacestations
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: spacestations
+          name: masterdata
           path: src/app/data/
       - name: Take Screenshots
         run: npm run screenshots:nexus10
