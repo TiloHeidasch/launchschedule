@@ -197,7 +197,7 @@ jobs:
         run: node scripts/masterdata/fetch.ts agencies agencies 0 500
       - name: Fake Agencies
         if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/dev'
-        run: mkdir src/app/data && echo '[]' > src/app/data/agencies1.ts
+        run: mkdir src/app/data && echo '[]' > src/app/data/agencies1.json
       - name: Safe Data Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
@@ -216,7 +216,7 @@ jobs:
         run: node scripts/masterdata/fetchAstronaut.ts 0 500
       - name: Fake Astronauts
         if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/dev'
-        run: mkdir src/app/data && echo '[]' > src/app/data/astronauts1.ts
+        run: mkdir src/app/data && echo '[]' > src/app/data/astronauts1.json
       - name: Safe Data Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
@@ -235,7 +235,7 @@ jobs:
         run: node scripts/masterdata/fetchAstronaut.ts 500 500
       - name: Fake Astronauts
         if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/dev'
-        run: mkdir src/app/data && echo '[]' > src/app/data/astronauts2.ts
+        run: mkdir src/app/data && echo '[]' > src/app/data/astronauts2.json
       - name: Safe Data Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
@@ -314,7 +314,7 @@ jobs:
         run: node scripts/masterdata/fetch.ts location locations 0 500
       - name: Fake Locations
         if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/dev'
-        run: mkdir src/app/data && echo '[]' > src/app/data/locations1.ts
+        run: mkdir src/app/data && echo '[]' > src/app/data/locations1.json
       - name: Safe Data Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
@@ -333,7 +333,7 @@ jobs:
         run: node scripts/masterdata/fetch.ts pad pads 0 500
       - name: Fake Pads
         if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/dev'
-        run: mkdir src/app/data && echo '[]' > src/app/data/pads1.ts
+        run: mkdir src/app/data && echo '[]' > src/app/data/pads1.json
       - name: Safe Data Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
@@ -352,7 +352,7 @@ jobs:
         run: node scripts/masterdata/fetch.ts event/previous previousevents 0 500
       - name: Fake Previous Events
         if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/dev'
-        run: mkdir src/app/data && echo '[]' > src/app/data/previousevents1.ts
+        run: mkdir src/app/data && echo '[]' > src/app/data/previousevents1.json
       - name: Safe Data Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
@@ -371,7 +371,7 @@ jobs:
         run: node scripts/masterdata/fetchPreviousLaunches.ts 0 500
       - name: Fake Previous Launches
         if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/dev'
-        run: mkdir src/app/data && echo '[]' > src/app/data/previouslaunches1.ts
+        run: mkdir src/app/data && echo '[]' > src/app/data/previouslaunches1.json
       - name: Safe Data Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
@@ -390,7 +390,7 @@ jobs:
         run: node scripts/masterdata/fetchPreviousLaunches.ts 500 500
       - name: Fake Previous Launches
         if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/dev'
-        run: mkdir src/app/data && echo '[]' > src/app/data/previouslaunches2.ts
+        run: mkdir src/app/data && echo '[]' > src/app/data/previouslaunches2.json
       - name: Safe Data Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
@@ -409,7 +409,7 @@ jobs:
         run: node scripts/masterdata/fetchPreviousLaunches.ts 1000 500
       - name: Fake Previous Launches
         if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/dev'
-        run: mkdir src/app/data && echo '[]' > src/app/data/previouslaunches3.ts
+        run: mkdir src/app/data && echo '[]' > src/app/data/previouslaunches3.json
       - name: Safe Data Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
@@ -428,7 +428,7 @@ jobs:
         run: node scripts/masterdata/fetchPreviousLaunches.ts 1500 500
       - name: Fake Previous Launches
         if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/dev'
-        run: mkdir src/app/data && echo '[]' > src/app/data/previouslaunches4.ts
+        run: mkdir src/app/data && echo '[]' > src/app/data/previouslaunches4.json
       - name: Safe Data Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
@@ -447,7 +447,7 @@ jobs:
         run: node scripts/masterdata/fetch.ts config/launcher rockets 0 500
       - name: Fake Rockets
         if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/dev'
-        run: mkdir src/app/data && echo '[]' > src/app/data/rockets1.ts
+        run: mkdir src/app/data && echo '[]' > src/app/data/rockets1.json
       - name: Safe Data Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
@@ -466,7 +466,7 @@ jobs:
         run: node scripts/masterdata/fetch.ts config/spacecraft spacecrafts 0 500
       - name: Fake Spacecrafts
         if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/dev'
-        run: mkdir src/app/data && echo '[]' > src/app/data/spacecrafts1.ts
+        run: mkdir src/app/data && echo '[]' > src/app/data/spacecrafts1.json
       - name: Safe Data Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
@@ -485,7 +485,7 @@ jobs:
         run: node scripts/masterdata/fetch.ts spacestation spacestations 0 500
       - name: Fake Spacestations
         if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/dev'
-        run: mkdir src/app/data && echo '[]' > src/app/data/spacestations1.ts
+        run: mkdir src/app/data && echo '[]' > src/app/data/spacestations1.json
       - name: Safe Data Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
