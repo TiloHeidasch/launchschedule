@@ -443,7 +443,7 @@ jobs:
     name: Build Web & Android
     runs-on: ubuntu-latest
     needs:
-      [ merge
+      [ merge,
         baptize,
         track,
       ]
@@ -684,7 +684,7 @@ jobs:
     name: Tests
     runs-on: ubuntu-latest
     needs:
-      [ merge
+      [ merge,
         baptize,
         track,
       ]
@@ -755,7 +755,7 @@ jobs:
     name: E2E Tests
     runs-on: ubuntu-latest
     needs:
-      [ merge
+      [ merge,
         baptize,
         track,
       ]
@@ -826,7 +826,7 @@ jobs:
     name: Screenshots Pixel 2 XL
     runs-on: ubuntu-latest
     needs:
-      [ merge
+      [ merge,
         baptize,
         track,
       ]
@@ -904,7 +904,7 @@ jobs:
     name: Screenshots Nexus 7
     runs-on: ubuntu-latest
     needs:
-      [ merge
+      [ merge,
         baptize,
         track,
       ]
@@ -982,7 +982,7 @@ jobs:
     name: Screenshots Nexus 10
     runs-on: ubuntu-latest
     needs:
-      [ merge
+      [ merge,
         baptize,
         track,
       ]
