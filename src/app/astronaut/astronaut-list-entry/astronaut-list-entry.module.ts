@@ -5,6 +5,7 @@ import { AstronautRoutingModule } from "../astronaut-routing.module";
 import { AstronautStatusModule } from "../astronaut-status/astronaut-status.module";
 import { AnimationModule } from "src/app/animation/animation.module";
 import { IonicModule } from "@ionic/angular";
+import { AstronautService } from "../astronaut.service";
 
 @NgModule({
   declarations: [AstronautListEntryComponent],
@@ -16,5 +17,6 @@ import { IonicModule } from "@ionic/angular";
     IonicModule,
   ],
   exports: [AstronautListEntryComponent],
+  providers: [AstronautService],
 })
 export class AstronautListEntryModule {}

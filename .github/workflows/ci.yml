@@ -26,7 +26,7 @@ jobs:
       - name: Clean version File
         run: truncate -s -1 version
       - name: Safe Version File Artifact
-        uses: actions/upload-artifact@v2.1.4
+        uses: actions/upload-artifact@v2.2.3
         with:
           name: version
           path: ./version
@@ -43,47 +43,193 @@ jobs:
         if: ${{github.ref == 'refs/heads/dev'}}
         run: echo "Beta" > track
       - name: Safe Track File Artifact
-        uses: actions/upload-artifact@v2.1.4
+        uses: actions/upload-artifact@v2.2.3
         with:
           name: track
           path: ./track
-  fetch:
-    name: Merge Data
+  merge:
+    name: Merge Master Data
     runs-on: ubuntu-latest
-    needs: [fetch1, fetch2, fetch3, fetch4]
+    needs: [
+        fetchAgencies1,
+        fetchAstronauts1,
+        fetchAstronauts2,
+        fetchLaunches1,
+        fetchLaunches2,
+        fetchLaunches3,
+        fetchLaunches4,
+        fetchLocations1,
+        fetchPads1,
+        fetchPreviousEvents1,
+        fetchPreviousLaunches1,
+        fetchPreviousLaunches2,
+        fetchPreviousLaunches3,
+        fetchPreviousLaunches4,
+        fetchRockets1,
+        fetchSpacecrafts1,
+        fetchSpacestations1,
+      ]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
-      - name: Download Launches 0-500
-        uses: actions/download-artifact@v2.0.5
+      - name: Download Agencies 0-500
+        uses: actions/download-artifact@v2.0.9
         with:
-          name: fetch1
+          name: agencies1
+          path: src/app/data/
+      - name: Download Astronauts 0-500
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: astronauts1
+          path: src/app/data/
+      - name: Download Astronauts 500-1000
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: astronauts2
+          path: src/app/data/
+      - name: Download Launches 0-500
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: launches1
           path: src/app/data/
       - name: Download Launches 500-1000
-        uses: actions/download-artifact@v2.0.5
+        uses: actions/download-artifact@v2.0.9
         with:
-          name: fetch2
+          name: launches2
           path: src/app/data/
       - name: Download Launches 1000-1500
-        uses: actions/download-artifact@v2.0.5
+        uses: actions/download-artifact@v2.0.9
         with:
-          name: fetch3
+          name: launches3
           path: src/app/data/
       - name: Download Launches 1500-2000
-        uses: actions/download-artifact@v2.0.5
+        uses: actions/download-artifact@v2.0.9
         with:
-          name: fetch4
+          name: launches4
           path: src/app/data/
+      - name: Download Locations 0-500
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: locations1
+          path: src/app/data/
+      - name: Download Pads 0-500
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: pads1
+          path: src/app/data/
+      - name: Download Previous Events 0-500
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: previousevents1
+          path: src/app/data/
+      - name: Download Previous Launches 0-500
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: previouslaunches1
+          path: src/app/data/
+      - name: Download Previous Launches 500-1000
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: previouslaunches2
+          path: src/app/data/
+      - name: Download Previous Launches 1000-1500
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: previouslaunches3
+          path: src/app/data/
+      - name: Download Previous Launches 1500-2000
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: previouslaunches4
+          path: src/app/data/
+      - name: Download Rockets 0-500
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: rockets1
+          path: src/app/data/
+      - name: Download Spacecrafts 0-500
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: spacecrafts1
+          path: src/app/data/
+      - name: Download Spacestations 0-500
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: spacestations1
+          path: src/app/data/
+      - name: Merge Agencies
+        run: node scripts/masterdata/merge.ts agencies 500 500
+      - name: Merge Astronauts
+        run: node scripts/masterdata/merge.ts astronauts 1000 500
       - name: Merge Launches
         run: node scripts/mergeLaunches.ts 2000 500
-      - name: Safe Data Artifact
-        uses: actions/upload-artifact@v2.1.4
+      - name: Merge Locations
+        run: node scripts/masterdata/merge.ts locations 500 500
+      - name: Merge Pads
+        run: node scripts/masterdata/merge.ts pads 500 500
+      - name: Merge Previous Events
+        run: node scripts/masterdata/merge.ts previousevents 500 500
+      - name: Merge Previous Launches
+        run: node scripts/masterdata/merge.ts previouslaunches 2000 500
+      - name: Merge Rockets
+        run: node scripts/masterdata/merge.ts rockets 500 500
+      - name: Merge Spacecrafts
+        run: node scripts/masterdata/merge.ts spacecrafts 500 500
+      - name: Merge Spacestations
+        run: node scripts/masterdata/merge.ts spacestations 500 500
+      - name: Safe MasterData Artifact
+        uses: actions/upload-artifact@v2.2.3
         with:
-          name: data
+          name: masterdata
           path: src/app/data/
-  fetch1:
+  fetchAgencies1:
+    name: Fetch Agencies 0-500
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Agencies
+        run: node scripts/masterdata/fetch.ts agencies agencies 0 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: agencies1
+          path: src/app/data/
+  fetchAstronauts1:
+    name: Fetch Astronauts 0-500
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Astronauts
+        run: node scripts/masterdata/fetchAstronaut.ts 0 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: astronauts1
+          path: src/app/data/
+  fetchAstronauts2:
+    name: Fetch Astronauts 500-1000
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Astronauts
+        run: node scripts/masterdata/fetchAstronaut.ts 500 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: astronauts2
+          path: src/app/data/
+  fetchLaunches1:
     name: Fetch Launches 0-500
     runs-on: ubuntu-latest
     steps:
@@ -94,11 +240,11 @@ jobs:
       - name: Fetch Launches
         run: node scripts/fetchLaunches.ts 0 500
       - name: Safe Data Artifact
-        uses: actions/upload-artifact@v2.1.4
+        uses: actions/upload-artifact@v2.2.3
         with:
-          name: fetch1
+          name: launches1
           path: src/app/data/
-  fetch2:
+  fetchLaunches2:
     name: Fetch Launches 500-1000
     runs-on: ubuntu-latest
     steps:
@@ -109,11 +255,11 @@ jobs:
       - name: Fetch Launches
         run: node scripts/fetchLaunches.ts 500 500
       - name: Safe Data Artifact
-        uses: actions/upload-artifact@v2.1.4
+        uses: actions/upload-artifact@v2.2.3
         with:
-          name: fetch2
+          name: launches2
           path: src/app/data/
-  fetch3:
+  fetchLaunches3:
     name: Fetch Launches 1000-1500
     runs-on: ubuntu-latest
     steps:
@@ -124,11 +270,11 @@ jobs:
       - name: Fetch Launches
         run: node scripts/fetchLaunches.ts 1000 500
       - name: Safe Data Artifact
-        uses: actions/upload-artifact@v2.1.4
+        uses: actions/upload-artifact@v2.2.3
         with:
-          name: fetch3
+          name: launches3
           path: src/app/data/
-  fetch4:
+  fetchLaunches4:
     name: Fetch Launches 1500-2000
     runs-on: ubuntu-latest
     steps:
@@ -139,14 +285,168 @@ jobs:
       - name: Fetch Launches
         run: node scripts/fetchLaunches.ts 1500 500
       - name: Safe Data Artifact
-        uses: actions/upload-artifact@v2.1.4
+        uses: actions/upload-artifact@v2.2.3
         with:
-          name: fetch4
+          name: launches4
+          path: src/app/data/
+  fetchLocations1:
+    name: Fetch Locations 0-500
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Locations
+        run: node scripts/masterdata/fetch.ts location locations 0 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: locations1
+          path: src/app/data/
+  fetchPads1:
+    name: Fetch Pads 0-500
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Pads
+        run: node scripts/masterdata/fetch.ts pad pads 0 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: pads1
+          path: src/app/data/
+  fetchPreviousEvents1:
+    name: Fetch Previous Events 0-500
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Previous Events
+        run: node scripts/masterdata/fetch.ts event/previous previousevents 0 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: previousevents1
+          path: src/app/data/
+  fetchPreviousLaunches1:
+    name: Fetch Previous Launches 0-500
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Previous Launches
+        run: node scripts/masterdata/fetchPreviousLaunches.ts 0 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: previouslaunches1
+          path: src/app/data/
+  fetchPreviousLaunches2:
+    name: Fetch Previous Launches 500-1000
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Previous Launches
+        run: node scripts/masterdata/fetchPreviousLaunches.ts 500 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: previouslaunches2
+          path: src/app/data/
+  fetchPreviousLaunches3:
+    name: Fetch Previous Launches 1000-1500
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Previous Launches
+        run: node scripts/masterdata/fetchPreviousLaunches.ts 1000 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: previouslaunches3
+          path: src/app/data/
+  fetchPreviousLaunches4:
+    name: Fetch Previous Launches 1500-2000
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Previous Launches
+        run: node scripts/masterdata/fetchPreviousLaunches.ts 1500 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: previouslaunches4
+          path: src/app/data/
+  fetchRockets1:
+    name: Fetch Rockets 0-500
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Rockets
+        run: node scripts/masterdata/fetch.ts config/launcher rockets 0 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: rockets1
+          path: src/app/data/
+  fetchSpacecrafts1:
+    name: Fetch Spacecrafts 0-500
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Spacecrafts
+        run: node scripts/masterdata/fetch.ts config/spacecraft spacecrafts 0 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: spacecrafts1
+          path: src/app/data/
+  fetchSpacestations1:
+    name: Fetch Spacestations 0-500
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Spacestations
+        run: node scripts/masterdata/fetch.ts spacestation spacestations 0 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: spacestations1
           path: src/app/data/
   build:
     name: Build Web & Android
     runs-on: ubuntu-latest
-    needs: [fetch, baptize, track]
+    needs:
+      [ merge,
+        baptize,
+        track,
+      ]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -159,14 +459,14 @@ jobs:
       - name: NPM Install
         run: npm install
       - name: Download Version
-        uses: actions/download-artifact@v2.0.5
+        uses: actions/download-artifact@v2.0.9
         with:
           name: version
           path: ./
       - name: Set Release Name Variable
         run: echo "RELEASE_NAME=`cat ./version`" >> $GITHUB_ENV
       - name: Download Track
-        uses: actions/download-artifact@v2.0.5
+        uses: actions/download-artifact@v2.0.9
         with:
           name: track
           path: ./
@@ -176,10 +476,10 @@ jobs:
         run: sed -i 's/};/versionCode:${{ github.run_number }},\n versionName:"${{ env.RELEASE_NAME }}",\n track:"${{ env.RELEASE_TRACK }}"\n};/g' src/environments/environment.prod.ts
       - name: Check Environment File
         run: cat src/environments/environment.prod.ts
-      - name: Download Launches
-        uses: actions/download-artifact@v2.0.5
+      - name: Download Masterdata
+        uses: actions/download-artifact@v2.0.9
         with:
-          name: data
+          name: masterdata
           path: src/app/data/
       - name: Build with Ionic
         run: npm run build:prod
@@ -188,7 +488,7 @@ jobs:
       - name: Capacitor Copy
         run: npx cap copy
       - name: Safe www Artifact
-        uses: actions/upload-artifact@v2.1.4
+        uses: actions/upload-artifact@v2.2.3
         with:
           name: www
           path: www/
@@ -199,18 +499,18 @@ jobs:
       - name: Build with Gradle
         run: cd android && chmod +x gradlew && ./gradlew bundleRelease
       - name: Safe Unsigned Release Bundle Artifact
-        uses: actions/upload-artifact@v2.1.4
+        uses: actions/upload-artifact@v2.2.3
         with:
           name: app-bundle-unsigned
           path: android/app/build/outputs/bundle/release/app-release.aab
   sign:
     name: Sign Android Artifact
     runs-on: ubuntu-latest
-    needs: build
-    if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev' 
+    needs: [build, lint, test, e2e]
+    if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
     steps:
       - name: Download Unsigned Release Bundle Artifact
-        uses: actions/download-artifact@v2.0.5
+        uses: actions/download-artifact@v2.0.9
         with:
           name: app-bundle-unsigned
           path: ./
@@ -223,7 +523,7 @@ jobs:
           keyStorePassword: ${{ secrets.ANDROID_KEY_STORE_PASSWORD }}
           keyPassword: ${{ secrets.ANDROID_KEY_PASSWORD }}
       - name: Safe Signed Release Bundle Artifact
-        uses: actions/upload-artifact@v2.1.4
+        uses: actions/upload-artifact@v2.2.3
         with:
           name: app-bundle-signed
           path: ./app-release.aab
@@ -234,7 +534,7 @@ jobs:
     if: github.ref == 'refs/heads/master'
     steps:
       - name: Download Signed Release Bundle Artifact
-        uses: actions/download-artifact@v2.0.5
+        uses: actions/download-artifact@v2.0.9
         with:
           name: app-bundle-signed
           path: ./
@@ -251,7 +551,7 @@ jobs:
     if: github.ref == 'refs/heads/dev'
     steps:
       - name: Download Signed Release Bundle Artifact
-        uses: actions/download-artifact@v2.0.5
+        uses: actions/download-artifact@v2.0.9
         with:
           name: app-bundle-signed
           path: ./
@@ -268,17 +568,17 @@ jobs:
     needs: [build, lint, test, e2e]
     if: github.ref == 'refs/heads/master'
     steps:
-    - name: Download www
-      uses: actions/download-artifact@v2.0.5
-      with:
-        name: www
-        path: www/
-    - name: GitHub Pages
-      uses: crazy-max/ghaction-github-pages@v2.3.0
-      with:
-        build_dir: www/
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Download www
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: www
+          path: www/
+      - name: GitHub Pages
+        uses: crazy-max/ghaction-github-pages@v2.3.0
+        with:
+          build_dir: www/
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   dockerProd:
     name: Build and Push docker latest
     runs-on: ubuntu-latest
@@ -288,7 +588,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Download www
-        uses: actions/download-artifact@v2.0.5
+        uses: actions/download-artifact@v2.0.9
         with:
           name: www
           path: www/
@@ -308,7 +608,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Download www
-        uses: actions/download-artifact@v2.0.5
+        uses: actions/download-artifact@v2.0.9
         with:
           name: www
           path: www/
@@ -338,7 +638,11 @@ jobs:
   test:
     name: Tests
     runs-on: ubuntu-latest
-    needs: fetch
+    needs:
+      [ merge,
+        baptize,
+        track,
+      ]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -350,17 +654,21 @@ jobs:
         run: npm install @ionic/cli
       - name: NPM Install
         run: npm install
-      - name: Download Launches
-        uses: actions/download-artifact@v2.0.5
+      - name: Download Masterdata
+        uses: actions/download-artifact@v2.0.9
         with:
-          name: data
+          name: masterdata
           path: src/app/data/
       - name: Run Test
         run: npm run test
   e2e:
     name: E2E Tests
     runs-on: ubuntu-latest
-    needs: fetch
+    needs:
+      [ merge,
+        baptize,
+        track,
+      ]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -372,17 +680,21 @@ jobs:
         run: npm install @ionic/cli
       - name: NPM Install
         run: npm install
-      - name: Download Launches
-        uses: actions/download-artifact@v2.0.5
+      - name: Download Masterdata
+        uses: actions/download-artifact@v2.0.9
         with:
-          name: data
+          name: masterdata
           path: src/app/data/
       - name: Run Test
         run: npm run e2e
   pixel2xl:
     name: Screenshots Pixel 2 XL
     runs-on: ubuntu-latest
-    needs: fetch
+    needs:
+      [ merge,
+        baptize,
+        track,
+      ]
     if: github.ref == 'refs/heads/master'
     steps:
       - name: Checkout
@@ -395,23 +707,27 @@ jobs:
         run: npm install @ionic/cli
       - name: NPM Install
         run: npm install
-      - name: Download Launches
-        uses: actions/download-artifact@v2.0.5
+      - name: Download Masterdata
+        uses: actions/download-artifact@v2.0.9
         with:
-          name: data
+          name: masterdata
           path: src/app/data/
       - name: Take Screenshots
         run: npm run screenshots:pixel2xl
       - name: Safe Screenshots
         if: always()
-        uses: actions/upload-artifact@v2.1.4
+        uses: actions/upload-artifact@v2.2.3
         with:
           name: screenshots_pixel2xl
           path: ./screenshots/images
   nexus7:
     name: Screenshots Nexus 7
     runs-on: ubuntu-latest
-    needs: fetch
+    needs:
+      [ merge,
+        baptize,
+        track,
+      ]
     if: github.ref == 'refs/heads/master'
     steps:
       - name: Checkout
@@ -424,23 +740,27 @@ jobs:
         run: npm install @ionic/cli
       - name: NPM Install
         run: npm install
-      - name: Download Launches
-        uses: actions/download-artifact@v2.0.5
+      - name: Download Masterdata
+        uses: actions/download-artifact@v2.0.9
         with:
-          name: data
+          name: masterdata
           path: src/app/data/
       - name: Take Screenshots
         run: npm run screenshots:nexus7
       - name: Safe Screenshots
         if: always()
-        uses: actions/upload-artifact@v2.1.4
+        uses: actions/upload-artifact@v2.2.3
         with:
           name: screenshots_nexus7
           path: ./screenshots/images
   nexus10:
     name: Screenshots Nexus 10
     runs-on: ubuntu-latest
-    needs: fetch
+    needs:
+      [ merge,
+        baptize,
+        track,
+      ]
     if: github.ref == 'refs/heads/master'
     steps:
       - name: Checkout
@@ -453,16 +773,16 @@ jobs:
         run: npm install @ionic/cli
       - name: NPM Install
         run: npm install
-      - name: Download Launches
-        uses: actions/download-artifact@v2.0.5
+      - name: Download Masterdata
+        uses: actions/download-artifact@v2.0.9
         with:
-          name: data
+          name: masterdata
           path: src/app/data/
       - name: Take Screenshots
         run: npm run screenshots:nexus10
       - name: Safe Screenshots
         if: always()
-        uses: actions/upload-artifact@v2.1.4
+        uses: actions/upload-artifact@v2.2.3
         with:
           name: screenshots_nexus10
           path: ./screenshots/images
@@ -473,7 +793,7 @@ jobs:
     needs: [dockerDev, releaseDev]
     steps:
       - name: Download Version
-        uses: actions/download-artifact@v2.0.5
+        uses: actions/download-artifact@v2.0.9
         with:
           name: version
           path: ./
@@ -492,7 +812,7 @@ jobs:
     needs: [dockerProd, releaseProd]
     steps:
       - name: Download Version
-        uses: actions/download-artifact@v2.0.5
+        uses: actions/download-artifact@v2.0.9
         with:
           name: version
           path: ./

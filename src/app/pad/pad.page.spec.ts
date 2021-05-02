@@ -4,6 +4,7 @@ import { IonicModule } from "@ionic/angular";
 import { PadPage } from "./pad.page";
 import { RouterTestingModule } from "@angular/router/testing";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { ActivatedRoute } from "@angular/router";
 
 describe("PadPage", () => {
   let component: PadPage;
@@ -19,6 +20,10 @@ describe("PadPage", () => {
       ],
     }).compileComponents();
 
+    spyOn(
+      TestBed.inject(ActivatedRoute).snapshot.paramMap,
+      "get"
+    ).and.returnValue("87");
     fixture = TestBed.createComponent(PadPage);
     component = fixture.componentInstance;
     fixture.detectChanges();

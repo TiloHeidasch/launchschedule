@@ -5,7 +5,7 @@ import { Injectable } from "@angular/core";
 })
 export class AstronautParamStoreService {
   search: string;
-  status: number;
+  status: string;
 
   showFilter = false;
   astronauts: any[] = [];

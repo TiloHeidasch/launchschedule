@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { LaunchLibraryService } from "../launch-library.service";
 import { AgencyParamStoreService } from "./agency-param-store.service";
 import { CountryCode } from "../types/country-codes";
 import { IonContent, ViewDidEnter, IonInfiniteScroll } from "@ionic/angular";
+import { AgencyService } from "./agency.service";
 
 @Component({
   selector: "app-agency-overview",
@@ -15,7 +15,7 @@ export class AgencyOverviewPage implements OnInit, ViewDidEnter {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   CountryCode = CountryCode;
   constructor(
-    private service: LaunchLibraryService,
+    private service: AgencyService,
     public store: AgencyParamStoreService
   ) {}
   ngOnInit() {
@@ -34,12 +34,16 @@ export class AgencyOverviewPage implements OnInit, ViewDidEnter {
       this.infiniteScroll.disabled = false;
     } catch (error) {}
     this.store.agencies = [];
-    this.store.agencies = (await this.service.getFirstAgencies(
-      this.store.search,
-      this.store.featured,
-      this.store.type,
-      this.store.countryCode
-    )).agencies;
+    this.store.agencies = (
+
+      await this.service.getFirstAgencies(
+          this.store.search,
+          this.store.featured,
+          this.store.type,
+          this.store.countryCode
+        )
+
+    ).agencies;
     if (refreshEvent) {
       refreshEvent.target.complete();
     }

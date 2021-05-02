@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { ToastController } from "@ionic/angular";
-import { LaunchLibraryService } from "src/app/launch-library.service";
+import { SpacecraftService } from "src/app/spacecraft/spacecraft.service";
 import { PlaceholderService } from "src/app/placeholder.service";
 
 @Component({
@@ -13,7 +13,7 @@ export class SpacecraftDetailCardComponent implements OnInit {
   @Input() id?;
 
   constructor(
-    private service: LaunchLibraryService,
+    private service: SpacecraftService,
     public toastController: ToastController,
     public placeholderService: PlaceholderService
   ) {}

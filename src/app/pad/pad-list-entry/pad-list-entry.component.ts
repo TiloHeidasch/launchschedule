@@ -4,7 +4,7 @@ import {
   Input,
   ChangeDetectionStrategy,
 } from "@angular/core";
-import { LaunchLibraryService } from "src/app/launch-library.service";
+import { PadService } from "src/app/pad/pad.service";
 import { PlaceholderService } from "src/app/placeholder.service";
 
 @Component({
@@ -20,13 +20,13 @@ export class PadListEntryComponent implements OnInit {
   title: string;
   subtitle: string;
   constructor(
-    private service: LaunchLibraryService,
+    private service: PadService,
     public placeholderService: PlaceholderService
   ) {}
 
-  async ngOnInit() {
+  ngOnInit() {
     if (!this.pad) {
-      this.pad = await this.service.getPadById(this.id);
+      this.pad = this.service.getPadById(this.id);
     }
     if (!this.locationName) {
       this.locationName = this.pad.location.name;

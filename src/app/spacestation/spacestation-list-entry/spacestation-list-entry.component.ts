@@ -4,7 +4,7 @@ import {
   Input,
   ChangeDetectionStrategy,
 } from "@angular/core";
-import { LaunchLibraryService } from "src/app/launch-library.service";
+import { SpacestationService } from "src/app/spacestation/spacestation.service";
 import { PlaceholderService } from "src/app/placeholder.service";
 
 @Component({
@@ -19,13 +19,13 @@ export class SpacestationListEntryComponent implements OnInit {
   title: string;
   subtitle: string;
   constructor(
-    private service: LaunchLibraryService,
+    private service: SpacestationService,
     public placeholderService: PlaceholderService
   ) {}
 
-  async ngOnInit() {
+  ngOnInit() {
     if (!this.spacestation) {
-      this.spacestation = await this.service.getSpacestationById(this.id);
+      this.spacestation =  this.service.getSpacestationById(this.id);
     }
     this.title = this.spacestation.name;
     this.subtitle = this.spacestation.orbit;

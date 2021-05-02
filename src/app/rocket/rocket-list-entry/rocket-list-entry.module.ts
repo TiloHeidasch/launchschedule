@@ -5,6 +5,7 @@ import { RocketRoutingModule } from "../rocket-routing.module";
 import { AnimationModule } from "src/app/animation/animation.module";
 import { IonicModule } from "@ionic/angular";
 import { NotificationModule } from "src/app/notification/notification.module";
+import { RocketService } from "../rocket.service";
 
 @NgModule({
   declarations: [RocketListEntryComponent],
@@ -16,5 +17,6 @@ import { NotificationModule } from "src/app/notification/notification.module";
     NotificationModule,
   ],
   exports: [RocketListEntryComponent],
+  providers: [RocketService],
 })
 export class RocketListEntryModule {}

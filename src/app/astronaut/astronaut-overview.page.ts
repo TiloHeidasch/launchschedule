@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { LaunchLibraryService } from "../launch-library.service";
 import { AstronautParamStoreService } from "./astronaut-param-store.service";
 import { IonContent, ViewDidEnter, IonInfiniteScroll } from "@ionic/angular";
+import { AstronautService } from "./astronaut.service";
 
 @Component({
   selector: "app-astronaut-overview",
@@ -13,7 +13,7 @@ export class AstronautOverviewPage implements OnInit, ViewDidEnter {
   @ViewChild("astronautOverviewContent") content: IonContent;
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   constructor(
-    private service: LaunchLibraryService,
+    private service: AstronautService,
     public store: AstronautParamStoreService
   ) {}
 
@@ -33,10 +33,14 @@ export class AstronautOverviewPage implements OnInit, ViewDidEnter {
       this.infiniteScroll.disabled = false;
     } catch (error) {}
     this.store.astronauts = [];
-    this.store.astronauts = (await this.service.getFirstAstronauts(
-      this.store.search,
-      this.store.status
-    )).astronauts;
+    this.store.astronauts = (
+
+      await this.service.getFirstAstronauts(
+          this.store.search,
+          this.store.status
+        )
+
+    ).astronauts;
     if (refreshEvent) {
       refreshEvent.target.complete();
     }
