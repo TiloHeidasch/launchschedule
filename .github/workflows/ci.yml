@@ -189,16 +189,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
         uses: actions/checkout@v2
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
       - name: Fetch Agencies
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
         run: node scripts/masterdata/fetch.ts agencies agencies 0 500
-      - name: Fake Agencies
-        if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/dev'
-        run: mkdir src && mkdir src/app && mkdir src/app/data && echo '[{"id":1}]' > src/app/data/agencies1.json
       - name: Safe Data Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
@@ -209,16 +204,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
         uses: actions/checkout@v2
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
       - name: Fetch Astronauts
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
         run: node scripts/masterdata/fetchAstronaut.ts 0 500
-      - name: Fake Astronauts
-        if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/dev'
-        run: mkdir src && mkdir src/app && mkdir src/app/data && echo '[{"id":1}]' > src/app/data/astronauts1.json
       - name: Safe Data Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
@@ -229,16 +219,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
         uses: actions/checkout@v2
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
       - name: Fetch Astronauts
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
         run: node scripts/masterdata/fetchAstronaut.ts 500 500
-      - name: Fake Astronauts
-        if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/dev'
-        run: mkdir src && mkdir src/app && mkdir src/app/data && echo '[{"id":1}]' > src/app/data/astronauts2.json
       - name: Safe Data Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
@@ -309,16 +294,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
         uses: actions/checkout@v2
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
       - name: Fetch Locations
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
         run: node scripts/masterdata/fetch.ts location locations 0 500
-      - name: Fake Locations
-        if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/dev'
-        run: mkdir src && mkdir src/app && mkdir src/app/data && echo '[{"id":1}]' > src/app/data/locations1.json
       - name: Safe Data Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
@@ -329,16 +309,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
         uses: actions/checkout@v2
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
       - name: Fetch Pads
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
         run: node scripts/masterdata/fetch.ts pad pads 0 500
-      - name: Fake Pads
-        if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/dev'
-        run: mkdir src && mkdir src/app && mkdir src/app/data && echo '[{"id":1}]' > src/app/data/pads1.json
       - name: Safe Data Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
@@ -349,16 +324,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
         uses: actions/checkout@v2
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
       - name: Fetch Previous Events
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
         run: node scripts/masterdata/fetch.ts event/previous previousevents 0 500
-      - name: Fake Previous Events
-        if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/dev'
-        run: mkdir src && mkdir src/app && mkdir src/app/data && echo '[{"id":1}]' > src/app/data/previousevents1.json
       - name: Safe Data Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
@@ -369,16 +339,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
         uses: actions/checkout@v2
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
       - name: Fetch Previous Launches
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
         run: node scripts/masterdata/fetchPreviousLaunches.ts 0 500
-      - name: Fake Previous Launches
-        if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/dev'
-        run: mkdir src && mkdir src/app && mkdir src/app/data && echo '[{"id":1}]' > src/app/data/previouslaunches1.json
       - name: Safe Data Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
@@ -389,16 +354,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
         uses: actions/checkout@v2
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
       - name: Fetch Previous Launches
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
         run: node scripts/masterdata/fetchPreviousLaunches.ts 500 500
-      - name: Fake Previous Launches
-        if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/dev'
-        run: mkdir src && mkdir src/app && mkdir src/app/data && echo '[{"id":1}]' > src/app/data/previouslaunches2.json
       - name: Safe Data Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
@@ -409,16 +369,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
         uses: actions/checkout@v2
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
       - name: Fetch Previous Launches
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
         run: node scripts/masterdata/fetchPreviousLaunches.ts 1000 500
-      - name: Fake Previous Launches
-        if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/dev'
-        run: mkdir src && mkdir src/app && mkdir src/app/data && echo '[{"id":1}]' > src/app/data/previouslaunches3.json
       - name: Safe Data Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
@@ -429,16 +384,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
         uses: actions/checkout@v2
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
       - name: Fetch Previous Launches
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
         run: node scripts/masterdata/fetchPreviousLaunches.ts 1500 500
-      - name: Fake Previous Launches
-        if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/dev'
-        run: mkdir src && mkdir src/app && mkdir src/app/data && echo '[{"id":1}]' > src/app/data/previouslaunches4.json
       - name: Safe Data Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
@@ -449,16 +399,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
         uses: actions/checkout@v2
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
       - name: Fetch Rockets
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
         run: node scripts/masterdata/fetch.ts config/launcher rockets 0 500
-      - name: Fake Rockets
-        if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/dev'
-        run: mkdir src && mkdir src/app && mkdir src/app/data && echo '[{"id":1}]' > src/app/data/rockets1.json
       - name: Safe Data Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
@@ -469,16 +414,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
         uses: actions/checkout@v2
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
       - name: Fetch Spacecrafts
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
         run: node scripts/masterdata/fetch.ts config/spacecraft spacecrafts 0 500
-      - name: Fake Spacecrafts
-        if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/dev'
-        run: mkdir src && mkdir src/app && mkdir src/app/data && echo '[{"id":1}]' > src/app/data/spacecrafts1.json
       - name: Safe Data Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
@@ -489,16 +429,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
         uses: actions/checkout@v2
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
       - name: Fetch Spacestations
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
         run: node scripts/masterdata/fetch.ts spacestation spacestations 0 500
-      - name: Fake Spacestations
-        if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/dev'
-        run: mkdir src && mkdir src/app && mkdir src/app/data && echo '[{"id":1}]' > src/app/data/spacestations1.json
       - name: Safe Data Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
