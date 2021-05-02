@@ -17,12 +17,12 @@ export class RocketPage implements OnInit {
     private service: RocketService
   ) {}
 
-  async ngOnInit() {
+   ngOnInit() {
     this.load();
   }
-  async load(refreshEvent?) {
+   load(refreshEvent?) {
     this.id = this.activatedRoute.snapshot.paramMap.get("id");
-    this.rocket = await this.service.getRocketById(this.id);
+    this.rocket =  this.service.getRocketById(this.id);
     if (refreshEvent) {
       refreshEvent.target.complete();
     }

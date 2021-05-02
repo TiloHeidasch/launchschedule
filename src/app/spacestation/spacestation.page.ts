@@ -17,12 +17,12 @@ export class SpacestationPage implements OnInit {
     private service: SpacestationService
   ) {}
 
-  async ngOnInit() {
+   ngOnInit() {
     this.load();
   }
-  async load(refreshEvent?) {
+   load(refreshEvent?) {
     this.id = this.activatedRoute.snapshot.paramMap.get("id");
-    this.spacestation = await this.service.getSpacestationById(
+    this.spacestation =  this.service.getSpacestationById(
       this.id
     );
     if (refreshEvent) {

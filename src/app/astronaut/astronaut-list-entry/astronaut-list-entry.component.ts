@@ -25,9 +25,9 @@ export class AstronautListEntryComponent implements OnInit {
     public placeholderService: PlaceholderService
   ) {}
 
-  async ngOnInit() {
+  ngOnInit() {
     if (this.astronaut === undefined) {
-      this.astronaut = await this.service.getAstronautById(this.id);
+      this.astronaut =this.service.getAstronautById(this.id);
       this.cdr.markForCheck();
     }
     this.title = this.astronaut.name;

@@ -17,12 +17,12 @@ export class LocationPage implements OnInit {
     private service: LocationService
   ) {}
 
-  async ngOnInit() {
+  ngOnInit() {
     this.load();
   }
-  async load(refreshEvent?) {
+  load(refreshEvent?) {
     this.id = this.activatedRoute.snapshot.paramMap.get("id");
-    this.location = await this.service.getLocationById(this.id);
+    this.location = this.service.getLocationById(this.id);
     if (refreshEvent) {
       refreshEvent.target.complete();
     }

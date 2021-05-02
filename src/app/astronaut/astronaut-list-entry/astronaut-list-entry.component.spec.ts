@@ -65,6 +65,7 @@ describe("AstronautListEntryComponent", () => {
 
     fixture = TestBed.createComponent(AstronautListEntryComponent);
     component = fixture.componentInstance;
+    component.astronaut = astronaut;
     fixture.detectChanges();
   }));
 
@@ -72,12 +73,10 @@ describe("AstronautListEntryComponent", () => {
     expect(component).toBeTruthy();
   });
   it("Title should be set with astronaut", () => {
-    component.astronaut = astronaut;
     component.ngOnInit();
     expect(component.title).toBe(astronaut.name);
   });
   it("Subtitle should be set with astronaut", () => {
-    component.astronaut = astronaut;
     component.ngOnInit();
     expect(component.subtitle).toBe(astronaut.nationality);
   });

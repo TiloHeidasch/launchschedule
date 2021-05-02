@@ -23,9 +23,9 @@ export class SpacestationListEntryComponent implements OnInit {
     public placeholderService: PlaceholderService
   ) {}
 
-  async ngOnInit() {
+  ngOnInit() {
     if (!this.spacestation) {
-      this.spacestation = await this.service.getSpacestationById(this.id);
+      this.spacestation =  this.service.getSpacestationById(this.id);
     }
     this.title = this.spacestation.name;
     this.subtitle = this.spacestation.orbit;

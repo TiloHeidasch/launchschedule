@@ -4,6 +4,7 @@ import { IonicModule } from "@ionic/angular";
 import { SpacestationPage } from "./spacestation.page";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { RouterTestingModule } from "@angular/router/testing";
+import { ActivatedRoute } from "@angular/router";
 
 describe("SpacestationPage", () => {
   let component: SpacestationPage;
@@ -19,6 +20,10 @@ describe("SpacestationPage", () => {
       ],
     }).compileComponents();
 
+    spyOn(
+      TestBed.inject(ActivatedRoute).snapshot.paramMap,
+      "get"
+    ).and.returnValue("4");
     fixture = TestBed.createComponent(SpacestationPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
