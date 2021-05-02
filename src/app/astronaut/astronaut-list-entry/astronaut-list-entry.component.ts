@@ -27,7 +27,7 @@ export class AstronautListEntryComponent implements OnInit {
 
   ngOnInit() {
     if (this.astronaut === undefined) {
-      this.astronaut =this.service.getAstronautById(this.id);
+      this.astronaut = this.service.getAstronautById(this.id);
       this.cdr.markForCheck();
     }
     this.title = this.astronaut.name;
