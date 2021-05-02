@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { SpacecraftService } from "../masterdata/spacecraft.service";
+import { SpacecraftService } from "./spacecraft.service";
 
 @Component({
   selector: "app-spacecraft",

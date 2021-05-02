@@ -15,6 +15,7 @@ import { RocketListEntryModule } from "../rocket/rocket-list-entry/rocket-list-e
 import { SpacecraftListEntryModule } from "../spacecraft/spacecraft-list-entry/spacecraft-list-entry.module";
 import { NotificationModule } from "../notification/notification.module";
 import { NgxIonicImageViewerModule } from "ngx-ionic-image-viewer";
+import { AgencyService } from "./agency.service";
 
 @NgModule({
   imports: [
@@ -31,5 +32,6 @@ import { NgxIonicImageViewerModule } from "ngx-ionic-image-viewer";
   ],
   declarations: [AgencyPage, AgencyOverviewPage, AgencyDetailCardComponent],
   exports: [],
+  providers: [AgencyService],
 })
 export class AgencyModule {}

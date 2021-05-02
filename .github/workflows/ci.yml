@@ -451,7 +451,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
       - name: Fetch Previous Launches
-        run: node scripts/masterdata/fetch.ts launch/previous previouslaunches 0 500
+        run: node scripts/masterdata/fetchPreviousLaunches.ts 0 500
       - name: Safe Data Artifact
         uses: actions/upload-artifact@v2.1.4
         with:
@@ -466,7 +466,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
       - name: Fetch Previous Launches
-        run: node scripts/masterdata/fetch.ts launch/previous previouslaunches 500 500
+        run: node scripts/masterdata/fetchPreviousLaunches.ts 500 500
       - name: Safe Data Artifact
         uses: actions/upload-artifact@v2.1.4
         with:
@@ -481,7 +481,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
       - name: Fetch Previous Launches
-        run: node scripts/masterdata/fetch.ts launch/previous previouslaunches 1000 500
+        run: node scripts/masterdata/fetchPreviousLaunches.ts 1000 500
       - name: Safe Data Artifact
         uses: actions/upload-artifact@v2.1.4
         with:
@@ -496,7 +496,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
       - name: Fetch Previous Launches
-        run: node scripts/masterdata/fetch.ts launch/previous previouslaunches 1500 500
+        run: node scripts/masterdata/fetchPreviousLaunches.ts 1500 500
       - name: Safe Data Artifact
         uses: actions/upload-artifact@v2.1.4
         with:

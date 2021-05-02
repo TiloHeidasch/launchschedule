@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { AgencyParamStoreService } from "./agency-param-store.service";
 import { CountryCode } from "../types/country-codes";
 import { IonContent, ViewDidEnter, IonInfiniteScroll } from "@ionic/angular";
-import { AgencyService } from "../masterdata/agency.service";
+import { AgencyService } from "./agency.service";
 
 @Component({
   selector: "app-agency-overview",

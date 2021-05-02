@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { AgencyService } from "../masterdata/agency.service";
+import { AgencyService } from "./agency.service";
 
 @Component({
   selector: "app-agency",

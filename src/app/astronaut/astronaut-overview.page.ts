@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { AstronautParamStoreService } from "./astronaut-param-store.service";
 import { IonContent, ViewDidEnter, IonInfiniteScroll } from "@ionic/angular";
-import { AstronautService } from "../masterdata/astronaut.service";
+import { AstronautService } from "./astronaut.service";
 
 @Component({
   selector: "app-astronaut-overview",

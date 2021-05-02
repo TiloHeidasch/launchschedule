@@ -4,7 +4,7 @@ import {
   Input,
   ChangeDetectionStrategy,
 } from "@angular/core";
-import { PadService } from "src/app/masterdata/pad.service";
+import { PadService } from "src/app/pad/pad.service";
 import { PlaceholderService } from "src/app/placeholder.service";
 
 @Component({

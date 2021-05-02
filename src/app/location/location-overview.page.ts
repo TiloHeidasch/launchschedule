@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { LocationParamStoreService } from "./location-param-store.service";
 import { IonContent, ViewDidEnter, IonInfiniteScroll } from "@ionic/angular";
 import { CountryCode } from "../types/country-codes";
-import { LocationService } from "../masterdata/location.service";
+import { LocationService } from "./location.service";
 
 @Component({
   selector: "app-location-overview",

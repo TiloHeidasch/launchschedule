@@ -5,6 +5,7 @@ import { PadRoutingModule } from "../pad-routing.module";
 import { AnimationModule } from "src/app/animation/animation.module";
 import { IonicModule } from "@ionic/angular";
 import { NotificationModule } from "src/app/notification/notification.module";
+import { PadService } from "../pad.service";
 
 @NgModule({
   declarations: [PadListEntryComponent],
@@ -16,5 +17,6 @@ import { NotificationModule } from "src/app/notification/notification.module";
     NotificationModule,
   ],
   exports: [PadListEntryComponent],
+  providers: [PadService],
 })
 export class PadListEntryModule {}

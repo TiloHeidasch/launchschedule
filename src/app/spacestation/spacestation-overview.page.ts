@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { SpacestationParamStoreService } from "./spacestation-param-store.service";
 import { IonContent, ViewDidEnter, IonInfiniteScroll } from "@ionic/angular";
-import { SpacestationService } from "../masterdata/spacestation.service";
+import { SpacestationService } from "./spacestation.service";
 
 @Component({
   selector: "app-spacestation-overview",

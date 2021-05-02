@@ -5,6 +5,7 @@ import { SpacestationRoutingModule } from "../spacestation-routing.module";
 import { AnimationModule } from "src/app/animation/animation.module";
 import { IonicModule } from "@ionic/angular";
 import { NotificationModule } from "src/app/notification/notification.module";
+import { SpacestationService } from "../spacestation.service";
 
 @NgModule({
   declarations: [SpacestationListEntryComponent],
@@ -16,5 +17,6 @@ import { NotificationModule } from "src/app/notification/notification.module";
     NotificationModule,
   ],
   exports: [SpacestationListEntryComponent],
+  providers: [SpacestationService],
 })
 export class SpacestationListEntryModule {}

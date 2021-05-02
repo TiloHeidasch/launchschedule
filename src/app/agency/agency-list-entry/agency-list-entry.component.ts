@@ -5,7 +5,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
 } from "@angular/core";
-import { AgencyService } from "src/app/masterdata/agency.service";
+import { AgencyService } from "../agency.service";
 import { PlaceholderService } from "src/app/placeholder.service";
 
 @Component({

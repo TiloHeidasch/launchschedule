@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { ToastController } from "@ionic/angular";
-import { RocketService } from "src/app/masterdata/rocket.service";
+import { RocketService } from "src/app/rocket/rocket.service";
 import { PlaceholderService } from "src/app/placeholder.service";
 
 @Component({

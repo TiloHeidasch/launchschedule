@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { PadService } from "../masterdata/pad.service";
+import { PadService } from "./pad.service";
 
 @Component({
   selector: "app-pad",

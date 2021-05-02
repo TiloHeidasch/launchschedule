@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { RocketService } from "../masterdata/rocket.service";
+import { RocketService } from "./rocket.service";
 
 @Component({
   selector: "app-rocket",

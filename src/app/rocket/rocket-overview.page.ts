@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { RocketParamStoreService } from "./rocket-param-store.service";
 import { IonContent, ViewDidEnter, IonInfiniteScroll } from "@ionic/angular";
-import { RocketService } from "../masterdata/rocket.service";
+import { RocketService } from "./rocket.service";
 
 @Component({
   selector: "app-rocket-overview",

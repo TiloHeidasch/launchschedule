@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { PadParamStoreService } from "./pad-param-store.service";
 import { IonContent, ViewDidEnter, IonInfiniteScroll } from "@ionic/angular";
-import { PadService } from "../masterdata/pad.service";
+import { PadService } from "./pad.service";
 
 @Component({
   selector: "app-pad-overview",

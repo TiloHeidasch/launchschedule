@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { SpacecraftParamStoreService } from "./spacecraft-param-store.service";
 import { IonContent, ViewDidEnter, IonInfiniteScroll } from "@ionic/angular";
-import { SpacecraftService } from "../masterdata/spacecraft.service";
+import { SpacecraftService } from "./spacecraft.service";
 
 @Component({
   selector: "app-spacecraft-overview",

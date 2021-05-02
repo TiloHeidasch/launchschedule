@@ -4,7 +4,7 @@ import {
   Input,
   ChangeDetectionStrategy,
 } from "@angular/core";
-import { SpacestationService } from "src/app/masterdata/spacestation.service";
+import { SpacestationService } from "src/app/spacestation/spacestation.service";
 import { PlaceholderService } from "src/app/placeholder.service";
 
 @Component({

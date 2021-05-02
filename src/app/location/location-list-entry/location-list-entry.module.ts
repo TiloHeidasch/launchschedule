@@ -5,6 +5,7 @@ import { LocationRoutingModule } from "../location-routing.module";
 import { AnimationModule } from "src/app/animation/animation.module";
 import { IonicModule } from "@ionic/angular";
 import { NotificationModule } from "src/app/notification/notification.module";
+import { LocationService } from "../location.service";
 
 @NgModule({
   declarations: [LocationListEntryComponent],
@@ -16,5 +17,6 @@ import { NotificationModule } from "src/app/notification/notification.module";
     NotificationModule,
   ],
   exports: [LocationListEntryComponent],
+  providers: [LocationService],
 })
 export class LocationListEntryModule {}

@@ -5,7 +5,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
 } from "@angular/core";
-import { AstronautService } from "src/app/masterdata/astronaut.service";
+import { AstronautService } from "src/app/astronaut/astronaut.service";
 import { PlaceholderService } from "src/app/placeholder.service";
 
 @Component({

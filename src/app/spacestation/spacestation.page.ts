@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { SpacestationService } from "../masterdata/spacestation.service";
+import { SpacestationService } from "./spacestation.service";
 
 @Component({
   selector: "app-spacestation",
