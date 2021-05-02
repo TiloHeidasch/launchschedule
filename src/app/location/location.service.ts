@@ -16,10 +16,19 @@ export class LocationService {
   getNextLocations(offset: number, search = "", countryCode = "") {
     return {
       locations: data
+        .sort((l1, l2) => {
+          if (l1.name < l2.name) {
+            return -1;
+          }
+          if (l1.name > l2.name) {
+            return 1;
+          }
+          return 0;
+        })
         .filter((location) => {
           return (
             location.name.includes(search) &&
-            location.country_code === countryCode
+            (location.country_code === countryCode || countryCode === "")
           );
         })
         .slice(offset, offset + 10),

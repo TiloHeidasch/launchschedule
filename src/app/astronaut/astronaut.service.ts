@@ -16,6 +16,15 @@ export class AstronautService {
   getNextAstronauts(offset: number, search = "", status = "") {
     return {
       astronauts: data
+        .sort((a1, a2) => {
+          if (a1.name < a2.name) {
+            return -1;
+          }
+          if (a1.name > a2.name) {
+            return 1;
+          }
+          return 0;
+        })
         .filter((astronaut) => {
           return astronaut.name.includes(search);
         })

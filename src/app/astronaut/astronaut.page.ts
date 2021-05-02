@@ -27,6 +27,5 @@ export class AstronautPage implements OnInit {
       refreshEvent.target.complete();
     }
     this.title = this.astronaut.name;
-    console.log("AstronautPage",    this.id,    this.astronaut,    this.title);
   }
 }

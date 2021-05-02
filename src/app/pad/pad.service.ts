@@ -16,6 +16,15 @@ export class PadService {
   getNextPads(offset: number, search = "") {
     return {
       pads: data
+        .sort((p1, p2) => {
+          if (p1.location.name < p2.location.name) {
+            return -1;
+          }
+          if (p1.location.name > p2.location.name) {
+            return 1;
+          }
+          return 0;
+        })
         .filter((pad) => {
           return pad.name.includes(search);
         })
