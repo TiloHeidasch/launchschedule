@@ -568,17 +568,19 @@ jobs:
     needs: [build, lint, test, e2e]
     if: github.ref == 'refs/heads/master'
     steps:
-      - name: Download www
-        uses: actions/download-artifact@v2.0.9
-        with:
-          name: www
-          path: www/
-      - name: GitHub Pages
-        uses: crazy-max/ghaction-github-pages@v2.3.0
-        with:
-          build_dir: www/
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Download www
+      uses: actions/download-artifact@v2.0.5
+      with:
+        name: www
+        path: www/
+    - name: Change Basepath
+      run: sed -i 's/<base href="\/"\/>/<base href="\/launchschedule\/"\/>/g' www/index.html
+    - name: GitHub Pages
+      uses: crazy-max/ghaction-github-pages@v2.3.0
+      with:
+        build_dir: www/
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   dockerProd:
     name: Build and Push docker latest
     runs-on: ubuntu-latest

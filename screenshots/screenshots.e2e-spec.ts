@@ -34,8 +34,9 @@ describe("screenshots", () => {
           screenshot(type + "_overview", isLight);
         });
         it("detail", () => {
+          browser.sleep(2000);
           const item = element(by.tagName("app-" + type + "-list-entry"));
-          scrollIntoView(item);
+          browser.executeScript(scrollIntoView, item);
           browser.sleep(2000);
           item.click();
           browser.sleep(2000);
@@ -113,6 +114,7 @@ describe("screenshots", () => {
       describe(type, () => {
         beforeEach(() => {
           navigateToType(type);
+          browser.sleep(5000);
         });
         it("overview", () => {
           screenshot(type + "_overview", isLight);
@@ -127,6 +129,7 @@ describe("screenshots", () => {
     describe("statistic", () => {
       beforeEach(() => {
         navigateToType("statistic");
+          browser.sleep(5000);
       });
       it("overview", () => {
         screenshot("statistic_overview", isLight);
@@ -145,6 +148,7 @@ describe("screenshots", () => {
         describe(type, () => {
           beforeEach(() => {
             navigateToType("news/" + type);
+            browser.sleep(5000);
           });
           it("overview", () => {
             screenshot("news_" + type + "_overview", isLight);
