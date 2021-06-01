@@ -2,36 +2,44 @@ let https = require("https");
 let fs = require("fs");
 
 let dataAll = [];
-function requestUrlAndPersistToFile(url) {
+function requestUrlAndPersistToFile(url, iteration = 0) {
   console.log(process.argv[1] + " requesting " + url);
+  try {
+    https
+      .get(url, (resp) => {
+        let data = "";
 
-  https
-    .get(url, (resp) => {
-      let data = "";
+        // A chunk of data has been recieved.
+        resp.on("data", (chunk) => {
+          data += chunk;
+        });
 
-      // A chunk of data has been recieved.
-      resp.on("data", (chunk) => {
-        data += chunk;
+        // The whole response has been received. Print out the result.
+        resp.on("end", () => {
+          const recieved = JSON.parse(data);
+          dataAll = dataAll.concat(recieved.results);
+          console.log(
+            process.argv[1] +
+              " recieved " +
+              recieved.results.length +
+              " records"
+          );
+          console.log(process.argv[1] + " dataAll.length " + dataAll.length);
+          if (recieved.next && recieved.next.search("offset=" + max) == -1) {
+            requestUrlAndPersistToFile(recieved.next);
+          } else {
+            persistData();
+          }
+        });
+      })
+      .on("error", (err) => {
+        console.log("Error: " + err.message);
       });
-
-      // The whole response has been received. Print out the result.
-      resp.on("end", () => {
-        const recieved = JSON.parse(data);
-        dataAll = dataAll.concat(recieved.results);
-        console.log(
-          process.argv[1] + " recieved " + recieved.results.length + " records"
-        );
-        console.log(process.argv[1] + " dataAll.length " + dataAll.length);
-        if (recieved.next && recieved.next.search("offset=" + max) == -1) {
-          requestUrlAndPersistToFile(recieved.next);
-        } else {
-          persistData();
-        }
-      });
-    })
-    .on("error", (err) => {
-      console.log("Error: " + err.message);
-    });
+  } catch (error) {
+    iteration++;
+    console.log(error);
+    if (iteration <= 10) requestUrlAndPersistToFile(url, iteration);
+  }
 }
 function persistData() {
   if (!fs.existsSync(dir)) {
