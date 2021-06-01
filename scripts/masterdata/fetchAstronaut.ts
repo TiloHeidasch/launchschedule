@@ -16,19 +16,23 @@ function requestUrlAndPersistToFile(url, iteration = 0) {
 
         // The whole response has been received. Print out the result.
         resp.on("end", () => {
-          const recieved = JSON.parse(data);
-          dataAll = dataAll.concat(recieved.results);
-          console.log(
-            process.argv[1] +
-              " recieved " +
-              recieved.results.length +
-              " records"
-          );
-          console.log(process.argv[1] + " dataAll.length " + dataAll.length);
-          if (recieved.next && recieved.next.search("offset=" + max) == -1) {
-            requestUrlAndPersistToFile(recieved.next);
-          } else {
-            persistData();
+          try {
+            const recieved = JSON.parse(data);
+            dataAll = dataAll.concat(recieved.results);
+            console.log(
+              process.argv[1] +
+                " recieved " +
+                recieved.results.length +
+                " records"
+            );
+            console.log(process.argv[1] + " dataAll.length " + dataAll.length);
+            if (recieved.next && recieved.next.search("offset=" + max) == -1) {
+              requestUrlAndPersistToFile(recieved.next);
+            } else {
+              persistData();
+            }
+          } catch (error) {
+            console.log(data);
           }
         });
       })
@@ -98,6 +102,6 @@ console.log({ path, fileName, offset, step, max });
 requestUrlAndPersistToFile(
   "https://ll.thespacedevs.com/2.2.0/" +
     path +
-    "/?format=json&limit=100&mode=detailed&offset=" +
+    "/?format=json&limit=50&mode=detailed&offset=" +
     offset
 );

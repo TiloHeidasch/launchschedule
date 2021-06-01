@@ -163,6 +163,6 @@ console.log({ path, fileName, offset, step, max });
 requestUrlAndPersistToFile(
   "https://ll.thespacedevs.com/2.2.0/" +
     path +
-    "/?format=json&limit=100&mode=detailed&offset=" +
+    "/?format=json&limit=50&mode=detailed&offset=" +
     offset
 );
