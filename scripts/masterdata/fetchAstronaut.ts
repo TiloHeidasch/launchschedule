@@ -4,46 +4,42 @@ let fs = require("fs");
 let dataAll = [];
 function requestUrlAndPersistToFile(url, iteration = 0) {
   console.log(process.argv[1] + " requesting " + url);
-  try {
-    https
-      .get(url, (resp) => {
-        let data = "";
+  https
+    .get(url, (resp) => {
+      let data = "";
 
-        // A chunk of data has been recieved.
-        resp.on("data", (chunk) => {
-          data += chunk;
-        });
-
-        // The whole response has been received. Print out the result.
-        resp.on("end", () => {
-          try {
-            const recieved = JSON.parse(data);
-            dataAll = dataAll.concat(recieved.results);
-            console.log(
-              process.argv[1] +
-                " recieved " +
-                recieved.results.length +
-                " records"
-            );
-            console.log(process.argv[1] + " dataAll.length " + dataAll.length);
-            if (recieved.next && recieved.next.search("offset=" + max) == -1) {
-              requestUrlAndPersistToFile(recieved.next);
-            } else {
-              persistData();
-            }
-          } catch (error) {
-            console.log(data);
-          }
-        });
-      })
-      .on("error", (err) => {
-        console.log("Error: " + err.message);
+      // A chunk of data has been recieved.
+      resp.on("data", (chunk) => {
+        data += chunk;
       });
-  } catch (error) {
-    iteration++;
-    console.log(error);
-    if (iteration <= 10) requestUrlAndPersistToFile(url, iteration);
-  }
+
+      // The whole response has been received. Print out the result.
+      resp.on("end", () => {
+        try {
+          const recieved = JSON.parse(data);
+          dataAll = dataAll.concat(recieved.results);
+          console.log(
+            process.argv[1] +
+              " recieved " +
+              recieved.results.length +
+              " records"
+          );
+          console.log(process.argv[1] + " dataAll.length " + dataAll.length);
+          if (recieved.next && recieved.next.search("offset=" + max) == -1) {
+            requestUrlAndPersistToFile(recieved.next);
+          } else {
+            persistData();
+          }
+        } catch (error) {
+          iteration++;
+          console.log(error);
+          if (iteration <= 10) requestUrlAndPersistToFile(url, iteration);
+        }
+      });
+    })
+    .on("error", (err) => {
+      console.log("Error: " + err.message);
+    });
 }
 function persistData() {
   const data = prepareData();

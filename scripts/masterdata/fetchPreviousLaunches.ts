@@ -2,9 +2,8 @@ let https = require("https");
 let fs = require("fs");
 
 let dataAll = [];
-function requestUrlAndPersistToFile(url) {
+function requestUrlAndPersistToFile(url, iteration = 0) {
   console.log(process.argv[1] + " requesting " + url);
-
   https
     .get(url, (resp) => {
       let data = "";
@@ -16,16 +15,25 @@ function requestUrlAndPersistToFile(url) {
 
       // The whole response has been received. Print out the result.
       resp.on("end", () => {
-        const recieved = JSON.parse(data);
-        dataAll = dataAll.concat(recieved.results);
-        console.log(
-          process.argv[1] + " recieved " + recieved.results.length + " records"
-        );
-        console.log(process.argv[1] + " dataAll.length " + dataAll.length);
-        if (recieved.next && recieved.next.search("offset=" + max) == -1) {
-          requestUrlAndPersistToFile(recieved.next);
-        } else {
-          persistData();
+        try {
+          const recieved = JSON.parse(data);
+          dataAll = dataAll.concat(recieved.results);
+          console.log(
+            process.argv[1] +
+              " recieved " +
+              recieved.results.length +
+              " records"
+          );
+          console.log(process.argv[1] + " dataAll.length " + dataAll.length);
+          if (recieved.next && recieved.next.search("offset=" + max) == -1) {
+            requestUrlAndPersistToFile(recieved.next);
+          } else {
+            persistData();
+          }
+        } catch (error) {
+          iteration++;
+          console.log(error);
+          if (iteration <= 10) requestUrlAndPersistToFile(url, iteration);
         }
       });
     })
