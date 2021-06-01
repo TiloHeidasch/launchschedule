@@ -4,18 +4,18 @@ let fs = require("fs");
 let dataAll = [];
 function requestUrlAndPersistToFile(url, iteration = 0) {
   console.log(process.argv[1] + " requesting " + url);
-  try {
-    https
-      .get(url, (resp) => {
-        let data = "";
+  https
+    .get(url, (resp) => {
+      let data = "";
 
-        // A chunk of data has been recieved.
-        resp.on("data", (chunk) => {
-          data += chunk;
-        });
+      // A chunk of data has been recieved.
+      resp.on("data", (chunk) => {
+        data += chunk;
+      });
 
-        // The whole response has been received. Print out the result.
-        resp.on("end", () => {
+      // The whole response has been received. Print out the result.
+      resp.on("end", () => {
+        try {
           const recieved = JSON.parse(data);
           dataAll = dataAll.concat(recieved.results);
           console.log(
@@ -30,16 +30,16 @@ function requestUrlAndPersistToFile(url, iteration = 0) {
           } else {
             persistData();
           }
-        });
-      })
-      .on("error", (err) => {
-        console.log("Error: " + err.message);
+        } catch (error) {
+          iteration++;
+          console.log(error);
+          if (iteration <= 10) requestUrlAndPersistToFile(url, iteration);
+        }
       });
-  } catch (error) {
-    iteration++;
-    console.log(error);
-    if (iteration <= 10) requestUrlAndPersistToFile(url, iteration);
-  }
+    })
+    .on("error", (err) => {
+      console.log("Error: " + err.message);
+    });
 }
 function persistData() {
   const data = prepareData();
@@ -98,6 +98,6 @@ console.log({ path, fileName, offset, step, max });
 requestUrlAndPersistToFile(
   "https://ll.thespacedevs.com/2.2.0/" +
     path +
-    "/?format=json&limit=100&mode=detailed&offset=" +
+    "/?format=json&limit=50&mode=detailed&offset=" +
     offset
 );
