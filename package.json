@@ -50,7 +50,7 @@
     "leaflet": "^1.7.1",
     "ngx-ionic-image-viewer": "^0.7.4",
     "primeicons": "^4.1.0",
-    "primeng": "^11.4.1",
+    "primeng": "^11.4.2",
     "rxjs": "~6.6.7",
     "ts-md5": "^1.2.8",
     "tslib": "^2.2.0",
