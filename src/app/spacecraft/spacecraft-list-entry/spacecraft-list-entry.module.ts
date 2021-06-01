@@ -5,6 +5,7 @@ import { SpacecraftRoutingModule } from "../spacecraft-routing.module";
 import { AnimationModule } from "src/app/animation/animation.module";
 import { IonicModule } from "@ionic/angular";
 import { NotificationModule } from "src/app/notification/notification.module";
+import { SpacecraftService } from "../spacecraft.service";
 
 @NgModule({
   declarations: [SpacecraftListEntryComponent],
@@ -16,5 +17,6 @@ import { NotificationModule } from "src/app/notification/notification.module";
     NotificationModule,
   ],
   exports: [SpacecraftListEntryComponent],
+  providers: [SpacecraftService],
 })
 export class SpacecraftListEntryModule {}

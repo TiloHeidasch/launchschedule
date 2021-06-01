@@ -5,6 +5,7 @@ import { AgencyRoutingModule } from "../agency-routing.module";
 import { AnimationModule } from "src/app/animation/animation.module";
 import { IonicModule } from "@ionic/angular";
 import { NotificationModule } from "src/app/notification/notification.module";
+import { AgencyService } from "../agency.service";
 
 @NgModule({
   declarations: [AgencyListEntryComponent],
@@ -16,5 +17,6 @@ import { NotificationModule } from "src/app/notification/notification.module";
     NotificationModule,
   ],
   exports: [AgencyListEntryComponent],
+  providers: [AgencyService],
 })
 export class AgencyListEntryModule {}

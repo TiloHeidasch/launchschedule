@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { LaunchLibraryService } from "../launch-library.service";
 import { RocketParamStoreService } from "./rocket-param-store.service";
 import { IonContent, ViewDidEnter, IonInfiniteScroll } from "@ionic/angular";
+import { RocketService } from "./rocket.service";
 
 @Component({
   selector: "app-rocket-overview",
@@ -13,7 +13,7 @@ export class RocketOverviewPage implements OnInit, ViewDidEnter {
   @ViewChild("rocketOverviewContent") content: IonContent;
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   constructor(
-    private service: LaunchLibraryService,
+    private service: RocketService,
     public store: RocketParamStoreService
   ) {}
 
@@ -34,9 +34,7 @@ export class RocketOverviewPage implements OnInit, ViewDidEnter {
     } catch (error) {}
     this.store.rockets = [];
     const answer = await this.service.getFirstRockets(
-      this.store.search,
-      this.store.active,
-      this.store.reusable
+      this.store.search
     );
     this.store.rockets = answer.rockets;
     if (refreshEvent) {
@@ -47,9 +45,7 @@ export class RocketOverviewPage implements OnInit, ViewDidEnter {
   async loadMore(event) {
     const answer = await this.service.getNextRockets(
       this.store.rockets.length,
-      this.store.search,
-      this.store.active,
-      this.store.reusable
+      this.store.search
     );
     this.store.rockets.push(...answer.rockets);
     event.target.complete();

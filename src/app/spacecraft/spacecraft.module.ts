@@ -14,6 +14,7 @@ import { AgencyListEntryModule } from "../agency/agency-list-entry/agency-list-e
 import { SpacecraftListEntryModule } from "./spacecraft-list-entry/spacecraft-list-entry.module";
 import { NotificationModule } from "../notification/notification.module";
 import { NgxIonicImageViewerModule } from "ngx-ionic-image-viewer";
+import { SpacecraftService } from "./spacecraft.service";
 
 @NgModule({
   imports: [
@@ -33,5 +34,6 @@ import { NgxIonicImageViewerModule } from "ngx-ionic-image-viewer";
     SpacecraftDetailCardComponent,
   ],
   exports: [],
+  providers: [SpacecraftService],
 })
 export class SpacecraftModule {}

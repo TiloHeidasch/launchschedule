@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { LaunchLibraryService } from "../launch-library.service";
+import { AgencyService } from "./agency.service";
 
 @Component({
   selector: "app-agency",
@@ -14,15 +14,15 @@ export class AgencyPage implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private service: LaunchLibraryService
+    private service: AgencyService
   ) {}
 
-  async ngOnInit() {
+  ngOnInit() {
     this.load();
   }
-  async load(refreshEvent?) {
+  load(refreshEvent?) {
     this.id = this.activatedRoute.snapshot.paramMap.get("id");
-    this.agency = await this.service.getAgencyById(this.id, refreshEvent);
+    this.agency = this.service.getAgencyById(this.id);
     if (refreshEvent) {
       refreshEvent.target.complete();
     }

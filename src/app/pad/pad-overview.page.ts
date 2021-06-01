@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { LaunchLibraryService } from "../launch-library.service";
 import { PadParamStoreService } from "./pad-param-store.service";
 import { IonContent, ViewDidEnter, IonInfiniteScroll } from "@ionic/angular";
+import { PadService } from "./pad.service";
 
 @Component({
   selector: "app-pad-overview",
@@ -13,7 +13,7 @@ export class PadOverviewPage implements OnInit, ViewDidEnter {
   @ViewChild("padOverviewContent") content: IonContent;
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   constructor(
-    private service: LaunchLibraryService,
+    private service: PadService,
     public store: PadParamStoreService
   ) {}
 

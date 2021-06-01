@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { ToastController } from "@ionic/angular";
-import { LaunchLibraryService } from "src/app/launch-library.service";
+import { RocketService } from "src/app/rocket/rocket.service";
 import { PlaceholderService } from "src/app/placeholder.service";
 
 @Component({
@@ -12,7 +12,7 @@ export class RocketDetailCardComponent implements OnInit {
   @Input() rocket?;
   @Input() id?;
   constructor(
-    private service: LaunchLibraryService,
+    private service: RocketService,
     public toastController: ToastController,
     public placeholderService: PlaceholderService
   ) {}

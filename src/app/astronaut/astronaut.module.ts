@@ -17,6 +17,7 @@ import { AstronautStatusModule } from "./astronaut-status/astronaut-status.modul
 import { LaunchListEntryModule } from "../launch/launch-list-entry/launch-list-entry.module";
 import { AgencyListEntryModule } from "../agency/agency-list-entry/agency-list-entry.module";
 import { NgxIonicImageViewerModule } from "ngx-ionic-image-viewer";
+import { AstronautService } from "./astronaut.service";
 
 @NgModule({
   imports: [
@@ -39,5 +40,6 @@ import { NgxIonicImageViewerModule } from "ngx-ionic-image-viewer";
     AstronautDetailCardComponent,
   ],
   exports: [],
+  providers: [AstronautService],
 })
 export class AstronautModule {}

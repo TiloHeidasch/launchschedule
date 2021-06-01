@@ -4,6 +4,7 @@ import { IonicModule } from "@ionic/angular";
 import { RocketPage } from "./rocket.page";
 import { RouterTestingModule } from "@angular/router/testing";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { ActivatedRoute } from "@angular/router";
 
 describe("RocketPage", () => {
   let component: RocketPage;
@@ -19,6 +20,10 @@ describe("RocketPage", () => {
       ],
     }).compileComponents();
 
+    spyOn(
+      TestBed.inject(ActivatedRoute).snapshot.paramMap,
+      "get"
+    ).and.returnValue("93");
     fixture = TestBed.createComponent(RocketPage);
     component = fixture.componentInstance;
     fixture.detectChanges();

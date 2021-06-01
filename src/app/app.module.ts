@@ -15,6 +15,7 @@ import { PrimeNGModule } from "./prime-ng/prime-ng.module";
 import { LaunchscheduleNotificationService } from "./launchschedule-notification.service";
 import { StorageService } from "./storage.service";
 import { BrowserService } from "./browser.service";
+import { PreviousLaunchService } from "./masterdata/previous-launches.service";
 import { ServiceWorkerModule } from "@angular/service-worker";
 import { environment } from "../environments/environment";
 
@@ -40,6 +41,7 @@ import { environment } from "../environments/environment";
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     LaunchLibraryService,
+    PreviousLaunchService,
     LaunchscheduleNotificationService,
     StorageService,
     BrowserService,

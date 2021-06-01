@@ -5,7 +5,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
 } from "@angular/core";
-import { LaunchLibraryService } from "src/app/launch-library.service";
+import { AstronautService } from "src/app/astronaut/astronaut.service";
 import { PlaceholderService } from "src/app/placeholder.service";
 
 @Component({
@@ -20,14 +20,14 @@ export class AstronautListEntryComponent implements OnInit {
   title: string;
   subtitle: string;
   constructor(
-    private service: LaunchLibraryService,
+    private service: AstronautService,
     private cdr: ChangeDetectorRef,
     public placeholderService: PlaceholderService
   ) {}
 
-  async ngOnInit() {
+  ngOnInit() {
     if (this.astronaut === undefined) {
-      this.astronaut = await this.service.getAstronautById(this.id);
+      this.astronaut = this.service.getAstronautById(this.id);
       this.cdr.markForCheck();
     }
     this.title = this.astronaut.name;

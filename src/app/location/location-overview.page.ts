@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { LaunchLibraryService } from "../launch-library.service";
 import { LocationParamStoreService } from "./location-param-store.service";
 import { IonContent, ViewDidEnter, IonInfiniteScroll } from "@ionic/angular";
 import { CountryCode } from "../types/country-codes";
+import { LocationService } from "./location.service";
 
 @Component({
   selector: "app-location-overview",
@@ -15,7 +15,7 @@ export class LocationOverviewPage implements OnInit, ViewDidEnter {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   CountryCode = CountryCode;
   constructor(
-    private service: LaunchLibraryService,
+    private service: LocationService,
     public store: LocationParamStoreService
   ) {}
 
@@ -35,10 +35,14 @@ export class LocationOverviewPage implements OnInit, ViewDidEnter {
       this.infiniteScroll.disabled = false;
     } catch (error) {}
     this.store.locations = [];
-    this.store.locations = (await this.service.getFirstLocations(
-      this.store.search,
-      this.store.countryCode
-    )).locations;
+    this.store.locations = (
+
+      await this.service.getFirstLocations(
+          this.store.search,
+          this.store.countryCode
+        )
+
+    ).locations;
     if (refreshEvent) {
       refreshEvent.target.complete();
     }
