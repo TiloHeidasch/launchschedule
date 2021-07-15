@@ -23,7 +23,7 @@ describe("SpacecraftPage", () => {
     spyOn(
       TestBed.inject(ActivatedRoute).snapshot.paramMap,
       "get"
-    ).and.returnValue("6");
+    ).and.returnValue("10");
     fixture = TestBed.createComponent(SpacecraftPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
