@@ -2,7 +2,7 @@ let fs = require("fs");
 
 let dataAll = [];
 function persistData() {
-  dataAll.push({"data"});
+  dataAll.push({ data: "data" });
   const data = dataAll;
   if (!fs.existsSync(dir)) {
     console.log(process.argv[1] + " creating directory");
