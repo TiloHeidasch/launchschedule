@@ -5,6 +5,7 @@ function requestUrlAndPersistToFile() {
   persistData();
 }
 function persistData() {
+  dataAll.push({"data"});
   const data = dataAll;
   if (!fs.existsSync(dir)) {
     console.log(process.argv[1] + " creating directory");
