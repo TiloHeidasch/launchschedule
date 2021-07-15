@@ -193,7 +193,11 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
       - name: Fetch Agencies
+        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
         run: node scripts/masterdata/fetch.ts agencies agencies 0 500
+      - name: Fake Agencies
+        if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/dev'
+        run: node scripts/masterdata/fakeFetch.ts agencies agencies 0 500
       - name: Safe Data Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
@@ -208,7 +212,11 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
       - name: Fetch Astronauts
+        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
         run: node scripts/masterdata/fetchAstronaut.ts 0 500
+      - name: Fake Astronauts
+        if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/dev'
+        run: node scripts/masterdata/fakeFetchAstronaut.ts 0 500
       - name: Safe Data Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
@@ -223,7 +231,11 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
       - name: Fetch Astronauts
+        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
         run: node scripts/masterdata/fetchAstronaut.ts 500 500
+      - name: Fake Astronauts
+        if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/dev'
+        run: node scripts/masterdata/fakeFetchAstronaut.ts 500 500
       - name: Safe Data Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
@@ -298,7 +310,11 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
       - name: Fetch Locations
-        run: node scripts/masterdata/fetch.ts location locations 0 500
+        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
+        run: node scripts/masterdata/fetch.ts locations locations 0 500
+      - name: Fake Locations
+        if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/dev'
+        run: node scripts/masterdata/fakeFetch.ts locations locations 0 500
       - name: Safe Data Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
@@ -313,7 +329,11 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
       - name: Fetch Pads
-        run: node scripts/masterdata/fetch.ts pad pads 0 500
+        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
+        run: node scripts/masterdata/fetch.ts pads pads 0 500
+      - name: Fake Pads
+        if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/dev'
+        run: node scripts/masterdata/fakeFetch.ts pads pads 0 500
       - name: Safe Data Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
@@ -329,6 +349,12 @@ jobs:
         uses: actions/setup-node@v2.1.2
       - name: Fetch Previous Events
         run: node scripts/masterdata/fetch.ts event/previous previousevents 0 500
+      - name: Fetch Previous Events
+        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
+        run: node scripts/masterdata/fetch.ts event/previous previousevents 0 500
+      - name: Fake Previous Events
+        if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/dev'
+        run: node scripts/masterdata/fakeFetch.ts event/previous previousevents 0 500
       - name: Safe Data Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
@@ -343,7 +369,11 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
       - name: Fetch Previous Launches
+        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
         run: node scripts/masterdata/fetchPreviousLaunches.ts 0 500
+      - name: Fake Previous Launches
+        if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/dev'
+        run: node scripts/masterdata/fakeFetchPreviousLaunches.ts 0 500
       - name: Safe Data Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
@@ -358,7 +388,11 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
       - name: Fetch Previous Launches
+        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
         run: node scripts/masterdata/fetchPreviousLaunches.ts 500 500
+      - name: Fake Previous Launches
+        if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/dev'
+        run: node scripts/masterdata/fakeFetchPreviousLaunches.ts 500 500
       - name: Safe Data Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
@@ -373,7 +407,11 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
       - name: Fetch Previous Launches
+        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
         run: node scripts/masterdata/fetchPreviousLaunches.ts 1000 500
+      - name: Fake Previous Launches
+        if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/dev'
+        run: node scripts/masterdata/fakeFetchPreviousLaunches.ts 1000 500
       - name: Safe Data Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
@@ -388,7 +426,11 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
       - name: Fetch Previous Launches
+        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
         run: node scripts/masterdata/fetchPreviousLaunches.ts 1500 500
+      - name: Fake Previous Launches
+        if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/dev'
+        run: node scripts/masterdata/fakeFetchPreviousLaunches.ts 1500 500
       - name: Safe Data Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
@@ -403,7 +445,11 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
       - name: Fetch Rockets
+        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
         run: node scripts/masterdata/fetch.ts config/launcher rockets 0 500
+      - name: Fake Rockets
+        if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/dev'
+        run: node scripts/masterdata/fakeFetch.ts config/launcher rockets 0 500
       - name: Safe Data Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
@@ -418,7 +464,11 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
       - name: Fetch Spacecrafts
+        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
         run: node scripts/masterdata/fetch.ts config/spacecraft spacecrafts 0 500
+      - name: Fake Spacecrafts
+        if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/dev'
+        run: node scripts/masterdata/fakeFetch.ts config/spacecraft spacecrafts 0 500
       - name: Safe Data Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
@@ -434,6 +484,12 @@ jobs:
         uses: actions/setup-node@v2.1.2
       - name: Fetch Spacestations
         run: node scripts/masterdata/fetch.ts spacestation spacestations 0 500
+      - name: Fetch Spacestations
+        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
+        run: node scripts/masterdata/fetch.ts spacestation spacestations 0 500
+      - name: Fake Spacestations
+        if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/dev'
+        run: node scripts/masterdata/fakeFetch.ts spacestation spacestations 0 500
       - name: Safe Data Artifact
         uses: actions/upload-artifact@v2.2.3
         with:

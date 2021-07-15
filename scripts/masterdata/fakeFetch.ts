@@ -2,7 +2,6 @@ let fs = require("fs");
 
 let dataAll = [];
 function persistData() {
-  const data = dataAll;
   if (!fs.existsSync(dir)) {
     console.log(process.argv[1] + " creating directory");
     fs.mkdirSync(dir);
@@ -10,7 +9,7 @@ function persistData() {
   console.log(process.argv[1] + " writing file");
   fs.writeFile(
     dir + fileName + offset + ".json",
-    JSON.stringify(data),
+    JSON.stringify(dataAll),
     function (err) {
       if (err) {
         return console.log(err);
@@ -21,11 +20,11 @@ function persistData() {
   );
 }
 
-let path = "launch/previous";
+let path = process.argv[2];
 let dir = "src/app/data/";
-let fileName = "previouslaunches";
-let offset = process.argv[2];
-let step = process.argv[3];
+let fileName = process.argv[3];
+let offset = process.argv[4];
+let step = process.argv[5];
 let max = +offset + +step;
 
 console.log({ path, fileName, offset, step, max });

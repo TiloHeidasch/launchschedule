@@ -1,6 +1,9 @@
 let fs = require("fs");
 
 let dataAll = [];
+function requestUrlAndPersistToFile() {
+  persistData();
+}
 function persistData() {
   const data = dataAll;
   if (!fs.existsSync(dir)) {
@@ -21,9 +24,9 @@ function persistData() {
   );
 }
 
-let path = "launch/previous";
+let path = "astronaut";
 let dir = "src/app/data/";
-let fileName = "previouslaunches";
+let fileName = "astronauts";
 let offset = process.argv[2];
 let step = process.argv[3];
 let max = +offset + +step;
