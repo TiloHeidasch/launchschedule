@@ -239,7 +239,7 @@ function persistData() {
     last_flight: "1991-10-02T05:59:38Z",
     first_flight: "1991-10-02T05:59:38Z",
   });
-  const data = dataAll;
+  const data = prepareData();
   if (!fs.existsSync(dir)) {
     console.log(process.argv[1] + " creating directory");
     fs.mkdirSync(dir);
@@ -258,6 +258,31 @@ function persistData() {
   );
 }
 
+function prepareData() {
+  return dataAll.map((astronaut) => {
+    return {
+      id: astronaut.id,
+      name: astronaut.name,
+      nationality: astronaut.nationality,
+      date_of_birth: astronaut.date_of_birth,
+      date_of_death: astronaut.date_of_death,
+      bio: astronaut.bio,
+      profile_image: astronaut.profile_image,
+      profile_image_thumbnail: astronaut.profile_image_thumbnail,
+      agency: astronaut.agency,
+      flights: astronaut.flights.map((launch) => {
+        return {
+          id: launch.id,
+          image: launch.image,
+          name: launch.name,
+          net: launch.net,
+        };
+      }),
+      last_flight: astronaut.last_flight,
+      first_flight: astronaut.first_flight,
+    };
+  });
+}
 let path = "astronaut";
 let dir = "src/app/data/";
 let fileName = "astronauts";
