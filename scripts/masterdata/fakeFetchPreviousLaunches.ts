@@ -181,27 +181,100 @@ function persistData() {
 }
 
 function prepareData() {
-  return dataAll.map((astronaut) => {
+  return dataAll.map((launch) => {
     return {
-      id: astronaut.id,
-      name: astronaut.name,
-      nationality: astronaut.nationality,
-      date_of_birth: astronaut.date_of_birth,
-      date_of_death: astronaut.date_of_death,
-      bio: astronaut.bio,
-      profile_image: astronaut.profile_image,
-      profile_image_thumbnail: astronaut.profile_image_thumbnail,
-      agency: astronaut.agency,
-      flights: astronaut.flights.map((launch) => {
-        return {
-          id: launch.id,
-          image: launch.image,
-          name: launch.name,
-          net: launch.net,
-        };
-      }),
-      last_flight: astronaut.last_flight,
-      first_flight: astronaut.first_flight,
+      id: launch.id,
+      name: launch.name,
+      status: launch.status
+        ? {
+            id: launch.status.id,
+            name: launch.status.name,
+          }
+        : undefined,
+      net: launch.net,
+      hashtag: launch.hashtag,
+      launch_service_provider: launch.launch_service_provider
+        ? {
+            id: launch.launch_service_provider.id,
+            name: launch.launch_service_provider.name,
+            abbrev: launch.launch_service_provider.abbrev,
+            logo_url: launch.launch_service_provider.logo_url,
+            image_url: launch.launch_service_provider.image_url,
+            nation_url: launch.launch_service_provider.nation_url,
+          }
+        : undefined,
+      rocket: launch.rocket
+        ? {
+            configuration: launch.rocket.configuration
+              ? {
+                  id: launch.rocket.configuration.id,
+                  name: launch.rocket.configuration.name,
+                  family: launch.rocket.configuration.family,
+                  full_name: launch.rocket.configuration.full_name,
+                }
+              : undefined,
+            spacecraft_stage: launch.rocket.spacecraft_stage
+              ? {
+                  launch_crew: launch.rocket.spacecraft_stage.launch_crew
+                    ? launch.rocket.spacecraft_stage.launch_crew.map(
+                        (crewMember) => {
+                          return {
+                            id: crewMember.id,
+                            role: crewMember.role
+                              ? {
+                                  id: crewMember.role.id,
+                                  role: crewMember.role.role,
+                                }
+                              : undefined,
+                            astronaut: crewMember.astronaut
+                              ? {
+                                  id: crewMember.astronaut.id,
+                                  name: crewMember.astronaut.name,
+                                  status: crewMember.astronaut.status
+                                    ? {
+                                        id: crewMember.astronaut.status.id,
+                                        name: crewMember.astronaut.status.name,
+                                      }
+                                    : undefined,
+                                  date_of_birth:
+                                    crewMember.astronaut.date_of_birth,
+                                  date_of_death:
+                                    crewMember.astronaut.date_of_death,
+                                  nationality: crewMember.astronaut.nationality,
+                                }
+                              : undefined,
+                          };
+                        }
+                      )
+                    : undefined,
+                }
+              : undefined,
+          }
+        : undefined,
+      mission: launch.mission
+        ? {
+            id: launch.mission.id,
+            name: launch.mission.name,
+            description: launch.mission.description,
+            type: launch.mission.type,
+          }
+        : undefined,
+      pad: launch.pad
+        ? {
+            id: launch.pad.id,
+            name: launch.pad.name,
+            location: launch.pad.location
+              ? {
+                  id: launch.pad.location.id,
+                  name: launch.pad.location,
+                }
+              : undefined,
+            map_image: launch.pad.map_image,
+          }
+        : undefined,
+      vidURLs: launch.vidURLs,
+      image: launch.image,
+      infographic: launch.infographic,
     };
   });
 }
