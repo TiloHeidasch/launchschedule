@@ -23,7 +23,7 @@ describe("LocationPage", () => {
     spyOn(
       TestBed.inject(ActivatedRoute).snapshot.paramMap,
       "get"
-    ).and.returnValue("27");
+    ).and.returnValue("151");
     fixture = TestBed.createComponent(LocationPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
