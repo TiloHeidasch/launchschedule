@@ -1,9 +1,10 @@
 name: Fetch Masterdata
 
 on:
+  push:
   schedule:
     # * is a special character in YAML so you have to quote this string
-    - cron: '* * * * *'
+    - cron: '0 0 * * *'
   workflow_dispatch:
 
 jobs:
