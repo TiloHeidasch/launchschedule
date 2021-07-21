@@ -106,8 +106,8 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-      - name: Copy Native Bridge
-        run: cp node_modules/@capacitor/core/native-bridge.js android/app/src/main/assets/public/
+      # - name: Copy Native Bridge
+      #   run: cp node_modules/@capacitor/core/native-bridge.js android/app/src/main/assets/public/
       - name: Build with Gradle
         run: cd android && chmod +x gradlew && ./gradlew bundleRelease
       - name: Safe Unsigned Release Bundle Artifact
