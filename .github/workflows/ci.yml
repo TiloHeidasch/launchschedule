@@ -298,7 +298,7 @@ jobs:
         with:
           args: unzip -qq ./masterdata.zip -d ./src/app/data/
       - name: Temp - Run ls
-        run: ls -r ./src/app
+        run: ls -R ./src/app
       - name: Run Test
         run: npm run e2e
   # pixel2xl:
