@@ -188,7 +188,7 @@ jobs:
     - name: Check Basepath in index.html
       run: cat www/index.html
     - name: Change Basepath in index.html
-      run: sed -i 's/<base href="\/"\/>/<base href="\/launchschedule\/"\/>/g' www/index.html
+      run: sed -i 's/<base href="\/">/<base href="\/launchschedule\/">/g' www/index.html
     - name: Check Basepath in index.html
       run: cat www/index.html
     - name: GitHub Pages
