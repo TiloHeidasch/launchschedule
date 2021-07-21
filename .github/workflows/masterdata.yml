@@ -463,9 +463,11 @@ jobs:
         uses: actions/download-artifact@v2.0.9
         with:
           name: masterdata
-          path: src/app/data/
-      - name: Commit to Masterdata branch
-        uses: actions-js/push@master
+          path: ./
+      - name: Push to Masterdata branch
+        uses: crazy-max/ghaction-github-pages@v2.3.0
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: 'masterdata'
+          build_dir: ./
+          target_branch: masterdata
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
