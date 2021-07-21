@@ -89,6 +89,8 @@ jobs:
         uses: TonyBogdanov/zip@1.0
         with:
           args: unzip -qq ./masterdata.zip -d ./src/app/data/
+      - name: Move Masterdata
+        run: mv ./src/app/data/launchschedule-masterdata/* ./src/app/data/
       - name: Build with Ionic
         run: npm run build:prod
       - name: Capacitor Update
@@ -271,6 +273,8 @@ jobs:
         uses: TonyBogdanov/zip@1.0
         with:
           args: unzip -qq ./masterdata.zip -d ./src/app/data/
+      - name: Move Masterdata
+        run: mv ./src/app/data/launchschedule-masterdata/* ./src/app/data/
       - name: Run Test
         run: npm run test
   e2e:
@@ -297,8 +301,8 @@ jobs:
         uses: TonyBogdanov/zip@1.0
         with:
           args: unzip -qq ./masterdata.zip -d ./src/app/data/
-      - name: Temp - Run ls
-        run: ls -R ./src/app
+      - name: Move Masterdata
+        run: mv ./src/app/data/launchschedule-masterdata/* ./src/app/data/
       - name: Run Test
         run: npm run e2e
   # pixel2xl:
@@ -326,6 +330,8 @@ jobs:
   #       uses: TonyBogdanov/zip@1.0
   #       with:
   #         args: unzip -qq ./masterdata.zip -d ./src/app/data/
+  #     - name: Move Masterdata
+  #       run: mv ./src/app/data/launchschedule-masterdata/* ./src/app/data/
   #     - name: Take Screenshots
   #       run: npm run screenshots:pixel2xl
   #     - name: Safe Screenshots
@@ -359,6 +365,8 @@ jobs:
   #       uses: TonyBogdanov/zip@1.0
   #       with:
   #         args: unzip -qq ./masterdata.zip -d ./src/app/data/
+  #     - name: Move Masterdata
+  #       run: mv ./src/app/data/launchschedule-masterdata/* ./src/app/data/
   #     - name: Take Screenshots
   #       run: npm run screenshots:nexus7
   #     - name: Safe Screenshots
@@ -392,6 +400,8 @@ jobs:
   #       uses: TonyBogdanov/zip@1.0
   #       with:
   #         args: unzip -qq ./masterdata.zip -d ./src/app/data/
+  #     - name: Move Masterdata
+  #       run: mv ./src/app/data/launchschedule-masterdata/* ./src/app/data/
   #     - name: Take Screenshots
   #       run: npm run screenshots:nexus10
   #     - name: Safe Screenshots
