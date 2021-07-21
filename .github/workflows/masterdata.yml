@@ -12,6 +12,10 @@ jobs:
     name: Download and Merge Masterdata
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
       - name: Fetch Agencies 0-500
         run: node scripts/masterdata/fetch.ts agencies agencies 0 500
       - name: Fetch Astronauts 0-500
