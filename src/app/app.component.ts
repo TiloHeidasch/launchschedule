@@ -4,13 +4,7 @@ import { Platform } from "@ionic/angular";
 import { SplashScreen } from "@ionic-native/splash-screen/ngx";
 import { StatusBar } from "@ionic-native/status-bar/ngx";
 
-import {
-  Capacitor,
-  Plugins,
-  PushNotification,
-  PushNotificationActionPerformed,
-  PushNotificationToken,
-} from "@capacitor/core";
+import { Capacitor } from "@capacitor/core";
 import { Router } from "@angular/router";
 import { MessageService } from "primeng/api";
 import { environment } from "../environments/environment";
@@ -18,8 +12,13 @@ import { LaunchscheduleNotificationService } from "./launchschedule-notification
 import { NewsParamStoreService } from "./news/news-param-store.service";
 import { PreferenceService } from "./preferences.service";
 import { SwUpdate } from "@angular/service-worker";
-
-const { PushNotifications } = Plugins;
+import {
+  PushNotifications,
+  PushNotificationSchema,
+  ActionPerformed,
+  Token,
+  PermissionStatus,
+} from "@capacitor/push-notifications";
 
 @Component({
   selector: "app-root",
@@ -156,8 +155,8 @@ export class AppComponent implements OnInit {
     // Request permission to use push notifications
     // iOS will prompt user and return if they granted permission or not
     // Android will just grant without prompting
-    PushNotifications.requestPermission().then((result) => {
-      if (result.granted) {
+    PushNotifications.requestPermissions().then((value: PermissionStatus) => {
+      if (value && value.receive === "granted") {
         // Register with Apple / Google to receive push via APNS/FCM
         PushNotifications.register();
       } else {
@@ -165,17 +164,14 @@ export class AppComponent implements OnInit {
       }
     });
     // On success, we should be able to receive notifications
-    PushNotifications.addListener(
-      "registration",
-      (token: PushNotificationToken) => {
-        this.launchscheduleNotificationService.setToken(token.value);
-        this.launchscheduleNotificationService.prepare();
-      }
-    );
+    PushNotifications.addListener("registration", (token: Token) => {
+      this.launchscheduleNotificationService.setToken(token.value);
+      this.launchscheduleNotificationService.prepare();
+    });
     // Show us the notification payload if the app is open on our device
     PushNotifications.addListener(
       "pushNotificationReceived",
-      (notification: PushNotification) => {
+      (notification: PushNotificationSchema) => {
         this.messageService.add({
           severity: "info",
           summary: notification.title,
@@ -189,7 +185,7 @@ export class AppComponent implements OnInit {
     // Method called when tapping on a notification
     PushNotifications.addListener(
       "pushNotificationActionPerformed",
-      (notification: PushNotificationActionPerformed) => {
+      (notification: ActionPerformed) => {
         switch (notification.notification.data.type) {
           case "launch":
             this.jumpToLaunch(notification.notification.data.id);
