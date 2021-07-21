@@ -1,0 +1,419 @@
+name: Fetch Masterdata
+
+on:
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  fetchAgencies1:
+    name: Fetch Agencies 0-500
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Agencies
+        run: node scripts/masterdata/fetch.ts agencies agencies 0 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: agencies1
+          path: src/app/data/
+  fetchAstronauts1:
+    name: Fetch Astronauts 0-500
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Astronauts
+        run: node scripts/masterdata/fetchAstronaut.ts 0 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: astronauts1
+          path: src/app/data/
+  fetchAstronauts2:
+    name: Fetch Astronauts 500-1000
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Astronauts
+        run: node scripts/masterdata/fetchAstronaut.ts 500 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: astronauts2
+          path: src/app/data/
+  fetchLaunches1:
+    name: Fetch Launches 0-500
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Launches
+        run: node scripts/fetchLaunches.ts 0 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: launches1
+          path: src/app/data/
+  fetchLaunches2:
+    name: Fetch Launches 500-1000
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Launches
+        run: node scripts/fetchLaunches.ts 500 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: launches2
+          path: src/app/data/
+  fetchLaunches3:
+    name: Fetch Launches 1000-1500
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Launches
+        run: node scripts/fetchLaunches.ts 1000 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: launches3
+          path: src/app/data/
+  fetchLaunches4:
+    name: Fetch Launches 1500-2000
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Launches
+        run: node scripts/fetchLaunches.ts 1500 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: launches4
+          path: src/app/data/
+  fetchLocations1:
+    name: Fetch Locations 0-500
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Locations
+        run: node scripts/masterdata/fetch.ts location locations 0 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: locations1
+          path: src/app/data/
+  fetchPads1:
+    name: Fetch Pads 0-500
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Pads
+        run: node scripts/masterdata/fetch.ts pad pads 0 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: pads1
+          path: src/app/data/
+  fetchPreviousEvents1:
+    name: Fetch Previous Events 0-500
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Previous Events
+        run: node scripts/masterdata/fetch.ts event/previous previousevents 0 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: previousevents1
+          path: src/app/data/
+  fetchPreviousLaunches1:
+    name: Fetch Previous Launches 0-500
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Previous Launches
+        run: node scripts/masterdata/fetchPreviousLaunches.ts 0 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: previouslaunches1
+          path: src/app/data/
+  fetchPreviousLaunches2:
+    name: Fetch Previous Launches 500-1000
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Previous Launches
+        run: node scripts/masterdata/fetchPreviousLaunches.ts 500 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: previouslaunches2
+          path: src/app/data/
+  fetchPreviousLaunches3:
+    name: Fetch Previous Launches 1000-1500
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Previous Launches
+        run: node scripts/masterdata/fetchPreviousLaunches.ts 1000 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: previouslaunches3
+          path: src/app/data/
+  fetchPreviousLaunches4:
+    name: Fetch Previous Launches 1500-2000
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Previous Launches
+        run: node scripts/masterdata/fetchPreviousLaunches.ts 1500 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: previouslaunches4
+          path: src/app/data/
+  fetchRockets1:
+    name: Fetch Rockets 0-500
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Rockets
+        run: node scripts/masterdata/fetch.ts config/launcher rockets 0 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: rockets1
+          path: src/app/data/
+  fetchSpacecrafts1:
+    name: Fetch Spacecrafts 0-500
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Spacecrafts
+        run: node scripts/masterdata/fetch.ts config/spacecraft spacecrafts 0 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: spacecrafts1
+          path: src/app/data/
+  fetchSpacestations1:
+    name: Fetch Spacestations 0-500
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Spacestations
+        run: node scripts/masterdata/fetch.ts spacestation spacestations 0 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: spacestations1
+          path: src/app/data/
+  merge:
+    name: Merge Master Data
+    runs-on: ubuntu-latest
+    needs: [
+        fetchAgencies1,
+        fetchAstronauts1,
+        fetchAstronauts2,
+        fetchLaunches1,
+        fetchLaunches2,
+        fetchLaunches3,
+        fetchLaunches4,
+        fetchLocations1,
+        fetchPads1,
+        fetchPreviousEvents1,
+        fetchPreviousLaunches1,
+        fetchPreviousLaunches2,
+        fetchPreviousLaunches3,
+        fetchPreviousLaunches4,
+        fetchRockets1,
+        fetchSpacecrafts1,
+        fetchSpacestations1,
+      ]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Download Agencies 0-500
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: agencies1
+          path: src/app/data/
+      - name: Download Astronauts 0-500
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: astronauts1
+          path: src/app/data/
+      - name: Download Astronauts 500-1000
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: astronauts2
+          path: src/app/data/
+      - name: Download Launches 0-500
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: launches1
+          path: src/app/data/
+      - name: Download Launches 500-1000
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: launches2
+          path: src/app/data/
+      - name: Download Launches 1000-1500
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: launches3
+          path: src/app/data/
+      - name: Download Launches 1500-2000
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: launches4
+          path: src/app/data/
+      - name: Download Locations 0-500
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: locations1
+          path: src/app/data/
+      - name: Download Pads 0-500
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: pads1
+          path: src/app/data/
+      - name: Download Previous Events 0-500
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: previousevents1
+          path: src/app/data/
+      - name: Download Previous Launches 0-500
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: previouslaunches1
+          path: src/app/data/
+      - name: Download Previous Launches 500-1000
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: previouslaunches2
+          path: src/app/data/
+      - name: Download Previous Launches 1000-1500
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: previouslaunches3
+          path: src/app/data/
+      - name: Download Previous Launches 1500-2000
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: previouslaunches4
+          path: src/app/data/
+      - name: Download Rockets 0-500
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: rockets1
+          path: src/app/data/
+      - name: Download Spacecrafts 0-500
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: spacecrafts1
+          path: src/app/data/
+      - name: Download Spacestations 0-500
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: spacestations1
+          path: src/app/data/
+      - name: Merge Agencies
+        run: node scripts/masterdata/merge.ts agencies 500 500
+      - name: Merge Astronauts
+        run: node scripts/masterdata/merge.ts astronauts 1000 500
+      - name: Merge Launches
+        run: node scripts/mergeLaunches.ts 2000 500
+      - name: Merge Locations
+        run: node scripts/masterdata/merge.ts locations 500 500
+      - name: Merge Pads
+        run: node scripts/masterdata/merge.ts pads 500 500
+      - name: Merge Previous Events
+        run: node scripts/masterdata/merge.ts previousevents 500 500
+      - name: Merge Previous Launches
+        run: node scripts/masterdata/merge.ts previouslaunches 2000 500
+      - name: Merge Rockets
+        run: node scripts/masterdata/merge.ts rockets 500 500
+      - name: Merge Spacecrafts
+        run: node scripts/masterdata/merge.ts spacecrafts 500 500
+      - name: Merge Spacestations
+        run: node scripts/masterdata/merge.ts spacestations 500 500
+      - name: Safe MasterData Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: masterdata
+          path: src/app/data/
+  upload:
+    name: Upload Masterdata to branch
+    runs-on: ubuntu-latest
+    needs: merge
+    steps:
+      - name: Download Masterdata
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: masterdata
+          path: ./
+      - name: Push to Masterdata branch
+        uses: crazy-max/ghaction-github-pages@v2.3.0
+        with:
+          build_dir: ./
+          target_branch: masterdata
+          commit_message: 'Updates Masterdata'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
