@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Plugins } from "@capacitor/core";
-const { Browser } = Plugins;
+import { Browser } from "@capacitor/browser";
 @Injectable({
   providedIn: "root",
 })
