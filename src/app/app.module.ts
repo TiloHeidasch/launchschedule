@@ -14,7 +14,6 @@ import { LaunchLibraryService } from "./launch-library.service";
 import { PrimeNGModule } from "./prime-ng/prime-ng.module";
 import { LaunchscheduleNotificationService } from "./launchschedule-notification.service";
 import { StorageService } from "./storage.service";
-import { BrowserService } from "./browser.service";
 import { PreviousLaunchService } from "./masterdata/previous-launches.service";
 import { ServiceWorkerModule } from "@angular/service-worker";
 import { environment } from "../environments/environment";
@@ -44,7 +43,6 @@ import { environment } from "../environments/environment";
     PreviousLaunchService,
     LaunchscheduleNotificationService,
     StorageService,
-    BrowserService,
   ],
   bootstrap: [AppComponent],
 })
