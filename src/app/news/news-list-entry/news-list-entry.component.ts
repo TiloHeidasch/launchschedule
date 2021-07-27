@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { BrowserService } from "src/app/browser.service";
 import { PlaceholderService } from "src/app/placeholder.service";
 import { NewsStorageService } from "../news-storage.service";
 
@@ -16,7 +15,6 @@ export class NewsListEntryComponent implements OnInit {
   content: string;
   clicked = false;
   constructor(
-    private browser: BrowserService,
     private storage: NewsStorageService,
     public placeholderService: PlaceholderService
   ) {}
@@ -28,7 +26,7 @@ export class NewsListEntryComponent implements OnInit {
     this.clicked = await this.storage.isClicked(this.newsItem);
   }
   click() {
-    this.browser.open(this.newsItem.url);
+    window.location.href = this.newsItem.url;
     this.storage.markClicked(this.newsItem);
     setTimeout(() => {
       this.clicked = true;
