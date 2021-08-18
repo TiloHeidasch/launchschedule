@@ -35,7 +35,7 @@
     "@angular/youtube-player": "^12.2.1",
     "@capacitor/android": "^3.1.2",
     "@capacitor/browser": "^1.0.2",
-    "@capacitor/core": "3.1.2",
+    "@capacitor/core": "3.2.0",
     "@capacitor/ios": "^3.1.2",
     "@capacitor/push-notifications": "^1.0.3",
     "@capacitor/storage": "^1.0.3",
