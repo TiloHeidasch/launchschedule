@@ -289,6 +289,8 @@ jobs:
         uses: actions/checkout@v2
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
+      - name: Setup JSON-Compress
+        run: npm install --save compress-json
       - name: Download Agencies 0-500
         uses: actions/download-artifact@v2.0.9
         with:
