@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { decompress } from "compress-json";
 import { default as data } from "../data/astronauts.json";
 
 @Injectable({
@@ -15,7 +16,7 @@ export class AstronautService {
   }
   getNextAstronauts(offset: number, search = "", status = "") {
     return {
-      astronauts: data
+      astronauts: decompress(data)
         .sort((a1, a2) => {
           if (a1.name < a2.name) {
             return -1;

@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Active } from "../types/active";
+import { decompress } from "compress-json";
 import { default as data } from "../data/spacecrafts.json";
 import { HumanRated } from "../types/human-rated";
 
@@ -26,7 +27,7 @@ export class SpacecraftService {
     humanRated?: HumanRated
   ) {
     return {
-      spacecrafts: data
+      spacecrafts: decompress(data)
         .filter((spacecraft) => {
           return (
             (spacecraft.name.includes(search) ||

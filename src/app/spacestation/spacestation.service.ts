@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { decompress } from "compress-json";
 import { default as data } from "../data/spacestations.json";
 
 @Injectable({
@@ -26,7 +27,7 @@ export class SpacestationService {
     type?: number
   ) {
     return {
-      spacestations: data
+      spacestations: decompress(data)
         .sort((s1, s2) => {
           if (s1.status.id < s2.status.id) {
             return -1;

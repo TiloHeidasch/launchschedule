@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { decompress } from "compress-json";
 import { default as data } from "../data/pads.json";
 
 @Injectable({
@@ -15,7 +16,7 @@ export class PadService {
   }
   getNextPads(offset: number, search = "") {
     return {
-      pads: data
+      pads: decompress(data)
         .sort((p1, p2) => {
           if (p1.location.name < p2.location.name) {
             return -1;

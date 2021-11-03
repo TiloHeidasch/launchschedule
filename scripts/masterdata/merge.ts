@@ -1,3 +1,4 @@
+let compress = require("compress-json");
 let fs = require("fs");
 
 let dataAll = [];
@@ -25,7 +26,7 @@ function saveData() {
   console.log(process.argv[1] + " writing file");
   fs.writeFile(
     dir + fileName + ".json",
-    JSON.stringify(dataAll),
+    JSON.stringify(compress.compress(dataAll)),
     function (err) {
       if (err) {
         return console.log(err);

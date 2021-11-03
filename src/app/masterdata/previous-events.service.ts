@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { decompress } from "compress-json";
 import { default as data } from "../data/previouslaunches.json";
 
 @Injectable({
@@ -15,7 +16,7 @@ export class PreviousEventService {
   }
   getNextPreviousEvents(offset: number, search = "") {
     return {
-      events: data
+      events: decompress(data)
         .filter((previousEvent) => {
           return previousEvent.name.includes(search);
         })

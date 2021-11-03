@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { decompress } from "compress-json";
 import { default as data } from "../data/locations.json";
 
 @Injectable({
@@ -15,7 +16,7 @@ export class LocationService {
   }
   getNextLocations(offset: number, search = "", countryCode = "") {
     return {
-      locations: data
+      locations: decompress(data)
         .sort((l1, l2) => {
           if (l1.name < l2.name) {
             return -1;

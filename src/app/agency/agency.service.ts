@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { decompress } from "compress-json";
 import { default as data } from "../data/agencies.json";
 
 @Injectable({
@@ -26,7 +27,7 @@ export class AgencyService {
     countryCode = ""
   ) {
     return {
-      agencies: data
+      agencies: decompress(data)
         .filter((entry) => {
           return (
             (entry.name.includes(search) ||
