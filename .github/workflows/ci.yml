@@ -167,7 +167,7 @@ jobs:
   sign:
     name: Sign Android Artifact
     runs-on: ubuntu-latest
-    needs: [buildAndroid, lint, test, e2e]
+    needs: [buildAndroid, test, e2e]
     if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
     steps:
       - name: Download Unsigned Release Bundle Artifact
@@ -188,45 +188,36 @@ jobs:
         with:
           name: app-bundle-signed
           path: ./app-release.aab
-  releaseProd:
-    name: Upload to Google Play Production
+  release:
+    name: Upload to Google Play
     runs-on: ubuntu-latest
-    needs: [sign, lint, test, e2e]
-    if: github.ref == 'refs/heads/master'
+    needs: [sign]
+    if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
     steps:
       - name: Download Signed Release Bundle Artifact
         uses: actions/download-artifact@v2.0.9
         with:
           name: app-bundle-signed
           path: ./
-      - name: Upload to Google Play
+      - name: Upload to Google Play Prod
         uses: r0adkll/upload-google-play@v1.0.12
+        if: github.ref == 'refs/heads/master'
         with:
           serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON }}
           packageName: de.th105.launchschedule
-          releaseFile: ./app-release.aab
-  releaseDev:
-    name: Upload to Google Play Beta
-    runs-on: ubuntu-latest
-    needs: [sign, lint, test, e2e]
-    if: github.ref == 'refs/heads/dev'
-    steps:
-      - name: Download Signed Release Bundle Artifact
-        uses: actions/download-artifact@v2.0.9
-        with:
-          name: app-bundle-signed
-          path: ./
-      - name: Upload to Google Play
+          releaseFiles: ./app-release.aab
+      - name: Upload to Google Play Beta
         uses: r0adkll/upload-google-play@v1.0.12
+        if: ${{github.ref == 'refs/heads/dev'}}
         with:
           serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON }}
           packageName: de.th105.launchschedule
-          releaseFile: ./app-release.aab
+          releaseFiles: ./app-release.aab
           track: beta
-  pagesProd:
+  pages:
     name: Create Github Page
     runs-on: ubuntu-latest
-    needs: [buildWeb, lint, test, e2e]
+    needs: [buildWeb, test, e2e]
     if: github.ref == 'refs/heads/master'
     steps:
     - name: Download www
@@ -246,11 +237,11 @@ jobs:
         build_dir: www/
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  dockerProd:
-    name: Build and Push docker latest
+  docker:
+    name: Build and Push docker
     runs-on: ubuntu-latest
-    needs: [buildWeb, lint, test, e2e]
-    if: github.ref == 'refs/heads/master'
+    needs: [buildWeb, test, e2e]
+    if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -259,33 +250,31 @@ jobs:
         with:
           name: www
           path: www/
-      - name: Build and Push the Dockerfile
-        uses: docker/build-push-action@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: theidasch/schedule
-          tags: latest
-  dockerDev:
-    name: Build and Push docker dev
-    runs-on: ubuntu-latest
-    needs: [buildWeb, lint, test, e2e]
-    if: github.ref == 'refs/heads/dev'
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Download www
-        uses: actions/download-artifact@v2.0.9
+      - name: Build and Push the Dockerfile Latest
+        uses: docker/build-push-action@v2
+        if: github.ref == 'refs/heads/master'
         with:
-          name: www
-          path: www/
-      - name: Build and Push the Dockerfile
-        uses: docker/build-push-action@v1
+          context: .
+          pull: true
+          push: true    
+          cache-from: type=registry,ref=theidasch/schedule:latest
+          cache-to: type=inline
+          tags: theidasch/schedule:latest
+      - name: Build and Push the Dockerfile Dev
+        uses: docker/build-push-action@v2
+        if: ${{github.ref == 'refs/heads/dev'}}
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: theidasch/schedule
-          tags: dev
+          context: .
+          pull: true
+          push: true    
+          cache-from: type=registry,ref=theidasch/schedule:dev
+          cache-to: type=inline
+          tags: theidasch/schedule:dev
   lint:
     name: Lint
     runs-on: ubuntu-latest
@@ -306,9 +295,7 @@ jobs:
     name: Tests
     runs-on: ubuntu-latest
     needs:
-      [ baptize,
-        track,
-      ]
+      [baptize, track]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -334,9 +321,7 @@ jobs:
     name: E2E Tests
     runs-on: ubuntu-latest
     needs:
-      [ baptize,
-        track,
-      ]
+      [baptize, track]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -463,30 +448,11 @@ jobs:
   #       with:
   #         name: screenshots_nexus10
   #         path: ./screenshots/images
-  tagDev:
+  tag:
     name: Tag this run
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/dev'
-    needs: [dockerDev, releaseDev]
-    steps:
-      - name: Download Version
-        uses: actions/download-artifact@v2.0.9
-        with:
-          name: version
-          path: ./
-      - name: Set Release Name Variable
-        run: echo "RELEASE_NAME=`cat ./version`" >> $GITHUB_ENV
-      - name: Update Tag
-        uses: richardsimko/update-tag@v1.0.3
-        with:
-          tag_name: ${{ env.RELEASE_NAME }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  tagProd:
-    name: Tag this run
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/dev'
-    needs: [dockerProd, releaseProd]
+    if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
+    needs: [release]
     steps:
       - name: Download Version
         uses: actions/download-artifact@v2.0.9
