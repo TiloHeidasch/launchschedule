@@ -1,11 +1,11 @@
-let https = require("https");
+let compress = require("compress-json");
 let fs = require("fs");
 
 let dataAll = [];
 
 function readData() {
   for (let index = 0; index < +maximum; index += +steps) {
-    fs.readFile(dir + fileName + index + ".json", "utf8", function(err, data) {
+    fs.readFile(dir + fileName + index + ".json", "utf8", function (err, data) {
       // Display the file content
       dataAll.push(...JSON.parse(data));
       console.log(dataAll.length);
@@ -26,9 +26,11 @@ function saveData() {
   console.log(process.argv[1] + " writing file");
   fs.writeFile(
     dir + fileName + ".json",
-    JSON.stringify(dataAll),
-    function(err) {
-      if (err) { return console.log(err); }
+    JSON.stringify(compress.compress(dataAll)),
+    function (err) {
+      if (err) {
+        return console.log(err);
+      }
       console.log(process.argv[1] + " wrote file");
       dataAll = [];
     }

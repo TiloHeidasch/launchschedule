@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Active } from "../types/active";
 import { Reusable } from "../types/reusable";
+import { decompress } from "compress-json";
 import { default as data } from "../data/rockets.json";
 
 @Injectable({
@@ -17,7 +18,7 @@ export class RocketService {
   }
   getNextRockets(offset: number, search = "") {
     return {
-      rockets: data
+      rockets: decompress(data)
         .filter((rocket) => {
           return (
             rocket.name.includes(search) ||

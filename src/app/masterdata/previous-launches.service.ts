@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { decompress } from "compress-json";
 import { default as data } from "../data/previouslaunches.json";
 
 @Injectable({
@@ -15,7 +16,7 @@ export class PreviousLaunchService {
   }
   getNextPreviousLaunchs(offset: number, search = "") {
     return {
-      previousLaunches: data
+      previousLaunches: decompress(data)
         .filter((previousLaunch) => {
           return previousLaunch.name.includes(search);
         })
