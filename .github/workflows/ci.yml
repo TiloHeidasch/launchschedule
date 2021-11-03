@@ -204,7 +204,7 @@ jobs:
         with:
           serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON }}
           packageName: de.th105.launchschedule
-          releaseFile: ./app-release.aab
+          releaseFiles: ./app-release.aab
   releaseDev:
     name: Upload to Google Play Beta
     runs-on: ubuntu-latest
@@ -221,7 +221,7 @@ jobs:
         with:
           serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON }}
           packageName: de.th105.launchschedule
-          releaseFile: ./app-release.aab
+          releaseFiles: ./app-release.aab
           track: beta
   pagesProd:
     name: Create Github Page
