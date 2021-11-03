@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { decompress } from "compress-json";
+import { main as jsonpack } from "jsonpack";
 import { default as data } from "../data/astronauts.json";
 
 @Injectable({
@@ -9,14 +9,15 @@ export class AstronautService {
   constructor() {}
 
   getAstronautById(id: string) {
-    return data.find((entry) => entry.id === +id);
+    return jsonpack.unpack(data).find((entry) => entry.id === +id);
   }
   getFirstAstronauts(search?: string, status?: string) {
     return this.getNextAstronauts(0, search, status);
   }
   getNextAstronauts(offset: number, search = "", status = "") {
+    let unpacked = jsonpack.unpack(data);
     return {
-      astronauts: decompress(data)
+      astronauts: unpacked
         .sort((a1, a2) => {
           if (a1.name < a2.name) {
             return -1;
@@ -30,7 +31,7 @@ export class AstronautService {
           return astronaut.name.includes(search);
         })
         .slice(offset, offset + 10),
-      max: data.length,
+      max: unpacked.length,
     };
   }
 }

@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { decompress } from "compress-json";
+import { main as jsonpack } from "jsonpack";
 import { default as data } from "../data/agencies.json";
 
 @Injectable({
@@ -7,9 +7,8 @@ import { default as data } from "../data/agencies.json";
 })
 export class AgencyService {
   constructor() {}
-
   getAgencyById(id: string) {
-    return data.find((entry) => entry.id === +id);
+    return jsonpack.unpack(data).find((entry) => entry.id === +id);
   }
   getFirstAgencies(
     search?: string,
@@ -26,8 +25,9 @@ export class AgencyService {
     type = "",
     countryCode = ""
   ) {
+    let unpacked = jsonpack.unpack(data);
     return {
-      agencies: decompress(data)
+      agencies: unpacked
         .filter((entry) => {
           return (
             (entry.name.includes(search) ||
@@ -40,7 +40,7 @@ export class AgencyService {
           );
         })
         .slice(offset, offset + 13),
-      max: data.length,
+      max: unpacked.length,
     };
   }
 }

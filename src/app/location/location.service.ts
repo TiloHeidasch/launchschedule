@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { decompress } from "compress-json";
+import { main as jsonpack } from "jsonpack";
 import { default as data } from "../data/locations.json";
 
 @Injectable({
@@ -9,14 +9,15 @@ export class LocationService {
   constructor() {}
 
   getLocationById(id: string) {
-    return data.find((entry) => entry.id === +id);
+    return jsonpack.unpack(data).find((entry) => entry.id === +id);
   }
   getFirstLocations(search?: string, countryCode?: string) {
     return this.getNextLocations(0, search, countryCode);
   }
   getNextLocations(offset: number, search = "", countryCode = "") {
+    let unpacked = jsonpack.unpack(data);
     return {
-      locations: decompress(data)
+      locations: unpacked
         .sort((l1, l2) => {
           if (l1.name < l2.name) {
             return -1;
@@ -33,7 +34,7 @@ export class LocationService {
           );
         })
         .slice(offset, offset + 10),
-      max: data.length,
+      max: unpacked.length,
     };
   }
 }

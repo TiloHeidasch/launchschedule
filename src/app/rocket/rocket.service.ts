@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Active } from "../types/active";
 import { Reusable } from "../types/reusable";
-import { decompress } from "compress-json";
+import { main as jsonpack } from "jsonpack";
 import { default as data } from "../data/rockets.json";
 
 @Injectable({
@@ -11,14 +11,15 @@ export class RocketService {
   constructor() {}
 
   getRocketById(id: string) {
-    return data.find((entry) => entry.id === +id);
+    return jsonpack.unpack(data).find((entry) => entry.id === +id);
   }
   getFirstRockets(search?: string) {
     return this.getNextRockets(0, search);
   }
   getNextRockets(offset: number, search = "") {
+    let unpacked = jsonpack.unpack(data);
     return {
-      rockets: decompress(data)
+      rockets: unpacked
         .filter((rocket) => {
           return (
             rocket.name.includes(search) ||
@@ -28,7 +29,7 @@ export class RocketService {
           );
         })
         .slice(offset, offset + 10),
-      max: data.length,
+      max: unpacked.length,
     };
   }
 }

@@ -1,5 +1,5 @@
-let compress = require("compress-json");
 let fs = require("fs");
+let jsonpack = require("jsonpack/main");
 
 let dataAll = [];
 
@@ -26,7 +26,7 @@ function saveData() {
   console.log(process.argv[1] + " writing file");
   fs.writeFile(
     dir + fileName + ".json",
-    JSON.stringify(compress.compress(dataAll)),
+    jsonpack.pack(dataAll),
     function (err) {
       if (err) {
         return console.log(err);

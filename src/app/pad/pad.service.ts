@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { decompress } from "compress-json";
+import { main as jsonpack } from "jsonpack";
 import { default as data } from "../data/pads.json";
 
 @Injectable({
@@ -9,14 +9,15 @@ export class PadService {
   constructor() {}
 
   getPadById(id: string) {
-    return data.find((entry) => entry.id === +id);
+    return jsonpack.unpack(data).find((entry) => entry.id === +id);
   }
   getFirstPads(search?: string) {
     return this.getNextPads(0, search);
   }
   getNextPads(offset: number, search = "") {
+    let unpacked = jsonpack.unpack(data);
     return {
-      pads: decompress(data)
+      pads: unpacked
         .sort((p1, p2) => {
           if (p1.location.name < p2.location.name) {
             return -1;
@@ -30,7 +31,7 @@ export class PadService {
           return pad.name.includes(search);
         })
         .slice(offset, offset + 10),
-      max: data.length,
+      max: unpacked.length,
     };
   }
 }

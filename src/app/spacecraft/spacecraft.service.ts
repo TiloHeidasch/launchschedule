@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Active } from "../types/active";
-import { decompress } from "compress-json";
+import { main as jsonpack } from "jsonpack";
 import { default as data } from "../data/spacecrafts.json";
 import { HumanRated } from "../types/human-rated";
 
@@ -11,7 +11,7 @@ export class SpacecraftService {
   constructor() {}
 
   getSpacecraftById(id: string) {
-    return data.find((entry) => entry.id === +id);
+    return jsonpack.unpack(data).find((entry) => entry.id === +id);
   }
   getFirstSpacecrafts(
     search?: string,
@@ -26,8 +26,9 @@ export class SpacecraftService {
     active = Active.ALL,
     humanRated?: HumanRated
   ) {
+    let unpacked = jsonpack.unpack(data);
     return {
-      spacecrafts: decompress(data)
+      spacecrafts: unpacked
         .filter((spacecraft) => {
           return (
             (spacecraft.name.includes(search) ||
@@ -44,7 +45,7 @@ export class SpacecraftService {
           );
         })
         .slice(offset, offset + 10),
-      max: data.length,
+      max: unpacked.length,
     };
   }
 }

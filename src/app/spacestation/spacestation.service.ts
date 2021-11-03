@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { decompress } from "compress-json";
+import { main as jsonpack } from "jsonpack";
 import { default as data } from "../data/spacestations.json";
 
 @Injectable({
@@ -9,7 +9,7 @@ export class SpacestationService {
   constructor() {}
 
   getSpacestationById(id: string) {
-    return data.find((entry) => entry.id === +id);
+    return jsonpack.unpack(data).find((entry) => entry.id === +id);
   }
   getFirstSpacestations(
     search?: string,
@@ -26,8 +26,9 @@ export class SpacestationService {
     orbit?: string,
     type?: number
   ) {
+    let unpacked = jsonpack.unpack(data);
     return {
-      spacestations: decompress(data)
+      spacestations: unpacked
         .sort((s1, s2) => {
           if (s1.status.id < s2.status.id) {
             return -1;
@@ -54,7 +55,7 @@ export class SpacestationService {
           );
         })
         .slice(offset, offset + 10),
-      max: data.length,
+      max: unpacked.length,
     };
   }
 }
