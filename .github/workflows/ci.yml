@@ -456,7 +456,7 @@ jobs:
     name: Tag this run
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
-    needs: [docker, release]
+    needs: [release]
     steps:
       - name: Download Version
         uses: actions/download-artifact@v2.0.9
