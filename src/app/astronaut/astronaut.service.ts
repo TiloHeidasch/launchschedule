@@ -15,7 +15,7 @@ export class AstronautService {
     return this.getNextAstronauts(0, search, status);
   }
   getNextAstronauts(offset: number, search = "", status = "") {
-    let unpacked = jsonpack.unpack(data);
+    const unpacked = jsonpack.unpack(data);
     return {
       astronauts: unpacked
         .sort((a1, a2) => {

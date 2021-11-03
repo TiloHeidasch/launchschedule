@@ -26,7 +26,7 @@ export class SpacestationService {
     orbit?: string,
     type?: number
   ) {
-    let unpacked = jsonpack.unpack(data);
+    const unpacked = jsonpack.unpack(data);
     return {
       spacestations: unpacked
         .sort((s1, s2) => {

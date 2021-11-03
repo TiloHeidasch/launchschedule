@@ -25,7 +25,7 @@ export class AgencyService {
     type = "",
     countryCode = ""
   ) {
-    let unpacked = jsonpack.unpack(data);
+    const unpacked = jsonpack.unpack(data);
     return {
       agencies: unpacked
         .filter((entry) => {

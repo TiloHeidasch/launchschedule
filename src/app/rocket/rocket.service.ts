@@ -17,7 +17,7 @@ export class RocketService {
     return this.getNextRockets(0, search);
   }
   getNextRockets(offset: number, search = "") {
-    let unpacked = jsonpack.unpack(data);
+    const unpacked = jsonpack.unpack(data);
     return {
       rockets: unpacked
         .filter((rocket) => {

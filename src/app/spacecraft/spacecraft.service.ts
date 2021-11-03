@@ -26,7 +26,7 @@ export class SpacecraftService {
     active = Active.ALL,
     humanRated?: HumanRated
   ) {
-    let unpacked = jsonpack.unpack(data);
+    const unpacked = jsonpack.unpack(data);
     return {
       spacecrafts: unpacked
         .filter((spacecraft) => {

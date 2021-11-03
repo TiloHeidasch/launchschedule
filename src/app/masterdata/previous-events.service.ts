@@ -15,7 +15,7 @@ export class PreviousEventService {
     return this.getNextPreviousEvents(0, search);
   }
   getNextPreviousEvents(offset: number, search = "") {
-    let unpacked = jsonpack.unpack(data);
+    const unpacked = jsonpack.unpack(data);
     return {
       events: unpacked
         .filter((previousEvent) => {

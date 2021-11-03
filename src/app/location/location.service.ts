@@ -15,7 +15,7 @@ export class LocationService {
     return this.getNextLocations(0, search, countryCode);
   }
   getNextLocations(offset: number, search = "", countryCode = "") {
-    let unpacked = jsonpack.unpack(data);
+    const unpacked = jsonpack.unpack(data);
     return {
       locations: unpacked
         .sort((l1, l2) => {

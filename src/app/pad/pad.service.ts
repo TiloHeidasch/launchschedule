@@ -15,7 +15,7 @@ export class PadService {
     return this.getNextPads(0, search);
   }
   getNextPads(offset: number, search = "") {
-    let unpacked = jsonpack.unpack(data);
+    const unpacked = jsonpack.unpack(data);
     return {
       pads: unpacked
         .sort((p1, p2) => {

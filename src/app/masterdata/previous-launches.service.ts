@@ -15,7 +15,7 @@ export class PreviousLaunchService {
     return this.getNextPreviousLaunchs(0, search);
   }
   getNextPreviousLaunchs(offset: number, search = "") {
-    let unpacked = jsonpack.unpack(data);
+    const unpacked = jsonpack.unpack(data);
     return {
       previousLaunches: unpacked
         .filter((previousLaunch) => {
