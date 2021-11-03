@@ -259,13 +259,20 @@ jobs:
         with:
           name: www
           path: www/
-      - name: Build and Push the Dockerfile
-        uses: docker/build-push-action@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: theidasch/schedule
-          tags: latest
+      - name: Build and Push the Dockerfile
+        uses: docker/build-push-action@v1
+        with:
+          context: .
+          pull: true
+          push: true    
+          cache-from: type=registry,ref=theidasch/schedule:latest
+          cache-to: type=inline
+          tags: theidasch/schedule:latest
   dockerDev:
     name: Build and Push docker dev
     runs-on: ubuntu-latest
@@ -279,13 +286,20 @@ jobs:
         with:
           name: www
           path: www/
-      - name: Build and Push the Dockerfile
-        uses: docker/build-push-action@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: theidasch/schedule
-          tags: dev
+      - name: Build and Push the Dockerfile
+        uses: docker/build-push-action@v1
+        with:
+          context: .
+          pull: true
+          push: true    
+          cache-from: type=registry,ref=theidasch/schedule:dev
+          cache-to: type=inline
+          tags: theidasch/schedule:dev
   lint:
     name: Lint
     runs-on: ubuntu-latest
