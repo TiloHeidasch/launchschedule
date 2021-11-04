@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Active } from "../types/active";
 import { Reusable } from "../types/reusable";
-import { main as jsonpack } from "jsonpack";
 import { default as data } from "../data/rockets.json";
 
 @Injectable({
@@ -11,7 +10,7 @@ export class RocketService {
   constructor() {}
 
   getRocketById(id: string) {
-    return jsonpack.unpack(data).find((entry) => entry.id === +id);
+    return data.find((entry) => entry.id === +id);
   }
   getFirstRockets(search?: string) {
     return this.getNextRockets(0, search);

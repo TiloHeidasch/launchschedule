@@ -1,5 +1,4 @@
 import { Injectable } from "@angular/core";
-import { main as jsonpack } from "jsonpack";
 import { default as data } from "../data/locations.json";
 
 @Injectable({
@@ -9,7 +8,7 @@ export class LocationService {
   constructor() {}
 
   getLocationById(id: string) {
-    return jsonpack.unpack(data).find((entry) => entry.id === +id);
+    return data.find((entry) => entry.id === +id);
   }
   getFirstLocations(search?: string, countryCode?: string) {
     return this.getNextLocations(0, search, countryCode);

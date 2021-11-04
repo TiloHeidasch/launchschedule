@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
 import { Active } from "../types/active";
-import { main as jsonpack } from "jsonpack";
 import { default as data } from "../data/spacecrafts.json";
 import { HumanRated } from "../types/human-rated";
 
@@ -11,7 +10,7 @@ export class SpacecraftService {
   constructor() {}
 
   getSpacecraftById(id: string) {
-    return jsonpack.unpack(data).find((entry) => entry.id === +id);
+    return data.find((entry) => entry.id === +id);
   }
   getFirstSpacecrafts(
     search?: string,

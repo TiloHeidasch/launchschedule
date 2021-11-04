@@ -1,5 +1,4 @@
 import { Injectable } from "@angular/core";
-import { main as jsonpack } from "jsonpack";
 import { default as data } from "../data/spacestations.json";
 
 @Injectable({
@@ -9,7 +8,7 @@ export class SpacestationService {
   constructor() {}
 
   getSpacestationById(id: string) {
-    return jsonpack.unpack(data).find((entry) => entry.id === +id);
+    return data.find((entry) => entry.id === +id);
   }
   getFirstSpacestations(
     search?: string,

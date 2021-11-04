@@ -1,5 +1,4 @@
 import { Injectable } from "@angular/core";
-import { main as jsonpack } from "jsonpack";
 import { default as data } from "../data/agencies.json";
 
 @Injectable({
@@ -8,7 +7,7 @@ import { default as data } from "../data/agencies.json";
 export class AgencyService {
   constructor() {}
   getAgencyById(id: string) {
-    return jsonpack.unpack(data).find((entry) => entry.id === +id);
+    return data.find((entry) => entry.id === +id);
   }
   getFirstAgencies(
     search?: string,
