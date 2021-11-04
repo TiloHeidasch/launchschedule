@@ -38,7 +38,7 @@
     "@capacitor/core": "3.3.0",
     "@capacitor/ios": "^3.2.5",
     "@capacitor/push-notifications": "^1.0.7",
-    "@capacitor/storage": "^1.2.2",
+    "@capacitor/storage": "^1.2.3",
     "@ionic-native/core": "^5.36.0",
     "@ionic-native/http": "^5.36.0",
     "@ionic-native/splash-screen": "^5.36.0",
