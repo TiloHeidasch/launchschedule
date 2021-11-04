@@ -12,7 +12,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup Node
-        uses: actions/setup-node@v2.1.2
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
       - name: Setup Totemize
         run: npm install --save totemize
       - name: Write Development to File
@@ -58,7 +60,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup Node
-        uses: actions/setup-node@v2.1.2
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
       - name: Setup Angular
         run: npm install @angular/cli
       - name: Setup Ionic
@@ -113,7 +117,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup Node
-        uses: actions/setup-node@v2.1.2
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
       - name: Setup Angular
         run: npm install @angular/cli
       - name: Setup Ionic
@@ -282,7 +288,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup Node
-        uses: actions/setup-node@v2.1.2
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
       - name: Setup Angular
         run: npm install @angular/cli
       - name: Setup Ionic
@@ -300,7 +308,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup Node
-        uses: actions/setup-node@v2.1.2
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
       - name: Setup Angular
         run: npm install @angular/cli
       - name: Setup Ionic
@@ -326,7 +336,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup Node
-        uses: actions/setup-node@v2.1.2
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
       - name: Setup Angular
         run: npm install @angular/cli
       - name: Setup Ionic
@@ -355,7 +367,9 @@ jobs:
   #     - name: Checkout
   #       uses: actions/checkout@v2
   #     - name: Setup Node
-  #       uses: actions/setup-node@v2.1.2
+  #       uses: actions/setup-node
+        with:
+          node-version: '16'
   #     - name: Setup Angular
   #       run: npm install @angular/cli
   #     - name: Setup Ionic
@@ -390,7 +404,9 @@ jobs:
   #     - name: Checkout
   #       uses: actions/checkout@v2
   #     - name: Setup Node
-  #       uses: actions/setup-node@v2.1.2
+  #       uses: actions/setup-node
+        with:
+          node-version: '16'
   #     - name: Setup Angular
   #       run: npm install @angular/cli
   #     - name: Setup Ionic
@@ -425,7 +441,9 @@ jobs:
   #     - name: Checkout
   #       uses: actions/checkout@v2
   #     - name: Setup Node
-  #       uses: actions/setup-node@v2.1.2
+  #       uses: actions/setup-node
+        with:
+          node-version: '16'
   #     - name: Setup Angular
   #       run: npm install @angular/cli
   #     - name: Setup Ionic
