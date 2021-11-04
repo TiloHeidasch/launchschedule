@@ -26,9 +26,8 @@ export class SpacecraftService {
     active = Active.ALL,
     humanRated?: HumanRated
   ) {
-    const unpacked = jsonpack.unpack(data);
     return {
-      spacecrafts: unpacked
+      spacecrafts: data
         .filter((spacecraft) => {
           return (
             (spacecraft.name.includes(search) ||
@@ -45,7 +44,7 @@ export class SpacecraftService {
           );
         })
         .slice(offset, offset + 10),
-      max: unpacked.length,
+      max: data.length,
     };
   }
 }

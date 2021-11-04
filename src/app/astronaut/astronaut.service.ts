@@ -15,9 +15,8 @@ export class AstronautService {
     return this.getNextAstronauts(0, search, status);
   }
   getNextAstronauts(offset: number, search = "", status = "") {
-    const unpacked = jsonpack.unpack(data);
     return {
-      astronauts: unpacked
+      astronauts: data
         .sort((a1, a2) => {
           if (a1.name < a2.name) {
             return -1;
@@ -31,7 +30,7 @@ export class AstronautService {
           return astronaut.name.includes(search);
         })
         .slice(offset, offset + 10),
-      max: unpacked.length,
+      max: data.length,
     };
   }
 }

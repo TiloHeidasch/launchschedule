@@ -26,9 +26,8 @@ export class SpacestationService {
     orbit?: string,
     type?: number
   ) {
-    const unpacked = jsonpack.unpack(data);
     return {
-      spacestations: unpacked
+      spacestations: data
         .sort((s1, s2) => {
           if (s1.status.id < s2.status.id) {
             return -1;
@@ -55,7 +54,7 @@ export class SpacestationService {
           );
         })
         .slice(offset, offset + 10),
-      max: unpacked.length,
+      max: data.length,
     };
   }
 }

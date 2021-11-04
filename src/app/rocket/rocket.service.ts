@@ -17,9 +17,8 @@ export class RocketService {
     return this.getNextRockets(0, search);
   }
   getNextRockets(offset: number, search = "") {
-    const unpacked = jsonpack.unpack(data);
     return {
-      rockets: unpacked
+      rockets: data
         .filter((rocket) => {
           return (
             rocket.name.includes(search) ||
@@ -29,7 +28,7 @@ export class RocketService {
           );
         })
         .slice(offset, offset + 10),
-      max: unpacked.length,
+      max: data.length,
     };
   }
 }

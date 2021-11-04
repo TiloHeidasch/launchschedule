@@ -15,14 +15,13 @@ export class PreviousEventService {
     return this.getNextPreviousEvents(0, search);
   }
   getNextPreviousEvents(offset: number, search = "") {
-    const unpacked = jsonpack.unpack(data);
     return {
-      events: unpacked
+      events: data
         .filter((previousEvent) => {
           return previousEvent.name.includes(search);
         })
         .slice(offset, offset + 10),
-      max: unpacked.length,
+      max: data.length,
     };
   }
 }

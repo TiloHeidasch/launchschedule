@@ -1,5 +1,4 @@
 let fs = require("fs");
-let jsonpack = require("jsonpack/main");
 
 let dataAll = [];
 
@@ -26,7 +25,7 @@ function saveData() {
   console.log(process.argv[1] + " writing file");
   fs.writeFile(
     dir + fileName + ".json",
-    jsonpack.pack(dataAll),
+    JSON.stringify(dataAll),
     function (err) {
       if (err) {
         return console.log(err);

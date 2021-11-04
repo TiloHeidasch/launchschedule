@@ -25,9 +25,8 @@ export class AgencyService {
     type = "",
     countryCode = ""
   ) {
-    const unpacked = jsonpack.unpack(data);
     return {
-      agencies: unpacked
+      agencies: data
         .filter((entry) => {
           return (
             (entry.name.includes(search) ||
@@ -40,7 +39,7 @@ export class AgencyService {
           );
         })
         .slice(offset, offset + 13),
-      max: unpacked.length,
+      max: data.length,
     };
   }
 }

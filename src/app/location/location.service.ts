@@ -15,9 +15,8 @@ export class LocationService {
     return this.getNextLocations(0, search, countryCode);
   }
   getNextLocations(offset: number, search = "", countryCode = "") {
-    const unpacked = jsonpack.unpack(data);
     return {
-      locations: unpacked
+      locations: data
         .sort((l1, l2) => {
           if (l1.name < l2.name) {
             return -1;
@@ -34,7 +33,7 @@ export class LocationService {
           );
         })
         .slice(offset, offset + 10),
-      max: unpacked.length,
+      max: data.length,
     };
   }
 }

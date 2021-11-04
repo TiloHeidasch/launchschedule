@@ -15,14 +15,13 @@ export class PreviousLaunchService {
     return this.getNextPreviousLaunchs(0, search);
   }
   getNextPreviousLaunchs(offset: number, search = "") {
-    const unpacked = jsonpack.unpack(data);
     return {
-      previousLaunches: unpacked
+      previousLaunches: data
         .filter((previousLaunch) => {
           return previousLaunch.name.includes(search);
         })
         .slice(offset, offset + 10),
-      max: unpacked.length,
+      max: data.length,
     };
   }
 }

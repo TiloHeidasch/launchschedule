@@ -15,9 +15,8 @@ export class PadService {
     return this.getNextPads(0, search);
   }
   getNextPads(offset: number, search = "") {
-    const unpacked = jsonpack.unpack(data);
     return {
-      pads: unpacked
+      pads: data
         .sort((p1, p2) => {
           if (p1.location.name < p2.location.name) {
             return -1;
@@ -31,7 +30,7 @@ export class PadService {
           return pad.name.includes(search);
         })
         .slice(offset, offset + 10),
-      max: unpacked.length,
+      max: data.length,
     };
   }
 }
