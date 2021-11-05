@@ -9,7 +9,6 @@ import { RocketPage } from "./rocket.page";
 import { RocketDetailCardComponent } from "./rocket-detail-card/rocket-detail-card.component";
 import { CommonModule } from "@angular/common";
 import { RocketOverviewPage } from "./rocket-overview.page";
-import { AnimationModule } from "../animation/animation.module";
 import { RocketListEntryModule } from "./rocket-list-entry/rocket-list-entry.module";
 import { AgencyListEntryModule } from "../agency/agency-list-entry/agency-list-entry.module";
 import { NotificationModule } from "../notification/notification.module";
@@ -22,7 +21,6 @@ import { RocketService } from "./rocket.service";
     FormsModule,
     IonicModule,
     RocketRoutingModule,
-    AnimationModule,
     RocketListEntryModule,
     AgencyListEntryModule,
     NotificationModule,

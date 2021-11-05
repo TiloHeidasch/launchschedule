@@ -9,7 +9,6 @@ import { AstronautRoutingModule } from "./astronaut-routing.module";
 import { AstronautPage } from "./astronaut.page";
 import { AstronautOverviewPage } from "./astronaut-overview.page";
 import { AstronautDetailCardComponent } from "./astronaut-detail-card/astronaut-detail-card.component";
-import { AnimationModule } from "../animation/animation.module";
 import { AgencyModule } from "../agency/agency.module";
 import { LaunchModule } from "../launch/launch.module";
 import { AstronautListEntryModule } from "./astronaut-list-entry/astronaut-list-entry.module";
@@ -25,7 +24,6 @@ import { AstronautService } from "./astronaut.service";
     FormsModule,
     IonicModule,
     AstronautRoutingModule,
-    AnimationModule,
     AgencyModule,
     LaunchModule,
     AstronautListEntryModule,

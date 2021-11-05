@@ -6,7 +6,6 @@ import { LocationRoutingModule } from "./location-routing.module";
 import { LocationPage } from "./location.page";
 import { LocationOverviewPage } from "./location-overview.page";
 import { LocationDetailCardComponent } from "./location-detail-card/location-detail-card.component";
-import { AnimationModule } from "../animation/animation.module";
 import { LocationListEntryModule } from "./location-list-entry/location-list-entry.module";
 import { PadListEntryModule } from "../pad/pad-list-entry/pad-list-entry.module";
 import { NotificationModule } from "../notification/notification.module";
@@ -19,7 +18,6 @@ import { LocationService } from "./location.service";
     FormsModule,
     IonicModule,
     LocationRoutingModule,
-    AnimationModule,
     LocationListEntryModule,
     PadListEntryModule,
     NotificationModule,

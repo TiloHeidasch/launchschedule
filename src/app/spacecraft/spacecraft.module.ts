@@ -9,7 +9,6 @@ import { SpacecraftRoutingModule } from "./spacecraft-routing.module";
 import { SpacecraftPage } from "./spacecraft.page";
 import { SpacecraftOverviewPage } from "./spacecraft-overview.page";
 import { SpacecraftDetailCardComponent } from "./spacecraft-detail-card/spacecraft-detail-card.component";
-import { AnimationModule } from "../animation/animation.module";
 import { AgencyListEntryModule } from "../agency/agency-list-entry/agency-list-entry.module";
 import { SpacecraftListEntryModule } from "./spacecraft-list-entry/spacecraft-list-entry.module";
 import { NotificationModule } from "../notification/notification.module";
@@ -22,7 +21,6 @@ import { SpacecraftService } from "./spacecraft.service";
     FormsModule,
     IonicModule,
     SpacecraftRoutingModule,
-    AnimationModule,
     AgencyListEntryModule,
     SpacecraftListEntryModule,
     NotificationModule,

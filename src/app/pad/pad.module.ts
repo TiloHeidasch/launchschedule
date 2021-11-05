@@ -9,7 +9,6 @@ import { PadRoutingModule } from "./pad-routing.module";
 import { PadPage } from "./pad.page";
 import { PadOverviewPage } from "./pad-overview.page";
 import { PadDetailCardComponent } from "./pad-detail-card/pad-detail-card.component";
-import { AnimationModule } from "../animation/animation.module";
 import { MapModule } from "../map/map.module";
 import { PadListEntryModule } from "./pad-list-entry/pad-list-entry.module";
 import { NotificationModule } from "../notification/notification.module";
@@ -22,7 +21,6 @@ import { PadService } from "./pad.service";
     FormsModule,
     IonicModule,
     PadRoutingModule,
-    AnimationModule,
     MapModule,
     PadListEntryModule,
     NotificationModule,
