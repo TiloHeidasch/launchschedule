@@ -8,7 +8,6 @@ import { BlueMarblePageRoutingModule } from "./blue-marble-routing.module";
 
 import { BlueMarblePage } from "./blue-marble.page";
 import { BlueMarbleListEntryModule } from "./blue-marble-list-entry/blue-marble-list-entry.module";
-import { AnimationModule } from "../../animation/animation.module";
 import { NgxIonicImageViewerModule } from "ngx-ionic-image-viewer";
 
 @NgModule({
@@ -18,7 +17,6 @@ import { NgxIonicImageViewerModule } from "ngx-ionic-image-viewer";
     IonicModule,
     BlueMarblePageRoutingModule,
     NgxIonicImageViewerModule,
-    AnimationModule,
     BlueMarbleListEntryModule,
   ],
   declarations: [BlueMarblePage],

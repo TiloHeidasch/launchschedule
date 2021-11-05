@@ -4,7 +4,6 @@ import { LaunchListEntryComponent } from "./launch-list-entry.component";
 import { LaunchRoutingModule } from "../launch-routing.module";
 import { LaunchStatusModule } from "../launch-status/launch-status.module";
 import { CountdownModule } from "src/app/countdown/countdown.module";
-import { AnimationModule } from "src/app/animation/animation.module";
 import { IonicModule } from "@ionic/angular";
 import { NotificationModule } from "src/app/notification/notification.module";
 
@@ -13,7 +12,6 @@ import { NotificationModule } from "src/app/notification/notification.module";
   imports: [
     LaunchRoutingModule,
     CommonModule,
-    AnimationModule,
     LaunchStatusModule,
     CountdownModule,
     IonicModule,

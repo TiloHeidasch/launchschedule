@@ -6,7 +6,6 @@ import { IonicModule } from "@ionic/angular";
 
 import { AstroImageOfTheDayRoutingModule } from "./astro-image-of-the-day-routing.module";
 
-import { AnimationModule } from "../../animation/animation.module";
 import { NgxIonicImageViewerModule } from "ngx-ionic-image-viewer";
 import { AstroImageOfTheDayPage } from "./astro-image-of-the-day.page";
 import { AstroImageOfTheDayListEntryModule } from "./astro-image-of-the-day-list-entry/astro-image-of-the-day-list-entry.module";
@@ -18,7 +17,6 @@ import { AstroImageOfTheDayListEntryModule } from "./astro-image-of-the-day-list
     IonicModule,
     AstroImageOfTheDayRoutingModule,
     NgxIonicImageViewerModule,
-    AnimationModule,
     AstroImageOfTheDayListEntryModule,
   ],
   declarations: [AstroImageOfTheDayPage],

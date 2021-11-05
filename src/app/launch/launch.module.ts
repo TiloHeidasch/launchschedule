@@ -9,7 +9,6 @@ import { LaunchRoutingModule } from "./launch-routing.module";
 import { LaunchPage } from "./launch.page";
 import { LaunchOverviewPage } from "./launch-overview.page";
 import { LaunchDetailCardComponent } from "./launch-detail-card/launch-detail-card.component";
-import { AnimationModule } from "../animation/animation.module";
 import { CountdownModule } from "../countdown/countdown.module";
 import { LaunchListEntryModule } from "./launch-list-entry/launch-list-entry.module";
 import { LaunchStatusModule } from "./launch-status/launch-status.module";
@@ -30,7 +29,6 @@ import { NgxIonicImageViewerModule } from "ngx-ionic-image-viewer";
     LaunchRoutingModule,
     MissionListModule,
     PadListEntryModule,
-    AnimationModule,
     CountdownModule,
     LaunchListEntryModule,
     LaunchStatusModule,

@@ -9,7 +9,6 @@ import { AgencyRoutingModule } from "./agency-routing.module";
 import { AgencyPage } from "./agency.page";
 import { AgencyOverviewPage } from "./agency-overview.page";
 import { AgencyDetailCardComponent } from "./agency-detail-card/agency-detail-card.component";
-import { AnimationModule } from "../animation/animation.module";
 import { AgencyListEntryModule } from "./agency-list-entry/agency-list-entry.module";
 import { RocketListEntryModule } from "../rocket/rocket-list-entry/rocket-list-entry.module";
 import { SpacecraftListEntryModule } from "../spacecraft/spacecraft-list-entry/spacecraft-list-entry.module";
@@ -23,7 +22,6 @@ import { AgencyService } from "./agency.service";
     FormsModule,
     IonicModule,
     AgencyRoutingModule,
-    AnimationModule,
     AgencyListEntryModule,
     RocketListEntryModule,
     SpacecraftListEntryModule,
