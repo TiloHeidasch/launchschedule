@@ -96,7 +96,7 @@ jobs:
       - name: Use PWA index.html
         run: rm src/index.html && mv src/index.pwa.html src/index.html
       - name: Use PWA app.module.ts
-        run: rm src/app/app.module.ts && mv src/app/app.pwa.module.ts src/app/app.module.ts
+        run: rm src/app/app.module.ts && mv src/app/app.module.pwa.ts src/app/app.module.ts && mv src/app/app.component.pwa.ts src/app/app.component.ts
       - name: Build with Ionic
         run: npm run build:prod
       - name: Safe www Artifact
@@ -149,7 +149,7 @@ jobs:
       - name: Copy Masterdata
         run: sudo cp ./src/app/data/launchschedule-masterdata/* ./src/app/data/
       - name: Remove PWA related files
-        run: rm angular.pwa.json ngsw-config.json src/manifest.webmanifest src/index.pwa.html src/app/app.pwa.module.ts
+        run: rm angular.pwa.json ngsw-config.json src/manifest.webmanifest src/index.pwa.html src/app/app.module.pwa.ts src/app/app.component.pwa.ts
       - name: Build with Ionic
         run: npm run build:prod
       - name: Capacitor Update
@@ -346,7 +346,7 @@ jobs:
       - name: Copy Masterdata
         run: sudo cp ./src/app/data/launchschedule-masterdata/* ./src/app/data/
       - name: Remove PWA related files
-        run: rm angular.pwa.json ngsw-config.json src/manifest.webmanifest src/index.pwa.html src/app/app.pwa.module.ts
+        run: rm angular.pwa.json ngsw-config.json src/manifest.webmanifest src/index.pwa.html src/app/app.module.pwa.ts src/app/app.component.pwa.ts
       - name: Run Test
         run: npm run e2e
   # pixel2xl:
