@@ -9,7 +9,6 @@ import { EventRoutingModule } from "./event-routing.module";
 import { EventPage } from "./event.page";
 import { EventOverviewPage } from "./event-overview.page";
 import { EventDetailCardComponent } from "./event-detail-card/event-detail-card.component";
-import { AnimationModule } from "../animation/animation.module";
 import { CountdownModule } from "../countdown/countdown.module";
 import { EventListEntryModule } from "./event-list-entry/event-list-entry.module";
 import { VideoModule } from "../video/video.module";
@@ -25,7 +24,6 @@ import { NgxIonicImageViewerModule } from "ngx-ionic-image-viewer";
     FormsModule,
     IonicModule,
     EventRoutingModule,
-    AnimationModule,
     CountdownModule,
     EventListEntryModule,
     VideoModule,

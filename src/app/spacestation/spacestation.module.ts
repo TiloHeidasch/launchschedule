@@ -9,7 +9,6 @@ import { SpacestationRoutingModule } from "./spacestation-routing.module";
 import { SpacestationPage } from "./spacestation.page";
 import { SpacestationOverviewPage } from "./spacestation-overview.page";
 import { SpacestationDetailCardComponent } from "./spacestation-detail-card/spacestation-detail-card.component";
-import { AnimationModule } from "../animation/animation.module";
 import { SpacestationListEntryModule } from "./spacestation-list-entry/spacestation-list-entry.module";
 import { AgencyListEntryModule } from "../agency/agency-list-entry/agency-list-entry.module";
 import { AstronautListEntryModule } from "../astronaut/astronaut-list-entry/astronaut-list-entry.module";
@@ -23,7 +22,6 @@ import { SpacestationService } from "./spacestation.service";
     FormsModule,
     IonicModule,
     SpacestationRoutingModule,
-    AnimationModule,
     SpacestationListEntryModule,
     AgencyListEntryModule,
     AstronautListEntryModule,

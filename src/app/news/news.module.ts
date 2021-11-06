@@ -7,7 +7,6 @@ import { IonicModule } from "@ionic/angular";
 import { NewsRoutingModule } from "./news-routing.module";
 
 import { NewsOverviewPage } from "./news-overview.page";
-import { AnimationModule } from "../animation/animation.module";
 import { NewsListEntryModule } from "./news-list-entry/news-list-entry.module";
 
 @NgModule({
@@ -16,7 +15,6 @@ import { NewsListEntryModule } from "./news-list-entry/news-list-entry.module";
     FormsModule,
     IonicModule,
     NewsRoutingModule,
-    AnimationModule,
     NewsListEntryModule,
   ],
   declarations: [NewsOverviewPage],
