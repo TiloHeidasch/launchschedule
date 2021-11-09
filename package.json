@@ -2,7 +2,7 @@
   "name": "schedule",
   "version": "1.0.0",
   "author": "Tilo Heidasch",
-  "homepage": "https://launchschedule.th105.de/",
+  "homepage": "https://tiloheidasch.github.io/launchschedule/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
