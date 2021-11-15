@@ -1,6 +1,9 @@
 name: Lint, Test, Build, Deploy
 
 on:
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron: '08 15 */7 * *'
   push:
   workflow_dispatch:
 
