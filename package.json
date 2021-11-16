@@ -19,7 +19,8 @@
     "screenshots:nexus7": "npm run pree2e && ng e2e --webdriver-update false --protractor-config screenshots/nexus7.protractor.conf.js",
     "screenshots:nexus10": "npm run pree2e && ng e2e --webdriver-update false --protractor-config screenshots/nexus10.protractor.conf.js",
     "resources": "cordova-res android && node scripts/resources.js",
-    "android": "ionic build && npx cap copy"
+    "android": "ionic build && npx cap copy",
+    "preinstall": "npx npm-force-resolutions"
   },
   "private": true,
   "dependencies": {
@@ -44,7 +45,7 @@
     "@ionic-native/status-bar": "^5.36.0",
     "@ionic/angular": "^5.8.5",
     "@ionic/core": "^5.8.5",
-    "@types/leaflet": "^1.7.5",
+    "@types/leaflet": "^1.7.6",
     "chart.js": "^2.9.4",
     "codelyzer": "^6.0.2",
     "cordova-plugin-advanced-http": "^3.2.2",
@@ -84,5 +85,8 @@
     "tslint": "~6.1.3",
     "typescript": "~4.2.4"
   },
-  "description": "App for upcoming rocket launches"
+  "description": "App for upcoming rocket launches",
+  "resolutions": {
+    "ansi-html": "https://registry.yarnpkg.com/ansi-html-community/-/ansi-html-community-0.0.8.tgz#69fbc4d6ccbe383f9736934ae34c3f8290f1bf41"
+  }
 }
