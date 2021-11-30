@@ -348,11 +348,11 @@ jobs:
         uses: actions/checkout@v2
       - name: Remove PWA related files
         run: rm angular.pwa.json ngsw-config.json src/manifest.webmanifest src/index.pwa.html src/app/app.module.pwa.ts src/app/app.component.pwa.ts package.pwa.json
-      - name: Use Chrome v94.0.4606.81
+      - name: Use Chrome v96.0.4664.45
         uses: nanasess/setup-chromedriver@master
         with:
           # Optional: do not specify to match Chrome's version
-          chromedriver-version: '94.0.4606.81'
+          chromedriver-version: '96.0.4664.45'
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
       - name: Setup Angular
