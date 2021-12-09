@@ -72,6 +72,8 @@ jobs:
         run: rm package.json && mv package.pwa.json package.json
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
+      - name: Remove package-lock.json
+        run: rm package-lock.json
       - name: NPM Install
         run: npm install --package-lock
       - name: Setup Angular
@@ -322,6 +324,8 @@ jobs:
         run: rm package.json && mv package.pwa.json package.json
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
+      - name: Remove package-lock.json
+        run: rm package-lock.json
       - name: NPM Install
         run: npm install --package-lock
       - name: Setup Angular
