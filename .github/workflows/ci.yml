@@ -73,7 +73,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
       - name: NPM Install
-        run: npm install --no-package-lock --legacy-peer-deps
+        run: npm install
       - name: Setup Angular
         run: npm install @angular/cli
       - name: Setup Ionic
@@ -323,7 +323,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
       - name: NPM Install
-        run: npm install --no-package-lock --legacy-peer-deps
+        run: npm install
       - name: Setup Angular
         run: npm install @angular/cli
       - name: Setup Ionic
