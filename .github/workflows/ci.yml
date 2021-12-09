@@ -75,7 +75,7 @@ jobs:
       - name: Remove package-lock.json
         run: rm package-lock.json
       - name: NPM Install
-        run: npm install --package-lock
+        run: npm install --no-package-lock --legacy-peer-deps
       - name: Setup Angular
         run: npm install @angular/cli
       - name: Setup Ionic
@@ -327,7 +327,7 @@ jobs:
       - name: Remove package-lock.json
         run: rm package-lock.json
       - name: NPM Install
-        run: npm install --package-lock
+        run: npm install --no-package-lock --legacy-peer-deps
       - name: Setup Angular
         run: npm install @angular/cli
       - name: Setup Ionic
