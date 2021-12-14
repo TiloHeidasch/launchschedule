@@ -6,6 +6,12 @@ updates:
     interval: daily
   open-pull-requests-limit: 20
   target-branch: dev
+- package-ecosystem: npm
+  directory: "/pwa"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 20
+  target-branch: dev
 - package-ecosystem: gradle
   directory: "/android"
   schedule:
