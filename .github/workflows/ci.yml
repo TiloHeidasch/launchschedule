@@ -72,12 +72,12 @@ jobs:
         run: rm package.json && mv package.pwa.json package.json
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
+      - name: NPM Install
+        run: npm install --legacy-peer-deps
       - name: Setup Angular
         run: npm install @angular/cli
       - name: Setup Ionic
         run: npm install @ionic/cli
-      - name: NPM Install
-        run: npm install
       - name: Download Version
         uses: actions/download-artifact@v2.0.9
         with:
@@ -322,12 +322,12 @@ jobs:
         run: rm package.json && mv package.pwa.json package.json
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
+      - name: NPM Install
+        run: npm install --legacy-peer-deps
       - name: Setup Angular
         run: npm install @angular/cli
       - name: Setup Ionic
         run: npm install @ionic/cli
-      - name: NPM Install
-        run: npm install
       - name: Download Masterdata
         run: wget https://github.com/TiloHeidasch/launchschedule/archive/refs/heads/masterdata.zip
       - name: Unzip Masterdata
