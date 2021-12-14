@@ -69,7 +69,7 @@ jobs:
       - name: Use PWA app.module.ts
         run: rm src/app/app.module.ts && mv src/app/app.module.pwa.ts src/app/app.module.ts
       - name: Use PWA package.json
-        run: rm package.json && mv package.pwa.json package.json
+        run: rm package.json && mv pwa/package.json package.json
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
       - name: NPM Install
@@ -122,7 +122,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Remove PWA related files
-        run: rm angular.pwa.json ngsw-config.json src/manifest.webmanifest src/index.pwa.html src/app/app.module.pwa.ts src/app/app.component.pwa.ts package.pwa.json
+        run: rm angular.pwa.json ngsw-config.json src/manifest.webmanifest src/index.pwa.html src/app/app.module.pwa.ts src/app/app.component.pwa.ts pwa/package.json
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
       - name: Setup Angular
@@ -319,7 +319,7 @@ jobs:
       - name: Use PWA app.module.ts
         run: rm src/app/app.module.ts && mv src/app/app.module.pwa.ts src/app/app.module.ts
       - name: Use PWA package.json
-        run: rm package.json && mv package.pwa.json package.json
+        run: rm package.json && mv pwa/package.json package.json
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
       - name: NPM Install
@@ -347,7 +347,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Remove PWA related files
-        run: rm angular.pwa.json ngsw-config.json src/manifest.webmanifest src/index.pwa.html src/app/app.module.pwa.ts src/app/app.component.pwa.ts package.pwa.json
+        run: rm angular.pwa.json ngsw-config.json src/manifest.webmanifest src/index.pwa.html src/app/app.module.pwa.ts src/app/app.component.pwa.ts pwa/package.json
       - name: Use Chrome v96.0.4664.45
         uses: nanasess/setup-chromedriver@master
         with:
