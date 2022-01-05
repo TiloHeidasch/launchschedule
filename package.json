@@ -36,7 +36,7 @@
     "@capacitor/android": "^3.3.3",
     "@capacitor/browser": "^1.0.6",
     "@capacitor/core": "3.3.3",
-    "@capacitor/ios": "^3.3.3",
+    "@capacitor/ios": "^3.3.4",
     "@capacitor/push-notifications": "^1.0.7",
     "@capacitor/storage": "^1.2.3",
     "@ionic-native/core": "^5.36.0",
