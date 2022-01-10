@@ -159,10 +159,8 @@ jobs:
         run: sudo cp ./src/app/data/launchschedule-masterdata/* ./src/app/data/
       - name: Build with Ionic
         run: npm run build:prod
-      - name: Capacitor Update
-        run: npx cap update android
-      - name: Capacitor Copy
-        run: npx cap copy
+      - name: Capacitor Sync
+        run: npx cap sync
       - name: Setup Java 11
         uses: actions/setup-java@v2
         with:
