@@ -12,7 +12,7 @@ export class SnapiService {
     return await this.getNextArticles(0);
   }
   async getNextArticles(offset) {
-    const limit = 5;
+    const limit = 15;
     const url = this.createArticlesUrl(offset, limit);
     const data = await this.http.get<any>(url).toPromise();
     return { newsItems: data };
@@ -25,7 +25,7 @@ export class SnapiService {
     return await this.getNextBlogs(0);
   }
   async getNextBlogs(offset) {
-    const limit = 5;
+    const limit = 15;
     const url = this.createBlogsUrl(offset, limit);
     const data = await this.http.get<any>(url).toPromise();
     return { newsItems: data };
@@ -38,7 +38,7 @@ export class SnapiService {
     return await this.getNextReports(0);
   }
   async getNextReports(offset) {
-    const limit = 5;
+    const limit = 15;
     const url = this.createReportsUrl(offset, limit);
     const data = await this.http.get<any>(url).toPromise();
     return { newsItems: data };
