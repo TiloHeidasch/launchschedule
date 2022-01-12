@@ -1,10 +1,6 @@
 import { Injectable } from "@angular/core";
-import { Plugins } from "@capacitor/core";
 import { StorageService } from "../storage.service";
-const { Storage } = Plugins;
 const keyClicked = "ClickedNewsItems";
-const keyBlogReadNumber = "BlogReadNumber";
-const keyArticleReadNumber = "ArticleReadNumber";
 @Injectable({
   providedIn: "root",
 })
