@@ -66,8 +66,6 @@ jobs:
       run: echo '[]' > src/app/data/spacecrafts.json
     - name: Fake Spacestations
       run: echo '[]' > src/app/data/spacestations.json
-    - name: Remove PWA related files
-      run: rm angular.pwa.json ngsw-config.json src/manifest.webmanifest src/index.pwa.html src/app/app.module.pwa.ts src/app/app.component.pwa.ts
     - name: Build with Ionic
       if: ${{ matrix.language == 'java' }}
       run: npm run build:prod
