@@ -27,8 +27,6 @@ jobs:
     - name: Setup Node
       if: ${{ matrix.language == 'java' }}
       uses: actions/setup-node@v2.1.2
-    - name: NPM Install
-      run: npm install --legacy-peer-deps
     - name: Setup Angular
       if: ${{ matrix.language == 'java' }}
       run: npm install @angular/cli
