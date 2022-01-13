@@ -125,7 +125,7 @@ export class AppComponent implements OnInit {
     updates: SwUpdate
   ) {
     this.initializeApp();
-    updates.available.subscribe((event) => {
+    updates.available.subscribe(() => {
       updates.activateUpdate().then(() => document.location.reload());
     });
   }

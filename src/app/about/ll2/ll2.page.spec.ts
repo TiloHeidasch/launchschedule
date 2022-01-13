@@ -1,5 +1,4 @@
 import { waitForAsync, ComponentFixture, TestBed } from "@angular/core/testing";
-import { FormsModule } from "@angular/forms";
 import { IonicModule } from "@ionic/angular";
 import { AboutCardModule } from "../about-card/about-card.module";
 
