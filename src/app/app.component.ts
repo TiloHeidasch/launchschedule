@@ -11,6 +11,7 @@ import { environment } from "../environments/environment";
 import { LaunchscheduleNotificationService } from "./launchschedule-notification.service";
 import { NewsParamStoreService } from "./news/news-param-store.service";
 import { PreferenceService } from "./preferences.service";
+import { SwUpdate } from "@angular/service-worker";
 import {
   PushNotifications,
   PushNotificationSchema,
@@ -120,9 +121,13 @@ export class AppComponent implements OnInit {
     private messageService: MessageService,
     private launchscheduleNotificationService: LaunchscheduleNotificationService,
     public newsParamStore: NewsParamStoreService,
-    public preferences: PreferenceService
+    public preferences: PreferenceService,
+    updates: SwUpdate
   ) {
     this.initializeApp();
+    updates.available.subscribe((event) => {
+      updates.activateUpdate().then(() => document.location.reload());
+    });
   }
 
   initializeApp() {
