@@ -43,7 +43,9 @@ export class StatisticPage implements OnInit {
   barChartData;
   @ViewChild("tt") table: Table;
   cols: { field: string; header: string }[] = [];
-  constructor(private service: StatisticService) {}
+  constructor(private service: StatisticService) {
+    Chart.defaults.global.legend.display = false;
+  }
 
   async ngOnInit() {}
 
