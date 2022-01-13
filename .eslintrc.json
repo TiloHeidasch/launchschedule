@@ -35,6 +35,15 @@
             "style": "camelCase",
             "type": "attribute"
           }
+        ],
+        "@angular-eslint/component-class-suffix": [
+          "error",
+          {
+            "suffixes": [
+              "Page",
+              "Component"
+            ]
+          }
         ]
       }
     },

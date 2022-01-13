@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, ViewChild } from "@angular/core";
 import { IonContent, IonInfiniteScroll, ViewDidEnter } from "@ionic/angular";
 import { StarshipParamStoreService } from "../starship-param-store.service";
 
@@ -7,7 +7,7 @@ import { StarshipParamStoreService } from "../starship-param-store.service";
   templateUrl: "./previous.page.html",
   styleUrls: ["./previous.page.scss"],
 })
-export class PreviousPage implements OnInit, ViewDidEnter {
+export class PreviousPage implements ViewDidEnter {
   @ViewChild("previousContent") content: IonContent;
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   constructor(public store: StarshipParamStoreService) {}
@@ -18,6 +18,4 @@ export class PreviousPage implements OnInit, ViewDidEnter {
   logScrolling(event) {
     this.store.previousScrollY = event.detail.currentY;
   }
-
-  ngOnInit() {}
 }

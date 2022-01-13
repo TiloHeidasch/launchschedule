@@ -1,10 +1,4 @@
-import {
-  Component,
-  OnInit,
-  Input,
-  ChangeDetectionStrategy,
-} from "@angular/core";
-import { LaunchLibraryService } from "src/app/launch-library.service";
+import { Component, Input, ChangeDetectionStrategy } from "@angular/core";
 
 @Component({
   selector: "app-mission-list-entry",
@@ -12,10 +6,8 @@ import { LaunchLibraryService } from "src/app/launch-library.service";
   styleUrls: ["./mission-list-entry.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MissionListEntryComponent implements OnInit {
+export class MissionListEntryComponent {
   @Input() mission;
 
-  constructor(private service: LaunchLibraryService) {}
-
-  async ngOnInit() {}
+  constructor() {}
 }

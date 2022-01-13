@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { AboutCardDetail } from "../about-card/about-card.component";
 
 @Component({
@@ -6,7 +6,7 @@ import { AboutCardDetail } from "../about-card/about-card.component";
   templateUrl: "./nasa.page.html",
   styleUrls: ["./nasa.page.scss"],
 })
-export class NasaPage implements OnInit {
+export class NasaPage {
   aboutCardDetails: AboutCardDetail[] = [
     {
       subtitle: "NASA",
@@ -41,6 +41,4 @@ export class NasaPage implements OnInit {
     },
   ];
   constructor() {}
-
-  ngOnInit() {}
 }

@@ -1,22 +1,15 @@
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  ElementRef,
-  AfterViewInit,
-} from "@angular/core";
+import { Component,  ViewChild } from "@angular/core";
 import { StatisticService } from "./statistic.service";
 import { SelectItem } from "primeng/api";
 import { Md5 } from "ts-md5/dist/md5";
 import { Table } from "primeng/table";
-import { Chart } from "chart.js";
 
 @Component({
   selector: "app-statistic",
   templateUrl: "./statistic.page.html",
   styleUrls: ["./statistic.page.scss"],
 })
-export class StatisticPage implements OnInit {
+export class StatisticPage {
   title = "Statistics";
   step = 1;
   xAxis;
@@ -44,8 +37,6 @@ export class StatisticPage implements OnInit {
   @ViewChild("tt") table: Table;
   cols: { field: string; header: string }[] = [];
   constructor(private service: StatisticService) {}
-
-  async ngOnInit() {}
 
   async whatComplete() {
     this.step = 2;

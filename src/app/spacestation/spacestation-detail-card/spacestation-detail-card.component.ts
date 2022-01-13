@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { LaunchLibraryService } from "src/app/launch-library.service";
 import { ActionSheetController, ToastController } from "@ionic/angular";
 import { Router } from "@angular/router";
@@ -9,18 +9,15 @@ import { PlaceholderService } from "src/app/placeholder.service";
   templateUrl: "./spacestation-detail-card.component.html",
   styleUrls: ["./spacestation-detail-card.component.scss"],
 })
-export class SpacestationDetailCardComponent implements OnInit {
+export class SpacestationDetailCardComponent {
   @Input() spacestation;
 
   constructor(
-    private service: LaunchLibraryService,
     public actionSheetController: ActionSheetController,
     public toastController: ToastController,
     private router: Router,
     public placeholderService: PlaceholderService
   ) {}
-
-  async ngOnInit() {}
 
   async showSpecification(name, value, unit) {
     const toast = await this.toastController.create({
