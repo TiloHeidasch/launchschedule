@@ -1,10 +1,5 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import {
-  IonContent,
-  IonInfiniteScroll,
-  ViewDidEnter,
-  ViewDidLeave,
-} from "@ionic/angular";
+import { IonContent, IonInfiniteScroll, ViewDidEnter } from "@ionic/angular";
 import { SnapiService } from "src/app/snapi.service";
 import { NewsParamStoreService } from "../news-param-store.service";
 

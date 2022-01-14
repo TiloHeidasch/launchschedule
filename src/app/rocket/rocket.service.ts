@@ -1,6 +1,4 @@
 import { Injectable } from "@angular/core";
-import { Active } from "../types/active";
-import { Reusable } from "../types/reusable";
 import { default as data } from "../data/rockets.json";
 
 @Injectable({

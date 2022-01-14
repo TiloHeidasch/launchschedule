@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, ViewChild } from "@angular/core";
 import { NewsParamStoreService } from "./news-param-store.service";
-import { IonInfiniteScroll, ViewWillLeave } from "@ionic/angular";
+import { IonInfiniteScroll } from "@ionic/angular";
 
 @Component({
   selector: "app-news-overview",

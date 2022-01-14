@@ -31,7 +31,7 @@ export class CountdownComponent implements OnInit {
       this.active = false;
     } else {
       this.setTimer();
-      const task = setInterval(() => {
+      setInterval(() => {
         this.setTimer();
       }, this.interval);
       this.active = true;
@@ -39,7 +39,7 @@ export class CountdownComponent implements OnInit {
   }
   private getDiff(date: Date): number {
     const now = new Date();
-    return this.date.valueOf() - now.valueOf();
+    return date.valueOf() - now.valueOf();
   }
   private calculateHours(diff: number) {
     return Math.floor(Math.abs(diff) / (1000 * 60 * 60));

@@ -10,10 +10,10 @@ export class AstronautService {
   getAstronautById(id: string) {
     return data.find((entry) => entry.id === +id);
   }
-  getFirstAstronauts(search?: string, status?: string) {
-    return this.getNextAstronauts(0, search, status);
+  getFirstAstronauts(search?: string) {
+    return this.getNextAstronauts(0, search);
   }
-  getNextAstronauts(offset: number, search = "", status = "") {
+  getNextAstronauts(offset: number, search = "") {
     return {
       astronauts: data
         .sort((a1, a2) => {
