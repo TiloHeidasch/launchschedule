@@ -27,15 +27,15 @@ jobs:
     - name: Setup Node
       if: ${{ matrix.language == 'java' }}
       uses: actions/setup-node@v2.1.2
+    - name: NPM Install
+      if: ${{ matrix.language == 'java' }}
+      run: npm ci
     - name: Setup Angular
       if: ${{ matrix.language == 'java' }}
       run: npm install @angular/cli
     - name: Setup Ionic
       if: ${{ matrix.language == 'java' }}
       run: npm install @ionic/cli
-    - name: NPM Install
-      if: ${{ matrix.language == 'java' }}
-      run: npm install
     - name: Set Release Name Variable
       run: echo "RELEASE_NAME=CODEQL" >> $GITHUB_ENV
     - name: Set Release Track Variable
