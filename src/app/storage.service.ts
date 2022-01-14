@@ -29,7 +29,7 @@ export class StorageService {
   }
 
   async removeItem(key: string) {
-    await Storage.remove({ key: "name" });
+    await Storage.remove({ key });
   }
 
   async clear() {

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { PlaceholderService } from "src/app/placeholder.service";
 import { EpicPicture } from "../epic.service";
 
@@ -7,9 +7,7 @@ import { EpicPicture } from "../epic.service";
   templateUrl: "./blue-marble-list-entry.component.html",
   styleUrls: ["./blue-marble-list-entry.component.scss"],
 })
-export class BlueMarbleListEntryComponent implements OnInit {
+export class BlueMarbleListEntryComponent {
   @Input() epicPicture: EpicPicture;
   constructor(public placeholderService: PlaceholderService) {}
-
-  ngOnInit() {}
 }

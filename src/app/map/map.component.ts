@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, Input } from "@angular/core";
+import { Component, AfterViewInit, Input } from "@angular/core";
 import { Map, tileLayer, marker } from "leaflet";
 
 @Component({
@@ -6,7 +6,7 @@ import { Map, tileLayer, marker } from "leaflet";
   templateUrl: "./map.component.html",
   styleUrls: ["./map.component.scss"],
 })
-export class MapComponent implements OnInit, AfterViewInit {
+export class MapComponent implements AfterViewInit {
   @Input() lat: number;
   @Input() lng: number;
   map;
@@ -28,5 +28,4 @@ export class MapComponent implements OnInit, AfterViewInit {
       this.map.invalidateSize();
     }, 1000);
   }
-  ngOnInit() {}
 }

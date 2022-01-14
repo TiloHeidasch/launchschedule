@@ -1,5 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
-import { LaunchLibraryService } from "src/app/launch-library.service";
+import { Component, Input } from "@angular/core";
 import { PlaceholderService } from "src/app/placeholder.service";
 
 @Component({
@@ -7,13 +6,8 @@ import { PlaceholderService } from "src/app/placeholder.service";
   templateUrl: "./pad-detail-card.component.html",
   styleUrls: ["./pad-detail-card.component.scss"],
 })
-export class PadDetailCardComponent implements OnInit {
+export class PadDetailCardComponent {
   @Input() pad;
 
-  constructor(
-    private service: LaunchLibraryService,
-    public placeholderService: PlaceholderService
-  ) {}
-
-  async ngOnInit() {}
+  constructor(public placeholderService: PlaceholderService) {}
 }

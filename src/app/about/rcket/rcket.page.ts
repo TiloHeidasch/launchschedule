@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { PlaceholderService } from "src/app/placeholder.service";
 import { environment } from "src/environments/environment";
 import { AboutCardDetail } from "../about-card/about-card.component";
@@ -8,7 +8,7 @@ import { AboutCardDetail } from "../about-card/about-card.component";
   templateUrl: "./rcket.page.html",
   styleUrls: ["./rcket.page.scss"],
 })
-export class RcketPage implements OnInit {
+export class RcketPage {
   aboutCardDetails: AboutCardDetail[] = [
     {
       title: "Tilo Heidasch",
@@ -32,8 +32,7 @@ export class RcketPage implements OnInit {
         },
         {
           name: "Rate this App",
-          link:
-            "https://play.google.com/store/apps/details?id=de.th105.launchschedule",
+          link: "https://play.google.com/store/apps/details?id=de.th105.launchschedule",
           isExternal: true,
         },
       ],
@@ -97,8 +96,7 @@ export class RcketPage implements OnInit {
         },
         {
           name: "Ryte 404 Page",
-          link:
-            "https://de.ryte.com/magazine/wp-content/uploads/2017/10/1500x800-404EInstellungen.png",
+          link: "https://de.ryte.com/magazine/wp-content/uploads/2017/10/1500x800-404EInstellungen.png",
           isExternal: true,
         },
       ],
@@ -106,6 +104,4 @@ export class RcketPage implements OnInit {
     },
   ];
   constructor(private placeholderService: PlaceholderService) {}
-
-  ngOnInit() {}
 }
