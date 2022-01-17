@@ -19,6 +19,7 @@ import {
   Token,
   PermissionStatus,
 } from "@capacitor/push-notifications";
+import { FCM } from "@capacitor-community/fcm";
 
 @Component({
   selector: "app-root",
@@ -155,14 +156,17 @@ export class AppComponent implements OnInit {
     // Request permission to use push notifications
     // iOS will prompt user and return if they granted permission or not
     // Android will just grant without prompting
-    PushNotifications.requestPermissions().then((value: PermissionStatus) => {
-      if (value && value.receive === "granted") {
-        // Register with Apple / Google to receive push via APNS/FCM
-        PushNotifications.register();
-      } else {
-        // Show some error
+    PushNotifications.requestPermissions().then(
+      async (value: PermissionStatus) => {
+        if (value && value.receive === "granted") {
+          // Register with Apple / Google to receive push via APNS/FCM
+          await PushNotifications.register();
+          FCM.subscribeTo({ topic: "test" });
+        } else {
+          // Show some error
+        }
       }
-    });
+    );
     // On success, we should be able to receive notifications
     PushNotifications.addListener("registration", (token: Token) => {
       this.launchscheduleNotificationService.setToken(token.value);
