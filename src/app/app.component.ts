@@ -19,7 +19,6 @@ import {
   Token,
   PermissionStatus,
 } from "@capacitor/push-notifications";
-import { FCM } from "@capacitor-community/fcm";
 
 @Component({
   selector: "app-root",
@@ -161,7 +160,6 @@ export class AppComponent implements OnInit {
         if (value && value.receive === "granted") {
           // Register with Apple / Google to receive push via APNS/FCM
           await PushNotifications.register();
-          FCM.subscribeTo({ topic: "test" });
         } else {
           // Show some error
         }
