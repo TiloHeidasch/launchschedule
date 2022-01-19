@@ -146,12 +146,10 @@ export class AppComponent implements OnInit {
     }
     if (Capacitor.isPluginAvailable("PushNotifications")) {
       this.initNotifications();
-    } else {
-      this.launchscheduleNotificationService.prepare();
     }
   }
 
-  initNotifications() {
+  private initNotifications() {
     // Request permission to use push notifications
     // iOS will prompt user and return if they granted permission or not
     // Android will just grant without prompting
@@ -165,11 +163,6 @@ export class AppComponent implements OnInit {
         }
       }
     );
-    // On success, we should be able to receive notifications
-    PushNotifications.addListener("registration", (token: Token) => {
-      this.launchscheduleNotificationService.setToken(token.value);
-      this.launchscheduleNotificationService.prepare();
-    });
     // Show us the notification payload if the app is open on our device
     PushNotifications.addListener(
       "pushNotificationReceived",
