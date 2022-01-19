@@ -16,9 +16,9 @@ import {
   PushNotifications,
   PushNotificationSchema,
   ActionPerformed,
-  Token,
   PermissionStatus,
 } from "@capacitor/push-notifications";
+import { FCM } from "@capacitor-community/fcm";
 
 @Component({
   selector: "app-root",
@@ -146,60 +146,69 @@ export class AppComponent implements OnInit {
     }
     if (Capacitor.isPluginAvailable("PushNotifications")) {
       this.initNotifications();
-    } else {
-      this.launchscheduleNotificationService.prepare();
     }
   }
 
-  initNotifications() {
+  private initNotifications() {
     // Request permission to use push notifications
     // iOS will prompt user and return if they granted permission or not
     // Android will just grant without prompting
-    PushNotifications.requestPermissions().then(
-      async (value: PermissionStatus) => {
-        if (value && value.receive === "granted") {
-          // Register with Apple / Google to receive push via APNS/FCM
-          await PushNotifications.register();
-        } else {
-          // Show some error
-        }
-      }
-    );
-    // On success, we should be able to receive notifications
-    PushNotifications.addListener("registration", (token: Token) => {
-      this.launchscheduleNotificationService.setToken(token.value);
-      this.launchscheduleNotificationService.prepare();
-    });
-    // Show us the notification payload if the app is open on our device
-    PushNotifications.addListener(
-      "pushNotificationReceived",
-      (notification: PushNotificationSchema) => {
-        this.messageService.add({
-          severity: "info",
-          summary: notification.title,
-          detail: notification.body,
-          sticky: true,
-          data: notification.data,
-        });
-      }
-    );
+    PushNotifications.requestPermissions().then((value: PermissionStatus) => {
+      if (value && value.receive === "granted") {
+        // Register with Apple / Google to receive push via APNS/FCM
+        PushNotifications.register()
+          .then(() => {
+            alert("PushNotification Registered");
 
-    // Method called when tapping on a notification
-    PushNotifications.addListener(
-      "pushNotificationActionPerformed",
-      (notification: ActionPerformed) => {
-        switch (notification.notification.data.type) {
-          case "launch":
-            this.jumpToLaunch(notification.notification.data.id);
-            break;
-          case "event":
-            this.jumpToEvent(notification.notification.data.id);
-            break;
-          default:
-            break;
-        }
+            // Show us the notification payload if the app is open on our device
+            PushNotifications.addListener(
+              "pushNotificationReceived",
+              (notification: PushNotificationSchema) => {
+                this.messageService.add({
+                  severity: "info",
+                  summary: notification.title,
+                  detail: notification.body,
+                  sticky: true,
+                  data: notification.data,
+                });
+              }
+            )
+              .then((res) =>
+                alert("pushNotificationReceived Listener Added " + res)
+              )
+              .catch((err) => alert(err));
+
+            // Method called when tapping on a notification
+            PushNotifications.addListener(
+              "pushNotificationActionPerformed",
+              (notification: ActionPerformed) => {
+                switch (notification.notification.data.type) {
+                  case "launch":
+                    this.jumpToLaunch(notification.notification.data.id);
+                    break;
+                  case "event":
+                    this.jumpToEvent(notification.notification.data.id);
+                    break;
+                  default:
+                    break;
+                }
+              }
+            )
+              .then((res) =>
+                alert("pushNotificationActionPerformed Listener Added " + res)
+              )
+              .catch((err) => alert(err));
+
+            // now you can subscribe to a specific topic
+            FCM.subscribeTo({ topic: "test" })
+              .then((r) => alert(`subscribed to topic` + r))
+              .catch((err) => alert(err));
+          })
+          .catch((err) => alert(err));
+      } else {
+        // Show some error
       }
-    );
+    });
   }
   jumpToLaunch(id) {
     this.router.navigateByUrl("/launch/" + id);

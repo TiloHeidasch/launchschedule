@@ -6,7 +6,6 @@ export const environment = {
   production: false,
   launchLibrary: "https://spacelaunchnow.me/api/ll/2.2.0",
   snapi: "https://api.spaceflightnewsapi.net/v3/",
-  notificationUrl: "https://launchschedule-notifications.th105.de/notification",
   nasaApiKey: "DEMO_KEY",
   twitter: "https://publish.twitter.com/oembed",
   cors: "https://cors.th105.de/",
