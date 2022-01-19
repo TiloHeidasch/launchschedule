@@ -119,7 +119,6 @@ export class AppComponent implements OnInit {
     private statusBar: StatusBar,
     private router: Router,
     private messageService: MessageService,
-    private launchscheduleNotificationService: LaunchscheduleNotificationService,
     public newsParamStore: NewsParamStoreService,
     public preferences: PreferenceService,
     updates: SwUpdate
@@ -158,7 +157,11 @@ export class AppComponent implements OnInit {
         // Register with Apple / Google to receive push via APNS/FCM
         PushNotifications.register()
           .then(() => {
-            alert("PushNotification Registered");
+            this.messageService.add({
+              severity: "info",
+              sticky: true,
+              summary: "PushNotification Registered",
+            });
 
             // Show us the notification payload if the app is open on our device
             PushNotifications.addListener(
@@ -174,9 +177,17 @@ export class AppComponent implements OnInit {
               }
             )
               .then((res) =>
-                alert("pushNotificationReceived Listener Added " + res)
+                this.messageService.add({
+                  summary: "pushNotificationReceived Listener Added " + res,
+                })
               )
-              .catch((err) => alert(err));
+              .catch((err) =>
+                this.messageService.add({
+                  severity: "info",
+                  sticky: true,
+                  summary: err,
+                })
+              );
 
             // Method called when tapping on a notification
             PushNotifications.addListener(
@@ -195,16 +206,43 @@ export class AppComponent implements OnInit {
               }
             )
               .then((res) =>
-                alert("pushNotificationActionPerformed Listener Added " + res)
+                this.messageService.add({
+                  summary:
+                    "pushNotificationActionPerformed Listener Added " + res,
+                })
               )
-              .catch((err) => alert(err));
+              .catch((err) =>
+                this.messageService.add({
+                  severity: "info",
+                  sticky: true,
+                  summary: err,
+                })
+              );
 
             // now you can subscribe to a specific topic
             FCM.subscribeTo({ topic: "test" })
-              .then((r) => alert(`subscribed to topic` + r))
-              .catch((err) => alert(err));
+              .then((r) =>
+                this.messageService.add({
+                  severity: "info",
+                  sticky: true,
+                  summary: "subscribed to topic" + r,
+                })
+              )
+              .catch((err) =>
+                this.messageService.add({
+                  severity: "info",
+                  sticky: true,
+                  summary: err,
+                })
+              );
           })
-          .catch((err) => alert(err));
+          .catch((err) =>
+            this.messageService.add({
+              severity: "info",
+              sticky: true,
+              summary: err,
+            })
+          );
       } else {
         // Show some error
       }
