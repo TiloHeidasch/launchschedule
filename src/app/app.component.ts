@@ -16,7 +16,6 @@ import {
   PushNotifications,
   PushNotificationSchema,
   ActionPerformed,
-  Token,
   PermissionStatus,
 } from "@capacitor/push-notifications";
 import { FCM } from "@capacitor-community/fcm";
