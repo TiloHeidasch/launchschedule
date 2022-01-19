@@ -182,7 +182,7 @@ export class AppComponent implements OnInit {
               )
               .catch((err) =>
                 this.messageService.add({
-                  severity: "info",
+                  severity: "error",
                   sticky: true,
                   summary: err,
                 })
@@ -212,7 +212,7 @@ export class AppComponent implements OnInit {
               )
               .catch((err) =>
                 this.messageService.add({
-                  severity: "info",
+                  severity: "error",
                   sticky: true,
                   summary: err,
                 })
@@ -229,7 +229,7 @@ export class AppComponent implements OnInit {
               )
               .catch((err) =>
                 this.messageService.add({
-                  severity: "info",
+                  severity: "error",
                   sticky: true,
                   summary: err,
                 })
@@ -237,7 +237,7 @@ export class AppComponent implements OnInit {
           })
           .catch((err) =>
             this.messageService.add({
-              severity: "info",
+              severity: "error",
               sticky: true,
               summary: err,
             })
