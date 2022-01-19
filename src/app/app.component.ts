@@ -8,7 +8,6 @@ import { Capacitor } from "@capacitor/core";
 import { Router } from "@angular/router";
 import { MessageService } from "primeng/api";
 import { environment } from "../environments/environment";
-import { LaunchscheduleNotificationService } from "./launchschedule-notification.service";
 import { NewsParamStoreService } from "./news/news-param-store.service";
 import { PreferenceService } from "./preferences.service";
 import { SwUpdate } from "@angular/service-worker";
