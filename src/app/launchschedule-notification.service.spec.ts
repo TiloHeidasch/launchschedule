@@ -15,20 +15,20 @@ describe("LaunchscheduleNotificationService", () => {
   it("should be created", () => {
     expect(service).toBeTruthy();
   });
-  it("should markInterest", () => {
-    service.markInterest("type", "id");
+  it("should markInterest", async () => {
+    await service.markInterest("type", "id");
 
-    const res = service.isInterested("type", "id");
+    const res = await service.isInterested("type", "id");
     expect(res).toBe(true);
   });
-  it("should removeInterest", () => {
-    service.markInterest("type", "id");
+  it("should removeInterest", async () => {
+    await service.markInterest("type", "id");
 
-    const res1 = service.isInterested("type", "id");
+    const res1 = await service.isInterested("type", "id");
     expect(res1).toBe(true);
-    service.removeInterest("type", "id");
+    await service.removeInterest("type", "id");
 
-    const res2 = service.isInterested("type", "id");
+    const res2 = await service.isInterested("type", "id");
     expect(res2).toBe(false);
   });
 });
