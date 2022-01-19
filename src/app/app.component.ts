@@ -144,10 +144,21 @@ export class AppComponent implements OnInit {
     }
     if (Capacitor.isPluginAvailable("PushNotifications")) {
       this.initNotifications();
-    }
+    }else{
+    setTimeout(()=>this.messageService.add({
+      severity: "info",
+      sticky: true,
+      summary: "Plugin not available",
+    }),5000)
   }
+}
 
   private initNotifications() {
+    setTimeout(()=>this.messageService.add({
+      severity: "info",
+      sticky: true,
+      summary: "initNotifications",
+    }),5000)
     // Request permission to use push notifications
     // iOS will prompt user and return if they granted permission or not
     // Android will just grant without prompting
@@ -156,11 +167,11 @@ export class AppComponent implements OnInit {
         // Register with Apple / Google to receive push via APNS/FCM
         PushNotifications.register()
           .then(() => {
-            this.messageService.add({
+            setTimeout(()=>this.messageService.add({
               severity: "info",
               sticky: true,
               summary: "PushNotification Registered",
-            });
+            }),5000)
 
             // Show us the notification payload if the app is open on our device
             PushNotifications.addListener(
@@ -175,19 +186,21 @@ export class AppComponent implements OnInit {
                 });
               }
             )
-              .then((res) =>
-                this.messageService.add({
+              .then((res) =>{
+                setTimeout(()=>this.messageService.add({
+              severity: "info",
+              sticky: true,
                   summary: "pushNotificationReceived Listener Added " + res,
-                })
-              )
+                }
+              ),5000)})
               .catch((err) =>
-                this.messageService.add({
+                setTimeout(()=>this.messageService.add({
                   severity: "error",
                   sticky: true,
                   summary: err,
-                })
+                }
+              ),5000)
               );
-
             // Method called when tapping on a notification
             PushNotifications.addListener(
               "pushNotificationActionPerformed",
@@ -205,43 +218,45 @@ export class AppComponent implements OnInit {
               }
             )
               .then((res) =>
-                this.messageService.add({
+                setTimeout(()=>this.messageService.add({
+              severity: "info",
+              sticky: true,
                   summary:
                     "pushNotificationActionPerformed Listener Added " + res,
-                })
-              )
+                }),5000))
               .catch((err) =>
-                this.messageService.add({
+                setTimeout(()=>this.messageService.add({
                   severity: "error",
                   sticky: true,
                   summary: err,
-                })
-              );
+                }
+              ),5000));
 
             // now you can subscribe to a specific topic
             FCM.subscribeTo({ topic: "test" })
               .then((r) =>
-                this.messageService.add({
+                setTimeout(()=>this.messageService.add({
                   severity: "info",
                   sticky: true,
                   summary: "subscribed to topic" + r,
-                })
-              )
+                }
+              ),5000))
               .catch((err) =>
-                this.messageService.add({
+                setTimeout(()=>this.messageService.add({
                   severity: "error",
                   sticky: true,
                   summary: err,
-                })
-              );
+                }
+              ),5000));
           })
           .catch((err) =>
-            this.messageService.add({
+            setTimeout(()=>this.messageService.add({
               severity: "error",
               sticky: true,
               summary: err,
-            })
-          );
+            }
+          )))
+
       } else {
         // Show some error
       }
