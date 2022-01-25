@@ -151,6 +151,7 @@ jobs:
     name: Sign Android Artifacts
     runs-on: ubuntu-latest
     needs: [build, test, e2e]
+    if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
     steps:
       - name: Download Unsigned Release Bundle Artifact
         uses: actions/download-artifact@v2.0.9
