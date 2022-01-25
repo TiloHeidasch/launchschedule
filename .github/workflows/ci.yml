@@ -109,13 +109,20 @@ jobs:
         with:
           distribution: 'adopt' # See 'Supported distributions' for available options
           java-version: '11'
-      - name: Build with Gradle
+      - name: Build App Bundle with Gradle
         run: cd android && chmod +x gradlew && ./gradlew bundleRelease
       - name: Safe Unsigned Release Bundle Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
           name: app-bundle-unsigned
           path: android/app/build/outputs/bundle/release/app-release.aab
+      - name: Build APK with Gradle
+        run: ./gradlew assembleRelease && ls -R
+      - name: Safe Unsigned Release APK Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: app-apk-unsigned
+          path: android/app/build/outputs/bundle/release/app-release.apk
   sign:
     name: Sign Android Artifact
     runs-on: ubuntu-latest
