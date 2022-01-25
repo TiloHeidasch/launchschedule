@@ -117,7 +117,7 @@ jobs:
           name: app-bundle-unsigned
           path: android/app/build/outputs/bundle/release/app-release.aab
       - name: Build APK with Gradle
-        run: ./gradlew assembleRelease && ls -R
+        run: cd android && chmod +x gradlew && ./gradlew assembleRelease && ls -R
       - name: Safe Unsigned Release APK Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
