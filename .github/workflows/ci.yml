@@ -121,8 +121,8 @@ jobs:
       - name: Safe Unsigned Release APK Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
-          name: app-apk-unsigned
-          path: android/app/build/outputs/bundle/release/app-release.apk
+          name: app-release-unsigned
+          path: android/app/build/outputs/apk/release/app-release-unsigned.apk
   sign:
     name: Sign Android Artifact
     runs-on: ubuntu-latest
