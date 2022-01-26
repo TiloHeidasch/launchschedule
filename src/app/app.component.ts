@@ -157,142 +157,129 @@ export class AppComponent implements OnInit {
     // Request permission to use push notifications
     // iOS will prompt user and return if they granted permission or not
     // Android will just grant without prompting
-    PushNotifications.requestPermissions().then((value: PermissionStatus) => {
-      if (value && value.receive === "granted") {
-        // Register with Apple / Google to receive push via APNS/FCM
-        PushNotifications.register()
-          .then(() => {
+
+    // Register with Apple / Google to receive push via APNS/FCM
+    PushNotifications.register()
+      .then(() => {
+        setTimeout(
+          () =>
+            this.messageService.add({
+              severity: "info",
+              sticky: true,
+              summary: "PushNotification Registered",
+            }),
+          5000
+        );
+
+        // Show us the notification payload if the app is open on our device
+        PushNotifications.addListener(
+          "pushNotificationReceived",
+          (notification: PushNotificationSchema) => {
+            this.messageService.add({
+              severity: "info",
+              summary: notification.title,
+              detail: notification.body,
+              sticky: true,
+              data: notification.data,
+            });
+          }
+        )
+          .then((res) => {
             setTimeout(
               () =>
                 this.messageService.add({
                   severity: "info",
                   sticky: true,
-                  summary: "PushNotification Registered",
+                  summary: "pushNotificationReceived Listener Added " + res,
                 }),
               5000
             );
-
-            // Show us the notification payload if the app is open on our device
-            PushNotifications.addListener(
-              "pushNotificationReceived",
-              (notification: PushNotificationSchema) => {
-                this.messageService.add({
-                  severity: "info",
-                  summary: notification.title,
-                  detail: notification.body,
-                  sticky: true,
-                  data: notification.data,
-                });
-              }
-            )
-              .then((res) => {
-                setTimeout(
-                  () =>
-                    this.messageService.add({
-                      severity: "info",
-                      sticky: true,
-                      summary: "pushNotificationReceived Listener Added " + res,
-                    }),
-                  5000
-                );
-              })
-              .catch((err) =>
-                setTimeout(
-                  () =>
-                    this.messageService.add({
-                      severity: "error",
-                      sticky: true,
-                      summary: err,
-                    }),
-                  5000
-                )
-              );
-            // Method called when tapping on a notification
-            PushNotifications.addListener(
-              "pushNotificationActionPerformed",
-              (notification: ActionPerformed) => {
-                switch (notification.notification.data.type) {
-                  case "launch":
-                    this.jumpToLaunch(notification.notification.data.id);
-                    break;
-                  case "event":
-                    this.jumpToEvent(notification.notification.data.id);
-                    break;
-                  default:
-                    break;
-                }
-              }
-            )
-              .then((res) =>
-                setTimeout(
-                  () =>
-                    this.messageService.add({
-                      severity: "info",
-                      sticky: true,
-                      summary:
-                        "pushNotificationActionPerformed Listener Added " + res,
-                    }),
-                  5000
-                )
-              )
-              .catch((err) =>
-                setTimeout(
-                  () =>
-                    this.messageService.add({
-                      severity: "error",
-                      sticky: true,
-                      summary: err,
-                    }),
-                  5000
-                )
-              );
-
-            // now you can subscribe to a specific topic
-            FCM.subscribeTo({ topic: "test" })
-              .then((r) =>
-                setTimeout(
-                  () =>
-                    this.messageService.add({
-                      severity: "info",
-                      sticky: true,
-                      summary: "subscribed to topic" + r,
-                    }),
-                  5000
-                )
-              )
-              .catch((err) =>
-                setTimeout(
-                  () =>
-                    this.messageService.add({
-                      severity: "error",
-                      sticky: true,
-                      summary: err,
-                    }),
-                  5000
-                )
-              );
           })
           .catch((err) =>
-            setTimeout(() =>
-              this.messageService.add({
-                severity: "error",
-                sticky: true,
-                summary: err,
-              })
+            setTimeout(
+              () =>
+                this.messageService.add({
+                  severity: "error",
+                  sticky: true,
+                  summary: err,
+                }),
+              5000
             )
           );
-      } else {
-        setTimeout(
-          () =>
-            this.messageService.add({
-              severity: "error",
-              sticky: true,
-              summary: "PushNotification not granted",
-            }),
-          5000
-        );
-      }
-    });
+        // Method called when tapping on a notification
+        PushNotifications.addListener(
+          "pushNotificationActionPerformed",
+          (notification: ActionPerformed) => {
+            switch (notification.notification.data.type) {
+              case "launch":
+                this.jumpToLaunch(notification.notification.data.id);
+                break;
+              case "event":
+                this.jumpToEvent(notification.notification.data.id);
+                break;
+              default:
+                break;
+            }
+          }
+        )
+          .then((res) =>
+            setTimeout(
+              () =>
+                this.messageService.add({
+                  severity: "info",
+                  sticky: true,
+                  summary:
+                    "pushNotificationActionPerformed Listener Added " + res,
+                }),
+              5000
+            )
+          )
+          .catch((err) =>
+            setTimeout(
+              () =>
+                this.messageService.add({
+                  severity: "error",
+                  sticky: true,
+                  summary: err,
+                }),
+              5000
+            )
+          );
+
+        // now you can subscribe to a specific topic
+        FCM.subscribeTo({ topic: "test" })
+          .then((r) =>
+            setTimeout(
+              () =>
+                this.messageService.add({
+                  severity: "info",
+                  sticky: true,
+                  summary: "subscribed to topic" + r,
+                }),
+              5000
+            )
+          )
+          .catch((err) =>
+            setTimeout(
+              () =>
+                this.messageService.add({
+                  severity: "error",
+                  sticky: true,
+                  summary: err,
+                }),
+              5000
+            )
+          );
+      })
+      .catch((err) =>
+        setTimeout(() =>
+          this.messageService.add({
+            severity: "error",
+            sticky: true,
+            summary: err,
+          })
+        )
+      );
   }
   jumpToLaunch(id) {
     this.router.navigateByUrl("/launch/" + id);
