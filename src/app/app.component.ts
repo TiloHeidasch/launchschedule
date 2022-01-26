@@ -140,7 +140,9 @@ export class AppComponent implements OnInit {
         (page) => page.url.toLowerCase() === "/" + path.toLowerCase()
       );
     }
-    this.initNotifications();
+    setTimeout(() => {
+      this.initNotifications();
+    }, 5000);
   }
 
   private initNotifications() {
