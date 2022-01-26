@@ -124,7 +124,7 @@ jobs:
           name: app-release-unsigned
           path: android/app/build/outputs/apk/release/app-release-unsigned.apk
   signBundle:
-    name: Sign Android Artifacts
+    name: Sign Android Bundle
     runs-on: ubuntu-latest
     needs: [build, test, e2e]
     steps:
@@ -147,7 +147,7 @@ jobs:
           name: app-bundle-signed
           path: ./app-release.aab
   signApk:
-    name: Sign Android Artifacts
+    name: Sign Android APK
     runs-on: ubuntu-latest
     needs: [build, test, e2e]
     steps:
