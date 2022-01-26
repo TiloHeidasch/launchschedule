@@ -282,7 +282,15 @@ export class AppComponent implements OnInit {
             )
           );
       } else {
-        // Show some error
+        setTimeout(
+          () =>
+            this.messageService.add({
+              severity: "error",
+              sticky: true,
+              summary: "PushNotification not granted",
+            }),
+          5000
+        );
       }
     });
   }
