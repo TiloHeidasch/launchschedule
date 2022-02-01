@@ -15,7 +15,6 @@ import {
   PushNotificationSchema,
   ActionPerformed,
 } from "@capacitor/push-notifications";
-import { FCM } from "@capacitor-community/fcm";
 
 @Component({
   selector: "app-root",
