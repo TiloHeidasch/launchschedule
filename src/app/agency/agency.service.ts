@@ -33,7 +33,7 @@ export class AgencyService {
               entry.administrator.includes(search) ||
               entry.description.includes(search)) &&
             entry.featured === featured &&
-            entry.type.includes(type) &&
+            ((entry.type && entry.type.includes(type)) || !entry.type) &&
             entry.country_code.includes(countryCode)
           );
         })
