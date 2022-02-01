@@ -37,7 +37,6 @@ export class AstronautOverviewPage implements OnInit, ViewDidEnter {
 
       await this.service.getFirstAstronauts(
           this.store.search,
-          this.store.status
         )
 
     ).astronauts;
@@ -50,7 +49,6 @@ export class AstronautOverviewPage implements OnInit, ViewDidEnter {
     const answer = await this.service.getNextAstronauts(
       this.store.astronauts.length,
       this.store.search,
-      this.store.status
     );
     this.store.astronauts.push(...answer.astronauts);
     event.target.complete();

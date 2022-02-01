@@ -36,7 +36,7 @@ describe("LaunchscheduleNotificationService", () => {
   it("should not markInterest without Token", () => {
     service.setToken(undefined);
     service.markInterest("type", "id");
-    const res = httpTestingController.expectNone(
+    httpTestingController.expectNone(
       "https://launchschedule-notifications.th105.de/notification?token=test&id=id&type=type"
     );
   });
@@ -50,7 +50,7 @@ describe("LaunchscheduleNotificationService", () => {
   it("should not removeInterest without Token", () => {
     service.setToken(undefined);
     service.removeInterest("type", "id");
-    const res = httpTestingController.expectNone(
+    httpTestingController.expectNone(
       "https://launchschedule-notifications.th105.de/notification?token=test&id=id&type=type"
     );
   });

@@ -4,7 +4,6 @@ import { IonicModule } from "@ionic/angular";
 import { AgencyDetailCardComponent } from "./agency-detail-card.component";
 import { RouterTestingModule } from "@angular/router/testing";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
-import { NotificationModule } from "src/app/notification/notification.module";
 
 describe("AgencyDetailCardComponent", () => {
   let component: AgencyDetailCardComponent;

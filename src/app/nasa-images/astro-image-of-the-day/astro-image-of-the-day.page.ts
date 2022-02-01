@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { PlaceholderService } from "src/app/placeholder.service";
 import { ApodService, AstronomyPictureOfTheDay } from "./apod.service";
 
 @Component({

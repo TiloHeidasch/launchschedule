@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { PlaceholderService } from "src/app/placeholder.service";
 
 @Component({
@@ -6,11 +6,9 @@ import { PlaceholderService } from "src/app/placeholder.service";
   templateUrl: "./about-card.component.html",
   styleUrls: ["./about-card.component.scss"],
 })
-export class AboutCardComponent implements OnInit {
+export class AboutCardComponent {
   @Input() aboutCardDetail: AboutCardDetail;
   constructor(public placeholderService: PlaceholderService) {}
-
-  ngOnInit() {}
 }
 export interface AboutCardDetail {
   links?: AboutCardLink[];

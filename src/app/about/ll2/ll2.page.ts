@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { AboutCardDetail } from "../about-card/about-card.component";
 
 @Component({
@@ -6,7 +6,7 @@ import { AboutCardDetail } from "../about-card/about-card.component";
   templateUrl: "./ll2.page.html",
   styleUrls: ["./ll2.page.scss"],
 })
-export class Ll2Page implements OnInit {
+export class Ll2Page {
   aboutCardDetails: AboutCardDetail[] = [
     {
       subtitle: "Rocket launches, space events and crewed spaceflight",
@@ -67,6 +67,4 @@ export class Ll2Page implements OnInit {
     },
   ];
   constructor() {}
-
-  ngOnInit() {}
 }

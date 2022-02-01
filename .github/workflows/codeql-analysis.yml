@@ -27,15 +27,15 @@ jobs:
     - name: Setup Node
       if: ${{ matrix.language == 'java' }}
       uses: actions/setup-node@v2.1.2
+    - name: NPM Install
+      if: ${{ matrix.language == 'java' }}
+      run: npm ci
     - name: Setup Angular
       if: ${{ matrix.language == 'java' }}
       run: npm install @angular/cli
     - name: Setup Ionic
       if: ${{ matrix.language == 'java' }}
       run: npm install @ionic/cli
-    - name: NPM Install
-      if: ${{ matrix.language == 'java' }}
-      run: npm install
     - name: Set Release Name Variable
       run: echo "RELEASE_NAME=CODEQL" >> $GITHUB_ENV
     - name: Set Release Track Variable
@@ -66,8 +66,6 @@ jobs:
       run: echo '[]' > src/app/data/spacecrafts.json
     - name: Fake Spacestations
       run: echo '[]' > src/app/data/spacestations.json
-    - name: Remove PWA related files
-      run: rm angular.pwa.json ngsw-config.json src/manifest.webmanifest src/index.pwa.html src/app/app.module.pwa.ts src/app/app.component.pwa.ts
     - name: Build with Ionic
       if: ${{ matrix.language == 'java' }}
       run: npm run build:prod

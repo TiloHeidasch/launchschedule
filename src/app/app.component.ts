@@ -11,6 +11,7 @@ import { environment } from "../environments/environment";
 import { LaunchscheduleNotificationService } from "./launchschedule-notification.service";
 import { NewsParamStoreService } from "./news/news-param-store.service";
 import { PreferenceService } from "./preferences.service";
+import { SwUpdate } from "@angular/service-worker";
 import {
   PushNotifications,
   PushNotificationSchema,
@@ -120,9 +121,13 @@ export class AppComponent implements OnInit {
     private messageService: MessageService,
     private launchscheduleNotificationService: LaunchscheduleNotificationService,
     public newsParamStore: NewsParamStoreService,
-    public preferences: PreferenceService
+    public preferences: PreferenceService,
+    updates: SwUpdate
   ) {
     this.initializeApp();
+    updates.available.subscribe(() => {
+      updates.activateUpdate().then(() => document.location.reload());
+    });
   }
 
   initializeApp() {
@@ -150,14 +155,16 @@ export class AppComponent implements OnInit {
     // Request permission to use push notifications
     // iOS will prompt user and return if they granted permission or not
     // Android will just grant without prompting
-    PushNotifications.requestPermissions().then((value: PermissionStatus) => {
-      if (value && value.receive === "granted") {
-        // Register with Apple / Google to receive push via APNS/FCM
-        PushNotifications.register();
-      } else {
-        // Show some error
+    PushNotifications.requestPermissions().then(
+      async (value: PermissionStatus) => {
+        if (value && value.receive === "granted") {
+          // Register with Apple / Google to receive push via APNS/FCM
+          await PushNotifications.register();
+        } else {
+          // Show some error
+        }
       }
-    });
+    );
     // On success, we should be able to receive notifications
     PushNotifications.addListener("registration", (token: Token) => {
       this.launchscheduleNotificationService.setToken(token.value);
