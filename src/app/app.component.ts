@@ -150,7 +150,7 @@ export class AppComponent implements OnInit {
     // Register with Apple / Google to receive push via APNS/FCM
     PushNotifications.register()
       .then(() => {
-        this.notificationService.setRegistered(true);
+        this.notificationService.setRegistered();
         // Show us the notification payload if the app is open on our device
         PushNotifications.addListener(
           "pushNotificationReceived",

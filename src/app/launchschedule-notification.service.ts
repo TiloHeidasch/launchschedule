@@ -18,10 +18,10 @@ export class LaunchscheduleNotificationService {
     if (this.registered) {
       const key = notificationKey + type + "." + id;
       const topic = type + id;
-      await this.storage.setItem(key, notificationEnabled);
       FCM.subscribeTo({ topic }).catch((err) => {
         console.log(err);
       });
+      await this.storage.setItem(key, notificationEnabled);
     }
   }
 
@@ -29,10 +29,10 @@ export class LaunchscheduleNotificationService {
     if (this.registered) {
       const key = notificationKey + type + "." + id;
       const topic = type + id;
-      await this.storage.setItem(key, notificationDisabled);
       FCM.unsubscribeFrom({ topic }).catch((err) => {
         console.log(err);
       });
+      await this.storage.setItem(key, notificationDisabled);
     }
   }
 
@@ -40,7 +40,10 @@ export class LaunchscheduleNotificationService {
     const key = notificationKey + type + "." + id;
     return (await this.storage.getItem(key)) === notificationEnabled;
   }
-  public setRegistered(registered: boolean) {
-    this.registered = registered;
+  public setRegistered() {
+    this.registered = true;
+  }
+  public setUnregistered() {
+    this.registered = false;
   }
 }
