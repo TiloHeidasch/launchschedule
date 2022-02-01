@@ -109,18 +109,24 @@ jobs:
         with:
           distribution: 'adopt' # See 'Supported distributions' for available options
           java-version: '11'
-      - name: Build with Gradle
+      - name: Build App Bundle with Gradle
         run: cd android && chmod +x gradlew && ./gradlew bundleRelease
       - name: Safe Unsigned Release Bundle Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
           name: app-bundle-unsigned
           path: android/app/build/outputs/bundle/release/app-release.aab
-  sign:
-    name: Sign Android Artifact
+      - name: Build APK with Gradle
+        run: cd android && chmod +x gradlew && ./gradlew assembleRelease
+      - name: Safe Unsigned Release APK Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: app-release-unsigned
+          path: android/app/build/outputs/apk/release/app-release-unsigned.apk
+  signBundle:
+    name: Sign Android Bundle
     runs-on: ubuntu-latest
     needs: [build, test, e2e]
-    if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
     steps:
       - name: Download Unsigned Release Bundle Artifact
         uses: actions/download-artifact@v2.0.9
@@ -140,10 +146,33 @@ jobs:
         with:
           name: app-bundle-signed
           path: ./app-release.aab
+  signApk:
+    name: Sign Android APK
+    runs-on: ubuntu-latest
+    needs: [build, test, e2e]
+    steps:
+      - name: Download Unsigned Release Bundle Artifact
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: app-release-unsigned
+          path: ./
+      - name: Sign Bundle
+        uses: r0adkll/sign-android-release@v1
+        with:
+          releaseDirectory: ./
+          signingKeyBase64: ${{ secrets.ANDROID_SIGNING_KEY }}
+          alias: ${{ secrets.ANDROID_KEY_ALIAS }}
+          keyStorePassword: ${{ secrets.ANDROID_KEY_STORE_PASSWORD }}
+          keyPassword: ${{ secrets.ANDROID_KEY_PASSWORD }}
+      - name: Safe Signed Release Bundle Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: app-release-signed
+          path: ./app-release-unsigned-signed.apk
   release:
     name: Upload to Google Play
     runs-on: ubuntu-latest
-    needs: [sign]
+    needs: [signBundle,signApk]
     if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
     steps:
       - name: Download Signed Release Bundle Artifact

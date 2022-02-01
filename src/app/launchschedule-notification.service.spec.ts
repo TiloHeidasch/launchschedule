@@ -5,30 +5,56 @@ import { LaunchscheduleNotificationService } from "./launchschedule-notification
 
 describe("LaunchscheduleNotificationService", () => {
   let service: LaunchscheduleNotificationService;
-  beforeEach(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [IonicModule.forRoot()],
       providers: [LaunchscheduleNotificationService],
     }).compileComponents();
     service = TestBed.inject(LaunchscheduleNotificationService);
+    service.setRegistered();
+    await service.removeInterest("type", "id");
   });
   it("should be created", () => {
     expect(service).toBeTruthy();
   });
-  it("should markInterest", async () => {
-    await service.markInterest("type", "id");
+  describe("registered", () => {
+    it("should markInterest", async () => {
+      service.setRegistered();
+      await service.markInterest("type", "id");
 
-    const res = await service.isInterested("type", "id");
-    expect(res).toBe(true);
+      const res = await service.isInterested("type", "id");
+      expect(res).toBe(true);
+    });
+    it("should removeInterest", async () => {
+      service.setRegistered();
+      await service.markInterest("type", "id");
+
+      const res1 = await service.isInterested("type", "id");
+      expect(res1).toBe(true);
+      await service.removeInterest("type", "id");
+
+      const res2 = await service.isInterested("type", "id");
+      expect(res2).toBe(false);
+    });
   });
-  it("should removeInterest", async () => {
-    await service.markInterest("type", "id");
+  describe("un-registered", () => {
+    it("should not markInterest", async () => {
+      service.setUnregistered();
+      await service.markInterest("type", "id");
+      const res = await service.isInterested("type", "id");
+      expect(res).toBe(false);
+    });
+    it("should not removeInterest", async () => {
+      service.setRegistered();
+      await service.markInterest("type", "id");
 
-    const res1 = await service.isInterested("type", "id");
-    expect(res1).toBe(true);
-    await service.removeInterest("type", "id");
+      const res1 = await service.isInterested("type", "id");
+      expect(res1).toBe(true);
 
-    const res2 = await service.isInterested("type", "id");
-    expect(res2).toBe(false);
+      service.setUnregistered();
+      await service.removeInterest("type", "id");
+      const res2 = await service.isInterested("type", "id");
+      expect(res2).toBe(true);
+    });
   });
 });
