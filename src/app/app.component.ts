@@ -15,6 +15,7 @@ import {
   PushNotificationSchema,
   ActionPerformed,
 } from "@capacitor/push-notifications";
+import { LaunchscheduleNotificationService } from "./launchschedule-notification.service";
 
 @Component({
   selector: "app-root",
@@ -117,7 +118,8 @@ export class AppComponent implements OnInit {
     private messageService: MessageService,
     public newsParamStore: NewsParamStoreService,
     public preferences: PreferenceService,
-    updates: SwUpdate
+    updates: SwUpdate,
+    private notificationService: LaunchscheduleNotificationService
   ) {
     this.initializeApp();
     updates.available.subscribe(() => {
@@ -148,6 +150,7 @@ export class AppComponent implements OnInit {
     // Register with Apple / Google to receive push via APNS/FCM
     PushNotifications.register()
       .then(() => {
+        this.notificationService.setRegistered(true);
         // Show us the notification payload if the app is open on our device
         PushNotifications.addListener(
           "pushNotificationReceived",
