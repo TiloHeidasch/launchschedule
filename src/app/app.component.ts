@@ -146,32 +146,9 @@ export class AppComponent implements OnInit {
   }
 
   private initNotifications() {
-    setTimeout(
-      () =>
-        this.messageService.add({
-          severity: "info",
-          sticky: true,
-          summary: "initNotifications",
-        }),
-      5000
-    );
-    // Request permission to use push notifications
-    // iOS will prompt user and return if they granted permission or not
-    // Android will just grant without prompting
-
     // Register with Apple / Google to receive push via APNS/FCM
     PushNotifications.register()
       .then(() => {
-        setTimeout(
-          () =>
-            this.messageService.add({
-              severity: "info",
-              sticky: true,
-              summary: "PushNotification Registered",
-            }),
-          5000
-        );
-
         // Show us the notification payload if the app is open on our device
         PushNotifications.addListener(
           "pushNotificationReceived",
@@ -184,29 +161,9 @@ export class AppComponent implements OnInit {
               data: notification.data,
             });
           }
-        )
-          .then((res) => {
-            setTimeout(
-              () =>
-                this.messageService.add({
-                  severity: "info",
-                  sticky: true,
-                  summary: "pushNotificationReceived Listener Added " + res,
-                }),
-              5000
-            );
-          })
-          .catch((err) =>
-            setTimeout(
-              () =>
-                this.messageService.add({
-                  severity: "error",
-                  sticky: true,
-                  summary: err,
-                }),
-              5000
-            )
-          );
+        ).catch((err) => {
+          console.log(err);
+        });
         // Method called when tapping on a notification
         PushNotifications.addListener(
           "pushNotificationActionPerformed",
@@ -222,65 +179,22 @@ export class AppComponent implements OnInit {
                 break;
             }
           }
-        )
-          .then((res) =>
-            setTimeout(
-              () =>
-                this.messageService.add({
-                  severity: "info",
-                  sticky: true,
-                  summary:
-                    "pushNotificationActionPerformed Listener Added " + res,
-                }),
-              5000
-            )
-          )
-          .catch((err) =>
-            setTimeout(
-              () =>
-                this.messageService.add({
-                  severity: "error",
-                  sticky: true,
-                  summary: err,
-                }),
-              5000
-            )
-          );
+        ).catch((err) => {
+          console.log(err);
+        });
 
         // now you can subscribe to a specific topic
         FCM.subscribeTo({ topic: "test" })
-          .then((r) =>
-            setTimeout(
-              () =>
-                this.messageService.add({
-                  severity: "info",
-                  sticky: true,
-                  summary: "subscribed to topic" + r,
-                }),
-              5000
-            )
-          )
-          .catch((err) =>
-            setTimeout(
-              () =>
-                this.messageService.add({
-                  severity: "error",
-                  sticky: true,
-                  summary: err,
-                }),
-              5000
-            )
-          );
-      })
-      .catch((err) =>
-        setTimeout(() =>
-          this.messageService.add({
-            severity: "error",
-            sticky: true,
-            summary: err,
+          .then((r) => {
+            // success
           })
-        )
-      );
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
   jumpToLaunch(id) {
     this.router.navigateByUrl("/launch/" + id);
