@@ -182,15 +182,6 @@ export class AppComponent implements OnInit {
         ).catch((err) => {
           console.log(err);
         });
-
-        // now you can subscribe to a specific topic
-        FCM.subscribeTo({ topic: "test" })
-          .then((r) => {
-            // success
-          })
-          .catch((err) => {
-            console.log(err);
-          });
       })
       .catch((err) => {
         console.log(err);
