@@ -799,7 +799,7 @@ jobs:
       - name: Merge Astronauts
         run: node scripts/masterdata/merge.ts astronauts 1000 500
       - name: Merge Launches
-        run: node scripts/mergeLaunches.ts 2000 500
+        run: node scripts/mergeLaunches.ts 6500 500
       - name: Merge Locations
         run: node scripts/masterdata/merge.ts locations 500 500
       - name: Merge Pads
@@ -807,7 +807,7 @@ jobs:
       - name: Merge Previous Events
         run: node scripts/masterdata/merge.ts previousevents 500 500
       - name: Merge Previous Launches
-        run: node scripts/masterdata/merge.ts previouslaunches 2000 500
+        run: node scripts/masterdata/merge.ts previouslaunches 6500 500
       - name: Merge Rockets
         run: node scripts/masterdata/merge.ts rockets 500 500
       - name: Merge Spacecrafts
