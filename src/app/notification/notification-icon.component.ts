@@ -31,6 +31,7 @@ export class NotificationIconComponent
     this.init();
   }
   init() {
+    this.notify = false;
     this.notificationService
       .isInterested(this.type, this.id)
       .then((isInterested) => {
