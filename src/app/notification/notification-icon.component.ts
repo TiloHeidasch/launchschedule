@@ -32,6 +32,7 @@ export class NotificationIconComponent
   }
   init() {
     this.notify = false;
+    this.notifyRelated = "";
     this.notificationService
       .isInterested(this.type, this.id)
       .then((isInterested) => {
