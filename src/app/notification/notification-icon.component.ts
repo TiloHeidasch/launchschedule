@@ -1,12 +1,17 @@
 import { Component, OnInit, Input, ChangeDetectorRef } from "@angular/core";
-import { LaunchscheduleNotificationService } from "../launchschedule-notification.service";
+import {
+  LaunchscheduleNotificationService,
+  NotificationServiceUpdate,
+} from "../launchschedule-notification.service";
 
 @Component({
   selector: "app-notification-icon",
   templateUrl: "./notification-icon.component.html",
   styleUrls: ["./notification-icon.component.scss"],
 })
-export class NotificationIconComponent implements OnInit {
+export class NotificationIconComponent
+  implements OnInit, NotificationServiceUpdate
+{
   @Input() type;
   @Input() id;
   @Input() relatedTypeIds?: { type; id }[] = [];
@@ -15,12 +20,19 @@ export class NotificationIconComponent implements OnInit {
   constructor(
     private notificationService: LaunchscheduleNotificationService,
     private cdr: ChangeDetectorRef
-  ) {}
+  ) {
+    notificationService.registerForUpdates(this);
+  }
+  onNotificationServiceUpdate() {
+    this.init();
+  }
 
   ngOnInit() {
     this.init();
   }
   init() {
+    this.notify = false;
+    this.notifyRelated = "";
     this.notificationService
       .isInterested(this.type, this.id)
       .then((isInterested) => {

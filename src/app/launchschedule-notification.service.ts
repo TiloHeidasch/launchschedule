@@ -12,6 +12,7 @@ const notificationDisabled = "disabled";
 })
 export class LaunchscheduleNotificationService {
   private registered = false;
+  private notificationServiceUpdates: NotificationServiceUpdate[] = [];
   constructor(private storage: StorageService) {}
 
   async markInterest(type, id): Promise<void> {
@@ -22,6 +23,7 @@ export class LaunchscheduleNotificationService {
         console.log(err);
       });
       await this.storage.setItem(key, notificationEnabled);
+      this.updateAll();
     }
   }
 
@@ -33,6 +35,7 @@ export class LaunchscheduleNotificationService {
         console.log(err);
       });
       await this.storage.setItem(key, notificationDisabled);
+      this.updateAll();
     }
   }
 
@@ -46,4 +49,17 @@ export class LaunchscheduleNotificationService {
   public setUnregistered() {
     this.registered = false;
   }
+  private updateAll() {
+    this.notificationServiceUpdates.forEach((notificationServiceUpdate) => {
+      notificationServiceUpdate.onNotificationServiceUpdate();
+    });
+  }
+  public registerForUpdates(
+    notificationServiceUpdate: NotificationServiceUpdate
+  ) {
+    this.notificationServiceUpdates.push(notificationServiceUpdate);
+  }
+}
+export interface NotificationServiceUpdate {
+  onNotificationServiceUpdate();
 }
