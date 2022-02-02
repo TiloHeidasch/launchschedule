@@ -112,6 +112,156 @@ jobs:
         with:
           name: launches4
           path: src/app/data/
+  fetchLaunches5:
+    name: Fetch Launches 2000-2500
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Launches
+        run: node scripts/fetchLaunches.ts 2000 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: launches5
+          path: src/app/data/
+  fetchLaunches6:
+    name: Fetch Launches 2500-3000
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Launches
+        run: node scripts/fetchLaunches.ts 2500 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: launches6
+          path: src/app/data/
+  fetchLaunches7:
+    name: Fetch Launches 3000-3500
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Launches
+        run: node scripts/fetchLaunches.ts 3000 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: launches7
+          path: src/app/data/
+  fetchLaunches8:
+    name: Fetch Launches 3500-4000
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Launches
+        run: node scripts/fetchLaunches.ts 3500 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: launches8
+          path: src/app/data/
+  fetchLaunches9:
+    name: Fetch Launches 4000-4500
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Launches
+        run: node scripts/fetchLaunches.ts 4000 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: launches9
+          path: src/app/data/
+  fetchLaunches10:
+    name: Fetch Launches 4500-5000
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Launches
+        run: node scripts/fetchLaunches.ts 4500 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: launches10
+          path: src/app/data/
+  fetchLaunches11:
+    name: Fetch Launches 5000-5500
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Launches
+        run: node scripts/fetchLaunches.ts 5000 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: launches11
+          path: src/app/data/
+  fetchLaunches12:
+    name: Fetch Launches 5500-6000
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Launches
+        run: node scripts/fetchLaunches.ts 5500 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: launches12
+          path: src/app/data/
+  fetchLaunches13:
+    name: Fetch Launches 6000-6500
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Launches
+        run: node scripts/fetchLaunches.ts 6000 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: launches13
+          path: src/app/data/
+  fetchLaunches14:
+    name: Fetch Launches 6500-7000
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Launches
+        run: node scripts/fetchLaunches.ts 6500 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: launches14
+          path: src/app/data/
   fetchLocations1:
     name: Fetch Locations 0-500
     runs-on: ubuntu-latest
@@ -217,6 +367,156 @@ jobs:
         with:
           name: previouslaunches4
           path: src/app/data/
+  fetchPreviousLaunches5:
+    name: Fetch Previous Launches 2000-2500
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Previous Launches
+        run: node scripts/fetchPreviousLaunches.ts 2000 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: previouslaunches5
+          path: src/app/data/
+  fetchPreviousLaunches6:
+    name: Fetch Previous Launches 2500-3000
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Previous Launches
+        run: node scripts/fetchPreviousLaunches.ts 2500 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: previouslaunches6
+          path: src/app/data/
+  fetchPreviousLaunches7:
+    name: Fetch Previous Launches 3000-3500
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Previous Launches
+        run: node scripts/fetchPreviousLaunches.ts 3000 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: previouslaunches7
+          path: src/app/data/
+  fetchPreviousLaunches8:
+    name: Fetch Previous Launches 3500-4000
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Previous Launches
+        run: node scripts/fetchPreviousLaunches.ts 3500 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: previouslaunches8
+          path: src/app/data/
+  fetchPreviousLaunches9:
+    name: Fetch Previous Launches 4000-4500
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Previous Launches
+        run: node scripts/fetchPreviousLaunches.ts 4000 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: previouslaunches9
+          path: src/app/data/
+  fetchPreviousLaunches10:
+    name: Fetch Previous Launches 4500-5000
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Previous Launches
+        run: node scripts/fetchPreviousLaunches.ts 4500 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: previouslaunches10
+          path: src/app/data/
+  fetchPreviousLaunches11:
+    name: Fetch Previous Launches 5000-5500
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Previous Launches
+        run: node scripts/fetchPreviousLaunches.ts 5000 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: previouslaunches11
+          path: src/app/data/
+  fetchPreviousLaunches12:
+    name: Fetch Previous Launches 5500-6000
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Previous Launches
+        run: node scripts/fetchPreviousLaunches.ts 5500 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: previouslaunches12
+          path: src/app/data/
+  fetchPreviousLaunches13:
+    name: Fetch Previous Launches 6000-6500
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Previous Launches
+        run: node scripts/fetchPreviousLaunches.ts 6000 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: previouslaunches13
+          path: src/app/data/
+  fetchPreviousLaunches14:
+    name: Fetch Previous Launches 6500-7000
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Previous Launches
+        run: node scripts/fetchPreviousLaunches.ts 6500 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: previouslaunches14
+          path: src/app/data/
   fetchRockets1:
     name: Fetch Rockets 0-500
     runs-on: ubuntu-latest
@@ -273,13 +573,32 @@ jobs:
         fetchLaunches2,
         fetchLaunches3,
         fetchLaunches4,
-        fetchLocations1,
+        fetchLaunches5,
+        fetchLaunches6,
+        fetchLaunches7,
+        fetchLaunches8,
+        fetchLaunches9,
+        fetchLaunches10,
+        fetchLaunches11,
+        fetchLaunches12,
+        fetchLocations13,
+        fetchLocations14,
         fetchPads1,
         fetchPreviousEvents1,
         fetchPreviousLaunches1,
         fetchPreviousLaunches2,
         fetchPreviousLaunches3,
         fetchPreviousLaunches4,
+        fetchPreviousLaunches5,
+        fetchPreviousLaunches6,
+        fetchPreviousLaunches7,
+        fetchPreviousLaunches8,
+        fetchPreviousLaunches9,
+        fetchPreviousLaunches10,
+        fetchPreviousLaunches11,
+        fetchPreviousLaunches12,
+        fetchLocations13,
+        fetchLocations14,
         fetchRockets1,
         fetchSpacecrafts1,
         fetchSpacestations1,
@@ -324,6 +643,56 @@ jobs:
         with:
           name: launches4
           path: src/app/data/
+      - name: Download Launches 2000-2500
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: launches5
+          path: src/app/data/
+      - name: Download Launches 2500-3000
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: launches6
+          path: src/app/data/
+      - name: Download Launches 3000-3500
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: launches7
+          path: src/app/data/
+      - name: Download Launches 3500-4000
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: launches8
+          path: src/app/data/
+      - name: Download Launches 4000-4500
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: launches9
+          path: src/app/data/
+      - name: Download Launches 4500-5000
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: launches10
+          path: src/app/data/
+      - name: Download Launches 5000-5500
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: launches11
+          path: src/app/data/
+      - name: Download Launches 5500-6000
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: launches12
+          path: src/app/data/
+      - name: Download Launches 6000-6500
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: launches13
+          path: src/app/data/
+      - name: Download Launches 6500-7000
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: launches14
+          path: src/app/data/
       - name: Download Locations 0-500
         uses: actions/download-artifact@v2.0.9
         with:
@@ -358,6 +727,56 @@ jobs:
         uses: actions/download-artifact@v2.0.9
         with:
           name: previouslaunches4
+          path: src/app/data/
+      - name: Download Previous Launches 2000-2500
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: previouslaunches5
+          path: src/app/data/
+      - name: Download Previous Launches 2500-3000
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: previouslaunches6
+          path: src/app/data/
+      - name: Download Previous Launches 3000-3500
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: previouslaunches7
+          path: src/app/data/
+      - name: Download Previous Launches 3500-4000
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: previouslaunches8
+          path: src/app/data/
+      - name: Download Previous Launches 4000-4500
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: previouslaunches9
+          path: src/app/data/
+      - name: Download Previous Launches 4500-5000
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: previouslaunches10
+          path: src/app/data/
+      - name: Download Previous Launches 5000-5500
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: previouslaunches11
+          path: src/app/data/
+      - name: Download Previous Launches 5500-6000
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: previouslaunches12
+          path: src/app/data/
+      - name: Download Previous Launches 6000-6500
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: previouslaunches13
+          path: src/app/data/
+      - name: Download Previous Launches 6500-7000
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: previouslaunches14
           path: src/app/data/
       - name: Download Rockets 0-500
         uses: actions/download-artifact@v2.0.9
