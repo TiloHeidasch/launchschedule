@@ -4,11 +4,9 @@ import { Platform } from "@ionic/angular";
 import { SplashScreen } from "@ionic-native/splash-screen/ngx";
 import { StatusBar } from "@ionic-native/status-bar/ngx";
 
-import { Capacitor } from "@capacitor/core";
 import { Router } from "@angular/router";
 import { MessageService } from "primeng/api";
 import { environment } from "../environments/environment";
-import { LaunchscheduleNotificationService } from "./launchschedule-notification.service";
 import { NewsParamStoreService } from "./news/news-param-store.service";
 import { PreferenceService } from "./preferences.service";
 import { SwUpdate } from "@angular/service-worker";
@@ -16,9 +14,8 @@ import {
   PushNotifications,
   PushNotificationSchema,
   ActionPerformed,
-  Token,
-  PermissionStatus,
 } from "@capacitor/push-notifications";
+import { LaunchscheduleNotificationService } from "./launchschedule-notification.service";
 
 @Component({
   selector: "app-root",
@@ -119,10 +116,10 @@ export class AppComponent implements OnInit {
     private statusBar: StatusBar,
     private router: Router,
     private messageService: MessageService,
-    private launchscheduleNotificationService: LaunchscheduleNotificationService,
     public newsParamStore: NewsParamStoreService,
     public preferences: PreferenceService,
-    updates: SwUpdate
+    updates: SwUpdate,
+    private notificationService: LaunchscheduleNotificationService
   ) {
     this.initializeApp();
     updates.available.subscribe(() => {
@@ -144,62 +141,53 @@ export class AppComponent implements OnInit {
         (page) => page.url.toLowerCase() === "/" + path.toLowerCase()
       );
     }
-    if (Capacitor.isPluginAvailable("PushNotifications")) {
+    setTimeout(() => {
       this.initNotifications();
-    } else {
-      this.launchscheduleNotificationService.prepare();
-    }
+    }, 5000);
   }
 
-  initNotifications() {
-    // Request permission to use push notifications
-    // iOS will prompt user and return if they granted permission or not
-    // Android will just grant without prompting
-    PushNotifications.requestPermissions().then(
-      async (value: PermissionStatus) => {
-        if (value && value.receive === "granted") {
-          // Register with Apple / Google to receive push via APNS/FCM
-          await PushNotifications.register();
-        } else {
-          // Show some error
-        }
-      }
-    );
-    // On success, we should be able to receive notifications
-    PushNotifications.addListener("registration", (token: Token) => {
-      this.launchscheduleNotificationService.setToken(token.value);
-      this.launchscheduleNotificationService.prepare();
-    });
-    // Show us the notification payload if the app is open on our device
-    PushNotifications.addListener(
-      "pushNotificationReceived",
-      (notification: PushNotificationSchema) => {
-        this.messageService.add({
-          severity: "info",
-          summary: notification.title,
-          detail: notification.body,
-          sticky: true,
-          data: notification.data,
+  private initNotifications() {
+    // Register with Apple / Google to receive push via APNS/FCM
+    PushNotifications.register()
+      .then(() => {
+        this.notificationService.setRegistered();
+        // Show us the notification payload if the app is open on our device
+        PushNotifications.addListener(
+          "pushNotificationReceived",
+          (notification: PushNotificationSchema) => {
+            this.messageService.add({
+              severity: "info",
+              summary: notification.title,
+              detail: notification.body,
+              sticky: true,
+              data: notification.data,
+            });
+          }
+        ).catch((err) => {
+          console.log(err);
         });
-      }
-    );
-
-    // Method called when tapping on a notification
-    PushNotifications.addListener(
-      "pushNotificationActionPerformed",
-      (notification: ActionPerformed) => {
-        switch (notification.notification.data.type) {
-          case "launch":
-            this.jumpToLaunch(notification.notification.data.id);
-            break;
-          case "event":
-            this.jumpToEvent(notification.notification.data.id);
-            break;
-          default:
-            break;
-        }
-      }
-    );
+        // Method called when tapping on a notification
+        PushNotifications.addListener(
+          "pushNotificationActionPerformed",
+          (notification: ActionPerformed) => {
+            switch (notification.notification.data.type) {
+              case "launch":
+                this.jumpToLaunch(notification.notification.data.id);
+                break;
+              case "event":
+                this.jumpToEvent(notification.notification.data.id);
+                break;
+              default:
+                break;
+            }
+          }
+        ).catch((err) => {
+          console.log(err);
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
   jumpToLaunch(id) {
     this.router.navigateByUrl("/launch/" + id);

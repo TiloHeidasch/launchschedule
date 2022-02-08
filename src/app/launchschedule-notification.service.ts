@@ -1,122 +1,65 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { environment } from "src/environments/environment";
+import { StorageService } from "./storage.service";
+
+import { FCM } from "@capacitor-community/fcm";
+
+const notificationKey = "rcket.notification.";
+const notificationEnabled = "enabled";
+const notificationDisabled = "disabled";
 
 @Injectable({
   providedIn: "root",
 })
 export class LaunchscheduleNotificationService {
-  private token;
-  private interests: { type; id }[] = [];
-  private interestAmounts: { interest: { type; id }; amount }[] = [];
-  subscribers: LaunchscheduleNotificationUpdate[] = [];
-  constructor(private http: HttpClient) {}
-  subscribeForUpdates(subscriber: LaunchscheduleNotificationUpdate) {
-    this.subscribers.push(subscriber);
+  private registered = false;
+  private notificationServiceUpdates: NotificationServiceUpdate[] = [];
+  constructor(private storage: StorageService) {}
+
+  async markInterest(type, id): Promise<void> {
+    if (this.registered) {
+      const key = notificationKey + type + "." + id;
+      const topic = type + id;
+      FCM.subscribeTo({ topic }).catch((err) => {
+        console.log(err);
+      });
+      await this.storage.setItem(key, notificationEnabled);
+      this.updateAll();
+    }
   }
-  private async updateSubscribers() {
-    this.subscribers.map((subscriber) => {
-      this.updateSubscriber(subscriber);
+
+  async removeInterest(type, id): Promise<void> {
+    if (this.registered) {
+      const key = notificationKey + type + "." + id;
+      const topic = type + id;
+      FCM.unsubscribeFrom({ topic }).catch((err) => {
+        console.log(err);
+      });
+      await this.storage.setItem(key, notificationDisabled);
+      this.updateAll();
+    }
+  }
+
+  async isInterested(type, id): Promise<boolean> {
+    const key = notificationKey + type + "." + id;
+    return (await this.storage.getItem(key)) === notificationEnabled;
+  }
+  public setRegistered() {
+    this.registered = true;
+  }
+  public setUnregistered() {
+    this.registered = false;
+  }
+  private updateAll() {
+    this.notificationServiceUpdates.forEach((notificationServiceUpdate) => {
+      notificationServiceUpdate.onNotificationServiceUpdate();
     });
   }
-  private async updateSubscriber(subscriber: LaunchscheduleNotificationUpdate) {
-    subscriber.onUpdate();
-  }
-  setToken(token) {
-    this.token = token;
-  }
-  async prepare() {
-    try {
-      await this.getAllInterestAmounts();
-    } catch (error) {}
-    try {
-      await this.getAllInterests();
-    } catch (error) {}
-    this.updateSubscribers();
-  }
-  async markInterest(type, id): Promise<boolean> {
-    if (!this.token) {
-      return false;
-    }
-    if (
-      !this.interests.find(
-        (otherInterest) =>
-          otherInterest.id === id && otherInterest.type === type
-      )
-    ) {
-      await this.http
-        .post(
-          environment.notificationUrl +
-            "?token=" +
-            this.token +
-            "&id=" +
-            id +
-            "&type=" +
-            type,
-          {}
-        )
-        .toPromise();
-      this.interests.push({ id, type });
-      this.prepare();
-    }
-    return true;
-  }
-  async removeInterest(type, id): Promise<boolean> {
-    if (!this.token) {
-      return false;
-    }
-    const url =
-      environment.notificationUrl +
-      "?token=" +
-      this.token +
-      "&id=" +
-      id +
-      "&type=" +
-      type;
-    await this.http.delete(url).toPromise();
-    this.prepare();
-    return true;
-  }
-  async getAllInterestAmounts() {
-    this.interestAmounts = await this.http
-      .get<{ interest: { id; type }; amount }[]>(
-        environment.notificationUrl + "/amount"
-      )
-      .toPromise();
-  }
-  getAmountForInterest(type, id) {
-    id = id + "";
-    return this.interestAmounts.find(
-      (interestAmount) =>
-        interestAmount.interest.type === type &&
-        interestAmount.interest.id === id
-    )
-      ? this.interestAmounts.find(
-          (interestAmount) =>
-            interestAmount.interest.type === type &&
-            interestAmount.interest.id === id
-        ).amount
-      : 0;
-  }
-  isInterested(type, id): boolean {
-    id = id + "";
-    return this.interests.find(
-      (otherInterest) => otherInterest.type === type && otherInterest.id === id
-    )
-      ? true
-      : false;
-  }
-  private async getAllInterests() {
-    this.interests = (
-      await this.http
-        .get<any[]>(environment.notificationUrl + "?token=" + this.token)
-        .toPromise()
-    ).map((notification) => ({
-      id: notification.interest.id,
-      type: notification.interest.type,
-    }));
+  public registerForUpdates(
+    notificationServiceUpdate: NotificationServiceUpdate
+  ) {
+    this.notificationServiceUpdates.push(notificationServiceUpdate);
   }
 }
-export interface LaunchscheduleNotificationUpdate {
-  onUpdate();
+export interface NotificationServiceUpdate {
+  onNotificationServiceUpdate();
 }
