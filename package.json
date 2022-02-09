@@ -34,7 +34,7 @@
     "@angular/service-worker": "~13.2.2",
     "@angular/youtube-player": "~13.2.1",
     "@capacitor-community/fcm": "^2.0.2",
-    "@capacitor/android": "^3.4.0",
+    "@capacitor/android": "^3.4.1",
     "@capacitor/app": "^1.1.0",
     "@capacitor/browser": "^1.0.7",
     "@capacitor/core": "3.4.0",
