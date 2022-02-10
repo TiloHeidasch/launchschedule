@@ -15,6 +15,18 @@
       <ion-title size="large">NASA Images</ion-title>
     </ion-toolbar>
   </ion-header>
+  <div *ngIf="epicPictures.length===0">
+    <app-list-entry-dummy></app-list-entry-dummy>
+    <app-list-entry-dummy></app-list-entry-dummy>
+    <app-list-entry-dummy></app-list-entry-dummy>
+    <app-list-entry-dummy></app-list-entry-dummy>
+    <app-list-entry-dummy></app-list-entry-dummy>
+    <app-list-entry-dummy></app-list-entry-dummy>
+    <app-list-entry-dummy></app-list-entry-dummy>
+    <app-list-entry-dummy></app-list-entry-dummy>
+    <app-list-entry-dummy></app-list-entry-dummy>
+    <app-list-entry-dummy></app-list-entry-dummy>
+  </div>
   <div *ngIf="epicPictures.length>0">
     <div *ngFor="let epicPicture of epicPictures">
       <app-blue-marble-list-entry

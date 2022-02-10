@@ -9,6 +9,7 @@ import { AstroImageOfTheDayRoutingModule } from "./astro-image-of-the-day-routin
 import { NgxIonicImageViewerModule } from "ngx-ionic-image-viewer";
 import { AstroImageOfTheDayPage } from "./astro-image-of-the-day.page";
 import { AstroImageOfTheDayListEntryModule } from "./astro-image-of-the-day-list-entry/astro-image-of-the-day-list-entry.module";
+import { ListEntryDummyModule } from "src/app/list-entry-dummy/list-entry-dummy.module";
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { AstroImageOfTheDayListEntryModule } from "./astro-image-of-the-day-list
     AstroImageOfTheDayRoutingModule,
     NgxIonicImageViewerModule,
     AstroImageOfTheDayListEntryModule,
+    ListEntryDummyModule,
   ],
   declarations: [AstroImageOfTheDayPage],
 })
