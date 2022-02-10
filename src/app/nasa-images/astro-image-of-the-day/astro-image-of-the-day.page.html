@@ -15,6 +15,9 @@
       <ion-title size="large">NASA Images</ion-title>
     </ion-toolbar>
   </ion-header>
+  <div *ngIf="!astroImageOfTheDay">
+    <app-list-entry-dummy></app-list-entry-dummy>
+  </div>
   <div *ngIf="astroImageOfTheDay">
     <app-astro-image-of-the-day-list-entry
       [astroImageOfTheDay]="astroImageOfTheDay"

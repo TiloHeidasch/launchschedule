@@ -21,6 +21,18 @@
   </ion-header>
   <div id="container">
     <ion-list>
+  <div *ngIf="store.perseveranceImages.length===0">
+    <app-list-entry-dummy></app-list-entry-dummy>
+    <app-list-entry-dummy></app-list-entry-dummy>
+    <app-list-entry-dummy></app-list-entry-dummy>
+    <app-list-entry-dummy></app-list-entry-dummy>
+    <app-list-entry-dummy></app-list-entry-dummy>
+    <app-list-entry-dummy></app-list-entry-dummy>
+    <app-list-entry-dummy></app-list-entry-dummy>
+    <app-list-entry-dummy></app-list-entry-dummy>
+    <app-list-entry-dummy></app-list-entry-dummy>
+    <app-list-entry-dummy></app-list-entry-dummy>
+  </div>
     <div *ngFor="let marsPhoto of store.perseveranceImages">
       <app-rover-list-entry
         [marsPhoto]="marsPhoto"

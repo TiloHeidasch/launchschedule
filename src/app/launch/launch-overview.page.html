@@ -96,6 +96,18 @@
 
   <div id="container">
     <ion-list>
+      <div *ngIf="store.launches.length===0">
+        <app-list-entry-dummy [countdown]="true" [notification]="true"></app-list-entry-dummy>
+        <app-list-entry-dummy [countdown]="true" [notification]="true"></app-list-entry-dummy>
+        <app-list-entry-dummy [countdown]="true" [notification]="true"></app-list-entry-dummy>
+        <app-list-entry-dummy [countdown]="true" [notification]="true"></app-list-entry-dummy>
+        <app-list-entry-dummy [countdown]="true" [notification]="true"></app-list-entry-dummy>
+        <app-list-entry-dummy [countdown]="true" [notification]="true"></app-list-entry-dummy>
+        <app-list-entry-dummy [countdown]="true" [notification]="true"></app-list-entry-dummy>
+        <app-list-entry-dummy [countdown]="true" [notification]="true"></app-list-entry-dummy>
+        <app-list-entry-dummy [countdown]="true" [notification]="true"></app-list-entry-dummy>
+        <app-list-entry-dummy [countdown]="true" [notification]="true"></app-list-entry-dummy>
+      </div>
       <div *ngFor="let launch of store.launches">
         <app-launch-list-entry [launch]="launch"></app-launch-list-entry>
       </div>

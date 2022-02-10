@@ -8,6 +8,7 @@ import { PerseverancePageRoutingModule } from "./perseverance-routing.module";
 
 import { PerseverancePage } from "./perseverance.page";
 import { RoverListEntryModule } from "../rover-list-entry/rover-list-entry.module";
+import { ListEntryDummyModule } from "src/app/list-entry-dummy/list-entry-dummy.module";
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { RoverListEntryModule } from "../rover-list-entry/rover-list-entry.modul
     IonicModule,
     PerseverancePageRoutingModule,
     RoverListEntryModule,
+    ListEntryDummyModule,
   ],
   declarations: [PerseverancePage],
 })

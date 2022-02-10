@@ -74,6 +74,12 @@ app-notification-icon {
   right: 1rem;
   margin-top: 0.5rem;
 }
+app-notification-icon-dummy {
+  position: absolute;
+  z-index: 1;
+  right: 1rem;
+  margin-top: 0.5rem;
+}
 ion-toolbar{
   ion-title{
     font-size: 1.75rem;
