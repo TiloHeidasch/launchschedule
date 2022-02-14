@@ -1,4 +1,4 @@
-name: Fetch Masterdata
+name: Fetch Launches
 
 on:
   schedule:

@@ -1,4 +1,4 @@
-name: Fetch Masterdata
+name: Merge Masterdata
 
 on:
   schedule:
