@@ -8,6 +8,7 @@ import { ReportPageRoutingModule } from "./report-routing.module";
 
 import { ReportPage } from "./report.page";
 import { NewsListEntryModule } from "../news-list-entry/news-list-entry.module";
+import { ListEntryDummyModule } from "src/app/list-entry-dummy/list-entry-dummy.module";
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { NewsListEntryModule } from "../news-list-entry/news-list-entry.module";
     IonicModule,
     ReportPageRoutingModule,
     NewsListEntryModule,
+    ListEntryDummyModule,
   ],
   declarations: [ReportPage],
 })

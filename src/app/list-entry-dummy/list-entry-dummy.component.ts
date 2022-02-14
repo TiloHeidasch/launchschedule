@@ -9,4 +9,5 @@ export class ListEntryDummyComponent {
   constructor() {}
   @Input() countdown: boolean = false;
   @Input() notification: boolean = false;
+  @Input() content: boolean = false;
 }
