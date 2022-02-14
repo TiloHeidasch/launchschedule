@@ -10,6 +10,18 @@
 
   <div id="container">
     <ion-list>
+      <div *ngIf="store.articles.length<=0">
+        <app-list-entry-dummy [content]="true"></app-list-entry-dummy>
+        <app-list-entry-dummy [content]="true"></app-list-entry-dummy>
+        <app-list-entry-dummy [content]="true"></app-list-entry-dummy>
+        <app-list-entry-dummy [content]="true"></app-list-entry-dummy>
+        <app-list-entry-dummy [content]="true"></app-list-entry-dummy>
+        <app-list-entry-dummy [content]="true"></app-list-entry-dummy>
+        <app-list-entry-dummy [content]="true"></app-list-entry-dummy>
+        <app-list-entry-dummy [content]="true"></app-list-entry-dummy>
+        <app-list-entry-dummy [content]="true"></app-list-entry-dummy>
+        <app-list-entry-dummy [content]="true"></app-list-entry-dummy>
+      </div>
       <div *ngFor="let newsItem of store.articles">
         <app-news-list-entry
           [newsItem]="newsItem"
