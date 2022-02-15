@@ -1,0 +1,46 @@
+name: Fetch Rockets
+
+on:
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron: "0 8 * * *"
+  workflow_dispatch:
+
+jobs:
+  fetchRockets1:
+    name: Fetch Rockets 0-500
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Rockets
+        run: node scripts/masterdata/fetch.ts config/launcher rockets 0 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: rockets1
+          path: src/app/data/
+  commit:
+    name: Commit Master Data
+    runs-on: ubuntu-latest
+    needs: [fetchRockets1]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: masterdata
+      - name: Download Rockets 0-500
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: rockets1
+          path: ./
+      - name: Push to Masterdata branch
+        uses: crazy-max/ghaction-github-pages@v2.3.0
+        with:
+          build_dir: ./
+          target_branch: masterdata
+          commit_message: "Updates Masterdata"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
