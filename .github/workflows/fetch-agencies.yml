@@ -1,4 +1,4 @@
-name: Fetch Launches
+name: Fetch Agencies
 
 on:
   schedule:
