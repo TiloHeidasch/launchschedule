@@ -15,10 +15,16 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: masterdata
-      - name: Create dirs
+      - name: Create data dirs
         run: mkdir src && mkdir src/app && mkdir src/app/data
       - name: Moves Data
         run: mv *.json src/app/data
+      - name: Download merge script
+        run: curl https://raw.githubusercontent.com/TiloHeidasch/launchschedule/master/scripts/masterdata/merge.ts > merge.ts
+      - name: Create script dirs
+        run: mkdir scripts && mkdir scripts/masterdata
+      - name: Move script
+        run: mv merge.ts scripts/masterdata/
       - name: Merge Agencies
         run: node scripts/masterdata/merge.ts agencies 500 500
       - name: Merge Astronauts
