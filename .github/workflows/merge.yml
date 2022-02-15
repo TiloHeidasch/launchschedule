@@ -19,12 +19,14 @@ jobs:
         run: mkdir src && mkdir src/app && mkdir src/app/data
       - name: Moves Data
         run: mv *.json src/app/data
-      - name: Download merge script
+      - name: Download masterdata merge script
         run: curl https://raw.githubusercontent.com/TiloHeidasch/launchschedule/master/scripts/masterdata/merge.ts > merge.ts
+      - name: Download launch merge script
+        run: curl https://raw.githubusercontent.com/TiloHeidasch/launchschedule/master/scripts/mergeLaunches.ts > mergeLaunches.ts
       - name: Create script dirs
         run: mkdir scripts && mkdir scripts/masterdata
-      - name: Move script
-        run: mv merge.ts scripts/masterdata/
+      - name: Move scripts
+        run: mv merge.ts scripts/masterdata/ && mv mergeLaunches.ts scripts/
       - name: Merge Agencies
         run: node scripts/masterdata/merge.ts agencies 500 500
       - name: Merge Astronauts
