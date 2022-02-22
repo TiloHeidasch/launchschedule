@@ -19,7 +19,7 @@ export class PreviousLaunchService {
         .filter((previousLaunch) => {
           return previousLaunch.name.includes(search);
         })
-        .slice(offset, offset + 10),
+        .slice(offset, offset + 24),
       max: data.length,
     };
   }

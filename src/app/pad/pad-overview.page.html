@@ -35,11 +35,19 @@
   </ion-header>
 
   <div id="container">
-    <ion-list>
-      <div *ngFor="let pad of store.pads">
-        <app-pad-list-entry [pad]="pad"></app-pad-list-entry>
-      </div>
-    </ion-list>
+    <ion-grid>
+      <ion-row>
+        <ion-col
+          *ngFor="let pad of store.pads"
+          size="12"
+          size-sm="6"
+          size-md="4"
+          size-xl="3"
+        >
+          <app-pad-list-entry [pad]="pad"></app-pad-list-entry>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
     <ion-infinite-scroll (ionInfinite)="loadMore($event)">
       <ion-infinite-scroll-content
         loadingSpinner="circular"

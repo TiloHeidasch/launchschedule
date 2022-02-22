@@ -67,13 +67,21 @@
   </ion-header>
 
   <div id="container">
-    <ion-list>
-      <div *ngFor="let spacecraft of store.spacecrafts">
-        <app-spacecraft-list-entry
-          [spacecraft]="spacecraft"
-        ></app-spacecraft-list-entry>
-      </div>
-    </ion-list>
+    <ion-grid>
+      <ion-row>
+        <ion-col
+          *ngFor="let spacecraft of store.spacecrafts"
+          size="12"
+          size-sm="6"
+          size-md="4"
+          size-xl="3"
+        >
+          <app-spacecraft-list-entry
+            [spacecraft]="spacecraft"
+          ></app-spacecraft-list-entry>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
     <ion-infinite-scroll (ionInfinite)="loadMore($event)">
       <ion-infinite-scroll-content
         loadingSpinner="circular"

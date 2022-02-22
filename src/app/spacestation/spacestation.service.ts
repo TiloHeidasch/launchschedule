@@ -52,7 +52,7 @@ export class SpacestationService {
             (spacestation.type.id === type || type === undefined)
           );
         })
-        .slice(offset, offset + 10),
+        .slice(offset, offset + 24),
       max: data.length,
     };
   }

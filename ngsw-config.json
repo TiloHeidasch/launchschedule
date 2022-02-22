@@ -31,17 +31,17 @@
     {
       "name": "LaunchLibrary",
       "urls": [
-        "https://spacelaunchnow.me/api/ll/2.2.0/agencies",
-        "https://spacelaunchnow.me/api/ll/2.2.0/astronaut",
-        "https://spacelaunchnow.me/api/ll/2.2.0/dashboard/starship",
-        "https://spacelaunchnow.me/api/ll/2.2.0/event",
-        "https://spacelaunchnow.me/api/ll/2.2.0/launch/upcoming",
-        "https://spacelaunchnow.me/api/ll/2.2.0/launch/previous",
-        "https://spacelaunchnow.me/api/ll/2.2.0/location",
-        "https://spacelaunchnow.me/api/ll/2.2.0/pad",
-        "https://spacelaunchnow.me/api/ll/2.2.0/config/launcher",
-        "https://spacelaunchnow.me/api/ll/2.2.0/config/spacecraft",
-        "https://spacelaunchnow.me/api/ll/2.2.0/spacestation"
+        "https://ll.thespacedevs.com/2.2.0/agencies",
+        "https://ll.thespacedevs.com/2.2.0/astronaut",
+        "https://ll.thespacedevs.com/2.2.0/dashboard/starship",
+        "https://ll.thespacedevs.com/2.2.0/event",
+        "https://ll.thespacedevs.com/2.2.0/launch/upcoming",
+        "https://ll.thespacedevs.com/2.2.0/launch/previous",
+        "https://ll.thespacedevs.com/2.2.0/location",
+        "https://ll.thespacedevs.com/2.2.0/pad",
+        "https://ll.thespacedevs.com/2.2.0/config/launcher",
+        "https://ll.thespacedevs.com/2.2.0/config/spacecraft",
+        "https://ll.thespacedevs.com/2.2.0/spacestation"
       ],
       "cacheConfig": {
         "strategy": "freshness",

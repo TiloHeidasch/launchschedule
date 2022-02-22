@@ -9,30 +9,37 @@
   </ion-refresher>
 
   <div id="container">
-    <ion-list>
-      <div *ngIf="store.reports.length<=0">
-        <app-list-entry-dummy [content]="true"></app-list-entry-dummy>
-        <app-list-entry-dummy [content]="true"></app-list-entry-dummy>
-        <app-list-entry-dummy [content]="true"></app-list-entry-dummy>
-        <app-list-entry-dummy [content]="true"></app-list-entry-dummy>
-        <app-list-entry-dummy [content]="true"></app-list-entry-dummy>
-        <app-list-entry-dummy [content]="true"></app-list-entry-dummy>
-        <app-list-entry-dummy [content]="true"></app-list-entry-dummy>
-        <app-list-entry-dummy [content]="true"></app-list-entry-dummy>
-        <app-list-entry-dummy [content]="true"></app-list-entry-dummy>
-        <app-list-entry-dummy [content]="true"></app-list-entry-dummy>
-      </div>
-      <div *ngFor="let newsItem of store.reports">
-        <app-news-list-entry
-          [newsItem]="newsItem"
-          type="Report"
-        ></app-news-list-entry>
-      </div>
-    </ion-list>
+    <ion-grid>
+      <ion-row *ngIf="store.reports.length<=0">
+        <ion-col
+          *ngFor="let item of [].constructor(24)"
+          size="12"
+          size-sm="6"
+          size-md="4"
+          size-xl="3"
+        >
+          <app-list-entry-dummy [content]="true"></app-list-entry-dummy>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col
+          *ngFor="let newsItem of store.reports"
+          size="12"
+          size-sm="6"
+          size-md="4"
+          size-xl="3"
+        >
+          <app-news-list-entry
+            [newsItem]="newsItem"
+            type="Report"
+          ></app-news-list-entry>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
     <ion-infinite-scroll (ionInfinite)="loadMore($event)">
       <ion-infinite-scroll-content
         loadingSpinner="circular"
-        loadingText="Loading more newsItems..."
+        loadingText="Loading more reports.."
       >
       </ion-infinite-scroll-content>
     </ion-infinite-scroll></div
