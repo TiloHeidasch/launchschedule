@@ -48,7 +48,7 @@ describe("LaunchLibraryService", () => {
     it("calls getFirstEvents", () => {
       service.getFirstEvents();
       const res = httpTestingController.expectOne(
-        "https://spacelaunchnow.me/api/ll/2.2.0/event/?limit=25&offset=0&ordering=name"
+        "https://spacelaunchnow.me/api/ll/2.2.0/event/?limit=24&offset=0&ordering=name"
       );
       expect(res.request.method).toBe("GET");
     });
@@ -56,7 +56,7 @@ describe("LaunchLibraryService", () => {
     it("calls getFirstEvents with search", () => {
       service.getFirstEvents("search");
       const res = httpTestingController.expectOne(
-        "https://spacelaunchnow.me/api/ll/2.2.0/event/?limit=25&search=search&offset=0&ordering=name"
+        "https://spacelaunchnow.me/api/ll/2.2.0/event/?limit=24&search=search&offset=0&ordering=name"
       );
       expect(res.request.method).toBe("GET");
     });
@@ -64,7 +64,7 @@ describe("LaunchLibraryService", () => {
     it("calls getFirstEvents with search and type", () => {
       service.getFirstEvents("search", 1);
       const res = httpTestingController.expectOne(
-        "https://spacelaunchnow.me/api/ll/2.2.0/event/?limit=25&search=search&type=1&offset=0&ordering=name"
+        "https://spacelaunchnow.me/api/ll/2.2.0/event/?limit=24&search=search&type=1&offset=0&ordering=name"
       );
       expect(res.request.method).toBe("GET");
     });
@@ -72,7 +72,7 @@ describe("LaunchLibraryService", () => {
     it("calls getFirstEvents with search and type and upcoming", () => {
       service.getFirstEvents("search", 1, UpcomingPreviousAll.UPCOMING);
       const res = httpTestingController.expectOne(
-        "https://spacelaunchnow.me/api/ll/2.2.0/event/upcoming/?limit=25&search=search&type=1&offset=0&ordering=name"
+        "https://spacelaunchnow.me/api/ll/2.2.0/event/upcoming/?limit=24&search=search&type=1&offset=0&ordering=name"
       );
       expect(res.request.method).toBe("GET");
     });
@@ -80,7 +80,7 @@ describe("LaunchLibraryService", () => {
     it("calls getFirstEvents with search and type and previous", () => {
       service.getFirstEvents("search", 1, UpcomingPreviousAll.PREVIOUS);
       const res = httpTestingController.expectOne(
-        "https://spacelaunchnow.me/api/ll/2.2.0/event/previous/?limit=25&search=search&type=1&offset=0&ordering=name"
+        "https://spacelaunchnow.me/api/ll/2.2.0/event/previous/?limit=24&search=search&type=1&offset=0&ordering=name"
       );
       expect(res.request.method).toBe("GET");
     });
@@ -88,7 +88,7 @@ describe("LaunchLibraryService", () => {
     it("calls getFirstEvents with search and type and all", () => {
       service.getFirstEvents("search", 1, UpcomingPreviousAll.ALL);
       const res = httpTestingController.expectOne(
-        "https://spacelaunchnow.me/api/ll/2.2.0/event/?limit=25&search=search&type=1&offset=0&ordering=name"
+        "https://spacelaunchnow.me/api/ll/2.2.0/event/?limit=24&search=search&type=1&offset=0&ordering=name"
       );
       expect(res.request.method).toBe("GET");
     });
@@ -105,7 +105,7 @@ describe("LaunchLibraryService", () => {
     it("calls getFirstLaunches", () => {
       service.getFirstLaunches();
       const res = httpTestingController.expectOne(
-        "https://spacelaunchnow.me/api/ll/2.2.0/launch/?limit=25&offset=0"
+        "https://spacelaunchnow.me/api/ll/2.2.0/launch/?limit=24&offset=0"
       );
       expect(res.request.method).toBe("GET");
     });
@@ -113,7 +113,7 @@ describe("LaunchLibraryService", () => {
     it("calls getFirstLaunches with search", () => {
       service.getFirstLaunches("search");
       const res = httpTestingController.expectOne(
-        "https://spacelaunchnow.me/api/ll/2.2.0/launch/?limit=25&search=search&offset=0"
+        "https://spacelaunchnow.me/api/ll/2.2.0/launch/?limit=24&search=search&offset=0"
       );
       expect(res.request.method).toBe("GET");
     });
@@ -121,7 +121,7 @@ describe("LaunchLibraryService", () => {
     it("calls getFirstLaunches with search and startDate", () => {
       service.getFirstLaunches("search", new Date("2021-01-01"));
       const res = httpTestingController.expectOne(
-        "https://spacelaunchnow.me/api/ll/2.2.0/launch/?limit=25&search=search&net__gte=2021-01-01T00:00:00.000Z&offset=0"
+        "https://spacelaunchnow.me/api/ll/2.2.0/launch/?limit=24&search=search&net__gte=2021-01-01T00:00:00.000Z&offset=0"
       );
       expect(res.request.method).toBe("GET");
     });
@@ -132,7 +132,7 @@ describe("LaunchLibraryService", () => {
         new Date("2021-01-01")
       );
       const res = httpTestingController.expectOne(
-        "https://spacelaunchnow.me/api/ll/2.2.0/launch/?limit=25&search=search&net__gte=2021-01-01T00:00:00.000Z&net__lte=2021-01-01T00:00:00.000Z&offset=0"
+        "https://spacelaunchnow.me/api/ll/2.2.0/launch/?limit=24&search=search&net__gte=2021-01-01T00:00:00.000Z&net__lte=2021-01-01T00:00:00.000Z&offset=0"
       );
       expect(res.request.method).toBe("GET");
     });
@@ -144,7 +144,7 @@ describe("LaunchLibraryService", () => {
         UpcomingPreviousAll.UPCOMING
       );
       const res = httpTestingController.expectOne(
-        "https://spacelaunchnow.me/api/ll/2.2.0/launch/upcoming/?limit=25&search=search&offset=0"
+        "https://spacelaunchnow.me/api/ll/2.2.0/launch/upcoming/?limit=24&search=search&offset=0"
       );
       expect(res.request.method).toBe("GET");
     });
@@ -156,7 +156,7 @@ describe("LaunchLibraryService", () => {
         UpcomingPreviousAll.PREVIOUS
       );
       const res = httpTestingController.expectOne(
-        "https://spacelaunchnow.me/api/ll/2.2.0/launch/previous/?limit=25&search=search&offset=0"
+        "https://spacelaunchnow.me/api/ll/2.2.0/launch/previous/?limit=24&search=search&offset=0"
       );
       expect(res.request.method).toBe("GET");
     });
@@ -168,7 +168,7 @@ describe("LaunchLibraryService", () => {
         UpcomingPreviousAll.ALL
       );
       const res = httpTestingController.expectOne(
-        "https://spacelaunchnow.me/api/ll/2.2.0/launch/?limit=25&search=search&net__gte=2021-01-01T00:00:00.000Z&net__lte=2021-01-01T00:00:00.000Z&offset=0"
+        "https://spacelaunchnow.me/api/ll/2.2.0/launch/?limit=24&search=search&net__gte=2021-01-01T00:00:00.000Z&net__lte=2021-01-01T00:00:00.000Z&offset=0"
       );
       expect(res.request.method).toBe("GET");
     });
