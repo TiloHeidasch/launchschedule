@@ -59,7 +59,7 @@ export class LaunchLibraryService {
     upcomingPreviousAll?: UpcomingPreviousAll
   ) {
     const url = this.createEventUrl(
-      25,
+      24,
       offset,
       search,
       type,
@@ -140,7 +140,7 @@ export class LaunchLibraryService {
     upcomingPreviousAll?: UpcomingPreviousAll
   ) {
     const url = this.createLaunchUrl(
-      25,
+      24,
       offset,
       search,
       startDate,

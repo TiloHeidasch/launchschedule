@@ -54,13 +54,21 @@
   </ion-header>
 
   <div id="container">
-    <ion-list>
-      <div *ngFor="let location of store.locations">
-        <app-location-list-entry
-          [location]="location"
-        ></app-location-list-entry>
-      </div>
-    </ion-list>
+    <ion-grid>
+      <ion-row>
+        <ion-col
+          *ngFor="let location of store.locations"
+          size="12"
+          size-sm="6"
+          size-md="4"
+          size-xl="3"
+        >
+          <app-location-list-entry
+            [location]="location"
+          ></app-location-list-entry>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
     <ion-infinite-scroll (ionInfinite)="loadMore($event)">
       <ion-infinite-scroll-content
         loadingSpinner="circular"

@@ -31,7 +31,7 @@ export class LocationService {
             (location.country_code === countryCode || countryCode === "")
           );
         })
-        .slice(offset, offset + 10),
+        .slice(offset, offset + 24),
       max: data.length,
     };
   }
