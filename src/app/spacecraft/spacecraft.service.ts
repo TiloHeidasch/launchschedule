@@ -42,7 +42,7 @@ export class SpacecraftService {
               humanRated === HumanRated.ALL)
           );
         })
-        .slice(offset, offset + 10),
+        .slice(offset, offset + 24),
       max: data.length,
     };
   }

@@ -82,11 +82,19 @@
   </ion-header>
 
   <div id="container">
-    <ion-list>
-      <div *ngFor="let agency of store.agencies">
-        <app-agency-list-entry [agency]="agency"></app-agency-list-entry>
-      </div>
-    </ion-list>
+    <ion-grid>
+      <ion-row>
+        <ion-col
+          *ngFor="let agency of store.agencies"
+          size="12"
+          size-sm="6"
+          size-md="4"
+          size-xl="3"
+        >
+          <app-agency-list-entry [agency]="agency"></app-agency-list-entry>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
     <ion-infinite-scroll (ionInfinite)="loadMore($event)">
       <ion-infinite-scroll-content
         loadingSpinner="circular"

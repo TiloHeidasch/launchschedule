@@ -95,23 +95,33 @@
   </ion-header>
 
   <div id="container">
-    <ion-list>
-      <div *ngIf="store.launches.length===0">
-        <app-list-entry-dummy [countdown]="true" [notification]="true"></app-list-entry-dummy>
-        <app-list-entry-dummy [countdown]="true" [notification]="true"></app-list-entry-dummy>
-        <app-list-entry-dummy [countdown]="true" [notification]="true"></app-list-entry-dummy>
-        <app-list-entry-dummy [countdown]="true" [notification]="true"></app-list-entry-dummy>
-        <app-list-entry-dummy [countdown]="true" [notification]="true"></app-list-entry-dummy>
-        <app-list-entry-dummy [countdown]="true" [notification]="true"></app-list-entry-dummy>
-        <app-list-entry-dummy [countdown]="true" [notification]="true"></app-list-entry-dummy>
-        <app-list-entry-dummy [countdown]="true" [notification]="true"></app-list-entry-dummy>
-        <app-list-entry-dummy [countdown]="true" [notification]="true"></app-list-entry-dummy>
-        <app-list-entry-dummy [countdown]="true" [notification]="true"></app-list-entry-dummy>
-      </div>
-      <div *ngFor="let launch of store.launches">
-        <app-launch-list-entry [launch]="launch"></app-launch-list-entry>
-      </div>
-    </ion-list>
+    <ion-grid>
+      <ion-row *ngIf="store.launches.length===0">
+        <ion-col
+          *ngFor="let item of [].constructor(24)"
+          size="12"
+          size-sm="6"
+          size-md="4"
+          size-xl="3"
+        >
+          <app-list-entry-dummy
+            [countdown]="true"
+            [notification]="true"
+          ></app-list-entry-dummy>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col
+          *ngFor="let launch of store.launches"
+          size="12"
+          size-sm="6"
+          size-md="4"
+          size-xl="3"
+        >
+          <app-launch-list-entry [launch]="launch"></app-launch-list-entry>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
     <ion-infinite-scroll (ionInfinite)="loadMore($event)">
       <ion-infinite-scroll-content
         loadingSpinner="circular"

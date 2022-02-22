@@ -71,25 +71,25 @@ ion-card {
 app-notification-icon {
   position: absolute;
   z-index: 1;
-  right: 1rem;
-  margin-top: 0.5rem;
+  right: 0.125rem;
+  margin-top: 1rem;
 }
 app-notification-icon-dummy {
   position: absolute;
   z-index: 1;
-  right: 1rem;
-  margin-top: 0.5rem;
+  right: 0.125rem;
+  margin-top: 1rem;
 }
-ion-toolbar{
-  ion-title{
+ion-toolbar {
+  ion-title {
     font-size: 1.75rem;
   }
-  ion-segment-button{
+  ion-segment-button {
     --color: var(--ion-color-secondary-contrast) !important;
   }
- }
+}
 ion-img-viewer#foreground {
-  img{
+  img {
     height: 13rem;
   }
 }

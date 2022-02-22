@@ -37,7 +37,7 @@ export class AgencyService {
             entry.country_code.includes(countryCode)
           );
         })
-        .slice(offset, offset + 13),
+        .slice(offset, offset + 24),
       max: data.length,
     };
   }

@@ -19,7 +19,7 @@ export class PreviousEventService {
         .filter((previousEvent) => {
           return previousEvent.name.includes(search);
         })
-        .slice(offset, offset + 10),
+        .slice(offset, offset + 24),
       max: data.length,
     };
   }
