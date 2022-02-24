@@ -1,0 +1,66 @@
+name: Fetch Astronauts
+
+on:
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron: "0 2 * * *"
+  workflow_dispatch:
+
+jobs:
+  fetchAstronauts1:
+    name: Fetch Astronauts 0-500
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Astronauts
+        run: node scripts/masterdata/fetchAstronaut.ts 0 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: astronauts1
+          path: src/app/data/
+  fetchAstronauts2:
+    name: Fetch Astronauts 500-1000
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Astronauts
+        run: node scripts/masterdata/fetchAstronaut.ts 500 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: astronauts2
+          path: src/app/data/
+  commit:
+    name: Commit Master Data
+    runs-on: ubuntu-latest
+    needs: [fetchAstronauts1, fetchAstronauts2]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: masterdata
+      - name: Download Astronauts 0-500
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: astronauts1
+          path: ./
+      - name: Download Astronauts 500-1000
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: astronauts2
+          path: ./
+      - name: Push to Masterdata branch
+        uses: crazy-max/ghaction-github-pages@v2.3.0
+        with:
+          build_dir: ./
+          target_branch: masterdata
+          commit_message: "Updates Masterdata"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

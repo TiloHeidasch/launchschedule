@@ -1,0 +1,321 @@
+name: Fetch Previous Launches
+
+on:
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron: '0 7 * * *'
+  workflow_dispatch:
+
+jobs:
+  fetchPreviousLaunches1:
+    name: Fetch Previous Launches 0-500
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Previous Launches
+        run: node scripts/masterdata/fetchPreviousLaunches.ts 0 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: previouslaunches1
+          path: src/app/data/
+  fetchPreviousLaunches2:
+    name: Fetch Previous Launches 500-1000
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Previous Launches
+        run: node scripts/masterdata/fetchPreviousLaunches.ts 500 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: previouslaunches2
+          path: src/app/data/
+  fetchPreviousLaunches3:
+    name: Fetch Previous Launches 1000-1500
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Previous Launches
+        run: node scripts/masterdata/fetchPreviousLaunches.ts 1000 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: previouslaunches3
+          path: src/app/data/
+  fetchPreviousLaunches4:
+    name: Fetch Previous Launches 1500-2000
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Previous Launches
+        run: node scripts/masterdata/fetchPreviousLaunches.ts 1500 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: previouslaunches4
+          path: src/app/data/
+  fetchPreviousLaunches5:
+    name: Fetch Previous Launches 2000-2500
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Previous Launches
+        run: node scripts/masterdata/fetchPreviousLaunches.ts 2000 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: previouslaunches5
+          path: src/app/data/
+  fetchPreviousLaunches6:
+    name: Fetch Previous Launches 2500-3000
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Previous Launches
+        run: node scripts/masterdata/fetchPreviousLaunches.ts 2500 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: previouslaunches6
+          path: src/app/data/
+  fetchPreviousLaunches7:
+    name: Fetch Previous Launches 3000-3500
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Previous Launches
+        run: node scripts/masterdata/fetchPreviousLaunches.ts 3000 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: previouslaunches7
+          path: src/app/data/
+  fetchPreviousLaunches8:
+    name: Fetch Previous Launches 3500-4000
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Previous Launches
+        run: node scripts/masterdata/fetchPreviousLaunches.ts 3500 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: previouslaunches8
+          path: src/app/data/
+  fetchPreviousLaunches9:
+    name: Fetch Previous Launches 4000-4500
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Previous Launches
+        run: node scripts/masterdata/fetchPreviousLaunches.ts 4000 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: previouslaunches9
+          path: src/app/data/
+  fetchPreviousLaunches10:
+    name: Fetch Previous Launches 4500-5000
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Previous Launches
+        run: node scripts/masterdata/fetchPreviousLaunches.ts 4500 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: previouslaunches10
+          path: src/app/data/
+  fetchPreviousLaunches11:
+    name: Fetch Previous Launches 5000-5500
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Previous Launches
+        run: node scripts/masterdata/fetchPreviousLaunches.ts 5000 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: previouslaunches11
+          path: src/app/data/
+  fetchPreviousLaunches12:
+    name: Fetch Previous Launches 5500-6000
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Previous Launches
+        run: node scripts/masterdata/fetchPreviousLaunches.ts 5500 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: previouslaunches12
+          path: src/app/data/
+  fetchPreviousLaunches13:
+    name: Fetch Previous Launches 6000-6500
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Previous Launches
+        run: node scripts/masterdata/fetchPreviousLaunches.ts 6000 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: previouslaunches13
+          path: src/app/data/
+  fetchPreviousLaunches14:
+    name: Fetch Previous Launches 6500-7000
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Fetch Previous Launches
+        run: node scripts/masterdata/fetchPreviousLaunches.ts 6500 500
+      - name: Safe Data Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: previouslaunches14
+          path: src/app/data/
+  commit:
+    name: Commit Master Data
+    runs-on: ubuntu-latest
+    needs: [
+        fetchPreviousLaunches1,
+        fetchPreviousLaunches2,
+        fetchPreviousLaunches3,
+        fetchPreviousLaunches4,
+        fetchPreviousLaunches5,
+        fetchPreviousLaunches6,
+        fetchPreviousLaunches7,
+        fetchPreviousLaunches8,
+        fetchPreviousLaunches9,
+        fetchPreviousLaunches10,
+        fetchPreviousLaunches11,
+        fetchPreviousLaunches12,
+        fetchPreviousLaunches13,
+        fetchPreviousLaunches14,
+      ]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: masterdata
+      - name: Download Previous Launches 0-500
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: previouslaunches1
+          path: ./
+      - name: Download Previous Launches 500-1000
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: previouslaunches2
+          path: ./
+      - name: Download Previous Launches 1000-1500
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: previouslaunches3
+          path: ./
+      - name: Download Previous Launches 1500-2000
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: previouslaunches4
+          path: ./
+      - name: Download Previous Launches 2000-2500
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: previouslaunches5
+          path: ./
+      - name: Download Previous Launches 2500-3000
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: previouslaunches6
+          path: ./
+      - name: Download Previous Launches 3000-3500
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: previouslaunches7
+          path: ./
+      - name: Download Previous Launches 3500-4000
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: previouslaunches8
+          path: ./
+      - name: Download Previous Launches 4000-4500
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: previouslaunches9
+          path: ./
+      - name: Download Previous Launches 4500-5000
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: previouslaunches10
+          path: ./
+      - name: Download Previous Launches 5000-5500
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: previouslaunches11
+          path: ./
+      - name: Download Previous Launches 5500-6000
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: previouslaunches12
+          path: ./
+      - name: Download Previous Launches 6000-6500
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: previouslaunches13
+          path: ./
+      - name: Download Previous Launches 6500-7000
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: previouslaunches14
+          path: ./
+      - name: Push to Masterdata branch
+        uses: crazy-max/ghaction-github-pages@v2.3.0
+        with:
+          build_dir: ./
+          target_branch: masterdata
+          commit_message: 'Updates Masterdata'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
