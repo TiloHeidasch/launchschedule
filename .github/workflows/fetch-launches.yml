@@ -316,6 +316,6 @@ jobs:
         with:
           build_dir: ./
           target_branch: masterdata
-          commit_message: 'Updates Masterdata'
+          commit_message: 'Updates Launches'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
