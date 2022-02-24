@@ -67,6 +67,6 @@ jobs:
         with:
           build_dir: ./
           target_branch: masterdata
-          commit_message: 'Updates Masterdata'
+          commit_message: 'Merges Masterdata'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
