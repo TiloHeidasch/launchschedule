@@ -34,12 +34,12 @@
     "@angular/service-worker": "~13.2.5",
     "@angular/youtube-player": "~13.2.5",
     "@capacitor-community/fcm": "^2.0.2",
-    "@capacitor/android": "^3.4.2",
+    "@capacitor/android": "^3.4.3",
     "@capacitor/app": "^1.1.1",
     "@capacitor/browser": "^1.0.7",
-    "@capacitor/core": "3.4.2",
+    "@capacitor/core": "3.4.3",
     "@capacitor/haptics": "^1.1.4",
-    "@capacitor/ios": "^3.4.2",
+    "@capacitor/ios": "^3.4.3",
     "@capacitor/keyboard": "^1.2.2",
     "@capacitor/push-notifications": "^1.0.9",
     "@capacitor/status-bar": "^1.0.8",
@@ -62,7 +62,7 @@
     "ts-md5": "^1.2.11",
     "tslib": "^2.3.1",
     "uuidv4": "^6.2.12",
-    "zone.js": "~0.11.4"
+    "zone.js": "~0.11.5"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^13.2.5",
@@ -75,7 +75,7 @@
     "@angular/compiler": "~13.1.2",
     "@angular/compiler-cli": "~13.1.2",
     "@angular/language-service": "~13.2.5",
-    "@capacitor/cli": "3.4.2",
+    "@capacitor/cli": "3.4.3",
     "@ionic/angular-toolkit": "^6.0.0",
     "@types/jasmine": "~3.10.2",
     "@types/jasminewd2": "~2.0.10",
