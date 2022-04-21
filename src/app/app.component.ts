@@ -50,6 +50,11 @@ export class AppComponent implements OnInit {
       icon: "newspaper",
     },
     {
+      title: "3D Solar System",
+      url: "/solar-system",
+      icon: "logo-electron",
+    },
+    {
       title: "NASA Images",
       url: "/nasa",
       icon: "images",
