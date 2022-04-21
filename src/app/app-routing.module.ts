@@ -80,6 +80,13 @@ const routes: Routes = [
       import("./dashboard/dashboard.module").then((m) => m.DashboardModule),
   },
   {
+    path: "solar-system",
+    loadChildren: () =>
+      import("./solar-system/solar-system.module").then(
+        (m) => m.SolarSystemModule
+      ),
+  },
+  {
     path: "**",
     redirectTo: "launch",
   },
