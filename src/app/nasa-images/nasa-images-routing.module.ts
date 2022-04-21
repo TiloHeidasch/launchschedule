@@ -37,13 +37,6 @@ const routes: Routes = [
           ),
       },
       {
-        path: "solar-system",
-        loadChildren: () =>
-          import("./solar-system/solar-system.module").then(
-            (m) => m.SolarSystemModule
-          ),
-      },
-      {
         path: "",
         redirectTo: "/nasa/astro",
         pathMatch: "full",
