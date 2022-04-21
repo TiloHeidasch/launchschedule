@@ -101,7 +101,7 @@ describe("AppComponent", () => {
     expect(menuItems[7].getAttribute("ng-reflect-router-link")).toEqual(
       "/dashboard/starship"
     );
-    expect(menuItems[8].getAttribute("ng-reflect-router-link")).toEqual(
+    expect(menuItems[9].getAttribute("ng-reflect-router-link")).toEqual(
       "/agency"
     );
     expect(menuItems[10].getAttribute("ng-reflect-router-link")).toEqual(
