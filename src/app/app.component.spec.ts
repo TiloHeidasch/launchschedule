@@ -55,22 +55,23 @@ describe("AppComponent", () => {
     await fixture.detectChanges();
     const app = fixture.nativeElement;
     const menuItems = app.querySelectorAll("ion-label");
-    expect(menuItems.length).toEqual(15);
+    expect(menuItems.length).toEqual(16);
     expect(menuItems[0].textContent).toContain("Launch");
     expect(menuItems[1].textContent).toContain("Event");
     expect(menuItems[2].textContent).toContain("Statistic");
     expect(menuItems[3].textContent).toContain("News");
-    expect(menuItems[4].textContent).toContain("NASA Images");
-    expect(menuItems[5].textContent).toContain("SpaceX Starship");
-    expect(menuItems[6].textContent).toContain("Agency");
-    expect(menuItems[7].textContent).toContain("Astronaut");
-    expect(menuItems[8].textContent).toContain("Facility");
-    expect(menuItems[9].textContent).toContain("Pad");
-    expect(menuItems[10].textContent).toContain("Rocket");
-    expect(menuItems[11].textContent).toContain("Spacecraft");
-    expect(menuItems[12].textContent).toContain("Spacestation");
-    expect(menuItems[13].textContent).toContain("Dark Theme");
-    expect(menuItems[14].textContent).toContain("About");
+    expect(menuItems[4].textContent).toContain("3D Solar System");
+    expect(menuItems[5].textContent).toContain("NASA Images");
+    expect(menuItems[6].textContent).toContain("SpaceX Starship");
+    expect(menuItems[7].textContent).toContain("Agency");
+    expect(menuItems[8].textContent).toContain("Astronaut");
+    expect(menuItems[9].textContent).toContain("Facility");
+    expect(menuItems[10].textContent).toContain("Pad");
+    expect(menuItems[11].textContent).toContain("Rocket");
+    expect(menuItems[12].textContent).toContain("Spacecraft");
+    expect(menuItems[13].textContent).toContain("Spacestation");
+    expect(menuItems[14].textContent).toContain("Dark Theme");
+    expect(menuItems[15].textContent).toContain("About");
   });
 
   it("should have urls", async () => {
@@ -78,7 +79,7 @@ describe("AppComponent", () => {
     await fixture.detectChanges();
     const app = fixture.nativeElement;
     const menuItems = app.querySelectorAll("ion-item");
-    expect(menuItems.length).toEqual(18);
+    expect(menuItems.length).toEqual(19);
     expect(menuItems[1].getAttribute("ng-reflect-router-link")).toEqual(
       "/launch"
     );
@@ -92,33 +93,36 @@ describe("AppComponent", () => {
       "/news"
     );
     expect(menuItems[5].getAttribute("ng-reflect-router-link")).toEqual(
-      "/nasa"
+      "/solar-system"
     );
     expect(menuItems[6].getAttribute("ng-reflect-router-link")).toEqual(
+      "/nasa"
+    );
+    expect(menuItems[7].getAttribute("ng-reflect-router-link")).toEqual(
       "/dashboard/starship"
     );
     expect(menuItems[8].getAttribute("ng-reflect-router-link")).toEqual(
       "/agency"
     );
-    expect(menuItems[9].getAttribute("ng-reflect-router-link")).toEqual(
+    expect(menuItems[10].getAttribute("ng-reflect-router-link")).toEqual(
       "/astronaut"
     );
-    expect(menuItems[10].getAttribute("ng-reflect-router-link")).toEqual(
+    expect(menuItems[11].getAttribute("ng-reflect-router-link")).toEqual(
       "/location"
     );
-    expect(menuItems[11].getAttribute("ng-reflect-router-link")).toEqual(
+    expect(menuItems[12].getAttribute("ng-reflect-router-link")).toEqual(
       "/pad"
     );
-    expect(menuItems[12].getAttribute("ng-reflect-router-link")).toEqual(
+    expect(menuItems[13].getAttribute("ng-reflect-router-link")).toEqual(
       "/rocket"
     );
-    expect(menuItems[13].getAttribute("ng-reflect-router-link")).toEqual(
+    expect(menuItems[14].getAttribute("ng-reflect-router-link")).toEqual(
       "/spacecraft"
     );
-    expect(menuItems[14].getAttribute("ng-reflect-router-link")).toEqual(
+    expect(menuItems[15].getAttribute("ng-reflect-router-link")).toEqual(
       "/spacestation"
     );
-    expect(menuItems[17].getAttribute("ng-reflect-router-link")).toEqual(
+    expect(menuItems[18].getAttribute("ng-reflect-router-link")).toEqual(
       "/about"
     );
   });
