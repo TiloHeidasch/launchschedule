@@ -29,7 +29,7 @@
     "@angular/core": "~13.2.5",
     "@angular/forms": "~13.2.5",
     "@angular/platform-browser": "~13.2.5",
-    "@angular/platform-browser-dynamic": "~13.3.2",
+    "@angular/platform-browser-dynamic": "~13.3.4",
     "@angular/router": "~13.2.5",
     "@angular/service-worker": "~13.2.5",
     "@angular/youtube-player": "~13.3.2",
