@@ -55,6 +55,11 @@ export class AppComponent implements OnInit {
       icon: "logo-electron",
     },
     {
+      title: "Stuff In Space",
+      url: "/stuff-in-space",
+      icon: "logo-react",
+    },
+    {
       title: "NASA Images",
       url: "/nasa",
       icon: "images",
