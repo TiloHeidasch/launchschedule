@@ -6,7 +6,6 @@ import { IonicModule } from "@ionic/angular";
 
 import { StuffInSpaceRoutingModule } from "./stuff-in-space-routing.module";
 
-import { NgxIonicImageViewerModule } from "ngx-ionic-image-viewer";
 import { StuffInSpacePage } from "./stuff-in-space.page";
 
 @NgModule({
