@@ -16,9 +16,7 @@ const routes: Routes = [
       {
         path: "ll2",
         loadChildren: () =>
-          import("./ll2/ll2.module").then(
-            (m) => m.Ll2PageModule
-          ),
+          import("./ll2/ll2.module").then((m) => m.Ll2PageModule),
       },
       {
         path: "snapi",
@@ -29,6 +27,13 @@ const routes: Routes = [
         path: "nasa",
         loadChildren: () =>
           import("./nasa/nasa.module").then((m) => m.NasaPageModule),
+      },
+      {
+        path: "stuff-in-space",
+        loadChildren: () =>
+          import("./stuff-in-space/stuff-in-space.module").then(
+            (m) => m.StuffInSpacePageModule
+          ),
       },
       {
         path: "",
