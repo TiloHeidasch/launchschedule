@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { IonicModule } from "@ionic/angular";
 
 import { AgencyDetailCardComponent } from "./agency-detail-card.component";
@@ -9,7 +9,7 @@ describe("AgencyDetailCardComponent", () => {
   let component: AgencyDetailCardComponent;
   let fixture: ComponentFixture<AgencyDetailCardComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [AgencyDetailCardComponent],
       imports: [
@@ -40,7 +40,7 @@ describe("AgencyDetailCardComponent", () => {
         "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/agency_images/blue2520origin_image_20190207032427.jpeg",
     };
     fixture.detectChanges();
-  }));
+  });
 
   it("should create", () => {
     expect(component).toBeTruthy();

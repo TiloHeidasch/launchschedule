@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { IonicModule } from "@ionic/angular";
 
 import { SpacestationDetailCardComponent } from "./spacestation-detail-card.component";
@@ -9,7 +9,7 @@ describe("SpacestationDetailCardComponent", () => {
   let component: SpacestationDetailCardComponent;
   let fixture: ComponentFixture<SpacestationDetailCardComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [SpacestationDetailCardComponent],
       imports: [
@@ -75,7 +75,7 @@ describe("SpacestationDetailCardComponent", () => {
         "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/spacestation_images/salyut25205_image_20190318095611.png",
     };
     fixture.detectChanges();
-  }));
+  });
 
   it("should create", () => {
     expect(component).toBeTruthy();

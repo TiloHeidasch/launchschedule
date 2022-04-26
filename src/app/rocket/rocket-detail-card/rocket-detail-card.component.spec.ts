@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { IonicModule } from "@ionic/angular";
 
 import { RocketDetailCardComponent } from "./rocket-detail-card.component";
@@ -9,7 +9,7 @@ describe("RocketDetailCardComponent", () => {
   let component: RocketDetailCardComponent;
   let fixture: ComponentFixture<RocketDetailCardComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [RocketDetailCardComponent],
       imports: [
@@ -55,7 +55,7 @@ describe("RocketDetailCardComponent", () => {
         "https://en.wikipedia.org/wiki/Angara_(rocket_family)#Angara_1.2",
     };
     fixture.detectChanges();
-  }));
+  });
 
   it("should create", () => {
     expect(component).toBeTruthy();

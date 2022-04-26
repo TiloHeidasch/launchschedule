@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { IonicModule } from "@ionic/angular";
 
 import { SpacecraftListEntryComponent } from "./spacecraft-list-entry.component";
@@ -9,7 +9,7 @@ describe("SpacecraftListEntryComponent", () => {
   let component: SpacecraftListEntryComponent;
   let fixture: ComponentFixture<SpacecraftListEntryComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [SpacecraftListEntryComponent],
       imports: [
@@ -56,7 +56,7 @@ describe("SpacecraftListEntryComponent", () => {
       info_link: "",
     };
     fixture.detectChanges();
-  }));
+  });
 
   it("should create", () => {
     expect(component).toBeTruthy();

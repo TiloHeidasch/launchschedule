@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { IonicModule } from "@ionic/angular";
 
 import { VideoComponent } from "./video.component";
@@ -9,7 +9,7 @@ describe("VideoComponent", () => {
   let component: VideoComponent;
   let fixture: ComponentFixture<VideoComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [VideoComponent],
       imports: [
@@ -31,7 +31,7 @@ describe("VideoComponent", () => {
       url: "https://www.youtube.com/watch?v=FPIhI5mRDRI",
     }),
       fixture.detectChanges();
-  }));
+  });
 
   it("should create", () => {
     expect(component).toBeTruthy();

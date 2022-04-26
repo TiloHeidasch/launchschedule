@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { IonicModule } from "@ionic/angular";
 
 import { EventDetailCardComponent } from "./event-detail-card.component";
@@ -9,7 +9,7 @@ describe("EventDetailCardComponent", () => {
   let component: EventDetailCardComponent;
   let fixture: ComponentFixture<EventDetailCardComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [EventDetailCardComponent],
       imports: [
@@ -67,7 +67,7 @@ describe("EventDetailCardComponent", () => {
       ],
     };
     fixture.detectChanges();
-  }));
+  });
 
   it("should create", () => {
     expect(component).toBeTruthy();
