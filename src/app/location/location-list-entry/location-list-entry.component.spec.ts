@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { IonicModule } from "@ionic/angular";
 
 import { LocationListEntryComponent } from "./location-list-entry.component";
@@ -9,7 +9,7 @@ describe("LocationListEntryComponent", () => {
   let component: LocationListEntryComponent;
   let fixture: ComponentFixture<LocationListEntryComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [LocationListEntryComponent],
       imports: [
@@ -32,7 +32,7 @@ describe("LocationListEntryComponent", () => {
       total_landing_count: 0,
     };
     fixture.detectChanges();
-  }));
+  });
 
   it("should create", () => {
     expect(component).toBeTruthy();

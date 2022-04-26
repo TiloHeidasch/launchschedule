@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { IonicModule } from "@ionic/angular";
 
 import { NewsListEntryComponent } from "./news-list-entry.component";
@@ -9,7 +9,7 @@ describe("NewsListEntryComponent", () => {
   let component: NewsListEntryComponent;
   let fixture: ComponentFixture<NewsListEntryComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [NewsListEntryComponent],
       imports: [
@@ -24,8 +24,7 @@ describe("NewsListEntryComponent", () => {
     component.newsItem = {
       id: "6007d5cc858d39001c60635b",
       title: "SpaceX rolls out Falcon 9 rocket for another Starlink mission",
-      url:
-        "https://spaceflightnow.com/2021/01/18/spacex-rolls-out-falcon-9-rocket-for-another-starlink-mission/",
+      url: "https://spaceflightnow.com/2021/01/18/spacex-rolls-out-falcon-9-rocket-for-another-starlink-mission/",
       imageUrl:
         "https://mk0spaceflightnoa02a.kinstacdn.com/wp-content/uploads/2020/01/starlink3_stack.jpg",
       newsSite: "Spaceflight Now",
@@ -38,7 +37,7 @@ describe("NewsListEntryComponent", () => {
       events: [],
     };
     fixture.detectChanges();
-  }));
+  });
 
   it("should create", () => {
     expect(component).toBeTruthy();

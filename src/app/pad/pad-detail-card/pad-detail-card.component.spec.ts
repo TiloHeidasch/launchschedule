@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { IonicModule } from "@ionic/angular";
 
 import { PadDetailCardComponent } from "./pad-detail-card.component";
@@ -9,7 +9,7 @@ describe("PadDetailCardComponent", () => {
   let component: PadDetailCardComponent;
   let fixture: ComponentFixture<PadDetailCardComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [PadDetailCardComponent],
       imports: [
@@ -47,7 +47,7 @@ describe("PadDetailCardComponent", () => {
       total_launch_count: 3,
     };
     fixture.detectChanges();
-  }));
+  });
 
   it("should create", () => {
     expect(component).toBeTruthy();

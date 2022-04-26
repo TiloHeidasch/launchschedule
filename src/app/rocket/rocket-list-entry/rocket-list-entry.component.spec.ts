@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { IonicModule } from "@ionic/angular";
 
 import { RocketListEntryComponent } from "./rocket-list-entry.component";
@@ -9,7 +9,7 @@ describe("RocketListEntryComponent", () => {
   let component: RocketListEntryComponent;
   let fixture: ComponentFixture<RocketListEntryComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [RocketListEntryComponent],
       imports: [
@@ -55,7 +55,7 @@ describe("RocketListEntryComponent", () => {
         "https://en.wikipedia.org/wiki/Angara_(rocket_family)#Angara_1.2",
     };
     fixture.detectChanges();
-  }));
+  });
 
   it("should create", () => {
     expect(component).toBeTruthy();

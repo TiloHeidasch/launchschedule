@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { IonicModule } from "@ionic/angular";
 
 import { SpacecraftDetailCardComponent } from "./spacecraft-detail-card.component";
@@ -9,7 +9,7 @@ describe("SpacecraftDetailCardComponent", () => {
   let component: SpacecraftDetailCardComponent;
   let fixture: ComponentFixture<SpacecraftDetailCardComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [SpacecraftDetailCardComponent],
       imports: [
@@ -68,7 +68,7 @@ describe("SpacecraftDetailCardComponent", () => {
       info_link: "",
     };
     fixture.detectChanges();
-  }));
+  });
 
   it("should create", () => {
     expect(component).toBeTruthy();

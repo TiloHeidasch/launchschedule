@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { IonicModule } from "@ionic/angular";
 
 import { RocketPage } from "./rocket.page";
@@ -10,7 +10,7 @@ describe("RocketPage", () => {
   let component: RocketPage;
   let fixture: ComponentFixture<RocketPage>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [RocketPage],
       imports: [
@@ -27,7 +27,7 @@ describe("RocketPage", () => {
     fixture = TestBed.createComponent(RocketPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  }));
+  });
 
   it("should create", () => {
     expect(component).toBeTruthy();

@@ -1,5 +1,5 @@
 import { HttpClientTestingModule } from "@angular/common/http/testing";
-import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { RouterTestingModule } from "@angular/router/testing";
 import { IonicModule } from "@ionic/angular";
 import { LaunchPage } from "./launch.page";
@@ -8,7 +8,7 @@ describe("LaunchPage", () => {
   let component: LaunchPage;
   let fixture: ComponentFixture<LaunchPage>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [LaunchPage],
       imports: [
@@ -21,7 +21,7 @@ describe("LaunchPage", () => {
     fixture = TestBed.createComponent(LaunchPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  }));
+  });
 
   it("should create", () => {
     expect(component).toBeTruthy();
