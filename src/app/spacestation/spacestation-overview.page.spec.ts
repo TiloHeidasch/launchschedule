@@ -1,5 +1,5 @@
 import { HttpClientTestingModule } from "@angular/common/http/testing";
-import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { RouterTestingModule } from "@angular/router/testing";
 import { IonicModule } from "@ionic/angular";
 import { SpacestationOverviewPage } from "./spacestation-overview.page";
@@ -8,7 +8,7 @@ describe("SpacestationOverviewPage", () => {
   let component: SpacestationOverviewPage;
   let fixture: ComponentFixture<SpacestationOverviewPage>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [SpacestationOverviewPage],
       imports: [
@@ -21,7 +21,7 @@ describe("SpacestationOverviewPage", () => {
     fixture = TestBed.createComponent(SpacestationOverviewPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  }));
+  });
 
   it("should create", () => {
     expect(component).toBeTruthy();

@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { IonicModule } from "@ionic/angular";
 
 import { MissionListEntryComponent } from "./mission-list-entry.component";
@@ -9,7 +9,7 @@ describe("MissionListEntryComponent", () => {
   let component: MissionListEntryComponent;
   let fixture: ComponentFixture<MissionListEntryComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [MissionListEntryComponent],
       imports: [
@@ -22,7 +22,7 @@ describe("MissionListEntryComponent", () => {
     fixture = TestBed.createComponent(MissionListEntryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  }));
+  });
 
   it("should create", () => {
     expect(component).toBeTruthy();

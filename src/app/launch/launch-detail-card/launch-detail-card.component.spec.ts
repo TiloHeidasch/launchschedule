@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { IonicModule } from "@ionic/angular";
 
 import { LaunchDetailCardComponent } from "./launch-detail-card.component";
@@ -9,7 +9,7 @@ describe("LaunchDetailCardComponent", () => {
   let component: LaunchDetailCardComponent;
   let fixture: ComponentFixture<LaunchDetailCardComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [LaunchDetailCardComponent],
       imports: [
@@ -23,8 +23,7 @@ describe("LaunchDetailCardComponent", () => {
     component = fixture.componentInstance;
     component.launch = {
       id: "15468d99-b3eb-4bf4-81b3-3fda9d2e579d",
-      url:
-        "https://ll.thespacedevs.com/2.2.0/launch/15468d99-b3eb-4bf4-81b3-3fda9d2e579d/",
+      url: "https://ll.thespacedevs.com/2.2.0/launch/15468d99-b3eb-4bf4-81b3-3fda9d2e579d/",
       launch_library_id: 1321,
       slug: "vega-ssms-poc",
       name: "Vega | SSMS PoC",
@@ -106,7 +105,7 @@ describe("LaunchDetailCardComponent", () => {
       program: [],
     };
     fixture.detectChanges();
-  }));
+  });
 
   it("should create", () => {
     expect(component).toBeTruthy();

@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { IonicModule } from "@ionic/angular";
 
 import { LaunchStatusComponent } from "./launch-status.component";
@@ -9,7 +9,7 @@ describe("LaunchStatusComponent", () => {
   let component: LaunchStatusComponent;
   let fixture: ComponentFixture<LaunchStatusComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [LaunchStatusComponent],
       imports: [
@@ -22,7 +22,7 @@ describe("LaunchStatusComponent", () => {
     fixture = TestBed.createComponent(LaunchStatusComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  }));
+  });
 
   it("should create", () => {
     expect(component).toBeTruthy();

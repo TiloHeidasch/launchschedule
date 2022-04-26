@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { IonicModule } from "@ionic/angular";
 
 import { SpacestationListEntryComponent } from "./spacestation-list-entry.component";
@@ -9,7 +9,7 @@ describe("SpacestationListEntryComponent", () => {
   let component: SpacestationListEntryComponent;
   let fixture: ComponentFixture<SpacestationListEntryComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [SpacestationListEntryComponent],
       imports: [
@@ -75,7 +75,7 @@ describe("SpacestationListEntryComponent", () => {
         "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/spacestation_images/salyut25205_image_20190318095611.png",
     };
     fixture.detectChanges();
-  }));
+  });
 
   it("should create", () => {
     expect(component).toBeTruthy();

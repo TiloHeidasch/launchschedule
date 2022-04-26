@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { IonicModule } from "@ionic/angular";
 
 import { AstronautListEntryComponent } from "./astronaut-list-entry.component";
@@ -20,8 +20,7 @@ const astronaut = {
   date_of_birth: "1960-08-24",
   date_of_death: null,
   nationality: "Austrian",
-  bio:
-    "Franz Artur Viehböck (born August 24, 1960 in Vienna) is an Austrian electrical engineer, and was Austria's first cosmonaut. He was titulated „Austronaut“ by his country's media. He visited the Mir space station in 1991 aboard Soyuz TM-13, returning aboard Soyuz TM-12 after spending just over a week in space.",
+  bio: "Franz Artur Viehböck (born August 24, 1960 in Vienna) is an Austrian electrical engineer, and was Austria's first cosmonaut. He was titulated „Austronaut“ by his country's media. He visited the Mir space station in 1991 aboard Soyuz TM-13, returning aboard Soyuz TM-12 after spending just over a week in space.",
   twitter: null,
   instagram: null,
   wiki: "https://en.wikipedia.org/wiki/Franz_Viehb%C3%B6ck",
@@ -53,7 +52,7 @@ describe("AstronautListEntryComponent", () => {
   let component: AstronautListEntryComponent;
   let fixture: ComponentFixture<AstronautListEntryComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [AstronautListEntryComponent],
       imports: [
@@ -67,7 +66,7 @@ describe("AstronautListEntryComponent", () => {
     component = fixture.componentInstance;
     component.astronaut = astronaut;
     fixture.detectChanges();
-  }));
+  });
 
   it("should create", () => {
     expect(component).toBeTruthy();

@@ -1,4 +1,4 @@
-import { waitForAsync, ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { IonicModule } from "@ionic/angular";
 import { AboutCardModule } from "../about-card/about-card.module";
 
@@ -8,18 +8,16 @@ describe("Ll2Page", () => {
   let component: Ll2Page;
   let fixture: ComponentFixture<Ll2Page>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [Ll2Page],
-        imports: [IonicModule.forRoot(), AboutCardModule],
-      }).compileComponents();
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [Ll2Page],
+      imports: [IonicModule.forRoot(), AboutCardModule],
+    }).compileComponents();
 
-      fixture = TestBed.createComponent(Ll2Page);
-      component = fixture.componentInstance;
-      fixture.detectChanges();
-    })
-  );
+    fixture = TestBed.createComponent(Ll2Page);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
   it("should create", () => {
     expect(component).toBeTruthy();
