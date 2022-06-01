@@ -79,7 +79,7 @@ describe("AppComponent", () => {
     await fixture.detectChanges();
     const app = fixture.nativeElement;
     const menuItems = app.querySelectorAll("ion-item");
-    expect(menuItems.length).toEqual(20);
+    expect(menuItems.length).toEqual(19);
     expect(menuItems[1].getAttribute("ng-reflect-router-link")).toEqual(
       "/launch"
     );
