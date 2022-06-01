@@ -55,24 +55,23 @@ describe("AppComponent", () => {
     await fixture.detectChanges();
     const app = fixture.nativeElement;
     const menuItems = app.querySelectorAll("ion-label");
-    expect(menuItems.length).toEqual(17);
+    expect(menuItems.length).toEqual(16);
     expect(menuItems[0].textContent).toContain("Launch");
     expect(menuItems[1].textContent).toContain("Event");
     expect(menuItems[2].textContent).toContain("Statistic");
     expect(menuItems[3].textContent).toContain("News");
     expect(menuItems[4].textContent).toContain("3D Solar System");
-    expect(menuItems[5].textContent).toContain("Stuff In Space");
-    expect(menuItems[6].textContent).toContain("NASA Images");
-    expect(menuItems[7].textContent).toContain("SpaceX Starship");
-    expect(menuItems[8].textContent).toContain("Agency");
-    expect(menuItems[9].textContent).toContain("Astronaut");
-    expect(menuItems[10].textContent).toContain("Facility");
-    expect(menuItems[11].textContent).toContain("Pad");
-    expect(menuItems[12].textContent).toContain("Rocket");
-    expect(menuItems[13].textContent).toContain("Spacecraft");
-    expect(menuItems[14].textContent).toContain("Spacestation");
-    expect(menuItems[15].textContent).toContain("Dark Theme");
-    expect(menuItems[16].textContent).toContain("About");
+    expect(menuItems[5].textContent).toContain("NASA Images");
+    expect(menuItems[6].textContent).toContain("SpaceX Starship");
+    expect(menuItems[7].textContent).toContain("Agency");
+    expect(menuItems[8].textContent).toContain("Astronaut");
+    expect(menuItems[9].textContent).toContain("Facility");
+    expect(menuItems[10].textContent).toContain("Pad");
+    expect(menuItems[11].textContent).toContain("Rocket");
+    expect(menuItems[12].textContent).toContain("Spacecraft");
+    expect(menuItems[13].textContent).toContain("Spacestation");
+    expect(menuItems[14].textContent).toContain("Dark Theme");
+    expect(menuItems[15].textContent).toContain("About");
   });
 
   it("should have urls", async () => {

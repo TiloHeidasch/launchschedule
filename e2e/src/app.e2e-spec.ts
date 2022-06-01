@@ -71,7 +71,7 @@ describe("App", () => {
     it("should navigate to NASA Images", () => {
       clickElement(
         browser,
-        element(by.css("ion-menu-toggle:nth-of-type(7)>ion-item>ion-label"))
+        element(by.css("ion-menu-toggle:nth-of-type(6)>ion-item>ion-label"))
       );
       browser.sleep(2000);
       expect(browser.getCurrentUrl()).toContain("/#/nasa");
@@ -79,7 +79,7 @@ describe("App", () => {
     it("should navigate to Starship Dashboard", () => {
       clickElement(
         browser,
-        element(by.css("ion-menu-toggle:nth-of-type(8)>ion-item>ion-label"))
+        element(by.css("ion-menu-toggle:nth-of-type(7)>ion-item>ion-label"))
       );
       browser.sleep(2000);
       expect(browser.getCurrentUrl()).toContain("/#/dashboard/starship");
@@ -87,7 +87,7 @@ describe("App", () => {
     it("should navigate to Agency", () => {
       clickElement(
         browser,
-        element(by.css("ion-menu-toggle:nth-of-type(9)>ion-item>ion-label"))
+        element(by.css("ion-menu-toggle:nth-of-type(8)>ion-item>ion-label"))
       );
       browser.sleep(2000);
       expect(browser.getCurrentUrl()).toContain("/#/agency");
@@ -95,7 +95,7 @@ describe("App", () => {
     it("should navigate to Astronaut", () => {
       clickElement(
         browser,
-        element(by.css("ion-menu-toggle:nth-of-type(10)>ion-item>ion-label"))
+        element(by.css("ion-menu-toggle:nth-of-type(9)>ion-item>ion-label"))
       );
       browser.sleep(2000);
       expect(browser.getCurrentUrl()).toContain("/#/astronaut");
@@ -103,7 +103,7 @@ describe("App", () => {
     it("should navigate to Facility", () => {
       clickElement(
         browser,
-        element(by.css("ion-menu-toggle:nth-of-type(11)>ion-item>ion-label"))
+        element(by.css("ion-menu-toggle:nth-of-type(10)>ion-item>ion-label"))
       );
       browser.sleep(2000);
       expect(browser.getCurrentUrl()).toContain("/#/location");
@@ -111,7 +111,7 @@ describe("App", () => {
     it("should navigate to Pad", () => {
       clickElement(
         browser,
-        element(by.css("ion-menu-toggle:nth-of-type(12)>ion-item>ion-label"))
+        element(by.css("ion-menu-toggle:nth-of-type(11)>ion-item>ion-label"))
       );
       browser.sleep(2000);
       expect(browser.getCurrentUrl()).toContain("/#/pad");
@@ -119,7 +119,7 @@ describe("App", () => {
     it("should navigate to Rocket", () => {
       clickElement(
         browser,
-        element(by.css("ion-menu-toggle:nth-of-type(13)>ion-item>ion-label"))
+        element(by.css("ion-menu-toggle:nth-of-type(12)>ion-item>ion-label"))
       );
       browser.sleep(2000);
       expect(browser.getCurrentUrl()).toContain("/#/rocket");
@@ -127,7 +127,7 @@ describe("App", () => {
     it("should navigate to Spacecraft", () => {
       clickElement(
         browser,
-        element(by.css("ion-menu-toggle:nth-of-type(14)>ion-item>ion-label"))
+        element(by.css("ion-menu-toggle:nth-of-type(13)>ion-item>ion-label"))
       );
       browser.sleep(2000);
       expect(browser.getCurrentUrl()).toContain("/#/spacecraft");
@@ -135,7 +135,7 @@ describe("App", () => {
     it("should navigate to Spacestation", () => {
       clickElement(
         browser,
-        element(by.css("ion-menu-toggle:nth-of-type(15)>ion-item>ion-label"))
+        element(by.css("ion-menu-toggle:nth-of-type(14)>ion-item>ion-label"))
       );
       browser.sleep(2000);
       expect(browser.getCurrentUrl()).toContain("/#/spacestation");
