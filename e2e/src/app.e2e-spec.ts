@@ -68,14 +68,6 @@ describe("App", () => {
       browser.sleep(2000);
       expect(browser.getCurrentUrl()).toContain("/#/solar-system");
     });
-    it("should navigate to Stuff In Space", () => {
-      clickElement(
-        browser,
-        element(by.css("ion-menu-toggle:nth-of-type(6)>ion-item>ion-label"))
-      );
-      browser.sleep(2000);
-      expect(browser.getCurrentUrl()).toContain("/#/stuff-in-space");
-    });
     it("should navigate to NASA Images", () => {
       clickElement(
         browser,

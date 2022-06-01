@@ -97,36 +97,33 @@ describe("AppComponent", () => {
       "/solar-system"
     );
     expect(menuItems[6].getAttribute("ng-reflect-router-link")).toEqual(
-      "/stuff-in-space"
-    );
-    expect(menuItems[7].getAttribute("ng-reflect-router-link")).toEqual(
       "/nasa"
     );
-    expect(menuItems[8].getAttribute("ng-reflect-router-link")).toEqual(
+    expect(menuItems[7].getAttribute("ng-reflect-router-link")).toEqual(
       "/dashboard/starship"
     );
-    expect(menuItems[10].getAttribute("ng-reflect-router-link")).toEqual(
+    expect(menuItems[9].getAttribute("ng-reflect-router-link")).toEqual(
       "/agency"
     );
-    expect(menuItems[11].getAttribute("ng-reflect-router-link")).toEqual(
+    expect(menuItems[10].getAttribute("ng-reflect-router-link")).toEqual(
       "/astronaut"
     );
-    expect(menuItems[12].getAttribute("ng-reflect-router-link")).toEqual(
+    expect(menuItems[11].getAttribute("ng-reflect-router-link")).toEqual(
       "/location"
     );
-    expect(menuItems[13].getAttribute("ng-reflect-router-link")).toEqual(
+    expect(menuItems[12].getAttribute("ng-reflect-router-link")).toEqual(
       "/pad"
     );
-    expect(menuItems[14].getAttribute("ng-reflect-router-link")).toEqual(
+    expect(menuItems[13].getAttribute("ng-reflect-router-link")).toEqual(
       "/rocket"
     );
-    expect(menuItems[15].getAttribute("ng-reflect-router-link")).toEqual(
+    expect(menuItems[14].getAttribute("ng-reflect-router-link")).toEqual(
       "/spacecraft"
     );
-    expect(menuItems[16].getAttribute("ng-reflect-router-link")).toEqual(
+    expect(menuItems[15].getAttribute("ng-reflect-router-link")).toEqual(
       "/spacestation"
     );
-    expect(menuItems[19].getAttribute("ng-reflect-router-link")).toEqual(
+    expect(menuItems[18].getAttribute("ng-reflect-router-link")).toEqual(
       "/about"
     );
   });
