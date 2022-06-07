@@ -7,7 +7,6 @@ const inputFile = process.argv[3];
 const outputFile = process.argv[4];
 const dayRetentionThreshold = +process.argv[5];
 const keys = parseKeys();
-["profile_image", "profile_image_thumbnail"];
 
 const imageFolder = "assets/" + type + "/";
 const threshold = dayRetentionThreshold * 24 * 60 * 60 * 1000;
@@ -101,6 +100,7 @@ function downloadImageIfNecessary(entry, key) {
         console.log(
           process.argv[1] + " error in downloading: " + imageOutputPath
         );
+        console.log(error);
         return entry;
       }
     }
@@ -112,6 +112,7 @@ function downloadImageIfNecessary(entry, key) {
       console.log(
         process.argv[1] + " error in downloading: " + imageOutputPath
       );
+      console.log(error);
       return entry;
     }
   }
