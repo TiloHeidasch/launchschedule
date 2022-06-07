@@ -39,7 +39,8 @@ function downloadImage(url, filepath) {
 }
 
 function createRequiredFolders() {
-  const folders = imageFolder.split("/");
+  const outputPath = "src/" + imageFolder;
+  const folders = outputPath.split("/");
   let folderStructure = "";
   for (let index = 0; index < folders.length; index++) {
     const folder = folders[index];
