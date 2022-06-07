@@ -87,13 +87,6 @@ const routes: Routes = [
       ),
   },
   {
-    path: "stuff-in-space",
-    loadChildren: () =>
-      import("./stuff-in-space/stuff-in-space.module").then(
-        (m) => m.StuffInSpaceModule
-      ),
-  },
-  {
     path: "**",
     redirectTo: "launch",
   },

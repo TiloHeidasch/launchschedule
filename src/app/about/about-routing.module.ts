@@ -29,13 +29,6 @@ const routes: Routes = [
           import("./nasa/nasa.module").then((m) => m.NasaPageModule),
       },
       {
-        path: "stuff-in-space",
-        loadChildren: () =>
-          import("./stuff-in-space/stuff-in-space.module").then(
-            (m) => m.StuffInSpacePageModule
-          ),
-      },
-      {
         path: "",
         redirectTo: "/about/rcket",
         pathMatch: "full",
