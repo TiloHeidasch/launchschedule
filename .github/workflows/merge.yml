@@ -71,7 +71,7 @@ jobs:
       - name: Download image script
         run: curl https://raw.githubusercontent.com/TiloHeidasch/launchschedule/master/scripts/fetchImages.ts > fetchImages.ts
       - name: Agency Images
-        run: node fetchImages.ts agency agenuciesIN.json agencies.json 100 image_url nation_url logo_url
+        run: node fetchImages.ts agency agenciesIN.json agencies.json 100 image_url nation_url logo_url
       - name: Astronaut Images
         run: node fetchImages.ts astronaut astronautsIN.json astronauts.json 100 profile_image profile_image_thumbnail
   upload:
