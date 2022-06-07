@@ -52,6 +52,17 @@ jobs:
         with:
           name: masterdata
           path: src/app/data/
+  images:
+    name: Pre-Load Images
+    runs-on: ubuntu-latest
+    needs: merge
+    steps:
+      - name: Download image script
+        run: curl https://raw.githubusercontent.com/TiloHeidasch/launchschedule/master/scripts/fetchImages.ts > fetchImages.ts
+      - name: Agency Images
+        run: node fetchImages.ts agency src/app/data/agenuciesIN.json src/app/data/agencies.json 100 image_url nation_url logo_url
+      - name: Astronaut Images
+        run: node fetchImages.ts astronaut src/app/data/astronautsIN.json src/app/data/astronauts.json 100 profile_image profile_image_thumbnail
   upload:
     name: Upload Masterdata to branch
     runs-on: ubuntu-latest
