@@ -3,7 +3,7 @@ name: Merge Masterdata
 on:
   schedule:
     # * is a special character in YAML so you have to quote this string
-    - cron: '0 11 * * *'
+    - cron: '0 12 * * *'
   workflow_dispatch:
 
 jobs:
@@ -50,39 +50,53 @@ jobs:
       - name: Safe MasterData Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
-          name: masterdata
+          name: masterdataIN
           path: src/app/data/
   images:
     name: Pre-Load Images
     runs-on: ubuntu-latest
     needs: merge
     steps:
-      - name: Install Sync Request
-        run: npm install sync-request
       - name: Download Masterdata
         uses: actions/download-artifact@v2.0.9
         with:
-          name: masterdata
+          name: masterdataIN
           path: ./
-      - name: Rename Agency
-        run: mv agencies.json agenciesIN.json
-      - name: Rename Astronaut
-        run: mv astronauts.json astronautsIN.json
+      - name: Create data dirs
+        run: mkdir src && mkdir src/app && mkdir src/app/dataIN && mkdir src/app/data && mkdir src/assets
+      - name: Moves Data
+        run: mv *.json src/app/dataIN
       - name: Download image script
         run: curl https://raw.githubusercontent.com/TiloHeidasch/launchschedule/master/scripts/fetchImages.ts > fetchImages.ts
+      - name: Create script dirs
+        run: mkdir scripts && mkdir scripts/masterdata
+      - name: Move scripts
+        run: mv fetchImages.ts scripts/
+      - name: Install Sync Request
+        run: npm install sync-request
       - name: Agency Images
-        run: node fetchImages.ts agency agenciesIN.json agencies.json 100 image_url nation_url logo_url
+        run: node fetchImages.ts agency src/app/dataIN/agencies.json src/app/data/agencies.json 100 image_url nation_url logo_url
       - name: Astronaut Images
-        run: node fetchImages.ts astronaut astronautsIN.json astronauts.json 100 profile_image profile_image_thumbnail
-  upload:
+        run: node fetchImages.ts astronaut src/app/data/astronauts.json src/app/data/astronauts.json 100 profile_image profile_image_thumbnail
+      - name: Safe MasterData Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: masterdataOUT
+          path: src/app/data
+      - name: Safe Images Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: images
+          path: src/assets
+  uploadmasterdata:
     name: Upload Masterdata to branch
     runs-on: ubuntu-latest
-    needs: merge
+    needs: images
     steps:
       - name: Download Masterdata
         uses: actions/download-artifact@v2.0.9
         with:
-          name: masterdata
+          name: masterdataOUT
           path: ./
       - name: Push to Masterdata branch
         uses: crazy-max/ghaction-github-pages@v2.3.0
@@ -90,5 +104,23 @@ jobs:
           build_dir: ./
           target_branch: masterdata
           commit_message: 'Merges Masterdata'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  uploadimages:
+    name: Upload Images to branch
+    runs-on: ubuntu-latest
+    needs: images
+    steps:
+      - name: Download Images
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: images
+          path: ./
+      - name: Push to Images branch
+        uses: crazy-max/ghaction-github-pages@v2.3.0
+        with:
+          build_dir: ./
+          target_branch: Images
+          commit_message: 'Updates Images'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
