@@ -77,7 +77,7 @@ jobs:
       - name: Agency Images
         run: node scripts/fetchImages.ts agency src/app/dataIN/agencies.json src/app/data/agencies.json 100 image_url nation_url logo_url
       - name: Astronaut Images
-        run: node scripts/fetchImages.ts astronaut src/app/data/astronauts.json src/app/data/astronauts.json 100 profile_image profile_image_thumbnail
+        run: node scripts/fetchImages.ts astronaut src/app/dataIN/astronauts.json src/app/data/astronauts.json 100 profile_image profile_image_thumbnail
       - name: Safe MasterData Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
