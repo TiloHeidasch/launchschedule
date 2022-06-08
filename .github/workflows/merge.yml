@@ -75,7 +75,7 @@ jobs:
       - name: Install Sync Request
         run: npm install sync-request
       - name: Agency Images
-        run: node fetchImages.ts agency src/app/dataIN/agencies.json src/app/data/agencies.json 100 image_url nation_url logo_url
+        run: node scripts/fetchImages.ts agency src/app/dataIN/agencies.json src/app/data/agencies.json 100 image_url nation_url logo_url
       - name: Astronaut Images
         run: node fetchImages.ts astronaut src/app/data/astronauts.json src/app/data/astronauts.json 100 profile_image profile_image_thumbnail
       - name: Safe MasterData Artifact
@@ -88,24 +88,24 @@ jobs:
         with:
           name: images
           path: src/assets
-  uploadmasterdata:
-    name: Upload Masterdata to branch
-    runs-on: ubuntu-latest
-    needs: images
-    steps:
-      - name: Download Masterdata
-        uses: actions/download-artifact@v2.0.9
-        with:
-          name: masterdataOUT
-          path: ./
-      - name: Push to Masterdata branch
-        uses: crazy-max/ghaction-github-pages@v2.3.0
-        with:
-          build_dir: ./
-          target_branch: masterdata
-          commit_message: 'Merges Masterdata'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  # uploadmasterdata:
+  #   name: Upload Masterdata to branch
+  #   runs-on: ubuntu-latest
+  #   needs: images
+  #   steps:
+  #     - name: Download Masterdata
+  #       uses: actions/download-artifact@v2.0.9
+  #       with:
+  #         name: masterdataOUT
+  #         path: ./
+  #     - name: Push to Masterdata branch
+  #       uses: crazy-max/ghaction-github-pages@v2.3.0
+  #       with:
+  #         build_dir: ./
+  #         target_branch: masterdata
+  #         commit_message: 'Merges Masterdata'
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   uploadimages:
     name: Upload Images to branch
     runs-on: ubuntu-latest
