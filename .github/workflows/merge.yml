@@ -120,7 +120,7 @@ jobs:
         uses: crazy-max/ghaction-github-pages@v2.3.0
         with:
           build_dir: ./
-          target_branch: Images
+          target_branch: images
           commit_message: 'Updates Images'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
