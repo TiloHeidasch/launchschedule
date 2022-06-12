@@ -69,15 +69,23 @@ jobs:
       - name: Download image script
         run: curl https://raw.githubusercontent.com/TiloHeidasch/launchschedule/master/scripts/fetchImages.ts > fetchImages.ts
       - name: Create script dirs
-        run: mkdir scripts && mkdir scripts/masterdata
+        run: mkdir scripts
       - name: Move scripts
         run: mv fetchImages.ts scripts/
+      - name: Download Images
+        run: wget https://github.com/TiloHeidasch/launchschedule/archive/refs/heads/images.zip
+      - name: Unzip Images
+        uses: TonyBogdanov/zip@1.0
+        with:
+          args: unzip -qq ./images.zip -d ./src/assets/
+      - name: Copy Images
+        run: sudo cp ./src/assets/launchschedule-images/* ./src/assets/
       - name: Install Sync Request
         run: npm install sync-request
       - name: Agency Images
         run: node scripts/fetchImages.ts agency src/app/dataIN/agencies.json src/app/data/agencies.json 100 image_url nation_url logo_url
       - name: Astronaut Images
-        run: node scripts/fetchImages.ts astronaut src/app/dataIN/astronauts.json src/app/data/astronauts.json 100 profile_image profile_image_thumbnail
+        run: node scripts/fetchImages.ts astronaut src/app/dataIN/astronauts.json src/app/data/astronauts.json 100 profile_image_thumbnail
       - name: Safe MasterData Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
