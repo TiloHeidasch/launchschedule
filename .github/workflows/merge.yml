@@ -72,14 +72,14 @@ jobs:
         run: mkdir scripts
       - name: Move scripts
         run: mv fetchImages.ts scripts/
-      - name: Download Images
-        run: wget https://github.com/TiloHeidasch/launchschedule/archive/refs/heads/images.zip
-      - name: Unzip Images
-        uses: TonyBogdanov/zip@1.0
-        with:
-          args: unzip -qq ./images.zip -d ./src/assets/
-      - name: Copy Images
-        run: sudo cp -r ./src/assets/launchschedule-images/* ./src/assets/
+      # - name: Download Images
+      #   run: wget https://github.com/TiloHeidasch/launchschedule/archive/refs/heads/images.zip
+      # - name: Unzip Images
+      #   uses: TonyBogdanov/zip@1.0
+      #   with:
+      #     args: unzip -qq ./images.zip -d ./src/assets/
+      # - name: Copy Images
+      #   run: sudo cp -r ./src/assets/launchschedule-images/* ./src/assets/
       - name: Install Sync Request
         run: npm install sync-request
       - name: Agency Images
