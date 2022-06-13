@@ -80,6 +80,8 @@ jobs:
           args: unzip -qq ./images.zip -d ./src/assets/
       - name: Copy Images
         run: sudo cp -r ./src/assets/launchschedule-images/* ./src/assets/
+      - name: Delete Images
+        run: sudo rm -r ./src/assets/launchschedule-images
       - name: Install Sync Request
         run: npm install sync-request
       - name: Agency Images
