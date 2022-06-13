@@ -72,14 +72,14 @@ jobs:
         run: mkdir scripts
       - name: Move scripts
         run: mv fetchImages.ts scripts/
-      # - name: Download Images
-      #   run: wget https://github.com/TiloHeidasch/launchschedule/archive/refs/heads/images.zip
-      # - name: Unzip Images
-      #   uses: TonyBogdanov/zip@1.0
-      #   with:
-      #     args: unzip -qq ./images.zip -d ./src/assets/
-      # - name: Copy Images
-      #   run: sudo cp -r ./src/assets/launchschedule-images/* ./src/assets/
+      - name: Download Images
+        run: wget https://github.com/TiloHeidasch/launchschedule/archive/refs/heads/images.zip
+      - name: Unzip Images
+        uses: TonyBogdanov/zip@1.0
+        with:
+          args: unzip -qq ./images.zip -d ./src/assets/
+      - name: Copy Images
+        run: sudo cp -r ./src/assets/launchschedule-images/* ./src/assets/
       - name: Install Sync Request
         run: npm install sync-request
       - name: Agency Images
@@ -91,11 +91,11 @@ jobs:
       - name: Pad Images
         run: node scripts/fetchImages.ts pad src/app/dataIN/pads.json src/app/data/pads.json 100 map_image
       - name: Rocket Images
-        run: node scripts/fetchImages.ts rocket src/app/dataIN/rockets.json src/app/data/rockets.json 100 map_image
+        run: node scripts/fetchImages.ts rocket src/app/dataIN/rockets.json src/app/data/rockets.json 100 image_url
       - name: Spacecraft Images
-        run: node scripts/fetchImages.ts spacecraft src/app/dataIN/spacecrafts.json src/app/data/spacecrafts.json 100 map_image
+        run: node scripts/fetchImages.ts spacecraft src/app/dataIN/spacecrafts.json src/app/data/spacecrafts.json 100 image_url
       - name: Spacestation Images
-        run: node scripts/fetchImages.ts spacestation src/app/dataIN/spacestations.json src/app/data/spacestations.json 100 map_image
+        run: node scripts/fetchImages.ts spacestation src/app/dataIN/spacestations.json src/app/data/spacestations.json 100 image_url
       - name: Safe MasterData Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
