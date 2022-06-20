@@ -95,6 +95,14 @@ jobs:
           args: unzip -qq ./masterdata.zip -d ./src/app/data/
       - name: Copy Masterdata
         run: sudo cp ./src/app/data/launchschedule-masterdata/* ./src/app/data/
+      - name: Download Images
+        run: wget https://github.com/TiloHeidasch/launchschedule/archive/refs/heads/images.zip
+      - name: Unzip Images
+        uses: TonyBogdanov/zip@1.0
+        with:
+          args: unzip -qq ./masterdata.zip -d ./src/app/data/
+      - name: Copy Images
+        run: sudo cp -r ./src/app/data/launchschedule-images/* ./src/app/data/
       - name: Build with Ionic
         run: npm run build:prod
       - name: tar www Artifact
