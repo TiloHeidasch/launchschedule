@@ -15,7 +15,7 @@
     "e2e": "ng e2e",
     "e2e:ci": "start-server-and-test start http://localhost:4200 cypress:run",
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run",
+    "cypress:run": "cypress run --headless --browser chrome",
     "resources": "cordova-res android && node scripts/resources.js",
     "android": "ionic build && npx cap copy"
   },
