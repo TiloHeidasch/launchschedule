@@ -26,8 +26,8 @@ describe("App", () => {
       it("should show the RCKET Logo", () => {
         cy.get("ion-img.ng-star-inserted").should("be.visible");
       });
-      it("should have 16 menu items", () => {
-        const menuItems = cy.get("ion-menu-toggle").should("have.length", 16);
+      it("should have 15 menu items", () => {
+        const menuItems = cy.get("ion-menu-toggle").should("have.length", 15);
       });
       it("should navigate to Launch", () => {
         cy.visit("/#/event");
@@ -50,10 +50,6 @@ describe("App", () => {
       it("should navigate to 3D Solar System", () => {
         cy.get("ion-item").contains("3D Solar System").click();
         cy.url().should("contain", "/#/solar-system");
-      });
-      it("should navigate to Stuff In Space", () => {
-        cy.get("ion-item").contains("Stuff In Space").click();
-        cy.url().should("contain", "/#/stuff-in-space");
       });
       it("should navigate to NASA Images", () => {
         cy.get("ion-item").contains("NASA Images").click();
@@ -102,8 +98,8 @@ describe("App", () => {
       it("should show the RCKET Logo", () => {
         cy.get("ion-img.ng-star-inserted").should("be.visible");
       });
-      it("should have 16 menu items", () => {
-        const menuItems = cy.get("ion-menu-toggle").should("have.length", 16);
+      it("should have 15 menu items", () => {
+        const menuItems = cy.get("ion-menu-toggle").should("have.length", 15);
       });
       it("should navigate to Launch", () => {
         cy.visit("/#/event");
@@ -126,10 +122,6 @@ describe("App", () => {
       it("should navigate to 3D Solar System", () => {
         cy.get("ion-item").contains("3D Solar System").click();
         cy.url().should("contain", "/#/solar-system");
-      });
-      it("should navigate to Stuff In Space", () => {
-        cy.get("ion-item").contains("Stuff In Space").click();
-        cy.url().should("contain", "/#/stuff-in-space");
       });
       it("should navigate to NASA Images", () => {
         cy.get("ion-item").contains("NASA Images").click();

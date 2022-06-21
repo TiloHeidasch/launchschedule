@@ -14,8 +14,8 @@ describe("About", () => {
     it("should have a tab-bar", () => {
       cy.get("ion-tab-bar").should("exist");
     });
-    it("should have 5 tab-menu items", () => {
-      cy.get("ion-tab-button").should("have.length", 5);
+    it("should have 4 tab-menu items", () => {
+      cy.get("ion-tab-button").should("have.length", 4);
     });
     it("should navigate to RCKET", () => {
       cy.get("#tab-button-rcket").click();
@@ -32,10 +32,6 @@ describe("About", () => {
     it("should navigate to SNAPI", () => {
       cy.get("#tab-button-snapi").click();
       cy.url().should("contain", "/#/about/snapi");
-    });
-    it("should navigate to Stuffi.space", () => {
-      cy.get("#tab-button-stuff-in-space").click();
-      cy.url().should("contain", "/#/about/stuff-in-space");
     });
   });
 });
