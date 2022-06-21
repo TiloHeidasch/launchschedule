@@ -13,14 +13,11 @@
     "test:watch": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "screenshots": "npm run pree2e && ng e2e --webdriver-update false --protractor-config screenshots/pixel2xlprotractor.conf.js",
-    "screenshots:pixel2xl": "npm run pree2e && ng e2e --webdriver-update false --protractor-config screenshots/pixel2xl.protractor.conf.js",
-    "screenshots:nexus7": "npm run pree2e && ng e2e --webdriver-update false --protractor-config screenshots/nexus7.protractor.conf.js",
-    "screenshots:nexus10": "npm run pree2e && ng e2e --webdriver-update false --protractor-config screenshots/nexus10.protractor.conf.js",
-    "resources": "cordova-res android && node scripts/resources.js",
-    "android": "ionic build && npx cap copy",
+    "e2e:ci": "start-server-and-test start http://localhost:4200 cypress:run",
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run"
+    "cypress:run": "cypress run",
+    "resources": "cordova-res android && node scripts/resources.js",
+    "android": "ionic build && npx cap copy"
   },
   "private": true,
   "dependencies": {
@@ -85,6 +82,7 @@
     "@typescript-eslint/eslint-plugin": "5.27.0",
     "@typescript-eslint/parser": "5.27.0",
     "cordova-res": "^0.15.3",
+    "cypress": "latest",
     "eslint": "^8.16.0",
     "eslint-plugin-unused-imports": "^2.0.0",
     "jasmine-core": "~4.1.1",
@@ -96,9 +94,9 @@
     "karma-jasmine-html-reporter": "^2.0.0",
     "protractor": "~7.0.0",
     "puppeteer": "^14.1.2",
+    "start-server-and-test": "^1.14.0",
     "ts-node": "~10.8.0",
-    "typescript": "~4.5.5",
-    "cypress": "latest"
+    "typescript": "~4.5.5"
   },
   "description": "App for upcoming rocket launches"
 }
