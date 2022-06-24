@@ -1,9 +1,9 @@
 describe("Agency Overview", () => {
   beforeEach(() => {
-    cy.visit("/#/agency");
+    cy.visit("/#/location");
   });
   it("should have a title", () => {
-    cy.get("#title").contains("Agencies");
+    cy.get("#title").contains("Facilities");
   });
   describe("Filter", () => {
     it("should have a filter button", () => {
@@ -14,7 +14,7 @@ describe("Agency Overview", () => {
     });
     it("should show the filter when the button is clicked", () => {
       cy.get("#filter").click();
-      cy.get(":nth-child(1) > ion-toolbar").should("have.length", 5);
+      cy.get(":nth-child(1) > ion-toolbar").should("have.length", 3);
     });
     it("should not show the filter when the button is clicked twice", () => {
       cy.get("#filter").click();
@@ -23,8 +23,8 @@ describe("Agency Overview", () => {
     });
   });
   describe("Items", () => {
-    it("should have at least 14 Items", () => {
-      cy.get("app-agency-list-entry").should("have.length.at.least", 14);
+    it("should have at least 24 Items", () => {
+      cy.get("app-location-list-entry").should("have.length.at.least", 24);
     });
   });
 });

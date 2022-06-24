@@ -1,5 +1,3 @@
-import { should } from "chai";
-
 describe("Agency Detail", () => {
   beforeEach(() => {
     cy.visit("/#/agency/121");
