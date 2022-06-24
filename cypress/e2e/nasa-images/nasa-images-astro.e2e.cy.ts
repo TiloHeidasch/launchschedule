@@ -1,8 +1,8 @@
-describe("About LL2", () => {
+describe("NASA Images Astro Image Of the Day", () => {
   beforeEach(() => {
     cy.visit("/#/nasa/NASA Images");
   });
-  it("should say About in title", () => {
+  it("should say NASA Images in title", () => {
     cy.get("ion-title").should("contain", "NASA Images");
   });
   it("should have 1 Cards", () => {

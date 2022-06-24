@@ -1,4 +1,4 @@
-describe("About", () => {
+describe("NASA Images", () => {
   beforeEach(() => {
     cy.visit("/#/nasa");
   });
