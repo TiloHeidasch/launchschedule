@@ -58,7 +58,7 @@
     "ngx-ionic-image-viewer": "^0.7.5",
     "primeicons": "^5.0.0",
     "primeng": "~13.4.1",
-    "rxjs": "^6.5.0",
+    "rxjs": "^7.5.5",
     "ts-md5": "^1.2.11",
     "tslib": "^2.4.0",
     "uuidv4": "^6.2.13",
