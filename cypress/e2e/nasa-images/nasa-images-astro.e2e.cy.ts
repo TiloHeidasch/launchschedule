@@ -1,6 +1,6 @@
 describe("NASA Images Astro Image Of the Day", () => {
   beforeEach(() => {
-    cy.visit("/#/nasa/NASA Images");
+    cy.visit("/#/nasa/astro");
   });
   it("should say NASA Images in title", () => {
     cy.get("ion-title").should("contain", "NASA Images");
