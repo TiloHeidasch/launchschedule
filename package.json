@@ -83,7 +83,7 @@
     "@typescript-eslint/eslint-plugin": "5.30.3",
     "@typescript-eslint/parser": "5.30.5",
     "cordova-res": "^0.15.3",
-    "eslint": "^8.18.0",
+    "eslint": "^8.19.0",
     "eslint-plugin-unused-imports": "^2.0.0",
     "jasmine-core": "~4.2.0",
     "jasmine-spec-reporter": "~7.0.0",
