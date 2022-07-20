@@ -317,14 +317,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Setup Node
-        uses: actions/setup-node@v2.1.2
-      - name: NPM Install
-        run: npm ci
-      - name: Setup Angular
-        run: npm install @angular/cli
-      - name: Setup Ionic
-        run: npm install @ionic/cli
       - name: Download Masterdata
         run: wget https://github.com/TiloHeidasch/launchschedule/archive/refs/heads/masterdata.zip
       - name: Unzip Masterdata
