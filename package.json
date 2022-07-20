@@ -32,7 +32,7 @@
     "@angular/platform-browser-dynamic": "^14.0.5",
     "@angular/router": "^14.0.5",
     "@angular/service-worker": "^14.0.5",
-    "@angular/youtube-player": "^14.0.5",
+    "@angular/youtube-player": "^14.1.0",
     "@capacitor-community/fcm": "^2.0.2",
     "@capacitor/android": "^3.6.0",
     "@capacitor/app": "^1.1.1",
