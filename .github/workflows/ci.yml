@@ -330,6 +330,7 @@ jobs:
         with:
           record: true
           parallel: true
+          command: npm run e2e:ci
         env:
           # Recommended: pass the GitHub token lets this action correctly
           # determine the unique run id necessary to re-run the checks
