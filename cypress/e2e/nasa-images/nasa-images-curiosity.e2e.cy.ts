@@ -7,7 +7,7 @@ describe("NASA Images Curiosity", () => {
   });
   describe("Items", () => {
     it("should have at least 1 Item", () => {
-      cy.get("app-curiosity-list-entry").should("have.length.at.least", 1);
+      cy.get("app-rover-list-entry").should("have.length.at.least", 1);
     });
   });
 });
