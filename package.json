@@ -82,7 +82,7 @@
     "@types/node": "^18.0.6",
     "@typescript-eslint/eslint-plugin": "5.30.7",
     "@typescript-eslint/parser": "5.30.7",
-    "cordova-res": "^0.15.3",
+    "cordova-res": "^0.15.4",
     "eslint": "^8.20.0",
     "eslint-plugin-unused-imports": "^2.0.0",
     "jasmine-core": "~4.2.0",
