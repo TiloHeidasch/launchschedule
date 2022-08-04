@@ -4,15 +4,31 @@
 		"classpath": "com.getcapacitor.community.fcm.FCMPlugin"
 	},
 	{
+		"pkg": "@capacitor/app",
+		"classpath": "com.capacitorjs.plugins.app.AppPlugin"
+	},
+	{
 		"pkg": "@capacitor/browser",
 		"classpath": "com.capacitorjs.plugins.browser.BrowserPlugin"
+	},
+	{
+		"pkg": "@capacitor/haptics",
+		"classpath": "com.capacitorjs.plugins.haptics.HapticsPlugin"
+	},
+	{
+		"pkg": "@capacitor/keyboard",
+		"classpath": "com.capacitorjs.plugins.keyboard.KeyboardPlugin"
 	},
 	{
 		"pkg": "@capacitor/push-notifications",
 		"classpath": "com.capacitorjs.plugins.pushnotifications.PushNotificationsPlugin"
 	},
 	{
-		"pkg": "@capacitor/storage",
-		"classpath": "com.capacitorjs.plugins.storage.StoragePlugin"
+		"pkg": "@capacitor/status-bar",
+		"classpath": "com.capacitorjs.plugins.statusbar.StatusBarPlugin"
+	},
+	{
+		"pkg": "@capacitor/preferences",
+		"classpath": "com.capacitorjs.plugins.preferences.PreferencesPlugin"
 	}
 ]
