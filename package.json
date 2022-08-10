@@ -48,7 +48,7 @@
     "@awesome-cordova-plugins/http": "^5.44.0",
     "@awesome-cordova-plugins/splash-screen": "^5.44.0",
     "@awesome-cordova-plugins/status-bar": "^5.44.0",
-    "@ionic/angular": "^6.2.1",
+    "@ionic/angular": "^6.2.2",
     "@ionic/core": "^6.1.15",
     "@types/leaflet": "^1.7.11",
     "chart.js": "^3.9.1",
