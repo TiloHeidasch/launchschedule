@@ -312,11 +312,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Use Chrome v102.0.5005.61
+      - name: Use Chrome v104.0.5112.79
         uses: nanasess/setup-chromedriver@master
         with:
           # Optional: do not specify to match Chrome's version
-          chromedriver-version: '102.0.5005.61'
+          chromedriver-version: '104.0.5112.79'
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
       - name: NPM Install
