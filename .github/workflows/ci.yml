@@ -312,8 +312,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Use Chrome
+      - name: Use Chrome v105.0.5195.52
         uses: nanasess/setup-chromedriver@master
+        with:
+          # Optional: do not specify to match Chrome's version
+          chromedriver-version: '105.0.5195.52'
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
       - name: NPM Install
