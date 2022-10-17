@@ -46,7 +46,7 @@
     "@capacitor/storage": "^1.2.5",
     "@awesome-cordova-plugins/core": "^5.44.0",
     "@awesome-cordova-plugins/http": "^5.44.0",
-    "@awesome-cordova-plugins/splash-screen": "^5.44.0",
+    "@awesome-cordova-plugins/splash-screen": "^6.0.0",
     "@awesome-cordova-plugins/status-bar": "^5.44.0",
     "@ionic/angular": "^6.2.3",
     "@ionic/core": "^6.1.15",
