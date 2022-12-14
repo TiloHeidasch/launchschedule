@@ -74,7 +74,7 @@
     "@angular/cli": "^14.1.0",
     "@angular/compiler": "^14.1.0",
     "@angular/compiler-cli": "^14.1.0",
-    "@angular/language-service": "^14.1.0",
+    "@angular/language-service": "^15.0.4",
     "@capacitor/cli": "4.1.0",
     "@ionic/angular-toolkit": "^7.0.0",
     "@types/jasmine": "~4.3.0",
