@@ -228,46 +228,6 @@ jobs:
         build_dir: www/
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  docker:
-    name: Build and Push docker
-    runs-on: ubuntu-latest
-    needs: [build, test]
-    if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Download www
-        uses: actions/download-artifact@v4
-        with:
-          name: www
-          path: ./
-      - name: Untar www
-        run: tar -xvf www.tar
-      - name: Login to DockerHub
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-      - name: Build and Push the Dockerfile Latest
-        uses: docker/build-push-action@v2
-        if: github.ref == 'refs/heads/master'
-        with:
-          context: .
-          pull: true
-          push: true    
-          cache-from: type=registry,ref=theidasch/schedule:latest
-          cache-to: type=inline
-          tags: theidasch/schedule:latest
-      - name: Build and Push the Dockerfile Dev
-        uses: docker/build-push-action@v2
-        if: ${{github.ref == 'refs/heads/dev'}}
-        with:
-          context: .
-          pull: true
-          push: true    
-          cache-from: type=registry,ref=theidasch/schedule:dev
-          cache-to: type=inline
-          tags: theidasch/schedule:dev
   lint:
     name: Lint
     runs-on: ubuntu-latest
