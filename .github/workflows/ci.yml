@@ -74,14 +74,14 @@ jobs:
       - name: Setup Ionic
         run: npm install @ionic/cli
       - name: Download Version
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v4
         with:
           name: version
           path: ./
       - name: Set Release Name Variable
         run: echo "RELEASE_NAME=`cat ./version`" >> $GITHUB_ENV
       - name: Download Track
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v4
         with:
           name: track
           path: ./
@@ -136,7 +136,7 @@ jobs:
     if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
     steps:
       - name: Download Unsigned Release Bundle Artifact
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v4
         with:
           name: app-bundle-unsigned
           path: ./
@@ -160,7 +160,7 @@ jobs:
     if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
     steps:
       - name: Download Unsigned Release Bundle Artifact
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v4
         with:
           name: app-release-unsigned
           path: ./
@@ -184,7 +184,7 @@ jobs:
     if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
     steps:
       - name: Download Signed Release Bundle Artifact
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v4
         with:
           name: app-bundle-signed
           path: ./
@@ -237,7 +237,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Download www
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v4
         with:
           name: www
           path: ./
@@ -319,7 +319,7 @@ jobs:
     needs: [release]
     steps:
       - name: Download Version
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v4
         with:
           name: version
           path: ./
