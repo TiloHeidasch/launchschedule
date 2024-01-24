@@ -141,7 +141,7 @@ jobs:
           name: app-bundle-unsigned
           path: ./
       - name: Sign Bundle
-        uses: r0adkll/sign-android-release@v1
+        uses: fac/sign-android-release@v1
         with:
           releaseDirectory: ./
           signingKeyBase64: ${{ secrets.ANDROID_SIGNING_KEY }}
