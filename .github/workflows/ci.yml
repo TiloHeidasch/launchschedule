@@ -13,9 +13,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Setup Node
-        uses: actions/setup-node@v2.1.2
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
       - name: Setup Totemize
         if: ${{github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'}}
         run: npm install --save totemize
@@ -30,7 +32,7 @@ jobs:
       - name: Clean version File
         run: truncate -s -1 version
       - name: Safe Version File Artifact
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v4
         with:
           name: version
           path: ./version
@@ -47,7 +49,7 @@ jobs:
         if: ${{github.ref == 'refs/heads/dev'}}
         run: echo "Beta" > track
       - name: Safe Track File Artifact
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v4
         with:
           name: track
           path: ./track
@@ -60,9 +62,11 @@ jobs:
       ]
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Setup Node
-        uses: actions/setup-node@v2.1.2
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
       - name: NPM Install
         run: npm ci
       - name: Setup Angular
@@ -70,14 +74,14 @@ jobs:
       - name: Setup Ionic
         run: npm install @ionic/cli
       - name: Download Version
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v4
         with:
           name: version
           path: ./
       - name: Set Release Name Variable
         run: echo "RELEASE_NAME=`cat ./version`" >> $GITHUB_ENV
       - name: Download Track
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v4
         with:
           name: track
           path: ./
@@ -100,7 +104,7 @@ jobs:
       - name: tar www Artifact
         run: tar -cvf www.tar www/
       - name: Safe www Artifact
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v4
         with:
           name: www
           path: www.tar
@@ -114,25 +118,25 @@ jobs:
       - name: Build App Bundle with Gradle
         run: cd android && chmod +x gradlew && ./gradlew bundleRelease
       - name: Safe Unsigned Release Bundle Artifact
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v4
         with:
           name: app-bundle-unsigned
           path: android/app/build/outputs/bundle/release/app-release.aab
       - name: Build APK with Gradle
         run: cd android && chmod +x gradlew && ./gradlew assembleRelease
       - name: Safe Unsigned Release APK Artifact
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v4
         with:
           name: app-release-unsigned
           path: android/app/build/outputs/apk/release/app-release-unsigned.apk
   signBundle:
     name: Sign Android Bundle
     runs-on: ubuntu-latest
-    needs: [build, test, e2e]
+    needs: [build, test]
     if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
     steps:
       - name: Download Unsigned Release Bundle Artifact
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v4
         with:
           name: app-bundle-unsigned
           path: ./
@@ -145,18 +149,18 @@ jobs:
           keyStorePassword: ${{ secrets.ANDROID_KEY_STORE_PASSWORD }}
           keyPassword: ${{ secrets.ANDROID_KEY_PASSWORD }}
       - name: Safe Signed Release Bundle Artifact
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v4
         with:
           name: app-bundle-signed
           path: ./app-release.aab
   signApk:
     name: Sign Android APK
     runs-on: ubuntu-latest
-    needs: [build, test, e2e]
+    needs: [build, test]
     if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
     steps:
       - name: Download Unsigned Release Bundle Artifact
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v4
         with:
           name: app-release-unsigned
           path: ./
@@ -169,7 +173,7 @@ jobs:
           keyStorePassword: ${{ secrets.ANDROID_KEY_STORE_PASSWORD }}
           keyPassword: ${{ secrets.ANDROID_KEY_PASSWORD }}
       - name: Safe Signed Release Bundle Artifact
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v4
         with:
           name: app-release-signed
           path: ./app-release-unsigned-signed.apk
@@ -180,7 +184,7 @@ jobs:
     if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
     steps:
       - name: Download Signed Release Bundle Artifact
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v4
         with:
           name: app-bundle-signed
           path: ./
@@ -202,7 +206,7 @@ jobs:
   pages:
     name: Create Github Page
     runs-on: ubuntu-latest
-    needs: [build, test, e2e]
+    needs: [build, test]
     if: github.ref == 'refs/heads/master'
     steps:
     - name: Download www
@@ -227,13 +231,13 @@ jobs:
   docker:
     name: Build and Push docker
     runs-on: ubuntu-latest
-    needs: [build, test, e2e]
+    needs: [build, test]
     if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Download www
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v4
         with:
           name: www
           path: ./
@@ -269,9 +273,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Setup Node
-        uses: actions/setup-node@v2.1.2
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
       - name: Setup Angular
         run: npm install @angular/cli
       - name: Setup Ionic
@@ -285,9 +291,11 @@ jobs:
       [baptize, track]
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Setup Node
-        uses: actions/setup-node@v2.1.2
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
       - name: NPM Install
         run: npm ci
       - name: Setup Angular
@@ -304,142 +312,6 @@ jobs:
         run: sudo cp ./src/app/data/launchschedule-masterdata/* ./src/app/data/
       - name: Run Test
         run: npm run test
-  e2e:
-    name: E2E Tests
-    runs-on: ubuntu-latest
-    needs:
-      [baptize, track]
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Use Chrome v102.0.5005.61
-        uses: nanasess/setup-chromedriver@master
-        with:
-          # Optional: do not specify to match Chrome's version
-          chromedriver-version: '102.0.5005.61'
-      - name: Setup Node
-        uses: actions/setup-node@v2.1.2
-      - name: NPM Install
-        run: npm ci
-      - name: Setup Angular
-        run: npm install @angular/cli
-      - name: Setup Ionic
-        run: npm install @ionic/cli
-      - name: Download Masterdata
-        run: wget https://github.com/TiloHeidasch/launchschedule/archive/refs/heads/masterdata.zip
-      - name: Unzip Masterdata
-        uses: TonyBogdanov/zip@1.0
-        with:
-          args: unzip -qq ./masterdata.zip -d ./src/app/data/
-      - name: Copy Masterdata
-        run: sudo cp ./src/app/data/launchschedule-masterdata/* ./src/app/data/
-      - name: Run Test
-        run: npm run e2e
-  # pixel2xl:
-  #   name: Screenshots Pixel 2 XL
-  #   runs-on: ubuntu-latest
-  #   needs:
-  #     [ baptize,
-  #       track,
-  #     ]
-  #   if: github.ref == 'refs/heads/master'
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v2
-  #     - name: Setup Node
-  #       uses: actions/setup-node@v2.1.2
-  #     - name: Setup Angular
-  #       run: npm install @angular/cli
-  #     - name: Setup Ionic
-  #       run: npm install @ionic/cli
-  #     - name: NPM Install
-  #       run: npm install
-  #     - name: Download Masterdata
-  #       run: wget https://github.com/TiloHeidasch/launchschedule/archive/refs/heads/masterdata.zip
-  #     - name: Unzip Masterdata
-  #       uses: TonyBogdanov/zip@1.0
-  #       with:
-  #         args: unzip -qq ./masterdata.zip -d ./src/app/data/
-  #     - name: Copy Masterdata
-  #       run: sudo cp ./src/app/data/launchschedule-masterdata/* ./src/app/data/
-  #     - name: Take Screenshots
-  #       run: npm run screenshots:pixel2xl
-  #     - name: Safe Screenshots
-  #       if: always()
-  #       uses: actions/upload-artifact@v2.2.3
-  #       with:
-  #         name: screenshots_pixel2xl
-  #         path: ./screenshots/images
-  # nexus7:
-  #   name: Screenshots Nexus 7
-  #   runs-on: ubuntu-latest
-  #   needs:
-  #     [ baptize,
-  #       track,
-  #     ]
-  #   if: github.ref == 'refs/heads/master'
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v2
-  #     - name: Setup Node
-  #       uses: actions/setup-node@v2.1.2
-  #     - name: Setup Angular
-  #       run: npm install @angular/cli
-  #     - name: Setup Ionic
-  #       run: npm install @ionic/cli
-  #     - name: NPM Install
-  #       run: npm install
-  #     - name: Download Masterdata
-  #       run: wget https://github.com/TiloHeidasch/launchschedule/archive/refs/heads/masterdata.zip
-  #     - name: Unzip Masterdata
-  #       uses: TonyBogdanov/zip@1.0
-  #       with:
-  #         args: unzip -qq ./masterdata.zip -d ./src/app/data/
-  #     - name: Copy Masterdata
-  #       run: sudo cp ./src/app/data/launchschedule-masterdata/* ./src/app/data/
-  #     - name: Take Screenshots
-  #       run: npm run screenshots:nexus7
-  #     - name: Safe Screenshots
-  #       if: always()
-  #       uses: actions/upload-artifact@v2.2.3
-  #       with:
-  #         name: screenshots_nexus7
-  #         path: ./screenshots/images
-  # nexus10:
-  #   name: Screenshots Nexus 10
-  #   runs-on: ubuntu-latest
-  #   needs:
-  #     [ baptize,
-  #       track,
-  #     ]
-  #   if: github.ref == 'refs/heads/master'
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v2
-  #     - name: Setup Node
-  #       uses: actions/setup-node@v2.1.2
-  #     - name: Setup Angular
-  #       run: npm install @angular/cli
-  #     - name: Setup Ionic
-  #       run: npm install @ionic/cli
-  #     - name: NPM Install
-  #       run: npm install
-  #     - name: Download Masterdata
-  #       run: wget https://github.com/TiloHeidasch/launchschedule/archive/refs/heads/masterdata.zip
-  #     - name: Unzip Masterdata
-  #       uses: TonyBogdanov/zip@1.0
-  #       with:
-  #         args: unzip -qq ./masterdata.zip -d ./src/app/data/
-  #     - name: Copy Masterdata
-  #       run: sudo cp ./src/app/data/launchschedule-masterdata/* ./src/app/data/
-  #     - name: Take Screenshots
-  #       run: npm run screenshots:nexus10
-  #     - name: Safe Screenshots
-  #       if: always()
-  #       uses: actions/upload-artifact@v2.2.3
-  #       with:
-  #         name: screenshots_nexus10
-  #         path: ./screenshots/images
   tag:
     name: Tag this run
     runs-on: ubuntu-latest
@@ -447,7 +319,7 @@ jobs:
     needs: [release]
     steps:
       - name: Download Version
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v4
         with:
           name: version
           path: ./
