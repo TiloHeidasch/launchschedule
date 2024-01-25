@@ -69,6 +69,8 @@ jobs:
           node-version: 18
       - name: NPM Install
         run: npm ci
+      - name: Temporary Hack - Disable AppCacheEnabled
+        run: sed -i 's/settings.setAppCacheEnabled(true);/\n/g' node_modules/@capacitor/src/main/java/com/getcapacitor/Bridge.java
       - name: Setup Angular
         run: npm install @angular/cli
       - name: Setup Ionic
