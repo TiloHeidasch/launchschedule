@@ -7,7 +7,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.4.0' // Android Gradle Plugin Version.... see https://developer.android.com/build/releases/past-releases
+        classpath 'com.android.tools.build:gradle:8.3.0' // Android Gradle Plugin Version.... see https://developer.android.com/build/releases/past-releases
         classpath 'com.google.gms:google-services:4.3.13'
 
         // NOTE: Do not place your application dependencies here; they belong
