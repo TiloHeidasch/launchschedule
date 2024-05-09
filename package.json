@@ -30,7 +30,7 @@
     "@awesome-cordova-plugins/core": "^5.44.0",
     "@awesome-cordova-plugins/http": "^5.44.0",
     "@awesome-cordova-plugins/splash-screen": "^5.44.0",
-    "@awesome-cordova-plugins/status-bar": "^5.44.0",
+    "@awesome-cordova-plugins/status-bar": "^6.0.0",
     "@capacitor-community/fcm": "^2.0.2",
     "@capacitor/android": "^3.7.0",
     "@capacitor/app": "^4.0.0",
