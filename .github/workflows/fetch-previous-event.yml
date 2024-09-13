@@ -1,9 +1,9 @@
 name: Fetch Previous Events
 
 on:
-  schedule:
+#  schedule:
     # * is a special character in YAML so you have to quote this string
-    - cron: "0 6 * * *"
+#    - cron: "0 6 * * *"
   workflow_dispatch:
 
 jobs:
