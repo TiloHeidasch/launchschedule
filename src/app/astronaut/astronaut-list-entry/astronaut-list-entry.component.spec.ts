@@ -1,3 +1,4 @@
+import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { IonicModule } from "@ionic/angular";
 
@@ -55,6 +56,7 @@ describe("AstronautListEntryComponent", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [AstronautListEntryComponent],
+      schemas: [NO_ERRORS_SCHEMA],
       imports: [
         IonicModule.forRoot(),
         RouterTestingModule,

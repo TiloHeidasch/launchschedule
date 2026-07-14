@@ -1,3 +1,4 @@
+import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { IonicModule } from "@ionic/angular";
 
@@ -12,6 +13,7 @@ describe("ListEntryDummyComponent", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [ListEntryDummyComponent],
+      schemas: [NO_ERRORS_SCHEMA],
       imports: [
         IonicModule.forRoot(),
         RouterTestingModule,
