@@ -1,3 +1,4 @@
+import { ModalController } from "@ionic/angular/standalone";
 import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { IonicModule } from "@ionic/angular";
@@ -14,6 +15,7 @@ describe("EventPage", () => {
     TestBed.configureTestingModule({
       declarations: [EventPage],
       schemas: [NO_ERRORS_SCHEMA],
+      providers: [ModalController],
       imports: [
         IonicModule.forRoot(),
         RouterTestingModule,

@@ -1,3 +1,4 @@
+import { ModalController } from "@ionic/angular/standalone";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { IonicModule } from "@ionic/angular";
@@ -15,6 +16,7 @@ describe("LocationPage", () => {
     TestBed.configureTestingModule({
       declarations: [LocationPage],
       schemas: [NO_ERRORS_SCHEMA],
+      providers: [ModalController],
       imports: [
         IonicModule.forRoot(),
         RouterTestingModule,

@@ -1,3 +1,4 @@
+import { ModalController } from "@ionic/angular/standalone";
 import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { IonicModule } from "@ionic/angular";
@@ -13,6 +14,7 @@ describe("Ll2Page", () => {
     TestBed.configureTestingModule({
       declarations: [Ll2Page],
       schemas: [NO_ERRORS_SCHEMA],
+      providers: [ModalController],
       imports: [IonicModule.forRoot(), AboutCardModule],
     }).compileComponents();
 
