@@ -90,9 +90,7 @@ jobs:
       - name: Download Masterdata
         run: wget https://github.com/TiloHeidasch/launchschedule/archive/refs/heads/masterdata.zip
       - name: Unzip Masterdata
-        uses: TonyBogdanov/zip@1.0
-        with:
-          args: unzip -qq ./masterdata.zip -d ./src/app/data/
+        run: unzip -qq ./masterdata.zip -d ./src/app/data/
       - name: Copy Masterdata
         run: sudo cp ./src/app/data/launchschedule-masterdata/* ./src/app/data/
       - name: Build with Ionic
@@ -299,9 +297,7 @@ jobs:
       - name: Download Masterdata
         run: wget https://github.com/TiloHeidasch/launchschedule/archive/refs/heads/masterdata.zip
       - name: Unzip Masterdata
-        uses: TonyBogdanov/zip@1.0
-        with:
-          args: unzip -qq ./masterdata.zip -d ./src/app/data/
+        run: unzip -qq ./masterdata.zip -d ./src/app/data/
       - name: Copy Masterdata
         run: sudo cp ./src/app/data/launchschedule-masterdata/* ./src/app/data/
       - name: Run Test
@@ -330,9 +326,7 @@ jobs:
       - name: Download Masterdata
         run: wget https://github.com/TiloHeidasch/launchschedule/archive/refs/heads/masterdata.zip
       - name: Unzip Masterdata
-        uses: TonyBogdanov/zip@1.0
-        with:
-          args: unzip -qq ./masterdata.zip -d ./src/app/data/
+        run: unzip -qq ./masterdata.zip -d ./src/app/data/
       - name: Copy Masterdata
         run: sudo cp ./src/app/data/launchschedule-masterdata/* ./src/app/data/
       - name: Run Test
