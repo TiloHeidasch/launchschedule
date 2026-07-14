@@ -23,10 +23,10 @@ jobs:
         run: echo "development " > version
       - name: Create Prod Release Name Variable using Totemize
         if: ${{github.ref == 'refs/heads/master'}}
-        run: npx ts-node scripts/totemizeProd.ts > version
+        run: npx ts-node -P scripts/tsconfig.json scripts/totemizeProd.ts > version
       - name: Create Beta Release Name Variable using Totemize
         if: ${{github.ref == 'refs/heads/dev'}}
-        run: npx ts-node scripts/totemizeBeta.ts > version
+        run: npx ts-node -P scripts/tsconfig.json scripts/totemizeBeta.ts > version
       - name: Clean version File
         run: sed -i '$ s/.$//' version
       - name: Safe Version File Artifact
