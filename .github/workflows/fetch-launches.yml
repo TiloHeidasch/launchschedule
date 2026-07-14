@@ -18,7 +18,7 @@ jobs:
       - name: Fetch Launches
         run: node scripts/fetchLaunches.ts 0 500
       - name: Safe Data Artifact
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v7
         with:
           name: launches1
           path: src/app/data/
@@ -33,7 +33,7 @@ jobs:
       - name: Fetch Launches
         run: node scripts/fetchLaunches.ts 500 500
       - name: Safe Data Artifact
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v7
         with:
           name: launches2
           path: src/app/data/
@@ -48,7 +48,7 @@ jobs:
       - name: Fetch Launches
         run: node scripts/fetchLaunches.ts 1000 500
       - name: Safe Data Artifact
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v7
         with:
           name: launches3
           path: src/app/data/
@@ -63,7 +63,7 @@ jobs:
       - name: Fetch Launches
         run: node scripts/fetchLaunches.ts 1500 500
       - name: Safe Data Artifact
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v7
         with:
           name: launches4
           path: src/app/data/
@@ -78,7 +78,7 @@ jobs:
       - name: Fetch Launches
         run: node scripts/fetchLaunches.ts 2000 500
       - name: Safe Data Artifact
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v7
         with:
           name: launches5
           path: src/app/data/
@@ -93,7 +93,7 @@ jobs:
       - name: Fetch Launches
         run: node scripts/fetchLaunches.ts 2500 500
       - name: Safe Data Artifact
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v7
         with:
           name: launches6
           path: src/app/data/
@@ -108,7 +108,7 @@ jobs:
       - name: Fetch Launches
         run: node scripts/fetchLaunches.ts 3000 500
       - name: Safe Data Artifact
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v7
         with:
           name: launches7
           path: src/app/data/
@@ -123,7 +123,7 @@ jobs:
       - name: Fetch Launches
         run: node scripts/fetchLaunches.ts 3500 500
       - name: Safe Data Artifact
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v7
         with:
           name: launches8
           path: src/app/data/
@@ -138,7 +138,7 @@ jobs:
       - name: Fetch Launches
         run: node scripts/fetchLaunches.ts 4000 500
       - name: Safe Data Artifact
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v7
         with:
           name: launches9
           path: src/app/data/
@@ -153,7 +153,7 @@ jobs:
       - name: Fetch Launches
         run: node scripts/fetchLaunches.ts 4500 500
       - name: Safe Data Artifact
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v7
         with:
           name: launches10
           path: src/app/data/
@@ -168,7 +168,7 @@ jobs:
       - name: Fetch Launches
         run: node scripts/fetchLaunches.ts 5000 500
       - name: Safe Data Artifact
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v7
         with:
           name: launches11
           path: src/app/data/
@@ -183,7 +183,7 @@ jobs:
       - name: Fetch Launches
         run: node scripts/fetchLaunches.ts 5500 500
       - name: Safe Data Artifact
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v7
         with:
           name: launches12
           path: src/app/data/
@@ -198,7 +198,7 @@ jobs:
       - name: Fetch Launches
         run: node scripts/fetchLaunches.ts 6000 500
       - name: Safe Data Artifact
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v7
         with:
           name: launches13
           path: src/app/data/
@@ -213,7 +213,7 @@ jobs:
       - name: Fetch Launches
         run: node scripts/fetchLaunches.ts 6500 500
       - name: Safe Data Artifact
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v7
         with:
           name: launches14
           path: src/app/data/
@@ -242,72 +242,72 @@ jobs:
         with:
           ref: masterdata
       - name: Download Launches 0-500
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v8
         with:
           name: launches1
           path: ./
       - name: Download Launches 500-1000
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v8
         with:
           name: launches2
           path: ./
       - name: Download Launches 1000-1500
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v8
         with:
           name: launches3
           path: ./
       - name: Download Launches 1500-2000
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v8
         with:
           name: launches4
           path: ./
       - name: Download Launches 2000-2500
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v8
         with:
           name: launches5
           path: ./
       - name: Download Launches 2500-3000
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v8
         with:
           name: launches6
           path: ./
       - name: Download Launches 3000-3500
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v8
         with:
           name: launches7
           path: ./
       - name: Download Launches 3500-4000
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v8
         with:
           name: launches8
           path: ./
       - name: Download Launches 4000-4500
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v8
         with:
           name: launches9
           path: ./
       - name: Download Launches 4500-5000
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v8
         with:
           name: launches10
           path: ./
       - name: Download Launches 5000-5500
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v8
         with:
           name: launches11
           path: ./
       - name: Download Launches 5500-6000
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v8
         with:
           name: launches12
           path: ./
       - name: Download Launches 6000-6500
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v8
         with:
           name: launches13
           path: ./
       - name: Download Launches 6500-7000
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v8
         with:
           name: launches14
           path: ./

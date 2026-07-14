@@ -18,7 +18,7 @@ jobs:
       - name: Fetch Previous Launches
         run: node scripts/masterdata/fetchPreviousLaunches.ts 0 500
       - name: Safe Data Artifact
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v7
         with:
           name: previouslaunches1
           path: src/app/data/
@@ -33,7 +33,7 @@ jobs:
       - name: Fetch Previous Launches
         run: node scripts/masterdata/fetchPreviousLaunches.ts 500 500
       - name: Safe Data Artifact
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v7
         with:
           name: previouslaunches2
           path: src/app/data/
@@ -48,7 +48,7 @@ jobs:
       - name: Fetch Previous Launches
         run: node scripts/masterdata/fetchPreviousLaunches.ts 1000 500
       - name: Safe Data Artifact
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v7
         with:
           name: previouslaunches3
           path: src/app/data/
@@ -63,7 +63,7 @@ jobs:
       - name: Fetch Previous Launches
         run: node scripts/masterdata/fetchPreviousLaunches.ts 1500 500
       - name: Safe Data Artifact
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v7
         with:
           name: previouslaunches4
           path: src/app/data/
@@ -78,7 +78,7 @@ jobs:
       - name: Fetch Previous Launches
         run: node scripts/masterdata/fetchPreviousLaunches.ts 2000 500
       - name: Safe Data Artifact
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v7
         with:
           name: previouslaunches5
           path: src/app/data/
@@ -93,7 +93,7 @@ jobs:
       - name: Fetch Previous Launches
         run: node scripts/masterdata/fetchPreviousLaunches.ts 2500 500
       - name: Safe Data Artifact
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v7
         with:
           name: previouslaunches6
           path: src/app/data/
@@ -108,7 +108,7 @@ jobs:
       - name: Fetch Previous Launches
         run: node scripts/masterdata/fetchPreviousLaunches.ts 3000 500
       - name: Safe Data Artifact
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v7
         with:
           name: previouslaunches7
           path: src/app/data/
@@ -123,7 +123,7 @@ jobs:
       - name: Fetch Previous Launches
         run: node scripts/masterdata/fetchPreviousLaunches.ts 3500 500
       - name: Safe Data Artifact
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v7
         with:
           name: previouslaunches8
           path: src/app/data/
@@ -138,7 +138,7 @@ jobs:
       - name: Fetch Previous Launches
         run: node scripts/masterdata/fetchPreviousLaunches.ts 4000 500
       - name: Safe Data Artifact
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v7
         with:
           name: previouslaunches9
           path: src/app/data/
@@ -153,7 +153,7 @@ jobs:
       - name: Fetch Previous Launches
         run: node scripts/masterdata/fetchPreviousLaunches.ts 4500 500
       - name: Safe Data Artifact
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v7
         with:
           name: previouslaunches10
           path: src/app/data/
@@ -168,7 +168,7 @@ jobs:
       - name: Fetch Previous Launches
         run: node scripts/masterdata/fetchPreviousLaunches.ts 5000 500
       - name: Safe Data Artifact
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v7
         with:
           name: previouslaunches11
           path: src/app/data/
@@ -183,7 +183,7 @@ jobs:
       - name: Fetch Previous Launches
         run: node scripts/masterdata/fetchPreviousLaunches.ts 5500 500
       - name: Safe Data Artifact
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v7
         with:
           name: previouslaunches12
           path: src/app/data/
@@ -198,7 +198,7 @@ jobs:
       - name: Fetch Previous Launches
         run: node scripts/masterdata/fetchPreviousLaunches.ts 6000 500
       - name: Safe Data Artifact
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v7
         with:
           name: previouslaunches13
           path: src/app/data/
@@ -213,7 +213,7 @@ jobs:
       - name: Fetch Previous Launches
         run: node scripts/masterdata/fetchPreviousLaunches.ts 6500 500
       - name: Safe Data Artifact
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v7
         with:
           name: previouslaunches14
           path: src/app/data/
@@ -242,72 +242,72 @@ jobs:
         with:
           ref: masterdata
       - name: Download Previous Launches 0-500
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v8
         with:
           name: previouslaunches1
           path: ./
       - name: Download Previous Launches 500-1000
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v8
         with:
           name: previouslaunches2
           path: ./
       - name: Download Previous Launches 1000-1500
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v8
         with:
           name: previouslaunches3
           path: ./
       - name: Download Previous Launches 1500-2000
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v8
         with:
           name: previouslaunches4
           path: ./
       - name: Download Previous Launches 2000-2500
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v8
         with:
           name: previouslaunches5
           path: ./
       - name: Download Previous Launches 2500-3000
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v8
         with:
           name: previouslaunches6
           path: ./
       - name: Download Previous Launches 3000-3500
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v8
         with:
           name: previouslaunches7
           path: ./
       - name: Download Previous Launches 3500-4000
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v8
         with:
           name: previouslaunches8
           path: ./
       - name: Download Previous Launches 4000-4500
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v8
         with:
           name: previouslaunches9
           path: ./
       - name: Download Previous Launches 4500-5000
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v8
         with:
           name: previouslaunches10
           path: ./
       - name: Download Previous Launches 5000-5500
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v8
         with:
           name: previouslaunches11
           path: ./
       - name: Download Previous Launches 5500-6000
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v8
         with:
           name: previouslaunches12
           path: ./
       - name: Download Previous Launches 6000-6500
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v8
         with:
           name: previouslaunches13
           path: ./
       - name: Download Previous Launches 6500-7000
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v8
         with:
           name: previouslaunches14
           path: ./

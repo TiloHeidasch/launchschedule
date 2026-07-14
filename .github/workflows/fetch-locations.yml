@@ -18,7 +18,7 @@ jobs:
       - name: Fetch Locations
         run: node scripts/masterdata/fetch.ts location locations 0 500
       - name: Safe Data Artifact
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v7
         with:
           name: locations1
           path: src/app/data/
@@ -32,7 +32,7 @@ jobs:
         with:
           ref: masterdata
       - name: Download Locations 0-500
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v8
         with:
           name: locations1
           path: ./

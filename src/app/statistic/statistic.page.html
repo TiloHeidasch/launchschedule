@@ -165,7 +165,94 @@
               }
             </div>
             @if (step===2&&what==='Launches') {
-              <div>Table - coming soon</div>
+              <ion-searchbar
+                [(ngModel)]="globalSearch"
+                (ionInput)="applyLaunchesFilter()"
+                placeholder="Search all fields"
+              ></ion-searchbar>
+              <ion-searchbar
+                [(ngModel)]="nameSearch"
+                (ionInput)="applyLaunchesFilter()"
+                placeholder="Search by name"
+              ></ion-searchbar>
+              <ion-item>
+                <ion-label>From</ion-label>
+                <ion-datetime
+                  [(ngModel)]="fromFilter"
+                  (ionChange)="applyLaunchesFilter()"
+                  display-format="YYYY-MM-DD"
+                  picker-format="YYYY-MM-DD"
+                ></ion-datetime>
+              </ion-item>
+              <ion-item>
+                <ion-label>To</ion-label>
+                <ion-datetime
+                  [(ngModel)]="toFilter"
+                  (ionChange)="applyLaunchesFilter()"
+                  display-format="YYYY-MM-DD"
+                  picker-format="YYYY-MM-DD"
+                ></ion-datetime>
+              </ion-item>
+              <ion-item>
+                <ion-label>Rockets</ion-label>
+                <ion-select
+                  [(ngModel)]="selectedRockets"
+                  (ionChange)="applyLaunchesFilter()"
+                  multiple="true"
+                >
+                  @for (rocket of rockets; track rocket.value) {
+                    <ion-select-option [value]="rocket.value">{{rocket.label}}</ion-select-option>
+                  }
+                </ion-select>
+              </ion-item>
+              <ion-item>
+                <ion-label>Rocket Families</ion-label>
+                <ion-select
+                  [(ngModel)]="selectedRocketFamilies"
+                  (ionChange)="applyLaunchesFilter()"
+                  multiple="true"
+                >
+                  @for (family of rocketFamilies; track family.value) {
+                    <ion-select-option [value]="family.value">{{family.label}}</ion-select-option>
+                  }
+                </ion-select>
+              </ion-item>
+              <ion-item>
+                <ion-label>Agencies</ion-label>
+                <ion-select
+                  [(ngModel)]="selectedAgencies"
+                  (ionChange)="applyLaunchesFilter()"
+                  multiple="true"
+                >
+                  @for (agency of agencies; track agency.value) {
+                    <ion-select-option [value]="agency.value">{{agency.label}}</ion-select-option>
+                  }
+                </ion-select>
+              </ion-item>
+              <ion-item>
+                <ion-label>Agency Types</ion-label>
+                <ion-select
+                  [(ngModel)]="selectedAgencyTypes"
+                  (ionChange)="applyLaunchesFilter()"
+                  multiple="true"
+                >
+                  @for (type of agencyTypes; track type.value) {
+                    <ion-select-option [value]="type.value">{{type.label}}</ion-select-option>
+                  }
+                </ion-select>
+              </ion-item>
+              <ion-item>
+                <ion-label>Spacecrafts</ion-label>
+                <ion-select
+                  [(ngModel)]="selectedSpacecrafts"
+                  (ionChange)="applyLaunchesFilter()"
+                  multiple="true"
+                >
+                  @for (spacecraft of spacecrafts; track spacecraft.value) {
+                    <ion-select-option [value]="spacecraft.value">{{spacecraft.label}}</ion-select-option>
+                  }
+                </ion-select>
+              </ion-item>
           }
         </ion-card-content>
       </ion-card>

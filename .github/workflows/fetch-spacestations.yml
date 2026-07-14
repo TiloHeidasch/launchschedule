@@ -18,7 +18,7 @@ jobs:
       - name: Fetch Spacestations
         run: node scripts/masterdata/fetch.ts spacestation spacestations 0 500
       - name: Safe Data Artifact
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v7
         with:
           name: spacestations1
           path: src/app/data/
@@ -34,7 +34,7 @@ jobs:
         with:
           ref: masterdata
       - name: Download Spacestations 0-500
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v8
         with:
           name: spacestations1
           path: ./

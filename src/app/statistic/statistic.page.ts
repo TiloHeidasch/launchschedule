@@ -34,8 +34,6 @@ export class StatisticPage {
   polarChartData;
   doughnutChartData;
   barChartData;
-  // @ViewChild("tt") table: Table;
-  cols: { field: string; header: string }[] = [];
   constructor(private service: StatisticService) {}
 
   async whatComplete() {
@@ -89,55 +87,58 @@ export class StatisticPage {
   }
   private applyLaunchesFilter() {
     try {
-      // this.table.filterGlobal(this.globalSearch, "contains");
-      // this.table.filter(this.nameSearch, "name", "contains");
-      // if (this.fromFilter) {
-      //   this.onDateSelect(this.fromFilter, "gte");
-      // }
-      // if (this.toFilter) {
-      //   this.onDateSelect(this.toFilter, "gte");
-      // }
-      // this.table.filter(
-      //   this.selectedRockets,
-      //   "rocket__configuration__full_name",
-      //   "in"
-      // );
-      // this.table.filter(
-      //   this.selectedRocketFamilies,
-      //   "rocket__configuration__family",
-      //   "in"
-      // );
-      // this.table.filter(
-      //   this.selectedAgencies,
-      //   "launch_service_provider__name",
-      //   "in"
-      // );
-      // this.table.filter(
-      //   this.selectedAgencyTypes,
-      //   "launch_service_provider__type",
-      //   "in"
-      // );
-      // this.table.filter(
-      //   this.selectedSpacecrafts,
-      //   "rocket__spacecraft_stage__spacecraft__spacecraft_config__name",
-      //   "in"
-      // );
+      let filtered = this.dataRaw;
+      if (this.globalSearch) {
+        const search = this.globalSearch.toLowerCase();
+        filtered = filtered.filter(
+          (launch) =>
+            (launch.name && launch.name.toLowerCase().includes(search)) ||
+            (launch.rocket__configuration__full_name &&
+              launch.rocket__configuration__full_name.toLowerCase().includes(search)) ||
+            (launch.launch_service_provider__name &&
+              launch.launch_service_provider__name.toLowerCase().includes(search)) ||
+            (launch.launch_service_provider__type &&
+              launch.launch_service_provider__type.toLowerCase().includes(search))
+        );
+      }
+      if (this.nameSearch) {
+        const search = this.nameSearch.toLowerCase();
+        filtered = filtered.filter(
+          (launch) => launch.name && launch.name.toLowerCase().includes(search)
+        );
+      }
+      if (this.selectedRockets && this.selectedRockets.length > 0) {
+        filtered = filtered.filter((launch) =>
+          this.selectedRockets.includes(launch.rocket__configuration__full_name)
+        );
+      }
+      if (this.selectedRocketFamilies && this.selectedRocketFamilies.length > 0) {
+        filtered = filtered.filter((launch) =>
+          this.selectedRocketFamilies.includes(launch.rocket__configuration__family)
+        );
+      }
+      if (this.selectedAgencies && this.selectedAgencies.length > 0) {
+        filtered = filtered.filter((launch) =>
+          this.selectedAgencies.includes(launch.launch_service_provider__name)
+        );
+      }
+      if (this.selectedAgencyTypes && this.selectedAgencyTypes.length > 0) {
+        filtered = filtered.filter((launch) =>
+          this.selectedAgencyTypes.includes(launch.launch_service_provider__type)
+        );
+      }
+      if (this.selectedSpacecrafts && this.selectedSpacecrafts.length > 0) {
+        filtered = filtered.filter((launch) =>
+          this.selectedSpacecrafts.includes(
+            launch.rocket__spacecraft_stage__spacecraft__spacecraft_config__name
+          )
+        );
+      }
+      this.dataFiltered = filtered;
     } catch { /* ignore */ }
   }
 
   private async setupLaunchesTable() {
-    this.cols = [
-      { field: "name", header: "Name" },
-      { field: "net", header: "Date" },
-      { field: "rocket__configuration__full_name", header: "Rocket" },
-      { field: "rocket__configuration__family", header: "Rocket Family" },
-      { field: "launch_service_provider__name", header: "Agency" },
-      { field: "launch_service_provider__type", header: "Agencytype" },
-      {
-        field: "rocket__spacecraft_stage__spacecraft__spacecraft_config__name",
-        header: "Spacecraft",
-      },
-    ];
     this.dataRaw = this.service.getLaunches();
     this.rockets = this.dataRaw
       .map((launch) => {
@@ -591,24 +592,6 @@ export class StatisticPage {
         },
       },
     };
-  }
-  onDateSelect() {
-    // this.table.filter(this.formatDate(value), "net", filter);
-  }
-
-  formatDate(date) {
-    let month = date.getMonth() + 1;
-    let day = date.getDate();
-
-    if (month < 10) {
-      month = "0" + month;
-    }
-
-    if (day < 10) {
-      day = "0" + day;
-    }
-
-    return date.getFullYear() + "-" + month + "-" + day;
   }
   shuffle() {
     this.whatOpen();

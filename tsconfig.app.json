@@ -16,6 +16,8 @@
     "src/**/*.spec.ts"
   ],
   "angularCompilerOptions": {
+    "fullTemplateTypeCheck": false,
     "strictTemplates": false,
+    "strictInjectionParameters": true
   }
 }

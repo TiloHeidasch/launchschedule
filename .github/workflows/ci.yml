@@ -30,7 +30,7 @@ jobs:
       - name: Clean version File
         run: truncate -s -1 version
       - name: Safe Version File Artifact
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v7
         with:
           name: version
           path: ./version
@@ -47,7 +47,7 @@ jobs:
         if: ${{github.ref == 'refs/heads/dev'}}
         run: echo "Beta" > track
       - name: Safe Track File Artifact
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v7
         with:
           name: track
           path: ./track
@@ -70,14 +70,14 @@ jobs:
       - name: Setup Ionic
         run: npm install @ionic/cli
       - name: Download Version
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v8
         with:
           name: version
           path: ./
       - name: Set Release Name Variable
         run: echo "RELEASE_NAME=`cat ./version`" >> $GITHUB_ENV
       - name: Download Track
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v8
         with:
           name: track
           path: ./
@@ -100,7 +100,7 @@ jobs:
       - name: tar www Artifact
         run: tar -cvf www.tar www/
       - name: Safe www Artifact
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v7
         with:
           name: www
           path: www.tar
@@ -114,14 +114,14 @@ jobs:
       - name: Build App Bundle with Gradle
         run: cd android && chmod +x gradlew && ./gradlew bundleRelease
       - name: Safe Unsigned Release Bundle Artifact
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v7
         with:
           name: app-bundle-unsigned
           path: android/app/build/outputs/bundle/release/app-release.aab
       - name: Build APK with Gradle
         run: cd android && chmod +x gradlew && ./gradlew assembleRelease
       - name: Safe Unsigned Release APK Artifact
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v7
         with:
           name: app-release-unsigned
           path: android/app/build/outputs/apk/release/app-release-unsigned.apk
@@ -132,7 +132,7 @@ jobs:
     if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
     steps:
       - name: Download Unsigned Release Bundle Artifact
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v8
         with:
           name: app-bundle-unsigned
           path: ./
@@ -145,7 +145,7 @@ jobs:
           keyStorePassword: ${{ secrets.ANDROID_KEY_STORE_PASSWORD }}
           keyPassword: ${{ secrets.ANDROID_KEY_PASSWORD }}
       - name: Safe Signed Release Bundle Artifact
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v7
         with:
           name: app-bundle-signed
           path: ./app-release.aab
@@ -156,7 +156,7 @@ jobs:
     if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
     steps:
       - name: Download Unsigned Release Bundle Artifact
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v8
         with:
           name: app-release-unsigned
           path: ./
@@ -169,7 +169,7 @@ jobs:
           keyStorePassword: ${{ secrets.ANDROID_KEY_STORE_PASSWORD }}
           keyPassword: ${{ secrets.ANDROID_KEY_PASSWORD }}
       - name: Safe Signed Release Bundle Artifact
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v7
         with:
           name: app-release-signed
           path: ./app-release-unsigned-signed.apk
@@ -180,7 +180,7 @@ jobs:
     if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
     steps:
       - name: Download Signed Release Bundle Artifact
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v8
         with:
           name: app-bundle-signed
           path: ./
@@ -206,7 +206,7 @@ jobs:
     if: github.ref == 'refs/heads/master'
     steps:
     - name: Download www
-      uses: actions/download-artifact@v2.0.5
+      uses: actions/download-artifact@v8
       with:
         name: www
         path: ./
@@ -233,7 +233,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Download www
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v8
         with:
           name: www
           path: ./
@@ -366,7 +366,7 @@ jobs:
   #       run: npm run screenshots:pixel2xl
   #     - name: Safe Screenshots
   #       if: always()
-  #       uses: actions/upload-artifact@v2.2.3
+  #       uses: actions/upload-artifact@v7
   #       with:
   #         name: screenshots_pixel2xl
   #         path: ./screenshots/images
@@ -401,7 +401,7 @@ jobs:
   #       run: npm run screenshots:nexus7
   #     - name: Safe Screenshots
   #       if: always()
-  #       uses: actions/upload-artifact@v2.2.3
+  #       uses: actions/upload-artifact@v7
   #       with:
   #         name: screenshots_nexus7
   #         path: ./screenshots/images
@@ -436,7 +436,7 @@ jobs:
   #       run: npm run screenshots:nexus10
   #     - name: Safe Screenshots
   #       if: always()
-  #       uses: actions/upload-artifact@v2.2.3
+  #       uses: actions/upload-artifact@v7
   #       with:
   #         name: screenshots_nexus10
   #         path: ./screenshots/images
@@ -447,7 +447,7 @@ jobs:
     needs: [release]
     steps:
       - name: Download Version
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v8
         with:
           name: version
           path: ./
