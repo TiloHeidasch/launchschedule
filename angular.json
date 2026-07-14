@@ -67,8 +67,7 @@
                   "maximumError": "15mb"
                 }
               ],
-              "serviceWorker": true,
-              "ngswConfigPath": "ngsw-config.json"
+              "serviceWorker": "ngsw-config.json"
             },
             "ci": {
               "optimization": false,
