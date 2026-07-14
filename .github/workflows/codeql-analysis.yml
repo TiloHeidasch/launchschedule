@@ -19,14 +19,14 @@ jobs:
         language: [ 'java', 'javascript' ]
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v5
     - name: Initialize CodeQL
-      uses: github/codeql-action/init@v1
+      uses: github/codeql-action/init@v4
       with:
         languages: ${{ matrix.language }}
     - name: Setup Node
       if: ${{ matrix.language == 'java' }}
-      uses: actions/setup-node@v2.1.2
+      uses: actions/setup-node@v5
     - name: NPM Install
       if: ${{ matrix.language == 'java' }}
       run: npm ci
@@ -77,12 +77,12 @@ jobs:
       run: npx cap copy
     - name: Setup Java 11
       if: ${{ matrix.language == 'java' }}
-      uses: actions/setup-java@v2
+      uses: actions/setup-java@v5
       with:
-        distribution: 'adopt' # See 'Supported distributions' for available options
+        distribution: 'temurin' # See 'Supported distributions' for available options
         java-version: '11'
     - name: Build with Gradle
       if: ${{ matrix.language == 'java' }}
       run: cd android && chmod +x gradlew && ./gradlew bundleRelease        
     - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v1
+      uses: github/codeql-action/analyze@v4

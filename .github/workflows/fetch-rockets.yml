@@ -12,9 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v5
       - name: Setup Node
-        uses: actions/setup-node@v2.1.2
+        uses: actions/setup-node@v5
       - name: Fetch Rockets
         run: node scripts/masterdata/fetch.ts config/launcher rockets 0 500
       - name: Safe Data Artifact
@@ -28,7 +28,7 @@ jobs:
     needs: [fetchRockets1]
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v5
         with:
           ref: masterdata
       - name: Download Rockets 0-500
@@ -37,7 +37,7 @@ jobs:
           name: rockets1
           path: ./
       - name: Push to Masterdata branch
-        uses: crazy-max/ghaction-github-pages@v2.3.0
+        uses: crazy-max/ghaction-github-pages@v5.3.0
         with:
           build_dir: ./
           target_branch: masterdata

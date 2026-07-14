@@ -12,9 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v5
       - name: Setup Node
-        uses: actions/setup-node@v2.1.2
+        uses: actions/setup-node@v5
       - name: Fetch Previous Launches
         run: node scripts/masterdata/fetchPreviousLaunches.ts 0 500
       - name: Safe Data Artifact
@@ -27,9 +27,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v5
       - name: Setup Node
-        uses: actions/setup-node@v2.1.2
+        uses: actions/setup-node@v5
       - name: Fetch Previous Launches
         run: node scripts/masterdata/fetchPreviousLaunches.ts 500 500
       - name: Safe Data Artifact
@@ -42,9 +42,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v5
       - name: Setup Node
-        uses: actions/setup-node@v2.1.2
+        uses: actions/setup-node@v5
       - name: Fetch Previous Launches
         run: node scripts/masterdata/fetchPreviousLaunches.ts 1000 500
       - name: Safe Data Artifact
@@ -57,9 +57,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v5
       - name: Setup Node
-        uses: actions/setup-node@v2.1.2
+        uses: actions/setup-node@v5
       - name: Fetch Previous Launches
         run: node scripts/masterdata/fetchPreviousLaunches.ts 1500 500
       - name: Safe Data Artifact
@@ -72,9 +72,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v5
       - name: Setup Node
-        uses: actions/setup-node@v2.1.2
+        uses: actions/setup-node@v5
       - name: Fetch Previous Launches
         run: node scripts/masterdata/fetchPreviousLaunches.ts 2000 500
       - name: Safe Data Artifact
@@ -87,9 +87,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v5
       - name: Setup Node
-        uses: actions/setup-node@v2.1.2
+        uses: actions/setup-node@v5
       - name: Fetch Previous Launches
         run: node scripts/masterdata/fetchPreviousLaunches.ts 2500 500
       - name: Safe Data Artifact
@@ -102,9 +102,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v5
       - name: Setup Node
-        uses: actions/setup-node@v2.1.2
+        uses: actions/setup-node@v5
       - name: Fetch Previous Launches
         run: node scripts/masterdata/fetchPreviousLaunches.ts 3000 500
       - name: Safe Data Artifact
@@ -117,9 +117,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v5
       - name: Setup Node
-        uses: actions/setup-node@v2.1.2
+        uses: actions/setup-node@v5
       - name: Fetch Previous Launches
         run: node scripts/masterdata/fetchPreviousLaunches.ts 3500 500
       - name: Safe Data Artifact
@@ -132,9 +132,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v5
       - name: Setup Node
-        uses: actions/setup-node@v2.1.2
+        uses: actions/setup-node@v5
       - name: Fetch Previous Launches
         run: node scripts/masterdata/fetchPreviousLaunches.ts 4000 500
       - name: Safe Data Artifact
@@ -147,9 +147,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v5
       - name: Setup Node
-        uses: actions/setup-node@v2.1.2
+        uses: actions/setup-node@v5
       - name: Fetch Previous Launches
         run: node scripts/masterdata/fetchPreviousLaunches.ts 4500 500
       - name: Safe Data Artifact
@@ -162,9 +162,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v5
       - name: Setup Node
-        uses: actions/setup-node@v2.1.2
+        uses: actions/setup-node@v5
       - name: Fetch Previous Launches
         run: node scripts/masterdata/fetchPreviousLaunches.ts 5000 500
       - name: Safe Data Artifact
@@ -177,9 +177,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v5
       - name: Setup Node
-        uses: actions/setup-node@v2.1.2
+        uses: actions/setup-node@v5
       - name: Fetch Previous Launches
         run: node scripts/masterdata/fetchPreviousLaunches.ts 5500 500
       - name: Safe Data Artifact
@@ -192,9 +192,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v5
       - name: Setup Node
-        uses: actions/setup-node@v2.1.2
+        uses: actions/setup-node@v5
       - name: Fetch Previous Launches
         run: node scripts/masterdata/fetchPreviousLaunches.ts 6000 500
       - name: Safe Data Artifact
@@ -207,9 +207,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v5
       - name: Setup Node
-        uses: actions/setup-node@v2.1.2
+        uses: actions/setup-node@v5
       - name: Fetch Previous Launches
         run: node scripts/masterdata/fetchPreviousLaunches.ts 6500 500
       - name: Safe Data Artifact
@@ -238,7 +238,7 @@ jobs:
       ]
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v5
         with:
           ref: masterdata
       - name: Download Previous Launches 0-500
@@ -312,7 +312,7 @@ jobs:
           name: previouslaunches14
           path: ./
       - name: Push to Masterdata branch
-        uses: crazy-max/ghaction-github-pages@v2.3.0
+        uses: crazy-max/ghaction-github-pages@v5.3.0
         with:
           build_dir: ./
           target_branch: masterdata

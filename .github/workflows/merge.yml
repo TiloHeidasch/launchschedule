@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v5
         with:
           ref: masterdata
       - name: Create data dirs
@@ -63,7 +63,7 @@ jobs:
           name: masterdata
           path: ./
       - name: Push to Masterdata branch
-        uses: crazy-max/ghaction-github-pages@v2.3.0
+        uses: crazy-max/ghaction-github-pages@v5.3.0
         with:
           build_dir: ./
           target_branch: masterdata
