@@ -18,7 +18,7 @@ jobs:
         uses: actions/setup-node@v4
       - name: Setup Totemize
         if: ${{github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'}}
-        run: npm install --save totemize ts-node typescript
+        run: npm install --save totemize ts-node typescript --legacy-peer-deps
       - name: Write Development to File
         run: echo "development " > version
       - name: Create Prod Release Name Variable using Totemize
@@ -66,9 +66,9 @@ jobs:
       - name: NPM Install
         run: npm ci --legacy-peer-deps
       - name: Setup Angular
-        run: npm install @angular/cli
+        run: npm install @angular/cli --legacy-peer-deps
       - name: Setup Ionic
-        run: npm install @ionic/cli
+        run: npm install @ionic/cli --legacy-peer-deps
       - name: Download Version
         uses: actions/download-artifact@v8
         with:
@@ -275,9 +275,9 @@ jobs:
       - name: NPM Install
         run: npm ci --legacy-peer-deps
       - name: Setup Angular
-        run: npm install @angular/cli
+        run: npm install @angular/cli --legacy-peer-deps
       - name: Setup Ionic
-        run: npm install @ionic/cli
+        run: npm install @ionic/cli --legacy-peer-deps
       - name: Run Lint
         run: npm run lint
   test:
@@ -293,9 +293,9 @@ jobs:
       - name: NPM Install
         run: npm ci --legacy-peer-deps
       - name: Setup Angular
-        run: npm install @angular/cli
+        run: npm install @angular/cli --legacy-peer-deps
       - name: Setup Ionic
-        run: npm install @ionic/cli
+        run: npm install @ionic/cli --legacy-peer-deps
       - name: Download Masterdata
         run: wget https://github.com/TiloHeidasch/launchschedule/archive/refs/heads/masterdata.zip
       - name: Unzip Masterdata
@@ -324,9 +324,9 @@ jobs:
       - name: NPM Install
         run: npm ci --legacy-peer-deps
       - name: Setup Angular
-        run: npm install @angular/cli
+        run: npm install @angular/cli --legacy-peer-deps
       - name: Setup Ionic
-        run: npm install @ionic/cli
+        run: npm install @ionic/cli --legacy-peer-deps
       - name: Download Masterdata
         run: wget https://github.com/TiloHeidasch/launchschedule/archive/refs/heads/masterdata.zip
       - name: Unzip Masterdata
