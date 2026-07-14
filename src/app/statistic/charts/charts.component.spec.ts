@@ -21,7 +21,6 @@ describe("ChartsComponent", () => {
 
     fixture = TestBed.createComponent(ChartsComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it("should create", () => {

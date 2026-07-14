@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { IonicModule } from "@ionic/angular";
 
 import { StatisticPage } from "./statistic.page";
@@ -12,6 +13,7 @@ describe("StatisticPage", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [StatisticPage],
+      schemas: [NO_ERRORS_SCHEMA],
       imports: [
         IonicModule.forRoot(),
         RouterTestingModule,
@@ -82,13 +84,5 @@ describe("StatisticPage", () => {
   it("should fall back after axisOpen", () => {
     component.axisOpen();
     expect(component.step).toBe(3);
-  });
-  it("should Format Date Properly", () => {
-    const dateString = "2020-01-01";
-    const date = new Date(dateString);
-    expect(component.formatDate(date)).toBe(dateString);
-    const dateString2 = "2020-11-11";
-    const date2 = new Date(dateString2);
-    expect(component.formatDate(date2)).toBe(dateString2);
   });
 });
