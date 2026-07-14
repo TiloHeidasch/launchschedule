@@ -1,3 +1,4 @@
+import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { IonicModule } from "@ionic/angular";
 import { AboutCardModule } from "../about-card/about-card.module";
@@ -11,6 +12,7 @@ describe("RcketPage", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [RcketPage],
+      schemas: [NO_ERRORS_SCHEMA],
       imports: [IonicModule.forRoot(), AboutCardModule],
     }).compileComponents();
 
