@@ -6,7 +6,7 @@ import { IonicModule } from "@ionic/angular";
 
 import { SolarSystemRoutingModule } from "./solar-system-routing.module";
 
-import { NgxIonicImageViewerModule } from "@t.simon/ionic-image-viewer";
+import { NgxIonicImageViewerComponent } from "@herdwatch/ngx-ionic-image-viewer";
 import { SolarSystemPage } from "./solar-system.page";
 
 @NgModule({
@@ -15,7 +15,7 @@ import { SolarSystemPage } from "./solar-system.page";
     FormsModule,
     IonicModule,
     SolarSystemRoutingModule,
-    NgxIonicImageViewerModule,
+    NgxIonicImageViewerComponent,
   ],
   declarations: [SolarSystemPage],
 })

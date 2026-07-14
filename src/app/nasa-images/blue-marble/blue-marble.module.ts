@@ -8,7 +8,7 @@ import { BlueMarblePageRoutingModule } from "./blue-marble-routing.module";
 
 import { BlueMarblePage } from "./blue-marble.page";
 import { BlueMarbleListEntryModule } from "./blue-marble-list-entry/blue-marble-list-entry.module";
-import { NgxIonicImageViewerModule } from "@t.simon/ionic-image-viewer";
+import { NgxIonicImageViewerComponent } from "@herdwatch/ngx-ionic-image-viewer";
 import { ListEntryDummyModule } from "src/app/list-entry-dummy/list-entry-dummy.module";
 
 @NgModule({
@@ -17,7 +17,7 @@ import { ListEntryDummyModule } from "src/app/list-entry-dummy/list-entry-dummy.
     FormsModule,
     IonicModule,
     BlueMarblePageRoutingModule,
-    NgxIonicImageViewerModule,
+    NgxIonicImageViewerComponent,
     BlueMarbleListEntryModule,
     ListEntryDummyModule,
   ],

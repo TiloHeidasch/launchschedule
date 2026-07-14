@@ -16,7 +16,7 @@ import { LaunchListEntryModule } from "../launch/launch-list-entry/launch-list-e
 import { AstronautListEntryModule } from "../astronaut/astronaut-list-entry/astronaut-list-entry.module";
 import { SpacestationListEntryModule } from "../spacestation/spacestation-list-entry/spacestation-list-entry.module";
 import { NotificationModule } from "../notification/notification.module";
-import { NgxIonicImageViewerModule } from "@t.simon/ionic-image-viewer";
+import { NgxIonicImageViewerComponent } from "@herdwatch/ngx-ionic-image-viewer";
 import { ListEntryDummyModule } from "../list-entry-dummy/list-entry-dummy.module";
 
 @NgModule({
@@ -32,7 +32,7 @@ import { ListEntryDummyModule } from "../list-entry-dummy/list-entry-dummy.modul
     AstronautListEntryModule,
     SpacestationListEntryModule,
     NotificationModule,
-    NgxIonicImageViewerModule,
+    NgxIonicImageViewerComponent,
     ListEntryDummyModule,
   ],
   declarations: [EventPage, EventOverviewPage, EventDetailCardComponent],

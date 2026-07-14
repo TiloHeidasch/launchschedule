@@ -64,7 +64,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
       - name: NPM Install
-        run: npm ci
+        run: npm ci --legacy-peer-deps
       - name: Setup Angular
         run: npm install @angular/cli
       - name: Setup Ionic
@@ -273,7 +273,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
       - name: NPM Install
-        run: npm ci
+        run: npm ci --legacy-peer-deps
       - name: Setup Angular
         run: npm install @angular/cli
       - name: Setup Ionic
@@ -291,7 +291,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
       - name: NPM Install
-        run: npm ci
+        run: npm ci --legacy-peer-deps
       - name: Setup Angular
         run: npm install @angular/cli
       - name: Setup Ionic
@@ -322,7 +322,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
       - name: NPM Install
-        run: npm ci
+        run: npm ci --legacy-peer-deps
       - name: Setup Angular
         run: npm install @angular/cli
       - name: Setup Ionic

@@ -13,7 +13,7 @@ import { SpacestationListEntryModule } from "./spacestation-list-entry/spacestat
 import { AgencyListEntryModule } from "../agency/agency-list-entry/agency-list-entry.module";
 import { AstronautListEntryModule } from "../astronaut/astronaut-list-entry/astronaut-list-entry.module";
 import { NotificationModule } from "../notification/notification.module";
-import { NgxIonicImageViewerModule } from "@t.simon/ionic-image-viewer";
+import { NgxIonicImageViewerComponent } from "@herdwatch/ngx-ionic-image-viewer";
 import { SpacestationService } from "./spacestation.service";
 
 @NgModule({
@@ -26,7 +26,7 @@ import { SpacestationService } from "./spacestation.service";
     AgencyListEntryModule,
     AstronautListEntryModule,
     NotificationModule,
-    NgxIonicImageViewerModule,
+    NgxIonicImageViewerComponent,
   ],
   declarations: [
     SpacestationPage,

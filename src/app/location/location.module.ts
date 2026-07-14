@@ -9,7 +9,7 @@ import { LocationDetailCardComponent } from "./location-detail-card/location-det
 import { LocationListEntryModule } from "./location-list-entry/location-list-entry.module";
 import { PadListEntryModule } from "../pad/pad-list-entry/pad-list-entry.module";
 import { NotificationModule } from "../notification/notification.module";
-import { NgxIonicImageViewerModule } from "@t.simon/ionic-image-viewer";
+import { NgxIonicImageViewerComponent } from "@herdwatch/ngx-ionic-image-viewer";
 import { LocationService } from "./location.service";
 
 @NgModule({
@@ -21,7 +21,7 @@ import { LocationService } from "./location.service";
     LocationListEntryModule,
     PadListEntryModule,
     NotificationModule,
-    NgxIonicImageViewerModule,
+    NgxIonicImageViewerComponent,
   ],
   declarations: [
     LocationPage,

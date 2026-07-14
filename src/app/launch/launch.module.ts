@@ -19,7 +19,7 @@ import { RocketListEntryModule } from "../rocket/rocket-list-entry/rocket-list-e
 import { AstronautListEntryModule } from "../astronaut/astronaut-list-entry/astronaut-list-entry.module";
 import { VideoModule } from "../video/video.module";
 import { NotificationModule } from "../notification/notification.module";
-import { NgxIonicImageViewerModule } from "@t.simon/ionic-image-viewer";
+import { NgxIonicImageViewerComponent } from "@herdwatch/ngx-ionic-image-viewer";
 import { ListEntryDummyModule } from "../list-entry-dummy/list-entry-dummy.module";
 
 @NgModule({
@@ -38,7 +38,7 @@ import { ListEntryDummyModule } from "../list-entry-dummy/list-entry-dummy.modul
     AstronautListEntryModule,
     VideoModule,
     NotificationModule,
-    NgxIonicImageViewerModule,
+    NgxIonicImageViewerComponent,
     ListEntryDummyModule,
   ],
   declarations: [LaunchPage, LaunchOverviewPage, LaunchDetailCardComponent],

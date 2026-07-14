@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { IonicModule } from "@ionic/angular";
-import { NgxIonicImageViewerModule } from "@t.simon/ionic-image-viewer";
+import { NgxIonicImageViewerComponent } from "@herdwatch/ngx-ionic-image-viewer";
 import { AstroImageOfTheDayListEntryComponent } from "./astro-image-of-the-day-list-entry.component";
 import { YouTubePlayerModule } from "@angular/youtube-player";
 
@@ -10,7 +10,7 @@ import { YouTubePlayerModule } from "@angular/youtube-player";
   imports: [
     CommonModule,
     IonicModule,
-    NgxIonicImageViewerModule,
+    NgxIonicImageViewerComponent,
     YouTubePlayerModule,
   ],
   exports: [AstroImageOfTheDayListEntryComponent],

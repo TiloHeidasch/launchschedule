@@ -6,7 +6,7 @@ import { IonicModule } from "@ionic/angular";
 
 import { AstroImageOfTheDayRoutingModule } from "./astro-image-of-the-day-routing.module";
 
-import { NgxIonicImageViewerModule } from "@t.simon/ionic-image-viewer";
+import { NgxIonicImageViewerComponent } from "@herdwatch/ngx-ionic-image-viewer";
 import { AstroImageOfTheDayPage } from "./astro-image-of-the-day.page";
 import { AstroImageOfTheDayListEntryModule } from "./astro-image-of-the-day-list-entry/astro-image-of-the-day-list-entry.module";
 import { ListEntryDummyModule } from "src/app/list-entry-dummy/list-entry-dummy.module";
@@ -17,7 +17,7 @@ import { ListEntryDummyModule } from "src/app/list-entry-dummy/list-entry-dummy.
     FormsModule,
     IonicModule,
     AstroImageOfTheDayRoutingModule,
-    NgxIonicImageViewerModule,
+    NgxIonicImageViewerComponent,
     AstroImageOfTheDayListEntryModule,
     ListEntryDummyModule,
   ],

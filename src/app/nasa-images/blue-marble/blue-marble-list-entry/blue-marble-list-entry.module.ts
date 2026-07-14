@@ -2,11 +2,11 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { BlueMarbleListEntryComponent } from "./blue-marble-list-entry.component";
 import { IonicModule } from "@ionic/angular";
-import { NgxIonicImageViewerModule } from "@t.simon/ionic-image-viewer";
+import { NgxIonicImageViewerComponent } from "@herdwatch/ngx-ionic-image-viewer";
 
 @NgModule({
   declarations: [BlueMarbleListEntryComponent],
-  imports: [CommonModule, IonicModule, NgxIonicImageViewerModule],
+  imports: [CommonModule, IonicModule, NgxIonicImageViewerComponent],
   exports: [BlueMarbleListEntryComponent],
 })
 export class BlueMarbleListEntryModule {}
