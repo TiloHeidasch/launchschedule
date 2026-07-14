@@ -1,10 +1,12 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { RocketService } from "./rocket.service";
 
 @Component({
   selector: "app-rocket",
+  standalone: false,
   templateUrl: "./rocket.page.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./rocket.page.scss"],
 })
 export class RocketPage implements OnInit {

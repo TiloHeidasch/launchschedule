@@ -20,34 +20,43 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <div id="container" *ngIf="spacestation!==undefined">
-    <div id="spacestation">
-      <app-spacestation-detail-card
-        [spacestation]="spacestation"
-      ></app-spacestation-detail-card>
-    </div>
-    <div id="expeditions" *ngIf="spacestation.active_expeditions">
-      <div *ngFor="let expedition of spacestation.active_expeditions">
-        <ion-item>
-          <ion-label> {{expedition.name}} Crew </ion-label>
-        </ion-item>
-        <div class="crew-member" *ngFor="let member of expedition.crew">
-          <ion-item>
-            <ion-label> {{member.role.role}} </ion-label>
-          </ion-item>
-          <app-astronaut-list-entry
-            [id]="member.astronaut.id"
-          ></app-astronaut-list-entry>
+  @if (spacestation!==undefined) {
+    <div id="container">
+      <div id="spacestation">
+        <app-spacestation-detail-card
+          [spacestation]="spacestation"
+        ></app-spacestation-detail-card>
+      </div>
+      @if (spacestation.active_expeditions) {
+        <div id="expeditions">
+          @for (expedition of spacestation.active_expeditions; track expedition) {
+            <div>
+              <ion-item>
+                <ion-label> {{expedition.name}} Crew </ion-label>
+              </ion-item>
+              @for (member of expedition.crew; track member) {
+                <div class="crew-member">
+                  <ion-item>
+                    <ion-label> {{member.role.role}} </ion-label>
+                  </ion-item>
+                  <app-astronaut-list-entry
+                    [id]="member.astronaut.id"
+                  ></app-astronaut-list-entry>
+                </div>
+              }
+            </div>
+          }
         </div>
+      }
+      <div id="owners">
+        <ion-item> Owners </ion-item>
+        @for (agency of spacestation.owners; track agency) {
+          <app-agency-list-entry
+            [id]="agency.id"
+            >
+          </app-agency-list-entry>
+        }
       </div>
     </div>
-    <div id="owners">
-      <ion-item> Owners </ion-item>
-      <app-agency-list-entry
-        *ngFor="let agency of spacestation.owners"
-        [id]="agency.id"
-      >
-      </app-agency-list-entry>
-    </div>
-  </div>
+  }
 </ion-content>

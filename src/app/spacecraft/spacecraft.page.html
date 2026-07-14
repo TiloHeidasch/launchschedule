@@ -20,17 +20,19 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <div id="container" *ngIf="spacecraft!==undefined">
-    <div id="spacecraft">
-      <app-spacecraft-detail-card
-        [spacecraft]="spacecraft"
-      ></app-spacecraft-detail-card>
+  @if (spacecraft!==undefined) {
+    <div id="container">
+      <div id="spacecraft">
+        <app-spacecraft-detail-card
+          [spacecraft]="spacecraft"
+        ></app-spacecraft-detail-card>
+      </div>
+      <div id="agency">
+        <ion-item> Agency </ion-item>
+        <app-agency-list-entry
+          [agency]="spacecraft.agency"
+        ></app-agency-list-entry>
+      </div>
     </div>
-    <div id="agency">
-      <ion-item> Agency </ion-item>
-      <app-agency-list-entry
-        [agency]="spacecraft.agency"
-      ></app-agency-list-entry>
-    </div>
-  </div>
+  }
 </ion-content>

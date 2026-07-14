@@ -1,10 +1,12 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { LaunchLibraryService } from "../launch-library.service";
 
 @Component({
   selector: "app-event",
+  standalone: false,
   templateUrl: "./event.page.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./event.page.scss"],
 })
 export class EventPage implements OnInit {

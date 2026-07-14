@@ -1,11 +1,13 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild, ChangeDetectionStrategy } from "@angular/core";
 import { IonContent, IonInfiniteScroll, ViewDidEnter } from "@ionic/angular";
 import { SnapiService } from "src/app/snapi.service";
 import { NewsParamStoreService } from "../news-param-store.service";
 
 @Component({
   selector: "app-article",
+  standalone: false,
   templateUrl: "./article.page.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./article.page.scss"],
 })
 export class ArticlePage implements OnInit, ViewDidEnter {
@@ -30,7 +32,7 @@ export class ArticlePage implements OnInit, ViewDidEnter {
   async loadFirst(refreshEvent?) {
     try {
       this.infiniteScroll.disabled = false;
-    } catch (error) {}
+    } catch { /* ignore */ }
     this.store.articles = [];
     const answerArticles = await this.service.getFirstArticles();
     const newArticles = answerArticles.newsItems;

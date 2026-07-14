@@ -1,53 +1,75 @@
-<div *ngIf="status !== undefined">
-  <div [ngSwitch]="status.id">
-    <!-- 1 - Go -- green -->
-    <!-- 2 - TBD -- purple -->
-    <!-- 3 - Success -- green -->
-    <!-- 4 - Fail -- red -->
-    <!-- 5 - Hold -- purple -->
-    <!-- 6 - In Flight -- blue -->
-    <!-- 7 - Partial Failure -- yellow -->
-    <!-- 8 - To be confirmed -- yellow -->
-    <div *ngSwitchCase="1">
-      <ion-chip color="good">
-        <ion-label color="good">{{ status.name }}</ion-label>
-      </ion-chip>
+@if (status !== undefined) {
+  <div>
+    <div>
+      @switch (status.id) {
+        <!-- 1 - Go -- green -->
+        <!-- 2 - TBD -- purple -->
+        <!-- 3 - Success -- green -->
+        <!-- 4 - Fail -- red -->
+        <!-- 5 - Hold -- purple -->
+        <!-- 6 - In Flight -- blue -->
+        <!-- 7 - Partial Failure -- yellow -->
+        <!-- 8 - To be confirmed -- yellow -->
+        @case (1) {
+          <div>
+            <ion-chip color="good">
+              <ion-label color="good">{{ status.name }}</ion-label>
+            </ion-chip>
+          </div>
+        }
+        @case (2) {
+          <div>
+            <ion-chip color="unsure">
+              <ion-label color="unsure">{{ status.name }}</ion-label>
+            </ion-chip>
+          </div>
+        }
+        @case (3) {
+          <div>
+            <ion-chip color="good">
+              <ion-label color="good">{{ status.name }}</ion-label>
+            </ion-chip>
+          </div>
+        }
+        @case (4) {
+          <div>
+            <ion-chip color="bad">
+              <ion-label color="bad">{{ status.name }}</ion-label>
+            </ion-chip>
+          </div>
+        }
+        @case (5) {
+          <div>
+            <ion-chip color="trouble">
+              <ion-label color="trouble">{{ status.name }}</ion-label>
+            </ion-chip>
+          </div>
+        }
+        @case (6) {
+          <div>
+            <ion-chip color="primary">
+              <ion-label color="primary">{{ status.name }}</ion-label>
+            </ion-chip>
+          </div>
+        }
+        @case (7) {
+          <div>
+            <ion-chip color="trouble">
+              <ion-label color="trouble">{{ status.name }}</ion-label>
+            </ion-chip>
+          </div>
+        }
+        @case (8) {
+          <div>
+            <ion-chip color="trouble">
+              <ion-label color="trouble">{{ status.name }}</ion-label>
+            </ion-chip>
+          </div>
+        }
+        @default {
+          <div></div>
+        }
+      }
     </div>
-    <div *ngSwitchCase="2">
-      <ion-chip color="unsure">
-        <ion-label color="unsure">{{ status.name }}</ion-label>
-      </ion-chip>
-    </div>
-    <div *ngSwitchCase="3">
-      <ion-chip color="good">
-        <ion-label color="good">{{ status.name }}</ion-label>
-      </ion-chip>
-    </div>
-    <div *ngSwitchCase="4">
-      <ion-chip color="bad">
-        <ion-label color="bad">{{ status.name }}</ion-label>
-      </ion-chip>
-    </div>
-    <div *ngSwitchCase="5">
-      <ion-chip color="trouble">
-        <ion-label color="trouble">{{ status.name }}</ion-label>
-      </ion-chip>
-    </div>
-    <div *ngSwitchCase="6">
-      <ion-chip color="primary">
-        <ion-label color="primary">{{ status.name }}</ion-label>
-      </ion-chip>
-    </div>
-    <div *ngSwitchCase="7">
-      <ion-chip color="trouble">
-        <ion-label color="trouble">{{ status.name }}</ion-label>
-      </ion-chip>
-    </div>
-    <div *ngSwitchCase="8">
-      <ion-chip color="trouble">
-        <ion-label color="trouble">{{ status.name }}</ion-label>
-      </ion-chip>
-    </div>
-    <div *ngSwitchDefault></div>
   </div>
-</div>
+}

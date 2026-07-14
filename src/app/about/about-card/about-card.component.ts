@@ -1,9 +1,11 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, ChangeDetectionStrategy } from "@angular/core";
 import { PlaceholderService } from "src/app/placeholder.service";
 
 @Component({
   selector: "app-about-card",
+  standalone: false,
   templateUrl: "./about-card.component.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./about-card.component.scss"],
 })
 export class AboutCardComponent {

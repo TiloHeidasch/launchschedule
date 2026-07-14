@@ -1,11 +1,13 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild, ChangeDetectionStrategy } from "@angular/core";
 import { SpacecraftParamStoreService } from "./spacecraft-param-store.service";
 import { IonContent, ViewDidEnter, IonInfiniteScroll } from "@ionic/angular";
 import { SpacecraftService } from "./spacecraft.service";
 
 @Component({
   selector: "app-spacecraft-overview",
+  standalone: false,
   templateUrl: "./spacecraft-overview.page.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./spacecraft-overview.page.scss"],
 })
 export class SpacecraftOverviewPage implements OnInit, ViewDidEnter {
@@ -31,7 +33,7 @@ export class SpacecraftOverviewPage implements OnInit, ViewDidEnter {
   async loadFirst(refreshEvent?) {
     try {
       this.infiniteScroll.disabled = false;
-    } catch (error) {}
+    } catch { /* ignore */ }
     this.store.spacecrafts = [];
     this.store.spacecrafts = (
 

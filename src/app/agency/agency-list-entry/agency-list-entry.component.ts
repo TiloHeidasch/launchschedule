@@ -10,6 +10,7 @@ import { PlaceholderService } from "src/app/placeholder.service";
 
 @Component({
   selector: "app-agency-list-entry",
+  standalone: false,
   templateUrl: "./agency-list-entry.component.html",
   styleUrls: ["./agency-list-entry.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,

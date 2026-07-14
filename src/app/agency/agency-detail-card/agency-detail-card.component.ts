@@ -1,10 +1,12 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, ChangeDetectionStrategy } from "@angular/core";
 import { AgencyService } from "../agency.service";
 import { PlaceholderService } from "src/app/placeholder.service";
 
 @Component({
   selector: "app-agency-detail-card",
+  standalone: false,
   templateUrl: "./agency-detail-card.component.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./agency-detail-card.component.scss"],
 })
 export class AgencyDetailCardComponent implements OnInit {

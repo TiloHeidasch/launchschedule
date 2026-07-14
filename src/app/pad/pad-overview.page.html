@@ -10,13 +10,15 @@
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
-  <ion-toolbar *ngIf="store.showFilter">
-    <ion-searchbar
-      (ionChange)="searchChange($event)"
-      [value]="store.search"
-      animated
-    ></ion-searchbar>
-  </ion-toolbar>
+  @if (store.showFilter) {
+    <ion-toolbar>
+      <ion-searchbar
+        (ionChange)="searchChange($event)"
+        [value]="store.search"
+        animated
+      ></ion-searchbar>
+    </ion-toolbar>
+  }
 </ion-header>
 
 <ion-content
@@ -24,7 +26,7 @@
   [scrollEvents]="true"
   (ionScroll)="logScrolling($event)"
   [fullscreen]="true"
->
+  >
   <ion-refresher slot="fixed" (ionRefresh)="loadFirst($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
@@ -37,22 +39,23 @@
   <div id="container">
     <ion-grid>
       <ion-row>
-        <ion-col
-          *ngFor="let pad of store.pads"
-          size="12"
-          size-sm="6"
-          size-md="4"
-          size-xl="3"
-        >
-          <app-pad-list-entry [pad]="pad"></app-pad-list-entry>
-        </ion-col>
+        @for (pad of store.pads; track pad) {
+          <ion-col
+            size="12"
+            size-sm="6"
+            size-md="4"
+            size-xl="3"
+            >
+            <app-pad-list-entry [pad]="pad"></app-pad-list-entry>
+          </ion-col>
+        }
       </ion-row>
     </ion-grid>
     <ion-infinite-scroll (ionInfinite)="loadMore($event)">
       <ion-infinite-scroll-content
         loadingSpinner="circular"
         loadingText="Loading more pads..."
-      >
+        >
       </ion-infinite-scroll-content>
     </ion-infinite-scroll>
   </div>

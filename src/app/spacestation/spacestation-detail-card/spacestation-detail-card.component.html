@@ -2,131 +2,158 @@
   type="spacestation"
   [id]="spacestation.id"
 ></app-notification-icon>
-<ion-card *ngIf="spacestation !== undefined">
-  <div id="image">
-    <div class="image-wrapper">
-      <ion-img
-        id="background"
+@if (spacestation !== undefined) {
+  <ion-card>
+    <div id="image">
+      <div class="image-wrapper">
+        <ion-img
+          id="background"
         [src]="
           spacestation.image_url
             ? spacestation.image_url
             : placeholderService.getPlaceholder()
         "
-      >
-      </ion-img>
-    </div>
-    <div class="image-wrapper">
-      <ion-img-viewer
-        [title]="spacestation.name"
-        [text]="spacestation.type.name"
-        [swipeToClose]="false"
-        id="foreground"
+          >
+        </ion-img>
+      </div>
+      <div class="image-wrapper">
+        <ion-img-viewer
+          [title]="spacestation.name"
+          [text]="spacestation.type.name"
+          [swipeToClose]="false"
+          id="foreground"
         [src]="
           spacestation.image_url
             ? spacestation.image_url
             : placeholderService.getPlaceholder()
         "
-      >
-      </ion-img-viewer>
-    </div>
-  </div>
-  <ion-card-header>
-    <ion-card-subtitle>{{ spacestation.type.name }}</ion-card-subtitle>
-    <ion-card-title>{{ spacestation.name }}</ion-card-title>
-  </ion-card-header>
-  <ion-card-content>
-    <div id="description">
-      <ion-item>
-        <ion-label> Description </ion-label>
-      </ion-item>
-      <p>{{ spacestation.description }}</p>
-    </div>
-    <div id="orbit">
-      <ion-item>
-        <ion-label> Orbit </ion-label>
-      </ion-item>
-      <p>{{ spacestation.orbit }}</p>
-    </div>
-    <div id="docking_location" *ngIf="spacestation.docking_location.length > 0">
-      <ion-item>
-        <ion-label> Docking Ports </ion-label>
-      </ion-item>
-      <div
-        id="docking_port"
-        *ngFor="let dockingLocation of spacestation.docking_location"
-      >
-        <span>{{ dockingLocation.name }}:</span>
-        <ion-chip
-          (click)="presentUnoccupiedToast(dockingLocation)"
-          id="unoccupied"
-          *ngIf="!dockingLocation.docked"
-        >
-          <ion-icon name="radio-button-off" color="danger"></ion-icon>
-          <ion-label>unoccupied</ion-label>
-        </ion-chip>
-        <ion-chip
-          (click)="presentDockingLocationActionSheet(dockingLocation)"
-          id="vehicle"
-          *ngIf="dockingLocation.docked"
-        >
-          <ion-icon name="radio-button-on" color="success"></ion-icon>
-          <ion-label>{{
-            dockingLocation.docked.flight_vehicle.spacecraft.spacecraft_config
-              .name
-          }}</ion-label>
-        </ion-chip>
+          >
+        </ion-img-viewer>
       </div>
     </div>
-    <div id="specifications">
-      <ion-item>
-        <ion-label> Specifications </ion-label>
-      </ion-item>
-      <ion-chip id="onboard_crew" *ngIf="spacestation.onboard_crew"
-        (click)="showSpecification('Onboard crew',spacestation.onboard_crew,'Person(s)')">
-        <ion-icon name="body"></ion-icon>
-        <ion-label>{{ spacestation.onboard_crew }}</ion-label>
-      </ion-chip>
-      <ion-chip id="volume" *ngIf="spacestation.volume"
-        (click)="showSpecification('Pressurized volume',spacestation.volume,'Cubicmeter')">
-        <ion-icon name="cube"></ion-icon>
-        <ion-label>{{ spacestation.volume }}m³</ion-label>
-      </ion-chip>
-      <ion-chip id="width" *ngIf="spacestation.width" (click)="showSpecification('Width',spacestation.width,'Meter')">
-        <ion-icon name="code-working"></ion-icon>
-        <ion-label>{{ spacestation.width }}m</ion-label>
-      </ion-chip>
-      <ion-chip id="height" *ngIf="spacestation.height" (click)="showSpecification('Height',spacestation.height,'Meter')">
-        <ion-icon name="arrow-up"></ion-icon>
-        <ion-label>{{ spacestation.height }}m</ion-label>
-      </ion-chip>
-      <ion-chip id="mass" *ngIf="spacestation.mass" (click)="showSpecification('Mass',spacestation.mass,'Tons')">
-        <ion-icon name="barbell"></ion-icon>
-        <ion-label>{{ spacestation.mass }}t</ion-label>
-      </ion-chip>
-      <ion-chip id="in_use" *ngIf="spacestation.status.id === 1"
-        (click)="showSpecification('Spacestation is',spacestation.status.name,'')">
-        <ion-icon name="checkmark-circle" color="success"></ion-icon>
-        <ion-label>{{ spacestation.status.name }}</ion-label>
-      </ion-chip>
-      <ion-chip id="deorbited" *ngIf="spacestation.status.id === 2"
-        (click)="showSpecification('Spacestation is',spacestation.status.name,'')">
-        <ion-icon name="caret-down-circle" color="danger"></ion-icon>
-        <ion-label>{{ spacestation.status.name }}</ion-label>
-      </ion-chip>
-      <ion-chip id="abandoned" *ngIf="spacestation.status.id === 3"
-        (click)="showSpecification('Spacestation is',spacestation.status.name,'')">
-        <ion-icon name="close-circle" color="warning"></ion-icon>
-        <ion-label>{{ spacestation.status.name }}</ion-label>
-      </ion-chip>
-      <ion-chip id="founded" *ngIf="spacestation.founded" (click)="showSpecification('Founded on',spacestation.founded,'')">
-        <ion-icon name="cloud-upload"></ion-icon>
-        <ion-label>{{ spacestation.founded }}</ion-label>
-      </ion-chip>
-      <ion-chip id="deorbited" *ngIf="spacestation.deorbited"
-        (click)="showSpecification('Deorbited on',spacestation.deorbited,'')">
-        <ion-icon name="cloud-download"></ion-icon>
-        <ion-label>{{ spacestation.deorbited }}</ion-label>
-      </ion-chip>
-    </div>
-  </ion-card-content>
-</ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>{{ spacestation.type.name }}</ion-card-subtitle>
+      <ion-card-title>{{ spacestation.name }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div id="description">
+        <ion-item>
+          <ion-label> Description </ion-label>
+        </ion-item>
+        <p>{{ spacestation.description }}</p>
+      </div>
+      <div id="orbit">
+        <ion-item>
+          <ion-label> Orbit </ion-label>
+        </ion-item>
+        <p>{{ spacestation.orbit }}</p>
+      </div>
+      @if (spacestation.docking_location.length > 0) {
+        <div id="docking_location">
+          <ion-item>
+            <ion-label> Docking Ports </ion-label>
+          </ion-item>
+          @for (dockingLocation of spacestation.docking_location; track dockingLocation) {
+            <div
+              id="docking_port"
+              >
+              <span>{{ dockingLocation.name }}:</span>
+              @if (!dockingLocation.docked) {
+                <ion-chip
+                  (click)="presentUnoccupiedToast(dockingLocation)"
+                  id="unoccupied"
+                  >
+                  <ion-icon name="radio-button-off" color="danger"></ion-icon>
+                  <ion-label>unoccupied</ion-label>
+                </ion-chip>
+              }
+              @if (dockingLocation.docked) {
+                <ion-chip
+                  (click)="presentDockingLocationActionSheet(dockingLocation)"
+                  id="vehicle"
+                  >
+                  <ion-icon name="radio-button-on" color="success"></ion-icon>
+                  <ion-label>{{
+                    dockingLocation.docked.flight_vehicle.spacecraft.spacecraft_config
+                    .name
+                  }}</ion-label>
+                </ion-chip>
+              }
+            </div>
+          }
+        </div>
+      }
+      <div id="specifications">
+        <ion-item>
+          <ion-label> Specifications </ion-label>
+        </ion-item>
+        @if (spacestation.onboard_crew) {
+          <ion-chip id="onboard_crew"
+            (click)="showSpecification('Onboard crew',spacestation.onboard_crew,'Person(s)')">
+            <ion-icon name="body"></ion-icon>
+            <ion-label>{{ spacestation.onboard_crew }}</ion-label>
+          </ion-chip>
+        }
+        @if (spacestation.volume) {
+          <ion-chip id="volume"
+            (click)="showSpecification('Pressurized volume',spacestation.volume,'Cubicmeter')">
+            <ion-icon name="cube"></ion-icon>
+            <ion-label>{{ spacestation.volume }}m³</ion-label>
+          </ion-chip>
+        }
+        @if (spacestation.width) {
+          <ion-chip id="width" (click)="showSpecification('Width',spacestation.width,'Meter')">
+            <ion-icon name="code-working"></ion-icon>
+            <ion-label>{{ spacestation.width }}m</ion-label>
+          </ion-chip>
+        }
+        @if (spacestation.height) {
+          <ion-chip id="height" (click)="showSpecification('Height',spacestation.height,'Meter')">
+            <ion-icon name="arrow-up"></ion-icon>
+            <ion-label>{{ spacestation.height }}m</ion-label>
+          </ion-chip>
+        }
+        @if (spacestation.mass) {
+          <ion-chip id="mass" (click)="showSpecification('Mass',spacestation.mass,'Tons')">
+            <ion-icon name="barbell"></ion-icon>
+            <ion-label>{{ spacestation.mass }}t</ion-label>
+          </ion-chip>
+        }
+        @if (spacestation.status.id === 1) {
+          <ion-chip id="in_use"
+            (click)="showSpecification('Spacestation is',spacestation.status.name,'')">
+            <ion-icon name="checkmark-circle" color="success"></ion-icon>
+            <ion-label>{{ spacestation.status.name }}</ion-label>
+          </ion-chip>
+        }
+        @if (spacestation.status.id === 2) {
+          <ion-chip id="deorbited"
+            (click)="showSpecification('Spacestation is',spacestation.status.name,'')">
+            <ion-icon name="caret-down-circle" color="danger"></ion-icon>
+            <ion-label>{{ spacestation.status.name }}</ion-label>
+          </ion-chip>
+        }
+        @if (spacestation.status.id === 3) {
+          <ion-chip id="abandoned"
+            (click)="showSpecification('Spacestation is',spacestation.status.name,'')">
+            <ion-icon name="close-circle" color="warning"></ion-icon>
+            <ion-label>{{ spacestation.status.name }}</ion-label>
+          </ion-chip>
+        }
+        @if (spacestation.founded) {
+          <ion-chip id="founded" (click)="showSpecification('Founded on',spacestation.founded,'')">
+            <ion-icon name="cloud-upload"></ion-icon>
+            <ion-label>{{ spacestation.founded }}</ion-label>
+          </ion-chip>
+        }
+        @if (spacestation.deorbited) {
+          <ion-chip id="deorbited"
+            (click)="showSpecification('Deorbited on',spacestation.deorbited,'')">
+            <ion-icon name="cloud-download"></ion-icon>
+            <ion-label>{{ spacestation.deorbited }}</ion-label>
+          </ion-chip>
+        }
+      </div>
+    </ion-card-content>
+  </ion-card>
+}

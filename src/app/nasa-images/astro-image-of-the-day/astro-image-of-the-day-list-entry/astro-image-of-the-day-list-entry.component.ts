@@ -1,10 +1,12 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { PlaceholderService } from "src/app/placeholder.service";
 import { AstronomyPictureOfTheDay } from "../apod.service";
 
 @Component({
   selector: "app-astro-image-of-the-day-list-entry",
+  standalone: false,
   templateUrl: "./astro-image-of-the-day-list-entry.component.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./astro-image-of-the-day-list-entry.component.scss"],
 })
 export class AstroImageOfTheDayListEntryComponent implements OnInit {

@@ -10,62 +10,68 @@
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
-  <ion-toolbar *ngIf="store.showFilter">
-    <ion-searchbar
-      (ionChange)="searchChange($event)"
-      [value]="store.search"
-      animated
-    ></ion-searchbar>
-  </ion-toolbar>
-  <ion-toolbar *ngIf="store.showFilter">
-    <ion-segment
-      (ionChange)="loadFirst()"
-      [(ngModel)]="store.upcomingPreviousAll"
-    >
-      <ion-segment-button value="Previous">
-        <ion-icon name="return-up-back"></ion-icon>
-        <ion-label>Previous</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="All">
-        <ion-icon name="repeat"></ion-icon>
-        <ion-label>All</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="Upcoming">
-        <ion-icon name="return-down-forward"></ion-icon>
-        <ion-label>Upcoming</ion-label>
-      </ion-segment-button>
-    </ion-segment>
-  </ion-toolbar>
-  <ion-toolbar *ngIf="store.showFilter">
-    <ion-item>
-      <ion-label>Type</ion-label>
-      <ion-select
-        [(ngModel)]="store.type"
+  @if (store.showFilter) {
+    <ion-toolbar>
+      <ion-searchbar
+        (ionChange)="searchChange($event)"
+        [value]="store.search"
+        animated
+      ></ion-searchbar>
+    </ion-toolbar>
+  }
+  @if (store.showFilter) {
+    <ion-toolbar>
+      <ion-segment
         (ionChange)="loadFirst()"
-        placeholder="Type"
-        interface="action-sheet"
-      >
-        <ion-select-option value="">None</ion-select-option>
-        <ion-select-option value="1">Unknown</ion-select-option>
-        <ion-select-option value="2">Docking</ion-select-option>
-        <ion-select-option value="3">EVA</ion-select-option>
-        <ion-select-option value="4">Berthing</ion-select-option>
-        <ion-select-option value="5">Static Fire</ion-select-option>
-        <ion-select-option value="6">Spacecraft Event</ion-select-option>
-        <ion-select-option value="7">Moon Landing</ion-select-option>
-        <ion-select-option value="10">Abort Test</ion-select-option>
-        <ion-select-option value="8">Undocking</ion-select-option>
-        <ion-select-option value="11">Celestial Event</ion-select-option>
-        <ion-select-option value="14">Test Flight</ion-select-option>
-        <ion-select-option value="9">Landing</ion-select-option>
-        <ion-select-option value="20">Press Event</ion-select-option>
-        <ion-select-option value="12">Hatch Opening</ion-select-option>
-        <ion-select-option value="13">Release</ion-select-option>
-        <ion-select-option value="15">Change of Command</ion-select-option>
-        <ion-select-option value="16">Orbital Insertion</ion-select-option>
-      </ion-select>
-    </ion-item>
-  </ion-toolbar>
+        [(ngModel)]="store.upcomingPreviousAll"
+        >
+        <ion-segment-button value="Previous">
+          <ion-icon name="return-up-back"></ion-icon>
+          <ion-label>Previous</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="All">
+          <ion-icon name="repeat"></ion-icon>
+          <ion-label>All</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="Upcoming">
+          <ion-icon name="return-down-forward"></ion-icon>
+          <ion-label>Upcoming</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
+  }
+  @if (store.showFilter) {
+    <ion-toolbar>
+      <ion-item>
+        <ion-label>Type</ion-label>
+        <ion-select
+          [(ngModel)]="store.type"
+          (ionChange)="loadFirst()"
+          placeholder="Type"
+          interface="action-sheet"
+          >
+          <ion-select-option value="">None</ion-select-option>
+          <ion-select-option value="1">Unknown</ion-select-option>
+          <ion-select-option value="2">Docking</ion-select-option>
+          <ion-select-option value="3">EVA</ion-select-option>
+          <ion-select-option value="4">Berthing</ion-select-option>
+          <ion-select-option value="5">Static Fire</ion-select-option>
+          <ion-select-option value="6">Spacecraft Event</ion-select-option>
+          <ion-select-option value="7">Moon Landing</ion-select-option>
+          <ion-select-option value="10">Abort Test</ion-select-option>
+          <ion-select-option value="8">Undocking</ion-select-option>
+          <ion-select-option value="11">Celestial Event</ion-select-option>
+          <ion-select-option value="14">Test Flight</ion-select-option>
+          <ion-select-option value="9">Landing</ion-select-option>
+          <ion-select-option value="20">Press Event</ion-select-option>
+          <ion-select-option value="12">Hatch Opening</ion-select-option>
+          <ion-select-option value="13">Release</ion-select-option>
+          <ion-select-option value="15">Change of Command</ion-select-option>
+          <ion-select-option value="16">Orbital Insertion</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-toolbar>
+  }
 </ion-header>
 
 <ion-content
@@ -73,7 +79,7 @@
   [scrollEvents]="true"
   (ionScroll)="logScrolling($event)"
   [fullscreen]="true"
->
+  >
   <ion-refresher slot="fixed" (ionRefresh)="loadFirst($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
@@ -85,37 +91,41 @@
 
   <div id="container">
     <ion-grid>
-      <ion-row *ngIf="store.events.length===0">
-        <ion-col
-          *ngFor="let item of [].constructor(24)"
-          size="12"
-          size-sm="6"
-          size-md="4"
-          size-xl="3"
-        >
-          <app-list-entry-dummy
-            [countdown]="true"
-            [notification]="true"
-          ></app-list-entry-dummy>
-        </ion-col>
-      </ion-row>
+      @if (store.events.length===0) {
+        <ion-row>
+          @for (item of [].constructor(24); track item) {
+            <ion-col
+              size="12"
+              size-sm="6"
+              size-md="4"
+              size-xl="3"
+              >
+              <app-list-entry-dummy
+                [countdown]="true"
+                [notification]="true"
+              ></app-list-entry-dummy>
+            </ion-col>
+          }
+        </ion-row>
+      }
       <ion-row>
-        <ion-col
-          *ngFor="let event of store.events"
-          size="12"
-          size-sm="6"
-          size-md="4"
-          size-xl="3"
-        >
-          <app-event-list-entry [event]="event"></app-event-list-entry>
-        </ion-col>
+        @for (event of store.events; track event) {
+          <ion-col
+            size="12"
+            size-sm="6"
+            size-md="4"
+            size-xl="3"
+            >
+            <app-event-list-entry [event]="event"></app-event-list-entry>
+          </ion-col>
+        }
       </ion-row>
     </ion-grid>
     <ion-infinite-scroll (ionInfinite)="loadMore($event)">
       <ion-infinite-scroll-content
         loadingSpinner="circular"
         loadingText="Loading more events..."
-      >
+        >
       </ion-infinite-scroll-content>
     </ion-infinite-scroll>
   </div>

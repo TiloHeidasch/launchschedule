@@ -1,11 +1,13 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild, ChangeDetectionStrategy } from "@angular/core";
 import { AstronautParamStoreService } from "./astronaut-param-store.service";
 import { IonContent, ViewDidEnter, IonInfiniteScroll } from "@ionic/angular";
 import { AstronautService } from "./astronaut.service";
 
 @Component({
   selector: "app-astronaut-overview",
+  standalone: false,
   templateUrl: "./astronaut-overview.page.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./astronaut-overview.page.scss"],
 })
 export class AstronautOverviewPage implements OnInit, ViewDidEnter {
@@ -31,7 +33,7 @@ export class AstronautOverviewPage implements OnInit, ViewDidEnter {
   async loadFirst(refreshEvent?) {
     try {
       this.infiniteScroll.disabled = false;
-    } catch (error) {}
+    } catch { /* ignore */ }
     this.store.astronauts = [];
     this.store.astronauts = (
 

@@ -1,11 +1,13 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild, ChangeDetectionStrategy } from "@angular/core";
 import { LaunchLibraryService } from "../launch-library.service";
 import { EventParamStoreService } from "./event-param-store.service";
 import { IonContent, ViewDidEnter, IonInfiniteScroll } from "@ionic/angular";
 
 @Component({
   selector: "app-event-overview",
+  standalone: false,
   templateUrl: "./event-overview.page.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./event-overview.page.scss"],
 })
 export class EventOverviewPage implements OnInit, ViewDidEnter {
@@ -32,7 +34,7 @@ export class EventOverviewPage implements OnInit, ViewDidEnter {
   async loadFirst(refreshEvent?) {
     try {
       this.infiniteScroll.disabled = false;
-    } catch (error) {}
+    } catch { /* ignore */ }
     this.store.events = [];
     this.store.events = (await this.service.getFirstEvents(
       this.store.search,

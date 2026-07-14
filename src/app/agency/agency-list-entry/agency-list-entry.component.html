@@ -1,28 +1,30 @@
-<app-notification-icon *ngIf="agency!==undefined" type="agency" [id]="agency.id"></app-notification-icon>
-<ion-card
-  *ngIf="agency !== undefined"
-  routerDirection="forward"
-  [routerLink]="['/agency/' + agency.id]"
- 
->
-  <div id="image">
-    <div class="image-wrapper">
-      <ion-img
-        id="background"
-        [src]="agency.image_url ? agency.image_url : placeholderService.getPlaceholder()"
-      ></ion-img>
+@if (agency!==undefined) {
+  <app-notification-icon type="agency" [id]="agency.id"></app-notification-icon>
+}
+@if (agency !== undefined) {
+  <ion-card
+    routerDirection="forward"
+    [routerLink]="['/agency/' + agency.id]"
+    >
+    <div id="image">
+      <div class="image-wrapper">
+        <ion-img
+          id="background"
+          [src]="agency.image_url ? agency.image_url : placeholderService.getPlaceholder()"
+        ></ion-img>
+      </div>
+      <div class="image-wrapper">
+        <ion-img
+          id="foreground"
+          [src]="agency.logo_url ? agency.logo_url : placeholderService.getPlaceholder()"
+        ></ion-img>
+      </div>
     </div>
-    <div class="image-wrapper">
-      <ion-img
-        id="foreground"
-        [src]="agency.logo_url ? agency.logo_url : placeholderService.getPlaceholder()"
-      ></ion-img>
-    </div>
-  </div>
-  <ion-card-header>
-    <ion-card-subtitle>{{ subtitle }}</ion-card-subtitle>
-    <ion-card-title>{{ title }}</ion-card-title>
-  </ion-card-header>
-  <ion-card-content>
-  </ion-card-content>
-</ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>{{ subtitle }}</ion-card-subtitle>
+      <ion-card-title>{{ title }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+    </ion-card-content>
+  </ion-card>
+}

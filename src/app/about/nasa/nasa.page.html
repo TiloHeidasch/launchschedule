@@ -1,3 +1,5 @@
 <ion-content>
-  <app-about-card *ngFor="let aboutCardDetail of aboutCardDetails" [aboutCardDetail]="aboutCardDetail"></app-about-card>
+  @for (aboutCardDetail of aboutCardDetails; track aboutCardDetail) {
+    <app-about-card [aboutCardDetail]="aboutCardDetail"></app-about-card>
+  }
 </ion-content>

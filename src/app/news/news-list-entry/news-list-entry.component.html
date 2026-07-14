@@ -1,39 +1,41 @@
-<ion-card
-  *ngIf="newsItem !== undefined"
-  routerDirection="forward"
- 
-  (click)="click()"
->
-  <div id="image">
-    <div
-      class="news-label"
+@if (newsItem !== undefined) {
+  <ion-card
+    routerDirection="forward"
+    (click)="click()"
+    >
+    <div id="image">
+      <div
+        class="news-label"
       [ngClass]="{
         blog: type === 'Blog',
         article: type === 'Article',
         report: type === 'Report'
       }"
-    >
-      {{ type }}
+        >
+        {{ type }}
+      </div>
+      <div class="image-wrapper">
+        <ion-img
+          id="background"
+          [src]="newsItem.imageUrl ? newsItem.imageUrl : placeholderService.getPlaceholder()"
+        ></ion-img>
+      </div>
+      <div class="image-wrapper">
+        <ion-img
+          id="foreground"
+          [src]="newsItem.imageUrl ? newsItem.imageUrl : placeholderService.getPlaceholder()"
+        ></ion-img>
+      </div>
+      @if (clicked) {
+        <div class="image-wrapper clicked">
+          <ion-icon slot="start" name="checkmark-outline"></ion-icon>
+        </div>
+      }
     </div>
-    <div class="image-wrapper">
-      <ion-img
-        id="background"
-        [src]="newsItem.imageUrl ? newsItem.imageUrl : placeholderService.getPlaceholder()"
-      ></ion-img>
-    </div>
-    <div class="image-wrapper">
-      <ion-img
-        id="foreground"
-        [src]="newsItem.imageUrl ? newsItem.imageUrl : placeholderService.getPlaceholder()"
-      ></ion-img>
-    </div>
-    <div *ngIf="clicked" class="image-wrapper clicked">
-      <ion-icon slot="start" name="checkmark-outline"></ion-icon>
-    </div>
-  </div>
-  <ion-card-header>
-    <ion-card-subtitle>{{ subtitle }}</ion-card-subtitle>
-    <ion-card-title>{{ title }}</ion-card-title>
-  </ion-card-header>
-  <ion-card-content>{{ content }}</ion-card-content>
-</ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>{{ subtitle }}</ion-card-subtitle>
+      <ion-card-title>{{ title }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>{{ content }}</ion-card-content>
+  </ion-card>
+}

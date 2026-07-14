@@ -1,9 +1,10 @@
-import { Component, Input, ViewChild, ElementRef } from "@angular/core";
-import { Chart } from "chart.js";
+import { Component, Input, ChangeDetectionStrategy } from "@angular/core";
 
 @Component({
   selector: "app-charts",
+  standalone: false,
   templateUrl: "./charts.component.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./charts.component.scss"],
 })
 export class ChartsComponent {
@@ -11,7 +12,5 @@ export class ChartsComponent {
   @Input() barChartData;
   @Input() polarChartData;
   @Input() doughnutChartData;
-  @ViewChild("chart") chart: Chart;
-  @ViewChild("legend") legend: ElementRef;
   constructor() {}
 }

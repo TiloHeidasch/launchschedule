@@ -8,6 +8,7 @@ import { PlaceholderService } from "src/app/placeholder.service";
 
 @Component({
   selector: "app-launch-list-entry",
+  standalone: false,
   templateUrl: "./launch-list-entry.component.html",
   styleUrls: ["./launch-list-entry.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -10,45 +10,51 @@
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
-  <ion-toolbar *ngIf="store.showFilter">
-    <ion-searchbar
-      (ionChange)="searchChange($event)"
-      [value]="store.search"
-      animated
-    ></ion-searchbar>
-  </ion-toolbar>
-  <ion-toolbar *ngIf="store.showFilter">
-    <ion-segment (ionChange)="loadFirst()" [(ngModel)]="store.humanRated">
-      <ion-segment-button value="Cargo">
-        <ion-icon name="trash"></ion-icon>
-        <ion-label>Cargo</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="All">
-        <ion-icon name="repeat"></ion-icon>
-        <ion-label>All</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="Human rated">
-        <ion-icon name="infinite"></ion-icon>
-        <ion-label>Human rated</ion-label>
-      </ion-segment-button>
-    </ion-segment>
-  </ion-toolbar>
-  <ion-toolbar *ngIf="store.showFilter">
-    <ion-segment (ionChange)="loadFirst()" [(ngModel)]="store.inUse">
-      <ion-segment-button value="Decomissioned">
-        <ion-icon name="cloud-offline"></ion-icon>
-        <ion-label>Decomissioned</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="All">
-        <ion-icon name="repeat"></ion-icon>
-        <ion-label>All</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="Active">
-        <ion-icon name="cloud-done"></ion-icon>
-        <ion-label>Active</ion-label>
-      </ion-segment-button>
-    </ion-segment>
-  </ion-toolbar>
+  @if (store.showFilter) {
+    <ion-toolbar>
+      <ion-searchbar
+        (ionChange)="searchChange($event)"
+        [value]="store.search"
+        animated
+      ></ion-searchbar>
+    </ion-toolbar>
+  }
+  @if (store.showFilter) {
+    <ion-toolbar>
+      <ion-segment (ionChange)="loadFirst()" [(ngModel)]="store.humanRated">
+        <ion-segment-button value="Cargo">
+          <ion-icon name="trash"></ion-icon>
+          <ion-label>Cargo</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="All">
+          <ion-icon name="repeat"></ion-icon>
+          <ion-label>All</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="Human rated">
+          <ion-icon name="infinite"></ion-icon>
+          <ion-label>Human rated</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
+  }
+  @if (store.showFilter) {
+    <ion-toolbar>
+      <ion-segment (ionChange)="loadFirst()" [(ngModel)]="store.inUse">
+        <ion-segment-button value="Decomissioned">
+          <ion-icon name="cloud-offline"></ion-icon>
+          <ion-label>Decomissioned</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="All">
+          <ion-icon name="repeat"></ion-icon>
+          <ion-label>All</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="Active">
+          <ion-icon name="cloud-done"></ion-icon>
+          <ion-label>Active</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
+  }
 </ion-header>
 
 <ion-content
@@ -56,7 +62,7 @@
   [scrollEvents]="true"
   (ionScroll)="logScrolling($event)"
   [fullscreen]="true"
->
+  >
   <ion-refresher slot="fixed" (ionRefresh)="loadFirst($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
@@ -69,24 +75,25 @@
   <div id="container">
     <ion-grid>
       <ion-row>
-        <ion-col
-          *ngFor="let spacecraft of store.spacecrafts"
-          size="12"
-          size-sm="6"
-          size-md="4"
-          size-xl="3"
-        >
-          <app-spacecraft-list-entry
-            [spacecraft]="spacecraft"
-          ></app-spacecraft-list-entry>
-        </ion-col>
+        @for (spacecraft of store.spacecrafts; track spacecraft) {
+          <ion-col
+            size="12"
+            size-sm="6"
+            size-md="4"
+            size-xl="3"
+            >
+            <app-spacecraft-list-entry
+              [spacecraft]="spacecraft"
+            ></app-spacecraft-list-entry>
+          </ion-col>
+        }
       </ion-row>
     </ion-grid>
     <ion-infinite-scroll (ionInfinite)="loadMore($event)">
       <ion-infinite-scroll-content
         loadingSpinner="circular"
         loadingText="Loading more spacecrafts..."
-      >
+        >
       </ion-infinite-scroll-content>
     </ion-infinite-scroll>
   </div>

@@ -13,7 +13,7 @@ import { AgencyListEntryModule } from "./agency-list-entry/agency-list-entry.mod
 import { RocketListEntryModule } from "../rocket/rocket-list-entry/rocket-list-entry.module";
 import { SpacecraftListEntryModule } from "../spacecraft/spacecraft-list-entry/spacecraft-list-entry.module";
 import { NotificationModule } from "../notification/notification.module";
-import { NgxIonicImageViewerModule } from "ngx-ionic-image-viewer";
+import { NgxIonicImageViewerModule } from "@t.simon/ionic-image-viewer";
 import { AgencyService } from "./agency.service";
 
 @NgModule({

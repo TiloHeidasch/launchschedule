@@ -1,12 +1,12 @@
-import { Component,  ViewChild } from "@angular/core";
+import { Component, ChangeDetectionStrategy } from "@angular/core";
 import { StatisticService } from "./statistic.service";
-import { SelectItem } from "primeng/api";
 import { Md5 } from "ts-md5/dist/md5";
-import { Table } from "primeng/table";
 
 @Component({
   selector: "app-statistic",
+  standalone: false,
   templateUrl: "./statistic.page.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./statistic.page.scss"],
 })
 export class StatisticPage {
@@ -20,21 +20,21 @@ export class StatisticPage {
   nameSearch;
   fromFilter;
   toFilter;
-  rockets: SelectItem[] = [];
-  selectedRockets: SelectItem[] = [];
-  rocketFamilies: SelectItem[] = [];
-  selectedRocketFamilies: SelectItem[] = [];
-  agencies: SelectItem[] = [];
-  selectedAgencies: SelectItem[] = [];
-  agencyTypes: SelectItem[] = [];
-  selectedAgencyTypes: SelectItem[] = [];
-  spacecrafts: SelectItem[] = [];
-  selectedSpacecrafts: SelectItem[] = [];
+  rockets: any[] = [];
+  selectedRockets: any[] = [];
+  rocketFamilies: any[] = [];
+  selectedRocketFamilies: any[] = [];
+  agencies: any[] = [];
+  selectedAgencies: any[] = [];
+  agencyTypes: any[] = [];
+  selectedAgencyTypes: any[] = [];
+  spacecrafts: any[] = [];
+  selectedSpacecrafts: any[] = [];
   lineChartData;
   polarChartData;
   doughnutChartData;
   barChartData;
-  @ViewChild("tt") table: Table;
+  // @ViewChild("tt") table: Table;
   cols: { field: string; header: string }[] = [];
   constructor(private service: StatisticService) {}
 
@@ -80,49 +80,49 @@ export class StatisticPage {
   }
   private applyFilter() {
     try {
-      return this.table.filteredValue
-        ? this.table.filteredValue
-        : this.table.value;
-    } catch (error) {
+      return this.dataFiltered
+        ? this.dataFiltered
+        : this.dataRaw;
+    } catch {
       return this.dataRaw;
     }
   }
   private applyLaunchesFilter() {
     try {
-      this.table.filterGlobal(this.globalSearch, "contains");
-      this.table.filter(this.nameSearch, "name", "contains");
-      if (this.fromFilter) {
-        this.onDateSelect(this.fromFilter, "gte");
-      }
-      if (this.toFilter) {
-        this.onDateSelect(this.toFilter, "gte");
-      }
-      this.table.filter(
-        this.selectedRockets,
-        "rocket__configuration__full_name",
-        "in"
-      );
-      this.table.filter(
-        this.selectedRocketFamilies,
-        "rocket__configuration__family",
-        "in"
-      );
-      this.table.filter(
-        this.selectedAgencies,
-        "launch_service_provider__name",
-        "in"
-      );
-      this.table.filter(
-        this.selectedAgencyTypes,
-        "launch_service_provider__type",
-        "in"
-      );
-      this.table.filter(
-        this.selectedSpacecrafts,
-        "rocket__spacecraft_stage__spacecraft__spacecraft_config__name",
-        "in"
-      );
-    } catch (error) {}
+      // this.table.filterGlobal(this.globalSearch, "contains");
+      // this.table.filter(this.nameSearch, "name", "contains");
+      // if (this.fromFilter) {
+      //   this.onDateSelect(this.fromFilter, "gte");
+      // }
+      // if (this.toFilter) {
+      //   this.onDateSelect(this.toFilter, "gte");
+      // }
+      // this.table.filter(
+      //   this.selectedRockets,
+      //   "rocket__configuration__full_name",
+      //   "in"
+      // );
+      // this.table.filter(
+      //   this.selectedRocketFamilies,
+      //   "rocket__configuration__family",
+      //   "in"
+      // );
+      // this.table.filter(
+      //   this.selectedAgencies,
+      //   "launch_service_provider__name",
+      //   "in"
+      // );
+      // this.table.filter(
+      //   this.selectedAgencyTypes,
+      //   "launch_service_provider__type",
+      //   "in"
+      // );
+      // this.table.filter(
+      //   this.selectedSpacecrafts,
+      //   "rocket__spacecraft_stage__spacecraft__spacecraft_config__name",
+      //   "in"
+      // );
+    } catch { /* ignore */ }
   }
 
   private async setupLaunchesTable() {
@@ -592,8 +592,8 @@ export class StatisticPage {
       },
     };
   }
-  onDateSelect(value, filter) {
-    this.table.filter(this.formatDate(value), "net", filter);
+  onDateSelect() {
+    // this.table.filter(this.formatDate(value), "net", filter);
   }
 
   formatDate(date) {
@@ -634,7 +634,7 @@ export class StatisticPage {
     setTimeout(() => {
       this.applyPreviousFilters();
       setTimeout(() => {
-        if (this.table.filteredValue.length < this.dataRaw.length / 500) {
+        if (this.dataFiltered && this.dataFiltered.length < this.dataRaw.length / 500) {
           this.shuffleFilter(words);
         } else {
           this.filterComplete();

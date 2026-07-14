@@ -8,6 +8,7 @@ import { PlaceholderService } from "src/app/placeholder.service";
 
 @Component({
   selector: "app-rocket-list-entry",
+  standalone: false,
   templateUrl: "./rocket-list-entry.component.html",
   styleUrls: ["./rocket-list-entry.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -1,9 +1,11 @@
-import { Component } from "@angular/core";
+import { Component, ChangeDetectionStrategy } from "@angular/core";
 import { AboutCardDetail } from "../about-card/about-card.component";
 
 @Component({
   selector: "app-nasa",
+  standalone: false,
   templateUrl: "./nasa.page.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./nasa.page.scss"],
 })
 export class NasaPage {

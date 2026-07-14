@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { IonicModule } from "@ionic/angular";
 
 import { PadPage } from "./pad.page";
@@ -13,6 +14,7 @@ describe("PadPage", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [PadPage],
+      schemas: [NO_ERRORS_SCHEMA],
       imports: [
         IonicModule.forRoot(),
         RouterTestingModule,
@@ -26,7 +28,6 @@ describe("PadPage", () => {
     ).and.returnValue("93");
     fixture = TestBed.createComponent(PadPage);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it("should create", () => {

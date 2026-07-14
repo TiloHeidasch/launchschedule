@@ -1,11 +1,13 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, ChangeDetectionStrategy } from "@angular/core";
 import { ActionSheetController, ToastController } from "@ionic/angular";
 import { Router } from "@angular/router";
 import { PlaceholderService } from "src/app/placeholder.service";
 
 @Component({
   selector: "app-spacestation-detail-card",
+  standalone: false,
   templateUrl: "./spacestation-detail-card.component.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./spacestation-detail-card.component.scss"],
 })
 export class SpacestationDetailCardComponent {

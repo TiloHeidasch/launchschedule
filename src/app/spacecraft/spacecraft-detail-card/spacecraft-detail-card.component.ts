@@ -1,11 +1,13 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, ChangeDetectionStrategy } from "@angular/core";
 import { ToastController } from "@ionic/angular";
 import { SpacecraftService } from "src/app/spacecraft/spacecraft.service";
 import { PlaceholderService } from "src/app/placeholder.service";
 
 @Component({
   selector: "app-spacecraft-detail-card",
+  standalone: false,
   templateUrl: "./spacecraft-detail-card.component.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./spacecraft-detail-card.component.scss"],
 })
 export class SpacecraftDetailCardComponent implements OnInit {

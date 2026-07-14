@@ -1,11 +1,13 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, ChangeDetectionStrategy } from "@angular/core";
 import { ToastController } from "@ionic/angular";
 import { RocketService } from "src/app/rocket/rocket.service";
 import { PlaceholderService } from "src/app/placeholder.service";
 
 @Component({
   selector: "app-rocket-detail-card",
+  standalone: false,
   templateUrl: "./rocket-detail-card.component.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./rocket-detail-card.component.scss"],
 })
 export class RocketDetailCardComponent implements OnInit {

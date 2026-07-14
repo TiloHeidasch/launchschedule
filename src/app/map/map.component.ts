@@ -1,9 +1,11 @@
-import { Component, AfterViewInit, Input } from "@angular/core";
+import { Component, AfterViewInit, Input, ChangeDetectionStrategy } from "@angular/core";
 import { Map, tileLayer, marker } from "leaflet";
 
 @Component({
   selector: "app-map",
+  standalone: false,
   templateUrl: "./map.component.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./map.component.scss"],
 })
 export class MapComponent implements AfterViewInit {

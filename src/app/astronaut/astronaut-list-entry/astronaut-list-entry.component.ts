@@ -10,6 +10,7 @@ import { PlaceholderService } from "src/app/placeholder.service";
 
 @Component({
   selector: "app-astronaut-list-entry",
+  standalone: false,
   templateUrl: "./astronaut-list-entry.component.html",
   styleUrls: ["./astronaut-list-entry.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,

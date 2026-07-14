@@ -1,8 +1,10 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, ChangeDetectionStrategy } from "@angular/core";
 
 @Component({
   selector: "app-road-closures",
+  standalone: false,
   templateUrl: "./road-closures.component.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./road-closures.component.scss"],
 })
 export class RoadClosuresComponent implements OnInit {

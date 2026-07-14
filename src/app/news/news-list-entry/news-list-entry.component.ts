@@ -1,10 +1,12 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, ChangeDetectionStrategy } from "@angular/core";
 import { PlaceholderService } from "src/app/placeholder.service";
 import { NewsStorageService } from "../news-storage.service";
 
 @Component({
   selector: "app-news-list-entry",
+  standalone: false,
   templateUrl: "./news-list-entry.component.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./news-list-entry.component.scss"],
 })
 export class NewsListEntryComponent implements OnInit {

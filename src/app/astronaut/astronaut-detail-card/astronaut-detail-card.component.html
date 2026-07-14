@@ -1,53 +1,61 @@
-<ion-card *ngIf="astronaut !== undefined">
-  <div id="image">
-    <div class="image-wrapper">
-      <ion-img
-        id="background"
+@if (astronaut !== undefined) {
+  <ion-card>
+    <div id="image">
+      <div class="image-wrapper">
+        <ion-img
+          id="background"
         [src]="
           astronaut.profile_image
             ? astronaut.profile_image
             : placeholderService.getPlaceholder()
         "
-      >
-      </ion-img>
-    </div>
-    <div class="image-wrapper">
-      <ion-img-viewer
-        [title]="astronaut.name"
-        [text]="astronaut.nationality"
-        [swipeToClose]="false"
-        id="foreground"
+          >
+        </ion-img>
+      </div>
+      <div class="image-wrapper">
+        <ion-img-viewer
+          [title]="astronaut.name"
+          [text]="astronaut.nationality"
+          [swipeToClose]="false"
+          id="foreground"
         [src]="
           astronaut.profile_image
             ? astronaut.profile_image
             : placeholderService.getPlaceholder()
         "
-      >
-      </ion-img-viewer>
-    </div>
-  </div>
-  <ion-card-header>
-    <ion-card-subtitle>{{ astronaut.nationality }}</ion-card-subtitle>
-    <ion-card-title>{{ astronaut.name }}</ion-card-title>
-  </ion-card-header>
-  <ion-card-content>
-    <div id="content">
-      <div id="born-died">
-        <p id="born">*{{ astronaut.date_of_birth }}</p>
-        <p id="died" *ngIf="astronaut.date_of_death !== null">
-          †{{ astronaut.date_of_death }}
-        </p>
-      </div>
-      <app-astronaut-status [status]="astronaut.status"></app-astronaut-status>
-      <p id="bio">{{ astronaut.bio }}</p>
-      <div id="social">
-        <ion-button *ngIf="astronaut.twitter" [href]="astronaut.twitter">
-          <ion-icon slot="icon-only" name="logo-twitter"></ion-icon>
-        </ion-button>
-        <ion-button *ngIf="astronaut.instagram" [href]="astronaut.instagram">
-          <ion-icon slot="icon-only" name="logo-instagram"></ion-icon>
-        </ion-button>
+          >
+        </ion-img-viewer>
       </div>
     </div>
-  </ion-card-content>
-</ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>{{ astronaut.nationality }}</ion-card-subtitle>
+      <ion-card-title>{{ astronaut.name }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div id="content">
+        <div id="born-died">
+          <p id="born">*{{ astronaut.date_of_birth }}</p>
+          @if (astronaut.date_of_death !== null) {
+            <p id="died">
+              †{{ astronaut.date_of_death }}
+            </p>
+          }
+        </div>
+        <app-astronaut-status [status]="astronaut.status"></app-astronaut-status>
+        <p id="bio">{{ astronaut.bio }}</p>
+        <div id="social">
+          @if (astronaut.twitter) {
+            <ion-button [href]="astronaut.twitter">
+              <ion-icon slot="icon-only" name="logo-twitter"></ion-icon>
+            </ion-button>
+          }
+          @if (astronaut.instagram) {
+            <ion-button [href]="astronaut.instagram">
+              <ion-icon slot="icon-only" name="logo-instagram"></ion-icon>
+            </ion-button>
+          }
+        </div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+}

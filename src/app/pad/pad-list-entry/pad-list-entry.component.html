@@ -1,29 +1,29 @@
 <app-notification-icon type="pad" [id]="pad.id"></app-notification-icon>
-<ion-card
-  *ngIf="pad"
-  routerDirection="forward"
-  [routerLink]="['/pad/' + pad.id]"
- 
->
-  <div id="image">
-    <div class="image-wrapper">
-      <ion-img
-        id="background"
-        [src]="pad.map_image ? pad.map_image : placeholderService.getPlaceholder()"
-      ></ion-img>
+@if (pad) {
+  <ion-card
+    routerDirection="forward"
+    [routerLink]="['/pad/' + pad.id]"
+    >
+    <div id="image">
+      <div class="image-wrapper">
+        <ion-img
+          id="background"
+          [src]="pad.map_image ? pad.map_image : placeholderService.getPlaceholder()"
+        ></ion-img>
+      </div>
+      <div class="image-wrapper">
+        <ion-img
+          id="foreground"
+          [src]="pad.map_image ? pad.map_image : placeholderService.getPlaceholder()"
+        ></ion-img>
+      </div>
     </div>
-    <div class="image-wrapper">
-      <ion-img
-        id="foreground"
-        [src]="pad.map_image ? pad.map_image : placeholderService.getPlaceholder()"
-      ></ion-img>
-    </div>
-  </div>
-  <ion-card-header>
-    <ion-card-subtitle>{{ subtitle }}</ion-card-subtitle>
-    <ion-card-title>{{ title }}</ion-card-title>
-  </ion-card-header>
-  <ion-card-content>
-    <div id="content"></div>
-  </ion-card-content>
-</ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>{{ subtitle }}</ion-card-subtitle>
+      <ion-card-title>{{ title }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div id="content"></div>
+    </ion-card-content>
+  </ion-card>
+}

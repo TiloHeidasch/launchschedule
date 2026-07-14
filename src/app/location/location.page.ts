@@ -1,10 +1,12 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { LocationService } from "./location.service";
 
 @Component({
   selector: "app-location",
+  standalone: false,
   templateUrl: "./location.page.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./location.page.scss"],
 })
 export class LocationPage implements OnInit {

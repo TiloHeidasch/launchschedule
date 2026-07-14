@@ -17,15 +17,17 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <div id="container" *ngIf="rocket!==undefined">
-    <div id="rocket">
-      <app-rocket-detail-card [rocket]="rocket"></app-rocket-detail-card>
+  @if (rocket!==undefined) {
+    <div id="container">
+      <div id="rocket">
+        <app-rocket-detail-card [rocket]="rocket"></app-rocket-detail-card>
+      </div>
+      <div id="manufacturer">
+        <ion-item> Manufacturer </ion-item>
+        <app-agency-list-entry
+          [agency]="rocket.manufacturer"
+        ></app-agency-list-entry>
+      </div>
     </div>
-    <div id="manufacturer">
-      <ion-item> Manufacturer </ion-item>
-      <app-agency-list-entry
-        [agency]="rocket.manufacturer"
-      ></app-agency-list-entry>
-    </div>
-  </div>
+  }
 </ion-content>

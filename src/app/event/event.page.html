@@ -17,35 +17,43 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <div id="container" *ngIf="event!==undefined">
-    <div id="event">
-      <app-event-detail-card [event]="event"></app-event-detail-card>
+  @if (event!==undefined) {
+    <div id="container">
+      <div id="event">
+        <app-event-detail-card [event]="event"></app-event-detail-card>
+      </div>
+      @if (event.launches.length>0) {
+        <div id="launches">
+          <ion-item>
+            <ion-label> Launches </ion-label>
+          </ion-item>
+          @for (launch of event.launches; track launch) {
+            <app-launch-list-entry
+              [launch]="launch"
+            ></app-launch-list-entry>
+          }
+        </div>
+      }
+      @if (event.expeditions.length>0 && event.expeditions[0].spacestation) {
+        <div
+          id="spacestations"
+          >
+          <ion-item>
+            <ion-label> Spacestation </ion-label>
+          </ion-item>
+          <app-spacestation-list-entry
+            [id]="event.expeditions[0].spacestation.id"
+          ></app-spacestation-list-entry>
+        </div>
+      }
+      @if (event.video_url) {
+        <div id="video">
+          <ion-item>
+            <ion-label> Video </ion-label>
+          </ion-item>
+          <app-youtube-video [url]="event.video_url"></app-youtube-video>
+        </div>
+      }
     </div>
-    <div id="launches" *ngIf="event.launches.length>0">
-      <ion-item>
-        <ion-label> Launches </ion-label>
-      </ion-item>
-      <app-launch-list-entry
-        *ngFor="let launch of event.launches"
-        [launch]="launch"
-      ></app-launch-list-entry>
-    </div>
-    <div
-      id="spacestations"
-      *ngIf="event.expeditions.length>0 && event.expeditions[0].spacestation"
-    >
-      <ion-item>
-        <ion-label> Spacestation </ion-label>
-      </ion-item>
-      <app-spacestation-list-entry
-        [id]="event.expeditions[0].spacestation.id"
-      ></app-spacestation-list-entry>
-    </div>
-    <div id="video" *ngIf="event.video_url">
-      <ion-item>
-        <ion-label> Video </ion-label>
-      </ion-item>
-      <app-youtube-video [url]="event.video_url"></app-youtube-video>
-    </div>
-  </div>
+  }
 </ion-content>

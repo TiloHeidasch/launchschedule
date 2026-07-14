@@ -8,6 +8,7 @@ import { PlaceholderService } from "src/app/placeholder.service";
 
 @Component({
   selector: "app-event-list-entry",
+  standalone: false,
   templateUrl: "./event-list-entry.component.html",
   styleUrls: ["./event-list-entry.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -17,20 +17,22 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <div id="container" *ngIf="location!==undefined">
-    <div id="location">
-      <app-location-detail-card
-        [location]="location"
-      ></app-location-detail-card>
+  @if (location!==undefined) {
+    <div id="container">
+      <div id="location">
+        <app-location-detail-card
+          [location]="location"
+        ></app-location-detail-card>
+      </div>
+      <div id="pads">
+        <ion-item> Pads </ion-item>
+        @for (pad of location.pads; track pad) {
+          <app-pad-list-entry
+            [pad]="pad"
+            [locationName]="location.name"
+          ></app-pad-list-entry>
+        }
+      </div>
     </div>
-
-    <div id="pads">
-      <ion-item> Pads </ion-item>
-      <app-pad-list-entry
-        *ngFor="let pad of location.pads"
-        [pad]="pad"
-        [locationName]="location.name"
-      ></app-pad-list-entry>
-    </div>
-  </div>
+  }
 </ion-content>

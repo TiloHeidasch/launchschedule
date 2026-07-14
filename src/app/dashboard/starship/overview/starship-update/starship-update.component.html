@@ -4,11 +4,15 @@
     <ion-card-title primary>{{ update.comment }}</ion-card-title>
   </ion-card-header>
   <ion-card-content>
-    <div *ngIf="twitterContent" [innerHTML]="twitterContent"></div>
-    <div *ngIf="!twitterContent">
+    @if (twitterContent) {
+      <div [innerHTML]="twitterContent"></div>
+    }
+    @if (!twitterContent) {
+      <div>
         <ion-item href="update.info_url">
-            <ion-label>Source: {{update.info_url}}</ion-label>
+          <ion-label>Source: {{update.info_url}}</ion-label>
         </ion-item>
-    </div>
+      </div>
+    }
   </ion-card-content>
 </ion-card>

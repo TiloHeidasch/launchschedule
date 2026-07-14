@@ -17,28 +17,32 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <div id="container" *ngIf="agency!==undefined">
-    <div id="agency">
-      <app-agency-detail-card [agency]="agency"></app-agency-detail-card>
-    </div>
-    <div id="rocket-list">
-      <app-rocket-list-entry
-        *ngFor="let rocket of agency.launcher_list"
-        [rocket]="rocket"
-      ></app-rocket-list-entry>
-    </div>
-    <div id="spacecraft-list">
-      <app-spacecraft-list-entry
-        *ngFor="let spacecraft of agency.spacecraft_list"
-        [spacecraft]="spacecraft"
-      >
-      </app-spacecraft-list-entry>
-    </div>
-    <!-- <div id="location">
+  @if (agency!==undefined) {
+    <div id="container">
+      <div id="agency">
+        <app-agency-detail-card [agency]="agency"></app-agency-detail-card>
+      </div>
+      <div id="rocket-list">
+        @for (rocket of agency.launcher_list; track rocket) {
+          <app-rocket-list-entry
+            [rocket]="rocket"
+          ></app-rocket-list-entry>
+        }
+      </div>
+      <div id="spacecraft-list">
+        @for (spacecraft of agency.spacecraft_list; track spacecraft) {
+          <app-spacecraft-list-entry
+            [spacecraft]="spacecraft"
+            >
+          </app-spacecraft-list-entry>
+        }
+      </div>
+      <!-- <div id="location">
       <app-location-detail-card [location]='agency.location'></app-location-detail-card>
     </div>
     <div id="agency">
       <app-agency-detail-card [agency]='agency.lsp'></app-agency-detail-card>
     </div> -->
   </div>
+}
 </ion-content>

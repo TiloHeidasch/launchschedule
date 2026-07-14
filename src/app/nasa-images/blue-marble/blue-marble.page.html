@@ -18,29 +18,33 @@
 
   <div id="container">
     <ion-grid>
-      <ion-row *ngIf="epicPictures.length===0">
-        <ion-col
-          *ngFor="let item of [].constructor(24)"
-          size="12"
-          size-sm="6"
-          size-md="4"
-          size-xl="3"
-        >
-          <app-list-entry-dummy></app-list-entry-dummy>
-        </ion-col>
-      </ion-row>
+      @if (epicPictures.length===0) {
+        <ion-row>
+          @for (item of [].constructor(24); track item) {
+            <ion-col
+              size="12"
+              size-sm="6"
+              size-md="4"
+              size-xl="3"
+              >
+              <app-list-entry-dummy></app-list-entry-dummy>
+            </ion-col>
+          }
+        </ion-row>
+      }
       <ion-row>
-        <ion-col
-          *ngFor="let epicPicture of epicPictures"
-          size="12"
-          size-sm="6"
-          size-md="4"
-          size-xl="3"
-        >
-          <app-blue-marble-list-entry
-            [epicPicture]="epicPicture"
-          ></app-blue-marble-list-entry>
-        </ion-col>
+        @for (epicPicture of epicPictures; track epicPicture) {
+          <ion-col
+            size="12"
+            size-sm="6"
+            size-md="4"
+            size-xl="3"
+            >
+            <app-blue-marble-list-entry
+              [epicPicture]="epicPicture"
+            ></app-blue-marble-list-entry>
+          </ion-col>
+        }
       </ion-row>
     </ion-grid>
   </div>

@@ -1,11 +1,13 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild, ChangeDetectionStrategy } from "@angular/core";
 import { SpacestationParamStoreService } from "./spacestation-param-store.service";
 import { IonContent, ViewDidEnter, IonInfiniteScroll } from "@ionic/angular";
 import { SpacestationService } from "./spacestation.service";
 
 @Component({
   selector: "app-spacestation-overview",
+  standalone: false,
   templateUrl: "./spacestation-overview.page.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./spacestation-overview.page.scss"],
 })
 export class SpacestationOverviewPage implements OnInit, ViewDidEnter {
@@ -31,7 +33,7 @@ export class SpacestationOverviewPage implements OnInit, ViewDidEnter {
   async loadFirst(refreshEvent?) {
     try {
       this.infiniteScroll.disabled = false;
-    } catch (error) {}
+    } catch { /* ignore */ }
     this.store.spacestations = [];
     this.store.spacestations = (
 

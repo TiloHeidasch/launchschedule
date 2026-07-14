@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { IonicModule } from "@ionic/angular";
 
 import { AstronautPage } from "./astronaut.page";
@@ -13,6 +14,7 @@ describe("AstronautPage", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [AstronautPage],
+      schemas: [NO_ERRORS_SCHEMA],
       imports: [
         IonicModule.forRoot(),
         RouterTestingModule,
@@ -26,7 +28,6 @@ describe("AstronautPage", () => {
     ).and.returnValue("276");
     fixture = TestBed.createComponent(AstronautPage);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it("should create", () => {

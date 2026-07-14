@@ -20,58 +20,63 @@
     }
   ]"
 ></app-notification-icon>
-<ion-card *ngIf="launch !== undefined">
-  <div id="image">
-    <div class="image-wrapper">
-      <ion-img
-        id="background"
-        [src]="imageUrl ? imageUrl : placeholderService.getPlaceholder()"
-      ></ion-img>
-    </div>
-    <div class="image-wrapper">
-      <ion-img-viewer
-        [title]="title"
-        [text]="subtitle"
-        [swipeToClose]="false"
-        id="foreground"
-        [src]="imageUrl ? imageUrl : placeholderService.getPlaceholder()"
-      ></ion-img-viewer>
-    </div>
-  </div>
-  <ion-card-header>
-    <ion-card-subtitle>{{ subtitle }}</ion-card-subtitle>
-    <ion-card-title>{{ title }}</ion-card-title>
-  </ion-card-header>
-  <ion-card-content>
-    <div id="content">
-      <app-launch-status [status]="launch.status"></app-launch-status>
-      <app-countdown [date]="date"></app-countdown>
-      <div id="links">
-        <ion-item
-          *ngFor="let infoURLObject of launch.infoURLs; let i = index"
-          [href]="infoURLObject.url"
-        >
-          <ion-label>More Info</ion-label>
-        </ion-item>
+@if (launch !== undefined) {
+  <ion-card>
+    <div id="image">
+      <div class="image-wrapper">
+        <ion-img
+          id="background"
+          [src]="imageUrl ? imageUrl : placeholderService.getPlaceholder()"
+        ></ion-img>
       </div>
-      <div id="social">
-        <ion-chip
-          *ngIf="launch.hashtag"
-          (click)="navigate('https://twitter.com/hashtag/', launch.hashtag)"
-        >
-          <ion-icon name="logo-twitter" color="dark"></ion-icon>
-          <ion-label>{{ launch.hashtag }}</ion-label>
-        </ion-chip>
-        <ion-chip
-          *ngIf="launch.hashtag"
+      <div class="image-wrapper">
+        <ion-img-viewer
+          [title]="title"
+          [text]="subtitle"
+          [swipeToClose]="false"
+          id="foreground"
+          [src]="imageUrl ? imageUrl : placeholderService.getPlaceholder()"
+        ></ion-img-viewer>
+      </div>
+    </div>
+    <ion-card-header>
+      <ion-card-subtitle>{{ subtitle }}</ion-card-subtitle>
+      <ion-card-title>{{ title }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div id="content">
+        <app-launch-status [status]="launch.status"></app-launch-status>
+        <app-countdown [date]="date"></app-countdown>
+        <div id="links">
+          @for (infoURLObject of launch.infoURLs; track infoURLObject; let i = $index) {
+            <ion-item
+              [href]="infoURLObject.url"
+              >
+              <ion-label>More Info</ion-label>
+            </ion-item>
+          }
+        </div>
+        <div id="social">
+          @if (launch.hashtag) {
+            <ion-chip
+              (click)="navigate('https://twitter.com/hashtag/', launch.hashtag)"
+              >
+              <ion-icon name="logo-twitter" color="dark"></ion-icon>
+              <ion-label>{{ launch.hashtag }}</ion-label>
+            </ion-chip>
+          }
+          @if (launch.hashtag) {
+            <ion-chip
           (click)="
             navigate('https://www.instagram.com/explore/tags/', launch.hashtag)
           "
-        >
-          <ion-icon name="logo-instagram" color="dark"></ion-icon>
-          <ion-label>{{ launch.hashtag }}</ion-label>
-        </ion-chip>
+              >
+              <ion-icon name="logo-instagram" color="dark"></ion-icon>
+              <ion-label>{{ launch.hashtag }}</ion-label>
+            </ion-chip>
+          }
+        </div>
       </div>
-    </div>
-  </ion-card-content>
-</ion-card>
+    </ion-card-content>
+  </ion-card>
+}

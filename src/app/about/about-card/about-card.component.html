@@ -11,34 +11,48 @@
       ></ion-img>
     </div>
     <div class="image-wrapper">
-      <ion-img *ngIf="aboutCardDetail.imageSrc"
-        id="foreground"
+      @if (aboutCardDetail.imageSrc) {
+        <ion-img
+          id="foreground"
         [src]="
           aboutCardDetail.imageSrc
             ? aboutCardDetail.imageSrc
             : placeholderService.getPlaceholder()
         "
-      ></ion-img>
-      <ion-img-viewer *ngIf="aboutCardDetail.image"
-        id="foreground"
-        [title]="aboutCardDetail.image.title"
-        [text]="aboutCardDetail.image.subtitle"
-            [swipeToClose]="false"
-        [src]="aboutCardDetail.image.imageSrc ? aboutCardDetail.image.imageSrc : placeholderService.getPlaceholder()"
-      ></ion-img-viewer>
+        ></ion-img>
+      }
+      @if (aboutCardDetail.image) {
+        <ion-img-viewer
+          id="foreground"
+          [title]="aboutCardDetail.image.title"
+          [text]="aboutCardDetail.image.subtitle"
+          [swipeToClose]="false"
+          [src]="aboutCardDetail.image.imageSrc ? aboutCardDetail.image.imageSrc : placeholderService.getPlaceholder()"
+        ></ion-img-viewer>
+      }
     </div>
   </div>
   <ion-card-header>
-    <ion-card-subtitle *ngIf="aboutCardDetail.subtitle">{{ aboutCardDetail.subtitle }}</ion-card-subtitle>
-    <ion-card-title *ngIf="aboutCardDetail.title">{{ aboutCardDetail.title }}</ion-card-title>
+    @if (aboutCardDetail.subtitle) {
+      <ion-card-subtitle>{{ aboutCardDetail.subtitle }}</ion-card-subtitle>
+    }
+    @if (aboutCardDetail.title) {
+      <ion-card-title>{{ aboutCardDetail.title }}</ion-card-title>
+    }
   </ion-card-header>
   <ion-card-content>
-      <p *ngIf="aboutCardDetail.content">{{aboutCardDetail.content}}</p>
-      <p *ngFor="let contentLine of aboutCardDetail.contentMultiLine">{{contentLine}}</p>
-      <div *ngFor="let link of aboutCardDetail.links">
-      <ion-item  [href]="link.link">
+    @if (aboutCardDetail.content) {
+      <p>{{aboutCardDetail.content}}</p>
+    }
+    @for (contentLine of aboutCardDetail.contentMultiLine; track contentLine) {
+      <p>{{contentLine}}</p>
+    }
+    @for (link of aboutCardDetail.links; track link) {
+      <div>
+        <ion-item  [href]="link.link">
           <ion-label>{{link.name}}</ion-label>
-      </ion-item>
+        </ion-item>
       </div>
+    }
   </ion-card-content>
 </ion-card>

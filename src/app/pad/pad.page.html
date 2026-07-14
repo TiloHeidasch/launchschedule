@@ -17,9 +17,11 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <div id="container" *ngIf="pad!==undefined">
-    <div id="pad">
-      <app-pad-detail-card [pad]="pad"></app-pad-detail-card>
+  @if (pad!==undefined) {
+    <div id="container">
+      <div id="pad">
+        <app-pad-detail-card [pad]="pad"></app-pad-detail-card>
+      </div>
     </div>
-  </div>
+  }
 </ion-content>

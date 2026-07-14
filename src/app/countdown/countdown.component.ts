@@ -1,8 +1,10 @@
-import { Component, OnInit, Input, ChangeDetectorRef } from "@angular/core";
+import { Component, OnInit, Input, ChangeDetectorRef, ChangeDetectionStrategy } from "@angular/core";
 
 @Component({
   selector: "app-countdown",
+  standalone: false,
   templateUrl: "./countdown.component.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./countdown.component.scss"],
 })
 export class CountdownComponent implements OnInit {

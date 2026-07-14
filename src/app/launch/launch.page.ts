@@ -1,10 +1,12 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { LaunchLibraryService } from "../launch-library.service";
 
 @Component({
   selector: "app-launch",
+  standalone: false,
   templateUrl: "./launch.page.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./launch.page.scss"],
 })
 export class LaunchPage implements OnInit {

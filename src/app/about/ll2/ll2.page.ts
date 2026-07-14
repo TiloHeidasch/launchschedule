@@ -1,9 +1,11 @@
-import { Component } from "@angular/core";
+import { Component, ChangeDetectionStrategy } from "@angular/core";
 import { AboutCardDetail } from "../about-card/about-card.component";
 
 @Component({
   selector: "app-ll2",
+  standalone: false,
   templateUrl: "./ll2.page.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./ll2.page.scss"],
 })
 export class Ll2Page {

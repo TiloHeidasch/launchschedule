@@ -1,10 +1,12 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { AstronautService } from "./astronaut.service";
 
 @Component({
   selector: "app-astronaut",
+  standalone: false,
   templateUrl: "./astronaut.page.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./astronaut.page.scss"],
 })
 export class AstronautPage implements OnInit {

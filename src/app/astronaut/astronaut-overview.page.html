@@ -10,78 +10,83 @@
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
-  <ion-toolbar *ngIf="store.showFilter">
-    <ion-searchbar
-      (ionChange)="searchChange($event)"
-      [value]="store.search"
-      animated
-    ></ion-searchbar>
-  </ion-toolbar>
-  <ion-toolbar *ngIf="store.showFilter">
-    <ion-item>
-      <ion-label>Status</ion-label>
-      <ion-select
-        [(ngModel)]="store.status"
-        (ionChange)="loadFirst()"
-        placeholder="Status"
-        interface="action-sheet"
-      >
-        <ion-select-option value="">None</ion-select-option>
-        <ion-select-option value="1">Active</ion-select-option>
-        <ion-select-option value="2">Retired</ion-select-option>
-        <ion-select-option value="3">In Training</ion-select-option>
-        <ion-select-option value="4">Lost in Flight</ion-select-option>
-        <ion-select-option value="5">Lost in Training</ion-select-option>
-        <ion-select-option value="6"
-          >Died while in active service</ion-select-option
-        >
-        <ion-select-option value="7">Dismissed</ion-select-option>
-        <ion-select-option value="8"
-          >Resigned during training</ion-select-option
-        >
-        <ion-select-option value="11">Deceased</ion-select-option>
-      </ion-select>
-    </ion-item>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content
-  #astronautOverviewContent
-  [scrollEvents]="true"
-  (ionScroll)="logScrolling($event)"
-  [fullscreen]="true"
->
-  <ion-refresher slot="fixed" (ionRefresh)="loadFirst($event)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
-  <ion-header collapse="condense">
+  @if (store.showFilter) {
     <ion-toolbar>
-      <ion-title size="large">{{title}}</ion-title>
+      <ion-searchbar
+        (ionChange)="searchChange($event)"
+        [value]="store.search"
+        animated
+      ></ion-searchbar>
     </ion-toolbar>
-  </ion-header>
+  }
+  @if (store.showFilter) {
+    <ion-toolbar>
+      <ion-item>
+        <ion-label>Status</ion-label>
+        <ion-select
+          [(ngModel)]="store.status"
+          (ionChange)="loadFirst()"
+          placeholder="Status"
+          interface="action-sheet"
+          >
+          <ion-select-option value="">None</ion-select-option>
+          <ion-select-option value="1">Active</ion-select-option>
+          <ion-select-option value="2">Retired</ion-select-option>
+          <ion-select-option value="3">In Training</ion-select-option>
+          <ion-select-option value="4">Lost in Flight</ion-select-option>
+          <ion-select-option value="5">Lost in Training</ion-select-option>
+          <ion-select-option value="6"
+            >Died while in active service</ion-select-option
+            >
+            <ion-select-option value="7">Dismissed</ion-select-option>
+            <ion-select-option value="8"
+              >Resigned during training</ion-select-option
+              >
+              <ion-select-option value="11">Deceased</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-toolbar>
+      }
+    </ion-header>
 
-  <div id="container">
-    <ion-grid>
-      <ion-row>
-        <ion-col
-          *ngFor="let astronaut of store.astronauts"
-          size="12"
-          size-sm="6"
-          size-md="4"
-          size-xl="3"
-        >
-          <app-astronaut-list-entry
-            [astronaut]="astronaut"
-          ></app-astronaut-list-entry>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-    <ion-infinite-scroll (ionInfinite)="loadMore($event)">
-      <ion-infinite-scroll-content
-        loadingSpinner="circular"
-        loadingText="Loading more astronauts..."
+    <ion-content
+      #astronautOverviewContent
+      [scrollEvents]="true"
+      (ionScroll)="logScrolling($event)"
+      [fullscreen]="true"
       >
-      </ion-infinite-scroll-content>
-    </ion-infinite-scroll>
-  </div>
-</ion-content>
+      <ion-refresher slot="fixed" (ionRefresh)="loadFirst($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
+      <ion-header collapse="condense">
+        <ion-toolbar>
+          <ion-title size="large">{{title}}</ion-title>
+        </ion-toolbar>
+      </ion-header>
+
+      <div id="container">
+        <ion-grid>
+          <ion-row>
+            @for (astronaut of store.astronauts; track astronaut) {
+              <ion-col
+                size="12"
+                size-sm="6"
+                size-md="4"
+                size-xl="3"
+                >
+                <app-astronaut-list-entry
+                  [astronaut]="astronaut"
+                ></app-astronaut-list-entry>
+              </ion-col>
+            }
+          </ion-row>
+        </ion-grid>
+        <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+          <ion-infinite-scroll-content
+            loadingSpinner="circular"
+            loadingText="Loading more astronauts..."
+            >
+          </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+      </div>
+    </ion-content>

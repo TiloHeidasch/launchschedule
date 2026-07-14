@@ -9,6 +9,7 @@ import { PlaceholderService } from "src/app/placeholder.service";
 
 @Component({
   selector: "app-pad-list-entry",
+  standalone: false,
   templateUrl: "./pad-list-entry.component.html",
   styleUrls: ["./pad-list-entry.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,

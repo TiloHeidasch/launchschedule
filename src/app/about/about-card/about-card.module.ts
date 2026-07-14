@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { AboutCardComponent } from "./about-card.component";
 import { IonicModule } from "@ionic/angular";
-import { NgxIonicImageViewerModule } from "ngx-ionic-image-viewer";
+import { NgxIonicImageViewerModule } from "@t.simon/ionic-image-viewer";
 
 @NgModule({
   declarations: [AboutCardComponent],

@@ -1,9 +1,11 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, ChangeDetectionStrategy } from "@angular/core";
 import { TwitterService } from "./twitter.service";
 
 @Component({
   selector: "app-starship-update",
+  standalone: false,
   templateUrl: "./starship-update.component.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./starship-update.component.scss"],
 })
 export class StarshipUpdateComponent implements OnInit {

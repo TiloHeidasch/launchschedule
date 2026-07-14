@@ -1,10 +1,12 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { AgencyService } from "./agency.service";
 
 @Component({
   selector: "app-agency",
+  standalone: false,
   templateUrl: "./agency.page.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./agency.page.scss"],
 })
 export class AgencyPage implements OnInit {

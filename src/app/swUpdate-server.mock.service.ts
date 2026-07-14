@@ -3,6 +3,7 @@ import { Observable, Subject } from "rxjs";
 export class SwUpdateServerMock {
   public available: Observable<any> = new Subject();
   public activated: Observable<any> = new Subject();
+  public versionUpdates: Observable<any> = new Subject();
   public isEnabled = false;
 
   public checkForUpdate(): Promise<void> {

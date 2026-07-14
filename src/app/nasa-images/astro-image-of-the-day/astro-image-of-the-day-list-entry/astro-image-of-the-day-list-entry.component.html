@@ -1,20 +1,22 @@
-<ion-card *ngIf="astroImageOfTheDay">
-  <div id="image" *ngIf="astroImageOfTheDay.media_type==='image'">
-    <div class="image-wrapper">
-      <ion-img
-        id="background"
+@if (astroImageOfTheDay) {
+  <ion-card>
+    @if (astroImageOfTheDay.media_type==='image') {
+      <div id="image">
+        <div class="image-wrapper">
+          <ion-img
+            id="background"
         [src]="
           astroImageOfTheDay.url
             ? astroImageOfTheDay.url
             : placeholderService.getPlaceholder()
         "
-      ></ion-img>
-    </div>
-    <div class="image-wrapper">
-      <ion-img-viewer
-        id="foreground"
-        [title]="astroImageOfTheDay.title"
-        [text]="astroImageOfTheDay.copyright"
+          ></ion-img>
+        </div>
+        <div class="image-wrapper">
+          <ion-img-viewer
+            id="foreground"
+            [title]="astroImageOfTheDay.title"
+            [text]="astroImageOfTheDay.copyright"
         [srcHighRes]="
           astroImageOfTheDay.hdurl
             ? astroImageOfTheDay.hdurl
@@ -26,22 +28,28 @@
             ? astroImageOfTheDay.url
             : placeholderService.getPlaceholder()
         "
-      ></ion-img-viewer>
-    </div>
-  </div>
-  <ion-card-header>
-    <ion-card-subtitle *ngIf="astroImageOfTheDay.copyright"
-      >© {{ astroImageOfTheDay.copyright }}</ion-card-subtitle
-    >
-    <ion-card-subtitle *ngIf="!astroImageOfTheDay.copyright"
-      >© NASA</ion-card-subtitle
-    >
-    <ion-card-title>{{ astroImageOfTheDay.title }}</ion-card-title>
-  </ion-card-header>
-  <ion-card-content>
-      <youtube-player height="100%" width="100%" [videoId]="id"></youtube-player>
-    <div id="content">
-      {{ astroImageOfTheDay.explanation }}
-    </div>
-  </ion-card-content>
-</ion-card>
+          ></ion-img-viewer>
+        </div>
+      </div>
+    }
+    <ion-card-header>
+      @if (astroImageOfTheDay.copyright) {
+        <ion-card-subtitle
+          >© {{ astroImageOfTheDay.copyright }}</ion-card-subtitle
+          >
+        }
+        @if (!astroImageOfTheDay.copyright) {
+          <ion-card-subtitle
+            >© NASA</ion-card-subtitle
+            >
+          }
+          <ion-card-title>{{ astroImageOfTheDay.title }}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <youtube-player height="100%" width="100%" [videoId]="id"></youtube-player>
+          <div id="content">
+            {{ astroImageOfTheDay.explanation }}
+          </div>
+        </ion-card-content>
+      </ion-card>
+    }

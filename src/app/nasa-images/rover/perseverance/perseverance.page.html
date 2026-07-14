@@ -11,7 +11,7 @@
   [scrollEvents]="true"
   (ionScroll)="logScrolling($event)"
   [fullscreen]="true"
->
+  >
   <ion-refresher slot="fixed" (ionRefresh)="loadFirst($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
@@ -22,34 +22,38 @@
   </ion-header>
   <div id="container">
     <ion-grid>
-      <ion-row *ngIf="store.perseveranceImages.length===0">
-        <ion-col
-          *ngFor="let item of [].constructor(24)"
-          size="12"
-          size-sm="6"
-          size-md="4"
-          size-xl="3"
-        >
-          <app-list-entry-dummy></app-list-entry-dummy>
-        </ion-col>
-      </ion-row>
+      @if (store.perseveranceImages.length===0) {
+        <ion-row>
+          @for (item of [].constructor(24); track item) {
+            <ion-col
+              size="12"
+              size-sm="6"
+              size-md="4"
+              size-xl="3"
+              >
+              <app-list-entry-dummy></app-list-entry-dummy>
+            </ion-col>
+          }
+        </ion-row>
+      }
       <ion-row>
-        <ion-col
-          *ngFor="let marsPhoto of store.perseveranceImages"
-          size="12"
-          size-sm="6"
-          size-md="4"
-          size-xl="3"
-        >
-          <app-rover-list-entry [marsPhoto]="marsPhoto"></app-rover-list-entry>
-        </ion-col>
+        @for (marsPhoto of store.perseveranceImages; track marsPhoto) {
+          <ion-col
+            size="12"
+            size-sm="6"
+            size-md="4"
+            size-xl="3"
+            >
+            <app-rover-list-entry [marsPhoto]="marsPhoto"></app-rover-list-entry>
+          </ion-col>
+        }
       </ion-row>
     </ion-grid>
     <ion-infinite-scroll (ionInfinite)="loadMore($event)">
       <ion-infinite-scroll-content
         loadingSpinner="circular"
         loadingText="Loading more photos..."
-      >
+        >
       </ion-infinite-scroll-content>
     </ion-infinite-scroll>
   </div>

@@ -1,10 +1,12 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild, ChangeDetectionStrategy } from "@angular/core";
 import { IonContent, IonInfiniteScroll, ViewDidEnter } from "@ionic/angular";
 import { StarshipParamStoreService } from "../starship-param-store.service";
 
 @Component({
   selector: "app-overview",
+  standalone: false,
   templateUrl: "./overview.page.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./overview.page.scss"],
 })
 export class OverviewPage implements OnInit, ViewDidEnter {

@@ -9,6 +9,7 @@ import { PlaceholderService } from "src/app/placeholder.service";
 
 @Component({
   selector: "app-spacestation-list-entry",
+  standalone: false,
   templateUrl: "./spacestation-list-entry.component.html",
   styleUrls: ["./spacestation-list-entry.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,

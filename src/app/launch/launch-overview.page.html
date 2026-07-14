@@ -10,73 +10,79 @@
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
-  <ion-toolbar *ngIf="store.showFilter">
-    <ion-searchbar
-      (ionChange)="searchChange($event)"
-      [value]="store.search"
-      animated
-    ></ion-searchbar>
-  </ion-toolbar>
-  <ion-toolbar *ngIf="store.showFilter">
-    <ion-segment
-      (ionChange)="loadFirst()"
-      [(ngModel)]="store.upcomingPreviousAll"
-    >
-      <ion-segment-button value="Previous">
-        <ion-icon name="return-up-back"></ion-icon>
-        <ion-label>Previous</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="All">
-        <ion-icon name="repeat"></ion-icon>
-        <ion-label>All</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="Upcoming">
-        <ion-icon name="return-down-forward"></ion-icon>
-        <ion-label>Upcoming</ion-label>
-      </ion-segment-button>
-    </ion-segment>
-  </ion-toolbar>
-  <ion-toolbar *ngIf="store.showFilter && store.upcomingPreviousAll==='All'">
-    <ion-item>
-      <ion-label>From</ion-label>
-      <ion-datetime
-        (ionChange)="startChange($event)"
-        displayFormat="DD.MM.YYYY"
-        min="1950-01-01"
-        [max]="store.endDate.toISOString()"
-        [value]="store.startDate.toISOString()"
-        placeholder="Start Date"
-      >
-      </ion-datetime>
-      <ion-buttons>
-        <ion-button (click)="startToday()">
-          <ion-icon slot="icon-only" name="today"></ion-icon>
-        </ion-button>
-        <ion-button (click)="startClear()">
-          <ion-icon slot="icon-only" name="close"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </ion-item>
-    <ion-item>
-      <ion-label>To</ion-label>
-      <ion-datetime
-        (ionChange)="endChange($event)"
-        displayFormat="DD.MM.YYYY"
-        [min]="store.startDate.toISOString()"
-        max="2050-12-31"
-        [value]="store.endDate.toISOString()"
-        placeholder="End Date"
-      ></ion-datetime>
-      <ion-buttons>
-        <ion-button (click)="endToday()">
-          <ion-icon slot="icon-only" name="today"></ion-icon>
-        </ion-button>
-        <ion-button (click)="endClear()">
-          <ion-icon slot="icon-only" name="close"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </ion-item>
-  </ion-toolbar>
+  @if (store.showFilter) {
+    <ion-toolbar>
+      <ion-searchbar
+        (ionChange)="searchChange($event)"
+        [value]="store.search"
+        animated
+      ></ion-searchbar>
+    </ion-toolbar>
+  }
+  @if (store.showFilter) {
+    <ion-toolbar>
+      <ion-segment
+        (ionChange)="loadFirst()"
+        [(ngModel)]="store.upcomingPreviousAll"
+        >
+        <ion-segment-button value="Previous">
+          <ion-icon name="return-up-back"></ion-icon>
+          <ion-label>Previous</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="All">
+          <ion-icon name="repeat"></ion-icon>
+          <ion-label>All</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="Upcoming">
+          <ion-icon name="return-down-forward"></ion-icon>
+          <ion-label>Upcoming</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
+  }
+  @if (store.showFilter && store.upcomingPreviousAll==='All') {
+    <ion-toolbar>
+      <ion-item>
+        <ion-label>From</ion-label>
+        <ion-datetime
+          (ionChange)="startChange($event)"
+          displayFormat="DD.MM.YYYY"
+          min="1950-01-01"
+          [max]="store.endDate.toISOString()"
+          [value]="store.startDate.toISOString()"
+          placeholder="Start Date"
+          >
+        </ion-datetime>
+        <ion-buttons>
+          <ion-button (click)="startToday()">
+            <ion-icon slot="icon-only" name="today"></ion-icon>
+          </ion-button>
+          <ion-button (click)="startClear()">
+            <ion-icon slot="icon-only" name="close"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-item>
+      <ion-item>
+        <ion-label>To</ion-label>
+        <ion-datetime
+          (ionChange)="endChange($event)"
+          displayFormat="DD.MM.YYYY"
+          [min]="store.startDate.toISOString()"
+          max="2050-12-31"
+          [value]="store.endDate.toISOString()"
+          placeholder="End Date"
+        ></ion-datetime>
+        <ion-buttons>
+          <ion-button (click)="endToday()">
+            <ion-icon slot="icon-only" name="today"></ion-icon>
+          </ion-button>
+          <ion-button (click)="endClear()">
+            <ion-icon slot="icon-only" name="close"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-item>
+    </ion-toolbar>
+  }
 </ion-header>
 
 <ion-content
@@ -84,7 +90,7 @@
   [scrollEvents]="true"
   (ionScroll)="logScrolling($event)"
   [fullscreen]="true"
->
+  >
   <ion-refresher slot="fixed" (ionRefresh)="loadFirst($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
@@ -96,37 +102,41 @@
 
   <div id="container">
     <ion-grid>
-      <ion-row *ngIf="store.launches.length===0">
-        <ion-col
-          *ngFor="let item of [].constructor(24)"
-          size="12"
-          size-sm="6"
-          size-md="4"
-          size-xl="3"
-        >
-          <app-list-entry-dummy
-            [countdown]="true"
-            [notification]="true"
-          ></app-list-entry-dummy>
-        </ion-col>
-      </ion-row>
+      @if (store.launches.length===0) {
+        <ion-row>
+          @for (item of [].constructor(24); track item) {
+            <ion-col
+              size="12"
+              size-sm="6"
+              size-md="4"
+              size-xl="3"
+              >
+              <app-list-entry-dummy
+                [countdown]="true"
+                [notification]="true"
+              ></app-list-entry-dummy>
+            </ion-col>
+          }
+        </ion-row>
+      }
       <ion-row>
-        <ion-col
-          *ngFor="let launch of store.launches"
-          size="12"
-          size-sm="6"
-          size-md="4"
-          size-xl="3"
-        >
-          <app-launch-list-entry [launch]="launch"></app-launch-list-entry>
-        </ion-col>
+        @for (launch of store.launches; track launch) {
+          <ion-col
+            size="12"
+            size-sm="6"
+            size-md="4"
+            size-xl="3"
+            >
+            <app-launch-list-entry [launch]="launch"></app-launch-list-entry>
+          </ion-col>
+        }
       </ion-row>
     </ion-grid>
     <ion-infinite-scroll (ionInfinite)="loadMore($event)">
       <ion-infinite-scroll-content
         loadingSpinner="circular"
         loadingText="Loading more launches..."
-      >
+        >
       </ion-infinite-scroll-content>
     </ion-infinite-scroll>
   </div>

@@ -8,6 +8,7 @@ import { PlaceholderService } from "src/app/placeholder.service";
 
 @Component({
   selector: "app-location-list-entry",
+  standalone: false,
   templateUrl: "./location-list-entry.component.html",
   styleUrls: ["./location-list-entry.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,

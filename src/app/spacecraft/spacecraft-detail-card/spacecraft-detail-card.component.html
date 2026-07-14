@@ -2,94 +2,110 @@
   type="spacecraft"
   [id]="spacecraft.id"
 ></app-notification-icon>
-<ion-card *ngIf="spacecraft !== undefined">
-  <div id="image">
-    <div class="image-wrapper">
-      <ion-img
-        id="background"
+@if (spacecraft !== undefined) {
+  <ion-card>
+    <div id="image">
+      <div class="image-wrapper">
+        <ion-img
+          id="background"
         [src]="
           spacecraft.image_url ? spacecraft.image_url : placeholderService.getPlaceholder()
         "
-      >
-      </ion-img>
-    </div>
-    <div class="image-wrapper">
-      <ion-img-viewer
-        [title]="spacecraft.name"
-        [text]="spacecraft.agency.abbrev"
-        [swipeToClose]="false"
-        id="foreground"
+          >
+        </ion-img>
+      </div>
+      <div class="image-wrapper">
+        <ion-img-viewer
+          [title]="spacecraft.name"
+          [text]="spacecraft.agency.abbrev"
+          [swipeToClose]="false"
+          id="foreground"
         [src]="
           spacecraft.image_url ? spacecraft.image_url : placeholderService.getPlaceholder()
         "
-      >
-      </ion-img-viewer>
+          >
+        </ion-img-viewer>
+      </div>
     </div>
-  </div>
-  <ion-card-header>
-    <ion-card-subtitle>{{ spacecraft.agency.abbrev }}</ion-card-subtitle>
-    <ion-card-title>{{ spacecraft.name }}</ion-card-title>
-  </ion-card-header>
-  <ion-card-content>
-    <div id="capability">
-      <ion-item>
-        <ion-label> Capability </ion-label>
-      </ion-item>
-      <p>{{ spacecraft.capability }}</p>
-    </div>
-    <div id="details">
-      <ion-item>
-        <ion-label> Details </ion-label>
-      </ion-item>
-      <p>{{ spacecraft.details }}</p>
-    </div>
-    <div id="history">
-      <ion-item>
-        <ion-label> History </ion-label>
-      </ion-item>
-      <p>{{ spacecraft.history }}</p>
-    </div>
-    <div id="flight_life">
-      <ion-item>
-        <ion-label> Flight Life </ion-label>
-      </ion-item>
-      <p>{{ spacecraft.flight_life }}</p>
-    </div>
-    <div id="specifications">
-      <ion-item>
-        <ion-label> Specifications </ion-label>
-      </ion-item>
-      <ion-chip id="crew_capacity" *ngIf="spacecraft.crew_capacity"
-        (click)="showSpecification('Crew capacity',spacecraft.crew_capacity,'Person(s)')">
-        <ion-icon name="body"></ion-icon>
-        <ion-label>{{ spacecraft.crew_capacity }}</ion-label>
-      </ion-chip>
-      <ion-chip id="diameter" *ngIf="spacecraft.diameter" (click)="showSpecification('Diameter',spacecraft.diameter,'Meter')">
-        <ion-icon name="code-working"></ion-icon>
-        <ion-label>{{ spacecraft.diameter }}m</ion-label>
-      </ion-chip>
-      <ion-chip id="height" *ngIf="spacecraft.height" (click)="showSpecification('Height',spacecraft.height,'Meter')">
-        <ion-icon name="arrow-up"></ion-icon>
-        <ion-label>{{ spacecraft.height }}m</ion-label>
-      </ion-chip>
-      <ion-chip id="payload_capacity" *ngIf="spacecraft.payload_capacity"
-        (click)="showSpecification('Payload capacity',spacecraft.payload_capacity,'Kilogramm')">
-        <ion-icon name="barbell"></ion-icon>
-        <ion-label>{{ spacecraft.payload_capacity }}kg</ion-label>
-      </ion-chip>
-      <ion-chip id="maiden_flight" *ngIf="spacecraft.maiden_flight"
-        (click)="showSpecification('First flight',spacecraft.maiden_flight,'')">
-        <ion-icon name="rocket"></ion-icon>
-        <ion-label>{{ spacecraft.maiden_flight }}</ion-label>
-      </ion-chip>
-      <ion-chip id="in_use" *ngIf="spacecraft.in_use" (click)="showSpecification('Spacecraft is','Active','')">
-        <ion-icon name="checkmark-circle" color="success"></ion-icon>
-        <ion-label>Active</ion-label>
-      </ion-chip>
-      <ion-chip id="retired" *ngIf="!spacecraft.in_use" (click)="showSpecification('Spacecraft is','Not Active','')">
-        <ion-icon name="close-circle" color="danger"></ion-icon>
-        <ion-label>Not Active</ion-label>
-      </ion-chip>
-    </div>
-  </ion-card-content>
-</ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>{{ spacecraft.agency.abbrev }}</ion-card-subtitle>
+      <ion-card-title>{{ spacecraft.name }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div id="capability">
+        <ion-item>
+          <ion-label> Capability </ion-label>
+        </ion-item>
+        <p>{{ spacecraft.capability }}</p>
+      </div>
+      <div id="details">
+        <ion-item>
+          <ion-label> Details </ion-label>
+        </ion-item>
+        <p>{{ spacecraft.details }}</p>
+      </div>
+      <div id="history">
+        <ion-item>
+          <ion-label> History </ion-label>
+        </ion-item>
+        <p>{{ spacecraft.history }}</p>
+      </div>
+      <div id="flight_life">
+        <ion-item>
+          <ion-label> Flight Life </ion-label>
+        </ion-item>
+        <p>{{ spacecraft.flight_life }}</p>
+      </div>
+      <div id="specifications">
+        <ion-item>
+          <ion-label> Specifications </ion-label>
+        </ion-item>
+        @if (spacecraft.crew_capacity) {
+          <ion-chip id="crew_capacity"
+            (click)="showSpecification('Crew capacity',spacecraft.crew_capacity,'Person(s)')">
+            <ion-icon name="body"></ion-icon>
+            <ion-label>{{ spacecraft.crew_capacity }}</ion-label>
+          </ion-chip>
+        }
+        @if (spacecraft.diameter) {
+          <ion-chip id="diameter" (click)="showSpecification('Diameter',spacecraft.diameter,'Meter')">
+            <ion-icon name="code-working"></ion-icon>
+            <ion-label>{{ spacecraft.diameter }}m</ion-label>
+          </ion-chip>
+        }
+        @if (spacecraft.height) {
+          <ion-chip id="height" (click)="showSpecification('Height',spacecraft.height,'Meter')">
+            <ion-icon name="arrow-up"></ion-icon>
+            <ion-label>{{ spacecraft.height }}m</ion-label>
+          </ion-chip>
+        }
+        @if (spacecraft.payload_capacity) {
+          <ion-chip id="payload_capacity"
+            (click)="showSpecification('Payload capacity',spacecraft.payload_capacity,'Kilogramm')">
+            <ion-icon name="barbell"></ion-icon>
+            <ion-label>{{ spacecraft.payload_capacity }}kg</ion-label>
+          </ion-chip>
+        }
+        @if (spacecraft.maiden_flight) {
+          <ion-chip id="maiden_flight"
+            (click)="showSpecification('First flight',spacecraft.maiden_flight,'')">
+            <ion-icon name="rocket"></ion-icon>
+            <ion-label>{{ spacecraft.maiden_flight }}</ion-label>
+          </ion-chip>
+        }
+        @if (spacecraft.in_use) {
+          <ion-chip id="in_use" (click)="showSpecification('Spacecraft is','Active','')">
+            <ion-icon name="checkmark-circle" color="success"></ion-icon>
+            <ion-label>Active</ion-label>
+          </ion-chip>
+        }
+        @if (!spacecraft.in_use) {
+          <ion-chip id="retired" (click)="showSpecification('Spacecraft is','Not Active','')">
+            <ion-icon name="close-circle" color="danger"></ion-icon>
+            <ion-label>Not Active</ion-label>
+          </ion-chip>
+        }
+      </div>
+    </ion-card-content>
+  </ion-card>
+}

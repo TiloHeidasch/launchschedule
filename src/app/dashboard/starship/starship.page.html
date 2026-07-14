@@ -18,32 +18,37 @@
       <ion-title size="large">{{title}}</ion-title>
     </ion-toolbar>
   </ion-header>
-  <div id="livestream-container" *ngIf="store.dashboard && store.dashboard.live_streams && store.dashboard.live_streams.length>0 ">
-    <youtube-player
-      *ngIf="videoId"
-      height="100%"
-      width="100%"
-      videoId="0"
-      suggestedQuality="highres" 
-            (stateChange)="videoStateChange($event)"
-            (ready)="videoReady($event)"
-    ></youtube-player>
-  </div>
-  <ion-tabs 
-  *ngIf="store.dashboard">
-    <ion-tab-bar slot="bottom,top">
-      <ion-tab-button tab="overview">
-        <ion-icon name="apps"></ion-icon>
-        <ion-label>Overview</ion-label>
-      </ion-tab-button>
-      <ion-tab-button tab="previous">
-        <ion-icon name="rocket"></ion-icon>
-        <ion-label>Previous Activity</ion-label>
-      </ion-tab-button>
-      <!-- <ion-tab-button tab="vehicle">
+  @if (store.dashboard && store.dashboard.live_streams && store.dashboard.live_streams.length>0 ) {
+    <div id="livestream-container">
+      @if (videoId) {
+        <youtube-player
+          height="100%"
+          width="100%"
+          videoId="0"
+          suggestedQuality="highres"
+          (stateChange)="videoStateChange($event)"
+          (ready)="videoReady($event)"
+        ></youtube-player>
+      }
+    </div>
+  }
+  @if (store.dashboard) {
+    <ion-tabs
+      >
+      <ion-tab-bar slot="bottom,top">
+        <ion-tab-button tab="overview">
+          <ion-icon name="apps"></ion-icon>
+          <ion-label>Overview</ion-label>
+        </ion-tab-button>
+        <ion-tab-button tab="previous">
+          <ion-icon name="rocket"></ion-icon>
+          <ion-label>Previous Activity</ion-label>
+        </ion-tab-button>
+        <!-- <ion-tab-button tab="vehicle">
         <ion-icon name="construct"></ion-icon>
         <ion-label>Starships</ion-label>
       </ion-tab-button> -->
     </ion-tab-bar>
   </ion-tabs>
+}
 </ion-content>

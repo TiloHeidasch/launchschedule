@@ -15,7 +15,7 @@ import { AstronautListEntryModule } from "./astronaut-list-entry/astronaut-list-
 import { AstronautStatusModule } from "./astronaut-status/astronaut-status.module";
 import { LaunchListEntryModule } from "../launch/launch-list-entry/launch-list-entry.module";
 import { AgencyListEntryModule } from "../agency/agency-list-entry/agency-list-entry.module";
-import { NgxIonicImageViewerModule } from "ngx-ionic-image-viewer";
+import { NgxIonicImageViewerModule } from "@t.simon/ionic-image-viewer";
 import { AstronautService } from "./astronaut.service";
 
 @NgModule({

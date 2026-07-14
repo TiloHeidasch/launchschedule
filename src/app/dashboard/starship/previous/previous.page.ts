@@ -1,10 +1,12 @@
-import { Component, ViewChild } from "@angular/core";
+import { Component, ViewChild, ChangeDetectionStrategy } from "@angular/core";
 import { IonContent, IonInfiniteScroll, ViewDidEnter } from "@ionic/angular";
 import { StarshipParamStoreService } from "../starship-param-store.service";
 
 @Component({
   selector: "app-previous",
+  standalone: false,
   templateUrl: "./previous.page.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./previous.page.scss"],
 })
 export class PreviousPage implements ViewDidEnter {

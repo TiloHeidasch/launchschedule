@@ -20,23 +20,26 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <div id="container" *ngIf="astronaut!==undefined">
-    <div id="astronaut">
-      <app-astronaut-detail-card
-        [astronaut]="astronaut"
-      ></app-astronaut-detail-card>
-    </div>
-    <div id="agency">
-      <app-agency-list-entry [id]="astronaut.agency.id"></app-agency-list-entry>
-    </div>
-    <div id="launch-list">
-      <app-launch-list-entry
-        *ngFor="let launch of astronaut.flights"
-        [launch]="launch"
-      ></app-launch-list-entry>
-    </div>
-    <!-- <div id="astronaut">
+  @if (astronaut!==undefined) {
+    <div id="container">
+      <div id="astronaut">
+        <app-astronaut-detail-card
+          [astronaut]="astronaut"
+        ></app-astronaut-detail-card>
+      </div>
+      <div id="agency">
+        <app-agency-list-entry [id]="astronaut.agency.id"></app-agency-list-entry>
+      </div>
+      <div id="launch-list">
+        @for (launch of astronaut.flights; track launch) {
+          <app-launch-list-entry
+            [launch]="launch"
+          ></app-launch-list-entry>
+        }
+      </div>
+      <!-- <div id="astronaut">
       <astronaut-detail-card [astronaut]='astronaut.lsp'></astronaut-detail-card>
     </div> -->
   </div>
+}
 </ion-content>

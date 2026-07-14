@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild, ChangeDetectionStrategy } from "@angular/core";
 import { LocationParamStoreService } from "./location-param-store.service";
 import { IonContent, ViewDidEnter, IonInfiniteScroll } from "@ionic/angular";
 import { CountryCode } from "../types/country-codes";
@@ -6,7 +6,9 @@ import { LocationService } from "./location.service";
 
 @Component({
   selector: "app-location-overview",
+  standalone: false,
   templateUrl: "./location-overview.page.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./location-overview.page.scss"],
 })
 export class LocationOverviewPage implements OnInit, ViewDidEnter {
@@ -33,7 +35,7 @@ export class LocationOverviewPage implements OnInit, ViewDidEnter {
   async loadFirst(refreshEvent?) {
     try {
       this.infiniteScroll.disabled = false;
-    } catch (error) {}
+    } catch { /* ignore */ }
     this.store.locations = [];
     this.store.locations = (
 

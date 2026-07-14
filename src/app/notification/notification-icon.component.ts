@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectorRef } from "@angular/core";
+import { Component, OnInit, Input, ChangeDetectorRef, ChangeDetectionStrategy } from "@angular/core";
 import {
   LaunchscheduleNotificationService,
   NotificationServiceUpdate,
@@ -6,7 +6,9 @@ import {
 
 @Component({
   selector: "app-notification-icon",
+  standalone: false,
   templateUrl: "./notification-icon.component.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./notification-icon.component.scss"],
 })
 export class NotificationIconComponent

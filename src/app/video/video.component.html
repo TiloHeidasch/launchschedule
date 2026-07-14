@@ -5,16 +5,19 @@
   </ion-card-header>
   <ion-card-content>
     <p>{{ description }}</p>
-    <youtube-player
-      *ngIf="id !== '0'"
-      height="100%"
-      width="100%"
-      [videoId]="id"
-    ></youtube-player>
-    <div *ngIf="id === '0'">
-      <ion-item [href]="url">
-        <ion-label>Link</ion-label>
-      </ion-item>
-    </div>
+    @if (id !== '0') {
+      <youtube-player
+        height="100%"
+        width="100%"
+        [videoId]="id"
+      ></youtube-player>
+    }
+    @if (id === '0') {
+      <div>
+        <ion-item [href]="url">
+          <ion-label>Link</ion-label>
+        </ion-item>
+      </div>
+    }
   </ion-card-content>
 </ion-card>

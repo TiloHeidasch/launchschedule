@@ -1,11 +1,13 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild, ChangeDetectionStrategy } from "@angular/core";
 import { RocketParamStoreService } from "./rocket-param-store.service";
 import { IonContent, ViewDidEnter, IonInfiniteScroll } from "@ionic/angular";
 import { RocketService } from "./rocket.service";
 
 @Component({
   selector: "app-rocket-overview",
+  standalone: false,
   templateUrl: "./rocket-overview.page.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./rocket-overview.page.scss"],
 })
 export class RocketOverviewPage implements OnInit, ViewDidEnter {
@@ -31,7 +33,7 @@ export class RocketOverviewPage implements OnInit, ViewDidEnter {
   async loadFirst(refreshEvent?) {
     try {
       this.infiniteScroll.disabled = false;
-    } catch (error) {}
+    } catch { /* ignore */ }
     this.store.rockets = [];
     const answer = await this.service.getFirstRockets(
       this.store.search

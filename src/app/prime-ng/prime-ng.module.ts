@@ -7,11 +7,11 @@ import { CommonModule } from "@angular/common";
 // import { BlockUIModule } from "primeng/blockui";
 // import { BreadcrumbModule } from "primeng/breadcrumb";
 // import { ButtonModule } from "primeng/button";
-import { CalendarModule } from "primeng/calendar";
+// import { CalendarModule } from "primeng/calendar";
 // import { CaptchaModule } from "primeng/captcha";
 // import { CardModule } from "primeng/card";
 // import { CarouselModule } from "primeng/carousel";
-import { ChartModule } from "primeng/chart";
+// import { ChartModule } from "primeng/chart";
 // import { CheckboxModule } from "primeng/checkbox";
 // import { ChipsModule } from "primeng/chips";
 // import { CodeHighlighterModule } from "primeng/codehighlighter";
@@ -43,7 +43,7 @@ import { ChartModule } from "primeng/chart";
 // import { MenubarModule } from "primeng/menubar";
 // import { MessageModule } from "primeng/message";
 // import { MessagesModule } from "primeng/messages";
-import { MultiSelectModule } from "primeng/multiselect";
+// import { MultiSelectModule } from "primeng/multiselect";
 // import { OrderListModule } from "primeng/orderlist";
 // import { OrganizationChartModule } from "primeng/organizationchart";
 // import { OverlayPanelModule } from "primeng/overlaypanel";
@@ -65,12 +65,12 @@ import { MultiSelectModule } from "primeng/multiselect";
 // import { SpinnerModule } from "primeng/spinner";
 // import { SplitButtonModule } from "primeng/splitbutton";
 // import { StepsModule } from "primeng/steps";
-import { TableModule } from "primeng/table";
+// import { TableModule } from "primeng/table";
 // import { TabMenuModule } from "primeng/tabmenu";
 // import { TabViewModule } from "primeng/tabview";
 // import { TerminalModule } from "primeng/terminal";
 // import { TieredMenuModule } from "primeng/tieredmenu";
-import { ToastModule } from "primeng/toast";
+// import { ToastModule } from "primeng/toast";
 // import { ToggleButtonModule } from "primeng/togglebutton";
 // import { ToolbarModule } from "primeng/toolbar";
 // import { TooltipModule } from "primeng/tooltip";
@@ -89,11 +89,11 @@ import { ToastModule } from "primeng/toast";
     // BlockUIModule,
     // BreadcrumbModule,
     // ButtonModule,
-    CalendarModule,
+    // CalendarModule,
     // CaptchaModule,
     // CardModule,
     // CarouselModule,
-    ChartModule,
+    // ChartModule,
     // CheckboxModule,
     // ChipsModule,
     // CodeHighlighterModule,
@@ -125,7 +125,7 @@ import { ToastModule } from "primeng/toast";
     // MenubarModule,
     // MessageModule,
     // MessagesModule,
-    MultiSelectModule,
+    // MultiSelectModule,
     // OrderListModule,
     // OrganizationChartModule,
     // OverlayPanelModule,
@@ -147,12 +147,12 @@ import { ToastModule } from "primeng/toast";
     // SpinnerModule,
     // SplitButtonModule,
     // StepsModule,
-    TableModule,
+    // TableModule,
     // TabMenuModule,
     // TabViewModule,
     // TerminalModule,
     // TieredMenuModule,
-    ToastModule,
+    // ToastModule,
     // ToggleButtonModule,
     // ToolbarModule,
     // TooltipModule,
@@ -168,11 +168,11 @@ import { ToastModule } from "primeng/toast";
     // BlockUIModule,
     // BreadcrumbModule,
     // ButtonModule,
-    CalendarModule,
+    // CalendarModule,
     // CaptchaModule,
     // CardModule,
     // CarouselModule,
-    ChartModule,
+    // ChartModule,
     // CheckboxModule,
     // ChipsModule,
     // CodeHighlighterModule,
@@ -204,7 +204,7 @@ import { ToastModule } from "primeng/toast";
     // MenubarModule,
     // MessageModule,
     // MessagesModule,
-    MultiSelectModule,
+    // MultiSelectModule,
     // OrderListModule,
     // OrganizationChartModule,
     // OverlayPanelModule,
@@ -226,12 +226,12 @@ import { ToastModule } from "primeng/toast";
     // SpinnerModule,
     // SplitButtonModule,
     // StepsModule,
-    TableModule,
+    // TableModule,
     // TabMenuModule,
     // TabViewModule,
     // TerminalModule,
     // TieredMenuModule,
-    ToastModule,
+    // ToastModule,
     // ToggleButtonModule,
     // ToolbarModule,
     // TooltipModule,

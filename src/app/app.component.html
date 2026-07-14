@@ -1,128 +1,111 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
     <ion-menu contentId="main-content" type="overlay">
-      <ion-img *ngIf="preferences.isDark()" src="assets/icon/logo2dark.png"></ion-img><ion-img *ngIf="!preferences.isDark()" src="assets/icon/logo2.png"></ion-img>
+      @if (preferences.isDark()) {
+        <ion-img src="assets/icon/logo2dark.png"></ion-img>
+        }@if (!preferences.isDark()) {
+        <ion-img src="assets/icon/logo2.png"></ion-img>
+      }
       <ion-content>
         <ion-list id="menu-list">
           <ion-item class="menu-divider"><h4>Highlights</h4></ion-item>
-          <ion-menu-toggle
-            auto-hide="false"
-            *ngFor="let p of highlightPages; let i = index"
-          >
-            <ion-item
-              (click)="selectedIndex = i"
-              routerDirection="root"
-              [routerLink]="[p.url]"
-              lines="none"
-              detail="false"
-              [class.selected]="selectedIndex === i"
-            >
-              <ion-icon *ngIf="!p.icon.startsWith('logo')"
-                slot="start"
-                [ios]="p.icon + '-outline'"
-                [md]="p.icon + '-sharp'"
-              ></ion-icon>
-              <ion-icon *ngIf="p.icon.startsWith('logo')"
-                slot="start"
-                [name]="p.icon"
-              ></ion-icon>
-              <ion-label>{{ p.title }}</ion-label>
-            </ion-item>
-          </ion-menu-toggle>
+          @for (p of highlightPages; track p; let i = $index) {
+            <ion-menu-toggle
+              auto-hide="false"
+              >
+              <ion-item
+                (click)="selectedIndex = i"
+                routerDirection="root"
+                [routerLink]="[p.url]"
+                lines="none"
+                detail="false"
+                [class.selected]="selectedIndex === i"
+                >
+                @if (!p.icon.startsWith('logo')) {
+                  <ion-icon
+                    slot="start"
+                    [ios]="p.icon + '-outline'"
+                    [md]="p.icon + '-sharp'"
+                  ></ion-icon>
+                }
+                @if (p.icon.startsWith('logo')) {
+                  <ion-icon
+                    slot="start"
+                    [name]="p.icon"
+                  ></ion-icon>
+                }
+                <ion-label>{{ p.title }}</ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+          }
           <ion-item class="menu-divider"><h4>Deep Dive</h4></ion-item>
-          <ion-menu-toggle
-            auto-hide="false"
-            *ngFor="let p of deepDivePages; let i = index"
-          >
-            <ion-item
-              (click)="selectedIndex = i + highlightPages.length"
-              routerDirection="root"
-              [routerLink]="[p.url]"
-              lines="none"
-              detail="false"
-              [class.selected]="selectedIndex === i + highlightPages.length"
-            >
-              <ion-icon
-                slot="start"
-                [ios]="p.icon + '-outline'"
-                [md]="p.icon + '-sharp'"
-              ></ion-icon>
-              <ion-label>{{ p.title }}</ion-label>
-            </ion-item>
-          </ion-menu-toggle>
+          @for (p of deepDivePages; track p; let i = $index) {
+            <ion-menu-toggle
+              auto-hide="false"
+              >
+              <ion-item
+                (click)="selectedIndex = i + highlightPages.length"
+                routerDirection="root"
+                [routerLink]="[p.url]"
+                lines="none"
+                detail="false"
+                [class.selected]="selectedIndex === i + highlightPages.length"
+                >
+                <ion-icon
+                  slot="start"
+                  [ios]="p.icon + '-outline'"
+                  [md]="p.icon + '-sharp'"
+                ></ion-icon>
+                <ion-label>{{ p.title }}</ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+          }
           <ion-item class="menu-divider"><h4>Appearance</h4></ion-item>
           <ion-item lines="none">
             <ion-icon slot="start" name="contrast"></ion-icon>
             <ion-label
-              ><div *ngIf="preferences.isDark()">Light Theme</div>
-              <div *ngIf="!preferences.isDark()">Dark Theme</div></ion-label
-            >
-            <ion-toggle (ionChange)="toggleDarkTheme()" slot="end"></ion-toggle>
-          </ion-item>
-        </ion-list>
-        <ion-list id="bottom">
-          <ion-menu-toggle
-            auto-hide="false"
-            *ngFor="let p of bottomPages; let i = index"
-          >
-            <ion-item
+              >@if (preferences.isDark()) {
+              <div>Light Theme</div>
+            }
+            @if (!preferences.isDark()) {
+              <div>Dark Theme</div>
+              }</ion-label
+              >
+              <ion-toggle (ionChange)="toggleDarkTheme()" slot="end"></ion-toggle>
+            </ion-item>
+          </ion-list>
+          <ion-list id="bottom">
+            @for (p of bottomPages; track p; let i = $index) {
+              <ion-menu-toggle
+                auto-hide="false"
+                >
+                <ion-item
               (click)="
                 selectedIndex = i + highlightPages.length + deepDivePages.length
               "
-              routerDirection="root"
-              [routerLink]="[p.url]"
-              lines="none"
-              detail="false"
+                  routerDirection="root"
+                  [routerLink]="[p.url]"
+                  lines="none"
+                  detail="false"
               [class.selected]="
                 selectedIndex ===
                 i + highlightPages.length + deepDivePages.length
               "
-            >
-              <ion-icon
-                slot="start"
-                [ios]="p.icon + '-outline'"
-                [md]="p.icon + '-sharp'"
-              ></ion-icon>
-              <ion-label>{{ p.title }}</ion-label>
-            </ion-item>
-          </ion-menu-toggle>
-        </ion-list>
-      </ion-content>
-    </ion-menu>
-    <ion-router-outlet id="main-content">
-      <p-toast styleClass="my-toast">
-        <ng-template let-message pTemplate="message">
-          <div class="toast">
-            <div class="toast-head"></div>
-            <div class="toast-body">
-              <div class="toast-text">
-                <div class="toast-heading">
-                  <h4>{{ message.summary }}</h4>
-                </div>
-                <div class="toast-content">
-                  <p>{{ message.detail }}</p>
-                </div>
-              </div>
-            </div>
-            <div class="toast-foot" *ngIf="message.data">
-              <ion-button
-                *ngIf="message.data.type === 'launch'"
-                expand="full"
-                class="toast-jump"
-                (click)="jumpToLaunch(message.data.id)"
-                >Jump to Launch</ion-button
-              >
-              <ion-button
-                *ngIf="message.data.type === 'event'"
-                expand="full"
-                class="toast-jump"
-                (click)="jumpToEvent(message.data.id)"
-                >Jump to Event</ion-button
-              >
-            </div>
-          </div>
-        </ng-template>
-      </p-toast>
-    </ion-router-outlet>
-  </ion-split-pane>
-</ion-app>
+                  >
+                  <ion-icon
+                    slot="start"
+                    [ios]="p.icon + '-outline'"
+                    [md]="p.icon + '-sharp'"
+                  ></ion-icon>
+                  <ion-label>{{ p.title }}</ion-label>
+                </ion-item>
+              </ion-menu-toggle>
+            }
+          </ion-list>
+        </ion-content>
+      </ion-menu>
+      <ion-router-outlet id="main-content">
+        <div id="notification-placeholder"></div>
+          </ion-router-outlet>
+        </ion-split-pane>
+      </ion-app>

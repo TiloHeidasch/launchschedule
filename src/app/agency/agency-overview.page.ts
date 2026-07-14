@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild, ChangeDetectionStrategy } from "@angular/core";
 import { AgencyParamStoreService } from "./agency-param-store.service";
 import { CountryCode } from "../types/country-codes";
 import { IonContent, ViewDidEnter, IonInfiniteScroll } from "@ionic/angular";
@@ -6,7 +6,9 @@ import { AgencyService } from "./agency.service";
 
 @Component({
   selector: "app-agency-overview",
+  standalone: false,
   templateUrl: "./agency-overview.page.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./agency-overview.page.scss"],
 })
 export class AgencyOverviewPage implements OnInit, ViewDidEnter {
@@ -32,7 +34,7 @@ export class AgencyOverviewPage implements OnInit, ViewDidEnter {
   async loadFirst(refreshEvent?) {
     try {
       this.infiniteScroll.disabled = false;
-    } catch (error) {}
+    } catch { /* ignore */ }
     this.store.agencies = [];
     this.store.agencies = (
 

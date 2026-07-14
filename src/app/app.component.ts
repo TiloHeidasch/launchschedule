@@ -1,15 +1,14 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
 
 import { Platform } from "@ionic/angular";
-import { SplashScreen } from "@awesome-cordova-plugins/splash-screen/ngx";
-import { StatusBar } from "@awesome-cordova-plugins/status-bar/ngx";
+import { SplashScreen } from "@capacitor/splash-screen";
+import { StatusBar, Style } from "@capacitor/status-bar";
 
 import { Router } from "@angular/router";
-import { MessageService } from "primeng/api";
 import { environment } from "../environments/environment";
 import { NewsParamStoreService } from "./news/news-param-store.service";
 import { PreferenceService } from "./preferences.service";
-import { SwUpdate } from "@angular/service-worker";
+import { SwUpdate, VersionEvent } from "@angular/service-worker";
 import {
   PushNotifications,
   PushNotificationSchema,
@@ -19,9 +18,11 @@ import { LaunchscheduleNotificationService } from "./launchschedule-notification
 
 @Component({
   selector: "app-root",
+  standalone: false,
   templateUrl: "app.component.html",
   styleUrls: ["app.component.scss"],
-  providers: [MessageService],
+  changeDetection: ChangeDetectionStrategy.Eager,
+
 })
 export class AppComponent implements OnInit {
   versionCode = environment.versionCode + 1000;
@@ -117,25 +118,24 @@ export class AppComponent implements OnInit {
 
   constructor(
     private platform: Platform,
-    private splashScreen: SplashScreen,
-    private statusBar: StatusBar,
     private router: Router,
-    private messageService: MessageService,
     public newsParamStore: NewsParamStoreService,
     public preferences: PreferenceService,
     updates: SwUpdate,
     private notificationService: LaunchscheduleNotificationService
   ) {
     this.initializeApp();
-    updates.available.subscribe(() => {
-      updates.activateUpdate().then(() => document.location.reload());
+    updates.versionUpdates.subscribe((event: VersionEvent) => {
+      if (event.type === "VERSION_READY") {
+        updates.activateUpdate().then(() => document.location.reload());
+      }
     });
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
+      StatusBar.setStyle({ style: Style.Default });
+      SplashScreen.hide();
     });
   }
 
@@ -160,13 +160,7 @@ export class AppComponent implements OnInit {
         PushNotifications.addListener(
           "pushNotificationReceived",
           (notification: PushNotificationSchema) => {
-            this.messageService.add({
-              severity: "info",
-              summary: notification.title,
-              detail: notification.body,
-              sticky: true,
-              data: notification.data,
-            });
+            console.log('Notification:', notification.title, notification.body);
           }
         ).catch((err) => {
           console.log(err);

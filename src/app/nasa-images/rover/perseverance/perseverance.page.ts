@@ -1,11 +1,13 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild, ChangeDetectionStrategy } from "@angular/core";
 import { IonContent, IonInfiniteScroll } from "@ionic/angular";
 import { MarsPhoto, MarsPhotosService, Rover } from "../mars-photos.service";
 import { RoverParamStoreService } from "../rover-param-store.service";
 
 @Component({
   selector: "app-perseverance",
+  standalone: false,
   templateUrl: "./perseverance.page.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./perseverance.page.scss"],
 })
 export class PerseverancePage implements OnInit {
@@ -34,7 +36,7 @@ export class PerseverancePage implements OnInit {
   async loadFirst(refreshEvent?) {
     try {
       this.infiniteScroll.disabled = false;
-    } catch (error) {}
+    } catch { /* ignore */ }
     this.store.perseveranceImages = [];
     this.store.perseveranceLastRequestedSolIterator = 0;
     this.store.perseveranceImages = await this.service.getPhotosForSol(

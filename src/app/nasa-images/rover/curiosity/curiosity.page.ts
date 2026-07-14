@@ -1,11 +1,13 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild, ChangeDetectionStrategy } from "@angular/core";
 import { IonContent, IonInfiniteScroll } from "@ionic/angular";
 import { MarsPhoto, MarsPhotosService, Rover } from "../mars-photos.service";
 import { RoverParamStoreService } from "../rover-param-store.service";
 
 @Component({
   selector: "app-curiosity",
+  standalone: false,
   templateUrl: "./curiosity.page.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./curiosity.page.scss"],
 })
 export class CuriosityPage implements OnInit {
@@ -34,7 +36,7 @@ export class CuriosityPage implements OnInit {
   async loadFirst(refreshEvent?) {
     try {
       this.infiniteScroll.disabled = false;
-    } catch (error) {}
+    } catch { /* ignore */ }
     this.store.curiosityImages = [];
     this.store.curiosityLastRequestedSolIterator = 0;
     this.store.curiosityImages = await this.service.getPhotosForSol(

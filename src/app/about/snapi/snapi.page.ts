@@ -1,9 +1,11 @@
-import { Component } from "@angular/core";
+import { Component, ChangeDetectionStrategy } from "@angular/core";
 import { AboutCardDetail } from "../about-card/about-card.component";
 
 @Component({
   selector: "app-snapi",
+  standalone: false,
   templateUrl: "./snapi.page.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./snapi.page.scss"],
 })
 export class SnapiPage {

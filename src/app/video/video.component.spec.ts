@@ -21,7 +21,7 @@ describe("VideoComponent", () => {
 
     fixture = TestBed.createComponent(VideoComponent);
     component = fixture.componentInstance;
-    (component.launchVideo = {
+    component.launchVideo = {
       priority: 9,
       title: "Rocket Lab - I Can't Believe It's Not Optical Launch",
       description:
@@ -29,8 +29,8 @@ describe("VideoComponent", () => {
       feature_image:
         "https://i.ytimg.com/vi/FPIhI5mRDRI/maxresdefault_live.jpg",
       url: "https://www.youtube.com/watch?v=FPIhI5mRDRI",
-    }),
-      fixture.detectChanges();
+    };
+    fixture.detectChanges();
   });
 
   it("should create", () => {

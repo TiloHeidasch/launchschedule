@@ -1,9 +1,11 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { StarshipParamStoreService } from "./starship-param-store.service";
 
 @Component({
   selector: "app-starship",
+  standalone: false,
   templateUrl: "./starship.page.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./starship.page.scss"],
 })
 export class StarshipPage implements OnInit {

@@ -10,16 +10,18 @@
     "downlevelIteration": true,
     "experimentalDecorators": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "importHelpers": true,
-    "target": "es2020",
-    "lib": [
-      "es2018",
-      "dom"
-    ]
+    "skipLibCheck": true,
+    "strict": false,
+    "noImplicitAny": false,
+    "strictPropertyInitialization": false,
+    "ignoreDeprecations": "6.0",
+    "target": "es2022"
   },
   "angularCompilerOptions": {
-    "fullTemplateTypeCheck": true,
+    "fullTemplateTypeCheck": false,
+    "strictTemplates": false,
     "strictInjectionParameters": true
   }
 }

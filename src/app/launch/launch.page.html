@@ -17,64 +17,73 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <div id="container" *ngIf="launch!==undefined">
-    <div id="launch">
-      <app-launch-detail-card [launch]="launch"></app-launch-detail-card>
-    </div>
-    <div
-      id="crew"
-      *ngIf="launch.rocket.spacecraft_stage && launch.rocket.spacecraft_stage.launch_crew"
-    >
-      <div
-        class="crew-member"
-        *ngFor="let member of launch.rocket.spacecraft_stage.launch_crew"
-      >
-        <ion-item>
-          <ion-label> {{member.role.role}} </ion-label>
-        </ion-item>
-        <app-astronaut-list-entry
-          [id]="member.astronaut.id"
-        ></app-astronaut-list-entry>
+  @if (launch!==undefined) {
+    <div id="container">
+      <div id="launch">
+        <app-launch-detail-card [launch]="launch"></app-launch-detail-card>
       </div>
+      @if (launch.rocket.spacecraft_stage && launch.rocket.spacecraft_stage.launch_crew) {
+        <div
+          id="crew"
+          >
+          @for (member of launch.rocket.spacecraft_stage.launch_crew; track member) {
+            <div
+              class="crew-member"
+              >
+              <ion-item>
+                <ion-label> {{member.role.role}} </ion-label>
+              </ion-item>
+              <app-astronaut-list-entry
+                [id]="member.astronaut.id"
+              ></app-astronaut-list-entry>
+            </div>
+          }
+        </div>
+      }
+      <div id="rocket">
+        <ion-item>
+          <ion-label> Rocket </ion-label>
+        </ion-item>
+        <app-rocket-list-entry
+          [rocket]="launch.rocket.configuration"
+        ></app-rocket-list-entry>
+      </div>
+      @if (launch.mission) {
+        <div id="mission">
+          <ion-item>
+            <ion-label> Mission </ion-label>
+          </ion-item>
+          <app-mission-list-entry
+            [mission]="launch.mission"
+          ></app-mission-list-entry>
+        </div>
+      }
+      <div id="pad">
+        <ion-item>
+          <ion-label> Pad </ion-label>
+        </ion-item>
+        <app-pad-list-entry [pad]="launch.pad"></app-pad-list-entry>
+      </div>
+      <div id="agency">
+        <ion-item>
+          <ion-label> Agency </ion-label>
+        </ion-item>
+        <app-agency-list-entry
+          [agency]="launch.launch_service_provider"
+        ></app-agency-list-entry>
+      </div>
+      @if (launch.vidURLs && launch.vidURLs.length>0) {
+        <div id="video">
+          <ion-item>
+            <ion-label> Videos </ion-label>
+          </ion-item>
+          @for (video of launch.vidURLs; track video) {
+            <app-youtube-video
+              [launchVideo]="video"
+            ></app-youtube-video>
+          }
+        </div>
+      }
     </div>
-    <div id="rocket">
-      <ion-item>
-        <ion-label> Rocket </ion-label>
-      </ion-item>
-      <app-rocket-list-entry
-        [rocket]="launch.rocket.configuration"
-      ></app-rocket-list-entry>
-    </div>
-    <div id="mission" *ngIf="launch.mission">
-      <ion-item>
-        <ion-label> Mission </ion-label>
-      </ion-item>
-      <app-mission-list-entry
-        [mission]="launch.mission"
-      ></app-mission-list-entry>
-    </div>
-    <div id="pad">
-      <ion-item>
-        <ion-label> Pad </ion-label>
-      </ion-item>
-      <app-pad-list-entry [pad]="launch.pad"></app-pad-list-entry>
-    </div>
-    <div id="agency">
-      <ion-item>
-        <ion-label> Agency </ion-label>
-      </ion-item>
-      <app-agency-list-entry
-        [agency]="launch.launch_service_provider"
-      ></app-agency-list-entry>
-    </div>
-    <div id="video" *ngIf="launch.vidURLs && launch.vidURLs.length>0">
-      <ion-item>
-        <ion-label> Videos </ion-label>
-      </ion-item>
-      <app-youtube-video
-        *ngFor="let video of launch.vidURLs"
-        [launchVideo]="video"
-      ></app-youtube-video>
-    </div>
-  </div>
+  }
 </ion-content>

@@ -12,7 +12,7 @@ import { RocketOverviewPage } from "./rocket-overview.page";
 import { RocketListEntryModule } from "./rocket-list-entry/rocket-list-entry.module";
 import { AgencyListEntryModule } from "../agency/agency-list-entry/agency-list-entry.module";
 import { NotificationModule } from "../notification/notification.module";
-import { NgxIonicImageViewerModule } from "ngx-ionic-image-viewer";
+import { NgxIonicImageViewerModule } from "@t.simon/ionic-image-viewer";
 import { RocketService } from "./rocket.service";
 
 @NgModule({

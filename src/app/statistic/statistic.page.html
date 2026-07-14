@@ -15,348 +15,256 @@
   <div id="wizard">
     <ion-card id="step_1">
       <ion-card-header>
-        <ion-card-subtitle *ngIf="step===1">Step 1</ion-card-subtitle>
+        @if (step===1) {
+          <ion-card-subtitle>Step 1</ion-card-subtitle>
+        }
         <ion-card-title>What</ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <div class="buttons">
-          <svg
-            *ngIf="step>1"
-            class="checkmark"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 52 52"
-          >
-            <circle
-              class="checkmark__circle"
-              cx="26"
-              cy="26"
-              r="25"
-              fill="none"
-            />
-            <path
-              class="checkmark__check"
-              fill="none"
-              d="M14.1 27.2l7.1 7.2 16.7-16.8"
-            />
-          </svg>
-          <ion-button
-            *ngIf="step===1"
-            (click)="whatComplete()"
-            [disabled]="what===undefined"
-            expand="block"
-            id="step_1_complete_button"
-          >
-            Done
-          </ion-button>
-          <ion-label *ngIf="step>1">{{what}}</ion-label>
-          <ion-button
-            *ngIf="step>1"
-            (click)="whatOpen()"
-            expand="block"
-            id="step_1_open_button"
-          >
-            Redo
-          </ion-button>
-        </div>
-        <ion-radio-group *ngIf="step===1" [(ngModel)]="what">
-          <ion-item>
-            <ion-label>Launches</ion-label>
-            <ion-radio slot="start" value="Launches"></ion-radio>
-          </ion-item>
-          <ion-item disabled="true">
-            <ion-label>Agencies - Soon™</ion-label>
-            <ion-radio slot="start" value="Agencies"></ion-radio>
-          </ion-item>
-          <ion-item disabled="true">
-            <ion-label>Astronauts - Soon™</ion-label>
-            <ion-radio slot="start" value="Astronauts"></ion-radio>
-          </ion-item>
-          <ion-item disabled="true">
-            <ion-label>Events - Soon™</ion-label>
-            <ion-radio slot="start" value="Events"></ion-radio>
-          </ion-item>
-          <ion-item disabled="true">
-            <ion-label>Facilities - Soon™</ion-label>
-            <ion-radio slot="start" value="Facilities"></ion-radio>
-          </ion-item>
-          <ion-item disabled="true">
-            <ion-label>Pad - Soon™</ion-label>
-            <ion-radio slot="start" value="Pad"></ion-radio>
-          </ion-item>
-          <ion-item disabled="true">
-            <ion-label>Rocket - Soon™</ion-label>
-            <ion-radio slot="start" value="Rocket"></ion-radio>
-          </ion-item>
-          <ion-item disabled="true">
-            <ion-label>Spacecraft - Soon™</ion-label>
-            <ion-radio slot="start" value="Spacecraft"></ion-radio>
-          </ion-item>
-          <ion-item disabled="true">
-            <ion-label>Spacestation - Soon™</ion-label>
-            <ion-radio slot="start" value="Spacestation"></ion-radio>
-          </ion-item>
-        </ion-radio-group>
-      </ion-card-content>
-    </ion-card>
-    <ion-card *ngIf="step>1" id="step_2">
-      <ion-card-header>
-        <ion-card-subtitle *ngIf="step===2">Step 2</ion-card-subtitle>
-        <ion-card-title>Filter</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <div class="buttons">
-          <svg
-            *ngIf="step>2"
-            class="checkmark"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 52 52"
-          >
-            <circle
-              class="checkmark__circle"
-              cx="26"
-              cy="26"
-              r="25"
-              fill="none"
-            />
-            <path
-              class="checkmark__check"
-              fill="none"
-              d="M14.1 27.2l7.1 7.2 16.7-16.8"
-            />
-          </svg>
-          <ion-button
-            *ngIf="step===2"
-            (click)="filterComplete()"
-            expand="block"
-            id="step_2_complete_button"
-          >
-            Done
-          </ion-button>
-          <ion-label *ngIf="step>2&&!globalSearch"
-            >{{dataFiltered.length}} Records</ion-label
-          >
-          <ion-label *ngIf="step>2&&globalSearch">{{globalSearch}}</ion-label>
-          <ion-button
-            *ngIf="step>2"
-            (click)="filterOpen()"
-            expand="block"
-            id="step_2_open_button"
-          >
-            Redo
-          </ion-button>
-        </div>
-        <p-table
-          *ngIf="step===2&&what==='Launches'"
-          #tt
-          [columns]="cols"
-          [value]="dataRaw"
-          [scrollable]="true"
-          [style]="{width:'100%'}"
-          [paginator]="true"
-          [rows]="7"
-        >
-          <ng-template pTemplate="colgroup" let-columns>
-            <colgroup>
-              <col *ngFor="let col of columns" style="width: 150px" />
-            </colgroup>
-          </ng-template>
-          <ng-template pTemplate="caption">
-            <i class="pi pi-search" style="margin: 4px 4px 0 0"></i>
-            <input
-              [(ngModel)]="globalSearch"
-              type="text"
-              pInputText
-              size="50"
-              placeholder="Global Filter"
-              (input)="tt.filterGlobal($event.target.value, 'contains')"
-              style="width: calc(100% - 24px)"
-            />
-          </ng-template>
-          <ng-template pTemplate="header" let-columns>
-            <tr>
-              <th *ngFor="let col of columns" [pSortableColumn]="col.field">
-                {{col.header}}
-                <p-sortIcon [field]="col.field"></p-sortIcon>
-              </th>
-            </tr>
-            <tr>
-              <th *ngFor="let col of columns" [ngSwitch]="col.field">
-                <input
-                  *ngSwitchCase="'name'"
-                  pInputText
-                  type="text"
-                  [(ngModel)]="nameSearch"
-                  (input)="tt.filter($event.target.value, col.field, 'contains')"
-                  style="width: 150px"
+          @if (step>1) {
+            <svg
+              class="checkmark"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 52 52"
+              >
+              <circle
+                class="checkmark__circle"
+                cx="26"
+                cy="26"
+                r="25"
+                fill="none"
                 />
-                <p-calendar
-                  *ngSwitchCase="'net'"
-                  (onSelect)="onDateSelect($event,'gte')"
-                  [(ngModel)]="fromFilter"
-                  (onClearClick)="tt.filter('', 'net', 'gte')"
-                  [showButtonBar]="true"
-                  styleClass="p-column-filter"
-                  placeholder="From"
-                  [readonlyInput]="true"
-                  dateFormat="yy-mm-dd"
-                  appendTo="body"
-                >
-                </p-calendar>
-                <p-calendar
-                  *ngSwitchCase="'net'"
-                  (onSelect)="onDateSelect($event,'lte')"
-                  [(ngModel)]="toFilter"
-                  (onClearClick)="tt.filter('', 'net', 'lte')"
-                  [showButtonBar]="true"
-                  styleClass="p-column-filter"
-                  placeholder="To"
-                  [readonlyInput]="true"
-                  dateFormat="yy-mm-dd"
-                  appendTo="body"
-                >
-                </p-calendar>
-                <p-multiSelect
-                  [filter]="false"
-                  [(ngModel)]="selectedRockets"
-                  *ngSwitchCase="'rocket__configuration__full_name'"
-                  [options]="rockets"
-                  defaultLabel="All Rockets"
-                  (onChange)="tt.filter($event.value, col.field, 'in')"
-                  appendTo="body"
-                ></p-multiSelect>
-                <p-multiSelect
-                  [filter]="false"
-                  [(ngModel)]="selectedRocketFamilies"
-                  *ngSwitchCase="'rocket__configuration__family'"
-                  [options]="rocketFamilies"
-                  defaultLabel="All Rocket Families"
-                  (onChange)="tt.filter($event.value, col.field, 'in')"
-                  appendTo="body"
-                >
-                </p-multiSelect>
-                <p-multiSelect
-                  [filter]="false"
-                  [(ngModel)]="selectedAgencies"
-                  *ngSwitchCase="'launch_service_provider__name'"
-                  [options]="agencies"
-                  defaultLabel="All Agencies"
-                  (onChange)="tt.filter($event.value, col.field, 'in')"
-                  appendTo="body"
-                >
-                </p-multiSelect>
-                <p-multiSelect
-                  [filter]="false"
-                  [(ngModel)]="selectedAgencyTypes"
-                  *ngSwitchCase="'launch_service_provider__type'"
-                  [options]="agencyTypes"
-                  defaultLabel="All Types"
-                  (onChange)="tt.filter($event.value, col.field, 'in')"
-                  appendTo="body"
-                >
-                </p-multiSelect>
-                <p-multiSelect
-                  [filter]="false"
-                  [(ngModel)]="selectedSpacecrafts"
-                  *ngSwitchCase="'rocket__spacecraft_stage__spacecraft__spacecraft_config__name'"
-                  [options]="spacecrafts"
-                  defaultLabel="All Spacecrafts"
-                  (onChange)="tt.filter($event.value, col.field, 'in')"
-                  appendTo="body"
-                >
-                </p-multiSelect>
-              </th>
-            </tr>
-          </ng-template>
-          <ng-template pTemplate="body" let-launch let-columns="columns">
-            <tr>
-              <td *ngFor="let col of columns">{{launch[col.field]}}</td>
-            </tr>
-          </ng-template>
-        </p-table>
-      </ion-card-content>
-    </ion-card>
-    <ion-card *ngIf="step>2" id="step_3">
-      <ion-card-header>
-        <ion-card-subtitle *ngIf="step===3">Step 3</ion-card-subtitle>
-        <ion-card-title>Grouping</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <div class="buttons">
-          <svg
-            *ngIf="step>3"
-            class="checkmark"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 52 52"
-          >
-            <circle
-              class="checkmark__circle"
-              cx="26"
-              cy="26"
-              r="25"
-              fill="none"
-            />
-            <path
-              class="checkmark__check"
-              fill="none"
-              d="M14.1 27.2l7.1 7.2 16.7-16.8"
-            />
-          </svg>
-          <ion-button
-            *ngIf="step===3"
-            [disabled]="xAxis===undefined"
-            (click)="axisComplete()"
-            expand="block"
-            id="step_3_complete_button"
-          >
-            Done
-          </ion-button>
-          <ion-label *ngIf="step>3">{{xAxis}}</ion-label>
-          <ion-button
-            *ngIf="step>3"
-            (click)="axisOpen()"
-            expand="block"
-            id="step_3_open_button"
-          >
-            Redo
-          </ion-button>
+              <path
+                class="checkmark__check"
+                fill="none"
+                d="M14.1 27.2l7.1 7.2 16.7-16.8"
+                />
+            </svg>
+          }
+          @if (step===1) {
+            <ion-button
+              (click)="whatComplete()"
+              [disabled]="what===undefined"
+              expand="block"
+              id="step_1_complete_button"
+              >
+              Done
+            </ion-button>
+          }
+          @if (step>1) {
+            <ion-label>{{what}}</ion-label>
+          }
+          @if (step>1) {
+            <ion-button
+              (click)="whatOpen()"
+              expand="block"
+              id="step_1_open_button"
+              >
+              Redo
+            </ion-button>
+          }
         </div>
-        <ion-radio-group *ngIf="step===3" [(ngModel)]="xAxis">
-          <ion-item>
-            <ion-label>Rocket</ion-label>
-            <ion-radio slot="start" value="Rocket"></ion-radio>
-          </ion-item>
-          <ion-item>
-            <ion-label>Rocket Family</ion-label>
-            <ion-radio slot="start" value="RocketFamily"></ion-radio>
-          </ion-item>
-          <ion-item>
-            <ion-label>Agency</ion-label>
-            <ion-radio slot="start" value="Agency"></ion-radio>
-          </ion-item>
-          <ion-item>
-            <ion-label>Agency Type</ion-label>
-            <ion-radio slot="start" value="AgencyType"></ion-radio>
-          </ion-item>
-          <ion-item>
-            <ion-label>Spacecraft</ion-label>
-            <ion-radio slot="start" value="Spacecraft"></ion-radio>
-          </ion-item>
-        </ion-radio-group>
+        @if (step===1) {
+          <ion-radio-group [(ngModel)]="what">
+            <ion-item>
+              <ion-label>Launches</ion-label>
+              <ion-radio slot="start" value="Launches"></ion-radio>
+            </ion-item>
+            <ion-item disabled="true">
+              <ion-label>Agencies - Soon™</ion-label>
+              <ion-radio slot="start" value="Agencies"></ion-radio>
+            </ion-item>
+            <ion-item disabled="true">
+              <ion-label>Astronauts - Soon™</ion-label>
+              <ion-radio slot="start" value="Astronauts"></ion-radio>
+            </ion-item>
+            <ion-item disabled="true">
+              <ion-label>Events - Soon™</ion-label>
+              <ion-radio slot="start" value="Events"></ion-radio>
+            </ion-item>
+            <ion-item disabled="true">
+              <ion-label>Facilities - Soon™</ion-label>
+              <ion-radio slot="start" value="Facilities"></ion-radio>
+            </ion-item>
+            <ion-item disabled="true">
+              <ion-label>Pad - Soon™</ion-label>
+              <ion-radio slot="start" value="Pad"></ion-radio>
+            </ion-item>
+            <ion-item disabled="true">
+              <ion-label>Rocket - Soon™</ion-label>
+              <ion-radio slot="start" value="Rocket"></ion-radio>
+            </ion-item>
+            <ion-item disabled="true">
+              <ion-label>Spacecraft - Soon™</ion-label>
+              <ion-radio slot="start" value="Spacecraft"></ion-radio>
+            </ion-item>
+            <ion-item disabled="true">
+              <ion-label>Spacestation - Soon™</ion-label>
+              <ion-radio slot="start" value="Spacestation"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+        }
       </ion-card-content>
     </ion-card>
-    <ion-card *ngIf="step===4" id="step_4">
-      <ion-card-header>
-        <ion-card-subtitle>Result</ion-card-subtitle>
-        <ion-card-title>Diagrams</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <app-charts
-          [lineChartData]="lineChartData"
-          [barChartData]="barChartData"
-          [polarChartData]="polarChartData"
-          [doughnutChartData]="doughnutChartData"
-        ></app-charts>
-      </ion-card-content>
-    </ion-card>
+    @if (step>1) {
+      <ion-card id="step_2">
+        <ion-card-header>
+          @if (step===2) {
+            <ion-card-subtitle>Step 2</ion-card-subtitle>
+          }
+          <ion-card-title>Filter</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <div class="buttons">
+            @if (step>2) {
+              <svg
+                class="checkmark"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 52 52"
+                >
+                <circle
+                  class="checkmark__circle"
+                  cx="26"
+                  cy="26"
+                  r="25"
+                  fill="none"
+                  />
+                <path
+                  class="checkmark__check"
+                  fill="none"
+                  d="M14.1 27.2l7.1 7.2 16.7-16.8"
+                  />
+              </svg>
+            }
+            @if (step===2) {
+              <ion-button
+                (click)="filterComplete()"
+                expand="block"
+                id="step_2_complete_button"
+                >
+                Done
+              </ion-button>
+            }
+            @if (step>2&&!globalSearch) {
+              <ion-label
+                >{{dataFiltered.length}} Records</ion-label
+                >
+              }
+              @if (step>2&&globalSearch) {
+                <ion-label>{{globalSearch}}</ion-label>
+              }
+              @if (step>2) {
+                <ion-button
+                  (click)="filterOpen()"
+                  expand="block"
+                  id="step_2_open_button"
+                  >
+                  Redo
+                </ion-button>
+              }
+            </div>
+            @if (step===2&&what==='Launches') {
+              <div>Table - coming soon</div>
+          }
+        </ion-card-content>
+      </ion-card>
+    }
+    @if (step>2) {
+      <ion-card id="step_3">
+        <ion-card-header>
+          @if (step===3) {
+            <ion-card-subtitle>Step 3</ion-card-subtitle>
+          }
+          <ion-card-title>Grouping</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <div class="buttons">
+            @if (step>3) {
+              <svg
+                class="checkmark"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 52 52"
+                >
+                <circle
+                  class="checkmark__circle"
+                  cx="26"
+                  cy="26"
+                  r="25"
+                  fill="none"
+                  />
+                <path
+                  class="checkmark__check"
+                  fill="none"
+                  d="M14.1 27.2l7.1 7.2 16.7-16.8"
+                  />
+              </svg>
+            }
+            @if (step===3) {
+              <ion-button
+                [disabled]="xAxis===undefined"
+                (click)="axisComplete()"
+                expand="block"
+                id="step_3_complete_button"
+                >
+                Done
+              </ion-button>
+            }
+            @if (step>3) {
+              <ion-label>{{xAxis}}</ion-label>
+            }
+            @if (step>3) {
+              <ion-button
+                (click)="axisOpen()"
+                expand="block"
+                id="step_3_open_button"
+                >
+                Redo
+              </ion-button>
+            }
+          </div>
+          @if (step===3) {
+            <ion-radio-group [(ngModel)]="xAxis">
+              <ion-item>
+                <ion-label>Rocket</ion-label>
+                <ion-radio slot="start" value="Rocket"></ion-radio>
+              </ion-item>
+              <ion-item>
+                <ion-label>Rocket Family</ion-label>
+                <ion-radio slot="start" value="RocketFamily"></ion-radio>
+              </ion-item>
+              <ion-item>
+                <ion-label>Agency</ion-label>
+                <ion-radio slot="start" value="Agency"></ion-radio>
+              </ion-item>
+              <ion-item>
+                <ion-label>Agency Type</ion-label>
+                <ion-radio slot="start" value="AgencyType"></ion-radio>
+              </ion-item>
+              <ion-item>
+                <ion-label>Spacecraft</ion-label>
+                <ion-radio slot="start" value="Spacecraft"></ion-radio>
+              </ion-item>
+            </ion-radio-group>
+          }
+        </ion-card-content>
+      </ion-card>
+    }
+    @if (step===4) {
+      <ion-card id="step_4">
+        <ion-card-header>
+          <ion-card-subtitle>Result</ion-card-subtitle>
+          <ion-card-title>Diagrams</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <app-charts
+            [lineChartData]="lineChartData"
+            [barChartData]="barChartData"
+            [polarChartData]="polarChartData"
+            [doughnutChartData]="doughnutChartData"
+          ></app-charts>
+        </ion-card-content>
+      </ion-card>
+    }
   </div>
 </ion-content>

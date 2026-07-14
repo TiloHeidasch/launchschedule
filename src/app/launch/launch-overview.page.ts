@@ -1,11 +1,13 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild, ChangeDetectionStrategy } from "@angular/core";
 import { LaunchLibraryService } from "../launch-library.service";
 import { LaunchParamStoreService } from "./launch-param-store.service";
 import { IonContent, ViewDidEnter, IonInfiniteScroll } from "@ionic/angular";
 
 @Component({
   selector: "app-launch-overview",
+  standalone: false,
   templateUrl: "./launch-overview.page.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./launch-overview.page.scss"],
 })
 export class LaunchOverviewPage implements OnInit, ViewDidEnter {
@@ -39,7 +41,7 @@ export class LaunchOverviewPage implements OnInit, ViewDidEnter {
   async loadFirst(refreshEvent?) {
     try {
       this.infiniteScroll.disabled = false;
-    } catch (error) {}
+    } catch { /* ignore */ }
     this.store.launches = [];
     this.store.launches = (
       await this.service.getFirstLaunches(

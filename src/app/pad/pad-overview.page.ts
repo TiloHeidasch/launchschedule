@@ -1,11 +1,13 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild, ChangeDetectionStrategy } from "@angular/core";
 import { PadParamStoreService } from "./pad-param-store.service";
 import { IonContent, ViewDidEnter, IonInfiniteScroll } from "@ionic/angular";
 import { PadService } from "./pad.service";
 
 @Component({
   selector: "app-pad-overview",
+  standalone: false,
   templateUrl: "./pad-overview.page.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./pad-overview.page.scss"],
 })
 export class PadOverviewPage implements OnInit, ViewDidEnter {
@@ -31,7 +33,7 @@ export class PadOverviewPage implements OnInit, ViewDidEnter {
   async loadFirst(refreshEvent?) {
     try {
       this.infiniteScroll.disabled = false;
-    } catch (error) {}
+    } catch { /* ignore */ }
     this.store.pads = [];
     this.store.pads = (await this.service.getFirstPads(this.store.search)).pads;
     if (refreshEvent) {

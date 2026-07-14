@@ -1,10 +1,12 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { PadService } from "./pad.service";
 
 @Component({
   selector: "app-pad",
+  standalone: false,
   templateUrl: "./pad.page.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./pad.page.scss"],
 })
 export class PadPage implements OnInit {
