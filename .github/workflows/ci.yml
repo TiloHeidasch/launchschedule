@@ -310,11 +310,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Use Chrome v102.0.5005.61
-        uses: nanasess/setup-chromedriver@master
-        with:
-          # Optional: do not specify to match Chrome's version
-          chromedriver-version: '102.0.5005.61'
       - name: Setup Node
         uses: actions/setup-node@v4
       - name: NPM Install
@@ -323,14 +318,23 @@ jobs:
         run: npm install @angular/cli --legacy-peer-deps
       - name: Setup Ionic
         run: npm install @ionic/cli --legacy-peer-deps
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps chromium
       - name: Download Masterdata
         run: wget https://github.com/TiloHeidasch/launchschedule/archive/refs/heads/masterdata.zip
       - name: Unzip Masterdata
         run: unzip -qq ./masterdata.zip -d ./src/app/data/
       - name: Copy Masterdata
         run: sudo cp ./src/app/data/launchschedule-masterdata/* ./src/app/data/
-      - name: Run Test
+      - name: Run E2E
         run: npm run e2e
+      - name: Upload Playwright Report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7
   # pixel2xl:
   #   name: Screenshots Pixel 2 XL
   #   runs-on: ubuntu-latest

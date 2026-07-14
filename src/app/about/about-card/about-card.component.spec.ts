@@ -1,3 +1,4 @@
+import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { IonicModule } from "@ionic/angular";
 
@@ -10,6 +11,7 @@ describe("AboutCardComponent", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [AboutCardComponent],
+      schemas: [NO_ERRORS_SCHEMA],
       imports: [IonicModule.forRoot()],
     }).compileComponents();
 

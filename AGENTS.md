@@ -13,7 +13,7 @@ Ionic 6 + Angular 14 PWA for tracking rocket launches. Served via nginx Docker, 
 | `npm run test:watch` | Karma in watch mode (default browser) |
 | `npm run test:coverage` | With code coverage |
 | `npm run lint` | ESLint via Angular ESLint (`src/**/*.ts`, `src/**/*.html`) |
-| `npm run e2e` | Protractor E2E |
+| `npm run e2e` | Playwright E2E (auto-starts `ng serve` via `webServer`) |
 | `npm run android` | `ionic build && npx cap copy` |
 | `npm run resources` | Regenerate Cordova/Capacitor icons & splash screens |
 
@@ -45,7 +45,7 @@ Previous launches are bundled as static JSON (`src/app/data/previouslaunches.jso
 - Framework: Jasmine + Karma (not Jest, not Web Test Runner)
 - Custom launcher `ChromeHeadlessCustom` uses flags `--no-sandbox --disable-gpu`
 - Spec files co-located next to source files as `*.spec.ts`
-- E2E uses Protractor (legacy) with specs in `e2e/src/`
+- E2E uses Playwright with specs in `e2e/src/*.e2e-spec.ts`
 
 ## Deployment
 
@@ -56,7 +56,7 @@ Previous launches are bundled as static JSON (`src/app/data/previouslaunches.jso
 
 ## Known quirks
 
-- `npm run pree2e` must be run before `npm run e2e` to download the pinned ChromeDriver version
+- E2E uses Playwright; CI installs the browser via `npx playwright install --with-deps chromium`
 - `src/app/data/*` is gitignored — generated data files are not committed
 - Prod env has a real NASA API key (`environment.prod.ts`); dev uses `DEMO_KEY`
 - Dev environment uses `lldev.thespacedevs.com` (LaunchLibrary dev endpoint); prod uses `ll.thespacedevs.com`

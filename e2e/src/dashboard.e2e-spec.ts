@@ -1,16 +1,14 @@
-import { browser, by, element } from "protractor";
-import { clickElement } from "./e2e-helper";
-describe("Dashboard", () => {
-  beforeEach(() => {
-    browser.driver.manage().window().maximize();
-    browser.get("/#/dashboard");
-    browser.refresh();
-    browser.sleep(2000);
-    browser.ignoreSynchronization = true;
+import { test, expect } from "@playwright/test";
+import { gotoHash } from "./e2e-helper";
+
+test.describe("Dashboard", () => {
+  test.beforeEach(async ({ page }) => {
+    await gotoHash(page, "#/dashboard");
   });
-  describe("Starship", () => {
-    it("should have a page title", () => {
-      expect(element(by.id("title")).getText()).toBe("Starship");
+
+  test.describe("Starship", () => {
+    test("should have a page title", async ({ page }) => {
+      await expect(page.locator("#title")).toHaveText("Starship");
     });
   });
 });

@@ -1,144 +1,62 @@
-import { browser, by, element } from "protractor";
-import { clickElement } from "./e2e-helper";
+import { test, expect } from "@playwright/test";
+import { clickElement, gotoHash } from "./e2e-helper";
 
-describe("App", () => {
-  beforeEach(() => {
-    browser.driver.manage().window().maximize();
-    browser.get("/");
-    browser.refresh();
-    browser.sleep(2000);
-    browser.ignoreSynchronization = true;
+test.describe("App", () => {
+  test.beforeEach(async ({ page }) => {
+    await gotoHash(page, "");
   });
-  it("should have a title", () => {
-    expect(browser.getTitle()).toEqual("RCKET");
+
+  test("should have a title", async ({ page }) => {
+    await expect(page).toHaveTitle("RCKET");
   });
-  describe("Menu", () => {
-    beforeEach(() => {
-    clickElement(browser, element(by.css("ion-menu-button")));
-    browser.sleep(1000);
+
+  test.describe("Menu", () => {
+    test.beforeEach(async ({ page }) => {
+      await clickElement(page, "ion-menu-button");
+      await page.waitForTimeout(1000);
     });
 
-    it("should have a menu", () => {
-      const menu = element(by.tagName("ion-menu"));
-      expect(menu).toBeDefined();
+    test("should have a menu", async ({ page }) => {
+      await expect(page.locator("ion-menu")).toBeVisible();
     });
-    it("should have menu items", () => {
-      const menuItems = element.all(by.tagName("ion-menu-toggle"));
-      expect(menuItems).toBeDefined();
-      expect(menuItems.count()).toBe(15);
+
+    test("should have menu items", async ({ page }) => {
+      await expect(page.locator("ion-menu-toggle")).toHaveCount(15);
     });
-    it("should default to Launch", () => {
-      expect(browser.getCurrentUrl()).toContain("/#/launch");
+
+    test("should default to Launch", async ({ page }) => {
+      await expect(page).toHaveURL(/\/#\/launch/);
     });
-    it("should default to Launch on unknown path", () => {
-      browser.get("/#/unknown");
-      browser.refresh();
-      browser.sleep(2000);
-      expect(browser.getCurrentUrl()).toContain("/#/launch");
+
+    test("should default to Launch on unknown path", async ({ page }) => {
+      await gotoHash(page, "#/unknown");
+      await expect(page).toHaveURL(/\/#\/launch/);
     });
-    it("should navigate to Event", () => {
-      clickElement(
-        browser,
-        element(by.css("ion-menu-toggle:nth-of-type(2)>ion-item>ion-label"))
-      );
-      browser.sleep(2000);
-      expect(browser.getCurrentUrl()).toContain("/#/event");
-    });
-    it("should navigate to Statistic", () => {
-      clickElement(
-        browser,
-        element(by.css("ion-menu-toggle:nth-of-type(3)>ion-item>ion-label"))
-      );
-      browser.sleep(2000);
-      expect(browser.getCurrentUrl()).toContain("/#/statistic");
-    });
-    it("should navigate to News", () => {
-      clickElement(
-        browser,
-        element(by.css("ion-menu-toggle:nth-of-type(4)>ion-item>ion-label"))
-      );
-      browser.sleep(2000);
-      expect(browser.getCurrentUrl()).toContain("/#/news");
-    });
-    it("should navigate to 3D Solar System", () => {
-      clickElement(
-        browser,
-        element(by.css("ion-menu-toggle:nth-of-type(5)>ion-item>ion-label"))
-      );
-      browser.sleep(2000);
-      expect(browser.getCurrentUrl()).toContain("/#/solar-system");
-    });
-    it("should navigate to NASA Images", () => {
-      clickElement(
-        browser,
-        element(by.css("ion-menu-toggle:nth-of-type(6)>ion-item>ion-label"))
-      );
-      browser.sleep(2000);
-      expect(browser.getCurrentUrl()).toContain("/#/nasa");
-    });
-    it("should navigate to Starship Dashboard", () => {
-      clickElement(
-        browser,
-        element(by.css("ion-menu-toggle:nth-of-type(7)>ion-item>ion-label"))
-      );
-      browser.sleep(2000);
-      expect(browser.getCurrentUrl()).toContain("/#/dashboard/starship");
-    });
-    it("should navigate to Agency", () => {
-      clickElement(
-        browser,
-        element(by.css("ion-menu-toggle:nth-of-type(8)>ion-item>ion-label"))
-      );
-      browser.sleep(2000);
-      expect(browser.getCurrentUrl()).toContain("/#/agency");
-    });
-    it("should navigate to Astronaut", () => {
-      clickElement(
-        browser,
-        element(by.css("ion-menu-toggle:nth-of-type(9)>ion-item>ion-label"))
-      );
-      browser.sleep(2000);
-      expect(browser.getCurrentUrl()).toContain("/#/astronaut");
-    });
-    it("should navigate to Facility", () => {
-      clickElement(
-        browser,
-        element(by.css("ion-menu-toggle:nth-of-type(10)>ion-item>ion-label"))
-      );
-      browser.sleep(2000);
-      expect(browser.getCurrentUrl()).toContain("/#/location");
-    });
-    it("should navigate to Pad", () => {
-      clickElement(
-        browser,
-        element(by.css("ion-menu-toggle:nth-of-type(11)>ion-item>ion-label"))
-      );
-      browser.sleep(2000);
-      expect(browser.getCurrentUrl()).toContain("/#/pad");
-    });
-    it("should navigate to Rocket", () => {
-      clickElement(
-        browser,
-        element(by.css("ion-menu-toggle:nth-of-type(12)>ion-item>ion-label"))
-      );
-      browser.sleep(2000);
-      expect(browser.getCurrentUrl()).toContain("/#/rocket");
-    });
-    it("should navigate to Spacecraft", () => {
-      clickElement(
-        browser,
-        element(by.css("ion-menu-toggle:nth-of-type(13)>ion-item>ion-label"))
-      );
-      browser.sleep(2000);
-      expect(browser.getCurrentUrl()).toContain("/#/spacecraft");
-    });
-    it("should navigate to Spacestation", () => {
-      clickElement(
-        browser,
-        element(by.css("ion-menu-toggle:nth-of-type(14)>ion-item>ion-label"))
-      );
-      browser.sleep(2000);
-      expect(browser.getCurrentUrl()).toContain("/#/spacestation");
-    });
+
+    const navItems: { name: string; index: number; url: RegExp }[] = [
+      { name: "Event", index: 2, url: /\/#\/event/ },
+      { name: "Statistic", index: 3, url: /\/#\/statistic/ },
+      { name: "News", index: 4, url: /\/#\/news/ },
+      { name: "3D Solar System", index: 5, url: /\/#\/solar-system/ },
+      { name: "NASA Images", index: 6, url: /\/#\/nasa/ },
+      { name: "Starship Dashboard", index: 7, url: /\/#\/dashboard\/starship/ },
+      { name: "Agency", index: 8, url: /\/#\/agency/ },
+      { name: "Astronaut", index: 9, url: /\/#\/astronaut/ },
+      { name: "Facility", index: 10, url: /\/#\/location/ },
+      { name: "Pad", index: 11, url: /\/#\/pad/ },
+      { name: "Rocket", index: 12, url: /\/#\/rocket/ },
+      { name: "Spacecraft", index: 13, url: /\/#\/spacecraft/ },
+      { name: "Spacestation", index: 14, url: /\/#\/spacestation/ },
+    ];
+
+    for (const item of navItems) {
+      test(`should navigate to ${item.name}`, async ({ page }) => {
+        await clickElement(
+          page,
+          `ion-menu-toggle:nth-of-type(${item.index})>ion-item>ion-label`
+        );
+        await expect(page).toHaveURL(item.url);
+      });
+    }
   });
 });

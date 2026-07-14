@@ -31,6 +31,8 @@ npm-debug.log*
 /www
 
 /src/app/data/*
+/playwright-report
+/test-results
 /.gradle
 /android/.idea
 /resources/android
