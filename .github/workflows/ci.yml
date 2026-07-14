@@ -104,11 +104,11 @@ jobs:
           path: www.tar
       - name: Capacitor Sync
         run: npx cap sync
-      - name: Setup Java 11
-        uses: actions/setup-java@v5
-        with:
-          distribution: 'temurin' # See 'Supported distributions' for available options
-          java-version: '11'
+       - name: Setup Java 21
+         uses: actions/setup-java@v5
+         with:
+           distribution: 'temurin' # See 'Supported distributions' for available options
+           java-version: '21'
       - name: Build App Bundle with Gradle
         run: cd android && chmod +x gradlew && ./gradlew bundleRelease
       - name: Safe Unsigned Release Bundle Artifact
