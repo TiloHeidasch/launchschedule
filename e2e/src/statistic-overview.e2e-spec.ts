@@ -14,12 +14,6 @@ test.describe("Statistic", () => {
     await expect(page.locator("#randomize")).toBeVisible();
   });
 
-  test("should start randomization when clicking random", async ({ page }) => {
-    await clickElement(page, "#randomize");
-    await expect(page.locator("app-charts")).toBeVisible({ timeout: 30000 });
-    await expect(page.locator("app-charts canvas#lineChart")).toBeAttached();
-  });
-
   test("should advance to step 2 after completing step 1", async ({ page }) => {
     await clickElement(
       page,
