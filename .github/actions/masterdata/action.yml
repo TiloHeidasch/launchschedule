@@ -3,17 +3,16 @@ description: Populate src/app/data/ from the masterdata branch
 runs:
   using: composite
   steps:
-    - name: Checkout masterdata data
+    - name: Checkout masterdata
       uses: actions/checkout@v4
       with:
         repository: ${{ github.repository }}
         ref: masterdata
         path: _masterdata
-        sparse-checkout: src/app/data
-        sparse-checkout-cone: false
     - name: Copy data
       shell: bash
       run: |
         mkdir -p src/app/data
-        cp -r _masterdata/src/app/data/* src/app/data/ 2>/dev/null || true
+        cp _masterdata/*.json src/app/data/ 2>/dev/null || true
+        rm -f src/app/data/*[0-9]*.json 2>/dev/null || true
         rm -rf _masterdata
