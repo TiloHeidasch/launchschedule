@@ -4,7 +4,7 @@
   [relatedTypeIds]="[
     {
       type: 'spacestation',
-      id: event.spacestations[0] ? event.spacestations[0].id : ''
+      id: event.spacestations?.[0]?.id ?? ''
     }
   ]"
 ></app-notification-icon>
