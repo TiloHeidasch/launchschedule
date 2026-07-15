@@ -24,6 +24,15 @@ jobs:
       uses: github/codeql-action/init@v4
       with:
         languages: ${{ matrix.language }}
+    - name: Setup Node
+      uses: actions/setup-node@v7
+      with:
+        node-version: 22
+        cache: npm
+    - name: Install dependencies
+      run: npm ci --legacy-peer-deps
+    - name: Install Ionic CLI
+      run: npm install --legacy-peer-deps @ionic/cli@^7.2.1
     - name: Set Release Name Variable
       run: echo "RELEASE_NAME=CODEQL" >> $GITHUB_ENV
     - name: Set Release Track Variable
