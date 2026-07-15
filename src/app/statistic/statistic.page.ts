@@ -602,9 +602,9 @@ export class StatisticPage {
       this.shuffleWhat();
     }, 100);
   }
-  private shuffleWhat() {
+  private async shuffleWhat() {
     // only launches therefor just skip this step
-    this.whatComplete();
+    await this.whatComplete();
     this.shuffleFilter();
   }
   private shuffleFilter(words?) {
