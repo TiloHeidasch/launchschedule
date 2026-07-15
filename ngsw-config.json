@@ -52,9 +52,9 @@
     {
       "name": "SNAPI",
       "urls": [
-        "https://api.spaceflightnewsapi.net/v3/articles",
-        "https://api.spaceflightnewsapi.net/v3/blog",
-        "https://api.spaceflightnewsapi.net/v3/report"
+        "https://api.spaceflightnewsapi.net/v4/articles",
+        "https://api.spaceflightnewsapi.net/v4/blogs",
+        "https://api.spaceflightnewsapi.net/v4/reports"
       ],
       "cacheConfig": {
         "strategy": "freshness",

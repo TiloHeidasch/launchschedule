@@ -24,7 +24,7 @@ export class SnapiPage {
         },
         {
           isExternal: true,
-          link: "https://www.spaceflightnewsapi.net/documentation",
+          link: "https://api.spaceflightnewsapi.net/v4/docs/",
           name: "API Documentation",
         },
       ],

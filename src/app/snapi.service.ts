@@ -15,10 +15,10 @@ export class SnapiService {
     const limit = 24;
     const url = this.createArticlesUrl(offset, limit);
     const data = await this.http.get<any>(url).toPromise();
-    return { newsItems: data };
+    return { newsItems: data.results.map((item) => this.mapItem(item)) };
   }
   createArticlesUrl(start?, limit?) {
-    const url = this.baseUrl + "articles?_limit=" + limit + "&_start=" + start;
+    const url = this.baseUrl + "articles?limit=" + limit + "&offset=" + start;
     return url;
   }
   async getFirstBlogs() {
@@ -28,10 +28,10 @@ export class SnapiService {
     const limit = 24;
     const url = this.createBlogsUrl(offset, limit);
     const data = await this.http.get<any>(url).toPromise();
-    return { newsItems: data };
+    return { newsItems: data.results.map((item) => this.mapItem(item)) };
   }
   createBlogsUrl(start?, limit?) {
-    const url = this.baseUrl + "blogs?_limit=" + limit + "&_start=" + start;
+    const url = this.baseUrl + "blogs?limit=" + limit + "&offset=" + start;
     return url;
   }
   async getFirstReports() {
@@ -41,10 +41,25 @@ export class SnapiService {
     const limit = 24;
     const url = this.createReportsUrl(offset, limit);
     const data = await this.http.get<any>(url).toPromise();
-    return { newsItems: data };
+    return { newsItems: data.results.map((item) => this.mapItem(item)) };
   }
   createReportsUrl(start?, limit?) {
-    const url = this.baseUrl + "reports?_limit=" + limit + "&_start=" + start;
+    const url = this.baseUrl + "reports?limit=" + limit + "&offset=" + start;
     return url;
+  }
+  private mapItem(item: any) {
+    return {
+      id: item.id,
+      title: item.title,
+      url: item.url,
+      imageUrl: item.image_url,
+      newsSite: item.news_site,
+      summary: item.summary,
+      publishedAt: item.published_at,
+      updatedAt: item.updated_at,
+      featured: item.featured,
+      launches: item.launches,
+      events: item.events,
+    };
   }
 }
