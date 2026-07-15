@@ -607,7 +607,7 @@ export class StatisticPage {
     await this.whatComplete();
     this.shuffleFilter();
   }
-  private shuffleFilter(words?) {
+  private shuffleFilter(words?, attempt = 0) {
     this.nameSearch = undefined;
     this.toFilter = undefined;
     this.fromFilter = undefined;
@@ -620,9 +620,14 @@ export class StatisticPage {
     setTimeout(() => {
       this.applyPreviousFilters();
       setTimeout(() => {
-        if (this.dataFiltered && this.dataFiltered.length < this.dataRaw.length / 500) {
-          this.shuffleFilter(words);
+        const threshold = this.dataRaw ? this.dataRaw.length / 500 : 0;
+        if (attempt < 20 && this.dataFiltered && this.dataFiltered.length < threshold) {
+          this.shuffleFilter(words, attempt + 1);
         } else {
+          if (this.dataFiltered && this.dataFiltered.length < threshold) {
+            this.globalSearch = undefined;
+            this.dataFiltered = this.dataRaw;
+          }
           this.filterComplete();
           this.shuffleAxis();
         }
