@@ -1,0 +1,135 @@
+name: Fetch Masterdata
+
+on:
+  workflow_dispatch:
+    inputs:
+      entity:
+        description: Which master data set to fetch
+        required: true
+        type: choice
+        options:
+          - rockets
+          - astronauts
+          - agencies
+          - spacecrafts
+          - pads
+          - locations
+          - spacestations
+          - previousevents
+          - previouslaunches
+          - launches
+      total:
+        description: Approx total number of records to fetch
+        required: true
+        default: "500"
+      chunk:
+        description: Records fetched per parallel job
+        required: true
+        default: "500"
+
+jobs:
+  configure:
+    name: Configure entity
+    runs-on: ubuntu-latest
+    outputs:
+      script: ${{ steps.cfg.outputs.script }}
+      script_args: ${{ steps.cfg.outputs.script_args }}
+      merge_cmd: ${{ steps.cfg.outputs.merge_cmd }}
+    steps:
+      - id: cfg
+        run: |
+          entity="${{ inputs.entity }}"
+          total="${{ inputs.total }}"
+          chunk="${{ inputs.chunk }}"
+          case "$entity" in
+            rockets)          script="scripts/masterdata/fetch.js";        script_args="config/launcher rockets";         merge_cmd="node scripts/masterdata/merge.js rockets $total $chunk";;
+            spacestations)    script="scripts/masterdata/fetch.js";        script_args="spacestation spacestations";       merge_cmd="node scripts/masterdata/merge.js spacestations $total $chunk";;
+            agencies)         script="scripts/masterdata/fetch.js";        script_args="agencies agencies";               merge_cmd="node scripts/masterdata/merge.js agencies $total $chunk";;
+            spacecrafts)      script="scripts/masterdata/fetch.js";        script_args="config/spacecraft spacecrafts";    merge_cmd="node scripts/masterdata/merge.js spacecrafts $total $chunk";;
+            pads)             script="scripts/masterdata/fetch.js";        script_args="pad pads";                       merge_cmd="node scripts/masterdata/merge.js pads $total $chunk";;
+            locations)        script="scripts/masterdata/fetch.js";        script_args="location locations";             merge_cmd="node scripts/masterdata/merge.js locations $total $chunk";;
+            previousevents)   script="scripts/masterdata/fetch.js";        script_args="event/previous previousevents";  merge_cmd="node scripts/masterdata/merge.js previousevents $total $chunk";;
+            astronauts)       script="scripts/masterdata/fetchAstronaut.js"; script_args="";                             merge_cmd="node scripts/masterdata/merge.js astronauts $total $chunk";;
+            previouslaunches) script="scripts/masterdata/fetchPreviousLaunches.js"; script_args="";                      merge_cmd="node scripts/masterdata/merge.js previouslaunches $total $chunk";;
+            launches)         script="scripts/fetchLaunches.js";          script_args="";                             merge_cmd="node scripts/mergeLaunches.js $total $chunk";;
+          esac
+          {
+            echo "script=$script"
+            echo "script_args=$script_args"
+            echo "merge_cmd=$merge_cmd"
+          } >> "$GITHUB_OUTPUT"
+
+  plan:
+    name: Plan chunks
+    runs-on: ubuntu-latest
+    outputs:
+      offsets: ${{ steps.plan.outputs.offsets }}
+    steps:
+      - id: plan
+        run: |
+          node -e '
+            const total = parseInt(process.argv[1], 10);
+            const chunk = parseInt(process.argv[2], 10);
+            const offsets = [];
+            for (let o = 0; o < total; o += chunk) offsets.push(o);
+            if (offsets.length === 0) offsets.push(0);
+            require("fs").appendFileSync(
+              process.env.GITHUB_OUTPUT,
+              "offsets=" + JSON.stringify(offsets) + "\n"
+            );
+          ' "${{ inputs.total }}" "${{ inputs.chunk }}"
+
+  fetch:
+    name: Fetch (${{ matrix.offset }})
+    needs: [configure, plan]
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        offset: ${{ fromJSON(needs.plan.outputs.offsets) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Fetch chunk
+        run: node ${{ needs.configure.outputs.script }} ${{ needs.configure.outputs.script_args }} ${{ matrix.offset }} ${{ inputs.chunk }}
+      - name: Upload chunk
+        uses: actions/upload-artifact@v4
+        with:
+          name: md-${{ inputs.entity }}-${{ matrix.offset }}
+          path: src/app/data/
+          if-no-files-found: error
+
+  commit:
+    name: Merge & commit
+    needs: [configure, fetch]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: masterdata
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: md-${{ inputs.entity }}-*
+          path: src/app/data/
+          merge-multiple: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Merge chunks
+        run: ${{ needs.configure.outputs.merge_cmd }}
+      - name: Push to masterdata
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add "src/app/data/${{ inputs.entity }}.json"
+          if git commit -m "Updates ${{ inputs.entity }}"; then
+            git push origin masterdata
+          else
+            echo "No changes to commit"
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
