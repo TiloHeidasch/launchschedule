@@ -1,6 +1,6 @@
 # RCKET — launchschedule
 
-Ionic 6 + Angular PWA for tracking rocket launches. Served via nginx Docker.
+Ionic 6 + Angular PWA for tracking rocket launches. Served via GitHub Pages.
 
 ## Commands
 
@@ -47,7 +47,6 @@ Previous launches are bundled as static JSON (`src/app/data/previouslaunches.jso
 
 ## Deployment
 
-- Docker: `nginx` serving `www/` (copied from build output)
 - Angular Service Worker enabled only in prod builds (`ngsw-config.json`)
 - Data groups cache LaunchLibrary, Spaceflight News, NASA APIs with freshness/performance strategies
 - Capacitor config: app ID `de.th105.launchschedule`, name `RCKET`, web dir `www`
