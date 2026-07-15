@@ -666,6 +666,9 @@ export class StatisticPage {
     return words.filter((value, index, self) => self.indexOf(value) === index);
   }
   private removeNonText(str: string): string {
+    if (!str) {
+      return "";
+    }
     while (str.includes("/")) {
       str = str.replace("/", " ");
     }
