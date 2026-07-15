@@ -1,4 +1,13 @@
-import { Component, OnInit, Input, ChangeDetectorRef, ChangeDetectionStrategy } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  OnChanges,
+  OnDestroy,
+  Input,
+  SimpleChanges,
+  ChangeDetectorRef,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 
 @Component({
   selector: "app-countdown",
@@ -7,7 +16,7 @@ import { Component, OnInit, Input, ChangeDetectorRef, ChangeDetectionStrategy } 
   changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./countdown.component.scss"],
 })
-export class CountdownComponent implements OnInit {
+export class CountdownComponent implements OnInit, OnChanges, OnDestroy {
   @Input() date: Date;
   prefix: string;
   private hours: number;
@@ -24,21 +33,64 @@ export class CountdownComponent implements OnInit {
   unit3: string;
   active: boolean;
   interval = 500;
+  private intervalId: any;
 
   constructor(private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
+    this.init();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.date) {
+      this.init();
+    }
+  }
+
+  ngOnDestroy() {
+    this.clearInterval();
+  }
+
+  private init() {
+    this.clearInterval();
+    if (!this.date) {
+      this.showPlaceholder();
+      return;
+    }
     if (this.calculateHours(this.getDiff(this.date)) > 99) {
       this.setTimer();
       this.active = false;
     } else {
       this.setTimer();
-      setInterval(() => {
+      this.intervalId = setInterval(() => {
         this.setTimer();
       }, this.interval);
       this.active = true;
     }
   }
+
+  private clearInterval() {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+      this.intervalId = null;
+    }
+  }
+
+  private showPlaceholder() {
+    this.prefix = "-";
+    this.hours1 = "0";
+    this.hours2 = "0";
+    this.minutes1 = "0";
+    this.minutes2 = "0";
+    this.seconds1 = "0";
+    this.seconds2 = "0";
+    this.unit1 = "HOUR";
+    this.unit2 = "MINUTE";
+    this.unit3 = "SECOND";
+    this.active = true;
+    this.cdr.markForCheck();
+  }
+
   private getDiff(date: Date): number {
     const now = new Date();
     return date.valueOf() - now.valueOf();

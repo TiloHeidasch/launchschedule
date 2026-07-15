@@ -1,35 +1,39 @@
-<div id="countdown">
-  <div id="top-line" class="active"></div>
-  <div id="number-line">
-    <p class="digit spacer placeholder-item">&nbsp;</p>
-    <div id="hour-pair" class="pair">
-      <div id="hours1" class="number">
-        <p class="digit placeholder-item">&nbsp;</p>
-      </div>
-      <div id="hours2" class="number">
-        <p class="digit placeholder-item">&nbsp;</p>
-      </div>
+<div id="countdown" class="active">
+  <div class="bar top-bar"></div>
+  <div id="display" class="row">
+    <div class="col">
+      <span class="prefix placeholder-item">T-</span>
+      <span class="label-blank"></span>
     </div>
-    <p class="digit spacer  placeholder-item">&nbsp;</p>
-    <div id="minute-pair" class="pair">
-      <div id="minutes1" class="number">
-        <p class="digit placeholder-item">&nbsp;</p>
+    <div class="col">
+      <div class="pair">
+        <span class="digit placeholder-item">0</span>
+        <span class="digit placeholder-item">0</span>
       </div>
-      <div id="minutes2" class="number">
-        <p class="digit placeholder-item">&nbsp;</p>
-      </div>
+      <span class="label placeholder-item">HOUR</span>
     </div>
-    <p class="digit spacer  placeholder-item">&nbsp;</p>
-    <div id="second-pair" class="pair">
-      <div id="seconds1" class="number">
-        <p class="digit placeholder-item">&nbsp;</p>
+    <div class="col">
+      <span class="colon placeholder-item">:</span>
+      <span class="label-blank"></span>
+    </div>
+    <div class="col">
+      <div class="pair">
+        <span class="digit placeholder-item">0</span>
+        <span class="digit placeholder-item">0</span>
       </div>
-      <div id="seconds2" class="number">
-        <p class="digit placeholder-item">&nbsp;</p>
+      <span class="label placeholder-item">MINUTE</span>
+    </div>
+    <div class="col">
+      <span class="colon placeholder-item">:</span>
+      <span class="label-blank"></span>
+    </div>
+    <div class="col">
+      <div class="pair">
+        <span class="digit placeholder-item">0</span>
+        <span class="digit placeholder-item">0</span>
       </div>
+      <span class="label placeholder-item">SECOND</span>
     </div>
   </div>
-  <div id="text-line"class="active placeholder-item">
-    <p>&nbsp;</p>
-  </div>
+  <div class="bar bottom-bar"></div>
 </div>

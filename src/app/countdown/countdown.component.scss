@@ -1,49 +1,98 @@
 #countdown {
-  width: calc(24rem / 2);
+  display: inline-block;
   margin: calc(1rem / 2);
-  #top-line {
-    height: calc(0.3rem / 2);
+
+  .bar {
+    height: calc(0.4rem / 2);
+    background: #63a7d8;
   }
-  #number-line {
+
+  #display {
     display: flex;
-    background: #211f2a;
+    align-items: stretch;
+    justify-content: center;
+    gap: calc(0.25rem / 2);
+    padding: calc(0.7rem / 2) calc(1rem / 2);
+    background: #0a0a0a;
+    box-shadow: inset 0 0 calc(0.6rem / 2) rgba(0, 0, 0, 0.6);
+  }
+
+  .col {
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
-    padding: calc(1rem / 2);
+    justify-content: flex-start;
   }
-  #text-line {
+
+  .prefix {
+    font-family: DSEG14;
+    font-weight: 700;
+    font-size: calc(2.2rem / 2);
+    line-height: 1;
+    color: #ffb000;
+    text-shadow: 0 0 calc(0.4rem / 2) rgba(255, 176, 0, 0.6);
+  }
+
+  .pair {
     display: flex;
-    justify-content: space-evenly;
-    p {
-      color: white;
-      font-size: calc(1.5rem / 2);
-      font-family: DotMatrix;
-      font-weight: bolder;
+  }
+
+  .digit {
+    font-family: DSEG7;
+    font-weight: 700;
+    font-size: calc(3.2rem / 2);
+    line-height: 1;
+    color: #ffb000;
+    text-align: center;
+    text-shadow: 0 0 calc(0.5rem / 2) rgba(255, 176, 0, 0.7);
+  }
+
+  .colon {
+    font-family: DSEG7;
+    font-weight: 700;
+    font-size: calc(3.2rem / 2);
+    line-height: 1;
+    color: #ffb000;
+    text-shadow: 0 0 calc(0.5rem / 2) rgba(255, 176, 0, 0.7);
+    animation: countdown-blink 1s steps(1, end) infinite;
+  }
+
+  .label,
+  .label-blank {
+    margin-top: calc(0.3rem / 2);
+    font-size: calc(1.4rem / 2);
+    line-height: 1;
+    font-family: Changa, sans-serif;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .label {
+    color: #ffe3a8;
+    font-weight: 600;
+  }
+
+  &.inactive {
+    .bar {
+      background: #ff5722;
+    }
+    .prefix,
+    .digit,
+    .colon,
+    .label {
+      color: #ff7043;
+      text-shadow: 0 0 calc(0.5rem / 2) rgba(255, 87, 34, 0.55);
     }
   }
 }
-.active {
-  background: #63a7d8;
-}
-.inactive {
-  background: #ff5722;
-}
 
-.pair {
-  display: flex;
-}
-.digit {
-  font-family: DotMatrix;
-  transform: skew(-15deg);
-  font-size: calc(3rem / 2);
-  color: #fdeab5;
-  background: #636c73;
-  margin: calc(0.25rem / 2);
-}
-.spacer {
-  line-height: calc(2.7rem / 2);
-  width: calc(1rem / 2);
-  padding-left: calc(0rem / 2);
-  padding-right: 1rem;
-  box-sizing: content-box;
+@keyframes countdown-blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  50.01%,
+  100% {
+    opacity: 0;
+  }
 }

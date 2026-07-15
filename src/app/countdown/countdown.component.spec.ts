@@ -23,6 +23,20 @@ describe("CountdownComponent", () => {
   it("should create", () => {
     expect(component).toBeTruthy();
   });
+
+  it("shows 00:00:00 placeholder when no date is available", () => {
+    component.date = undefined;
+    component.ngOnInit();
+    expect(component.hours1).toBe("0");
+    expect(component.hours2).toBe("0");
+    expect(component.minutes1).toBe("0");
+    expect(component.minutes2).toBe("0");
+    expect(component.seconds1).toBe("0");
+    expect(component.seconds2).toBe("0");
+    expect(component.unit1).toBe("HOUR");
+    expect(component.unit2).toBe("MINUTE");
+    expect(component.unit3).toBe("SECOND");
+  });
   it("Units for short time setup correctly", () => {
     const testDate = new Date();
     testDate.setDate(testDate.getDate() + 1);
