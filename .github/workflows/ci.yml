@@ -61,6 +61,8 @@ jobs:
           cache: npm
       - run: npm ci --legacy-peer-deps
       - uses: ./.github/actions/masterdata
+      - name: Setup Ionic CLI & Totemize
+        run: npm install --legacy-peer-deps @ionic/cli@^7.2.1 totemize@0.0.1
       - name: Determine Release Name & Track
         id: release
         run: |
