@@ -8,9 +8,7 @@
       <div class="image-wrapper">
         <ion-img
           id="background"
-        [src]="
-          spacecraft.image_url ? spacecraft.image_url : placeholderService.getPlaceholder()
-        "
+        [src]="placeholderService.resolveImage(spacecraft.image, spacecraft.image_url)"
           >
         </ion-img>
       </div>
@@ -20,9 +18,7 @@
           [text]="spacecraft.agency.abbrev"
           [swipeToClose]="false"
           id="foreground"
-        [src]="
-          spacecraft.image_url ? spacecraft.image_url : placeholderService.getPlaceholder()
-        "
+        [src]="placeholderService.resolveImage(spacecraft.image, spacecraft.image_url)"
           >
         </ion-img-viewer>
       </div>

@@ -89,7 +89,7 @@ function prepareData() {
     };
   });
 }
-let path = "launch";
+let path = "launches";
 let dir = "src/app/data/";
 let fileName = "launches";
 let offset = process.argv[2];
@@ -97,7 +97,7 @@ let step = process.argv[3];
 let max = +offset + +step;
 
 requestUrlAndPersistToFile(
-  "https://ll.thespacedevs.com/2.2.0/" +
+  "https://ll.thespacedevs.com/2.3.0/" +
     path +
     "/?format=json&limit=100&mode=detailed&offset=" +
     offset

@@ -1,19 +1,29 @@
 import { Injectable } from "@angular/core";
-import { default as data } from "../data/astronauts.json";
+import { HttpClient } from "@angular/common/http";
+import { firstValueFrom } from "rxjs";
 
 @Injectable({
   providedIn: "root",
 })
 export class AstronautService {
-  constructor() {}
+  private data?: Promise<any[]>;
+  constructor(private http: HttpClient) {}
 
-  getAstronautById(id: string) {
+  private load(): Promise<any[]> {
+    return (this.data ??= firstValueFrom(
+      this.http.get<any[]>("assets/data/astronauts.json")
+    ));
+  }
+
+  async getAstronautById(id: string) {
+    const data = await this.load();
     return data.find((entry) => entry.id === +id);
   }
   getFirstAstronauts(search?: string) {
     return this.getNextAstronauts(0, search);
   }
-  getNextAstronauts(offset: number, search = "") {
+  async getNextAstronauts(offset: number, search = "") {
+    const data = await this.load();
     return {
       astronauts: data
         .sort((a1, a2) => {

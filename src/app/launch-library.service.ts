@@ -30,7 +30,7 @@ export class LaunchLibraryService {
    * Event
    */
   async getEventById(id: string, bypassCache?: boolean) {
-    const previousEvent = this.previousEventsService.getPreviousEventById(
+    const previousEvent = await this.previousEventsService.getPreviousEventById(
       id
     );
     if (previousEvent) {
@@ -40,7 +40,7 @@ export class LaunchLibraryService {
     if (object !== undefined && !bypassCache) {
       return object;
     }
-    const url = this.baseUrl + "/event/" + id;
+    const url = this.baseUrl + "/events/" + id;
     const data = await this.http.get<any>(url).toPromise();
     this.eventsById.push({ id, object: data });
     return data;
@@ -75,7 +75,7 @@ export class LaunchLibraryService {
     type?: number,
     upcomingPreviousAll?: UpcomingPreviousAll
   ): string {
-    let url = this.baseUrl + "/event/";
+    let url = this.baseUrl + "/events/";
     switch (upcomingPreviousAll) {
       case UpcomingPreviousAll.PREVIOUS:
         url += "previous/";
@@ -103,7 +103,7 @@ export class LaunchLibraryService {
    * Launches
    */
   async getLaunchById(id: string, bypassCache?: boolean) {
-    const previousLaunch = this.previousLaunchesService.getPreviousLaunchById(
+    const previousLaunch = await this.previousLaunchesService.getPreviousLaunchById(
       id
     );
     if (previousLaunch) {
@@ -113,7 +113,7 @@ export class LaunchLibraryService {
     if (object !== undefined && !bypassCache) {
       return object;
     }
-    const url = this.baseUrl + "/launch/" + id;
+    const url = this.baseUrl + "/launches/" + id;
     const data = await this.http.get<any>(url).toPromise();
     this.launchesById.push({ id, object: data });
     return data;
@@ -158,7 +158,7 @@ export class LaunchLibraryService {
     endDate?: Date,
     upcomingPreviousAll?: UpcomingPreviousAll
   ): string {
-    let url = this.baseUrl + "/launch/";
+    let url = this.baseUrl + "/launches/";
     switch (upcomingPreviousAll) {
       case UpcomingPreviousAll.PREVIOUS:
         url += "previous/";

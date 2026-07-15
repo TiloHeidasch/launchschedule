@@ -26,9 +26,9 @@ export class AgencyListEntryComponent implements OnInit {
     public placeholderService: PlaceholderService
   ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     if (this.agency === undefined) {
-      this.agency = this.service.getAgencyById(this.id);
+      this.agency = await this.service.getAgencyById(this.id);
       this.cdr.markForCheck();
     }
     this.title = this.agency.name;

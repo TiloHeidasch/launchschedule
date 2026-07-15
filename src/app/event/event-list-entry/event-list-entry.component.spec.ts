@@ -25,7 +25,7 @@ describe("EventListEntryComponent", () => {
     component = fixture.componentInstance;
     component.event = {
       id: 167,
-      url: "https://ll.thespacedevs.com/2.2.0/event/167/",
+      url: "https://ll.thespacedevs.com/2.3.0/events/167/",
       slug: "sls-flight-support-booster-1-static-fire",
       name: "SLS Flight Support Booster-1 Static Fire",
       type: {
@@ -47,14 +47,14 @@ describe("EventListEntryComponent", () => {
       program: [
         {
           id: 15,
-          url: "https://ll.thespacedevs.com/2.2.0/program/15/",
+          url: "https://ll.thespacedevs.com/2.3.0/program/15/",
           name: "Artemis",
           description:
             "The Artemis program is a US government-funded crewed spaceflight program that has the goal of landing 'the first woman and the next man' on the Moon, specifically at the lunar south pole region by 2024.",
           agencies: [
             {
               id: 44,
-              url: "https://ll.thespacedevs.com/2.2.0/agencies/44/",
+              url: "https://ll.thespacedevs.com/2.3.0/agencies/44/",
               name: "National Aeronautics and Space Administration",
               type: "Government",
             },

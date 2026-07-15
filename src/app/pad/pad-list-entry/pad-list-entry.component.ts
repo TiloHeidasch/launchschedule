@@ -25,9 +25,9 @@ export class PadListEntryComponent implements OnInit {
     public placeholderService: PlaceholderService
   ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     if (!this.pad) {
-      this.pad = this.service.getPadById(this.id);
+      this.pad = await this.service.getPadById(this.id);
     }
     if (!this.locationName) {
       this.locationName = this.pad.location.name;

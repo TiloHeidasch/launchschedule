@@ -8,13 +8,13 @@
     <div class="image-wrapper">
       <ion-img
         id="background"
-        [src]="rocket.image_url ? rocket.image_url : placeholderService.getPlaceholder()"
+        [src]="placeholderService.resolveImage(rocket.image, rocket.image_url)"
       ></ion-img>
     </div>
     <div class="image-wrapper">
       <ion-img
         id="foreground"
-        [src]="rocket.image_url ? rocket.image_url : placeholderService.getPlaceholder()"
+        [src]="placeholderService.resolveImage(rocket.image, rocket.image_url)"
       ></ion-img>
     </div>
   </div>

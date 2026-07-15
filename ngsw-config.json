@@ -31,17 +31,17 @@
     {
       "name": "LaunchLibrary",
       "urls": [
-        "https://ll.thespacedevs.com/2.2.0/agencies",
-        "https://ll.thespacedevs.com/2.2.0/astronaut",
-        "https://ll.thespacedevs.com/2.2.0/dashboard/starship",
-        "https://ll.thespacedevs.com/2.2.0/event",
-        "https://ll.thespacedevs.com/2.2.0/launch/upcoming",
-        "https://ll.thespacedevs.com/2.2.0/launch/previous",
-        "https://ll.thespacedevs.com/2.2.0/location",
-        "https://ll.thespacedevs.com/2.2.0/pad",
-        "https://ll.thespacedevs.com/2.2.0/config/launcher",
-        "https://ll.thespacedevs.com/2.2.0/config/spacecraft",
-        "https://ll.thespacedevs.com/2.2.0/spacestation"
+        "https://ll.thespacedevs.com/2.3.0/agencies",
+        "https://ll.thespacedevs.com/2.3.0/astronauts",
+        "https://ll.thespacedevs.com/2.3.0/dashboard/starship",
+        "https://ll.thespacedevs.com/2.3.0/events",
+        "https://ll.thespacedevs.com/2.3.0/launches/upcoming",
+        "https://ll.thespacedevs.com/2.3.0/launches/previous",
+        "https://ll.thespacedevs.com/2.3.0/locations",
+        "https://ll.thespacedevs.com/2.3.0/pads",
+        "https://ll.thespacedevs.com/2.3.0/launcher_configurations",
+        "https://ll.thespacedevs.com/2.3.0/spacecraft_configurations",
+        "https://ll.thespacedevs.com/2.3.0/space_stations"
       ],
       "cacheConfig": {
         "strategy": "freshness",

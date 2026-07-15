@@ -22,9 +22,9 @@ export class SpacecraftPage implements OnInit {
    ngOnInit() {
     this.load();
   }
-   load(refreshEvent?) {
+   async load(refreshEvent?) {
     this.id = this.activatedRoute.snapshot.paramMap.get("id");
-    this.spacecraft =  this.service.getSpacecraftById(
+    this.spacecraft = await this.service.getSpacecraftById(
       this.id
     );
     if (refreshEvent) {

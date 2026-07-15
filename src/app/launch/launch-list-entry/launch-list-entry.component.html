@@ -29,13 +29,13 @@
     <div class="image-wrapper">
       <ion-img
         id="background"
-        [src]="launch.image ? launch.image : placeholderService.getPlaceholder()"
+        [src]="placeholderService.resolveImage(launch.image)"
       ></ion-img>
     </div>
     <div class="image-wrapper">
       <ion-img
         id="foreground"
-        [src]="launch.image ? launch.image : placeholderService.getPlaceholder()"
+        [src]="placeholderService.resolveImage(launch.image)"
       ></ion-img>
     </div>
   </div>

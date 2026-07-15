@@ -25,7 +25,7 @@ describe("SpacestationDetailCardComponent", () => {
     component = fixture.componentInstance;
     component.spacestation = {
       id: 13,
-      url: "https://ll.thespacedevs.com/2.2.0/spacestation/13/",
+      url: "https://ll.thespacedevs.com/2.3.0/space_stations/13/",
       name: "Salyut 5",
       status: {
         id: 2,
@@ -48,7 +48,7 @@ describe("SpacestationDetailCardComponent", () => {
       owners: [
         {
           id: 63,
-          url: "https://ll.thespacedevs.com/2.2.0/agencies/63/",
+          url: "https://ll.thespacedevs.com/2.3.0/agencies/63/",
           name: "Russian Federal Space Agency (ROSCOSMOS)",
           featured: true,
           type: "Government",

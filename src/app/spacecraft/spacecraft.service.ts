@@ -1,15 +1,24 @@
 import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { firstValueFrom } from "rxjs";
 import { Active } from "../types/active";
-import { default as data } from "../data/spacecrafts.json";
 import { HumanRated } from "../types/human-rated";
 
 @Injectable({
   providedIn: "root",
 })
 export class SpacecraftService {
-  constructor() {}
+  private data?: Promise<any[]>;
+  constructor(private http: HttpClient) {}
 
-  getSpacecraftById(id: string) {
+  private load(): Promise<any[]> {
+    return (this.data ??= firstValueFrom(
+      this.http.get<any[]>("assets/data/spacecrafts.json")
+    ));
+  }
+
+  async getSpacecraftById(id: string) {
+    const data = await this.load();
     return data.find((entry) => entry.id === +id);
   }
   getFirstSpacecrafts(
@@ -19,12 +28,13 @@ export class SpacecraftService {
   ) {
     return this.getNextSpacecrafts(0, search, active, humanRated);
   }
-  getNextSpacecrafts(
+  async getNextSpacecrafts(
     offset: number,
     search = "",
     active = Active.ALL,
     humanRated?: HumanRated
   ) {
+    const data = await this.load();
     return {
       spacecrafts: data
         .filter((spacecraft) => {

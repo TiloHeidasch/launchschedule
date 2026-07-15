@@ -48,7 +48,7 @@
         <app-launch-status [status]="launch.status"></app-launch-status>
         <app-countdown [date]="date"></app-countdown>
         <div id="links">
-          @for (infoURLObject of launch.infoURLs; track infoURLObject; let i = $index) {
+          @for (infoURLObject of (launch.info_urls || launch.infoURLs); track infoURLObject; let i = $index) {
             <ion-item
               [href]="infoURLObject.url"
               >

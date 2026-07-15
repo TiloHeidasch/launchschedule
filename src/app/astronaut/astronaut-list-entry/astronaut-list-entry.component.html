@@ -7,22 +7,14 @@
       <div class="image-wrapper">
         <ion-img
           id="background"
-        [src]="
-          astronaut.profile_image_thumbnail
-            ? astronaut.profile_image_thumbnail
-            : placeholderService.getPlaceholder()
-        "
+        [src]="placeholderService.resolveImage(astronaut.image && astronaut.image.thumbnail_url ? astronaut.image.thumbnail_url : astronaut.image, astronaut.profile_image_thumbnail)"
           >
         </ion-img>
       </div>
       <div class="image-wrapper">
         <ion-img
           id="foreground"
-        [src]="
-          astronaut.profile_image_thumbnail
-            ? astronaut.profile_image_thumbnail
-            : placeholderService.getPlaceholder()
-        "
+        [src]="placeholderService.resolveImage(astronaut.image && astronaut.image.thumbnail_url ? astronaut.image.thumbnail_url : astronaut.image, astronaut.profile_image_thumbnail)"
           >
         </ion-img>
       </div>

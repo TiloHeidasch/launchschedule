@@ -4,11 +4,7 @@
       <div class="image-wrapper">
         <ion-img
           id="background"
-        [src]="
-          astronaut.profile_image
-            ? astronaut.profile_image
-            : placeholderService.getPlaceholder()
-        "
+        [src]="placeholderService.resolveImage(astronaut.image, astronaut.profile_image)"
           >
         </ion-img>
       </div>
@@ -18,11 +14,7 @@
           [text]="astronaut.nationality"
           [swipeToClose]="false"
           id="foreground"
-        [src]="
-          astronaut.profile_image
-            ? astronaut.profile_image
-            : placeholderService.getPlaceholder()
-        "
+        [src]="placeholderService.resolveImage(astronaut.image, astronaut.profile_image)"
           >
         </ion-img-viewer>
       </div>

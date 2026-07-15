@@ -17,17 +17,13 @@
     <div class="image-wrapper">
       <ion-img
         id="background"
-        [src]="
-          event.feature_image ? event.feature_image : placeholderService.getPlaceholder()
-        "
+        [src]="placeholderService.resolveImage(event.image, event.feature_image)"
       ></ion-img>
     </div>
     <div class="image-wrapper">
       <ion-img
         id="foreground"
-        [src]="
-          event.feature_image ? event.feature_image : placeholderService.getPlaceholder()
-        "
+        [src]="placeholderService.resolveImage(event.image, event.feature_image)"
       ></ion-img>
     </div>
   </div>

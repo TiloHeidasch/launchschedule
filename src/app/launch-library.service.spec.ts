@@ -30,25 +30,32 @@ describe("LaunchLibraryService", () => {
       it("calls getStarshipDashboard", () => {
         service.getStarshipDashboard();
         const res = httpTestingController.expectOne(
-          "https://lldev.thespacedevs.com/2.2.0/dashboard/starship"
+          "https://lldev.thespacedevs.com/2.3.0/dashboard/starship"
         );
         expect(res.request.method).toBe("GET");
       });
     });
   });
   describe("Event", () => {
-    it("calls getEventById", () => {
-      service.getEventById("123");
+    it("calls getEventById", async () => {
+      const promise = service.getEventById("123");
+      const masterdata = httpTestingController.expectOne(
+        "assets/data/previouslaunches.json"
+      );
+      masterdata.flush([]);
+      await new Promise((resolve) => setTimeout(resolve, 0));
       const res = httpTestingController.expectOne(
-        "https://lldev.thespacedevs.com/2.2.0/event/123"
+        "https://lldev.thespacedevs.com/2.3.0/events/123"
       );
       expect(res.request.method).toBe("GET");
+      res.flush({});
+      await promise;
     });
 
     it("calls getFirstEvents", () => {
       service.getFirstEvents();
       const res = httpTestingController.expectOne(
-        "https://lldev.thespacedevs.com/2.2.0/event/?limit=24&offset=0&ordering=name"
+        "https://lldev.thespacedevs.com/2.3.0/events/?limit=24&offset=0&ordering=name"
       );
       expect(res.request.method).toBe("GET");
     });
@@ -56,7 +63,7 @@ describe("LaunchLibraryService", () => {
     it("calls getFirstEvents with search", () => {
       service.getFirstEvents("search");
       const res = httpTestingController.expectOne(
-        "https://lldev.thespacedevs.com/2.2.0/event/?limit=24&search=search&offset=0&ordering=name"
+        "https://lldev.thespacedevs.com/2.3.0/events/?limit=24&search=search&offset=0&ordering=name"
       );
       expect(res.request.method).toBe("GET");
     });
@@ -64,7 +71,7 @@ describe("LaunchLibraryService", () => {
     it("calls getFirstEvents with search and type", () => {
       service.getFirstEvents("search", 1);
       const res = httpTestingController.expectOne(
-        "https://lldev.thespacedevs.com/2.2.0/event/?limit=24&search=search&type=1&offset=0&ordering=name"
+        "https://lldev.thespacedevs.com/2.3.0/events/?limit=24&search=search&type=1&offset=0&ordering=name"
       );
       expect(res.request.method).toBe("GET");
     });
@@ -72,7 +79,7 @@ describe("LaunchLibraryService", () => {
     it("calls getFirstEvents with search and type and upcoming", () => {
       service.getFirstEvents("search", 1, UpcomingPreviousAll.UPCOMING);
       const res = httpTestingController.expectOne(
-        "https://lldev.thespacedevs.com/2.2.0/event/upcoming/?limit=24&search=search&type=1&offset=0&ordering=name"
+        "https://lldev.thespacedevs.com/2.3.0/events/upcoming/?limit=24&search=search&type=1&offset=0&ordering=name"
       );
       expect(res.request.method).toBe("GET");
     });
@@ -80,7 +87,7 @@ describe("LaunchLibraryService", () => {
     it("calls getFirstEvents with search and type and previous", () => {
       service.getFirstEvents("search", 1, UpcomingPreviousAll.PREVIOUS);
       const res = httpTestingController.expectOne(
-        "https://lldev.thespacedevs.com/2.2.0/event/previous/?limit=24&search=search&type=1&offset=0&ordering=name"
+        "https://lldev.thespacedevs.com/2.3.0/events/previous/?limit=24&search=search&type=1&offset=0&ordering=name"
       );
       expect(res.request.method).toBe("GET");
     });
@@ -88,24 +95,31 @@ describe("LaunchLibraryService", () => {
     it("calls getFirstEvents with search and type and all", () => {
       service.getFirstEvents("search", 1, UpcomingPreviousAll.ALL);
       const res = httpTestingController.expectOne(
-        "https://lldev.thespacedevs.com/2.2.0/event/?limit=24&search=search&type=1&offset=0&ordering=name"
+        "https://lldev.thespacedevs.com/2.3.0/events/?limit=24&search=search&type=1&offset=0&ordering=name"
       );
       expect(res.request.method).toBe("GET");
     });
   });
   describe("Launch", () => {
-    it("calls getLaunchById", () => {
-      service.getLaunchById("123");
+    it("calls getLaunchById", async () => {
+      const promise = service.getLaunchById("123");
+      const masterdata = httpTestingController.expectOne(
+        "assets/data/previouslaunches.json"
+      );
+      masterdata.flush([]);
+      await new Promise((resolve) => setTimeout(resolve, 0));
       const res = httpTestingController.expectOne(
-        "https://lldev.thespacedevs.com/2.2.0/launch/123"
+        "https://lldev.thespacedevs.com/2.3.0/launches/123"
       );
       expect(res.request.method).toBe("GET");
+      res.flush({});
+      await promise;
     });
 
     it("calls getFirstLaunches", () => {
       service.getFirstLaunches();
       const res = httpTestingController.expectOne(
-        "https://lldev.thespacedevs.com/2.2.0/launch/?limit=24&offset=0"
+        "https://lldev.thespacedevs.com/2.3.0/launches/?limit=24&offset=0"
       );
       expect(res.request.method).toBe("GET");
     });
@@ -113,7 +127,7 @@ describe("LaunchLibraryService", () => {
     it("calls getFirstLaunches with search", () => {
       service.getFirstLaunches("search");
       const res = httpTestingController.expectOne(
-        "https://lldev.thespacedevs.com/2.2.0/launch/?limit=24&search=search&offset=0"
+        "https://lldev.thespacedevs.com/2.3.0/launches/?limit=24&search=search&offset=0"
       );
       expect(res.request.method).toBe("GET");
     });
@@ -121,7 +135,7 @@ describe("LaunchLibraryService", () => {
     it("calls getFirstLaunches with search and startDate", () => {
       service.getFirstLaunches("search", new Date("2021-01-01"));
       const res = httpTestingController.expectOne(
-        "https://lldev.thespacedevs.com/2.2.0/launch/?limit=24&search=search&net__gte=2021-01-01T00:00:00.000Z&offset=0"
+        "https://lldev.thespacedevs.com/2.3.0/launches/?limit=24&search=search&net__gte=2021-01-01T00:00:00.000Z&offset=0"
       );
       expect(res.request.method).toBe("GET");
     });
@@ -132,7 +146,7 @@ describe("LaunchLibraryService", () => {
         new Date("2021-01-01")
       );
       const res = httpTestingController.expectOne(
-        "https://lldev.thespacedevs.com/2.2.0/launch/?limit=24&search=search&net__gte=2021-01-01T00:00:00.000Z&net__lte=2021-01-01T00:00:00.000Z&offset=0"
+        "https://lldev.thespacedevs.com/2.3.0/launches/?limit=24&search=search&net__gte=2021-01-01T00:00:00.000Z&net__lte=2021-01-01T00:00:00.000Z&offset=0"
       );
       expect(res.request.method).toBe("GET");
     });
@@ -144,7 +158,7 @@ describe("LaunchLibraryService", () => {
         UpcomingPreviousAll.UPCOMING
       );
       const res = httpTestingController.expectOne(
-        "https://lldev.thespacedevs.com/2.2.0/launch/upcoming/?limit=24&search=search&offset=0"
+        "https://lldev.thespacedevs.com/2.3.0/launches/upcoming/?limit=24&search=search&offset=0"
       );
       expect(res.request.method).toBe("GET");
     });
@@ -156,7 +170,7 @@ describe("LaunchLibraryService", () => {
         UpcomingPreviousAll.PREVIOUS
       );
       const res = httpTestingController.expectOne(
-        "https://lldev.thespacedevs.com/2.2.0/launch/previous/?limit=24&search=search&offset=0"
+        "https://lldev.thespacedevs.com/2.3.0/launches/previous/?limit=24&search=search&offset=0"
       );
       expect(res.request.method).toBe("GET");
     });
@@ -168,7 +182,7 @@ describe("LaunchLibraryService", () => {
         UpcomingPreviousAll.ALL
       );
       const res = httpTestingController.expectOne(
-        "https://lldev.thespacedevs.com/2.2.0/launch/?limit=24&search=search&net__gte=2021-01-01T00:00:00.000Z&net__lte=2021-01-01T00:00:00.000Z&offset=0"
+        "https://lldev.thespacedevs.com/2.3.0/launches/?limit=24&search=search&net__gte=2021-01-01T00:00:00.000Z&net__lte=2021-01-01T00:00:00.000Z&offset=0"
       );
       expect(res.request.method).toBe("GET");
     });

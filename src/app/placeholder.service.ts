@@ -11,6 +11,18 @@ export class PlaceholderService {
       ? "assets/placeholder/placeholderdark.png"
       : "assets/placeholder/placeholder.png";
   }
+  resolveImage(image: any, legacyUrl?: string) {
+    if (image && typeof image === "object" && image.image_url) {
+      return image.image_url;
+    }
+    if (typeof image === "string" && image !== "") {
+      return image;
+    }
+    if (legacyUrl) {
+      return legacyUrl;
+    }
+    return this.getPlaceholder();
+  }
   getVersion() {
     return this.preferences.isDark()
       ? "assets/placeholder/versiondark.png"

@@ -32,4 +32,14 @@ export class RocketDetailCardComponent implements OnInit {
       this.rocket = await this.service.getRocketById(this.id);
     }
   }
+
+  get family(): string {
+    if (!this.rocket) {
+      return "";
+    }
+    if (Array.isArray(this.rocket.families)) {
+      return this.rocket.families.map((f) => f.name).join(", ");
+    }
+    return this.rocket.family || "";
+  }
 }

@@ -1,13 +1,22 @@
 import { Injectable } from "@angular/core";
-import { default as data } from "../data/spacestations.json";
+import { HttpClient } from "@angular/common/http";
+import { firstValueFrom } from "rxjs";
 
 @Injectable({
   providedIn: "root",
 })
 export class SpacestationService {
-  constructor() {}
+  private data?: Promise<any[]>;
+  constructor(private http: HttpClient) {}
 
-  getSpacestationById(id: string) {
+  private load(): Promise<any[]> {
+    return (this.data ??= firstValueFrom(
+      this.http.get<any[]>("assets/data/spacestations.json")
+    ));
+  }
+
+  async getSpacestationById(id: string) {
+    const data = await this.load();
     return data.find((entry) => entry.id === +id);
   }
   getFirstSpacestations(
@@ -18,13 +27,14 @@ export class SpacestationService {
   ) {
     return this.getNextSpacestations(0, search, status, orbit, type);
   }
-  getNextSpacestations(
+  async getNextSpacestations(
     offset: number,
     search = "",
     status?: number,
     orbit?: string,
     type?: number
   ) {
+    const data = await this.load();
     return {
       spacestations: data
         .sort((s1, s2) => {

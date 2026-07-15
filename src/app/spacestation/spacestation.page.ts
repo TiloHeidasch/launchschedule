@@ -22,9 +22,9 @@ export class SpacestationPage implements OnInit {
    ngOnInit() {
     this.load();
   }
-   load(refreshEvent?) {
+   async load(refreshEvent?) {
     this.id = this.activatedRoute.snapshot.paramMap.get("id");
-    this.spacestation =  this.service.getSpacestationById(
+    this.spacestation = await this.service.getSpacestationById(
       this.id
     );
     if (refreshEvent) {

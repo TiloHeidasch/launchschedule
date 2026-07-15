@@ -1,5 +1,5 @@
 name: Download Masterdata
-description: Populate src/app/data/ from the masterdata branch
+description: Populate src/assets/data/ from the masterdata branch
 runs:
   using: composite
   steps:
@@ -12,7 +12,7 @@ runs:
     - name: Copy data
       shell: bash
       run: |
-        mkdir -p src/app/data
-        cp _masterdata/*.json src/app/data/ 2>/dev/null || true
-        rm -f src/app/data/*[0-9]*.json 2>/dev/null || true
+        mkdir -p src/assets/data
+        cp _masterdata/*.json src/assets/data/ 2>/dev/null || true
+        rm -f src/assets/data/*[0-9]*.json 2>/dev/null || true
         rm -rf _masterdata

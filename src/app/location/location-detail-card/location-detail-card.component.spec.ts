@@ -25,7 +25,7 @@ describe("LocationDetailCardComponent", () => {
     component = fixture.componentInstance;
     component.location = {
       id: 151,
-      url: "https://ll.thespacedevs.com/2.2.0/location/151/",
+      url: "https://ll.thespacedevs.com/2.3.0/locations/151/",
       name: "Broglio Space Center, Kenya",
       country_code: "ITA",
       map_image:

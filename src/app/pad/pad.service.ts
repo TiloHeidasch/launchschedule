@@ -1,19 +1,29 @@
 import { Injectable } from "@angular/core";
-import { default as data } from "../data/pads.json";
+import { HttpClient } from "@angular/common/http";
+import { firstValueFrom } from "rxjs";
 
 @Injectable({
   providedIn: "root",
 })
 export class PadService {
-  constructor() {}
+  private data?: Promise<any[]>;
+  constructor(private http: HttpClient) {}
 
-  getPadById(id: string) {
+  private load(): Promise<any[]> {
+    return (this.data ??= firstValueFrom(
+      this.http.get<any[]>("assets/data/pads.json")
+    ));
+  }
+
+  async getPadById(id: string) {
+    const data = await this.load();
     return data.find((entry) => entry.id === +id);
   }
   getFirstPads(search?: string) {
     return this.getNextPads(0, search);
   }
-  getNextPads(offset: number, search = "") {
+  async getNextPads(offset: number, search = "") {
+    const data = await this.load();
     return {
       pads: data
         .sort((p1, p2) => {

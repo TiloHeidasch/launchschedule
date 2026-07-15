@@ -22,11 +22,11 @@
       <div id="launch">
         <app-launch-detail-card [launch]="launch"></app-launch-detail-card>
       </div>
-      @if (launch.rocket.spacecraft_stage && launch.rocket.spacecraft_stage.launch_crew) {
+      @if (crew && crew.length > 0) {
         <div
           id="crew"
           >
-          @for (member of launch.rocket.spacecraft_stage.launch_crew; track member) {
+          @for (member of crew; track member) {
             <div
               class="crew-member"
               >
@@ -72,12 +72,12 @@
           [agency]="launch.launch_service_provider"
         ></app-agency-list-entry>
       </div>
-      @if (launch.vidURLs && launch.vidURLs.length>0) {
+      @if (videos && videos.length>0) {
         <div id="video">
           <ion-item>
             <ion-label> Videos </ion-label>
           </ion-item>
-          @for (video of launch.vidURLs; track video) {
+          @for (video of videos; track video) {
             <app-youtube-video
               [launchVideo]="video"
             ></app-youtube-video>

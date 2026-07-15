@@ -1,26 +1,39 @@
 import { Injectable } from "@angular/core";
-import { default as data } from "../data/rockets.json";
+import { HttpClient } from "@angular/common/http";
+import { firstValueFrom } from "rxjs";
 
 @Injectable({
   providedIn: "root",
 })
 export class RocketService {
-  constructor() {}
+  private data?: Promise<any[]>;
+  constructor(private http: HttpClient) {}
 
-  getRocketById(id: string) {
+  private load(): Promise<any[]> {
+    return (this.data ??= firstValueFrom(
+      this.http.get<any[]>("assets/data/rockets.json")
+    ));
+  }
+
+  async getRocketById(id: string) {
+    const data = await this.load();
     return data.find((entry) => entry.id === +id);
   }
   getFirstRockets(search?: string) {
     return this.getNextRockets(0, search);
   }
-  getNextRockets(offset: number, search = "") {
+  async getNextRockets(offset: number, search = "") {
+    const data = await this.load();
     return {
       rockets: data
         .filter((rocket) => {
+          const family = Array.isArray(rocket.families)
+            ? rocket.families.map((f) => f.name).join(" ")
+            : rocket.family || "";
           return (
             rocket.name.includes(search) ||
             rocket.full_name.includes(search) ||
-            rocket.family.includes(search) ||
+            family.includes(search) ||
             rocket.alias.includes(search)
           );
         })

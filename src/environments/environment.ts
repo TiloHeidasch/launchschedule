@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  launchLibrary: "https://lldev.thespacedevs.com/2.2.0",
+  launchLibrary: "https://lldev.thespacedevs.com/2.3.0",
   snapi: "https://api.spaceflightnewsapi.net/v4/",
   nasaApiKey: "DEMO_KEY",
   twitter: "https://publish.twitter.com/oembed",

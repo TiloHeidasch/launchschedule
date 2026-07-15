@@ -13,6 +13,8 @@ export class LaunchPage implements OnInit {
   public id: string;
   launch = undefined;
   title: string;
+  crew = [];
+  videos = [];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -29,5 +31,20 @@ export class LaunchPage implements OnInit {
       refreshEvent.target.complete();
     }
     this.title = this.launch.name.split("|")[1].trim();
+    this.crew = this.resolveCrew(this.launch);
+    this.videos = this.launch.vid_urls || this.launch.vidURLs || [];
+  }
+  private resolveCrew(launch): any[] {
+    const stage = launch?.rocket?.spacecraft_stage;
+    if (!stage) {
+      return [];
+    }
+    if (Array.isArray(stage)) {
+      return stage.reduce(
+        (crew, flight) => crew.concat(flight.launch_crew || []),
+        []
+      );
+    }
+    return stage.launch_crew || [];
   }
 }

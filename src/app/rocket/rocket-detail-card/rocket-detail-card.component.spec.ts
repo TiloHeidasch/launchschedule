@@ -26,11 +26,11 @@ describe("RocketDetailCardComponent", () => {
     component.rocket = {
       id: 136,
       launch_library_id: 145,
-      url: "https://ll.thespacedevs.com/2.2.0/config/launcher/136/",
+      url: "https://ll.thespacedevs.com/2.3.0/launcher_configurations/136/",
       name: "Angara 1.2",
       manufacturer: {
         id: 118,
-        url: "https://ll.thespacedevs.com/2.2.0/agencies/118/",
+        url: "https://ll.thespacedevs.com/2.3.0/agencies/118/",
         name: "International Launch Services",
         featured: false,
         type: "Commercial",

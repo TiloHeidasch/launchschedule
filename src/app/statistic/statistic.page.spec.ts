@@ -4,6 +4,7 @@ import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { IonicModule } from "@ionic/angular";
 
 import { StatisticPage } from "./statistic.page";
+import { StatisticService } from "./statistic.service";
 import { RouterTestingModule } from "@angular/router/testing";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 
@@ -15,7 +16,10 @@ describe("StatisticPage", () => {
     TestBed.configureTestingModule({
       declarations: [StatisticPage],
       schemas: [NO_ERRORS_SCHEMA],
-      providers: [ModalController],
+      providers: [
+        ModalController,
+        { provide: StatisticService, useValue: { getLaunches: () => Promise.resolve([]) } },
+      ],
       imports: [
         IonicModule.forRoot(),
         RouterTestingModule,

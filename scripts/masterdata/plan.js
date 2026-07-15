@@ -1,32 +1,32 @@
 let https = require("https");
 let fs = require("fs");
 
-const BASE = "https://ll.thespacedevs.com/2.2.0/";
+const BASE = "https://ll.thespacedevs.com/2.3.0/";
 const CHUNK = 500;
 
 // API list endpoint per type (used to read `count`).
 const API_PATH = {
-  rockets: "config/launcher",
-  spacestations: "spacestation",
+  rockets: "launcher_configurations",
+  spacestations: "space_stations",
   agencies: "agencies",
-  spacecrafts: "config/spacecraft",
-  pads: "pad",
-  locations: "location",
-  previousevents: "event/previous",
-  astronauts: "astronaut",
-  previouslaunches: "launch/previous",
-  launches: "launch",
+  spacecrafts: "spacecraft_configurations",
+  pads: "pads",
+  locations: "locations",
+  previousevents: "events/previous",
+  astronauts: "astronauts",
+  previouslaunches: "launches/previous",
+  launches: "launches",
 };
 
 // How to invoke the fetch script for each type.
 const SCRIPT = {
-  rockets: ["scripts/masterdata/fetch.js", "config/launcher rockets"],
-  spacestations: ["scripts/masterdata/fetch.js", "spacestation spacestations"],
+  rockets: ["scripts/masterdata/fetch.js", "launcher_configurations rockets"],
+  spacestations: ["scripts/masterdata/fetch.js", "space_stations spacestations"],
   agencies: ["scripts/masterdata/fetch.js", "agencies agencies"],
-  spacecrafts: ["scripts/masterdata/fetch.js", "config/spacecraft spacecrafts"],
-  pads: ["scripts/masterdata/fetch.js", "pad pads"],
-  locations: ["scripts/masterdata/fetch.js", "location locations"],
-  previousevents: ["scripts/masterdata/fetch.js", "event/previous previousevents"],
+  spacecrafts: ["scripts/masterdata/fetch.js", "spacecraft_configurations spacecrafts"],
+  pads: ["scripts/masterdata/fetch.js", "pads pads"],
+  locations: ["scripts/masterdata/fetch.js", "locations locations"],
+  previousevents: ["scripts/masterdata/fetch.js", "events/previous previousevents"],
   astronauts: ["scripts/masterdata/fetchAstronaut.js", ""],
   previouslaunches: ["scripts/masterdata/fetchPreviousLaunches.js", ""],
   launches: ["scripts/fetchLaunches.js", ""],

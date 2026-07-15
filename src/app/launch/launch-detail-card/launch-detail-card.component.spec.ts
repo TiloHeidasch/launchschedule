@@ -25,7 +25,7 @@ describe("LaunchDetailCardComponent", () => {
     component = fixture.componentInstance;
     component.launch = {
       id: "15468d99-b3eb-4bf4-81b3-3fda9d2e579d",
-      url: "https://ll.thespacedevs.com/2.2.0/launch/15468d99-b3eb-4bf4-81b3-3fda9d2e579d/",
+      url: "https://ll.thespacedevs.com/2.3.0/launches/15468d99-b3eb-4bf4-81b3-3fda9d2e579d/",
       launch_library_id: 1321,
       slug: "vega-ssms-poc",
       name: "Vega | SSMS PoC",
@@ -45,7 +45,7 @@ describe("LaunchDetailCardComponent", () => {
       hashtag: null,
       launch_service_provider: {
         id: 115,
-        url: "https://ll.thespacedevs.com/2.2.0/agencies/115/",
+        url: "https://ll.thespacedevs.com/2.3.0/agencies/115/",
         name: "Arianespace",
         type: "Commercial",
       },
@@ -54,7 +54,7 @@ describe("LaunchDetailCardComponent", () => {
         configuration: {
           id: 167,
           launch_library_id: 18,
-          url: "https://ll.thespacedevs.com/2.2.0/config/launcher/167/",
+          url: "https://ll.thespacedevs.com/2.3.0/launcher_configurations/167/",
           name: "Vega",
           family: "Vega",
           full_name: "Vega",
@@ -77,7 +77,7 @@ describe("LaunchDetailCardComponent", () => {
       },
       pad: {
         id: 34,
-        url: "https://ll.thespacedevs.com/2.2.0/pad/34/",
+        url: "https://ll.thespacedevs.com/2.3.0/pads/34/",
         agency_id: 115,
         name: "Ariane Launch Area 1",
         info_url: null,
@@ -87,7 +87,7 @@ describe("LaunchDetailCardComponent", () => {
         longitude: "-52.775",
         location: {
           id: 13,
-          url: "https://ll.thespacedevs.com/2.2.0/location/13/",
+          url: "https://ll.thespacedevs.com/2.3.0/locations/13/",
           name: "Kourou, French Guiana",
           country_code: "GUF",
           map_image:

@@ -38,7 +38,7 @@ export class StatisticPage {
 
   async whatComplete() {
     this.step = 2;
-    this.setupTable();
+    await this.setupTable();
   }
   whatOpen() {
     this.step = 1;
@@ -60,14 +60,17 @@ export class StatisticPage {
         break;
     }
   }
-  axisComplete() {
+  async axisComplete() {
     this.step = 4;
+    if (!this.dataRaw || this.dataRaw.then) {
+      await this.setupTable();
+    }
     this.initCharts();
   }
   axisOpen() {
     this.step = 3;
   }
-  private setupTable() {
+  private async setupTable() {
     switch (this.what) {
       case "Launches":
         return this.setupLaunchesTable();
@@ -139,7 +142,7 @@ export class StatisticPage {
   }
 
   private async setupLaunchesTable() {
-    this.dataRaw = this.service.getLaunches();
+    this.dataRaw = await this.service.getLaunches();
     this.rockets = this.dataRaw
       .map((launch) => {
         return launch.rocket__configuration__full_name;

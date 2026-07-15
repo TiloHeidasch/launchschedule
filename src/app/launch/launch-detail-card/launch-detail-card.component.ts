@@ -25,11 +25,10 @@ export class LaunchDetailCardComponent implements OnInit {
     this.date = new Date(this.launch.net);
     this.title = this.launch.name.split("|")[1].trim();
     this.subtitle = this.launch.name.split("|")[0].trim();
-    if (this.launch.infographic) {
-      this.imageUrl = this.launch.infographic;
-    } else {
-      this.imageUrl = this.launch.image;
-    }
+    const image = this.launch.infographic
+      ? this.launch.infographic
+      : this.launch.image;
+    this.imageUrl = this.placeholderService.resolveImage(image);
   }
   navigate(baseUrl: string, hashtag: string) {
     window.location.href = baseUrl + hashtag.replace("#", "");

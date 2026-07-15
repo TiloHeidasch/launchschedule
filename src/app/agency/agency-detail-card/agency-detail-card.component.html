@@ -5,7 +5,7 @@
       <div class="image-wrapper">
         <ion-img
           id="background"
-          [src]="agency.image_url ? agency.image_url : placeholderService.getPlaceholder()"
+          [src]="placeholderService.resolveImage(agency.image, agency.image_url)"
         ></ion-img>
       </div>
       <div class="image-wrapper">
@@ -14,7 +14,7 @@
           [title]="agency.name"
           [text]="agency.abbrev"
           [swipeToClose]="false"
-          [src]="agency.image_url ? agency.image_url : placeholderService.getPlaceholder()"
+          [src]="placeholderService.resolveImage(agency.image, agency.image_url)"
         ></ion-img-viewer>
       </div>
     </div>
@@ -26,11 +26,11 @@
       <div id="content">
         <div id="logos">
           <ion-img
-            [src]="agency.logo_url ? agency.logo_url : placeholderService.getPlaceholder()"
+            [src]="placeholderService.resolveImage(agency.logo, agency.logo_url)"
           ></ion-img>
           <ion-img
           [src]="
-            agency.nation_url ? agency.nation_url : placeholderService.getPlaceholder()
+            placeholderService.resolveImage(agency.social_logo, agency.nation_url)
           "
           ></ion-img>
         </div>

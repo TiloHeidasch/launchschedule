@@ -1,13 +1,17 @@
 import { Injectable } from "@angular/core";
-import data from "../data/launches.json";
+import { HttpClient } from "@angular/common/http";
+import { firstValueFrom } from "rxjs";
 
 @Injectable({
   providedIn: "root",
 })
 export class StatisticService {
-  constructor() {}
+  private data?: Promise<any[]>;
+  constructor(private http: HttpClient) {}
 
-  getLaunches() {
-    return data;
+  getLaunches(): Promise<any[]> {
+    return (this.data ??= firstValueFrom(
+      this.http.get<any[]>("assets/data/launches.json")
+    ));
   }
 }

@@ -22,9 +22,9 @@ export class RocketPage implements OnInit {
    ngOnInit() {
     this.load();
   }
-   load(refreshEvent?) {
+   async load(refreshEvent?) {
     this.id = this.activatedRoute.snapshot.paramMap.get("id");
-    this.rocket =  this.service.getRocketById(this.id);
+    this.rocket = await this.service.getRocketById(this.id);
     if (refreshEvent) {
       refreshEvent.target.complete();
     }

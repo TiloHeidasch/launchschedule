@@ -1,19 +1,29 @@
 import { Injectable } from "@angular/core";
-import { default as data } from "../data/locations.json";
+import { HttpClient } from "@angular/common/http";
+import { firstValueFrom } from "rxjs";
 
 @Injectable({
   providedIn: "root",
 })
 export class LocationService {
-  constructor() {}
+  private data?: Promise<any[]>;
+  constructor(private http: HttpClient) {}
 
-  getLocationById(id: string) {
+  private load(): Promise<any[]> {
+    return (this.data ??= firstValueFrom(
+      this.http.get<any[]>("assets/data/locations.json")
+    ));
+  }
+
+  async getLocationById(id: string) {
+    const data = await this.load();
     return data.find((entry) => entry.id === +id);
   }
   getFirstLocations(search?: string, countryCode?: string) {
     return this.getNextLocations(0, search, countryCode);
   }
-  getNextLocations(offset: number, search = "", countryCode = "") {
+  async getNextLocations(offset: number, search = "", countryCode = "") {
+    const data = await this.load();
     return {
       locations: data
         .sort((l1, l2) => {
@@ -26,10 +36,19 @@ export class LocationService {
           return 0;
         })
         .filter((location) => {
-          return (
-            location.name.includes(search) &&
-            (location.country_code === countryCode || countryCode === "")
-          );
+          const countryMatches =
+            countryCode === ""
+              ? true
+              : (location.country &&
+                  location.country.some((c) =>
+                    (c.name || c.alpha_3_code || c.alpha_2_code) ===
+                      countryCode ||
+                    (c.name || c.alpha_3_code || c.alpha_2_code || "").includes(
+                      countryCode
+                    )
+                  )) ||
+                location.country_code === countryCode;
+          return location.name.includes(search) && countryMatches;
         })
         .slice(offset, offset + 24),
       max: data.length,

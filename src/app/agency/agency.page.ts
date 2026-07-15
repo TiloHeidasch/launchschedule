@@ -22,9 +22,9 @@ export class AgencyPage implements OnInit {
   ngOnInit() {
     this.load();
   }
-  load(refreshEvent?) {
+  async load(refreshEvent?) {
     this.id = this.activatedRoute.snapshot.paramMap.get("id");
-    this.agency = this.service.getAgencyById(this.id);
+    this.agency = await this.service.getAgencyById(this.id);
     if (refreshEvent) {
       refreshEvent.target.complete();
     }
