@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: [ 'java', 'javascript' ]
+        language: [ 'javascript' ]
     steps:
     - name: Checkout repository
       uses: actions/checkout@v5
@@ -24,18 +24,6 @@ jobs:
       uses: github/codeql-action/init@v4
       with:
         languages: ${{ matrix.language }}
-    - name: Setup Node
-      if: ${{ matrix.language == 'java' }}
-      uses: actions/setup-node@v5
-    - name: NPM Install
-      if: ${{ matrix.language == 'java' }}
-      run: npm ci
-    - name: Setup Angular
-      if: ${{ matrix.language == 'java' }}
-      run: npm install @angular/cli
-    - name: Setup Ionic
-      if: ${{ matrix.language == 'java' }}
-      run: npm install @ionic/cli
     - name: Set Release Name Variable
       run: echo "RELEASE_NAME=CODEQL" >> $GITHUB_ENV
     - name: Set Release Track Variable
@@ -67,22 +55,6 @@ jobs:
     - name: Fake Spacestations
       run: echo '[]' > src/app/data/spacestations.json
     - name: Build with Ionic
-      if: ${{ matrix.language == 'java' }}
       run: npm run build:prod
-    - name: Capacitor Update
-      if: ${{ matrix.language == 'java' }}
-      run: npx cap update android
-    - name: Capacitor Copy
-      if: ${{ matrix.language == 'java' }}
-      run: npx cap copy
-    - name: Setup Java 11
-      if: ${{ matrix.language == 'java' }}
-      uses: actions/setup-java@v5
-      with:
-        distribution: 'temurin' # See 'Supported distributions' for available options
-        java-version: '11'
-    - name: Build with Gradle
-      if: ${{ matrix.language == 'java' }}
-      run: cd android && chmod +x gradlew && ./gradlew bundleRelease        
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v4

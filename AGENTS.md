@@ -1,6 +1,6 @@
 # RCKET — launchschedule
 
-Ionic 6 + Angular 14 PWA for tracking rocket launches. Served via nginx Docker, deployed to iOS/Android via Capacitor.
+Ionic 6 + Angular PWA for tracking rocket launches. Served via nginx Docker.
 
 ## Commands
 
@@ -14,8 +14,6 @@ Ionic 6 + Angular 14 PWA for tracking rocket launches. Served via nginx Docker, 
 | `npm run test:coverage` | With code coverage |
 | `npm run lint` | ESLint via Angular ESLint (`src/**/*.ts`, `src/**/*.html`) |
 | `npm run e2e` | Playwright E2E (auto-starts `ng serve` via `webServer`) |
-| `npm run android` | `ionic build && npx cap copy` |
-| `npm run resources` | Regenerate Cordova/Capacitor icons & splash screens |
 
 No dedicated typecheck script; use `npx tsc --noEmit` if needed.
 
