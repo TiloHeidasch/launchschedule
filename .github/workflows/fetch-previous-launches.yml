@@ -220,6 +220,8 @@ jobs:
   commit:
     name: Commit Master Data
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     needs: [
         fetchPreviousLaunches1,
         fetchPreviousLaunches2,
@@ -312,10 +314,11 @@ jobs:
           name: previouslaunches14
           path: ./
       - name: Push to Masterdata branch
-        uses: crazy-max/ghaction-github-pages@v5.3.0
-        with:
-          build_dir: ./
-          target_branch: masterdata
-          commit_message: 'Updates Previous Launches'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m 'Updates Previous Launches' || echo "No changes to commit"
+          git push origin masterdata
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

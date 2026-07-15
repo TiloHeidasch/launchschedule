@@ -55,6 +55,8 @@ jobs:
   upload:
     name: Upload Masterdata to branch
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     needs: merge
     steps:
       - name: Download Masterdata
@@ -63,10 +65,11 @@ jobs:
           name: masterdata
           path: ./
       - name: Push to Masterdata branch
-        uses: crazy-max/ghaction-github-pages@v5.3.0
-        with:
-          build_dir: ./
-          target_branch: masterdata
-          commit_message: 'Merges Masterdata'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m 'Merges Masterdata' || echo "No changes to commit"
+          git push origin masterdata
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
