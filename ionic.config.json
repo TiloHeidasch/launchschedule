@@ -1,7 +1,4 @@
 {
   "name": "schedule",
-  "integrations": {
-    "capacitor": {}
-  },
   "type": "angular"
 }

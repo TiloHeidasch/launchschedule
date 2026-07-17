@@ -1,38 +1,31 @@
 import { Injectable } from "@angular/core";
-import { Preferences } from "@capacitor/preferences";
 
 @Injectable({
   providedIn: "root",
 })
 export class StorageService {
   async getObject(key: string) {
-    const ret = await Preferences.get({ key });
-    return JSON.parse(ret.value);
+    const ret = localStorage.getItem(key);
+    return JSON.parse(ret);
   }
 
   async setObject(key: string, object: any) {
-    await Preferences.set({
-      key,
-      value: JSON.stringify(object),
-    });
+    localStorage.setItem(key, JSON.stringify(object));
   }
+
   async setItem(key: string, value: any) {
-    await Preferences.set({
-      key,
-      value,
-    });
+    localStorage.setItem(key, value);
   }
 
   async getItem(key: string) {
-    const { value } = await Preferences.get({ key });
-    return value;
+    return localStorage.getItem(key);
   }
 
   async removeItem(key: string) {
-    await Preferences.remove({ key });
+    localStorage.removeItem(key);
   }
 
   async clear() {
-    await Preferences.clear();
+    localStorage.clear();
   }
 }

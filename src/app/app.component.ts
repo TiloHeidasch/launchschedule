@@ -1,20 +1,9 @@
 import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
 
-import { Platform } from "@ionic/angular";
-import { SplashScreen } from "@capacitor/splash-screen";
-import { StatusBar, Style } from "@capacitor/status-bar";
-
-import { Router } from "@angular/router";
-import { environment } from "../environments/environment";
+import { SwUpdate, VersionEvent } from "@angular/service-worker";
 import { NewsParamStoreService } from "./news/news-param-store.service";
 import { PreferenceService } from "./preferences.service";
-import { SwUpdate, VersionEvent } from "@angular/service-worker";
-import {
-  PushNotifications,
-  PushNotificationSchema,
-  ActionPerformed,
-} from "@capacitor/push-notifications";
-import { LaunchscheduleNotificationService } from "./launchschedule-notification.service";
+import { environment } from "../environments/environment";
 
 @Component({
   selector: "app-root",
@@ -22,7 +11,6 @@ import { LaunchscheduleNotificationService } from "./launchschedule-notification
   templateUrl: "app.component.html",
   styleUrls: ["app.component.scss"],
   changeDetection: ChangeDetectionStrategy.Eager,
-
 })
 export class AppComponent implements OnInit {
   versionCode = environment.versionCode + 1000;
@@ -117,25 +105,14 @@ export class AppComponent implements OnInit {
   ];
 
   constructor(
-    private platform: Platform,
-    private router: Router,
     public newsParamStore: NewsParamStoreService,
     public preferences: PreferenceService,
     updates: SwUpdate,
-    private notificationService: LaunchscheduleNotificationService
   ) {
-    this.initializeApp();
     updates.versionUpdates.subscribe((event: VersionEvent) => {
       if (event.type === "VERSION_READY") {
         updates.activateUpdate().then(() => document.location.reload());
       }
-    });
-  }
-
-  initializeApp() {
-    this.platform.ready().then(() => {
-      StatusBar.setStyle({ style: Style.Default });
-      SplashScreen.hide();
     });
   }
 
@@ -146,58 +123,13 @@ export class AppComponent implements OnInit {
         (page) => page.url.toLowerCase() === "/" + path.toLowerCase()
       );
     }
-    setTimeout(() => {
-      this.initNotifications();
-    }, 5000);
   }
 
-  private initNotifications() {
-    // Register with Apple / Google to receive push via APNS/FCM
-    PushNotifications.register()
-      .then(() => {
-        this.notificationService.setRegistered();
-        // Show us the notification payload if the app is open on our device
-        PushNotifications.addListener(
-          "pushNotificationReceived",
-          (notification: PushNotificationSchema) => {
-            console.log('Notification:', notification.title, notification.body);
-          }
-        ).catch((err) => {
-          console.log(err);
-        });
-        // Method called when tapping on a notification
-        PushNotifications.addListener(
-          "pushNotificationActionPerformed",
-          (notification: ActionPerformed) => {
-            switch (notification.notification.data.type) {
-              case "launch":
-                this.jumpToLaunch(notification.notification.data.id);
-                break;
-              case "event":
-                this.jumpToEvent(notification.notification.data.id);
-                break;
-              default:
-                break;
-            }
-          }
-        ).catch((err) => {
-          console.log(err);
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-  jumpToLaunch(id) {
-    this.router.navigateByUrl("/launch/" + id);
-  }
-  jumpToEvent(id) {
-    this.router.navigateByUrl("/event/" + id);
-  }
   toggleDarkTheme() {
     this.preferences.setDark(!this.preferences.isDark());
     this.setTheme();
   }
+
   private setTheme() {
     document.body.classList.toggle("dark", this.preferences.isDark());
   }
