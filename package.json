@@ -24,7 +24,7 @@
     "@angular/platform-browser": "^22.0.6",
     "@angular/platform-browser-dynamic": "^22.0.6",
     "@angular/router": "^22.0.6",
-    "@angular/service-worker": "^22.0.6",
+    "@angular/service-worker": "^22.0.7",
     "@angular/youtube-player": "^22.0.0",
     "@ionic/angular": "^8.8.13",
     "@herdwatch/ngx-ionic-image-viewer": "^2.2.2",
