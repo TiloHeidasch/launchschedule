@@ -51,6 +51,7 @@ export class LaunchOverviewPage implements OnInit, ViewDidEnter {
         this.store.upcomingPreviousAll
       )
     ).launches;
+    this.store.loaded = true;
     if (refreshEvent) {
       refreshEvent.target.complete();
     }

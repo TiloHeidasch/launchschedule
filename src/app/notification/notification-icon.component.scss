@@ -3,17 +3,29 @@
 }
 #notification {
   display: flex;
-  background-color: #30303090;
-  padding-top: 0.5rem;
-  padding-right: 0.5rem;
-  padding-left: 0.5rem;
-  border-radius: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  background: var(--ion-color-step-100);
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+#notification:hover {
+  background: var(--ion-color-step-200);
+}
+#notification ion-icon {
+  font-size: 1.2rem;
 }
 #notification-toggle ion-icon {
   font-size: 1.25rem;
 }
 #related {
   position: absolute;
-  left: 1.75rem;
-  top: 0rem;
+  left: 1.5rem;
+  top: -0.25rem;
+  ion-icon {
+    font-size: 0.8rem;
+  }
 }

@@ -37,6 +37,7 @@ export class ReportPage implements OnInit, ViewDidEnter {
     const answerReports = await this.service.getFirstReports();
     const newReports = answerReports.newsItems;
     this.store.reports.push(...newReports);
+    this.store.reportLoaded = true;
     if (refreshEvent) {
       refreshEvent.target.complete();
     }

@@ -11,6 +11,7 @@ export class LaunchParamStoreService {
   showFilter = false;
   launches: any[] = [];
   scrollY = 0;
+  loaded = false;
   upcomingPreviousAll: UpcomingPreviousAll = UpcomingPreviousAll.UPCOMING;
 
   constructor() {}

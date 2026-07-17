@@ -30,6 +30,13 @@
     <ion-card-title>{{ title }}</ion-card-title>
   </ion-card-header>
   <ion-card-content>
-    <div id="content"></div>
+    <div id="content">
+      @if (location.total_launch_count) {
+        <ion-chip>
+          <ion-icon name="trending-up" color="dark"></ion-icon>
+          <ion-label>{{ location.total_launch_count }} launches</ion-label>
+        </ion-chip>
+      }
+    </div>
   </ion-card-content>
 </ion-card>

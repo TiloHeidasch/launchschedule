@@ -28,6 +28,19 @@
     <ion-card-title>{{ title }}</ion-card-title>
   </ion-card-header>
   <ion-card-content>
-    <div id="content"></div>
+    <div id="content">
+      @if (spacecraft.crew_capacity) {
+        <ion-chip>
+          <ion-icon name="body" color="dark"></ion-icon>
+          <ion-label>{{ spacecraft.crew_capacity }} crew</ion-label>
+        </ion-chip>
+      }
+      @if (spacecraft.maiden_flight) {
+        <ion-chip>
+          <ion-icon name="calendar" color="dark"></ion-icon>
+          <ion-label>{{ spacecraft.maiden_flight }}</ion-label>
+        </ion-chip>
+      }
+    </div>
   </ion-card-content>
 </ion-card>

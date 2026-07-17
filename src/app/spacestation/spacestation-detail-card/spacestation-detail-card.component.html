@@ -29,20 +29,20 @@
     </ion-card-header>
     <ion-card-content>
       <div id="description">
-        <ion-item>
+        <ion-item class="section-header" lines="none">
           <ion-label> Description </ion-label>
         </ion-item>
         <p>{{ spacestation.description }}</p>
       </div>
       <div id="orbit">
-        <ion-item>
+        <ion-item class="section-header" lines="none">
           <ion-label> Orbit </ion-label>
         </ion-item>
         <p>{{ spacestation.orbit }}</p>
       </div>
       @if (spacestation.docking_location.length > 0) {
         <div id="docking_location">
-          <ion-item>
+          <ion-item class="section-header" lines="none">
             <ion-label> Docking Ports </ion-label>
           </ion-item>
           @for (dockingLocation of spacestation.docking_location; track dockingLocation) {
@@ -76,7 +76,7 @@
         </div>
       }
       <div id="specifications">
-        <ion-item>
+        <ion-item class="section-header" lines="none">
           <ion-label> Specifications </ion-label>
         </ion-item>
         @if (spacestation.onboard_crew) {

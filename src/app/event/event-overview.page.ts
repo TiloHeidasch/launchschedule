@@ -41,6 +41,7 @@ export class EventOverviewPage implements OnInit, ViewDidEnter {
       this.store.type,
       this.store.upcomingPreviousAll
     )).events;
+    this.store.loaded = true;
     if (refreshEvent) {
       refreshEvent.target.complete();
     }

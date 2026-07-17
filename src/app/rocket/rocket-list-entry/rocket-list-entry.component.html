@@ -23,6 +23,25 @@
     <ion-card-title>{{ title }}</ion-card-title>
   </ion-card-header>
   <ion-card-content>
-    <div id="content"></div>
+    <div id="content">
+      @if (rocket.maiden_flight) {
+        <ion-chip>
+          <ion-icon name="calendar" color="dark"></ion-icon>
+          <ion-label>{{ rocket.maiden_flight }}</ion-label>
+        </ion-chip>
+      }
+      @if (rocket.length) {
+        <ion-chip>
+          <ion-icon name="arrow-up" color="dark"></ion-icon>
+          <ion-label>{{ rocket.length }}m</ion-label>
+        </ion-chip>
+      }
+      @if (rocket.launch_mass) {
+        <ion-chip>
+          <ion-icon name="barbell" color="dark"></ion-icon>
+          <ion-label>{{ rocket.launch_mass }}t</ion-label>
+        </ion-chip>
+      }
+    </div>
   </ion-card-content>
 </ion-card>

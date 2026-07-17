@@ -37,6 +37,7 @@ export class BlogPage implements OnInit, ViewDidEnter {
     const answerBlogs = await this.service.getFirstBlogs();
     const newBlogs = answerBlogs.newsItems;
     this.store.blogs.push(...newBlogs);
+    this.store.blogLoaded = true;
     if (refreshEvent) {
       refreshEvent.target.complete();
     }

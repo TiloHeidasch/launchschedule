@@ -1,0 +1,65 @@
+// Shared card image treatment — used by all list-entry and detail-card components
+
+#image {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  height: 12rem;
+  width: 100%;
+}
+
+#image:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 25%;
+  display: inline-block;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    var(--ion-item-background) 100%
+  );
+}
+
+.image-wrapper {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+}
+
+#background {
+  width: 100%;
+  opacity: 0.2;
+  height: 12rem;
+}
+
+#background::shadow {
+  object-fit: fill !important;
+}
+
+#foreground {
+  height: 12rem;
+}
+
+ion-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+ion-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+ion-card:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+  height: 15rem;
+}

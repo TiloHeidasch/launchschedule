@@ -11,6 +11,7 @@ export class EventParamStoreService {
   showFilter = false;
   events: any[] = [];
   scrollY = 0;
+  loaded = false;
   upcomingPreviousAll: UpcomingPreviousAll = UpcomingPreviousAll.UPCOMING;
 
   constructor() {}

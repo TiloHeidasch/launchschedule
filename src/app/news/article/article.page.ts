@@ -37,6 +37,7 @@ export class ArticlePage implements OnInit, ViewDidEnter {
     const answerArticles = await this.service.getFirstArticles();
     const newArticles = answerArticles.newsItems;
     this.store.articles.push(...newArticles);
+    this.store.articleLoaded = true;
     if (refreshEvent) {
       refreshEvent.target.complete();
     }

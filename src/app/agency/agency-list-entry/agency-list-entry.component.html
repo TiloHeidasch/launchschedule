@@ -25,6 +25,18 @@
       <ion-card-title>{{ title }}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
+      @if (agency.total_launch_count) {
+        <ion-chip>
+          <ion-icon name="rocket" color="dark"></ion-icon>
+          <ion-label>{{ agency.successful_launches }}/{{ agency.total_launch_count }}</ion-label>
+        </ion-chip>
+      }
+      @if (agency.administrator) {
+        <ion-chip>
+          <ion-icon name="person" color="dark"></ion-icon>
+          <ion-label>{{ agency.administrator }}</ion-label>
+        </ion-chip>
+      }
     </ion-card-content>
   </ion-card>
 }

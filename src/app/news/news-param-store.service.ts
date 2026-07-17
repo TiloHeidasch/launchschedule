@@ -12,6 +12,9 @@ export class NewsParamStoreService {
   blogScrollY = 0;
   articleScrollY = 0;
   reportScrollY = 0;
+  blogLoaded = false;
+  articleLoaded = false;
+  reportLoaded = false;
   constructor(
     private storage: NewsStorageService,
     private snapi: SnapiService

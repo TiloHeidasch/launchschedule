@@ -24,7 +24,7 @@
       </div>
       @if (event.launches.length>0) {
         <div id="launches">
-          <ion-item>
+          <ion-item class="section-header" lines="none">
             <ion-label> Launches </ion-label>
           </ion-item>
           @for (launch of event.launches; track launch) {
@@ -38,7 +38,7 @@
         <div
           id="spacestations"
           >
-          <ion-item>
+          <ion-item class="section-header" lines="none">
             <ion-label> Spacestation </ion-label>
           </ion-item>
           <app-spacestation-list-entry
@@ -48,7 +48,7 @@
       }
       @if (event.video_url) {
         <div id="video">
-          <ion-item>
+          <ion-item class="section-header" lines="none">
             <ion-label> Video </ion-label>
           </ion-item>
           <app-youtube-video [url]="event.video_url"></app-youtube-video>

@@ -30,7 +30,7 @@
             <div
               class="crew-member"
               >
-              <ion-item>
+              <ion-item class="section-header" lines="none">
                 <ion-label> {{member.role.role}} </ion-label>
               </ion-item>
               <app-astronaut-list-entry
@@ -41,7 +41,7 @@
         </div>
       }
       <div id="rocket">
-        <ion-item>
+        <ion-item class="section-header" lines="none">
           <ion-label> Rocket </ion-label>
         </ion-item>
         <app-rocket-list-entry
@@ -50,7 +50,7 @@
       </div>
       @if (launch.mission) {
         <div id="mission">
-          <ion-item>
+          <ion-item class="section-header" lines="none">
             <ion-label> Mission </ion-label>
           </ion-item>
           <app-mission-list-entry
@@ -59,13 +59,13 @@
         </div>
       }
       <div id="pad">
-        <ion-item>
+        <ion-item class="section-header" lines="none">
           <ion-label> Pad </ion-label>
         </ion-item>
         <app-pad-list-entry [pad]="launch.pad"></app-pad-list-entry>
       </div>
       <div id="agency">
-        <ion-item>
+        <ion-item class="section-header" lines="none">
           <ion-label> Agency </ion-label>
         </ion-item>
         <app-agency-list-entry
@@ -74,7 +74,7 @@
       </div>
       @if (videos && videos.length>0) {
         <div id="video">
-          <ion-item>
+          <ion-item class="section-header" lines="none">
             <ion-label> Videos </ion-label>
           </ion-item>
           @for (video of videos; track video) {
