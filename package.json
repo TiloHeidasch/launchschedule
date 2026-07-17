@@ -26,7 +26,7 @@
     "@angular/router": "^22.0.6",
     "@angular/service-worker": "^22.0.6",
     "@angular/youtube-player": "^22.0.0",
-    "@ionic/angular": "^8.8.13",
+    "@ionic/angular": "^8.8.14",
     "@herdwatch/ngx-ionic-image-viewer": "^2.2.2",
     "@types/leaflet": "^1.7.11",
     "chart.js": "^3.9.0",
