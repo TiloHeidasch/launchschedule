@@ -51,7 +51,7 @@
     "@angular/cli": "^22.0.6",
     "@angular/compiler": "^22.0.6",
     "@angular/compiler-cli": "^22.0.6",
-    "@angular/language-service": "^22.0.6",
+    "@angular/language-service": "^22.0.7",
     "@ionic/angular-toolkit": "^12.3.0",
     "@playwright/test": "^1.61.1",
     "@types/jasmine": "~4.0.3",
