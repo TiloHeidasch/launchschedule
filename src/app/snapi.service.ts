@@ -18,7 +18,7 @@ export class SnapiService {
     return { newsItems: data.results.map((item) => this.mapItem(item)) };
   }
   createArticlesUrl(start?, limit?) {
-    const url = this.baseUrl + "articles?limit=" + limit + "&offset=" + start;
+    const url = environment.cors + this.baseUrl + "articles?limit=" + limit + "&offset=" + start;
     return url;
   }
   async getFirstBlogs() {
@@ -31,7 +31,7 @@ export class SnapiService {
     return { newsItems: data.results.map((item) => this.mapItem(item)) };
   }
   createBlogsUrl(start?, limit?) {
-    const url = this.baseUrl + "blogs?limit=" + limit + "&offset=" + start;
+    const url = environment.cors + this.baseUrl + "blogs?limit=" + limit + "&offset=" + start;
     return url;
   }
   async getFirstReports() {
@@ -44,7 +44,7 @@ export class SnapiService {
     return { newsItems: data.results.map((item) => this.mapItem(item)) };
   }
   createReportsUrl(start?, limit?) {
-    const url = this.baseUrl + "reports?limit=" + limit + "&offset=" + start;
+    const url = environment.cors + this.baseUrl + "reports?limit=" + limit + "&offset=" + start;
     return url;
   }
   private mapItem(item: any) {
