@@ -61,7 +61,7 @@
     "eslint": "^9.24.0",
     "eslint-plugin-unused-imports": "^4.1.0",
     "istanbul-lib-instrument": "^6.0.3",
-    "jasmine-core": "~4.3.0",
+    "jasmine-core": "~4.6.1",
     "jasmine-spec-reporter": "~7.0.0",
     "jsdom": "^22.0.0",
     "karma": "~6.4.0",
