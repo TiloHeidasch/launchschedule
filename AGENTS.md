@@ -46,6 +46,8 @@ Master data files (previous launches, astronauts, pads, agencies, etc.) are gene
 - Custom launcher `ChromeHeadlessCustom` uses flags `--no-sandbox --disable-gpu`
 - Spec files co-located next to source files as `*.spec.ts`
 - E2E uses Playwright with specs in `e2e/src/*.e2e-spec.ts`
+- Coverage thresholds in `karma.conf.js`: statements 71%, branches 50%, functions 62%, lines 71%
+- 310 tests, all passing (latest: Jul 2026)
 
 ## Deployment
 
@@ -60,3 +62,5 @@ Master data files (previous launches, astronauts, pads, agencies, etc.) are gene
 - Prod env has a real NASA API key (`environment.prod.ts`); dev uses `DEMO_KEY`
 - Dev environment uses `lldev.thespacedevs.com` (LaunchLibrary dev endpoint); prod uses `ll.thespacedevs.com`
 - CORS requests proxied through `cors.th105.de` in both dev and prod
+- `(service as any).data = undefined` must be reset between tests for services that cache HTTP data; use `TestBed.inject(Service)` and cast to `any`
+- Page tests that call `ngOnInit()` with async data should manually invoke `component.ngOnInit()` + `await new Promise(r => setTimeout(r))` instead of `fixture.detectChanges()` + `await fixture.whenStable()` to avoid NG0100 errors
