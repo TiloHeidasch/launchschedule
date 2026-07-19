@@ -2,7 +2,7 @@ import {
   HttpClientTestingModule,
   HttpTestingController,
 } from "@angular/common/http/testing";
-import { TestBed, fakeAsync, tick } from "@angular/core/testing";
+import { TestBed } from "@angular/core/testing";
 import { IonicModule } from "@ionic/angular";
 
 import { EpicService } from "./epic.service";
