@@ -52,17 +52,11 @@ export class RcketPage {
         contentMultiLine: [
           "You can checkout the entire source code of this app is on Github.",
           "Client contains the source code for the mobile app, aswell as the browser variant.",
-          "Server contains the source code for the Notification Automation backend.",
         ],
         links: [
           {
             name: "Client",
             link: "https://github.com/TiloHeidasch/launchschedule",
-            isExternal: true,
-          },
-          {
-            name: "Server",
-            link: "https://github.com/TiloHeidasch/launchschedule-notifications",
             isExternal: true,
           },
         ],

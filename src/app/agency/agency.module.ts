@@ -12,7 +12,6 @@ import { AgencyDetailCardComponent } from "./agency-detail-card/agency-detail-ca
 import { AgencyListEntryModule } from "./agency-list-entry/agency-list-entry.module";
 import { RocketListEntryModule } from "../rocket/rocket-list-entry/rocket-list-entry.module";
 import { SpacecraftListEntryModule } from "../spacecraft/spacecraft-list-entry/spacecraft-list-entry.module";
-import { NotificationModule } from "../notification/notification.module";
 import { NgxIonicImageViewerComponent } from "@herdwatch/ngx-ionic-image-viewer";
 import { AgencyService } from "./agency.service";
 
@@ -25,7 +24,6 @@ import { AgencyService } from "./agency.service";
     AgencyListEntryModule,
     RocketListEntryModule,
     SpacecraftListEntryModule,
-    NotificationModule,
     NgxIonicImageViewerComponent,
   ],
   declarations: [AgencyPage, AgencyOverviewPage, AgencyDetailCardComponent],

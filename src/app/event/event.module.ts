@@ -15,7 +15,6 @@ import { VideoModule } from "../video/video.module";
 import { LaunchListEntryModule } from "../launch/launch-list-entry/launch-list-entry.module";
 import { AstronautListEntryModule } from "../astronaut/astronaut-list-entry/astronaut-list-entry.module";
 import { SpacestationListEntryModule } from "../spacestation/spacestation-list-entry/spacestation-list-entry.module";
-import { NotificationModule } from "../notification/notification.module";
 import { NgxIonicImageViewerComponent } from "@herdwatch/ngx-ionic-image-viewer";
 import { ListEntryDummyModule } from "../list-entry-dummy/list-entry-dummy.module";
 
@@ -31,7 +30,6 @@ import { ListEntryDummyModule } from "../list-entry-dummy/list-entry-dummy.modul
     LaunchListEntryModule,
     AstronautListEntryModule,
     SpacestationListEntryModule,
-    NotificationModule,
     NgxIonicImageViewerComponent,
     ListEntryDummyModule,
   ],

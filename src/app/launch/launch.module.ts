@@ -18,7 +18,6 @@ import { PadListEntryModule } from "../pad/pad-list-entry/pad-list-entry.module"
 import { RocketListEntryModule } from "../rocket/rocket-list-entry/rocket-list-entry.module";
 import { AstronautListEntryModule } from "../astronaut/astronaut-list-entry/astronaut-list-entry.module";
 import { VideoModule } from "../video/video.module";
-import { NotificationModule } from "../notification/notification.module";
 import { NgxIonicImageViewerComponent } from "@herdwatch/ngx-ionic-image-viewer";
 import { ListEntryDummyModule } from "../list-entry-dummy/list-entry-dummy.module";
 
@@ -37,7 +36,6 @@ import { ListEntryDummyModule } from "../list-entry-dummy/list-entry-dummy.modul
     RocketListEntryModule,
     AstronautListEntryModule,
     VideoModule,
-    NotificationModule,
     NgxIonicImageViewerComponent,
     ListEntryDummyModule,
   ],

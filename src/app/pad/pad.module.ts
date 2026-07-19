@@ -11,7 +11,6 @@ import { PadOverviewPage } from "./pad-overview.page";
 import { PadDetailCardComponent } from "./pad-detail-card/pad-detail-card.component";
 import { MapModule } from "../map/map.module";
 import { PadListEntryModule } from "./pad-list-entry/pad-list-entry.module";
-import { NotificationModule } from "../notification/notification.module";
 import { NgxIonicImageViewerComponent } from "@herdwatch/ngx-ionic-image-viewer";
 import { PadService } from "./pad.service";
 
@@ -23,7 +22,6 @@ import { PadService } from "./pad.service";
     PadRoutingModule,
     MapModule,
     PadListEntryModule,
-    NotificationModule,
     NgxIonicImageViewerComponent,
   ],
   declarations: [PadPage, PadOverviewPage, PadDetailCardComponent],

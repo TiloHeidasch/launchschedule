@@ -1,6 +1,6 @@
 # RCKET — launchschedule
 
-Ionic 6 + Angular PWA for tracking rocket launches. Served via GitHub Pages.
+Ionic 8 + Angular 22 PWA for tracking rocket launches. Served via GitHub Pages.
 
 ## Commands
 
@@ -23,20 +23,22 @@ No dedicated typecheck script; use `npx tsc --noEmit` if needed.
 - All feature modules are **lazy-loaded** with `NoPreloading`; routes use **hash** strategy
 - Component selectors: element `app-{kebab-case}`, directive `app{camelCase}`
 - Component class suffixes: `Page` or `Component` only
-- Central API service: `LaunchLibraryService` (LaunchLibrary API), `SnapiService` (Spaceflight News), `LaunchscheduleNotificationService`
+- Central API service: `LaunchLibraryService` (LaunchLibrary API), `SnapiService` (Spaceflight News)
+- Interest tracking via `LaunchscheduleNotificationService` (in-app, backed by localStorage)
+- Storage via `StorageService` (wraps `localStorage`)
 - Environment files swapped via Angular fileReplacements in prod config
-- Storage via `@capacitor/storage` (not localStorage directly)
-- Push notifications via `@capacitor/push-notifications`
 
 ## Data pipeline
 
-`scripts/` contains Node.js scripts (TypeScript) for offline data fetching:
-- `scripts/fetchLaunches.ts` — paginated fetch from LaunchLibrary, saves chunks to disk
-- `scripts/mergeLaunches.ts` — merges chunks into single JSON
-- `scripts/masterdata/fetch*.ts` — fetches master data (astronauts, previous launches)
+`scripts/` contains Node.js scripts (TypeScript/JavaScript) for offline data processing:
+- `scripts/totemizeBeta.ts` / `scripts/totemizeProd.ts` — generate random codenames for releases
+- `scripts/setRelease.ts` — updates version metadata in `environment.prod.ts`
+- `scripts/fetchImages.ts` — downloads and caches images from JSON data files
+- `scripts/masterdata/fetch*.js` — paginated fetches from LaunchLibrary (master data, astronauts, previous launches)
+- `scripts/masterdata/merge.js` — merges fetched chunks into single JSON files
 - Data JSON files land in `src/app/data/` (gitignored: `/src/app/data/*`)
 
-Previous launches are bundled as static JSON (`src/app/data/previouslaunches.json`) and served by `PreviousLaunchService` with in-memory lookup.
+Master data files (previous launches, astronauts, pads, agencies, etc.) are generated locally and served by dedicated services (e.g. `PreviousLaunchService`) with in-memory lookup.
 
 ## Testing
 

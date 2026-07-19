@@ -5,7 +5,6 @@ import { LaunchRoutingModule } from "../launch-routing.module";
 import { LaunchStatusModule } from "../launch-status/launch-status.module";
 import { CountdownModule } from "src/app/countdown/countdown.module";
 import { IonicModule } from "@ionic/angular";
-import { NotificationModule } from "src/app/notification/notification.module";
 
 @NgModule({
   declarations: [LaunchListEntryComponent],
@@ -15,7 +14,6 @@ import { NotificationModule } from "src/app/notification/notification.module";
     LaunchStatusModule,
     CountdownModule,
     IonicModule,
-    NotificationModule,
   ],
   exports: [LaunchListEntryComponent],
 })

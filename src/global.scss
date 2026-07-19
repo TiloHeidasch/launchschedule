@@ -91,22 +91,6 @@
 .my-toast {
   max-width: calc(100% - 40px);
 }
-app-notification-icon {
-  position: absolute;
-  z-index: 2;
-  right: 0.75rem;
-  top: 0.75rem;
-}
-app-notification-icon-dummy {
-  position: absolute;
-  z-index: 2;
-  right: 0.75rem;
-  top: 0.75rem;
-  width: 2rem;
-  height: 2rem;
-  border-radius: 50%;
-  background: var(--ion-color-step-100);
-}
 ion-toolbar {
   ion-title {
     font-size: 1.75rem;

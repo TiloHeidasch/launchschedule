@@ -63,17 +63,6 @@
       }
     },
     {
-      "name": "Notifications",
-      "urls": [
-        "https://launchschedule-notifications.th105.de/notification/amount"
-      ],
-      "cacheConfig": {
-        "strategy": "performance",
-        "maxSize": 20,
-        "maxAge": "1d"
-      }
-    },
-    {
       "name": "NASA",
       "urls": [
         "https://api.nasa.gov/planetary/apod",

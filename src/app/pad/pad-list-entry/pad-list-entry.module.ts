@@ -3,12 +3,11 @@ import { CommonModule } from "@angular/common";
 import { PadListEntryComponent } from "./pad-list-entry.component";
 import { PadRoutingModule } from "../pad-routing.module";
 import { IonicModule } from "@ionic/angular";
-import { NotificationModule } from "src/app/notification/notification.module";
 import { PadService } from "../pad.service";
 
 @NgModule({
   declarations: [PadListEntryComponent],
-  imports: [PadRoutingModule, CommonModule, IonicModule, NotificationModule],
+  imports: [PadRoutingModule, CommonModule, IonicModule],
   exports: [PadListEntryComponent],
   providers: [PadService],
 })

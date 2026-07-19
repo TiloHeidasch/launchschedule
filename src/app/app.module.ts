@@ -8,7 +8,6 @@ import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { LaunchLibraryService } from "./launch-library.service";
-import { LaunchscheduleNotificationService } from "./launchschedule-notification.service";
 import { StorageService } from "./storage.service";
 import { PreviousLaunchService } from "./masterdata/previous-launches.service";
 import { ServiceWorkerModule } from "@angular/service-worker";
@@ -34,7 +33,6 @@ import { environment } from "../environments/environment";
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
         LaunchLibraryService,
         PreviousLaunchService,
-        LaunchscheduleNotificationService,
         StorageService,
     ],
     bootstrap: [AppComponent]

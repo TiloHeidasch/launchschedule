@@ -11,7 +11,6 @@ import { SpacecraftOverviewPage } from "./spacecraft-overview.page";
 import { SpacecraftDetailCardComponent } from "./spacecraft-detail-card/spacecraft-detail-card.component";
 import { AgencyListEntryModule } from "../agency/agency-list-entry/agency-list-entry.module";
 import { SpacecraftListEntryModule } from "./spacecraft-list-entry/spacecraft-list-entry.module";
-import { NotificationModule } from "../notification/notification.module";
 import { NgxIonicImageViewerComponent } from "@herdwatch/ngx-ionic-image-viewer";
 import { SpacecraftService } from "./spacecraft.service";
 
@@ -23,7 +22,6 @@ import { SpacecraftService } from "./spacecraft.service";
     SpacecraftRoutingModule,
     AgencyListEntryModule,
     SpacecraftListEntryModule,
-    NotificationModule,
     NgxIonicImageViewerComponent,
   ],
   declarations: [

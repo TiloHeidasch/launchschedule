@@ -11,7 +11,6 @@ import { CommonModule } from "@angular/common";
 import { RocketOverviewPage } from "./rocket-overview.page";
 import { RocketListEntryModule } from "./rocket-list-entry/rocket-list-entry.module";
 import { AgencyListEntryModule } from "../agency/agency-list-entry/agency-list-entry.module";
-import { NotificationModule } from "../notification/notification.module";
 import { NgxIonicImageViewerComponent } from "@herdwatch/ngx-ionic-image-viewer";
 import { RocketService } from "./rocket.service";
 
@@ -23,7 +22,6 @@ import { RocketService } from "./rocket.service";
     RocketRoutingModule,
     RocketListEntryModule,
     AgencyListEntryModule,
-    NotificationModule,
     NgxIonicImageViewerComponent,
   ],
   declarations: [RocketOverviewPage, RocketPage, RocketDetailCardComponent],

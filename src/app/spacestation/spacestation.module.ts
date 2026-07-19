@@ -12,7 +12,6 @@ import { SpacestationDetailCardComponent } from "./spacestation-detail-card/spac
 import { SpacestationListEntryModule } from "./spacestation-list-entry/spacestation-list-entry.module";
 import { AgencyListEntryModule } from "../agency/agency-list-entry/agency-list-entry.module";
 import { AstronautListEntryModule } from "../astronaut/astronaut-list-entry/astronaut-list-entry.module";
-import { NotificationModule } from "../notification/notification.module";
 import { NgxIonicImageViewerComponent } from "@herdwatch/ngx-ionic-image-viewer";
 import { SpacestationService } from "./spacestation.service";
 
@@ -25,7 +24,6 @@ import { SpacestationService } from "./spacestation.service";
     SpacestationListEntryModule,
     AgencyListEntryModule,
     AstronautListEntryModule,
-    NotificationModule,
     NgxIonicImageViewerComponent,
   ],
   declarations: [
